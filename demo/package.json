@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "statinamic-demo",
+  "url": "http://moox.io/statinamic",
+  "version": "0.0.0",
+  "author": "Maxime Thirouin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoOx/statinamic.git"
+  },
+  "statinamic": {
+    "hostname": "moox.io"
+  },
+  "twitter": "MoOx",
+  "github": "MoOx"
+}

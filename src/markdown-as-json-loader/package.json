@@ -1,0 +1,13 @@
+{
+  "name": "markdown-as-json",
+  "version": "1.0.0",
+  "author": "Maxime Thirouin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoOx/markdown-as-json-loader"
+  },
+  "dependencies": {
+    "loader-utils": "^0.2.11"
+  }
+}
