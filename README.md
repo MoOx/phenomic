@@ -13,7 +13,10 @@ rendering).
 It's a static website generator because it helps to generate a simple website
 from markdown files (to HTML).
 
-The nice part is that you can do a lot more.
+_The nice part is it can offer the same UX as an app by using small requests for
+data (eg: JSON) and allow to easily integrate smooth navigation between pages
+(eg: using [bloody-react-transition-child](https://github.com/bloodyowl/react-transition-child))._
+
 
 ## Install
 
@@ -43,6 +46,14 @@ You will need to:
     (eg: webpack loaders to add your favorite css preprocessor)
   * run the dev server
   * build for production
+
+For that you will mainly need to:
+
+* write or reuse [React components](http://react-components.com/)
+* tweak [webpack configuration](http://webpack.github.io/docs)
+  so you can consume images, svg, css or whatever you want.
+
+Check out the [demo source code](demo).
 
 ---
 
