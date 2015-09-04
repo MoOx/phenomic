@@ -104,12 +104,11 @@ This project has been inspired by
 
 ---
 
-## Contributing
+## CONTRIBUTING
 
-* ⇄ Pull requests and ★ stars are always welcome.
+* ⇄ Pull requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
-* Pull requests that modifies code must be accompanied with automated tests.
-* Run `$ npm test` before making a pull request.
+* Pull requests must be accompanied by passing unit tests (`$ npm test`).
 
 ## [CHANGELOG](CHANGELOG.md)
 
