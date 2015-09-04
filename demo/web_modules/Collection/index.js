@@ -28,8 +28,13 @@ class Collection extends Component {
       <div>
         <Page { ...this.props } />
         {
-          collection && collection.length &&
-
+          Boolean(!collection || !collection.length) &&
+          <div>
+            No entry
+          </div>
+        }
+        {
+          Boolean(collection && collection.length) &&
           <div>
             { "Posts (by date)" }
             <ul>
