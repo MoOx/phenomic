@@ -2,7 +2,7 @@
 
 > A static website generator that create dynamic website using React components.
 
-![Travis Build Badge](https://img.shields.io/travis/MoOx/statinamic/master.svg)
+[![Travis Build Badge](https://img.shields.io/travis/MoOx/statinamic/master.svg)](https://travis-ci.org/MoOx/statinamic)
 
 ## Install
 
