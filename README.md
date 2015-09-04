@@ -28,15 +28,7 @@ $ npm install MoOx/statinamic
 
 See [demo](demo) for now.
 
-```console
-$ npm install
-
-# static build
-$ npm test
-
-# live demo
-$ npm run demo
-```
+### What you need to know
 
 You will need to:
 
@@ -60,16 +52,21 @@ Check out the [demo source code](demo).
 ## Explanation
 
 During the build process, markdown files are parsed, and transformed as JSON
-files (on part with the YAML header meta informations, on part with the body as
-HTML). So both client and server can easily consume markdown files (as json) in
-order to render pages from React components. That's it !
+files (one part with the YAML header meta informations, one part with the body
+as HTML).
+So both client and server can easily consume markdown files (as json) in order
+to render pages from React components. That's it !
 
 On top of that you can add pretty much whatever you want to write styles the way
 you like (CSS, inlines styles...) and you can even create your own pages from
-plain React components. This generator is just an helper
+plain React components. This generator is just an helper.
 
-### Library used
+### Packages used
 
+* [Babel](http://babeljs.io)
+  for writing ES6 and ES7
+* [Webpack](http://webpack.github.io)
+  for bundling,
 * [React](https://github.com/facebook/react)
   for writing UI
 * [React Router](https://github.com/rackt/react-router)
@@ -77,26 +74,19 @@ plain React components. This generator is just an helper
 * [Redux](https://github.com/gaearon/redux)
   for handling application state
   (a better [Flux](http://facebook.github.io/flux/)implementation)
-
-### For development
-
-* [Babel](http://babeljs.io)
-  for writing ES6 and ES7
-* [Webpack](http://webpack.github.io)
-  for bundling.
-* [Webpack Dev Server](http://webpack.github.io/docs/webpack-dev-server.html)
-  for easy development.
-* [React Hot Loader](https://github.com/gaearon/react-hot-loader)
-  for live development.
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
   for awesome DX (developer experience).
 
-## Some stuff you might want to use too
+## Some packages that might helps
 
+* [React Hot Loader](https://github.com/gaearon/react-hot-loader)
+  for live development.
 * [react-helmet](https://github.com/nfl/react-helmet)
   for handling pages meta tags (title and meta...)
 * [tape](https://github.com/substack/tape)
   for unit tests.
+
+_⚠︎ The packages above are used in the [demo](demo)._
 
 This project has been inspired by
 [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example/)
