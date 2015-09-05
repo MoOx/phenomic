@@ -1,7 +1,9 @@
+import express from "express"
 import webpack from "webpack"
-import WebpackDevServer from "webpack-dev-server"
-
 import webpackNanoLogs from "webpack-nano-logs"
+import webpackDevMiddleware from "webpack-dev-middleware"
+import webpackHotMiddleware from "webpack-hot-middleware"
+import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackErrorNotificationPlugin from "webpack-error-notification"
 
 import opn from "opn"
@@ -22,8 +24,7 @@ export default (config, options) => {
   const serverUrl = `${ options.protocol }${ options.host }:${ options .port }`
 
   const devEntries = [
-    `webpack-dev-server/client?${ serverUrl }`,
-    `webpack/hot/only-dev-server`,
+    require.resolve(`webpack-hot-middleware/client`),
   ]
 
   const devConfig = {
@@ -52,8 +53,9 @@ export default (config, options) => {
     plugins: [
       ...(config.plugins || []),
       ...(options.plugins || []),
-      new webpack.NoErrorsPlugin(),
+      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
       webpackNanoLogs,
       new WebpackErrorNotificationPlugin(),
     ],
@@ -63,28 +65,36 @@ export default (config, options) => {
     },
   }
 
-  return new WebpackDevServer(
-    webpack(devConfig),
-    {
-      https: options.protocol === "https://",
-      contentBase: config.output.path,
-      hot: true,
-      stats: {
-        colors: true,
-        // hide all chunk dependencies because it's unreadable
-        chunkModules: false,
-        // noize
-        assets: false,
-      },
-      noInfo: true,
+  const server = express()
+  server.use(historyFallbackMiddleware())
 
-      // allow all url to point to index.html
-      historyApiFallback: true,
-    })
-    .listen(options.port, options.host, () => {
-      log(`Dev server started on ${ serverUrl }`)
-      if (options.open) {
-        opn(`${ serverUrl }`)
-      }
-    })
+  const webpackCompiler = webpack(devConfig)
+  server.use(webpackDevMiddleware(webpackCompiler, {
+    https: options.protocol === "https://",
+    contentBase: config.output.path,
+    hot: true,
+    stats: {
+      colors: true,
+      // hide all chunk dependencies because it's unreadable
+      chunkModules: false,
+      // noize
+      assets: false,
+    },
+    noInfo: true,
+  }))
+  server.use(webpackHotMiddleware(webpackCompiler))
+
+  server.get("*", express.static(config.output.path))
+
+  server.listen(options.port, options.host, (err) => {
+    if (err) {
+      log(err)
+
+      return
+    }
+    log(`Dev server started on ${ serverUrl }`)
+    if (options.open) {
+      opn(`${ serverUrl }`)
+    }
+  })
 }

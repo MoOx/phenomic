@@ -17,7 +17,7 @@ import * as pageComponents from "app/pageComponents"
 // (since the collection.json is made by a plugin _after_ the build)
 import collection from "statinamic/lib/json-collection-loader/cache"
 
-import build from "statinamic/lib/build"
+import builder from "statinamic/lib/builder"
 import configurator from "statinamic/lib/configurator"
 import jsonCollectionPlugin from
   "statinamic/lib/json-collection-loader/plugin"
@@ -28,7 +28,7 @@ const root = path.join(__dirname)
 const source = path.join(root, "content")
 const dest = path.join(root, "dist")
 
-build({
+builder({
   config,
   source,
   dest,
@@ -64,6 +64,22 @@ build({
       ],
     },
 
+    resolve: {
+      root: [
+        path.join(__dirname, "node_modules"),
+        // should be this in real world
+        // path.join(__dirname, "node_modules", "statinamic", "node_modules"),
+        path.join(__dirname, "web_modules", "statinamic", "node_modules"),
+      ],
+    },
+
+    resolveLoader: {
+      root: [
+        path.join(__dirname, "node_modules"),
+        path.join(__dirname, "web_modules"),
+      ],
+    },
+
     module: {
       // ! \\ note that loaders are executed from bottom to top !
       loaders: [
@@ -73,7 +89,7 @@ build({
         {
           test: /\.md$/,
           loaders: [
-            `file?name=[path][name]/index.json&context=${ source }`,
+            `file-loader?name=[path][name]/index.json&context=${ source }`,
             "statinamic/lib/json-collection-loader",
             "statinamic/lib/markdown-as-json-loader",
           ],
@@ -89,9 +105,31 @@ build({
         {
           test: /\.js$/,
           loaders: [
-            ...config.__DEV__ && [ "react-hot" ],
-            "babel",
-            ...config.__DEV__ && [ "eslint" ],
+            "babel-loader" + (
+              !config.__DEV__ ? "" : (
+                "?" + JSON.stringify({
+                  plugins: [
+                    "react-transform",
+                  ],
+                  extra: {
+                    "react-transform": [
+                      // enable react hot loading
+                      {
+                        target: "react-transform-webpack-hmr",
+                        imports: [ "react" ],
+                        locals: [ "module" ],
+                      },
+                      // show errors on screen
+                      {
+                        target: "react-transform-catch-errors",
+                        imports: [ "react", "redbox-react" ],
+                      },
+                    ],
+                  },
+                })
+              )
+            ),
+            ...config.__DEV__ && [ "eslint-loader" ],
           ],
           exclude: /node_modules/,
         },

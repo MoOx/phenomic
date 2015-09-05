@@ -67,6 +67,7 @@ plain React components. This generator is just an helper.
   for writing ES6 and ES7
 * [Webpack](http://webpack.github.io)
   for bundling,
+  with [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-server.html)
 * [React](https://github.com/facebook/react)
   for writing UI
 * [React Router](https://github.com/rackt/react-router)
@@ -79,8 +80,9 @@ plain React components. This generator is just an helper.
 
 ## Some packages that might helps
 
-* [React Hot Loader](https://github.com/gaearon/react-hot-loader)
-  for live development.
+* [react-transform-webpack-hmr](https://github.com/gaearon/react-transform-webpack-hmr)
+  for hotloading during development and some others friends from
+  [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * [react-helmet](https://github.com/nfl/react-helmet)
   for handling pages meta tags (title and meta...)
 * [tape](https://github.com/substack/tape)

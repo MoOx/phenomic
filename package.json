@@ -10,35 +10,37 @@
   },
   "dependencies": {
     "chalk": "^1.1.0",
+    "connect-history-api-fallback": "^1.1.0",
     "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.2.2",
+    "express": "^4.13.3",
     "gray-matter": "^2.0.0",
     "loader-utils": "^0.2.11",
     "markdown-it": "^4.4.0",
     "mkdirp": "^0.5.1",
     "nano-logger": "^1.0.0",
     "opn": "^3.0.2",
-    "redux-devtools": "^1.0.2",
-    "redux-thunk": "^0.1.0",
     "rimraf": "^2.4.2",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1",
+    "webpack-dev-middleware": "^1.2.0",
     "webpack-error-notification": "^0.1.4",
-    "webpack-nano-logs": "^1.0.0",
-    "whatwg-fetch": "^0.9.0"
+    "webpack-hot-middleware": "^2.0.0",
+    "webpack-nano-logs": "^1.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.22",
-    "babel-eslint": "^4.0.6",
-    "react-hot-loader": "^1.1.4",
+    "babel-eslint": "^4.0.6"
   },
   "peerDependencies": {
     "react": "^0.13.3",
     "react-redux": "^0.8.0",
     "react-router": "1.0.0-beta3",
     "redbox-react": "^1.0.1",
-    "redux": "^1.0.1"
+    "redux": "^1.0.1",
+    "redux-devtools": "^1.0.2",
+    "redux-thunk": "^0.1.0",
+    "whatwg-fetch": "^0.9.0"
   },
   "scripts": {
     "prebabelify": "rimraf lib",

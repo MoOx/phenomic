@@ -13,7 +13,7 @@ export default function(options) {
   } = options
   const webpackConfig = options.webpack
 
-  const log = nanoLogger("statinamic/lib/build")
+  const log = nanoLogger("statinamic/lib/builder")
 
   JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 

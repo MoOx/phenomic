@@ -14,25 +14,36 @@
   },
   "twitter": "MoOx",
   "github": "MoOx",
+  "#dependencies": "dependencies that will be used on the client side",
   "dependencies": {
     "react-helmet": "^1.1.1",
+    "react": "^0.13.3",
     "react-redux": "^0.8.0",
     "react-router": "1.0.0-beta3",
-    "redux": "^1.0.1"
+    "redux": "^1.0.1",
+    "redux-devtools": "^1.0.2",
+    "redux-thunk": "^0.1.0",
+    "whatwg-fetch": "^0.9.0"
   },
+  "#devDependencies": "dependencies used to build",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.23",
-    "babel-plugin-react-transform": "^1.0.1",
-    "babel-loader": "^5.3.2",
     "babel-eslint": "^4.0.6",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.0.1",
+    "eslint": "^1.1.0",
     "eslint-loader": "^1.0.0",
+    "eslint-plugin-react": "^3.2.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
     "highlight.js": "^8.5.0",
     "json-loader": "^0.5.2",
     "markdown-it-toc-and-anchor": "^1.0.1",
-    "redbox-react": "^1.0.1"
+    "react-transform-catch-errors": "^0.1.1",
+    "react-transform-webpack-hmr": "^0.1.4",
+    "redbox-react": "^1.0.1",
+    "webpack": "^1.12.1"
   },
   "scripts": {
     "#hackinstall": "hack to avoid duplicated modules for the runtime, required by react and webpack. You won't have to do this in the real world, since deps will be at the right place by default.",
