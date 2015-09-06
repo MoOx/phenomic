@@ -62,9 +62,7 @@ builder({
         // for all other extensions specified directly
         "",
       ],
-    },
 
-    resolve: {
       root: [
         path.join(__dirname, "node_modules"),
         // should be this in real world
