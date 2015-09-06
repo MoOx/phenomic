@@ -197,8 +197,7 @@ builder({
 
     jsonCollection: {
       urlify: (url) => url
-        // .replace(/^content\//, "")
-        .replace(/^demo\/content\//, "")
+        .replace(/^content\//, "")
         .replace(/\.md$/, "")
       ,
     },
