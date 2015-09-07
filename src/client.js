@@ -2,21 +2,15 @@
 import "whatwg-fetch"
 
 import React from "react"
-
 import Router from "react-router"
-
 import { Provider } from "react-redux"
-import createStore from "./createStore"
 
 import fetchJSON from "./fetchJSON"
 
 export default function statinamic({
   routes,
-  reducers = {},
-  initialState = {},
+  store,
 }) {
-  const store = createStore(reducers, initialState)
-
   // react-router beta4
   // const history = require("history/lib/createBrowserHistory")()
   const history = require("react-router/lib/BrowserHistory").history

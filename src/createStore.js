@@ -1,14 +1,7 @@
-import { createStore, applyMiddleware, combineReducers, compose } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 
-import * as reducers from "./ducks"
-
-export default function(additionalReducers = {}, initialState = {}) {
-  const reducer = combineReducers({
-    ...reducers,
-    ...additionalReducers,
-  })
-
+export default function(reducer = {}, initialState = {}) {
   function promiseMiddleware() {
     return (next) => (action) => {
       const { promise, types, ...rest } = action
@@ -38,9 +31,8 @@ export default function(additionalReducers = {}, initialState = {}) {
     finalCreateStore = compose(
       applyMiddleware(promiseMiddleware, thunk),
       devTools(),
-      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
-      createStore
-    )
+      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+    )(createStore)
   }
   else {
     finalCreateStore = applyMiddleware(promiseMiddleware, thunk)(createStore)
