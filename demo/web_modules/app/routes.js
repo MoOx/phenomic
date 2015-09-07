@@ -1,7 +1,6 @@
 import React from "react"
 import { Route } from "react-router"
-// import PageContainer from "statinamic/lib/PageContainer"
-import PageContainer from "../../../src/PageContainer"
+import PageContainer from "statinamic/lib/PageContainer"
 
 // components
 import Layout from "Layout"

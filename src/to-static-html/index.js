@@ -4,22 +4,12 @@ import mkdirp from "mkdirp"
 
 import urlAsHtml from "./url-as-html"
 
-import createStore from "../createStore"
-
-// import collection from "../json-collection-loader/cache"
-
 // react-router beta4
 // import { createRoutes } from "react-router/lib/RouteUtils"
 
 export default ({ urls, source, dest, exports }) => {
 
-  const store = createStore(exports.reducers, exports.initialState)
-
-  const routes =
-  // react-router beta4
-  // createRoutes(
-    exports.routes
-  // )
+  const { routes, store } = exports()
 
   // create all html files
   return Promise.all(

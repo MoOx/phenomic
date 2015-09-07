@@ -8,15 +8,6 @@ import hljs from "highlight.js"
 
 import pkg from "./package.json"
 
-import routes from "app/routes"
-// import * as reducers from "app/ducks"
-import * as pageComponents from "app/pageComponents"
-// instead of using the collection.json that has been made in during build
-// we directly use the module cache responsible of the build, since it's still
-// in memory. This avoid us a fs read + handling some potential async issues
-// (since the collection.json is made by a plugin _after_ the build)
-import collection from "statinamic/lib/json-collection-loader/cache"
-
 import builder from "statinamic/lib/builder"
 import configurator from "statinamic/lib/configurator"
 import jsonCollectionPlugin from
@@ -33,13 +24,10 @@ builder({
   source,
   dest,
 
-  exports: {
-    routes,
-    initialState: {
-      pageComponents,
-      collection,
-    },
-  },
+  exports: () => ({
+    routes: require("app/routes"),
+    store: require("app/store"),
+  }),
 
   webpack: {
     entry: {
