@@ -22,7 +22,7 @@ const store = createStore(
     // issues (since the collection.json is made by a plugin _after_ the build)
     ...__PROD__ && {
       collection:
-        require("statinamic/lib/json-collection-loader/cache").default,
+        require("statinamic/lib/markdown-as-json-loader/cache").default,
     },
 
     pageComponents,

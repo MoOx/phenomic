@@ -10,8 +10,6 @@ import pkg from "./package.json"
 
 import builder from "statinamic/lib/builder"
 import configurator from "statinamic/lib/configurator"
-import jsonCollectionPlugin from
-  "statinamic/lib/json-collection-loader/plugin"
 
 const config = configurator(pkg)
 
@@ -74,17 +72,11 @@ builder({
         //
         {
           test: /\.md$/,
-          loaders: [
-            `file-loader?name=[path][name]/index.json&context=${ source }`,
-            "statinamic/lib/json-collection-loader",
-            "statinamic/lib/markdown-as-json-loader",
-          ],
+          loader: `statinamic/lib/markdown-as-json-loader?context=${ source }`,
         },
         {
           test: /\.json$/,
-          loaders: [
-            "json",
-          ],
+          loader: "json-loader",
         },
 
         // your loaders
@@ -123,14 +115,6 @@ builder({
     },
 
     plugins: [
-      //
-      // statinamic requirement
-      //
-      jsonCollectionPlugin({
-        filename: "collection.json",
-      }),
-
-      // your plugins
       new webpack.DefinePlugin(
         // transform string as "string" so hardcoded replacements are
         // syntaxically correct
@@ -180,12 +164,5 @@ builder({
           tocFirstLevel: 2,
         })
     ),
-
-    jsonCollection: {
-      urlify: (url) => url
-        .replace(/^content\//, "")
-        .replace(/\.md$/, "")
-      ,
-    },
   },
 })

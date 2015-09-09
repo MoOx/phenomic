@@ -40,30 +40,14 @@ export default function(options) {
         global[key] = config[key]
       })
 
-      const filenameLengthToSkip = source.length + 1
-      const extLengthToSkip = ".md".length
-
-      const pageUrls = stats.compilation.fileDependencies.reduce(
-        (array, filename) => {
-          if (filename.match(/\.md$/)) {
-            array.push(
-              filename
-                // remove ext
-                .slice(0, filename.length - extLengthToSkip)
-                // remove source
-                .substr(filenameLengthToSkip)
-            )
-          }
-          return array
-        },
-        []
-      )
-
       require("../to-static-html")({
-        urls: [ "", ...pageUrls ],
+        urls: [
+          ...options.urls || [],
+          ...getMdUrlsFromWebpackStats(stats, source),
+        ],
         source,
         dest,
-        exports: options.exports,
+        exports: options.exports(),
         log,
       })
       .then(
@@ -81,4 +65,16 @@ export default function(options) {
       )
     })
   }
+}
+
+import filenameToUrl from "../filename-to-url"
+
+function getMdUrlsFromWebpackStats(stats, source) {
+  return stats.compilation.fileDependencies.reduce(
+    (array, filename) => ([
+      ...(filename.match(/\.md$/) ? [ filenameToUrl(filename, source) ] : []),
+      ...array,
+    ]),
+    []
+  )
 }
