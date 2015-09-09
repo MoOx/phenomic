@@ -17,6 +17,7 @@
     "gray-matter": "^2.0.0",
     "loader-utils": "^0.2.11",
     "markdown-it": "^4.4.0",
+    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "nano-logger": "^1.0.0",
     "opn": "^3.0.2",

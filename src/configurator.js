@@ -1,3 +1,7 @@
+import minimist from "minimist"
+
+const argv = minimist(process.argv)
+
 export default function config(pkg = {}) {
   const production = process.argv.includes("--production")
 
@@ -19,7 +23,7 @@ export default function config(pkg = {}) {
     // hostname: null,
     dev: {
       hostname: "0.0.0.0",
-      port: 3000,
+      port: argv["dev-server-port"] || 3000,
     },
     ...pkg.statinamic || {},
   }
