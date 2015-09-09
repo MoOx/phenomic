@@ -7,6 +7,7 @@ import createStore from "statinamic/lib/createStore"
 import * as pageComponents from "app/pageComponents"
 
 const store = createStore(
+  // here we combine statinamic required reducers and your custom ones
   combineReducers({
     ...statinamicReducers,
     ...reducers,
@@ -25,22 +26,28 @@ const store = createStore(
         require("statinamic/lib/markdown-as-json-loader/cache").default,
     },
 
+    // page components are Component that will be used for page layout/type
     pageComponents,
   }
 )
 
+// webpack hot loading
 if (module.hot) {
-  // Enable Webpack hot module replacement for reducers
+  // enable hot module replacement for reducers
   module.hot.accept([
-    // will be be updated since it's a lib :)
-    // but will still needs to be required
     // "statinamic/lib/ducks",
+    // will not be updated since it's a lib :)
+    // but will still needs to be required
+
+    // hot load your reducers
     "app/ducks",
   ], () => {
-    store.replaceReducer(combineReducers({
+    const updatedReducer = combineReducers({
+      // we still need to combine all reducers
       ...require("statinamic/lib/ducks"),
       ...require("app/ducks"),
-    }))
+    })
+    store.replaceReducer(updatedReducer)
   })
 }
 
