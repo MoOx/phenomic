@@ -25,5 +25,5 @@ $ npm start
 ## Build for production
 
 ```console
-$ npm run build:production
+$ npm run build
 ```
