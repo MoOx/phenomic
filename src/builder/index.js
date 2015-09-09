@@ -20,8 +20,8 @@ export default function(options) {
   const dest = webpackConfig.output.path
 
   // cleanup
-  // rm(dest)
-  // mkdir(dest)
+  rm(dest)
+  mkdir(dest)
 
   if (config.__DEVSERVER__) {
     devServer(webpackConfig, {
