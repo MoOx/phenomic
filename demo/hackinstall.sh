@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # some module require to share the same instance during runtime
 mkdir -p node_modules
