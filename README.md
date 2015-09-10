@@ -77,14 +77,14 @@ plain React components. This generator is just an helper.
   (a better [Flux](http://facebook.github.io/flux/)implementation)
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
   for awesome DX (developer experience).
+* [react-helmet](https://github.com/nfl/react-helmet)
+  for handling pages meta tags (title and meta...)
 
 ## Some packages that might helps
 
 * [react-transform-webpack-hmr](https://github.com/gaearon/react-transform-webpack-hmr)
   for hotloading during development and some others friends from
   [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
-* [react-helmet](https://github.com/nfl/react-helmet)
-  for handling pages meta tags (title and meta...)
 * [tape](https://github.com/substack/tape)
   for unit tests.
 
@@ -93,14 +93,13 @@ _⚠︎ The packages above are used in the [demo](demo)._
 This project has been inspired by
 [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example/)
 
-
 ---
 
 ## CONTRIBUTING
 
 * ⇄ Pull requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
-* Pull requests must be accompanied by passing unit tests (`$ npm test`).
+* Pull requests must be accompanied by passing automated tests (`$ npm test`).
 
 ## [CHANGELOG](CHANGELOG.md)
 
