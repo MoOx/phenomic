@@ -35,6 +35,7 @@
   },
   "peerDependencies": {
     "react": "^0.13.3",
+    "react-helmet": "^1.1.1",
     "react-redux": "^2.1.0",
     "react-router": "1.0.0-beta3",
     "redbox-react": "^1.0.1",

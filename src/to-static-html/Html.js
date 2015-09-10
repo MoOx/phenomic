@@ -4,18 +4,19 @@ import { PropTypes } from "react"
 export default class Html extends Component {
 
   static propTypes = {
+    head: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-    store: PropTypes.object.isRequired,
+    script: PropTypes.string.isRequired,
   }
 
   render() {
     return (
       <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </head>
+        <head
+          dangerouslySetInnerHTML={{
+            __html: this.props.head,
+          }}
+        />
         <body>
           <div
             id="statinamic"
@@ -25,18 +26,7 @@ export default class Html extends Component {
           />
           <script
             dangerouslySetInnerHTML={{
-              __html: `window.__INITIAL_STATE__ = ${
-                JSON.stringify({
-                  ...this.props.store.getState(),
-
-                  // skip some data \\
-                  // ensure collection is not in all pages output
-                  // async json file is prefered (file length concerns)
-                  collection: undefined,
-                  // already in bundle
-                  pageComponents: undefined,
-                })
-              }`,
+              __html: this.props.script,
             }}
           />
           <script src="/index.js"></script>

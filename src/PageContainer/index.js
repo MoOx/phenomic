@@ -30,8 +30,7 @@ class PageContainer extends Component {
     Loading: PropTypes.object,
 
     // actions
-    setPageType: PropTypes.func.isRequired,
-    unknownPageType: PropTypes.func.isRequired,
+    getPage: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
