@@ -111,8 +111,24 @@ builder({
           ],
           exclude: /node_modules/,
         },
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract(
+            "style-loader",
+            "css-loader" +
+              "?localIdentName=[path][name]--[local]--[hash:base64:5]" +
+              "&modules"+
+            "!postcss-loader"
+          ),
+        },
       ],
     },
+
+    postcss: () => [
+      require("postcss-custom-properties"),
+      require("postcss-custom-media"),
+      require("autoprefixer"),
+    ],
 
     plugins: [
       new webpack.DefinePlugin(

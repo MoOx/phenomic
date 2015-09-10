@@ -1,6 +1,6 @@
 # statinamic demo
 
-## Install deps
+## Install / Commands
 
 ```console
 $ npm run hackinstall
@@ -16,14 +16,30 @@ webpack that doesn't like duplicate modules on different levels.
 _This only related to this particular setup and is not necessary in a normal
 setup._
 
-## Run dev server
+### Run dev server
 
 ```console
 $ npm start
 ```
 
-## Build for production
+### Build for production
 
 ```console
 $ npm run build
 ```
+
+---
+
+## Styles
+
+We recommend you to use:
+- [CSS modules](https://github.com/css-modules/css-modules)
+  (via css-loader)
+- [PostCSS](https://github.com/postcss/postcss)
+  (for things like cssnext & autoprefixer).
+
+### Why not inline styles ?
+
+Sadly, inline styles don't play well with pre rendering.
+When we build the static version, we don't know the device where we are going
+to be displayed on, so viewport adjustments can be done properly.

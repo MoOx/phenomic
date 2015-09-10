@@ -27,11 +27,13 @@
   },
   "#devDependencies": "dependencies used to build",
   "devDependencies": {
+    "autoprefixer": "^6.0.2",
     "babel": "^5.8.23",
     "babel-core": "^5.8.23",
     "babel-eslint": "^4.0.6",
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.0.1",
+    "css-loader": "^0.17.0",
     "eslint": "^1.1.0",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.2",
@@ -40,9 +42,13 @@
     "highlight.js": "^8.5.0",
     "json-loader": "^0.5.2",
     "markdown-it-toc-and-anchor": "^1.0.1",
+    "postcss-custom-media": "^5.0.0",
+    "postcss-custom-properties": "^5.0.0",
+    "postcss-loader": "^0.6.0",
     "react-transform-catch-errors": "^0.1.1",
     "react-transform-webpack-hmr": "^0.1.4",
     "redbox-react": "^1.0.1",
+    "style-loader": "^0.12.3",
     "webpack": "^1.12.1"
   },
   "scripts": {

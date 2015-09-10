@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import { PropTypes } from "react"
+
 import { Link } from "react-router"
+
+import styles from "./index.css"
 
 export default class Layout extends Component {
 
@@ -10,8 +13,8 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <div>
-        <nav>
+      <div className={styles.wrapper}>
+        <nav className={styles.nav}>
           <Link to="/">Home</Link>
           {" "}
           <Link to="/blog">blog</Link>

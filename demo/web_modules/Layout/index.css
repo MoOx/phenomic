@@ -1,0 +1,9 @@
+.wrapper {
+  max-width: 50rem;
+  margin: auto;
+  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.nav {
+  font-weight: bold;
+}
