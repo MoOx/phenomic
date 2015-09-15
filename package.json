@@ -48,6 +48,6 @@
     "prebabelify": "rimraf lib",
     "babelify": "babel --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
-    "test": "cd demo && npm run hackinstall && npm test"
+    "test": "cd demo && npm install && npm test"
   }
 }

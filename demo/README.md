@@ -1,20 +1,19 @@
 # statinamic demo
 
-## Install / Commands
+## Install
+
+_To make this demo works properly, you first need to install dependencies of
+the project itself (statinamic), in the folder above this one (statinamic/demo).
+[Why should I do that?](node_modules/README.md)._
 
 ```console
-$ npm run hackinstall
+$ git clone https://github.com/MoOx/statinamic.git
+$ npm install
+$ cd demo
 $ npm install
 ```
 
-**Note about `hackinstall`**
-
-This command is used because the demo is using a package on a level before
-itself, so resolution of dependencies is subject to problems with react &
-webpack that doesn't like duplicate modules on different levels.
-
-_This only related to this particular setup and is not necessary in a normal
-setup._
+## Usage
 
 ### Run dev server
 
