@@ -43,7 +43,9 @@ export default (config, options) => {
               ? config.entry[key]
               : [
                 ...devEntries,
-                ...config.entry[key],
+                ...Array.isArray(config.entry[key])
+                  ? config.entry[key]
+                  : [ config.entry[key] ],
               ]
             return acc
           },
