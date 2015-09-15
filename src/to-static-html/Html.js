@@ -29,7 +29,7 @@ export default class Html extends Component {
               __html: this.props.script,
             }}
           />
-          <script src="/index.js"></script>
+          <script src="/statinamic-client.js"></script>
         </body>
       </html>
     )

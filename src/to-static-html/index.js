@@ -15,36 +15,27 @@ if (pagesActions.FORGET === undefined) {
 // react-router beta4
 // import { createRoutes } from "react-router/lib/RouteUtils"
 
-export default ({ urls, source, dest, exports }) => {
-
-  const { routes, store } = exports
+export default ({ urls, pagesData, dest, routes, store, log }) => {
 
   // create all html files
   return Promise.all(
     urls.map(
       (url) => {
-        const basename = path.join(dest, url)
-        let data
-        try {
-          data = require(path.join(basename, "index.json"))
+        if (!pagesData[url]) {
+          console.info(`No data in for url '${ url }'.`)
         }
-        /* eslint-disable no-empty */
-        catch (err) {
-          // no
-          console.info(`No data for url '${ url }'.`)
-        }
-        /* eslint-enable no-empty */
-
-        if (data) {
+        else {
           // prepare page data
           store.dispatch({
             type: pagesActions.SET,
             page: url,
             response: {
-              data,
+              data: pagesData[url],
             },
           })
         }
+
+        const basename = path.join(dest, url)
 
         return (
           urlAsHtml(url, { routes, store })

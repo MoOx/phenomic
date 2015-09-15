@@ -7,7 +7,8 @@ export default function(filename, context) {
 
   const url = filename
     // something/index.md => something
-    .replace(/\bindex\.md$/, "")
+    // note this rule work for generated json files too
+    .replace(/\bindex\.(md|json)$/, "")
     // something-else.md => something-else
     .replace(/\.md$/, "")
     // no trailing slash

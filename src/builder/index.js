@@ -1,3 +1,4 @@
+import path from "path"
 import { sync as rm } from "rimraf"
 import { sync as mkdir } from "mkdirp"
 import color from "chalk"
@@ -6,25 +7,26 @@ import nanoLogger from "nano-logger"
 import webpack from "./webpack"
 import devServer from "./dev-server"
 
+import filenameToUrl from "../filename-to-url"
+
 export default function(options) {
   const {
     config,
     source,
   } = options
-  const webpackConfig = options.webpack
 
   const log = nanoLogger("statinamic/lib/builder")
 
   JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
-  const dest = webpackConfig.output.path
+  const dest = options.clientWebpackConfig.output.path
 
   // cleanup
   rm(dest)
   mkdir(dest)
 
   if (config.__DEVSERVER__) {
-    devServer(webpackConfig, {
+    devServer(options.clientWebpackConfig, {
       protocol: config.__SERVER_PROTOCOL__,
       host: config.__SERVER_HOSTNAME__,
       port: config.__SERVER_PORT__,
@@ -32,42 +34,36 @@ export default function(options) {
     })
   }
   else {
-    webpack(webpackConfig, log, (stats) => {
-      log(color.green("✓ Static assets: build completed"))
+    webpack(options.clientWebpackConfig, log, (stats) => {
+      log(color.green("✓ Static assets: client build completed"))
 
-      // faking webpack.DefinePlugin for node usage
-      Object.keys(config).forEach((key) => {
-        global[key] = config[key]
-      })
-
-      require("../to-static-html")({
-        urls: [
-          ...options.urls || [],
-          ...getMdUrlsFromWebpackStats(stats, source),
-        ],
-        source,
-        dest,
-        exports: options.exports(),
-        log,
-      })
-      .then(
-        (files) => {
-          log(
-            color.green(`✓ Static html files: ${ files.length } files written`)
-          )
-        },
-        (error) => {
-          log(color.red(`✗ Static html files: failed to create files`))
-          setTimeout(() => {
-            throw error
-          }, 1)
+      // There is probably a better way to get markdown as json without reading
+      // fs, but I am tired
+      const pagesData = {}
+      const assets = stats.compilation.assets
+      Object.keys(assets).forEach((name) => {
+        if (name.endsWith("index.json")) {
+          const url = filenameToUrl(name)
+          pagesData[url] = JSON.parse(assets[name]._value)
         }
-      )
+      })
+
+      webpack(options.staticWebpackConfig, log, () => {
+        log(color.green("✓ Static assets: static build completed"))
+
+        // use webpack static builded node script
+        require(path.join(dest, "..", "statinamic-static"))({
+          urls: [
+            ...options.urls || [],
+            ...getMdUrlsFromWebpackStats(stats, source),
+          ],
+          pagesData,
+          dest,
+        })
+      })
     })
   }
 }
-
-import filenameToUrl from "../filename-to-url"
 
 function getMdUrlsFromWebpackStats(stats, source) {
   return stats.compilation.fileDependencies.reduce(
