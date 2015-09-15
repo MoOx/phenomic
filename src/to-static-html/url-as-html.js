@@ -16,7 +16,7 @@ const defaultMeta = [
   `<meta charset="utf-8" />`,
   `<meta http-equiv="X-UA-Compatible" content="IE=edge" />`,
   `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
-].join()
+].join("")
 
 export default (url, { routes, store }) => new Promise((resolve, reject) => {
 
@@ -59,7 +59,7 @@ export default (url, { routes, store }) => new Promise((resolve, reject) => {
         const head = (
           defaultMeta +
           headTags.meta +
-          `<title>${ headTags.title }` +
+          `<title>${ headTags.title }</title>` +
           headTags.link
         )
 
