@@ -54,8 +54,8 @@
   "scripts": {
     "#hackinstall": "hack to avoid duplicated modules for the runtime, required by react and webpack. You won't have to do this in the real world, since deps will be at the right place by default.",
     "hackinstall": "./hackinstall.sh",
-    "build": "NODE_PATH=web_modules babel-node build --production",
-    "start": "NODE_PATH=web_modules babel-node build --dev --dev-server --dev-tools --open",
+    "build": "babel-node build --production",
+    "start": "babel-node build --dev --dev-server --dev-tools --open",
     "test": "npm install && npm run build"
   }
 }
