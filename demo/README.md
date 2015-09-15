@@ -42,4 +42,4 @@ We recommend you to use:
 
 Sadly, inline styles don't play well with pre rendering.
 When we build the static version, we don't know the device where we are going
-to be displayed on, so viewport adjustments can be done properly.
+to be displayed on, so viewport adjustments can't be done properly.
