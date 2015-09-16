@@ -10,14 +10,16 @@
     "url": "https://github.com/MoOx/statinamic.git"
   },
   "statinamic": {
-    "hostname": "moox.io"
+    "hostname": "moox.io",
+    "googleAnalyticsUA": "UA-1716762-6"
   },
   "twitter": "MoOx",
   "github": "MoOx",
   "#dependencies": "dependencies that will be used on the client side",
   "dependencies": {
-    "react-helmet": "^1.1.1",
     "react": "^0.13.3",
+    "react-google-analytics": "^0.2.0",
+    "react-helmet": "^1.1.1",
     "react-redux": "^2.1.0",
     "react-router": "1.0.0-beta3",
     "redux": "^2.0.0",
