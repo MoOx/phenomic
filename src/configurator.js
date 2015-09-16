@@ -30,9 +30,12 @@ export default function config(pkg = {}) {
 
   const config = {
     __DEV__: process.argv.includes("--dev"),
-    __DEVTOOLS__: process.argv.includes("--dev-tools"),
-    __DEVSERVER__: process.argv.includes("--dev-server"),
     __PROD__: production,
+
+    __STATIC__: process.argv.includes("--static"),
+    __DEVSERVER__: process.argv.includes("--dev-server"),
+    __DEVTOOLS__: process.argv.includes("--dev-tools"),
+
     __SERVER_PROTOCOL__: statinamicConfig.protocol || "http://",
     ...(
       production

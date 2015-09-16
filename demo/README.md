@@ -24,7 +24,16 @@ $ npm start
 ### Build for production
 
 ```console
-$ npm run build
+$ npm run static
+```
+
+### Build static version and start dev server
+
+This is handy to check that the universal magic is working (i.e.: React static
+rendering is correct + the client side can work with it).
+
+```console
+$ npm run static+start
 ```
 
 ---

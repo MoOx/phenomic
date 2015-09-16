@@ -52,8 +52,9 @@
     "webpack": "^1.12.1"
   },
   "scripts": {
-    "build": "babel-node build --production",
-    "start": "babel-node build --dev --dev-server --dev-tools --open",
-    "test": "npm install && npm run build"
+    "static": "babel-node build --static --production",
+    "start": "babel-node build --dev-server --open --dev",
+    "static+start": "babel-node build --static --dev-server --open --dev",
+    "test": "npm run static"
   }
 }

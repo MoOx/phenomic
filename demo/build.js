@@ -179,7 +179,10 @@ builder({
       // from the build. Since there is a static build that is used for the
       // first viewed page (which contains all css), we don't need styles in
       // the JS too.
-      new ExtractTextPlugin("[name].css"),
+      new ExtractTextPlugin(
+        "[name].css",
+        { disable: config.__DEV__ }
+      ),
 
       // ...config.__PROD__ && [
       //   new webpack.optimize.DedupePlugin(),

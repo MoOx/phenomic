@@ -21,11 +21,10 @@ export default function(options) {
 
   const dest = options.clientWebpackConfig.output.path
 
-  // cleanup
   rm(dest)
   mkdir(dest)
 
-  if (config.__DEVSERVER__) {
+  const startDevServer = () => {
     devServer(options.clientWebpackConfig, {
       protocol: config.__SERVER_PROTOCOL__,
       host: config.__SERVER_HOSTNAME__,
@@ -33,7 +32,8 @@ export default function(options) {
       open: process.argv.includes("--open"),
     })
   }
-  else {
+
+  if (config.__STATIC__) {
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
@@ -60,8 +60,19 @@ export default function(options) {
           pagesData,
           dest,
         })
+
+        .then(() => {
+          if (config.__DEVSERVER__) {
+            startDevServer()
+          }
+        })
       })
     })
+  }
+  else {
+    if (config.__DEVSERVER__) {
+      startDevServer()
+    }
   }
 }
 

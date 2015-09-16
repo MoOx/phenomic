@@ -4,7 +4,7 @@ const log = nanoLogger("statinamic/lib/static")
 
 import toStaticHtml from "./to-static-html"
 
-export default function({ urls, pagesData, dest, routes, store }) {
+export default ({ urls, pagesData, dest, routes, store }) => (
   toStaticHtml({
     urls,
     pagesData,
@@ -25,4 +25,4 @@ export default function({ urls, pagesData, dest, routes, store }) {
       }, 1)
     }
   )
-}
+)
