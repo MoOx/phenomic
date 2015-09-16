@@ -1,3 +1,17 @@
+/* GLOBAL STYLES, OMG ! */
+:global a,
+:global a:visited {
+  color: inherit;
+  opacity: .8;
+}
+
+  :global a:hover,
+  :global a:focus {
+    opacity: 1;
+  }
+
+/***/
+
 .wrapper {
   max-width: 50rem;
   margin: auto;
@@ -6,4 +20,13 @@
 
 .nav {
   font-weight: bold;
+}
+
+.footer {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+  font-size: .75rem;
+
+  color: #666;
 }
