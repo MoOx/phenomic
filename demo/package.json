@@ -49,18 +49,17 @@
   },
   "scripts": {
     "static": "babel-node build --static --production",
-    "start": "babel-node build --dev-server --open --dev",
-    "static+start": "babel-node build --static --dev-server --open --dev",
+    "start": "babel-node build --server --open --dev",
+    "static+start": "babel-node build --static --server --open --dev",
     "test": "npm run static"
   },
 
   "babel": {
     "stage": 0
   },
-  "statinamic": {
-    "hostname": "moox.io",
-    "googleAnalyticsUA": "UA-1716762-6"
-  },
+
+  "homepage": "http://moox.io/statinamic/",
+  "googleAnalyticsUA": "UA-1716762-6",
   "twitter": "MoOx",
   "github": "MoOx"
 }

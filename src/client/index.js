@@ -5,7 +5,7 @@ import React from "react"
 import Router from "react-router"
 import { Provider } from "react-redux"
 
-import fetchJSON from "./fetchJSON"
+import fetchJSON from "../fetchJSON"
 
 export default function statinamic({
   routes,
@@ -29,7 +29,7 @@ export default function statinamic({
     )
   }
 
-  fetchJSON(`/collection.json`)
+  fetchJSON(`collection.json`)
     .then(
       ({ data }) => store.dispatch({
         type: "COLLECTION_SET",

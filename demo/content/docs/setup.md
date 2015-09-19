@@ -17,7 +17,7 @@ In order to get your engine ready, you need to:
 * create your [build script](https://github.com/MoOx/statinamic/blob/master/demo/build.js) so you can:
   * define your configuration
     (eg: webpack loaders to add your favorite css preprocessor)
-  * run the dev server (`(babel-)node build --dev-server --dev`)
+  * run the dev server (`(babel-)node build --server --dev`)
   * build the static version for production (`(babel-)node build --static --production`)
 
 For that you will mainly need to:
@@ -49,7 +49,11 @@ plain React components. This generator is just an helper.
   for writing ES6 and ES7
 * [Webpack](http://webpack.github.io)
   for bundling,
-  with [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-server.html)
+* [Express](http://expressjs.com/) with some middlewares for development:
+  * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-server.html)
+    for watching
+  * [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
+    for hot reload
 * [React](https://github.com/facebook/react)
   for writing UI
 * [React Router](https://github.com/rackt/react-router)

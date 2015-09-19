@@ -7,6 +7,7 @@ export default class Html extends Component {
     head: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     script: PropTypes.string.isRequired,
+    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
   }
 
   render() {
@@ -29,7 +30,7 @@ export default class Html extends Component {
               __html: this.props.script,
             }}
           />
-          <script src="/statinamic-client.js"></script>
+          { this.props.children }
         </body>
       </html>
     )

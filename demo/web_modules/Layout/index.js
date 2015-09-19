@@ -17,7 +17,7 @@ export default class Layout extends Component {
   }
 
   componentWillMount() {
-    ga("create", pkg.statinamic.googleAnalyticsUA, "auto")
+    ga("create", pkg.googleAnalyticsUA, "auto")
     this.logPageview()
 
   }
@@ -39,11 +39,11 @@ export default class Layout extends Component {
     return (
       <div className={styles.wrapper}>
         <nav className={styles.nav}>
-          <Link to="/">Home</Link>
+          <Link to="/statinamic/">Home</Link>
           {" | "}
-          <Link to="/docs/setup">Setup</Link>
+          <Link to="/statinamic/docs/setup">Setup</Link>
           {" | "}
-          <Link to="/docs/usage">Usage</Link>
+          <Link to="/statinamic/docs/usage">Usage</Link>
         </nav>
         {this.props.children}
         <footer className={styles.footer}>

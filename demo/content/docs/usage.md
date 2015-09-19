@@ -1,5 +1,5 @@
 ---
-title: How to use statnimic
+title: How to use statinamic
 ---
 
 ## Write

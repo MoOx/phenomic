@@ -5,7 +5,7 @@ import color from "chalk"
 import nanoLogger from "nano-logger"
 
 import webpack from "./webpack"
-import devServer from "./dev-server"
+import devServer from "./server"
 
 import filenameToUrl from "../filename-to-url"
 
@@ -26,14 +26,12 @@ export default function(options) {
 
   const startDevServer = () => {
     devServer(options.clientWebpackConfig, {
-      protocol: config.__SERVER_PROTOCOL__,
-      host: config.__SERVER_HOSTNAME__,
-      port: config.__SERVER_PORT__,
-      open: process.argv.includes("--open"),
+      baseUrl: config.baseUrl,
+      open: config.open,
     })
   }
 
-  if (config.__STATIC__) {
+  if (config.static) {
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
@@ -59,20 +57,22 @@ export default function(options) {
           ],
           pagesData,
           dest,
+          baseUrl: config.baseUrl,
         })
 
         .then(() => {
-          if (config.__DEVSERVER__) {
+          if (config.server) {
             startDevServer()
           }
         })
       })
     })
   }
+  else if (config.server) {
+    startDevServer()
+  }
   else {
-    if (config.__DEVSERVER__) {
-      startDevServer()
-    }
+    throw new Error("You need to specify --static or --server")
   }
 }
 

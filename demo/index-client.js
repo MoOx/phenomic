@@ -1,8 +1,3 @@
-// dev index
-if (__DEV__) {
-  require("!!file?name=index.html!statinamic/lib/dev-index.html")
-}
-
 // all md files as JSON + generate collections
 require.context("./content", true, /\.md$/)
 

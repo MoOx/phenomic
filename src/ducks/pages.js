@@ -1,3 +1,4 @@
+import path from "path"
 import fetchJSON from "../fetchJSON"
 
 export const GET = "statinamic/pages/GET"
@@ -61,14 +62,6 @@ export function get(page) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(
-      // TODO maybe we should just use path.join below...
-      (
-        page
-          ? `/${ page }`
-          : ""
-      ) +
-      "/index.json"
-    ),
+    promise: fetchJSON(path.join("/", page, "index.json")),
   }
 }

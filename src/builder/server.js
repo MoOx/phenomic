@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Router } from "express"
 import webpack from "webpack"
 import webpackNanoLogs from "webpack-nano-logs"
 import webpackDevMiddleware from "webpack-dev-middleware"
@@ -9,19 +9,21 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import logger from "nano-logger"
 
-const log = logger("webpack-dev-server")
+const log = logger("statinamic/builder/server")
 
-export default (config, options) => {
+export default (config, options = {}) => {
   options = {
-    protocol: "http://",
-    host: "0.0.0.0",
-    port: 3000,
     open: true,
     noDevEntriesTest: /^tests/,
-    ...(options || {}),
+    ...options,
   }
 
-  const serverUrl = `${ options.protocol }${ options.host }:${ options .port }`
+  if (!options.baseUrl) {
+    throw new Error(
+      "You must provide a 'baseUrl' object that contains the following keys:" +
+      "'href', 'port', 'hostname'. See https://nodejs.org/api/url.html"
+    )
+  }
 
   const devEntries = [
     require.resolve(`webpack-hot-middleware/client`),
@@ -67,13 +69,12 @@ export default (config, options) => {
     },
   }
 
-  const server = express()
-  server.use(historyFallbackMiddleware())
+  const router = Router()
+  router.use(historyFallbackMiddleware())
 
   const webpackCompiler = webpack(devConfig)
-  server.use(webpackDevMiddleware(webpackCompiler, {
-    https: options.protocol === "https://",
-    contentBase: config.output.path,
+  router.use(webpackDevMiddleware(webpackCompiler, {
+    publicPath: config.output.publicPath,
     hot: true,
     stats: {
       colors: true,
@@ -84,19 +85,40 @@ export default (config, options) => {
     },
     noInfo: true,
   }))
+
+  router.get("*", express.static(config.output.path))
+
+  // hardcoded entry point
+  router.get("/index.html", (req, res) => {
+    res.setHeader("Content-Type", "text/html")
+    res.end(
+`<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="statinamic">...</div>
+  <script src="${ options.baseUrl.path }/statinamic-client.js"></script>
+</body>
+</html>`
+    )
+  })
+
+  const server = express()
+  server.use(options.baseUrl.pathname, router)
   server.use(webpackHotMiddleware(webpackCompiler))
-
-  server.get("*", express.static(config.output.path))
-
-  server.listen(options.port, options.host, (err) => {
+  server.listen(options.baseUrl.port, options.baseUrl.hostname, (err) => {
     if (err) {
       log(err)
 
       return
     }
-    log(`Dev server started on ${ serverUrl }`)
+    log(`Dev server started on ${ options.baseUrl.href }`)
     if (options.open) {
-      opn(`${ serverUrl }`)
+      opn(`${ options.baseUrl.href }`)
     }
   })
 }

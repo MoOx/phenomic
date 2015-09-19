@@ -17,7 +17,7 @@ env:
 globals:
   __DEV__: true
   __DEVTOOLS__: true
-  __DEVSERVER__: true
+  __SERVER__: true
   __PROD__: true
   __SERVER_PROTOCOL__: true
   __SERVER_HOSTNAME__: true

@@ -70,7 +70,7 @@ const webpackConfig = {
         test: /\.js$/,
         loaders: [
           "babel-loader" + (
-            !config.__DEV__ ? "" : (
+            !config.dev ? "" : (
               "?" + JSON.stringify({
                 plugins: [
                   "react-transform",
@@ -93,7 +93,7 @@ const webpackConfig = {
               })
             )
           ),
-          ...config.__DEV__ && [ "eslint-loader" ],
+          ...config.dev && [ "eslint-loader" ],
         ],
         exclude: /node_modules/,
       },
@@ -120,8 +120,8 @@ const webpackConfig = {
     new webpack.DefinePlugin(
       // transform string as "string" so hardcoded replacements are
       // syntaxically correct
-      Object.keys(config).reduce((obj, constName) => {
-        const value = config[constName]
+      Object.keys(config.consts).reduce((obj, constName) => {
+        const value = config.consts[constName]
         return {
           ...obj,
           [constName]: (
@@ -181,17 +181,17 @@ builder({
       // the JS too.
       new ExtractTextPlugin(
         "[name].css",
-        { disable: config.__DEV__ }
+        { disable: config.dev }
       ),
 
-      // ...config.__PROD__ && [
-      //   new webpack.optimize.DedupePlugin(),
-      //   new webpack.optimize.UglifyJsPlugin({
-      //     compress: {
-      //       warnings: false,
-      //     },
-      //   }),
-      // ],
+      ...config.prod && [
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: false,
+          },
+        }),
+      ],
     ],
   },
   staticWebpackConfig: {
