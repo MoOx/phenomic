@@ -17,9 +17,13 @@ export default class Layout extends Component {
   }
 
   componentWillMount() {
-    ga("create", pkg.googleAnalyticsUA, "auto")
+    if (__PROD__) {
+      ga("create", pkg.googleAnalyticsUA, "auto")
+    }
+    if (__DEV__) {
+      console.info("ga.create", pkg.googleAnalyticsUA)
+    }
     this.logPageview()
-
   }
 
   componentWillReceiveProps(props) {
@@ -29,8 +33,10 @@ export default class Layout extends Component {
   }
 
   logPageview() {
-    ga("send", "pageview")
-    if (__DEV__) {
+    if (__PROD__) {
+      ga("send", "pageview")
+    }
+    if (__DEV__ && typeof window !== "undefined") {
       console.info("New pageview", window.location.href)
     }
   }
