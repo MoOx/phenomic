@@ -12,8 +12,8 @@ Warning: React attempted to reuse markup in a container but the checksum was inv
  (server) .4">Usage</a></nav><div data-reactid=".p1 statinamic-client.js:1134:8
 ```
 
-This is generally du to a difference of url. Currently the development server
-have [a known issue](https://github.com/MoOx/statinamic/issues/22)
+This is generally due to a difference of url. Currently the development server
+has [a known issue](https://github.com/MoOx/statinamic/issues/22)
 about not adding trailing slashes to url.
 This means if you used a link like `http://0.0.0.0:3000/my/page`, you should
 use `http://0.0.0.0:3000/my/page/` (note the trailing slash).
