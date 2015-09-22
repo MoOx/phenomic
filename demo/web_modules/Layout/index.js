@@ -52,6 +52,10 @@ export default class Layout extends Component {
           <Link to="/statinamic/docs/usage/">Usage</Link>
           {" | "}
           <Link to="/statinamic/docs/faq/">FAQ</Link>
+          {" | "}
+          <a href="https://github.com/MoOx/statinamic">GitHub</a>
+          {" | "}
+          <a href="https://twitter.com/MoOx">Twitter</a>
         </nav>
         {this.props.children}
         <footer className={styles.footer}>
