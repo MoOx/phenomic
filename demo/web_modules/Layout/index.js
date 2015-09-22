@@ -47,9 +47,11 @@ export default class Layout extends Component {
         <nav className={styles.nav}>
           <Link to="/statinamic/">Home</Link>
           {" | "}
-          <Link to="/statinamic/docs/setup">Setup</Link>
+          <Link to="/statinamic/docs/setup/">Setup</Link>
           {" | "}
-          <Link to="/statinamic/docs/usage">Usage</Link>
+          <Link to="/statinamic/docs/usage/">Usage</Link>
+          {" | "}
+          <Link to="/statinamic/docs/FAQ/">FAQ</Link>
         </nav>
         {this.props.children}
         <footer className={styles.footer}>

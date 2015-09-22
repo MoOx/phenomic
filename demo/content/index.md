@@ -40,4 +40,4 @@ $ npm start
 
 **[The _new_ command above is not ready yet](https://github.com/MoOx/statinamic/issues/16).**
 
-[Read the documentation](docs)
+[Read the documentation](docs/)

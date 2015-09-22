@@ -118,7 +118,7 @@ export default (config, options = {}) => {
     }
     log(`Dev server started on ${ options.baseUrl.href }`)
     if (options.open) {
-      opn(`${ options.baseUrl.href }`)
+      opn(`${ options.baseUrl.href }/`)
     }
   })
 }

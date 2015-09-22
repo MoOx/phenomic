@@ -21,6 +21,8 @@ export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
   return Promise.all(
     urls.map(
       (url) => {
+        const uri = path.join(baseUrl.path.replace(/^\//, ""), url)
+
         if (!pagesData[url]) {
           console.info(`No data in for url '${ url }'.`)
         }
@@ -28,7 +30,7 @@ export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
           // prepare page data
           store.dispatch({
             type: pagesActions.SET,
-            page: url,
+            page: uri,
             response: {
               data: pagesData[url],
             },
@@ -38,7 +40,7 @@ export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
         const basename = path.join(dest, url)
 
         return (
-          urlAsHtml(url, { routes, store, baseUrl })
+          urlAsHtml(uri, { routes, store, baseUrl })
           .then(
             (html) => {
               return new Promise((resolve, reject) => {
@@ -61,7 +63,7 @@ export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
                     // pages
                     store.dispatch({
                       type: pagesActions.FORGET,
-                      page: url,
+                      page: uri,
                     })
 
                     resolve(filename)

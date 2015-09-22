@@ -58,7 +58,8 @@ const webpackConfig = {
       //
       {
         test: /\.md$/,
-        loader: `statinamic/lib/markdown-as-json-loader?context=${ source }`,
+        loader: "statinamic/lib/markdown-as-json-loader" +
+          `?context=${ source }&basepath=${ config.baseUrl.path }`,
       },
       {
         test: /\.json$/,

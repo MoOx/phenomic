@@ -29,7 +29,7 @@ export default function statinamic({
     )
   }
 
-  fetchJSON(`collection.json`)
+  fetchJSON(`/statinamic/collection.json`)
     .then(
       ({ data }) => store.dispatch({
         type: "COLLECTION_SET",

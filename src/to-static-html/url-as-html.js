@@ -23,7 +23,7 @@ export default (url, { routes, store, baseUrl }) => (
     ].join("")
 
     try {
-      const location = new Location(url)
+      const location = new Location("/" + url + "/")
       // react-router beta4
       // https://github.com/rackt/react-router/issues/1793
       // const location = createLocation(url)
@@ -53,7 +53,6 @@ export default (url, { routes, store, baseUrl }) => (
                   () => <Router { ...state } />
                 }
               </Provider>
-              <noscript></noscript>
             </div>
           )
 
@@ -65,6 +64,22 @@ export default (url, { routes, store, baseUrl }) => (
             headTags.link
           )
 
+          const initialState = {
+            ...store.getState(),
+
+            // only keep current page as others are not necessary
+            pages: {
+              [url]: store.getState().pages[url],
+            },
+
+            // skip some data \\
+            // ensure collection is not in all pages output
+            // async json file is prefered (file length concerns)
+            collection: undefined,
+            // already in bundle
+            pageComponents: undefined,
+          }
+
           // write htmlString as html files
           return resolve(
             // render html document as simple html
@@ -74,16 +89,7 @@ export default (url, { routes, store, baseUrl }) => (
                 head,
                 body,
                 script: `window.__INITIAL_STATE__ = ${
-                  JSON.stringify({
-                    ...store.getState(),
-
-                    // skip some data \\
-                    // ensure collection is not in all pages output
-                    // async json file is prefered (file length concerns)
-                    collection: undefined,
-                    // already in bundle
-                    pageComponents: undefined,
-                  })
+                  JSON.stringify(initialState)
                 }`,
                 children: (
                   <script src={ baseUrl.path + "/statinamic-client.js" }>

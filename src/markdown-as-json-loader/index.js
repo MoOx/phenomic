@@ -39,6 +39,7 @@ export default function(input) {
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
   const collectionUrl = query.collectionUrl || "collection.json"
+  const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
     ? query.markdownIt
     : this.options.markdownIt
@@ -67,7 +68,7 @@ export default function(input) {
   // update collection
   cache.push({
     __filename: relativePath,
-    __url: "/" + url,
+    __url: path.join(basepath, url),
     ...obj.head,
   })
   // emit updated collection
