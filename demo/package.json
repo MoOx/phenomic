@@ -35,7 +35,7 @@
     "eslint-plugin-react": "^3.2.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
-    "gh-pages-deploy-sh": "^1.2.7",
+    "gh-pages": "^0.4.0",
     "highlight.js": "^8.5.0",
     "json-loader": "^0.5.2",
     "markdown-it-toc-and-anchor": "^1.0.1",
@@ -52,7 +52,7 @@
     "static": "babel-node build --static --production",
     "start": "babel-node build --server --open --dev",
     "static+start": "babel-node build --static --server --open --dev",
-    "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages-deploy-sh 'demo/dist/**/*'; fi;",
+    "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
     "test": "npm run static && npm run ci-deploy"
   },
   "babel": {
