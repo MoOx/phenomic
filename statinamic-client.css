@@ -1,0 +1,32 @@
+/* GLOBAL STYLES, OMG ! */
+a,
+a:visited {
+  color: inherit;
+  opacity: .8;
+}
+
+  a:hover,
+  a:focus {
+    opacity: 1;
+  }
+
+/***/
+
+.web_modules-Layout-index--wrapper--3OHT_ {
+  max-width: 50rem;
+  margin: auto;
+  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.web_modules-Layout-index--nav--1NSNT {
+  font-weight: bold;
+}
+
+.web_modules-Layout-index--footer--3oPTW {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+  font-size: .75rem;
+
+  color: #666;
+}

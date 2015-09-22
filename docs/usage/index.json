@@ -1,0 +1,8 @@
+{
+  "head": {
+    "title": "How to use statinamic"
+  },
+  "body": "<h2 id=\"write\"><a class=\"markdownIt-Anchor\" href=\"#write\">#</a> Write</h2>\n<p>You can write your files using\n<a href=\"https://en.wikipedia.org/wiki/Markdown\">Markdown</a>.</p>\n<p>Check out\n<a href=\"https://github.com/MoOx/statinamic/tree/master/demo/content\">this documentation</a>\nas an example.</p>\n<p><em>More to come.</em></p>\n",
+  "rawBody": "\n## Write\n\nYou can write your files using\n[Markdown](https://en.wikipedia.org/wiki/Markdown).\n\nCheck out\n[this documentation](https://github.com/MoOx/statinamic/tree/master/demo/content)\nas an example.\n\n_More to come._\n",
+  "raw": "---\ntitle: How to use statinamic\n---\n\n## Write\n\nYou can write your files using\n[Markdown](https://en.wikipedia.org/wiki/Markdown).\n\nCheck out\n[this documentation](https://github.com/MoOx/statinamic/tree/master/demo/content)\nas an example.\n\n_More to come._\n"
+}

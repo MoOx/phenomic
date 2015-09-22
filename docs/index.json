@@ -1,0 +1,8 @@
+{
+  "head": {
+    "title": "Documentation"
+  },
+  "body": "<p><strong>⚠︎ Probably lot of things need to be documented!.</strong></p>\n<p>Feel free to ask questions using <a href=\"https://github.com/MoOx/statinamic/issues/new\">a new issue</a>.</p>\n<p><em>The project is at its early stage, so you should probably check out the\n<a href=\"https://github.com/MoOx/statinamic/tree/master/demo\">demo</a> for now.</em></p>\n<ul>\n<li><a href=\"docs/setup/\">Setup</a></li>\n<li><a href=\"docs/usage/\">Usage</a></li>\n<li><a href=\"docs/faq/\">FAQ</a></li>\n</ul>\n",
+  "rawBody": "\n**⚠︎ Probably lot of things need to be documented!.**\n\nFeel free to ask questions using [a new issue](https://github.com/MoOx/statinamic/issues/new).\n\n_The project is at its early stage, so you should probably check out the\n[demo](https://github.com/MoOx/statinamic/tree/master/demo) for now._\n\n* [Setup](docs/setup/)\n* [Usage](docs/usage/)\n* [FAQ](docs/faq/)\n",
+  "raw": "---\ntitle: Documentation\n---\n\n**⚠︎ Probably lot of things need to be documented!.**\n\nFeel free to ask questions using [a new issue](https://github.com/MoOx/statinamic/issues/new).\n\n_The project is at its early stage, so you should probably check out the\n[demo](https://github.com/MoOx/statinamic/tree/master/demo) for now._\n\n* [Setup](docs/setup/)\n* [Usage](docs/usage/)\n* [FAQ](docs/faq/)\n"
+}
