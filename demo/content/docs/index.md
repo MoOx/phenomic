@@ -2,7 +2,7 @@
 title: Documentation
 ---
 
-**⚠︎ Probably lot of things need to be documented!.**
+**⚠ Lots of things probably need to be documented!.**
 
 Feel free to ask questions using [a new issue](https://github.com/MoOx/statinamic/issues/new).
 
