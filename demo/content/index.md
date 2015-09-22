@@ -24,7 +24,7 @@ The technology
 used to generate pages can render pages on both client and server
 (~~Isomorphic~~ [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)
 rendering).
-So when the client has established a connection with your website, he can get
+So when the client has established a connection with your website, they can get
 the same UX as an app by grabbing the minimal amount of data for each new page.
 
 ## Setup a website in a flash
