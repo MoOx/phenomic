@@ -51,7 +51,7 @@ export default class Layout extends Component {
           {" | "}
           <Link to="/statinamic/docs/usage/">Usage</Link>
           {" | "}
-          <Link to="/statinamic/docs/FAQ/">FAQ</Link>
+          <Link to="/statinamic/docs/faq/">FAQ</Link>
         </nav>
         {this.props.children}
         <footer className={styles.footer}>
