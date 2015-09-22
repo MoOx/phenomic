@@ -2,7 +2,7 @@
 
 ## Install
 
-_To make this demo works properly, you first need to install dependencies of
+_To make this demo work properly, you first need to install dependencies of
 the project itself (statinamic), in the folder above this one (statinamic/demo).
 [Why should I do that?](node_modules/README.md)._
 
