@@ -25025,8 +25025,20 @@
 	          " | ",
 	          _react2["default"].createElement(
 	            _reactRouter.Link,
-	            { to: "/statinamic/docs/FAQ/" },
+	            { to: "/statinamic/docs/faq/" },
 	            "FAQ"
+	          ),
+	          " | ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/MoOx/statinamic" },
+	            "GitHub"
+	          ),
+	          " | ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://twitter.com/MoOx" },
+	            "Twitter"
 	          )
 	        ),
 	        this.props.children,
@@ -25038,6 +25050,12 @@
 	            "a",
 	            { href: "http://moox.io/" },
 	            "@MoOx"
+	          ),
+	          " | ",
+	          _react2["default"].createElement(
+	            "a",
+	            { href: "https://github.com/MoOx/statinamic" },
+	            "Check out on GitHub"
 	          )
 	        ),
 	        _react2["default"].createElement(GoogleAnalyticsInitiailizer, null)
@@ -25109,7 +25127,7 @@
 			"eslint-plugin-react": "^3.2.2",
 			"extract-text-webpack-plugin": "^0.8.2",
 			"file-loader": "^0.8.1",
-			"gh-pages-deploy-sh": "^1.2.7",
+			"gh-pages": "^0.4.0",
 			"highlight.js": "^8.5.0",
 			"json-loader": "^0.5.2",
 			"markdown-it-toc-and-anchor": "^1.0.1",
@@ -25126,8 +25144,8 @@
 			"static": "babel-node build --static --production",
 			"start": "babel-node build --server --open --dev",
 			"static+start": "babel-node build --static --server --open --dev",
-			"deploy": "gh-pages-deploy-sh 'dist/**/*'",
-			"test": "npm run static && if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then npm run _deploy; fi;"
+			"ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
+			"test": "npm run static && npm run ci-deploy"
 		},
 		"babel": {
 			"stage": 0

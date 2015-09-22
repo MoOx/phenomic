@@ -5,19 +5,9 @@
     "title": "Documentation"
   },
   {
-    "__filename": "docs/setup.md",
-    "__url": "/statinamic/docs/setup",
-    "title": "How to setup statinamic"
-  },
-  {
     "__filename": "docs/usage.md",
     "__url": "/statinamic/docs/usage",
     "title": "How to use statinamic"
-  },
-  {
-    "__filename": "docs/faq.md",
-    "__url": "/statinamic/docs/faq",
-    "title": "FAQ"
   },
   {
     "__filename": "index.md",
