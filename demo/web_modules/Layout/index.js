@@ -61,6 +61,8 @@ export default class Layout extends Component {
         <footer className={styles.footer}>
           {"© 2015 - "}
           <a href="http://moox.io/">@MoOx</a>
+          {" | "}
+          <a href="https://github.com/MoOx/statinamic">Check out on GitHub</a>
         </footer>
         <GoogleAnalyticsInitiailizer />
       </div>
