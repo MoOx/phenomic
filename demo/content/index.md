@@ -16,7 +16,7 @@ to help you building your website, blog or even your small app.
 
 ## Static and dynamic?
 
-Generate and deploy a static website take less than a minute. No server/cms
+Generating and deploying a static website takes less than a minute. No server/cms
 updates required. No hacking possible. It just works™.
 
 The technology
