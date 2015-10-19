@@ -14,21 +14,21 @@ export default class Html extends Component {
     return (
       <html lang="en">
         <head
-          dangerouslySetInnerHTML={{
+          dangerouslySetInnerHTML={ {
             __html: this.props.head,
-          }}
+          } }
         />
         <body>
           <div
             id="statinamic"
-            dangerouslySetInnerHTML={{
+            dangerouslySetInnerHTML={ {
               __html: this.props.body,
-            }}
+            } }
           />
           <script
-            dangerouslySetInnerHTML={{
+            dangerouslySetInnerHTML={ {
               __html: this.props.script,
-            }}
+            } }
           />
           { this.props.children }
         </body>

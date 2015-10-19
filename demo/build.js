@@ -94,7 +94,7 @@ const webpackConfig = {
               })
             )
           ),
-          ...config.dev && [ "eslint-loader" ],
+          ...config.dev && [ "eslint-loader?fix" ],
         ],
         exclude: /node_modules/,
       },

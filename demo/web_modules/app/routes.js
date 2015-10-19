@@ -7,7 +7,7 @@ import Layout from "Layout"
 
 // routes
 export default (
-  <Route component={Layout}>
-    <Route path="*" component={PageContainer} />
+  <Route component={ Layout }>
+    <Route path="*" component={ PageContainer } />
   </Route>
 )

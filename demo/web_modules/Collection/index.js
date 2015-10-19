@@ -30,7 +30,7 @@ class Collection extends Component {
         {
           Boolean(!collection || !collection.length) &&
           <div>
-            No entry
+            { "No entry" }
           </div>
         }
         {

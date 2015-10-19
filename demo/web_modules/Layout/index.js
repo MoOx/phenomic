@@ -43,26 +43,28 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <div className={styles.wrapper}>
-        <nav className={styles.nav}>
-          <Link to="/statinamic/">Home</Link>
-          {" | "}
-          <Link to="/statinamic/docs/setup/">Setup</Link>
-          {" | "}
-          <Link to="/statinamic/docs/usage/">Usage</Link>
-          {" | "}
-          <Link to="/statinamic/docs/faq/">FAQ</Link>
-          {" | "}
-          <a href="https://github.com/MoOx/statinamic">GitHub</a>
-          {" | "}
-          <a href="https://twitter.com/MoOx">Twitter</a>
+      <div className={ styles.wrapper }>
+        <nav className={ styles.nav }>
+          <Link to="/statinamic/">{ "Home" }</Link>
+          { " | " }
+          <Link to="/statinamic/docs/setup/">{ "Setup" }</Link>
+          { " | " }
+          <Link to="/statinamic/docs/usage/">{ "Usage" }</Link>
+          { " | " }
+          <Link to="/statinamic/docs/faq/">{ "FAQ" }</Link>
+          { " | " }
+          <a href="https://github.com/MoOx/statinamic">{ "GitHub" }</a>
+          { " | " }
+          <a href="https://twitter.com/MoOx">{ "Twitter" }</a>
         </nav>
-        {this.props.children}
-        <footer className={styles.footer}>
-          {"© 2015 - "}
-          <a href="http://moox.io/">@MoOx</a>
-          {" | "}
-          <a href="https://github.com/MoOx/statinamic">Check out on GitHub</a>
+        { this.props.children }
+        <footer className={ styles.footer }>
+          { "© 2015 - " }
+          <a href="http://moox.io/">{ "@MoOx" }</a>
+          { "  |  " }
+          <a href="https://github.com/MoOx/statinamic">
+            { "Check out on GitHub" }
+          </a>
         </footer>
         <GoogleAnalyticsInitiailizer />
       </div>

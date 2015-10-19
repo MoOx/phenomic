@@ -24,7 +24,7 @@ export default function statinamic({
     } = require("redux-devtools/lib/react")
     devtools = (
       <DebugPanel top right bottom>
-        <DevTools store={store} monitor={LogMonitor} />
+        <DevTools store={ store } monitor={ LogMonitor } />
       </DebugPanel>
     )
   }
@@ -43,8 +43,8 @@ export default function statinamic({
 
   React.render(
     <div id="statinamic-container">
-      <Provider store={store}>
-        {() => <Router history={history} children={routes} />}
+      <Provider store={ store }>
+        { () => <Router history={ history } children={ routes } /> }
       </Provider>
       { __DEVTOOLS__ && devtools }
     </div>,

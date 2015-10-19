@@ -1,5 +1,9 @@
+node_modules
+
 # build
 lib
 
 # demo build
-dist
+demo/node_modules
+demo/dist
+demo/statinamic-static.js

@@ -30,9 +30,9 @@
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.0.1",
     "css-loader": "^0.17.0",
-    "eslint": "^1.1.0",
-    "eslint-loader": "^1.0.0",
-    "eslint-plugin-react": "^3.2.2",
+    "eslint": "^1.7.2",
+    "eslint-loader": "^1.1.0",
+    "eslint-plugin-react": "^3.6.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
     "gh-pages": "^0.4.0",
@@ -53,6 +53,8 @@
     "start": "babel-node build --server --open --dev",
     "static+start": "babel-node build --static --server --open --dev",
     "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
+    "lint": "eslint --fix .",
+    "pretest": "npm run lint",
     "test": "npm run static && npm run ci-deploy"
   },
   "babel": {

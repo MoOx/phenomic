@@ -13,7 +13,7 @@ export default class Post extends Component {
   render() {
     return (
       <div>
-        { "Post !"}
+        { "Post ! " }
         <Page { ...this.props } />
       </div>
     )

@@ -47,7 +47,7 @@ export default class Page extends Component {
         {
           body &&
           <div
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={ { __html: body } }
           />
         }
         { this.props.children }
