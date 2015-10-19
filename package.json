@@ -4,10 +4,7 @@
   "version": "0.0.0",
   "author": "Maxime Thirouin",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MoOx/statinamic.git"
-  },
+  "repository": "https://github.com/MoOx/statinamic.git",
   "dependencies": {
     "chalk": "^1.1.0",
     "connect-history-api-fallback": "^1.1.0",
