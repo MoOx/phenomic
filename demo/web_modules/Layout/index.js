@@ -9,6 +9,10 @@ import pkg from "../../package.json"
 import ga from "react-google-analytics"
 const GoogleAnalyticsInitiailizer = ga.Initializer
 
+const supportUrl = "https://discord.gg/0ZcbPKXt5bW1pAiw"
+const supportBadge =
+  "https://img.shields.io/badge/support-reactiflux%23statinamic-738bd7.svg"
+
 export default class Layout extends Component {
 
   static propTypes = {
@@ -42,20 +46,63 @@ export default class Layout extends Component {
   }
 
   render() {
+    const separator = <span className={ styles.separator }>{ " | " }</span>
+
     return (
       <div className={ styles.wrapper }>
         <nav className={ styles.nav }>
-          <Link to="/statinamic/">{ "Home" }</Link>
-          { " | " }
-          <Link to="/statinamic/docs/setup/">{ "Setup" }</Link>
-          { " | " }
-          <Link to="/statinamic/docs/usage/">{ "Usage" }</Link>
-          { " | " }
-          <Link to="/statinamic/docs/faq/">{ "FAQ" }</Link>
-          { " | " }
-          <a href="https://github.com/MoOx/statinamic">{ "GitHub" }</a>
-          { " | " }
-          <a href="https://twitter.com/MoOx">{ "Twitter" }</a>
+          <Link
+            className={ styles.link }
+            to="/statinamic/"
+          >
+            { "Home" }
+          </Link>
+          { separator }
+          <Link
+            className={ styles.link }
+            to="/statinamic/docs/setup/"
+          >
+            { "Setup" }
+          </Link>
+          { separator }
+          <Link
+            className={ styles.link }
+            to="/statinamic/docs/usage/"
+          >
+            { "Usage" }
+          </Link>
+          { separator }
+          <Link
+            className={ styles.link }
+            to="/statinamic/docs/faq/"
+          >
+            { "FAQ" }
+          </Link>
+          { separator }
+          <a
+            className={ styles.link }
+            href="https://github.com/MoOx/statinamic"
+          >
+            { "GitHub" }
+          </a>
+          { separator }
+          <a
+            className={ styles.link }
+            href="https://twitter.com/MoOx"
+          >
+            { "Twitter" }
+          </a>
+          { separator }
+          <a
+            className={ styles.link }
+            href={ supportUrl }
+          >
+            <img
+              className={ styles.icon }
+              src={ supportBadge }
+              alt={ "Support on reactiflux#statinamic" }
+            />
+          </a>
         </nav>
         { this.props.children }
         <footer className={ styles.footer }>
