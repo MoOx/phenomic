@@ -72,20 +72,6 @@ export default (config, options = {}) => {
   const router = Router()
   router.use(historyFallbackMiddleware())
 
-  const webpackCompiler = webpack(devConfig)
-  router.use(webpackDevMiddleware(webpackCompiler, {
-    publicPath: config.output.publicPath,
-    hot: true,
-    stats: {
-      colors: true,
-      // hide all chunk dependencies because it's unreadable
-      chunkModules: false,
-      // noize
-      assets: false,
-    },
-    noInfo: true,
-  }))
-
   router.get("*", express.static(config.output.path))
 
   // hardcoded entry point
@@ -108,6 +94,18 @@ export default (config, options = {}) => {
   })
 
   const server = express()
+  const webpackCompiler = webpack(devConfig)
+  server.use(webpackDevMiddleware(webpackCompiler, {
+    publicPath: config.output.publicPath,
+    stats: {
+      colors: true,
+      // hide all chunk dependencies because it's unreadable
+      chunkModules: false,
+      // noize
+      assets: false,
+    },
+    noInfo: true,
+  }))
   server.use(options.baseUrl.pathname, router)
   server.use(webpackHotMiddleware(webpackCompiler))
   server.listen(options.baseUrl.port, options.baseUrl.hostname, (err) => {
