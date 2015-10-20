@@ -68,7 +68,7 @@ plain React components. This generator is just an helper.
 
 ## Some packages that might helps
 
-* [react-transform-webpack-hmr](https://github.com/gaearon/react-transform-webpack-hmr)
+* [react-transform-hmr](https://github.com/gaearon/react-transform-hmr)
   for hotloading during development and some others friends from
   [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * [tape](https://github.com/substack/tape)

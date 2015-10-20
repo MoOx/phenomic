@@ -70,31 +70,8 @@ const webpackConfig = {
       {
         test: /\.js$/,
         loaders: [
-          "babel-loader" + (
-            !config.dev ? "" : (
-              "?" + JSON.stringify({
-                plugins: [
-                  "react-transform",
-                ],
-                extra: {
-                  "react-transform": [
-                    // enable react hot loading
-                    {
-                      target: "react-transform-webpack-hmr",
-                      imports: [ "react" ],
-                      locals: [ "module" ],
-                    },
-                    // show errors on screen
-                    {
-                      target: "react-transform-catch-errors",
-                      imports: [ "react", "redbox-react" ],
-                    },
-                  ],
-                },
-              })
-            )
-          ),
-          ...config.dev && [ "eslint-loader?fix" ],
+          "babel-loader",
+          "eslint-loader?fix",
         ],
         exclude: /node_modules/,
       },
