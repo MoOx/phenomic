@@ -2,6 +2,7 @@
 import "whatwg-fetch"
 
 import React from "react"
+import ReactDOM from "react-dom"
 import Router from "react-router"
 import { Provider } from "react-redux"
 
@@ -41,10 +42,10 @@ export default function statinamic({
       })
     )
 
-  React.render(
+  ReactDOM.render(
     <div id="statinamic-container">
       <Provider store={ store }>
-        { () => <Router history={ history } children={ routes } /> }
+        <Router history={ history } children={ routes } />
       </Provider>
       { __DEVTOOLS__ && devtools }
     </div>,

@@ -1,4 +1,5 @@
 import React from "react"
+import ReactDOMserver from "react-dom/server"
 
 // react-router beta4
 // import { useRoutes, RoutingContext } from "react-router"
@@ -39,19 +40,13 @@ export default (url, { routes, store, baseUrl }) => (
           }
 
           // render app body as "react"ified html (with data-react-id)
-          const body = React.renderToString(
+          const body = ReactDOMserver.renderToString(
             // the wrapper is used here because the client might have the
             // devtools at the same level as the <Provider>
             // the <noscript> reflect the potential devtools element
             <div id="statinamic-container">
               <Provider store={ store }>
-                {
-                /*
-                // react-router beta4
-                {() => <RoutingContext history={ history } { ...state } />}
-                */
-                  () => <Router { ...state } />
-                }
+                <Router { ...state } />
               </Provider>
             </div>
           )
@@ -84,7 +79,7 @@ export default (url, { routes, store, baseUrl }) => (
           return resolve(
             // render html document as simple html
             "<!doctype html>" +
-            React.renderToStaticMarkup(
+            ReactDOMserver.renderToStaticMarkup(
               React.createElement(Html, {
                 head,
                 body,
