@@ -12,10 +12,6 @@ export default function statinamic({
   routes,
   store,
 }) {
-  // react-router beta4
-  // const history = require("history/lib/createBrowserHistory")()
-  const history = require("react-router/lib/BrowserHistory").history
-
   let devtools = false
   if (__DEVTOOLS__) {
     const {
@@ -42,10 +38,12 @@ export default function statinamic({
       })
     )
 
+  const history = require("history/lib/createBrowserHistory")()
+
   ReactDOM.render(
     <div id="statinamic-container">
       <Provider store={ store }>
-        <Router history={ history } children={ routes } />
+        <Router history={ history } routes={ routes } />
       </Provider>
       { __DEVTOOLS__ && devtools }
     </div>,

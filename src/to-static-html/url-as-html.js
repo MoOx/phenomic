@@ -1,12 +1,7 @@
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 
-// react-router beta4
-// import { useRoutes, RoutingContext } from "react-router"
-// import createHistory from "history/lib/createMemoryHistory"
-// import createLocation from "history/lib/createLocation"
-import Router from "react-router"
-import Location from "react-router/lib/Location"
+import { match, RoutingContext } from "react-router"
 
 import { Provider } from "react-redux"
 import Helmet from "react-helmet"
@@ -24,55 +19,72 @@ export default (url, { routes, store, baseUrl }) => (
     ].join("")
 
     try {
-      const location = new Location("/" + url + "/")
-      // react-router beta4
-      // https://github.com/rackt/react-router/issues/1793
-      // const location = createLocation(url)
-      // const history = useRoutes(createHistory)({ routes })
-      // history.match(
-      // react-router beta3
-      Router.run(
-        routes,
-        location,
-        (error, state) => {
+      match(
+        {
+          routes,
+          location: "/" + url + "/",
+        },
+        (error, redirectLocation, renderProps) => {
+          let head
+          let body
+          let script
+
           if (error) {
             return reject(error)
           }
+          else if (redirectLocation) {
+            // TODO: add a redirect page à la "jekyll redirect plugin"
+            console.error("statinamic (static) doesn't handle redirection yet")
+            // body = ...
+          }
+          else if (renderProps) {
+            // render app body as "react"ified html (with data-react-id)
+            body = ReactDOMserver.renderToString(
+              // the wrapper is used here because the client might have the
+              // devtools at the same level as the <Provider>
+              // the <noscript> reflect the potential devtools element
+              <div id="statinamic-container">
+                <Provider store={ store }>
+                  <RoutingContext { ...renderProps } />
+                </Provider>
+              </div>
+            )
 
-          // render app body as "react"ified html (with data-react-id)
-          const body = ReactDOMserver.renderToString(
-            // the wrapper is used here because the client might have the
-            // devtools at the same level as the <Provider>
-            // the <noscript> reflect the potential devtools element
-            <div id="statinamic-container">
-              <Provider store={ store }>
-                <Router { ...state } />
-              </Provider>
-            </div>
-          )
+            const headTags = Helmet.rewind()
+            head = (
+              defaultMeta +
+              headTags.meta +
+              `<title>${ headTags.title }</title>` +
+              headTags.link
+            )
 
-          const headTags = Helmet.rewind()
-          const head = (
-            defaultMeta +
-            headTags.meta +
-            `<title>${ headTags.title }</title>` +
-            headTags.link
-          )
+            const initialState = {
+              ...store.getState(),
 
-          const initialState = {
-            ...store.getState(),
+              // only keep current page as others are not necessary
+              pages: {
+                [url]: store.getState().pages[url],
+              },
 
-            // only keep current page as others are not necessary
-            pages: {
-              [url]: store.getState().pages[url],
-            },
-
-            // skip some data \\
-            // ensure collection is not in all pages output
-            // async json file is prefered (file length concerns)
-            collection: undefined,
-            // already in bundle
-            pageComponents: undefined,
+              // skip some data \\
+              // ensure collection is not in all pages output
+              // async json file is prefered (file length concerns)
+              collection: undefined,
+              // already in bundle
+              pageComponents: undefined,
+            }
+            script = `window.__INITIAL_STATE__ = ${
+              JSON.stringify(initialState)
+            }`
+          }
+          else {
+            // TODO: add a 404 or just throw a fucking warning ?
+            // this is not supposed to happen the way things are done as I am
+            // writing this (lol)
+            console.error(
+              "statinamic (static) doesn't handle page not found yet"
+            )
+            // body = ...
           }
 
           // write htmlString as html files
@@ -83,9 +95,7 @@ export default (url, { routes, store, baseUrl }) => (
               React.createElement(Html, {
                 head,
                 body,
-                script: `window.__INITIAL_STATE__ = ${
-                  JSON.stringify(initialState)
-                }`,
+                script,
                 children: (
                   <script src={ baseUrl.path + "/statinamic-client.js" }>
                   </script>
