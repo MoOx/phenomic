@@ -1,10 +1,30 @@
 {
-  "private": true,
   "name": "statinamic",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A static website generator to create dynamic website using React components.",
+  "keywords": [
+    "react",
+    "ssg",
+    "static",
+    "file",
+    "site",
+    "website",
+    "blog",
+    "generator",
+    "markdown",
+    "jekyll",
+    "wintersmith",
+    "blacksmith",
+    "metalsmith",
+    "gatsby"
+  ],
   "author": "Maxime Thirouin",
   "license": "MIT",
   "repository": "https://github.com/MoOx/statinamic.git",
+  "files": [
+    "lib",
+    "!**/__tests__"
+  ],
   "dependencies": {
     "chalk": "^1.1.0",
     "connect-history-api-fallback": "^1.1.0",

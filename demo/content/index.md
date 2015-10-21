@@ -1,23 +1,40 @@
 ---
-title: Statinamic
+title: Statinamic ➠
 ---
 
-> The only "static but dynamic" website generator
+> A static website generator to create dynamic website using React components.
 
-## Simple to use
+---
 
-Your database are [Markdown](https://en.wikipedia.org/wiki/Markdown)
-files.
-Your layouts are JavaScript files.
-No pesky template language to learn.
-No need for specific plugins.
+**Note that _Statinamic_ is at an early stage, there is still some work to do,
+some tests to write.**
+
+_Do not hesitate to:_
+
+- ask question on [reactiflux#statinamic](https://discord.gg/0ZcbPKXt5bW1pAiw)
+- [open an issue](https://github.com/MoOx/statinamic/issues/new)
+  when you find a bug (or think you have)
+
+**At the moment, please consider looking at the [demo](demo) folder as a
+example.**
+
+---
+
+## Easy to use
+
+Write your content in [Markdown](https://en.wikipedia.org/wiki/Markdown) files.
+Implement your design with JavaScript files, using [React](http://facebook.github.io/react/).
+
+No template language to learn. Just JavaScript (or JSX if you like it).
+
 You can just grab some packages on the [NPM ecosystem](http://npmjs.org/)
 to help you building your website, blog or even your small app.
 
-## Static and dynamic?
+_Statinamic_ will help you to generate and deploy a generated website in a
+breath.
 
-Generate and deploy a static website take less than a minute. No server/cms
-updates required. No hacking possible. It just works™.
+
+## Static and dynamic?
 
 The technology
 ([React](http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome)).
@@ -27,6 +44,7 @@ rendering).
 So when the client has established a connection with your website, they can get
 the same UX as an app by grabbing the minimal amount of data for each new page.
 
+<!--
 ## Setup a website in a flash
 
 ```console
@@ -39,5 +57,8 @@ $ npm start
 ```
 
 **[The _new_ command above is not ready yet](https://github.com/MoOx/statinamic/issues/16).**
+-->
 
-[Read the documentation](docs/)
+---
+
+➠ [Read the documentation](docs/)

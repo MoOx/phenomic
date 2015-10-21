@@ -1,14 +1,9 @@
 {
   "private": true,
-  "name": "statinamic-demo",
-  "url": "http://moox.io/statinamic",
-  "version": "0.0.0",
+  "name": "Statinamic",
   "author": "Maxime Thirouin",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MoOx/statinamic.git"
-  },
+  "repository": "https://github.com/MoOx/statinamic.git",
   "#dependencies": "dependencies that will be used on the client side",
   "dependencies": {
     "history": "^1.12.5",
@@ -51,9 +46,9 @@
     "webpack": "^1.12.1"
   },
   "scripts": {
-    "static": "NODE_ENV=production babel-node build --static --production",
     "start": "babel-node build --server --open --dev",
-    "static+start": "babel-node build --static --server --open --dev",
+    "static": "NODE_ENV=production babel-node build --static --production",
+    "static+start": "NODE_ENV=production babel-node build --static --server --open --dev",
     "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
     "lint": "eslint --fix .",
     "pretest": "npm run lint",

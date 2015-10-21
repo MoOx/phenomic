@@ -5,6 +5,7 @@ import { Link } from "react-router"
 
 import styles from "./index.css"
 import pkg from "../../package.json"
+import npmPkg from "../../../package.json"
 
 import ga from "react-google-analytics"
 const GoogleAnalyticsInitiailizer = ga.Initializer
@@ -12,6 +13,8 @@ const GoogleAnalyticsInitiailizer = ga.Initializer
 const supportUrl = "https://discord.gg/0ZcbPKXt5bW1pAiw"
 const supportBadge =
   "https://img.shields.io/badge/support-reactiflux%23statinamic-738bd7.svg"
+const changelogUrl =
+  "https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md"
 
 export default class Layout extends Component {
 
@@ -102,6 +105,13 @@ export default class Layout extends Component {
               src={ supportBadge }
               alt={ "Support on reactiflux#statinamic" }
             />
+          </a>
+          { separator }
+          <a
+            className={ styles.version }
+            href={ changelogUrl }
+          >
+            { `v${ npmPkg.version }` }
           </a>
         </nav>
         { this.props.children }
