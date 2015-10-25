@@ -3,6 +3,7 @@ require.context("./content", true, /\.md$/)
 
 // ---
 
+import "whatwg-fetch"
 import statinamicClient from "statinamic/lib/client"
 
 import pkg from "./package.json"
