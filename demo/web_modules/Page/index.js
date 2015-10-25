@@ -2,8 +2,6 @@ import React, { Component } from "react"
 import { PropTypes } from "react"
 import Helmet from "react-helmet"
 
-import pkg from "../../package.json"
-
 // function pageDescription(text) {
 //   return text
 // }
@@ -16,7 +14,15 @@ export default class Page extends Component {
     body: PropTypes.string.isRequired,
   }
 
+  static contextTypes = {
+    pkg: PropTypes.object.isRequired,
+  }
+
   render() {
+    const {
+      pkg,
+    } = this.context
+
     const {
       head,
       body,

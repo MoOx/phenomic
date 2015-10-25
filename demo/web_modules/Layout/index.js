@@ -4,7 +4,6 @@ import { PropTypes } from "react"
 import { Link } from "react-router"
 
 import styles from "./index.css"
-import pkg from "../../package.json"
 import npmPkg from "../../../package.json"
 
 import ga from "react-google-analytics"
@@ -23,7 +22,12 @@ export default class Layout extends Component {
     params: PropTypes.object,
   }
 
+  static contextTypes = {
+    pkg: PropTypes.object.isRequired,
+  }
+
   componentWillMount() {
+    const { pkg } = this.context
     if (__PROD__) {
       ga("create", pkg.googleAnalyticsUA, "auto")
     }

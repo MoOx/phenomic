@@ -7,8 +7,9 @@ import { Provider } from "react-redux"
 import Helmet from "react-helmet"
 
 import Html from "./Html"
+import ContextProvider from "../ContextProvider"
 
-export default (url, { routes, store, baseUrl }) => (
+export default (url, { pkg, routes, store, baseUrl }) => (
   new Promise((resolve, reject) => {
     const defaultMeta = [
       `<meta charset="utf-8" />`,
@@ -44,9 +45,11 @@ export default (url, { routes, store, baseUrl }) => (
               // devtools at the same level as the <Provider>
               // the <noscript> reflect the potential devtools element
               <div id="statinamic-container">
-                <Provider store={ store }>
-                  <RoutingContext { ...renderProps } />
-                </Provider>
+                <ContextProvider pkg={ pkg }>
+                  <Provider store={ store }>
+                    <RoutingContext { ...renderProps } />
+                  </Provider>
+                </ContextProvider>
               </div>
             )
 
