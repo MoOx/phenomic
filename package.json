@@ -30,6 +30,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "express": "^4.13.3",
     "gray-matter": "^2.0.0",
+    "history": "^1.12.5",
     "loader-utils": "^0.2.11",
     "markdown-it": "^4.4.0",
     "minimist": "^1.2.0",
@@ -51,13 +52,11 @@
     "eslint-plugin-react": "^3.6.2"
   },
   "peerDependencies": {
-    "history": "^1.12.5",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^2.1.0",
     "react-router": "^1.0.0-rc3",
-    "redbox-react": "^1.1.1",
     "redux": "^2.0.0",
     "redux-devtools": "^2.1.0",
     "redux-thunk": "^0.1.0",
