@@ -57,7 +57,7 @@ export default (url, { pkg, routes, store, baseUrl }) => (
             head = (
               defaultMeta +
               headTags.meta +
-              `<title>${ headTags.title }</title>` +
+              headTags.title +
               headTags.link
             )
 
