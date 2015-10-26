@@ -4,24 +4,21 @@ title: How to setup statinamic
 
 ## Install (from npm)
 
-For now, the easiest way to quickly get a project running will be to copy the
-demo.
-So create a project folder for you website then, get the
-[demo](https://github.com/MoOx/statinamic/tree/master/demo)
-(except the `node_modules` folder), then
-
 ```console
 $ npm install
 $ npm install --save-dev statinamic
 ```
 
-Now you will need to update `web_modules/Layout` and other components as needed.
+Statinamic require some boilerplate, in order to provide you some flexibility.
+To generate the default boilerplate, you can just run the following:
 
-More explanation below and more to come.
+```console
+$ statinamic setup
+```
 
 ---
 
-## Setup the boilerplate
+## The boilerplate
 
 In order to get your engine ready, you need to:
 
