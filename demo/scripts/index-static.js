@@ -1,6 +1,6 @@
 import statinamicStatic from "statinamic/lib/static"
 
-import pkg from "./package.json"
+import pkg from "../package.json"
 import routes from "app/routes"
 import store from "app/store"
 

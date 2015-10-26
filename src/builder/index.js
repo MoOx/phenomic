@@ -50,7 +50,10 @@ export default function(options) {
         log(color.green("✓ Static assets: static build completed"))
 
         // use webpack static builded node script
-        require(path.join(dest, "..", "statinamic-static"))({
+        const statinamicStatic = path.join(
+          options.staticWebpackConfig.output.path, "statinamic-static"
+        )
+        require(statinamicStatic)({
           urls: [
             ...options.urls || [],
             ...getMdUrlsFromWebpackStats(stats, source),

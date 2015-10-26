@@ -6,7 +6,7 @@ import markdownIt from "markdown-it"
 import markdownItTocAndAnchor from "markdown-it-toc-and-anchor"
 import hljs from "highlight.js"
 
-import pkg from "./package.json"
+import pkg from "../package.json"
 
 import builder from "statinamic/lib/builder"
 import configurator from "statinamic/lib/configurator"
@@ -15,7 +15,7 @@ const config = configurator(pkg)
 
 const sourceBase = "content"
 const destBase = "dist"
-const root = path.join(__dirname)
+const root = path.join(__dirname, "..")
 const source = path.join(root, sourceBase)
 const dest = path.join(root, destBase)
 
@@ -35,19 +35,11 @@ const webpackConfig = {
       "",
     ],
 
-    root: [
-      path.join(__dirname, "node_modules"),
-      // should be this in real world
-      // path.join(__dirname, "node_modules", "statinamic", "node_modules"),
-      path.join(__dirname, "web_modules", "statinamic", "node_modules"),
-    ],
+    root: [ path.join(root, "node_modules") ],
   },
 
   resolveLoader: {
-    root: [
-      path.join(__dirname, "node_modules"),
-      path.join(__dirname, "web_modules"),
-    ],
+    root: [ path.join(root, "node_modules") ],
   },
 
   module: {
@@ -109,12 +101,6 @@ const webpackConfig = {
       }, {})
     ),
   ],
-
-  node: {
-    // https://github.com/webpack/webpack/issues/451
-    // run tape test with webpack
-    fs: "empty",
-  },
 
   markdownIt: (
     markdownIt({
@@ -182,16 +168,16 @@ builder({
     target: "node",
 
     output: {
+      ...webpackConfig.output,
       libraryTarget: "commonjs2",
-      path: path.join(dest, ".."),
-      filename: "[name].js",
-      publicPath: "/",
+      path: __dirname,
     },
 
     plugins: [
       ...webpackConfig.plugins,
 
       // extract (and overwrite) statinamic client css
+      // poor workaround to avoid having 2 identical files...
       new ExtractTextPlugin(destBase + "/statinamic-client.css"),
     ],
   },

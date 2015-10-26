@@ -1,6 +1,8 @@
 // see web_modules folder for references
 
-export Page from "Page" // default layout
+ // default layout
+export Page from "Page"
 
-export Post from "Post"
-export Collection from "Collection"
+// additional layouts
+export NotFound from "NotFound"
+// export Post from "Post"

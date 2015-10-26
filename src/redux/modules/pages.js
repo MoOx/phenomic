@@ -1,5 +1,5 @@
 import path from "path"
-import fetchJSON from "../fetchJSON"
+import fetchJSON from "../../fetchJSON"
 
 export const GET = "statinamic/pages/GET"
 export const SET = "statinamic/pages/SET"

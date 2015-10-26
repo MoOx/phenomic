@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { PropTypes } from "react"
 import Helmet from "react-helmet"
+import invariant from "invariant"
 
 // function pageDescription(text) {
 //   return text
@@ -9,7 +10,7 @@ import Helmet from "react-helmet"
 export default class Page extends Component {
 
   static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    children: PropTypes.element,
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
   }
@@ -27,6 +28,8 @@ export default class Page extends Component {
       head,
       body,
     } = this.props
+
+    invariant(typeof head.title === "string", "Your page needs a title")
 
     const meta = [
       { name: "twitter:title", content: head.title },

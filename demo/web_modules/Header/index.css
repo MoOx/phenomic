@@ -1,0 +1,27 @@
+.nav {
+  font-weight: 300;
+  line-height: 2rem;
+}
+
+.separator {
+  opacity: .2;
+  margin: 0 .8rem;
+}
+
+.link {
+  opacity: .8;
+}
+
+  .link:hover,
+  .link:focus {
+    opacity: 1;
+  }
+
+.icon {
+  vertical-align: middle;
+}
+
+.version {
+  font-size: .8rem;
+  font-weight: bold;
+}

@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { PropTypes } from "react"
 
 import { connect } from "react-redux"
-import * as pageActions from "../ducks/pages"
+import * as pageActions from "../redux/modules/pages"
 
 function splatToUri(string) {
   return string.replace(/\/index\.html$/, "")

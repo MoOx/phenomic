@@ -3,7 +3,7 @@ import path from "path"
 import mkdirp from "mkdirp"
 
 import urlAsHtml from "./url-as-html"
-import * as pagesActions from "../ducks/pages"
+import * as pagesActions from "../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
   throw new Error("pages SET action is undefined")
@@ -15,7 +15,7 @@ if (pagesActions.FORGET === undefined) {
 // react-router beta4
 // import { createRoutes } from "react-router/lib/RouteUtils"
 
-export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
+export default ({ pkg, urls, pagesData, dest, routes, store, baseUrl }) => {
 
   // create all html files
   return Promise.all(
@@ -40,7 +40,7 @@ export default ({ urls, pagesData, dest, routes, store, baseUrl }) => {
         const basename = path.join(dest, url)
 
         return (
-          urlAsHtml(uri, { routes, store, baseUrl })
+          urlAsHtml(uri, { pkg, routes, store, baseUrl })
           .then(
             (html) => {
               return new Promise((resolve, reject) => {

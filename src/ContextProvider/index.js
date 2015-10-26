@@ -1,9 +1,9 @@
 import { Component, PropTypes, Children } from "react"
 
-export default class PkgProvider extends Component {
+export default class ContextProvider extends Component {
   static propTypes = {
     pkg: PropTypes.object.isRequired,
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    children: PropTypes.element,
   }
 
   static childContextTypes = {
@@ -11,7 +11,6 @@ export default class PkgProvider extends Component {
   }
 
   getChildContext() {
-    console.log("pkg", this.props.pkg)
     return { pkg: this.props.pkg }
   }
 
