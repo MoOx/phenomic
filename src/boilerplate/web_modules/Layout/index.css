@@ -1,0 +1,83 @@
+/* GLOBAL STYLES, OMG ! */
+:global h1,
+:global h2,
+:global h3 {
+  font-weight: 400;
+}
+
+:global h1,
+:global h2,
+:global h3,
+:global h5,
+:global h6 {
+  position: relative;
+}
+
+:global .markdownIt-Anchor {
+  position: absolute;
+  left: -1.5rem;
+  opacity: .1;
+  transition: opacity .2s;
+}
+
+  :global h1:hover .markdownIt-Anchor,
+  :global h2:hover .markdownIt-Anchor,
+  :global h3:hover .markdownIt-Anchor,
+  :global h4:hover .markdownIt-Anchor,
+  :global h5:hover .markdownIt-Anchor,
+  :global h6:hover .markdownIt-Anchor {
+    opacity: 1;
+  }
+
+:global a,
+:global a:visited {
+  color: #7340c4;
+  text-decoration: none;
+}
+
+:global blockquote {
+  opacity: .6;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid grey;
+}
+
+:global pre {
+  margin: 1rem 0;
+  padding: 1rem;
+
+  font-weight: 400;
+
+  color: color(#7340c4) l(-10%));
+  border: 1px solid #DDD;
+  border-radius: 0.3em;
+  background: color(#fafafa a(.6));
+}
+
+:global .hljs-comment {
+  opacity: .4;
+}
+
+  :global .hljs-comment:hover {
+    opacity: .6;
+  }
+
+:global .hljs-keyword {
+  font-weight: bold;
+}
+
+:global .hljs-class,
+:global .hljs-tag,
+:global .hljs-keyword,
+:global .hljs-pseudo,
+:global .hljs-function {
+  color: #7340c4;
+}
+
+/***/
+
+.wrapper {
+  max-width: 50rem;
+  margin: auto;
+  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
