@@ -1,19 +1,6 @@
 ---
-title: How to use statinamic
+title: Automatic deployment on GitHub Pages
 ---
-
-## Write
-
-You can write your files using
-[Markdown](https://en.wikipedia.org/wiki/Markdown).
-
-Check out
-[this documentation](https://github.com/MoOx/statinamic/tree/master/demo/content)
-as an example.
-
-_More to come._
-
-## Automatic deployment on GitHub Pages
 
 You will have multiples possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
