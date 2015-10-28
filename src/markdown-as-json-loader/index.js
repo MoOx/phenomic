@@ -37,6 +37,7 @@ export default function(input) {
 
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
+  const defaultHead = query.defaultHead
   const collectionUrl = query.collectionUrl || "collection.json"
   const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
@@ -54,6 +55,7 @@ export default function(input) {
   }
   const mdObject = {
     head: {
+      ...defaultHead,
       ...parsed.data,
     },
     body: mdIt.render(parsed.content),
