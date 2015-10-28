@@ -10,7 +10,7 @@ import invariant from "invariant"
 export default class Page extends Component {
 
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
   }

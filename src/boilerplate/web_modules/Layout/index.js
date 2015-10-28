@@ -9,7 +9,7 @@ import Footer from "Footer"
 export default class Layout extends Component {
 
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
   }
 
   render() {

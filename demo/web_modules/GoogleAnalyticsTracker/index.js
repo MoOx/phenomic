@@ -7,7 +7,7 @@ const GoogleAnalyticsInitiailizer = ga.Initializer
 export default class GoogleAnalyticsTracker extends Component {
 
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
     params: PropTypes.object.isRequired,
   }
 

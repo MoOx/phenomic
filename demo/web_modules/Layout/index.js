@@ -10,7 +10,7 @@ import GoogleAnalyticsTracker from "GoogleAnalyticsTracker"
 export default class Layout extends Component {
 
   static propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
     params: PropTypes.object,
   }
 
