@@ -16,6 +16,41 @@ To generate the default boilerplate, you can just run the following:
 $ statinamic setup
 ```
 
+In order to benefit of hot-loading and visual javascript errors,
+you can add this `babel` configuration
+
+```json
+{
+  "stage": 0,
+  "env": {
+    "development": {
+      "plugins": [ "react-transform" ],
+      "extra": {
+        "react-transform": {
+          "transforms": [
+            {
+              "transform": "react-transform-hmr",
+              "imports": [ "react" ],
+              "locals": [ "module" ]
+            },
+            {
+              "transform": "react-transform-catch-errors",
+              "imports": [ "react", "redbox-react" ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+You will need to install the appropriate packages
+
+```console
+$ npm i -D babel-plugin-react-transform react-transform-hmr react-transform-catch-errors redbox-react
+```
+
 ---
 
 ## The boilerplate
