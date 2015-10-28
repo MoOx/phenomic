@@ -26,7 +26,8 @@ export default function statinamic({
     )
   }
 
-  fetchJSON(`/statinamic/collection.json`)
+  const baseUrl = __BASE_URL__
+  fetchJSON(`${ baseUrl.pathname }collection.json`)
     .then(
       ({ data }) => store.dispatch({
         type: "COLLECTION_SET",

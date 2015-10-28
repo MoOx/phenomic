@@ -87,7 +87,7 @@ export default (config, options = {}) => {
 </head>
 <body>
   <div id="statinamic">...</div>
-  <script src="${ options.baseUrl.path }/statinamic-client.js"></script>
+  <script src="${ options.baseUrl.path }statinamic-client.js"></script>
 </body>
 </html>`
     )
@@ -116,7 +116,7 @@ export default (config, options = {}) => {
     }
     log(`Dev server started on ${ options.baseUrl.href }`)
     if (options.open) {
-      opn(`${ options.baseUrl.href }/`)
+      opn(`${ options.baseUrl.href }`)
     }
   })
 }

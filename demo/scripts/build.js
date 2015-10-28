@@ -23,7 +23,7 @@ const webpackConfig = {
   output: {
     path: dest,
     filename: "[name].js",
-    publicPath: `${ config.baseUrl.path }/`,
+    publicPath: config.baseUrl.path,
   },
 
   resolve: {

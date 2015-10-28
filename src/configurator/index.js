@@ -32,9 +32,9 @@ export default function config(pkg = {}, argv = process.argv) {
     }
   }
 
-  // ensure no trailing slash
-  if (baseUrl.pathname.endsWith("/")) {
-    baseUrl.pathname = baseUrl.pathname.slice(0, baseUrl.pathname.length - 1)
+  // ensure trailing slash
+  if (!baseUrl.pathname.endsWith("/")) {
+    baseUrl.pathname = baseUrl.pathname + "/"
   }
 
   // update baseUrl.href since pathname has been updated

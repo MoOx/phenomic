@@ -21,7 +21,10 @@ export default ({ pkg, urls, pagesData, dest, routes, store, baseUrl }) => {
   return Promise.all(
     urls.map(
       (url) => {
-        const uri = path.join(baseUrl.path.replace(/^\//, ""), url)
+        const uri = path.join(
+          baseUrl.path.replace(/^\//, "").replace(/\/$/, ""),
+          url
+        )
 
         if (!pagesData[url]) {
           console.info(`No data in for url '${ url }'.`)
