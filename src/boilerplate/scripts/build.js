@@ -10,6 +10,7 @@ import pkg from "../package.json"
 
 import builder from "statinamic/lib/builder"
 import configurator from "statinamic/lib/configurator"
+import prepareDefinedValues from "statinamic/lib/prepare-defined-values"
 
 const config = configurator(pkg)
 
@@ -87,19 +88,7 @@ const webpackConfig = {
   ],
 
   plugins: [
-    new webpack.DefinePlugin(
-      // transform string as "string" so hardcoded replacements are
-      // syntaxically correct
-      Object.keys(config.consts).reduce((obj, constName) => {
-        const value = config.consts[constName]
-        return {
-          ...obj,
-          [constName]: (
-            typeof value === "string" ? JSON.stringify(value) : value
-          ),
-        }
-      }, {})
-    ),
+    new webpack.DefinePlugin(prepareDefinedValues(config.consts)),
   ],
 
   markdownIt: (

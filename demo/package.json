@@ -143,15 +143,10 @@
       "react/wrap-multilines": 2
     },
     "globals": {
+      "__BASE_URL__": true,
       "__DEV__": true,
-      "__DEVTOOLS__": true,
-      "__SERVER__": true,
       "__PROD__": true,
-      "__SERVER_PROTOCOL__": true,
-      "__SERVER_HOSTNAME__": true,
-      "__SERVER_PORT__": true,
-      "__SERVER_HOST__": true,
-      "__SERVER_URL__": true
+      "__DEVTOOLS__": true
     },
     "plugins": [
       "react"

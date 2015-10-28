@@ -48,6 +48,7 @@ export default function config(pkg = {}, argv = process.argv) {
       __SERVER__: false,
       __DEVTOOLS__: false,
     },
+    __BASE_URL__: baseUrl,
     __DEV__: Boolean(argv.dev),
     __PROD__: Boolean(argv.production),
     __STATIC__: Boolean(argv.static),
