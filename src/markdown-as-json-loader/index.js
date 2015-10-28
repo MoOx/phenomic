@@ -90,7 +90,7 @@ export default function(input) {
     cache.push(collectionData)
   }
   // emit updated collection
-  this.emitFile(collectionUrl, JSON.stringify(cache, null, 2))
+  this.emitFile(collectionUrl, JSON.stringify(cache))
 
   return "module.exports = __webpack_public_path__ + " + JSON.stringify(jsonUrl)
 }
