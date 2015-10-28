@@ -1,9 +1,2 @@
-let cache
-
-export function cleanCache() {
-  cache = []
-}
-
-cleanCache()
-
+const cache = []
 export default cache

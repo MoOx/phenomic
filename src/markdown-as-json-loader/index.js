@@ -34,7 +34,6 @@ import filenameToUrl from "../filename-to-url"
 import cache from "./cache"
 
 export default function(input) {
-  this.cacheable()
 
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
@@ -47,15 +46,22 @@ export default function(input) {
       : markdownIt()
 
   const parsed = yamlHeaderParser(input)
-  const obj = {
-    head: parsed.data,
+  const relativePath = path.relative(context, this.resourcePath)
+  const url = filenameToUrl(relativePath)
+  const metadata = {
+    __filename: relativePath,
+    __url: path.join(basepath, url) + "/",
+  }
+  const mdObject = {
+    head: {
+      ...parsed.data,
+    },
     body: mdIt.render(parsed.content),
     rawBody: parsed.content,
     raw: parsed.orig,
+    ...metadata,
   }
 
-  const relativePath = path.relative(context, this.resourcePath)
-  const url = filenameToUrl(relativePath)
   const jsonUrl = path.join(url, "index.json")
 
   if (!this.emitFile) {
@@ -63,14 +69,26 @@ export default function(input) {
   }
 
   // emit file
-  this.emitFile(jsonUrl, JSON.stringify(obj, null, 2))
+  this.emitFile(jsonUrl, JSON.stringify(mdObject))
 
   // update collection
-  cache.push({
-    __filename: relativePath,
-    __url: path.join(basepath, url),
-    ...obj.head,
+  // replace or add depending on the cache state
+  let previousIndex
+  cache.forEach((md, index) => {
+    if (md.__filename === relativePath) {
+      previousIndex = index
+    }
   })
+  const collectionData = {
+    ...mdObject.head,
+    ...metadata,
+  }
+  if (previousIndex) {
+    cache[previousIndex] = collectionData
+  }
+  else {
+    cache.push(collectionData)
+  }
   // emit updated collection
   this.emitFile(collectionUrl, JSON.stringify(cache, null, 2))
 
