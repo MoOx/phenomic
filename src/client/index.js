@@ -5,10 +5,10 @@ import Router from "react-router"
 import { Provider } from "react-redux"
 
 import fetchJSON from "../fetchJSON"
-import ContextProvider from "../ContextProvider"
+import MetadataProvider from "../MetadataProvider"
 
 export default function statinamic({
-  pkg,
+  metadata,
   routes,
   store,
 }) {
@@ -42,11 +42,11 @@ export default function statinamic({
 
   ReactDOM.render(
     <div id="statinamic-container">
-      <ContextProvider pkg={ pkg }>
+      <MetadataProvider metadata={ metadata }>
         <Provider store={ store }>
           <Router history={ history } routes={ routes } />
         </Provider>
-      </ContextProvider>
+      </MetadataProvider>
       { __DEVTOOLS__ && devtools }
     </div>,
     document.getElementById("statinamic")

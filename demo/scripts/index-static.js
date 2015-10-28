@@ -11,7 +11,9 @@ export default ({
   baseUrl,
 }) => (
   statinamicStatic({
-    pkg,
+    metadata: { 
+      pkg,
+    },
     urls,
     pagesData,
     dest,

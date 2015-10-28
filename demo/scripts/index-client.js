@@ -11,7 +11,9 @@ import routes from "app/routes"
 import store from "app/store"
 
 statinamicClient({
-  pkg,
+  metadata: {
+    pkg,
+  },
   routes,
   store,
 })
