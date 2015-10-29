@@ -1,4 +1,7 @@
-# 0.2.0 - 2015-10-28
+
+- Changed: some peer deps versions adjusted (no real breaking changes)
+
+# 0.2.0 - 2015-10-29
 
 - Removed: useless whitespace in `collection.json`
 - Changed: path(name) of the base url now have a trailing slash
