@@ -12,11 +12,11 @@ export default class GoogleAnalyticsTracker extends Component {
   }
 
   static contextTypes = {
-    pkg: PropTypes.object.isRequired,
+    metadata: PropTypes.object.isRequired,
   }
 
   componentWillMount() {
-    const { pkg } = this.context
+    const { pkg } = this.context.metadata
     if (__PROD__) {
       ga("create", pkg.googleAnalyticsUA, "auto")
     }

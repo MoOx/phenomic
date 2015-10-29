@@ -15,7 +15,15 @@ if (pagesActions.FORGET === undefined) {
 // react-router beta4
 // import { createRoutes } from "react-router/lib/RouteUtils"
 
-export default ({ pkg, urls, pagesData, dest, routes, store, baseUrl }) => {
+export default ({
+  metadata,
+  urls,
+  pagesData,
+  dest,
+  routes,
+  store,
+  baseUrl,
+}) => {
 
   // create all html files
   return Promise.all(
@@ -43,7 +51,12 @@ export default ({ pkg, urls, pagesData, dest, routes, store, baseUrl }) => {
         const basename = path.join(dest, url)
 
         return (
-          urlAsHtml(uri, { pkg, routes, store, baseUrl })
+          urlAsHtml(uri, {
+            metadata,
+            routes,
+            store,
+            baseUrl,
+          })
           .then(
             (html) => {
               return new Promise((resolve, reject) => {

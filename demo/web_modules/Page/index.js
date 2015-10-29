@@ -16,13 +16,13 @@ export default class Page extends Component {
   }
 
   static contextTypes = {
-    pkg: PropTypes.object.isRequired,
+    metadata: PropTypes.object.isRequired,
   }
 
   render() {
     const {
       pkg,
-    } = this.context
+    } = this.context.metadata
 
     const {
       head,
