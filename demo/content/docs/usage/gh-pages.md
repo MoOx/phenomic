@@ -4,25 +4,37 @@ title: Automatic deployment on GitHub Pages
 
 You will have multiples possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
-
-### Get a package to automate deployment on a branch
-
+You can use your own method, using something like
 - [gh-pages](https://www.npmjs.com/package/gh-pages)
+- [buildbranch](https://www.npmjs.com/package/buildbranch)
+- [git-directory-deploy](https://github.com/X1011/git-directory-deploy)
+
+The following instructions show you how to do it with `git-directory-deploy`,
+but it should not be very different other solutions.
+
+This script is pretty solid, works on Travis-CI, play well with unstashed
+changes and handle errors pretty nicely.
+
+### Get the dependency
+
+The following instructions will get the `deploy.sh` script for you, at the right
+place
 
 ```console
-$ npm i -D gh-pages
+$ cd scripts
+$ wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh
+$ chmod +x deploy.sh
+$ cd ..
 ```
 
-### Add a script to deploy
+### Add a command to deploy
 
-#### Manually, on the gh-pages branch
-
-In your `package.json`, add the following `scripts`
+In your `package.json`, add the following items under the `scripts` section
 
 ```json
 {
   "predeploy": "npm run static",
-  "deploy": "gh-pages -d dist"
+  "deploy": "./scripts/deploy.sh"
 }
 ```
 
@@ -66,16 +78,18 @@ $ sudo gem install travis
 $ travis encrypt --add --repo YOU/YOUR_REPO GH_TOKEN=the_token_here
 ```
 
-##### Add `test` script in your `package.json`
+##### Add a `test` script in your `package.json` `scripts` section
+
+**Note: adjust the USER/REPO part in the git repository address**
 
 ```json
 {
-  "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
+  "predeploy": "npm run static",
+  "deploy": "./scripts/deploy.sh",
+  "_ci-deploy": "GIT_DEPLOY_REPO=https://$GH_TOKEN@github.com/USER/REPO.git ./scripts/deploy.sh",
+  "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then npm run _ci-deploy; fi;",
   "test": "npm run ci-deploy"
 }
 ```
 
 Now, commit and push to master, wait a couple of minute and it should be good.
-
-**Note: `gh-pages` package doesn't seems to work well on Travis, please track this
-issue https://github.com/MoOx/statinamic/issues/27**

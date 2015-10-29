@@ -17,7 +17,6 @@
     "eslint-plugin-react": "^3.6.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
-    "gh-pages": "^0.4.0",
     "highlight.js": "^8.5.0",
     "invariant": "^2.1.1",
     "json-loader": "^0.5.2",
@@ -43,11 +42,14 @@
     "whatwg-fetch": "^0.9.0"
   },
   "scripts": {
+    "lint": "eslint --fix .",
     "start": "babel-node scripts/build --server --open --dev",
     "static": "NODE_ENV=production babel-node scripts/build --static --production",
     "static+start": "NODE_ENV=production babel-node scripts/build --static --server --open --dev",
-    "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then gh-pages -d dist; fi;",
-    "lint": "eslint --fix .",
+    "predeploy": "npm run static",
+    "deploy": "./scripts/deploy.sh",
+    "_ci-deploy": "GIT_DEPLOY_REPO=https://$GH_TOKEN@github.com/MoOx/statinamic.git ./scripts/deploy.sh",
+    "ci-deploy": "if [ \"$TRAVIS_PULL_REQUEST\" = \"false\" ] && [ \"$TRAVIS_BRANCH\" = \"master\" ]; then npm run _ci-deploy; fi;",
     "pretest": "npm run lint",
     "test": "npm run static && npm run ci-deploy"
   },
