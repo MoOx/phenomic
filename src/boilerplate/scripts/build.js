@@ -78,6 +78,10 @@ const webpackConfig = {
           "!postcss-loader"
         ),
       },
+      {
+        test: /\.(html|ico|jpe?g|png|gif)$/,
+        loader: "file-loader?name=[path][name].[ext]&context=./content",
+      },
     ],
   },
 
