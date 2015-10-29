@@ -170,7 +170,7 @@ builder({
 
       // extract (and overwrite) statinamic client css
       // poor workaround to avoid having 2 identical files...
-      new ExtractTextPlugin(destBase + "/statinamic-client.css"),
+      new ExtractTextPlugin(path.join("..", destBase, "statinamic-client.css")),
     ],
   },
 })
