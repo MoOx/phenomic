@@ -1,3 +1,4 @@
+# 0.2.0 - 2015-10-28
 
 - Fixed: collection is not limited to 8~10 items anymore
 - Fixed: `peerDependencies` have been adjusted to minimal requirements
@@ -11,11 +12,12 @@
 appropriate peerDeps)
 - Added: `MetadataProvider` to send the data you want to the React context
 in a `metadata` attribute.
-- Added: `__BASE_URL__` is now send as constantes.
+- Added: `__BASE_URL__` is now send as a constant.
 - Added: `statinamic/lib/prepare-defined-values` helper to easily use JS
 object with `webpack.DefinePlugin`
 - Added: `defaultHead` option to `markdown-as-json-loader` loader to provide
 default values
+- Added: some documentation :)
 
 # 0.1.0 - 2015-10-21
 
