@@ -11,18 +11,19 @@ export default class Page extends Component {
 
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    __url: PropTypes.string.isRequired,
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
   }
 
   static contextTypes = {
-    pkg: PropTypes.object.isRequired,
+    metadata: PropTypes.object.isRequired,
   }
 
   render() {
     const {
       pkg,
-    } = this.context
+    } = this.context.metadata
 
     const {
       head,
@@ -32,17 +33,14 @@ export default class Page extends Component {
     invariant(typeof head.title === "string", "Your page needs a title")
 
     const meta = [
-      { name: "twitter:title", content: head.title },
-      { name: "twitter:creator", content: `@${ pkg.twitter }` },
-      // { name: "twitter:site", content: `@${ pkg.twitter }` },
-      // { name: "twitter:description", content: pageDescription(body) },
-      // { name: "twitter:image", content: header.image },
-      { property: "og:site_name", content: pkg.name },
       { property: "og:title", content: head.title },
       { property: "og:type", content: "article" },
-      // { property: "og:url", content: "http://www.example.com/" },
+      { property: "og:url", content: this.props.__url },
       // { property: "og:description", content: pageDescription(body) },
-      // { property: "og:image", content: header.image },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: head.title },
+      { name: "twitter:creator", content: `@${ pkg.twitter }` },
+      // { name: "twitter:description", content: pageDescription(body) },
     ]
 
     return (
