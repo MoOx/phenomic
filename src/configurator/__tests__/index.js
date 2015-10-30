@@ -7,7 +7,7 @@ tape("statinamic/lib/configurator", (test) => {
   const pkg = {
     homepage: "https://localhost:8080/statinamic",
   }
-  const config = configurator(pkg)
+  const config = configurator(pkg, [ "--production" ])
   test.equal(
     typeof config.baseUrl,
     "object",
@@ -25,7 +25,7 @@ tape("statinamic/lib/configurator", (test) => {
   )
   test.equal(
     config.baseUrl.pathname,
-    "/statinamic",
+    "/statinamic/",
     "should contain 'pathname' in 'baseUrl'"
   )
 
