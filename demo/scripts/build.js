@@ -54,8 +54,25 @@ const webpackConfig = {
       //
       {
         test: /\.md$/,
-        loader: "statinamic/lib/markdown-as-json-loader" +
-          `?context=${ source }&basepath=${ config.baseUrl.path }`,
+        loader: "statinamic/lib/md-collection-loader" +
+          `?${ JSON.stringify({
+            context: source,
+            basepath: config.baseUrl.path,
+            feedsOptions: {
+              title: pkg.name,
+              site_url: pkg.homepage,
+            },
+            feeds: {
+              "feed.xml": {
+                collectionOptions: {
+                  filter: { layout: "Post" },
+                  sort: "date",
+                  reverse: true,
+                  limit: 20,
+                },
+              },
+            },
+          }) }`,
       },
       {
         test: /\.json$/,

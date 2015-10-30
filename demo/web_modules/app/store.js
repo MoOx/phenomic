@@ -14,7 +14,7 @@ const store = createStore(
     // static build optimization
     ...__PROD__ && {
       collection:
-        require("statinamic/lib/markdown-as-json-loader/cache").default,
+        require("statinamic/lib/md-collection-loader/cache").default,
     },
 
     pageComponents,

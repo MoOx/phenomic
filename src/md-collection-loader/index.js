@@ -31,13 +31,15 @@ import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
 import filenameToUrl from "../filename-to-url"
+import feed from "../feed"
+import enhanceCollection from "../enhance-collection"
 import cache from "./cache"
 
 export default function(input) {
 
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
-  const defaultHead = query.defaultHead
+
   const collectionUrl = query.collectionUrl || "collection.json"
   const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
@@ -46,6 +48,7 @@ export default function(input) {
       ? this.options.markdownIt
       : markdownIt()
 
+  const defaultHead = query.defaultHead
   const parsed = yamlHeaderParser(input)
   const relativePath = path.relative(context, this.resourcePath)
   const url = filenameToUrl(relativePath)
@@ -81,18 +84,38 @@ export default function(input) {
       previousIndex = index
     }
   })
-  const collectionData = {
-    ...mdObject.head,
-    ...metadata,
-  }
   if (previousIndex) {
-    cache[previousIndex] = collectionData
+    cache[previousIndex] = mdObject
   }
   else {
-    cache.push(collectionData)
+    cache.push(mdObject)
   }
+
   // emit updated collection
-  this.emitFile(collectionUrl, JSON.stringify(cache))
+  this.emitFile(
+    collectionUrl,
+    // we emit a collection that contains only header info + metadata
+    JSON.stringify(cache.map((item) => ({
+      ...item.head,
+      __filename: item.__filename,
+      __url: item.__url,
+    })))
+  )
+
+  // emit updated feeds
+  const feeds = query.feeds || []
+  const feedsOptions = query.feedsOptions || {}
+  Object.keys(feeds).forEach((name) => {
+    const { feedOptions, collectionOptions } = feeds[name]
+    this.emitFile(name, feed({
+      feedOptions: {
+        ...feedsOptions,
+        ...feedOptions,
+      },
+      destination: name,
+      collection: enhanceCollection(cache, collectionOptions),
+    }))
+  })
 
   return "module.exports = __webpack_public_path__ + " + JSON.stringify(jsonUrl)
 }

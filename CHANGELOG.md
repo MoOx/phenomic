@@ -1,5 +1,7 @@
 
-- Changed: some peer deps versions adjusted (no real breaking changes)
+- Changed: some peer deps versions updated
+- Changed: `markdown-as-json-loader` is now `md-collection-loader`
+- Added: ability to generate rss feeds using `md-collection-loader`
 
 # 0.2.0 - 2015-10-29
 

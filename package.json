@@ -41,6 +41,7 @@
     "nano-logger": "^1.0.0",
     "opn": "^3.0.2",
     "rimraf": "^2.4.2",
+    "rss": "^1.2.0",
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-error-notification": "^0.1.4",
@@ -50,8 +51,10 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-eslint": "^4.0.6",
+    "babel-tape-runner": "^1.2.0",
     "eslint": "^1.7.2",
-    "eslint-plugin-react": "^3.6.2"
+    "eslint-plugin-react": "^3.6.2",
+    "tape": "^4.2.2"
   },
   "peerDependencies": {
     "autoprefixer": "^6.0.2",
@@ -93,7 +96,8 @@
     "babelify": "babel --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
     "lint": "eslint --fix src",
-    "pretest": "npm run lint",
+    "tape": "babel-tape-runner src/**/__tests__/*.js",
+    "pretest": "npm run lint && npm run tape",
     "test": "cd demo && npm install && npm test"
   },
 

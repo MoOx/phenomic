@@ -1,0 +1,68 @@
+import tape from "tape"
+
+import feed from ".."
+
+tape("statinamic/lib/feed", (test) => {
+
+  test.equal(
+    feed({
+      feedOptions: {
+        title: "test",
+        site_url: "http://statinamic.test/",
+      },
+      destination: "feed.xml",
+      collection: [
+        {
+          head: {
+            title: "One",
+            date: "2015-01-01",
+          },
+          body: "<strong>One</strong>",
+          __filename: "page/one.md",
+          __url: "/page/one/",
+        },
+        {
+          head: {
+            title: "Two",
+            date: "2015-12-31",
+          },
+          body: "<strong>Two</strong>",
+          __filename: "page/two.md",
+          __url: "/page/two/",
+        },
+      ],
+
+      // for testing
+      xmlOptions: { indent: "  " },
+    }),
+
+    /* eslint-disable max-len */
+    `<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title><![CDATA[test]]></title>
+    <description><![CDATA[test]]></description>
+    <link>http://statinamic.test/</link>
+    <generator>RSS for Node</generator>
+    <lastBuildDate>${ (new Date()).toUTCString() }</lastBuildDate>
+    <atom:link href="http://statinamic.test/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[One]]></title>
+      <description><![CDATA[<strong>One</strong>]]></description>
+      <link>http://statinamic.test/page/one/</link>
+      <guid isPermaLink="true">http://statinamic.test/page/one/</guid>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Two]]></title>
+      <description><![CDATA[<strong>Two</strong>]]></description>
+      <link>http://statinamic.test/page/two/</link>
+      <guid isPermaLink="true">http://statinamic.test/page/two/</guid>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>`,
+    "should generate a feed from a collection"
+  )
+
+  test.end()
+})
