@@ -23,8 +23,7 @@ export default (options = {}) => {
   const feed = new RSS(feedOptions)
   collection.forEach((item) => {
     feed.item({
-      description: item.body,
-      ...item.head,
+      ...item,
       url: item.__url ?
         url.resolve(
           feedOptions.site_url,

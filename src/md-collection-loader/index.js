@@ -31,8 +31,8 @@ import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
 import filenameToUrl from "../filename-to-url"
-import feed from "../feed"
 import enhanceCollection from "../enhance-collection"
+import feed from "./feed"
 import cache from "./cache"
 
 export default function(input) {
@@ -113,7 +113,15 @@ export default function(input) {
         ...feedOptions,
       },
       destination: name,
-      collection: enhanceCollection(cache, collectionOptions),
+      collection: enhanceCollection(
+        cache.map((item) => ({
+          ...item.head,
+          description: item.body,
+          __filename: item.__filename,
+          __url: item.__url,
+        })),
+        collectionOptions
+      ),
     }))
   })
 

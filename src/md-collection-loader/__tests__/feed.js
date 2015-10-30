@@ -1,6 +1,6 @@
 import tape from "tape"
 
-import feed from ".."
+import feed from "../feed"
 
 tape("statinamic/lib/feed", (test) => {
 
@@ -13,20 +13,16 @@ tape("statinamic/lib/feed", (test) => {
       destination: "feed.xml",
       collection: [
         {
-          head: {
-            title: "One",
-            date: "2015-01-01",
-          },
-          body: "<strong>One</strong>",
+          title: "One",
+          date: "2015-01-01",
+          description: "<strong>One</strong>",
           __filename: "page/one.md",
           __url: "/page/one/",
         },
         {
-          head: {
-            title: "Two",
-            date: "2015-12-31",
-          },
-          body: "<strong>Two</strong>",
+          title: "Two",
+          date: "2015-12-31",
+          description: "<strong>Two</strong>",
           __filename: "page/two.md",
           __url: "/page/two/",
         },
