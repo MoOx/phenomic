@@ -59,13 +59,13 @@ In order to get your engine ready, you need to:
 
 * initialize your bundles
   (
-    [client](https://github.com/MoOx/statinamic/blob/master/demo/index-client.js) +
-    [static](https://github.com/MoOx/statinamic/blob/master/demo/index-static.js)
+    [client](https://github.com/MoOx/statinamic/blob/master/demo/scripts/index-client.js) +
+    [static](https://github.com/MoOx/statinamic/blob/master/demo/scripts/index-static.js)
   ) with:
   - your layout [components](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/pageComponents.js)
   - some [routes](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/routes.js)
   - a [store](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/store.js) to keep data in memory
-* create your [build script](https://github.com/MoOx/statinamic/blob/master/demo/build.js) so you can:
+* create your [build script](https://github.com/MoOx/statinamic/blob/master/demo/scripts/build.js) so you can:
   * define your configuration
     (eg: webpack loaders to add your favorite css preprocessor)
   * run the dev server (`(babel-)node build --server --dev`)
