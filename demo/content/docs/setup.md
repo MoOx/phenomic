@@ -6,7 +6,7 @@ title: How to setup statinamic
 
 ```console
 $ npm install
-$ npm install --save-dev statinamic
+$ npm install --save statinamic
 ```
 
 Statinamic require some boilerplate, in order to provide you some flexibility.
