@@ -1,6 +1,8 @@
 - Fixed: add missing `npm-install-package` dependency
 ([#44](https://github.com/MoOx/statinamic/issues/44))
 - Removed: `NotFound` and `Loading` props of `PageContainer`
+- Changed: Statinamic setup command now saves peer deps as dev deps
+([#45](https://github.com/MoOx/statinamic/pull/45))
 - Added: `PageError` component can be used in `PageContainer` when page have
 errors.
 - Added: `PageLoading` component can be used in `PageContainer` when page are

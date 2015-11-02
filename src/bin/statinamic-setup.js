@@ -8,7 +8,7 @@ npmInstallPackage(
     deps.push(`${ dep }@${ peerDeps[dep] }`)
     return deps
   }, []),
-  { save: true },
+  { saveDev: true },
   err => {
     if (err) throw err
   }
