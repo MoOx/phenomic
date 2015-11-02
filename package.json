@@ -39,6 +39,7 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "nano-logger": "^1.0.0",
+    "npm-install-package": "^1.0.2",
     "opn": "^3.0.2",
     "rimraf": "^2.4.2",
     "rss": "^1.2.0",

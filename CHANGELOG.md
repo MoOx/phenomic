@@ -1,8 +1,10 @@
+- Fixed: add missing `npm-install-package` dependency
+([#44](https://github.com/MoOx/statinamic/issues/44))
+- Removed: `NotFound` and `Loading` props of `PageContainer`
 - Added: `PageError` component can be used in `PageContainer` when page have
 errors.
 - Added: `PageLoading` component can be used in `PageContainer` when page are
 loading.
-- Removed: `NotFound` and `Loading` props of `PageContainer`
 
 # 0.3.0 - 2015-10-30
 
