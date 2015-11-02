@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "homepage": "http://YOU.WEBSITE/",
+  "scripts": {
+    "start": "babel-node scripts/build --server --open --dev",
+    "static": "NODE_ENV=production babel-node scripts/build --static --production"
+  },
+  "babel": {
+    "stage": 0
+  }
+}

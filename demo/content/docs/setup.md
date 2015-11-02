@@ -1,43 +1,80 @@
 ---
-title: How to setup statinamic
+title: How to setup Statinamic
 ---
 
-## Install (from npm)
+Statinamic require a minimal boilerplate, in order to provide you some
+flexibility.
+, you can just run the following:
+
+## The boilerplate
+
+To get the default boilerplate, you can copy it directly
+[statinamic/src/boilerplate](https://github.com/MoOx/statinamic/tree/master/src/boilerplate)
+
+Feel free to adjust the `package.json` to your need.
+
+When you have the boilerplate in place:
 
 ```console
-$ npm install
 $ npm install --save-dev statinamic
 ```
 
-Statinamic require some boilerplate, in order to provide you some flexibility.
-To generate the default boilerplate, you can just run the following:
+For npm@3+ (to get required `peerDependencies`):
 
 ```console
 $ statinamic setup
 ```
+
+### More explanation about the boilerplate
+
+The default boilerplate:
+
+* initialize your bundles
+  (
+    [client](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-client.js) +
+    [static](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-static.js)
+  ) with:
+  - your layout [components](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/pageComponents.js)
+  - some [routes](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/routes.js)
+  - a [store](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/store.js) to keep data in memory
+* create your [build script](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/build.js) so you can:
+  * define your configuration
+    (eg: webpack loaders to add your favorite css preprocessor)
+  * run the dev server (`(babel-)node build --server --dev`)
+  * build the static version for production (`(babel-)node build --static --production`)
+
+You might as well need to:
+
+* write or reuse [React components](http://react-components.com/)
+* tweak [webpack configuration](http://webpack.github.io/docs) in the build script
+  so you can consume images, svg, css or whatever you want.
+
+## Hot reloading
 
 In order to benefit of hot-loading and visual javascript errors,
 you can add this `babel` configuration
 
 ```json
 {
-  "stage": 0,
-  "env": {
-    "development": {
-      "plugins": [ "react-transform" ],
-      "extra": {
-        "react-transform": {
-          "transforms": [
-            {
-              "transform": "react-transform-hmr",
-              "imports": [ "react" ],
-              "locals": [ "module" ]
-            },
-            {
-              "transform": "react-transform-catch-errors",
-              "imports": [ "react", "redbox-react" ]
-            }
-          ]
+  "babel": {
+    "stage": 0,
+    "env": {
+      "development": {
+        "plugins": [ "react-transform" ],
+        "extra": {
+          "react-transform": {
+            "transforms": [
+              {
+                "transform": "react-transform-hmr",
+                "imports": [ "react" ],
+                "locals": [ "module" ]
+              },
+              {
+                "transform": "react-transform-catch-errors",
+                "imports": [ "react", "redbox-react" ]
+              }
+            ]
+          }
         }
       }
     }
@@ -50,35 +87,6 @@ You will need to install the appropriate packages
 ```console
 $ npm i -D babel-plugin-react-transform react-transform-hmr react-transform-catch-errors redbox-react
 ```
-
----
-
-## The boilerplate
-
-In order to get your engine ready, you need to:
-
-* initialize your bundles
-  (
-    [client](https://github.com/MoOx/statinamic/blob/master/demo/scripts/index-client.js) +
-    [static](https://github.com/MoOx/statinamic/blob/master/demo/scripts/index-static.js)
-  ) with:
-  - your layout [components](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/pageComponents.js)
-  - some [routes](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/routes.js)
-  - a [store](https://github.com/MoOx/statinamic/blob/master/demo/web_modules/app/store.js) to keep data in memory
-* create your [build script](https://github.com/MoOx/statinamic/blob/master/demo/scripts/build.js) so you can:
-  * define your configuration
-    (eg: webpack loaders to add your favorite css preprocessor)
-  * run the dev server (`(babel-)node build --server --dev`)
-  * build the static version for production (`(babel-)node build --static --production`)
-
-For that you will mainly need to:
-
-* write or reuse [React components](http://react-components.com/)
-  (you can get the [components](https://github.com/MoOx/statinamic/tree/master/demo/web_modules) of the demo)
-* tweak [webpack configuration](http://webpack.github.io/docs) in the build script
-  so you can consume images, svg, css or whatever you want.
-
-Check out the [demo source code](https://github.com/MoOx/statinamic/tree/master/demo).
 
 ---
 
@@ -124,5 +132,3 @@ plain React components. This generator is just an helper.
   [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * [tape](https://github.com/substack/tape)
   for unit tests.
-
-_⚠︎ The packages above are used in the [demo](https://github.com/MoOx/statinamic/tree/master/demo)._
