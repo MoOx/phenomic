@@ -3,7 +3,7 @@ import path from "path"
 import mkdirp from "mkdirp"
 
 import urlAsHtml from "./url-as-html"
-import * as pagesActions from "../redux/modules/pages"
+import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
   throw new Error("pages SET action is undefined")

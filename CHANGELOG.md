@@ -1,3 +1,5 @@
+# 0.4.0 - 2015-11-02
+
 - Fixed: add missing `npm-install-package` dependency
 ([#44](https://github.com/MoOx/statinamic/issues/44))
 - Removed: `NotFound` and `Loading` props of `PageContainer`

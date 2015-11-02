@@ -7,7 +7,7 @@ import { Provider } from "react-redux"
 import Helmet from "react-helmet"
 
 import Html from "./Html"
-import MetadataProvider from "../MetadataProvider"
+import MetadataProvider from "../../MetadataProvider"
 
 export default (url, { metadata, routes, store, baseUrl }) => (
   new Promise((resolve, reject) => {
