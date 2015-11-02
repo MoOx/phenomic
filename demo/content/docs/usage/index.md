@@ -1,5 +1,5 @@
 ---
-title: How to use statinamic
+title: How to use Statinamic
 ---
 
 ## Write
@@ -7,7 +7,8 @@ title: How to use statinamic
 You can write your files using
 [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
-- [Collection](collections/)
+- [Page layouts](layouts/)
+- [Collections](collections/)
 - [RSS Feeds](feeds/)
 - [Automatic deployment on GitHub Pages (gh-pages)](gh-pages/)
 - [Advanced Usage](../advanced/)

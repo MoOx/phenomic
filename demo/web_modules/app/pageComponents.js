@@ -4,5 +4,5 @@
 export Page from "Page"
 
 // additional layouts
-export NotFound from "NotFound"
+export PageError from "PageError"
 // export Post from "Post"
