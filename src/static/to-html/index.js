@@ -12,9 +12,6 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
-// react-router beta4
-// import { createRoutes } from "react-router/lib/RouteUtils"
-
 export default ({
   metadata,
   urls,
