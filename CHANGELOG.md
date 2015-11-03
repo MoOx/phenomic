@@ -1,3 +1,8 @@
+# 0.4.1 - 2015-11-03
+
+- Fixed: `collection.json` should now contains all entries, even for the static
+build (round 2)
+
 # 0.4.0 - 2015-11-02
 
 - Fixed: add missing `npm-install-package` dependency

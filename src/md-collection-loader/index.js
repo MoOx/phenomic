@@ -35,6 +35,8 @@ import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
 
+let timeout
+
 export default function(input) {
 
   const query = loaderUtils.parseQuery(this.query)
@@ -91,16 +93,21 @@ export default function(input) {
     cache.push(mdObject)
   }
 
-  // emit updated collection
-  this.emitFile(
-    collectionUrl,
-    // we emit a collection that contains only header info + metadata
-    JSON.stringify(cache.map((item) => ({
-      ...item.head,
-      __filename: item.__filename,
-      __url: item.__url,
-    })))
-  )
+  if (timeout) {
+    clearTimeout(timeout)
+  }
+  else {
+    setTimeout(() => {
+      // we emit a collection that contains only header info + metadata
+      const newJSON = JSON.stringify(cache.map((item) => ({
+        ...item.head,
+        __filename: item.__filename,
+        __url: item.__url,
+      })))
+      // emit updated collection
+      this.emitFile(collectionUrl, newJSON)
+    }, 100)
+  }
 
   // emit updated feeds
   const feeds = query.feeds || []
