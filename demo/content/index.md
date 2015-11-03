@@ -44,6 +44,16 @@ rendering).
 So when the client has established a connection with your website, they can get
 the same UX as an app by grabbing the minimal amount of data for each new page.
 
+## Choose your flavor
+
+The way Statinamic is done helps you to customize everything:
+choose your own Markdown engine (with your own plugins), your CSS preprocessor, etc
+thanks to Webpack.
+
+## Awesome DX (Developer Experience)
+
+During development, enjoy the benefit of hot loading with visual errors in your layout !
+
 <!--
 ## Setup a website in a flash
 
