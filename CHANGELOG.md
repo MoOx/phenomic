@@ -1,3 +1,8 @@
+# 0.4.2 - 2015-11-03
+
+- Fixed: feed should now contains all entries
+(same bug as fixed in 0.4.1, but for rss feed instead of collection.json)
+
 # 0.4.1 - 2015-11-03
 
 - Fixed: `collection.json` should now contains all entries, even for the static

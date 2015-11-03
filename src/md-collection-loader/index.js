@@ -106,31 +106,31 @@ export default function(input) {
       })))
       // emit updated collection
       this.emitFile(collectionUrl, newJSON)
+
+      // emit updated feeds
+      const feeds = query.feeds || []
+      const feedsOptions = query.feedsOptions || {}
+      Object.keys(feeds).forEach((name) => {
+        const { feedOptions, collectionOptions } = feeds[name]
+        this.emitFile(name, feed({
+          feedOptions: {
+            ...feedsOptions,
+            ...feedOptions,
+          },
+          destination: name,
+          collection: enhanceCollection(
+            cache.map((item) => ({
+              ...item.head,
+              description: item.body,
+              __filename: item.__filename,
+              __url: item.__url,
+            })),
+            collectionOptions
+          ),
+        }))
+      })
     }, 100)
   }
-
-  // emit updated feeds
-  const feeds = query.feeds || []
-  const feedsOptions = query.feedsOptions || {}
-  Object.keys(feeds).forEach((name) => {
-    const { feedOptions, collectionOptions } = feeds[name]
-    this.emitFile(name, feed({
-      feedOptions: {
-        ...feedsOptions,
-        ...feedOptions,
-      },
-      destination: name,
-      collection: enhanceCollection(
-        cache.map((item) => ({
-          ...item.head,
-          description: item.body,
-          __filename: item.__filename,
-          __url: item.__url,
-        })),
-        collectionOptions
-      ),
-    }))
-  })
 
   return "module.exports = __webpack_public_path__ + " + JSON.stringify(jsonUrl)
 }
