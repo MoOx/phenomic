@@ -15,8 +15,9 @@ _Do not hesitate to:_
 - [open an issue](https://github.com/MoOx/statinamic/issues/new)
   when you find a bug (or think you have)
 
-**At the moment, please consider looking at the [demo](demo) folder as a
-example.**
+**Remember to look at the
+[demo](https://github.com/MoOx/statinamic/tree/master/demo)
+folder as a example.**
 
 ---
 
