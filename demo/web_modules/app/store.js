@@ -1,6 +1,7 @@
 import { combineReducers } from "redux"
 import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
+import minifyCollection from "statinamic/lib/md-collection-loader/minify"
 
 import * as pageComponents from "app/pageComponents"
 
@@ -14,10 +15,11 @@ const store = createStore(
     // static build optimization
     ...__PROD__ && {
       collection:
-        require("statinamic/lib/md-collection-loader/cache").default,
+        minifyCollection(require("statinamic/lib/md-collection-loader/cache")),
     },
 
     pageComponents,
   }
 )
+
 export default store

@@ -1,3 +1,4 @@
+import fs from "fs"
 import path from "path"
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
@@ -176,6 +177,11 @@ builder({
     },
 
     target: "node",
+
+    externals: [
+      ...fs.readdirSync("node_modules").filter((x) => x !== ".bin"),
+      "statinamic/lib/md-collection-loader/cache",
+    ],
 
     output: {
       ...webpackConfig.output,
