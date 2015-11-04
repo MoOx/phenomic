@@ -2,7 +2,7 @@ import tape from "tape"
 
 import feed from "../feed"
 
-tape("statinamic/lib/feed", (test) => {
+tape("statinamic/lib/md-collection-loader feed helper", (test) => {
 
   test.equal(
     feed({

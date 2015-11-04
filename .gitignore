@@ -7,3 +7,6 @@ lib
 demo/node_modules
 demo/dist
 demo/statinamic-static.js
+
+# some tests output some files
+src/md-collection-loader/__tests__/output/
