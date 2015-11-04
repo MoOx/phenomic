@@ -34,6 +34,7 @@ import filenameToUrl from "../filename-to-url"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
+import minify from "./minify"
 
 let timeout
 
@@ -99,11 +100,7 @@ export default function(input) {
   else {
     setTimeout(() => {
       // we emit a collection that contains only header info + metadata
-      const newJSON = JSON.stringify(cache.map((item) => ({
-        ...item.head,
-        __filename: item.__filename,
-        __url: item.__url,
-      })))
+      const newJSON = JSON.stringify(minify(cache))
       // emit updated collection
       this.emitFile(collectionUrl, newJSON)
 
