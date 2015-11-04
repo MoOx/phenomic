@@ -1,3 +1,10 @@
+# 0.4.3 - 2015-11-04
+
+- Fixed (in boilerplate): collection cache can now be used for static rendering
+(ref [putaindecode#499](https://github.com/putaindecode/putaindecode.fr/issues/499))
+- Fixed: escape end of script tags in JSON of `__INITIAL_STATE__`
+(ref [putaindecode#501](https://github.com/putaindecode/putaindecode.fr/issues/501))
+
 # 0.4.2 - 2015-11-03
 
 - Fixed: feed should now contains all entries
