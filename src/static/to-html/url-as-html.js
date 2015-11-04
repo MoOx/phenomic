@@ -8,6 +8,7 @@ import Helmet from "react-helmet"
 
 import Html from "./Html"
 import MetadataProvider from "../../MetadataProvider"
+import escapeJSONforHTML from "../escapeJSONforHTML"
 
 export default (url, { metadata, routes, store, baseUrl }) => (
   new Promise((resolve, reject) => {
@@ -76,7 +77,7 @@ export default (url, { metadata, routes, store, baseUrl }) => (
               pageComponents: undefined,
             }
             script = `window.__INITIAL_STATE__ = ${
-              JSON.stringify(initialState)
+              escapeJSONforHTML(JSON.stringify(initialState))
             }`
           }
           else {
