@@ -54,7 +54,7 @@ export default class Header extends Component {
         { separator }
         <a
           className={ styles.link }
-          href="https://twitter.com/MoOx"
+          href="https://twitter.com/Statinamic"
         >
           { "Twitter" }
         </a>
