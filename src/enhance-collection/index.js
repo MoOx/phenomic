@@ -1,6 +1,5 @@
 export default function enhanceCollection(collection, options) {
   options = {
-    addSiblingReferences: true,
     ...options,
   }
 

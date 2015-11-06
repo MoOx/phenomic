@@ -1,3 +1,6 @@
+- Removed: `statinamic/lib/enhance-collection` do not add siblings by default.
+You will need to pass `{ addSiblingReferences: true }` in the options to get
+next and previous references to collection items.
 - Added: when `--production` is used, `process.env.NODE_ENV` is automatically
 set to `production`.
 
