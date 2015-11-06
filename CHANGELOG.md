@@ -1,3 +1,6 @@
+- Added: when `--production` is used, `process.env.NODE_ENV` is automatically
+set to `production`.
+
 # 0.4.3 - 2015-11-04
 
 - Fixed (in boilerplate): collection cache can now be used for static rendering
