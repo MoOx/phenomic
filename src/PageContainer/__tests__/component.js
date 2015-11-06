@@ -11,6 +11,7 @@ import PageContainer from "../component"
 global.__DEV__ = false
 
 // fixtures
+/* eslint-disable react/no-multi-comp */
 const noop = () => {}
 const Page = () => <div className="Page"></div>
 const PageError = () => <div className="PageError"></div>

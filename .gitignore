@@ -6,7 +6,7 @@ lib
 # demo build
 demo/node_modules
 demo/dist
-demo/statinamic-static.js
+demo/scripts/statinamic-static.js
 
 # some tests output some files
 src/md-collection-loader/__tests__/output/
