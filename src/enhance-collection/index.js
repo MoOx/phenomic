@@ -44,7 +44,17 @@ export function filter(collection, filters) {
         const keys = Object.keys(filter)
         if (
           keys.reduce(
-            (acc, key) => acc && item[key] === filter[key],
+            (acc, key) => acc && (
+              (
+                typeof filter[key] === "string" &&
+                item[key] === filter[key]
+              )
+              ||
+              (
+                filter[key] instanceof RegExp &&
+                item[key].match(filter[key])
+              )
+            ),
             true
           )
         ) {
