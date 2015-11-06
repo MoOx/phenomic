@@ -44,8 +44,8 @@
   "scripts": {
     "lint": "eslint --fix .",
     "start": "babel-node scripts/build --server --open --dev",
-    "static": "NODE_ENV=production babel-node scripts/build --static --production",
-    "static+start": "NODE_ENV=production babel-node scripts/build --static --server --open --dev",
+    "static": "babel-node scripts/build --static --production",
+    "static+start": "babel-node scripts/build --static --server --open --dev",
     "predeploy": "npm run static",
     "deploy": "./scripts/deploy.sh",
     "_ci-deploy": "GIT_DEPLOY_REPO=https://$GH_TOKEN@github.com/MoOx/statinamic.git ./scripts/deploy.sh",

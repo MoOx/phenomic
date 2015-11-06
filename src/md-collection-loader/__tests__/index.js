@@ -1,3 +1,5 @@
+import path from "path"
+
 import test from "tape"
 import webpack from "webpack"
 
@@ -30,7 +32,10 @@ test("statinamic/lib/md-collection-loader", (t) => {
 
       t.ok(
         stats.compilation.assets[
-          "src/md-collection-loader/__tests__/fixtures/script/index.json"
+          path.join(
+            "src", "md-collection-loader", "__tests__", "fixtures", "script",
+            "index.json"
+          )
         ]
         ._value,
         "should create a json for an given md"
