@@ -1,3 +1,5 @@
+# 0.5.0 - 2015-11-06
+
 - Removed: `statinamic/lib/enhance-collection` do not add siblings by default.
 You will need to pass `{ addSiblingReferences: true }` in the options to get
 next and previous references to collection items.
