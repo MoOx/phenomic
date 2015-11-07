@@ -14,7 +14,5 @@ export default function(filename, context) {
     // no trailing slash
     .replace(/\/$/, "")
 
-  // console.log("filename to url", filename, url)
-
   return url
 }
