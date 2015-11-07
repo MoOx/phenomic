@@ -11,6 +11,8 @@ export default function(filename, context) {
     .replace(/\bindex\.(md|json)$/, "")
     // something-else.md => something-else
     .replace(/\.md$/, "")
+    // replace windows backslash by slash
+    .replace(/\\/, "/")
     // no trailing slash
     .replace(/\/$/, "")
 
