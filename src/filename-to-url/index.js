@@ -12,7 +12,7 @@ export default function(filename, context) {
     // something-else.md => something-else
     .replace(/\.md$/, "")
     // replace windows backslash by slash
-    .replace(/\\/, "/")
+    .replace(/\\/g, "/")
     // no trailing slash
     .replace(/\/$/, "")
 

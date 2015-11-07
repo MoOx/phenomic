@@ -34,5 +34,11 @@ test("statinamic/lib/filename-to-url", (t) => {
     "should transform index.md path to a empty url"
   )
 
+  t.equal(
+    filenameToUrl("some\\thing\\else"),
+    "some/thing/else",
+    "should handle windows backslash"
+  )
+
   t.end()
 })
