@@ -53,6 +53,7 @@
   },
   "babel": {
     "stage": 0,
+    "compact": false,
     "env": {
       "development": {
         "plugins": [ "react-transform" ],
