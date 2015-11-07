@@ -4,6 +4,7 @@ node_js:
   - 4
 
 deploy:
+  skip_cleanup: true
   provider: script
   script: ./demo/scripts/deploy.sh
   on:
