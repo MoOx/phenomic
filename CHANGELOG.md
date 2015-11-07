@@ -1,3 +1,7 @@
+# 0.5.1 - 2015-11-07
+
+- Fixed: windows compatibility issues
+
 # 0.5.0 - 2015-11-06
 
 - Removed: `statinamic/lib/enhance-collection` do not add siblings by default.
