@@ -3,7 +3,7 @@
 > A static website generator to create dynamic website using React components.
 
 [![Travis (Unix) Build Badge](https://img.shields.io/travis/MoOx/statinamic/master.svg?label=unix build)](https://travis-ci.org/MoOx/statinamic)
-[![Appveyor (Windows) Build Badge](https://img.shields.io/appveyor/MoOx/statinamic/master.svg?label=window build)](https://ci.appveyor.com/project/MoOx/statinamic)
+[![Appveyor (Windows) Build Badge](https://img.shields.io/appveyor/ci/MoOx/statinamic/master.svg?label=window build)](https://ci.appveyor.com/project/MoOx/statinamic)
 [![Support on reactiflux#statinamic](https://img.shields.io/badge/support-reactiflux%23statinamic-738bd7.svg)](https://discord.gg/0ZcbPKXt5bW1pAiw)
 
 **[Check out the website](http://moox.io/statinamic) for documentation.**
