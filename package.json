@@ -57,6 +57,7 @@
     "eslint": "^1.7.2",
     "eslint-plugin-react": "^3.6.2",
     "extend-tape": "^1.0.1",
+    "lnfs-cli": "^1.0.1",
     "react-addons-test-utils": "^0.14.1",
     "tape": "^4.2.2",
     "tape-jsx-equals": "^1.0.0"
@@ -102,14 +103,12 @@
     "prepublish": "npm run babelify",
     "lint": "eslint --fix src",
     "tape": "babel-tape-runner src/**/__tests__/*.js",
-    "pretest": "npm run lint && npm run tape",
-    "test": "cd demo && npm install && npm test"
+    "test": "npm run lint && npm run tape",
+    "posttest": "lnfs src demo/node_modules/statinamic/lib && cd demo && npm install && npm test"
   },
-
   "babel": {
     "stage": 0
   },
-
   "eslintConfig": {
     "root": true,
     "extends": "eslint:recommended",
@@ -120,7 +119,6 @@
       "modules": true,
       "experimentalObjectRestSpread": true
     },
-
     "env": {
       "es6": true,
       "browser": true,

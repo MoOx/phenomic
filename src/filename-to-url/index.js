@@ -11,10 +11,10 @@ export default function(filename, context) {
     .replace(/\bindex\.(md|json)$/, "")
     // something-else.md => something-else
     .replace(/\.md$/, "")
+    // replace windows backslash by slash
+    .replace(/\\/g, "/")
     // no trailing slash
     .replace(/\/$/, "")
-
-  // console.log("filename to url", filename, url)
 
   return url
 }
