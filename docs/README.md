@@ -1,15 +1,15 @@
-# statinamic demo
+# statinamic docs
 
 ## Install
 
-_To make this demo works properly, you first need to install dependencies of
-the project itself (statinamic), in the folder above this one (statinamic/demo).
+_To make this docs works properly, you first need to install dependencies of
+the project itself (statinamic), in the folder above this one (statinamic/docs).
 [Why should I do that?](node_modules/README.md)._
 
 ```console
 $ git clone https://github.com/MoOx/statinamic.git
 $ npm install
-$ cd demo
+$ cd docs
 $ npm install
 ```
 

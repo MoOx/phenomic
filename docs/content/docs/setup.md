@@ -8,10 +8,12 @@ flexibility.
 
 ## The boilerplate
 
-To get the default boilerplate, you can copy it directly
-[statinamic/src/boilerplate](https://github.com/MoOx/statinamic/tree/master/src/boilerplate)
+To get the default boilerplate,
+copy [statinamic/src/boilerplate](https://github.com/MoOx/statinamic/tree/master/src/boilerplate)
+into a (fresh) local directory.
 
-Feel free to adjust the `package.json` to your need.
+_Feel free to adjust the `package.json` to your need.
+Just keep the `scripts` `start` and `static`._
 
 When you have the boilerplate in place:
 
@@ -22,8 +24,13 @@ $ npm install --save-dev statinamic
 For npm@3+ (to get required `peerDependencies`):
 
 ```console
-$ statinamic setup
+$ ./node_modules/.bin/statinamic setup
 ```
+
+Note: You can use `$ statinamic` directly by adding `./node_modules/.bin` to
+your `PATH`.
+It's a good way to avoid global npm package while still being able to use
+`bin`s from local `node_modules`.
 
 ### More explanation about the boilerplate
 
@@ -48,6 +55,26 @@ You might as well need to:
 * write or reuse [React components](http://react-components.com/)
 * tweak [webpack configuration](http://webpack.github.io/docs) in the build script
   so you can consume images, svg, css or whatever you want.
+
+## Linting
+
+ADD DEFAULT RULES IN boilerplate
+
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "ecmaFeatures": {
+        "modules": true
+    },
+    "rules": {
+    }
+}
++
+https://github.com/MoOx/statinamic/blob/master/docs/package.json#L77-L79
 
 ## Hot reloading
 

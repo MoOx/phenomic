@@ -1,6 +1,15 @@
+.logo {
+  display: block;
+  text-align: center;
+  padding: 1rem;
+}
+
+  .logoImg {
+  }
+
 .nav {
   font-weight: 300;
-  line-height: 2rem;
+  line-height: 3rem;
 }
 
 .separator {
@@ -15,6 +24,10 @@
   .link:hover,
   .link:focus {
     opacity: 1;
+  }
+
+  .linkActive {
+    font-weight: 500;
   }
 
 .icon {

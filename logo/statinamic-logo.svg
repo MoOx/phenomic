@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="412px" height="238px" viewBox="0 0 412 238" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch -->
+    <title>html-code-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="iconmonstr-html-code-icon" sketch:type="MSLayerGroup" fill="#7340C4">
+            <path d="M232.521,0.595 L272.195,0.595 L182.147,237.406 L142.695,237.406 L232.521,0.595 L232.521,0.595 Z M412,135.385 L295.031,201.12 L295.031,160.358 L363.14,121.949 L295.031,83.935 L295.031,43.068 L412,108.805 L412,135.385 L412,135.385 Z M0,108.805 L116.97,43.069 L116.97,83.936 L48.86,121.949 L116.969,160.358 L116.969,201.12 L0,135.385 L0,108.805 L0,108.805 Z" id="html-code-icon" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

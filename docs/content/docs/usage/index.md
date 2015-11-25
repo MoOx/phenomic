@@ -14,7 +14,7 @@ You can write your files using
 - [Advanced Usage](../advanced/)
 
 This website is made using statinamic, so you can also check out
-[the source code of this documentation](https://github.com/MoOx/statinamic/tree/master/demo/content)
+[the source code of this documentation](https://github.com/MoOx/statinamic/tree/master/docs/content)
 as an example.
 
 _More to come._

@@ -1,10 +1,8 @@
 ---
-title: Statinamic ➠
+title: ""
 ---
 
-> A static website generator to create dynamic website using React components.
-
----
+> A static website generator to create dynamic website using React components
 
 **Note that _Statinamic_ is at an early stage, there is still some work to do,
 some tests to write.**
@@ -16,7 +14,7 @@ _Do not hesitate to:_
   when you find a bug (or think you have)
 
 **Remember to look at the
-[demo](https://github.com/MoOx/statinamic/tree/master/demo)
+[docs](https://github.com/MoOx/statinamic/tree/master/docs)
 folder as a example.**
 
 ---

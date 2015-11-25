@@ -3,10 +3,10 @@ node_modules
 # build
 lib
 
-# demo build
-demo/node_modules
-demo/dist
-demo/scripts/statinamic-static.js
+# docs build
+docs/node_modules
+docs/dist
+docs/scripts/statinamic-static.js
 
 # some tests output some files
 src/md-collection-loader/__tests__/output/

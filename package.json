@@ -106,7 +106,7 @@
     "lint": "eslint --fix src",
     "tape": "babel-tape-runner src/**/__tests__/*.js",
     "test": "npm run lint && npm run tape",
-    "posttest": "lnfs src demo/node_modules/statinamic/lib && cd demo && npm install && npm test"
+    "posttest": "lnfs src docs/node_modules/statinamic/lib && cd docs && npm install && npm test"
   },
   "babel": {
     "stage": 0
