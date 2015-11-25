@@ -28,7 +28,14 @@ test("statinamic/lib/md-collection-loader", (t) => {
       }
 
       t.notOk(stats.hasErrors(), "doesn't give any error")
+      if (stats.hasErrors()) {
+        console.error(stats.compilation.errors)
+      }
+
       t.notOk(stats.hasWarnings(), "doesn't give any warning")
+      if (stats.hasWarnings()) {
+        console.log(stats.compilation.warnings)
+      }
 
       t.ok(
         stats.compilation.assets[

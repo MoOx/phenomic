@@ -58,6 +58,8 @@
     "eslint-plugin-react": "^3.6.2",
     "extend-tape": "^1.0.1",
     "lnfs-cli": "^1.0.1",
+    "markdown-it": "^5.0.0",
+    "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
     "tape": "^4.2.2",
     "tape-jsx-equals": "^1.0.0"
