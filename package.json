@@ -61,6 +61,7 @@
     "markdown-it": "^5.0.0",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
+    "react-helmet": "^2.1.0",
     "tape": "^4.2.2",
     "tape-jsx-equals": "^1.0.0"
   },
