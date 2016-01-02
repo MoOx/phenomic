@@ -3,7 +3,7 @@ import { Link } from "react-router"
 
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
-import logo from "../../../logo/statinamic-text.png"
+import StatinamicLogoSVG from "../../../logo/statinamic-text.svg"
 
 const supportUrl = "https://discord.gg/0ZcbPKXt5bW1pAiw"
 const supportBadge =
@@ -19,7 +19,7 @@ export default class Header extends Component {
     return (
       <header>
         <div className={ styles.logo }>
-          <img className={ styles.logoImg } src={ logo } alt="" />
+          <StatinamicLogoSVG width="100%" height="auto" />
         </div>
         <nav className={ styles.nav }>
           <Link

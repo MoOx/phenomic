@@ -32,6 +32,7 @@
     "react-helmet": "^2.1.0",
     "react-redux": "^2.1.0",
     "react-router": "^1.0.0-rc3",
+    "react-svg-loader": "0.0.6",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
