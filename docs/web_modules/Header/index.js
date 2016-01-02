@@ -5,12 +5,6 @@ import styles from "./index.css"
 import npmPkg from "../../../package.json"
 import StatinamicLogoSVG from "../../../logo/statinamic-text.svg"
 
-const supportUrl = "https://discord.gg/0ZcbPKXt5bW1pAiw"
-const supportBadge =
-  "https://img.shields.io/badge/support-reactiflux%23statinamic-738bd7.svg"
-const changelogUrl =
-  "https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md"
-
 export default class Header extends Component {
 
   render() {
@@ -70,18 +64,22 @@ export default class Header extends Component {
           { separator }
           <a
             className={ styles.link }
-            href={ supportUrl }
+            href={ "https://gitter.im/MoOx/statinamic" }
           >
             <img
               className={ styles.icon }
-              src={ supportBadge }
-              alt={ "Support on reactiflux#statinamic" }
+              src={
+                "https://img.shields.io/badge/support-gitter%20chat-E40255.svg"
+              }
+              alt={ "Support on gitter chat" }
             />
           </a>
           { separator }
           <a
             className={ styles.version }
-            href={ changelogUrl }
+            href={
+              "https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md"
+            }
           >
             { `v${ npmPkg.version }` }
           </a>

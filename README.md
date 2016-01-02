@@ -4,7 +4,7 @@
 
 [![Travis (Unix) Build Badge](https://img.shields.io/travis/MoOx/statinamic/master.svg?label=unix build)](https://travis-ci.org/MoOx/statinamic)
 [![Appveyor (Windows) Build Badge](https://img.shields.io/appveyor/ci/MoOx/statinamic/master.svg?label=window build)](https://ci.appveyor.com/project/MoOx/statinamic)
-[![Support on reactiflux#statinamic](https://img.shields.io/badge/support-reactiflux%23statinamic-738bd7.svg)](https://discord.gg/0ZcbPKXt5bW1pAiw)
+[![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/statinamic)
 
 **[Check out the website](http://moox.io/statinamic) for documentation.**
 

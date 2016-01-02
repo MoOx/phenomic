@@ -9,9 +9,9 @@ some tests to write.**
 
 _Do not hesitate to:_
 
-- ask question on [reactiflux#statinamic](https://discord.gg/0ZcbPKXt5bW1pAiw)
+- ask question on [the support chat](https://gitter.im/MoOx/statinamic),
 - [open an issue](https://github.com/MoOx/statinamic/issues/new)
-  when you find a bug (or think you have)
+  when you find a bug (or think you have).
 
 **Remember to look at the
 [docs](https://github.com/MoOx/statinamic/tree/master/docs)
