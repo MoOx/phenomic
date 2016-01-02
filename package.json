@@ -109,7 +109,8 @@
     "lint": "eslint --fix src",
     "tape": "babel-tape-runner src/**/__tests__/*.js",
     "pretest": "npm run lint",
-    "test": "nyc npm run tape",
+    "test": "npm run tape",
+    "test-with-coverage": "nyc npm run tape",
     "posttest": "lnfs src docs/node_modules/statinamic/lib && cd docs && npm install && npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
