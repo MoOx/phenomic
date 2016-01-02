@@ -1,5 +1,8 @@
 node_modules
 
+# code coverage
+.nyc_output
+
 # build
 lib
 

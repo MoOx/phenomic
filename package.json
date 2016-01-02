@@ -59,6 +59,7 @@
     "extend-tape": "^1.0.1",
     "lnfs-cli": "^1.0.1",
     "markdown-it": "^5.0.0",
+    "nyc": "^5.1.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
     "react-helmet": "^2.1.0",
@@ -107,8 +108,10 @@
     "prepublish": "npm run babelify",
     "lint": "eslint --fix src",
     "tape": "babel-tape-runner src/**/__tests__/*.js",
-    "test": "npm run lint && npm run tape",
-    "posttest": "lnfs src docs/node_modules/statinamic/lib && cd docs && npm install && npm test"
+    "pretest": "npm run lint",
+    "test": "nyc npm run tape",
+    "posttest": "lnfs src docs/node_modules/statinamic/lib && cd docs && npm install && npm test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "babel": {
     "stage": 0
