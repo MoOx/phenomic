@@ -13,6 +13,7 @@ deploy:
   script: ./docs/scripts/deploy.sh
   on:
     branch: master
+    node: '5'
 
 env:
   global:
