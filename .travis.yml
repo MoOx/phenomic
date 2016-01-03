@@ -1,8 +1,11 @@
 language: node_js
 
 node_js:
-  - 4
-  - 5
+  - '4'
+  - '5'
+
+matrix:
+  fast_finish: true
 
 script: npm run test-with-coverage
 after_success: npm run coverage
