@@ -1,5 +1,7 @@
 # statinamic
 
+[![Join the chat at https://gitter.im/MoOx/statinamic](https://badges.gitter.im/MoOx/statinamic.svg)](https://gitter.im/MoOx/statinamic?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > A static website generator to create dynamic website using React components.
 
 [![Unix Build status](https://img.shields.io/travis/MoOx/statinamic/master.svg?branch=master&label=unix build)](https://travis-ci.org/MoOx/statinamic)
