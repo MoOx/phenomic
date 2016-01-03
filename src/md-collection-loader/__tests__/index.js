@@ -1,13 +1,19 @@
 import path from "path"
 
-import test from "tape"
+import test from "ava"; import "babel-core/register"
 import webpack from "webpack"
 
-test("statinamic/lib/md-collection-loader", (t) => {
+test.cb("statinamic/lib/md-collection-loader", (t) => {
+  t.plan(3)
+
+  const outputPath = __dirname + "/output/"
+  const entry = __dirname + "/fixtures/script.js"
+  const fixtureResult = path.join("fixtures", "script", "index.json")
+
   webpack(
     {
       output: {
-        path: "./src/md-collection-loader/__tests__/output/",
+        path: outputPath,
         filename: "bundle.js",
       },
       resolve: { extensions: [ "" ] },
@@ -15,12 +21,12 @@ test("statinamic/lib/md-collection-loader", (t) => {
         loaders: [
           {
             test: /\.md$/,
-            loader: "../../index.js",
+            loader: __dirname + "/../index.js",
             exclude: /node_modules/,
           },
         ],
       },
-      entry: "./src/md-collection-loader/__tests__/fixtures/script.js",
+      entry,
     },
     function(err, stats) {
       if (err) {
@@ -38,13 +44,7 @@ test("statinamic/lib/md-collection-loader", (t) => {
       }
 
       t.ok(
-        stats.compilation.assets[
-          path.join(
-            "src", "md-collection-loader", "__tests__", "fixtures", "script",
-            "index.json"
-          )
-        ]
-        ._value,
+        stats.compilation.assets[fixtureResult]._value,
         "should create a json for an given md"
       )
 

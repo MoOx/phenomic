@@ -1,10 +1,10 @@
-import tape from "tape"
+import test from "ava"; import "babel-core/register"
 
 import feed from "../feed"
 
-tape("statinamic/lib/md-collection-loader feed helper", (test) => {
+test("statinamic/lib/md-collection-loader feed helper", (t) => {
 
-  test.equal(
+  t.is(
     feed({
       feedOptions: {
         title: "test",
@@ -59,6 +59,4 @@ tape("statinamic/lib/md-collection-loader feed helper", (test) => {
 </rss>`,
     "should generate a feed from a collection"
   )
-
-  test.end()
 })

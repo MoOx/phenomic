@@ -145,5 +145,5 @@ plain React components. This generator is just an helper.
 
 ## Some packages that might helps
 
-* [tape](https://github.com/substack/tape)
+* [ava](https://github.com/sindresorhus/ava)
   for unit tests.

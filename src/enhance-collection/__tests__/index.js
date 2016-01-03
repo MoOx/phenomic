@@ -1,8 +1,8 @@
-import tape from "tape"
+import test from "ava"; import "babel-core/register"
 
 import enhanceCollection from ".."
 
-tape("statinamic/lib/enhance-collection", (test) => {
+test("statinamic/lib/enhance-collection", (t) => {
 
   const collec = [
     { k: "ey" },
@@ -11,7 +11,7 @@ tape("statinamic/lib/enhance-collection", (test) => {
     { k: "eye" },
   ]
 
-  test.deepEqual(
+  t.same(
     enhanceCollection(
       collec,
       {
@@ -24,7 +24,7 @@ tape("statinamic/lib/enhance-collection", (test) => {
     "should filter by object { key: string }"
   )
 
-  test.deepEqual(
+  t.same(
     enhanceCollection(
       collec,
       {
@@ -37,6 +37,4 @@ tape("statinamic/lib/enhance-collection", (test) => {
     ],
     "should filter by object { key: regexp }"
   )
-
-  test.end()
 })

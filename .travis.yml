@@ -4,6 +4,9 @@ node_js:
   - 4
   - 5
 
+script: npm run test-with-coverage
+after_success: npm run coverage
+
 deploy:
   skip_cleanup: true
   provider: script
@@ -16,5 +19,3 @@ env:
     - secure: Z3k0PLPrTjyCQDXfZBP0ydH9DeKMhfKvB2oSdU/PdyfWaGxWegd7er+RwCKZyYON2TVTof6VhVNsM9ZreNs3CmO9/AA0736ZjCmustxb3JQSZc3YHNdSJrK+ZF+rY3P9JsBy+ntXS8zEtXc6hZyW8COY8V3Xun4sZeDVx1a8294GzLiIjZCtnkxFMyMFhmx4Jg3rXwiGDzMlQ0dPdn7XwLW1BeoJ9gbiA7BtZ30qoeH+Iy+F4dqhBcV/xLkV2ea9w0tx62T6N+HZfwKHDcXLS7CuVDCLUqL/5sZHW3CWpH9SQhd1x7/oq0SBBGK48hnRo/WrWDZzQJh1uMK0hTimgyCQLJP7hoerLa5uPMgD0u/9RiRr8vESHdS8kT+aUiCvkYb+5XPx0Z2ae8UKswaN2J9ZYeMIgbQq2bY5WkXayfzQlyNINZDutjicS5jhp6NOvDwwy5mMGtyxcl/noR3DdSJb4U+Glq5Dm5Y6A+kdfHRS0BlLncnnO9Nr99UBVf3EOhp9isWb5awXO0qi7J7TrloS1JvwXaH2XNBsMIqwDeHQN/5dt68beRhfLKVMfmTL/ObX4LHILM2RqjtnVHL+umIzDxtdcFeOGlcT7kxY1t6FT/fZ3NddydUv8Lf9QTV/qKfwAKVvzg5xzVEdZZ2jfi+eubcGlP71EF1hBuzmqrM=
     - GIT_DEPLOY_REPO=https://$GITHUB_TOKEN@github.com/MoOx/statinamic.git
     - GIT_DEPLOY_DIR=docs/dist
-
-script: npm run test-with-coverage

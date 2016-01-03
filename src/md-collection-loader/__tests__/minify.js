@@ -1,9 +1,9 @@
-import test from "tape"
+import test from "ava"; import "babel-core/register"
 
 import minify from "../minify"
 
 test("statinamic/lib/md-collection-loader/minify", (t) => {
-  t.deepEqual(
+  t.same(
     minify([
       {
         head: { title: "" },
@@ -21,6 +21,4 @@ test("statinamic/lib/md-collection-loader/minify", (t) => {
     ],
     "should create a minified collection (without body)"
   )
-
-  t.end()
 })

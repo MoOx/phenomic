@@ -1,7 +1,8 @@
-import tape from "tape"
-import addAssertions from "extend-tape"
-import jsxEquals from "tape-jsx-equals"
-const test = addAssertions(tape, { jsxEquals })
+import test from "ava"; import "babel-core/register"
+
+import expect from "expect"
+import expectJSX from "expect-jsx"
+expect.extend(expectJSX)
 
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"
@@ -16,7 +17,7 @@ const noop = () => {}
 const Page = () => <div className="Page"></div>
 const PageError = () => <div className="PageError"></div>
 
-test("PageContainer is properly rendered", (t) => {
+test("PageContainer is properly rendered", () => {
   const renderer = createRenderer()
 
   renderer.render(
@@ -27,8 +28,11 @@ test("PageContainer is properly rendered", (t) => {
       getPage={ noop }
     />
   )
-  t.jsxEquals(
+
+  expect(
     renderer.getRenderOutput(),
+  )
+  .toEqualJSX(
     <div>
       <Page />
     </div>,
@@ -43,8 +47,11 @@ test("PageContainer is properly rendered", (t) => {
       getPage={ noop }
     />
   )
-  t.jsxEquals(
+
+  expect(
     renderer.getRenderOutput(),
+  )
+  .toEqualJSX(
     <div>
       <div style={ { "text-align": "center" } }>
         <h1>{ "Test" }</h1>
@@ -62,13 +69,14 @@ test("PageContainer is properly rendered", (t) => {
       getPage={ noop }
     />
   )
-  t.jsxEquals(
+
+  expect(
     renderer.getRenderOutput(),
+  )
+  .toEqualJSX(
     <div>
       <PageError error="Test" />
     </div>,
     "should render a PageError if page is not ok and PageError is available"
   )
-
-  t.end()
 })
