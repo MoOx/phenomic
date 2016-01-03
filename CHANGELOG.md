@@ -1,5 +1,18 @@
 - Changed: switch to babel@^6.0.0
 
+## Under the hood
+
+- Changed: boilerplate to get hot loading and visual errors rely on
+  [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre)
+- Changed: eslint config extends
+  [eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous)
+- Changed: tests are now base on
+  [ava](https://github.com/sindresorhus/ava/)
+- Added: code coverage using
+  [nyc](https://github.com/bcoe/nyc) &
+  [coveralls](http://coveralls.io/)
+
+
 # 0.5.1 - 2015-11-07
 
 - Fixed: windows compatibility issues
