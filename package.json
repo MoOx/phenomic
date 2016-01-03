@@ -116,7 +116,7 @@
     "tests": "ava src/**/__tests__/*.js",
     "pretest": "npm run lint",
     "test": "npm run tests",
-    "posttest": "lnfs src docs/node_modules/statinamic/lib && cd docs && npm install && npm test",
+    "posttest": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
     "test-with-coverage": "nyc npm run tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
