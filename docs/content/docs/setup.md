@@ -76,10 +76,16 @@ ADD DEFAULT RULES IN boilerplate
 +
 https://github.com/MoOx/statinamic/blob/master/docs/package.json#L77-L79
 
-## Hot reloading
+## Hot reloading & Visual Errors
 
-In order to benefit of hot-loading and visual javascript errors,
-you can add this `babel` configuration
+![hmre](https://cloud.githubusercontent.com/assets/1539088/11611771/ae1a6bd8-9bac-11e5-9206-42447e0fe064.gif)
+
+In order to benefit of hot-loading and visual javascript errors, you can add
+a babel preset:
+
+```console
+$ npm i -D babel-preset-react-hmre
+```
 
 ```json
 {
@@ -91,41 +97,13 @@ you can add this `babel` configuration
     ],
     "env": {
       "development": {
-        "plugins": [
-          [
-            "react-transform",
-            {
-              "transforms": [
-                {
-                  "transform": "react-transform-hmr",
-                  "imports": [
-                    "react"
-                  ],
-                  "locals": [
-                    "module"
-                  ]
-                },
-                {
-                  "transform": "react-transform-catch-errors",
-                  "imports": [
-                    "react",
-                    "redbox-react"
-                  ]
-                }
-              ]
-            }
-          ]
+        "presets": [
+          "react-hmre"
         ]
       }
     }
   }
 }
-```
-
-You will need to install the appropriate packages
-
-```console
-$ npm i -D babel-plugin-react-transform react-transform-hmr react-transform-catch-errors redbox-react
 ```
 
 ---
@@ -167,8 +145,5 @@ plain React components. This generator is just an helper.
 
 ## Some packages that might helps
 
-* [react-transform-hmr](https://github.com/gaearon/react-transform-hmr)
-  for hotloading during development and some others friends from
-  [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * [tape](https://github.com/substack/tape)
   for unit tests.

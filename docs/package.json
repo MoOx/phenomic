@@ -10,10 +10,10 @@
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
-    "babel-plugin-react-transform": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.1",
     "css-loader": "^0.17.0",
     "eslint": "^1.7.2",
     "eslint-loader": "^1.1.0",
@@ -36,9 +36,6 @@
     "react-redux": "^2.1.0",
     "react-router": "^1.0.0-rc3",
     "react-svg-loader": "0.0.6",
-    "react-transform-catch-errors": "^1.0.0",
-    "react-transform-hmr": "^1.0.1",
-    "redbox-react": "^1.1.1",
     "redux": "^2.0.0",
     "redux-devtools": "^2.1.0",
     "redux-thunk": "^0.1.0",
@@ -64,30 +61,8 @@
     ],
     "env": {
       "development": {
-        "plugins": [
-          [
-            "react-transform",
-            {
-              "transforms": [
-                {
-                  "transform": "react-transform-hmr",
-                  "imports": [
-                    "react"
-                  ],
-                  "locals": [
-                    "module"
-                  ]
-                },
-                {
-                  "transform": "react-transform-catch-errors",
-                  "imports": [
-                    "react",
-                    "redbox-react"
-                  ]
-                }
-              ]
-            }
-          ]
+        "presets": [
+          "react-hmre"
         ]
       }
     }
