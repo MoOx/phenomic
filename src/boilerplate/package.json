@@ -6,6 +6,10 @@
     "static": "NODE_ENV=production babel-node scripts/build --static --production"
   },
   "babel": {
-    "stage": 0
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
   }
 }

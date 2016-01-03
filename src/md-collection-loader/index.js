@@ -38,7 +38,7 @@ import minify from "./minify"
 
 let timeout
 
-export default function(input) {
+module.exports = function(input) {
 
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context

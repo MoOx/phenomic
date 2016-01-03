@@ -1,3 +1,5 @@
+- Changed: switch to babel@^6.0.0
+
 # 0.5.1 - 2015-11-07
 
 - Fixed: windows compatibility issues
