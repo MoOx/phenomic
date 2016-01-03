@@ -112,12 +112,12 @@
     "prebabelify": "rimraf lib",
     "babelify": "babel --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
+    "docs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
     "lint": "eslint --fix src",
     "tests": "ava src/**/__tests__/*.js",
     "pretest": "npm run lint",
-    "test": "npm run tests",
-    "posttest": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
-    "test-with-coverage": "nyc npm run tests",
+    "test": "npm run tests && npm run docs",
+    "test-with-coverage": "nyc npm run tests && npm run docs",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "config": {
