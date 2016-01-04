@@ -61,7 +61,7 @@ You might as well need to:
 Linting your code is a good practice.
 You can easily add a good convention by adding
 [ESLint](http://eslint.org/) with a existing config like
-[eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous)
+[eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous).
 
 By default, ESLint and the above config is already added in your dependencies.  
 You just need to add your `package.json` the following eslint config :
@@ -123,28 +123,31 @@ plain React components. This generator is just an helper.
 
 ### Packages used
 
+* [React](https://github.com/facebook/react)
+  for writing UI
 * [Babel](http://babeljs.io)
-  for writing ES6 and ES7
+  to be able to use ES6/ES2015 today,
 * [Webpack](http://webpack.github.io)
   for bundling,
+* [Redux](https://github.com/gaearon/redux)
+  for handling application state
+  (a better [Flux](http://facebook.github.io/flux/) implementation)
+
+#### Some more (but still) important packages
+
+* [React Router](https://github.com/rackt/react-router)
+  for routing
+* [React Helmet](https://github.com/nfl/react-helmet)
+  for handling pages meta tags (title and meta...)
+* [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
+  for awesome DX (developer experience).
 * [Express](http://expressjs.com/) with some middlewares for development:
   * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-server.html)
     for watching
   * [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
     for hot reload
-* [React](https://github.com/facebook/react)
-  for writing UI
-* [React Router](https://github.com/rackt/react-router)
-  for routing
-* [Redux](https://github.com/gaearon/redux)
-  for handling application state
-  (a better [Flux](http://facebook.github.io/flux/)implementation)
-* [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
-  for awesome DX (developer experience).
-* [react-helmet](https://github.com/nfl/react-helmet)
-  for handling pages meta tags (title and meta...)
 
-## Some packages that might helps
+#### Some packages that might helps
 
 * [ava](https://github.com/sindresorhus/ava)
   for unit tests.
