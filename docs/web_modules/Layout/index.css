@@ -21,10 +21,8 @@ html {
 
 body {
   margin: 0;
+  padding: 0 1rem;
   min-height: 100%;
-
-  font-size: 1.25rem;
-  line-height: 2rem;
 
   /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -40,11 +38,14 @@ body {
   ;
 }
 
-.page {
-
+@media (width > 50em) {
+  body {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
 }
 
-.content {
+.layout {
   max-width: 60rem;
   margin: auto;
 }
@@ -114,6 +115,7 @@ pre {
   background: color(#fafafa a(.6));
 
   overflow: auto;
+  max-width: calc(100vw - 4rem);
 }
 
 code {

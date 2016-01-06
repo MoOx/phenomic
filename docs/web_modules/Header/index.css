@@ -1,14 +1,21 @@
 .logo {
   display: block;
 
-  max-width: 40%;
+  max-width: 20rem;
   margin: 1rem auto;
   padding: 1rem;
+}
+
+@media (width > 50em) {
+  .logo {
+    /*max-width: 40%;*/
+  }
 }
 
 .nav {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   font-weight: 300;
   line-height: 3rem;
@@ -17,10 +24,11 @@
 }
 
 .link {
-  opacity: .8;
   flex-grow: 1;
-  text-decoration: none;
+  padding: 0 .7rem;
   text-align: center;
+  text-decoration: none;
+  opacity: .8;
 }
 
   .link:hover,
@@ -39,8 +47,16 @@
     text-align: right;
   }
 
-.icon {
-  vertical-align: middle;
+.separator {
+  flex-grow: 2;
+  text-align: center;
+  opacity: .4;
+}
+
+@media (width < 50em) {
+  .separator {
+    display: none;
+  }
 }
 
 .version {

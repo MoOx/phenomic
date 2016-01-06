@@ -32,12 +32,10 @@ export default class Layout extends Component {
             { name: "twitter:site", content: `@${ pkg.twitter }` },
           ] }
         />
-        <div className={ styles.page }>
-          <div className={ styles.content }>
-            <Header />
-            { this.props.children }
-            <Footer />
-          </div>
+      <div className={ styles.layout }>
+          <Header />
+          { this.props.children }
+          <Footer />
         </div>
       </GoogleAnalyticsTracker>
     )

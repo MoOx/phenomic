@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router"
+import cx from "classnames"
 
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
@@ -42,6 +43,7 @@ export default class Header extends Component {
           >
             { "FAQ" }
           </Link>
+          <span className={ styles.separator }>{ "|" }</span>
           <a
             className={ styles.link }
             href="https://github.com/MoOx/statinamic"
@@ -58,16 +60,10 @@ export default class Header extends Component {
             className={ styles.link }
             href={ "https://gitter.im/MoOx/statinamic" }
           >
-            <img
-              className={ styles.icon }
-              src={
-                "https://img.shields.io/badge/support-gitter%20chat-E40255.svg"
-              }
-              alt={ "Support on gitter chat" }
-            />
+            { "Support" }
           </a>
           <a
-            className={ styles.version }
+            className={ cx(styles.link, styles.version) }
             href={
               "https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md"
             }
