@@ -1,5 +1,6 @@
 ---
 title: How to use Collections in Statinamic
+incomplete: true
 ---
 
 By default, Statinamic provides 2 things to help you work with collections:

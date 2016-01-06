@@ -7,6 +7,8 @@ import invariant from "invariant"
 //   return text
 // }
 
+import styles from "./index.css"
+
 export default class Page extends Component {
 
   static propTypes = {
@@ -50,7 +52,20 @@ export default class Page extends Component {
           meta={ meta }
         />
 
-        <h1>{ head.title }</h1>
+        {
+          head.title &&
+          <h1>{ head.title }</h1>
+        }
+        {
+          head.incomplete &&
+          <div className={ styles.callout + " " + styles.calloutInfo }>
+            <strong className={ styles.calloutTitle }>{ "Incomplete" }</strong>
+            {
+              "This documentation is still a work in progress and might be " +
+              "incomplete."
+            }
+          </div>
+        }
         {
           body &&
           <div

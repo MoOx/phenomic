@@ -1,5 +1,6 @@
 ---
 title: How to use generate feeds in Statinamic
+incomplete: true
 ---
 
 The `statinamic/lib/md-collection-loader` can handle that very easily.

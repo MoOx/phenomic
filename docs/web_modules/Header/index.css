@@ -1,21 +1,26 @@
 .logo {
   display: block;
-  text-align: center;
+
+  max-width: 40%;
+  margin: 1rem auto;
   padding: 1rem;
 }
 
 .nav {
+  display: flex;
+  flex-direction: row;
+
   font-weight: 300;
   line-height: 3rem;
-}
 
-.separator {
-  opacity: .2;
-  margin: 0 .8rem;
+  border-bottom: 5px solid color(#fff a(.1));
 }
 
 .link {
   opacity: .8;
+  flex-grow: 1;
+  text-decoration: none;
+  text-align: center;
 }
 
   .link:hover,
@@ -25,6 +30,13 @@
 
   .linkActive {
     font-weight: 500;
+  }
+
+  .link:first-child {
+    text-align: left;
+  }
+  .link:last-child {
+    text-align: right;
   }
 
 .icon {

@@ -1,5 +1,6 @@
 ---
 title: Advanced usage of Redux
+incomplete: true
 ---
 
 ## Adding custom Redux reducers

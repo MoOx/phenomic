@@ -1,51 +1,111 @@
-/* GLOBAL STYLES, OMG ! */
-:global h1,
-:global h2,
-:global h3 {
-  font-weight: 400;
+/* https://github.com/facebook/css-layout#default-values */
+div,
+span {
+  box-sizing: border-box;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+  align-content: flex-start;
+
+  border: 0 solid black;
+  margin: 0;
+  padding: 0;
 }
 
-:global h1,
-:global h2,
-:global h3,
-:global h5,
-:global h6 {
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+
+  font-size: 1.25rem;
+  line-height: 2rem;
+
+  /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: color(#1a1122 a(.9));
+
+  background:
+    linear-gradient(
+      120deg,
+      color(#bfd8ee a(.95)) 20%,
+      color(#cbc3f7 a(.95))
+    ) fixed,
+    url("https://farm7.staticflickr.com/6017/5963681346_0d620eff9a_z.jpg") 50% 50% / cover no-repeat fixed
+  ;
+}
+
+.page {
+
+}
+
+.content {
+  max-width: 60rem;
+  margin: auto;
+}
+
+/* GLOBAL STYLES, OMG ! */
+h1,
+h2,
+h3 {
+  font-weight: 200;
+  text-shadow: color(#fefefe a(.6)) 0 0 5px;
+}
+
+h1,
+h2,
+h3,
+h5,
+h6 {
+  /* for .markdownIt-Anchor */
   position: relative;
 }
 
-:global .markdownIt-Anchor {
-  position: absolute;
-  left: -1.5rem;
-  opacity: .1;
-  transition: opacity .2s;
+  :global .markdownIt-Anchor {
+    position: absolute;
+    left: -1.5rem;
+    opacity: .1;
+    transition: opacity .2s;
+  }
+
+    :global h1:hover .markdownIt-Anchor,
+    :global h2:hover .markdownIt-Anchor,
+    :global h3:hover .markdownIt-Anchor,
+    :global h4:hover .markdownIt-Anchor,
+    :global h5:hover .markdownIt-Anchor,
+    :global h6:hover .markdownIt-Anchor {
+      opacity: 1;
+    }
+a,
+a:visited {
+  color: #31097a;
+  opacity: .8
+  /*text-decoration: none;*/
 }
 
-  :global h1:hover .markdownIt-Anchor,
-  :global h2:hover .markdownIt-Anchor,
-  :global h3:hover .markdownIt-Anchor,
-  :global h4:hover .markdownIt-Anchor,
-  :global h5:hover .markdownIt-Anchor,
-  :global h6:hover .markdownIt-Anchor {
+  a:hover {
     opacity: 1;
   }
 
-:global a,
-:global a:visited {
-  color: #7340c4;
-  text-decoration: none;
-}
-
-:global blockquote {
-  opacity: .6;
+blockquote {
+  text-align: center;
+  opacity: .7;
   margin: 2rem 0;
-  padding-left: 1.5rem;
-  border-left: 4px solid grey;
+  /*padding-left: 1.5rem;*/
+  /*border-left: 4px solid grey;*/
 }
 
-:global pre {
+pre {
   margin: 1rem 0;
   padding: 1rem;
 
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 400;
 
   color: color(#7340c4) l(-10%));
@@ -56,30 +116,32 @@
   overflow: auto;
 }
 
-:global .hljs-comment {
-  opacity: .4;
+code {
+  font-family: Fira Code, Menlo, Monaco, monospace;
 }
 
-  :global .hljs-comment:hover {
-    opacity: .6;
+
+/* highlight.js theme */
+:global span[class|="hljs"] {
+  display: inline;
+}
+
+  :global .hljs-comment {
+    opacity: .4;
   }
 
-:global .hljs-keyword {
-  font-weight: bold;
-}
+    :global .hljs-comment:hover {
+      opacity: .6;
+    }
 
-:global .hljs-class,
-:global .hljs-tag,
-:global .hljs-keyword,
-:global .hljs-pseudo,
-:global .hljs-function {
-  color: #7340c4;
-}
+  :global .hljs-keyword {
+    font-weight: bold;
+  }
 
-/***/
-
-.wrapper {
-  max-width: 50rem;
-  margin: auto;
-  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  :global .hljs-class,
+  :global .hljs-tag,
+  :global .hljs-keyword,
+  :global .hljs-pseudo,
+  :global .hljs-function {
+    color: #7340c4;
+  }

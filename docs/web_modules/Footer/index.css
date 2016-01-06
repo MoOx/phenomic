@@ -1,4 +1,7 @@
 .footer {
+  display: flex;
+  flex-direction: row;
+
   margin-top: 2rem;
   border-top: 1px solid #ccc;
   padding-top: 1rem;

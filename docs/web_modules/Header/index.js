@@ -8,8 +8,6 @@ import StatinamicLogoSVG from "../../../logo/statinamic-text.svg"
 export default class Header extends Component {
 
   render() {
-    const separator = <span className={ styles.separator }>{ " | " }</span>
-
     return (
       <header>
         <div className={ styles.logo }>
@@ -23,7 +21,6 @@ export default class Header extends Component {
           >
             { "Home" }
           </Link>
-          { separator }
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
@@ -31,7 +28,6 @@ export default class Header extends Component {
           >
             { "Setup" }
           </Link>
-          { separator }
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
@@ -39,7 +35,6 @@ export default class Header extends Component {
           >
             { "Usage" }
           </Link>
-          { separator }
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
@@ -47,21 +42,18 @@ export default class Header extends Component {
           >
             { "FAQ" }
           </Link>
-          { separator }
           <a
             className={ styles.link }
             href="https://github.com/MoOx/statinamic"
           >
             { "GitHub" }
           </a>
-          { separator }
           <a
             className={ styles.link }
             href="https://twitter.com/Statinamic"
           >
             { "Twitter" }
           </a>
-          { separator }
           <a
             className={ styles.link }
             href={ "https://gitter.im/MoOx/statinamic" }
@@ -74,7 +66,6 @@ export default class Header extends Component {
               alt={ "Support on gitter chat" }
             />
           </a>
-          { separator }
           <a
             className={ styles.version }
             href={

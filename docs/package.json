@@ -1,8 +1,10 @@
 {
   "private": true,
   "name": "Statinamic",
-  "author": "Maxime Thirouin",
-  "license": "MIT",
+  "homepage": "http://moox.io/statinamic/",
+  "googleAnalyticsUA": "UA-1716762-6",
+  "twitter": "MoOx",
+  "github": "MoOx",
   "repository": "https://github.com/MoOx/statinamic.git",
   "devDependencies": {
     "autoprefixer": "^6.0.2",
@@ -27,8 +29,7 @@
     "json-loader": "^0.5.2",
     "markdown-it": "^5.0.0",
     "markdown-it-toc-and-anchor": "^1.0.1",
-    "postcss-custom-media": "^5.0.0",
-    "postcss-custom-properties": "^5.0.0",
+    "postcss-cssnext": "^2.3.0",
     "postcss-loader": "^0.7.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
@@ -80,9 +81,5 @@
       "__PROD__": true,
       "__DEVTOOLS__": true
     }
-  },
-  "homepage": "http://moox.io/statinamic/",
-  "googleAnalyticsUA": "UA-1716762-6",
-  "twitter": "MoOx",
-  "github": "MoOx"
+  }
 }
