@@ -1,6 +1,9 @@
 - Changed: boilerplate is now non-transpiled and in `statinamic/boilerplate`
 ([#66](https://github.com/MoOx/statinamic/issues/66))
 - Changed: switch to babel@^6.0.0
+- Fixed: "statinamic setup" message say that dependencies are installed when
+  they actually are
+([#65](https://github.com/MoOx/statinamic/issues/65))
 
 ## Under the hood
 
