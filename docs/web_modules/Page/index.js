@@ -13,6 +13,7 @@ export default class Page extends Component {
 
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    __filename: PropTypes.string.isRequired,
     __url: PropTypes.string.isRequired,
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
@@ -28,16 +29,21 @@ export default class Page extends Component {
     } = this.context.metadata
 
     const {
+      __filename,
+      __url,
       head,
       body,
     } = this.props
 
-    invariant(typeof head.title === "string", "Your page needs a title")
+    invariant(
+      typeof head.title === "string",
+      `Your page '${ __filename }' needs a title`
+    )
 
     const meta = [
       { property: "og:title", content: head.title },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: this.props.__url },
+      { property: "og:url", content: __url },
       // { property: "og:description", content: pageDescription(body) },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: head.title },
