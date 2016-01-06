@@ -23,6 +23,7 @@
   "repository": "https://github.com/MoOx/statinamic.git",
   "files": [
     "boilerplate",
+    "docs/content",
     "lib",
     "src",
     "!**/__tests__"

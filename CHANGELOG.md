@@ -1,3 +1,5 @@
+- Added: documentation is now included in the npm package
+
 # 0.6.0 - 2016-01-06
 
 - Changed: boilerplate is now non-transpiled and in `statinamic/boilerplate`

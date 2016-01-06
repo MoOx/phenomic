@@ -8,7 +8,10 @@
 [![Code Coverage](https://coveralls.io/repos/MoOx/statinamic/badge.svg?branch=master&service=github)](https://coveralls.io/github/MoOx/statinamic?branch=master)
 [![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/statinamic)
 
-**[Check out the website](http://moox.io/statinamic) for documentation.**
+---
+
+**[Check out the website](http://moox.io/statinamic) for online documentation**
+(or `statinamic/docs/content` for raw markdown documentation).
 
 ---
 
