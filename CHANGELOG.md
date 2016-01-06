@@ -1,3 +1,5 @@
+- Changed: boilerplate is now non-transpiled and in `statinamic/boilerplate`
+([#66](https://github.com/MoOx/statinamic/issues/66))
 - Changed: switch to babel@^6.0.0
 
 ## Under the hood
