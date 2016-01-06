@@ -24,6 +24,7 @@
   "files": [
     "boilerplate",
     "lib",
+    "src",
     "!**/__tests__"
   ],
   "bin": {

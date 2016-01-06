@@ -4,6 +4,7 @@
 - Fixed: "statinamic setup" message say that dependencies are installed when
   they actually are
 ([#65](https://github.com/MoOx/statinamic/issues/65))
+- Added: non-transpiled sources are added to npm package, just in case
 
 ## Under the hood
 
