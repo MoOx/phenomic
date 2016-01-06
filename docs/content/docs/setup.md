@@ -2,8 +2,10 @@
 title: How to setup Statinamic
 ---
 
-Statinamic require a minimal boilerplate, in order to provide you some
-flexibility.
+Statinamic uses
+[Node.js](http://nodejs.org/)/[npm](http://npmjs.com/)
+and requires a minimal boilerplate, in order to provide you some
+flexibility.  
 Here is a quick way to setup the boilerplate in a minute :
 
 ## Create a new folder
