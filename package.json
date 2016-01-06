@@ -1,6 +1,6 @@
 {
   "name": "statinamic",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "A static website generator to create dynamic website using React components.",
   "keywords": [
     "react",

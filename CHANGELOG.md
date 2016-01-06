@@ -1,6 +1,13 @@
+# 0.6.0 - 2016-01-06
+
 - Changed: boilerplate is now non-transpiled and in `statinamic/boilerplate`
 ([#66](https://github.com/MoOx/statinamic/issues/66))
 - Changed: switch to babel@^6.0.0
+([#42](https://github.com/MoOx/statinamic/issues/42))
+- Changed: boilerplate now rely on
+  [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre)
+  to get hot loading and visual errors.
+([#52](https://github.com/MoOx/statinamic/issues/52))
 - Fixed: "statinamic setup" message say that dependencies are installed when
   they actually are
 ([#65](https://github.com/MoOx/statinamic/issues/65))
@@ -8,15 +15,16 @@
 
 ## Under the hood
 
-- Changed: boilerplate to get hot loading and visual errors rely on
-  [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre)
 - Changed: eslint config extends
   [eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous)
+([#57](https://github.com/MoOx/statinamic/issues/57))
 - Changed: tests are now base on
   [ava](https://github.com/sindresorhus/ava/)
+([#59](https://github.com/MoOx/statinamic/issues/59))
 - Added: code coverage using
   [nyc](https://github.com/bcoe/nyc) &
   [coveralls](http://coveralls.io/)
+([#49](https://github.com/MoOx/statinamic/issues/49))
 
 
 # 0.5.1 - 2015-11-07
