@@ -11,6 +11,7 @@
 - Fixed: "statinamic setup" message say that dependencies are installed when
   they actually are
 ([#65](https://github.com/MoOx/statinamic/issues/65))
+- Added: default Page component now warn about missing `title` with the filename
 - Added: non-transpiled sources are added to npm package, just in case
 
 ## Under the hood
