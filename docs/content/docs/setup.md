@@ -64,7 +64,7 @@ When you got this `package.json` right, you can run the following:
 
 ```console
 $ npm install --save-dev statinamic
-$ cp -R ./node_modules/statinamic/boilerplate .
+$ cp -R ./node_modules/statinamic/boilerplate/ .
 $ ./node_modules/.bin/statinamic setup
 ```
 
