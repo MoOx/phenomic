@@ -35,7 +35,7 @@ Note that `homepage` can have a `pathname` (eg: `http://moox.io/statinamic/`).
 ```json
 {
   "private": true,
-  "name": "YOUR WEBSITE NAME (might be used in some <title>)",
+  "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
   "homepage": "http://YOUR.WEBSITE/",
 
   "scripts": {
