@@ -15,7 +15,7 @@ title: ""
 Write your content in [Markdown](https://en.wikipedia.org/wiki/Markdown) files.
 Implement your design with JavaScript files, using [React](http://facebook.github.io/react/).
 
-No template language to learn. Just JavaScript (and JSX if you like it).
+**No template language to learn. Just JavaScript** (and JSX if you like it).
 
 You can just grab some packages on the [NPM ecosystem](http://npmjs.org/)
 to help you building your website, blog or even your small app.
