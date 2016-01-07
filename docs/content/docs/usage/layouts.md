@@ -14,6 +14,13 @@ If you use the `statinamic/lib/PageContainer`, you will need those components in
 your `pageComponents` definition
 (by default, declared in `app/pageComponents.js`).
 
+To use your custom layout, add the `layout` option to the `YAML` frontmatter of your Markdown file like so:
+
+```YAML
+title: Hello World
+layout: MyCustomLayoutComponent
+```
+
 ## Default page layouts that Statinamic can use
 
 ### `Page`
