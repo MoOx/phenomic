@@ -59,7 +59,7 @@
     "babel-eslint": "^4.1.6",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
+    "babel-preset-stage-1": "^6.3.13",
     "coveralls": "^2.11.6",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^1.0.0",
@@ -81,7 +81,7 @@
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
+    "babel-preset-stage-1": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "css-loader": "^0.17.0",
     "eslint": "^1.7.2",
@@ -134,7 +134,7 @@
     "presets": [
       "react",
       "es2015",
-      "stage-0"
+      "stage-1"
     ]
   },
   "eslintConfig": {

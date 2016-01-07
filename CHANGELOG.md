@@ -2,6 +2,8 @@
 
 ## Under the hood
 
+- Changed: use babel-preset-stage-1 only (stage-0 is not really safe).
+([#68](https://github.com/MoOx/statinamic/issues/68))
 - Fixed: static class properties (semicolon required)
 ([babel/babel#3225](https://github.com/babel/babel/pull/3225))
 

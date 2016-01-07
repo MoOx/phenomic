@@ -49,7 +49,7 @@ Note that `homepage` can have a `pathname` (eg: `http://moox.io/statinamic/`).
     "presets": [
       "react",
       "es2015",
-      "stage-0"
+      "stage-1"
     ],
     "env": {
       "development": {
