@@ -17,11 +17,11 @@ export default class PageContainer extends Component {
 
     // actions
     getPage: PropTypes.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     defaultComponent: "Page",
-  }
+  };
 
   componentWillMount() {
     this.preparePage(this.props)

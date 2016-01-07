@@ -1,5 +1,10 @@
 - Added: documentation is now included in the npm package
 
+## Under the hood
+
+- Fixed: static class properties (semicolon required)
+([babel/babel#3225](https://github.com/babel/babel/pull/3225))
+
 # 0.6.0 - 2016-01-06
 
 - Changed: boilerplate is now non-transpiled and in `statinamic/boilerplate`

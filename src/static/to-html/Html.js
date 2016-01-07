@@ -8,7 +8,7 @@ export default class Html extends Component {
     body: PropTypes.string.isRequired,
     script: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-  }
+  };
 
   render() {
     return (

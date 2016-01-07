@@ -6,7 +6,7 @@ export default class PageError extends Component {
   static propTypes = {
     error: PropTypes.number.isRequired,
     errorText: PropTypes.string.isRequired,
-  }
+  };
 
   render() {
     const {

@@ -94,7 +94,7 @@ class Collection extends Component {
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
     collection: PropTypes.array,
-  }
+  };
 
   render() {
     const {

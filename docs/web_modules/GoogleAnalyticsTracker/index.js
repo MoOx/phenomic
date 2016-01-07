@@ -9,11 +9,11 @@ export default class GoogleAnalyticsTracker extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
     params: PropTypes.object.isRequired,
-  }
+  };
 
   static contextTypes = {
     metadata: PropTypes.object.isRequired,
-  }
+  };
 
   componentWillMount() {
     const { pkg } = this.context.metadata

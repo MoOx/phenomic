@@ -5,11 +5,11 @@ export default class MetadataProvider extends Component {
   static propTypes = {
     metadata: PropTypes.object,
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-  }
+  };
 
   static childContextTypes = {
     metadata: PropTypes.object,
-  }
+  };
 
   getChildContext() {
     return { metadata: this.props.metadata }
