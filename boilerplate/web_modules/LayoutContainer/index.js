@@ -7,7 +7,7 @@ import Footer from "Footer"
 
 import styles from "./index.css"
 
-export default class Layout extends Component {
+export default class LayoutContainer extends Component {
 
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
