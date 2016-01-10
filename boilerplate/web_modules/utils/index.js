@@ -12,7 +12,7 @@ import layouts from "./layouts"
 /*
  * Route Handler
  */
-import Layout from "Layout"
+import Layout from "../Layout"
 export const routes = (
   <Route component={ Layout }>
     <Route path="*" component={ PageContainer } />
