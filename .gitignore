@@ -1,4 +1,9 @@
+# OS X crap
+.DS_Store
+
+# Node.js / npm
 node_modules
+npm-debug.log
 
 # code coverage
 .nyc_output
@@ -6,16 +11,10 @@ node_modules
 # build
 lib
 
+# some tests output some files
+src/md-collection-loader/__tests__/output/
+
 # docs build
 docs/node_modules
 docs/dist
 docs/scripts/statinamic-static.js
-
-# some tests output some files
-src/md-collection-loader/__tests__/output/
-
-# Default file on Mac
-.DS_Store
-
-# npm error file
-npm-debug.log
