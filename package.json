@@ -113,7 +113,7 @@
   },
   "scripts": {
     "prebabelify": "rimraf lib",
-    "babelify": "babel --copy-files src --out-dir lib",
+    "babelify": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
     "docs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
     "lint": "eslint --fix src",
