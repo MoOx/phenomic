@@ -1,4 +1,5 @@
-- Added: documentation is now included in the npm package
+- Added: documentation is now included in the npm package in
+  `statinamic/docs/content`
 
 ## Under the hood
 
