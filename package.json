@@ -66,12 +66,17 @@
     "eslint-plugin-react": "^3.6.2",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
+    "js-beautify": "^1.5.10",
     "lnfs-cli": "^1.0.1",
     "markdown-it": "^5.0.0",
     "nyc": "^5.2.0",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
-    "react-helmet": "^2.1.0"
+    "react-dom": "^0.14.0",
+    "react-helmet": "^2.1.0",
+    "react-redux": "^2.1.0",
+    "react-router": "^1.0.0-rc3",
+    "redux": "^2.0.0"
   },
   "peerDependencies": {
     "autoprefixer": "^6.0.2",

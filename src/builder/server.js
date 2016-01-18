@@ -9,6 +9,8 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import logger from "nano-logger"
 
+import htmlMetas from "../html-metas"
+
 const log = logger("statinamic/builder/server")
 
 export default (config, options = {}) => {
@@ -81,9 +83,7 @@ export default (config, options = {}) => {
 `<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ${ htmlMetas().join("\n  ") }
 </head>
 <body>
   <div id="statinamic">...</div>

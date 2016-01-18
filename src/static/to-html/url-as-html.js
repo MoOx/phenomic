@@ -6,19 +6,19 @@ import { match, RoutingContext } from "react-router"
 import { Provider } from "react-redux"
 import Helmet from "react-helmet"
 
+import htmlMetas from "../../html-metas"
 import Html from "./Html"
 import MetadataProvider from "../../MetadataProvider"
 import escapeJSONforHTML from "../escapeJSONforHTML"
 
-export default (url, { metadata, routes, store, baseUrl }) => (
-  new Promise((resolve, reject) => {
-    const defaultMeta = [
-      `<meta charset="utf-8" />`,
-      `<meta http-equiv="X-UA-Compatible" content="IE=edge" />`,
-      `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
-      `<link rel="stylesheet" href="${ baseUrl.path }statinamic-client.css" />`,
-    ].join("")
-
+export default (url, { metadata, routes, store, baseUrl }, testing) => {
+  const render = ReactDOMserver[
+    !testing
+    ? "renderToString"
+    : "renderToStaticMarkup"
+  ]
+  return new Promise((resolve, reject) => {
+    const defaultMetas = htmlMetas("static", { baseUrl }).join("")
     try {
       match(
         {
@@ -40,7 +40,7 @@ export default (url, { metadata, routes, store, baseUrl }) => (
           }
           else if (renderProps) {
             // render app body as "react"ified html (with data-react-id)
-            body = ReactDOMserver.renderToString(
+            body = render(
               // the wrapper is used here because the client might have the
               // devtools at the same level as the <Provider>
               // the <noscript> reflect the potential devtools element
@@ -55,7 +55,7 @@ export default (url, { metadata, routes, store, baseUrl }) => (
 
             const headTags = Helmet.rewind()
             head = (
-              defaultMeta +
+              defaultMetas +
               headTags.meta +
               headTags.title +
               headTags.link
@@ -113,4 +113,4 @@ export default (url, { metadata, routes, store, baseUrl }) => (
       reject(err)
     }
   })
-)
+}
