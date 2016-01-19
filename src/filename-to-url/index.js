@@ -5,7 +5,8 @@ export default function(filename, context) {
     filename = path.relative(context, filename)
   }
 
-  const url = filename
+  return (
+    filename
     // something/index.md => something
     // note this rule work for generated json files too
     .replace(/\bindex\.(md|json)$/, "")
@@ -15,6 +16,8 @@ export default function(filename, context) {
     .replace(/\\/g, "/")
     // no trailing slash
     .replace(/\/$/, "")
-
-  return url
+    // no relative url
+    .replace(/^\.$/, "")
+    .replace(/^\.\//, "")
+  )
 }

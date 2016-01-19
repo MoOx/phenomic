@@ -1,44 +1,19 @@
 import test from "ava"; import "babel-core/register"
 
 import url from "url"
-import {
-  html as beautifyHTML,
-  default_options as defaultOptions,
-} from "js-beautify"
-import React from "react"
-import { Route } from "react-router"
-import { createStore } from "redux"
 
-import urlAsHtml from "../url-as-html"
+import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
 import htmlMetas from "../../../html-metas"
 
-const TestContainer = () => (
-  <p>{ "TestContainer" }</p>
-)
+import urlAsHtml from "../url-as-html"
 
-const testStore = createStore(
-  (state) => (state),
-  {
-    pages: {
-      "": {
-        home: "page",
-      },
-    },
-  }
-)
+import { testStore, testRoutes } from "./utils"
 
 const fixture = {
   metadata: {},
-  routes: (
-    <Route path="*" component={ TestContainer } />
-  ),
+  routes: testRoutes,
   store: testStore,
   baseUrl: url.parse("http://0.0.0.0:3000/"),
-}
-
-const htmlOptions = {
-  ...defaultOptions,
-  indent_size: 2,
 }
 
 test("url as html", async (t) => {
@@ -76,7 +51,7 @@ test("url as html", async (t) => {
     // console.log(beautifyHTML(html, htmlOptions))
     // console.log(expectedHTML)
     t.is(
-      beautifyHTML(html, htmlOptions),
+      beautifyHTML(html),
       expectedHTML
     )
   })

@@ -1,42 +1,69 @@
 import test from "ava"; import "babel-core/register"
 
-import filenameToUrl from ".."
+import filenameToUrl from "../index"
 
-test("statinamic/lib/filename-to-url", (t) => {
-
-  t.is(
+test(
+  "should transform */index.md path to a simple url",
+  (t) => t.is(
     filenameToUrl("something/index.md"),
-    "something",
-    "should transform */index.md path to a simple url"
+    "something"
   )
+)
 
-  t.is(
+test(
+  "should transform *\\index.md path to a simple url (windows compat)",
+  (t) => t.is(
     filenameToUrl("something\\index.md"),
-    "something",
-    "should transform *\\index.md path to a simple url (windows compat)"
+    "something"
   )
+)
 
-  t.is(
+test(
+  "should transform */index.json path to a simple url",
+  (t) => t.is(
     filenameToUrl("something/index.json"),
-    "something",
-    "should transform */index.json path to a simple url"
+    "something"
   )
+)
 
-  t.is(
+test(
+  "should transform md path to a simple url",
+  (t) => t.is(
     filenameToUrl("something-else.md"),
-    "something-else",
-    "should transform md path to a simple url"
+    "something-else"
   )
+)
 
-  t.is(
+test(
+  "should transform index.md path to a empty url",
+  (t) => t.is(
     filenameToUrl("index.md"),
-    "",
-    "should transform index.md path to a empty url"
+    ""
   )
+)
 
-  t.is(
+test(
+  "should handle windows backslash",
+  (t) => t.is(
     filenameToUrl("some\\thing\\else"),
-    "some/thing/else",
-    "should handle windows backslash"
+    "some/thing/else"
   )
-})
+)
+
+test(
+  "should avoid relative '.' path",
+  (t) => {
+    t.is(
+      filenameToUrl("."),
+      ""
+    )
+    t.is(
+      filenameToUrl("./"),
+      ""
+    )
+    t.is(
+      filenameToUrl("./stuff"),
+      "stuff"
+    )
+  }
+)
