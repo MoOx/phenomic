@@ -122,7 +122,7 @@
     "prepublish": "npm run babelify",
     "docs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
     "lint": "eslint --fix .",
-    "tests": "ava **/__tests__/*.js",
+    "tests": "ava --verbose '**/__tests__/*.js'",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run docs",
     "test-with-coverage": "nyc npm run tests && npm run docs",
