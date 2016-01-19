@@ -1,3 +1,7 @@
+# 0.6.1 - 2016-01-19
+
+- Fixed: avoid rerendering on homepage without base url 
+([#61](https://github.com/MoOx/statinamic/issues/61))
 - Added: documentation is now included in the npm package in
   `statinamic/docs/content`
 
