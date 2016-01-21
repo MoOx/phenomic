@@ -42,7 +42,7 @@ Note that `homepage` can have a `pathname` (eg: `http://moox.io/statinamic/`).
 
   "scripts": {
     "start": "babel-node scripts/build --server --open --dev",
-    "static": "NODE_ENV=production babel-node scripts/build --static --production"
+    "build": "babel-node scripts/build --static --production"
   },
 
   "babel": {

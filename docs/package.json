@@ -47,14 +47,12 @@
     "whatwg-fetch": "^0.9.0"
   },
   "scripts": {
-    "lint": "eslint --fix .",
     "start": "babel-node scripts/build --server --open --dev",
-    "static": "babel-node scripts/build --static --production",
-    "static+start": "babel-node scripts/build --static --server --open --dev",
-    "predeploy": "npm run static",
-    "deploy": "./scripts/deploy.sh",
+    "build": "babel-node scripts/build --static --production",
+    "build+start": "babel-node scripts/build --static --server --open --dev",
+    "lint": "eslint --fix .",
     "pretest": "npm run lint",
-    "test": "npm run static"
+    "test": "npm run build"
   },
   "babel": {
     "presets": [

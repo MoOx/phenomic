@@ -1,3 +1,6 @@
+- Changed: ``static`` npm script has been renamed as ``build`` in the
+boilerplate to make the build step easier to find.
+
 # 0.6.1 - 2016-01-19
 
 - Fixed: avoid rerendering on homepage without base url 
