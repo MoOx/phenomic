@@ -7,7 +7,6 @@
   "github": "MoOx",
   "repository": "https://github.com/MoOx/statinamic.git",
   "devDependencies": {
-    "autoprefixer": "^6.0.2",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",

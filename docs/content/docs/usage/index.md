@@ -5,6 +5,7 @@ incomplete: true
 
 - [Configuration](configuration/)
 - [Page layouts](layouts/)
+- [Styling](styling/)
 - [Writing](write/)
 - [Collections](collections/)
 - [RSS Feeds](feeds/)
