@@ -8,6 +8,12 @@ directory
 - Added: ``CNAME`` option to generate a ``CNAME`` file according to your
 homepage
 ([#24](https://github.com/MoOx/statinamic/issues/24))
+- Added: default boilerplate now include [cssnext](http://cssnext.io/) instead
+2 postcss plugins.
+([#87](https://github.com/MoOx/statinamic/issues/87))
+- Added: default boilerplate now include [stylelint](http://stylelint.io/) and
+lint CSS with a standard configurator
+([#86](https://github.com/MoOx/statinamic/issues/86))
 - Added: ``nojekyll`` option to create `.nojekyll` file.
 
 # 0.6.1 - 2016-01-19
