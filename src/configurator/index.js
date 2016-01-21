@@ -26,7 +26,10 @@ export default function config(pkg = {}, argv = process.argv) {
     process.env.NODE_ENV = "production"
 
     if (!pkg.homepage) {
-      throw new Error("Your config require a 'homepage' field")
+      throw new Error(
+        "Your config require a 'homepage' field. " +
+        "See 'Configuration' section in documentation."
+      )
     }
   }
 
