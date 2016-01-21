@@ -24,25 +24,35 @@ body {
   padding: 0 1rem;
   min-height: 100%;
 
+  @media (width > 50em) {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
+  /* stylelint-disable value-list-comma-newline-after */
+
   /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  color: color(#1a1122 a(.9));
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  /* stylelint-enable */
+
+  color: color(#1a1122 a(0.9));
+
+  /* stylelint-disable declaration-block-semicolon-space-before */
 
   background:
     linear-gradient(
       120deg,
-      color(#bfd8ee a(.95)) 20%,
-      color(#cbc3f7 a(.95))
+      color(#bfd8ee a(0.95)) 20%,
+      color(#cbc3f7 a(0.95))
     ) fixed,
-    url("https://farm7.staticflickr.com/6017/5963681346_0d620eff9a_z.jpg") 50% 50% / cover no-repeat fixed
+    url("https://farm7.staticflickr.com/6017/5963681346_0d620eff9a_z.jpg")
+    50% 50% / cover no-repeat fixed
   ;
-}
 
-@media (width > 50em) {
-  body {
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
+  /* stylelint-enable */
 }
 
 .layout {
@@ -50,27 +60,26 @@ body {
   margin: auto;
 }
 
-
 /* GLOBAL STYLES, OMG ! */
 h1,
 h2,
 h3 {
   font-weight: 200;
-  text-shadow: color(#fefefe a(.6)) 0 0 5px;
+  text-shadow: color(#fefefe a(0.6)) 0 0 5px;
 }
 
 @custom-selector :--headings h1, h2, h3, h4, h5, h6;
 
+/* for .markdownIt-Anchor */
 :--headings {
-  /* for .markdownIt-Anchor */
   position: relative;
 }
 
 :global .markdownIt-Anchor {
   position: absolute;
   left: -1.5rem;
-  opacity: .1;
-  transition: opacity .2s;
+  opacity: 0.1;
+  transition: opacity 0.2s;
 
   @nest :--headings:hover & {
     opacity: 1;
@@ -80,20 +89,17 @@ h3 {
 a,
 a:visited {
   color: #31097a;
-  opacity: .8
-  /*text-decoration: none;*/
-}
+  opacity: 0.8;
 
-  a:hover {
+  &:hover {
     opacity: 1;
   }
+}
 
 blockquote {
   text-align: center;
-  opacity: .7;
+  opacity: 0.7;
   margin: 2rem 0;
-  /*padding-left: 1.5rem;*/
-  /*border-left: 4px solid grey;*/
 }
 
 pre {
@@ -105,9 +111,9 @@ pre {
   font-weight: 400;
 
   color: color(#7340c4) l(-10%));
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   border-radius: 0.3em;
-  background: color(#fafafa a(.6));
+  background: color(#fafafa a(0.6));
 
   overflow: auto;
   max-width: calc(100vw - 4rem);
@@ -117,28 +123,27 @@ code {
   font-family: Fira Code, Menlo, Monaco, monospace;
 }
 
-
 /* highlight.js theme */
 :global span[class|="hljs"] {
   display: inline;
 }
 
-  :global .hljs-comment {
-    opacity: .4;
+:global .hljs-comment {
+  opacity: 0.4;
 
-    &:hover {
-      opacity: .6;
-    }
+  &:hover {
+    opacity: 0.6;
   }
+}
 
-  :global .hljs-keyword {
-    font-weight: bold;
-  }
+:global .hljs-keyword {
+  font-weight: bold;
+}
 
-  :global .hljs-class,
-  :global .hljs-tag,
-  :global .hljs-keyword,
-  :global .hljs-pseudo,
-  :global .hljs-function {
-    color: #7340c4;
-  }
+:global .hljs-class,
+:global .hljs-tag,
+:global .hljs-keyword,
+:global .hljs-pseudo,
+:global .hljs-function {
+  color: #7340c4;
+}

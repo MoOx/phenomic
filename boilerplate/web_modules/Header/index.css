@@ -1,7 +1,8 @@
 .nav {
-
+  margin: 1rem 0;
+  font-size: 0.75rem;
 }
 
 .link {
-
+  font-weight: bold;
 }

@@ -1,20 +1,20 @@
 .callout {
-  font-size: .875rem;
+  font-size: 0.875rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
 
-  background: color(#fff a(.2));
+  background: color(#fff a(0.2));
 
-  border: 1px solid color(#000 a(.1));
-  border-left-width: .2rem;
+  border: 1px solid color(#000 a(0.1));
+  border-left-width: 0.2rem;
   border-radius: 3px;
 }
 
-  .calloutDanger { border-left-color: #d9534f; }
-  .calloutDanger .calloutTitle { color: #ce4844; }
+.calloutDanger { border-left-color: #d9534f; }
+.calloutDanger .calloutTitle { color: #ce4844; }
 
-  .calloutWarning { border-left-color: #f0ad4e; }
-  .calloutWarning .calloutTitle { color: #aa6708; }
+.calloutWarning { border-left-color: #f0ad4e; }
+.calloutWarning .calloutTitle { color: #aa6708; }
 
-  .calloutInfo { border-left-color: #ac92c6; }
-  .calloutInfo .calloutTitle { color: #151959; }
+.calloutInfo { border-left-color: #ac92c6; }
+.calloutInfo .calloutTitle { color: #151959; }

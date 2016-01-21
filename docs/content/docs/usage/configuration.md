@@ -56,6 +56,9 @@ For now you will just have a commented json
   // See 'Good practices' section.
   "eslintConfig": {
     // ...
+  },
+  "stylelint": {
+    // ...
   }
 }
 ```

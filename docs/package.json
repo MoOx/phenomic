@@ -42,6 +42,8 @@
     "redux-devtools": "^2.1.0",
     "redux-thunk": "^0.1.0",
     "style-loader": "^0.12.3",
+    "stylelint": "^4.0.0",
+    "stylelint-config-standard": "^1.0.0",
     "webpack": "^1.12.1",
     "whatwg-fetch": "^0.9.0"
   },
@@ -49,7 +51,9 @@
     "start": "babel-node scripts/build --server --open --dev",
     "build": "babel-node scripts/build --static --production",
     "build+start": "babel-node scripts/build --static --server --open --dev",
-    "lint": "eslint --fix .",
+    "lint:js": "eslint --fix .",
+    "lint:css": "stylelint 'web_modules/**/*.css'",
+    "lint": "npm run lint:js && npm run lint:css",
     "pretest": "npm run lint",
     "test": "npm run build"
   },
@@ -78,5 +82,8 @@
       "__PROD__": true,
       "__DEVTOOLS__": true
     }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   }
 }

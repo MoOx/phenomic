@@ -40,16 +40,13 @@ You can copy the following `package.json` content.
   "private": true,
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
-
   "scripts": {
     "start": "babel-node scripts/build --server --open --dev",
     "build": "babel-node scripts/build --static --production"
   },
-
   "statinamic": {
     "CNAME": true
   },
-
   "babel": {
     "presets": [
       "react",
@@ -64,12 +61,14 @@ You can copy the following `package.json` content.
       }
     }
   },
-
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react"
     ]
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   }
 }
 ```

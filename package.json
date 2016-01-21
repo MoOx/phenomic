@@ -79,7 +79,9 @@
     "react-helmet": "^2.1.0",
     "react-redux": "^2.1.0",
     "react-router": "^1.0.0-rc3",
-    "redux": "^2.0.0"
+    "redux": "^2.0.0",
+    "stylelint": "^4.0.0",
+    "stylelint-config-standard": "^1.0.0"
   },
   "peerDependencies": {
     "babel-cli": "^6.3.17",
@@ -114,6 +116,8 @@
     "redux-devtools": "^2.1.0",
     "redux-thunk": "^0.1.0",
     "style-loader": "^0.12.3",
+    "stylelint": "^4.0.0",
+    "stylelint-config-standard": "^1.0.0",
     "webpack": "^1.12.1",
     "whatwg-fetch": "^0.9.0"
   },
@@ -121,8 +125,11 @@
     "prebabelify": "rimraf lib",
     "babelify": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
-    "docs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs && npm install && npm test",
-    "lint": "eslint --fix .",
+    "predocs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && cd docs",
+    "docs": "npm install && npm test",
+    "lint:js": "eslint --fix .",
+    "lint:css": "stylelint '**/web_modules/**/*.css'",
+    "lint": "npm run lint:js && npm run lint:css",
     "tests": "ava --verbose '**/__tests__/*.js'",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run docs",
@@ -155,5 +162,8 @@
       "__PROD__": true,
       "__DEVTOOLS__": true
     }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   }
 }

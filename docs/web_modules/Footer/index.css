@@ -3,11 +3,11 @@
   padding: 1rem;
   border-top: 1px solid #ccc;
   padding-top: 1rem;
-  font-size: .75rem;
+  font-size: 0.75rem;
 
   color: #666;
 }
 
-  .footer span {
-    display: inline;
-  }
+.footer span {
+  display: inline;
+}
