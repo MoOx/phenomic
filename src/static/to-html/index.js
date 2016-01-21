@@ -60,7 +60,7 @@ export function writeHTMLFile(basename, html) {
 export function writeAllHTMLFiles({
   urls,
   baseUrl,
-  dest,
+  destination,
   pagesData,
   store,
   metadata,
@@ -77,7 +77,7 @@ export function writeAllHTMLFiles({
         baseUrl.path.replace(/^\//, "").replace(/\/$/, ""),
         url
       ))
-      const basename = path.join(dest, url)
+      const basename = path.join(destination, url)
 
       setPageData(url, uri, pagesData, store)
       return (
@@ -97,7 +97,7 @@ export function writeAllHTMLFiles({
 export default ({
   urls,
   baseUrl,
-  dest,
+  destination,
   pagesData,
   routes,
   store,
@@ -106,7 +106,7 @@ export default ({
   writeAllHTMLFiles({
     urls,
     baseUrl,
-    dest,
+    destination,
     pagesData,
     routes,
     store,

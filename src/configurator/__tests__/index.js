@@ -2,36 +2,52 @@ import test from "ava"; import "babel-core/register"
 
 import configurator from ".."
 
-test("statinamic/lib/configurator", (t) => {
+const pkg = {
+  homepage: "https://localhost:8080/statinamic",
+  statinamic: {
+    "test-test": true,
+  },
+}
+const config = configurator(pkg, [ "--production" ])
 
-  const pkg = {
-    homepage: "https://localhost:8080/statinamic",
-  }
-  const config = configurator(pkg, [ "--production" ])
+test("should return an 'baseUrl' object in the config", (t) => {
   t.is(
     typeof config.baseUrl,
-    "object",
-    "should return an 'baseUrl' object in the config"
+    "object"
   )
+})
+
+test("should contain 'hostname' in 'baseUrl'", (t) => {
   t.is(
     config.baseUrl.hostname,
-    "localhost",
-    "should contain 'hostname' in 'baseUrl'"
+    "localhost"
   )
+})
+
+test("should contain 'port' in 'baseUrl'", (t) => {
   t.is(
     config.baseUrl.port,
-    "8080",
-    "should contain 'port' in 'baseUrl'"
+    "8080"
   )
+})
+
+test("should contain 'pathname' in 'baseUrl'", (t) => {
   t.is(
     config.baseUrl.pathname,
-    "/statinamic/",
-    "should contain 'pathname' in 'baseUrl'"
+    "/statinamic/"
   )
+})
 
+test("should return an 'consts' object in the config", (t) => {
   t.is(
     typeof config.consts,
-    "object",
-    "should return an 'consts' object in the config"
+    "object"
+  )
+})
+
+test("should change case of 'statinamic' object", (t) => {
+  t.is(
+    config.testTest,
+    true
   )
 })

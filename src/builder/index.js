@@ -12,17 +12,15 @@ import filenameToUrl from "../filename-to-url"
 export default function(options) {
   const {
     config,
-    source,
   } = options
 
   const log = nanoLogger("statinamic/lib/builder")
 
   JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
-  const dest = options.clientWebpackConfig.output.path
-
-  rm(dest)
-  mkdir(dest)
+  const destination = path.join(config.cwd, config.destination)
+  rm(destination)
+  mkdir(destination)
 
   const startDevServer = () => {
     devServer(options.clientWebpackConfig, {
@@ -56,11 +54,10 @@ export default function(options) {
         require(statinamicStatic)({
           urls: [
             ...options.urls || [],
-            ...getMdUrlsFromWebpackStats(stats, source),
+            ...getMdUrlsFromWebpackStats(stats, config.source),
           ],
           pagesData,
-          dest,
-          baseUrl: config.baseUrl,
+          ...config,
         })
 
         .then(() => {

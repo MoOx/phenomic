@@ -5,7 +5,6 @@ import htmlMetas from "../../../html-metas"
 
 import toHTML, { writeAllHTMLFiles } from "../index"
 
-
 import { testStore, testRoutes } from "./utils"
 
 test("don't break if there is nothing to transform", async (t) => {
@@ -13,7 +12,7 @@ test("don't break if there is nothing to transform", async (t) => {
     urls: [],
     // metadata: {},
     // pagesData: {},
-    // dest: "dest",
+    // destination: "destination",
     // routes: {},
     // store: {},
     // baseUrl: { path: "/" },
@@ -26,19 +25,20 @@ test("don't break if there is nothing to transform", async (t) => {
   })
 })
 
-test.cb("writeAllHTMLFiles", (t) => {
+test("writeAllHTMLFiles", (t) => {
   t.plan(5)
 
-  writeAllHTMLFiles({
+  return writeAllHTMLFiles({
     // metadata: {},
     urls: [
       "test-url",
     ],
     pagesData: {},
-    dest: "dest",
     store: testStore,
     routes: testRoutes,
+    destination: "destination",
     baseUrl: { path: "/" },
+    ghPages: true,
     setPageData: (url, uri/* , pagesData, store */) => {
       t.is(url, "test-url")
       t.is(uri, "test-url")
@@ -69,7 +69,7 @@ test.cb("writeAllHTMLFiles", (t) => {
 
 </html>`
       )
-      t.is(basename, "dest/test-url")
+      t.is(basename, "destination/test-url")
       t.is(
         beautifyHTML(html),
         expectedHTML
@@ -79,9 +79,6 @@ test.cb("writeAllHTMLFiles", (t) => {
       t.is(uri, "test-url")
     },
   }, true)
-  .then(() => {
-    t.end()
-  })
   .catch((error) => {
     t.fail(error)
   })

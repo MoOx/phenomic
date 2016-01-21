@@ -1,22 +1,18 @@
 import color from "chalk"
 import nanoLogger from "nano-logger"
-const log = nanoLogger("statinamic/lib/static")
 
 import toStaticHtml from "./to-html"
+import postBuild from "./postbuild"
 
-export default (options) => (
-  toStaticHtml(options)
-  .then(
-    (files) => {
-      log(
-        color.green(`✓ Static html files: ${ files.length } files written`)
-      )
-    },
-    (error) => {
-      log(color.red(`✗ Static html files: failed to create files`))
-      setTimeout(() => {
-        throw error
-      }, 1)
-    }
-  )
+const log = nanoLogger("statinamic/lib/static")
+
+export default (config) => (
+  toStaticHtml(config)
+  .then(files => postBuild(config, files, log))
+  .catch((error) => {
+    log(color.red(`✗ Static build failed`))
+    setTimeout(() => {
+      throw error
+    }, 1)
+  })
 )

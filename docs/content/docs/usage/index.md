@@ -3,6 +3,7 @@ title: How to use Statinamic
 incomplete: true
 ---
 
+- [Configuration](configuration/)
 - [Page layouts](layouts/)
 - [Writing](write/)
 - [Collections](collections/)

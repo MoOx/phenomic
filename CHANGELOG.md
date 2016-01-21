@@ -1,5 +1,14 @@
 - Changed: ``static`` npm script has been renamed as ``build`` in the
 boilerplate to make the build step easier to find.
+- Added: ``statinamic`` section in ``package.json`` can be used to define core
+options like ``CNAME``.
+- Changed: new ``source`` option need to be used to specify the source directory
+- Changed: new ``destination`` option need to be used to specify the destination
+directory
+- Added: ``CNAME`` option to generate a ``CNAME`` file according to your
+homepage
+([#24](https://github.com/MoOx/statinamic/issues/24))
+- Added: ``nojekyll`` option to create `.nojekyll` file.
 
 # 0.6.1 - 2016-01-19
 

@@ -28,21 +28,26 @@ $ touch package.json
 
 You can copy the following `package.json` content.
 
-**Remember to adjust `name` and `homepage` values.**
+**Remember to adjust some values :**
+- `name`
+- `homepage`
+- `statinamic` section
 
-Note that `homepage` can have a `pathname` (eg: `http://moox.io/statinamic/`).
-
-(Before you ask: `npm init` won't really help us in our case).
+(And before you ask: `npm init` won't really help us in our case).
 
 ```json
 {
   "private": true,
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
-  "homepage": "http://YOUR.WEBSITE/",
+  "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
   "scripts": {
     "start": "babel-node scripts/build --server --open --dev",
     "build": "babel-node scripts/build --static --production"
+  },
+
+  "statinamic": {
+    "CNAME": true
   },
 
   "babel": {
@@ -61,6 +66,9 @@ Note that `homepage` can have a `pathname` (eg: `http://moox.io/statinamic/`).
   }
 }
 ```
+
+_Check out [Configuration](../usage/configuration/) for more information about
+the configuration options._
 
 When you got this `package.json` right, you can run the following:
 

@@ -1,9 +1,20 @@
 import url from "url"
 
 import minimist from "minimist"
+import changeCaseKeys from "change-case-keys"
 
 export default function config(pkg = {}, argv = process.argv) {
-  argv = {
+  const config = {
+
+    // hardcoded options
+    cwd: process.cwd(),
+    source: "content",
+    destination: "dist",
+    CNAME: false,
+    nojekyll: true,
+    ...changeCaseKeys(pkg.statinamic || {}, "camelize"),
+
+    // CLI options
     dev: false,
     prod: false,
     static: false,
@@ -11,23 +22,21 @@ export default function config(pkg = {}, argv = process.argv) {
     ...minimist(argv),
   }
 
-  if (argv.production) {
+  if (config.production) {
     process.env.NODE_ENV = "production"
 
     if (!pkg.homepage) {
-      throw new Error(
-        "Your package.json require a 'homepage' field"
-      )
+      throw new Error("Your config require a 'homepage' field")
     }
   }
 
   let baseUrl
-  if (argv.baseurl) {
-    baseUrl = url.parse(argv.baseurl)
+  if (config.baseurl) {
+    baseUrl = url.parse(config.baseurl)
   }
   else {
     const prodBaseUrl = pkg.homepage ? url.parse(pkg.homepage) : {}
-    baseUrl = argv.production ? prodBaseUrl : {
+    baseUrl = config.production ? prodBaseUrl : {
       ...url.parse("http://0.0.0.0:3000/"),
       // get base from prod url
       pathname: prodBaseUrl.pathname,
@@ -51,12 +60,12 @@ export default function config(pkg = {}, argv = process.argv) {
       __DEVTOOLS__: false,
     },
     __BASE_URL__: baseUrl,
-    __DEV__: Boolean(argv.dev),
-    __PROD__: Boolean(argv.production),
-    __STATIC__: Boolean(argv.static),
-    __SERVER__: Boolean(argv.server),
-    __DEVTOOLS__: Boolean(argv.devtools),
-    ...argv.production && {
+    __DEV__: Boolean(config.dev),
+    __PROD__: Boolean(config.production),
+    __STATIC__: Boolean(config.static),
+    __SERVER__: Boolean(config.server),
+    __DEVTOOLS__: Boolean(config.devtools),
+    ...config.production && {
       "process.env": {
         NODE_ENV: JSON.stringify("production"),
       },
@@ -64,7 +73,7 @@ export default function config(pkg = {}, argv = process.argv) {
   }
 
   return {
-    ...argv,
+    ...config,
     consts,
     baseUrl,
   }

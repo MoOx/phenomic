@@ -14,6 +14,9 @@ lib
 # some tests output some files
 src/md-collection-loader/__tests__/output/
 
+# tests results
+**/__tests__/_output*
+
 # docs build
 docs/node_modules
 docs/dist

@@ -15,15 +15,9 @@ import prepareDefinedValues from "statinamic/lib/prepare-defined-values"
 
 const config = configurator(pkg)
 
-const sourceBase = "content"
-const destBase = "dist"
-const root = path.join(__dirname, "..")
-const source = path.join(root, sourceBase)
-const dest = path.join(root, destBase)
-
 const webpackConfig = {
   output: {
-    path: dest,
+    path: path.join(config.cwd, config.destination),
     filename: "[name].js",
     publicPath: config.baseUrl.path,
   },
@@ -37,14 +31,11 @@ const webpackConfig = {
       "",
     ],
 
-    root: [
-      path.join(root, "node_modules"),
-      path.join(root, "web_modules"), // for static (node) build
-    ],
+    root: [ path.join(config.cwd, "node_modules") ],
   },
 
   resolveLoader: {
-    root: [ path.join(root, "node_modules") ],
+    root: [ path.join(config.cwd, "node_modules") ],
   },
 
   module: {
@@ -57,7 +48,7 @@ const webpackConfig = {
         test: /\.md$/,
         loader: "statinamic/lib/md-collection-loader" +
           `?${ JSON.stringify({
-            context: source,
+            context: path.join(config.cwd, config.source),
             basepath: config.baseUrl.path,
             feedsOptions: {
               title: pkg.name,
@@ -108,7 +99,9 @@ const webpackConfig = {
       },
       {
         test: /\.(html|ico|jpe?g|png|gif)$/,
-        loader: "file-loader?name=[path][name].[ext]&context=./content",
+        loader: "file-loader" +
+          "?name=[path][name].[ext]&context=" +
+          path.join(config.cwd, config.destination),
       },
     ],
   },
@@ -142,10 +135,10 @@ const webpackConfig = {
   ),
 }
 
+// ↓ HANDLE WITH CARE
+
 builder({
   config,
-  source,
-  dest,
 
   clientWebpackConfig: {
     ...webpackConfig,
@@ -202,7 +195,9 @@ builder({
 
       // extract (and overwrite) statinamic client css
       // poor workaround to avoid having 2 identical files...
-      new ExtractTextPlugin(path.join("..", destBase, "statinamic-client.css")),
+      new ExtractTextPlugin(
+        path.join("..", config.destination, "statinamic-client.css")
+      ),
     ],
   },
 })

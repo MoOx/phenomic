@@ -2,6 +2,9 @@
 title: Automatic deployment on GitHub Pages
 ---
 
+**Be sure that you use the ``statinamic.CNAME`` option in your
+``package.json`. See [Configuration](./configuration/)**
+
 You will have multiples possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
 You can use your own method, using something like
@@ -38,8 +41,10 @@ In your `package.json`, add the following items under the `scripts` section
 
 ```json
 {
-  "predeploy": "npm run static",
-  "deploy": "./scripts/deploy.sh"
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "./scripts/deploy.sh"
+  }
 }
 ```
 
@@ -114,20 +119,13 @@ $ travis encrypt --add --repo you/your_repo GH_TOKEN=your_token
 
 ##### Add a `test` script in your `package.json` `scripts` section
 
-*Note: adjust the `YOURDOMAIN.EXT` by your hostname (eg: `johndoe.com`).*
-
 ```json
 {
   "scripts": {
-    "test": "npm run static",
-    "posttest": "echo 'YOURDOMAIN.EXT' > dist/CNAME && touch dist/.nojekyll"
+    "test": "npm run build",
   }
 }
 ```
-
-*Note: ``.nojekyll`` file avoid GitHub to waste time on their deployment with
-their default Jekyll engine and allow you to have file and assets that are
-prefixed by ``_`` (per Jekyll convention, they reserved to private files, not deployed by default).*
 
 Now, commit and push to master, wait a couple of minute and it should be good.
 

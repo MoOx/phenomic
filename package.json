@@ -33,9 +33,11 @@
   },
   "dependencies": {
     "chalk": "^1.1.0",
+    "change-case-keys": "0.0.4",
     "commander": "^2.9.0",
     "connect-history-api-fallback": "^1.1.0",
     "express": "^4.13.3",
+    "fs-promise": "^0.3.1",
     "gray-matter": "^2.0.0",
     "history": "^1.12.5",
     "loader-utils": "^0.2.11",
