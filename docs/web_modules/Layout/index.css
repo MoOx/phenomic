@@ -50,6 +50,7 @@ body {
   margin: auto;
 }
 
+
 /* GLOBAL STYLES, OMG ! */
 h1,
 h2,
@@ -58,30 +59,24 @@ h3 {
   text-shadow: color(#fefefe a(.6)) 0 0 5px;
 }
 
-h1,
-h2,
-h3,
-h5,
-h6 {
+@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+
+:--headings {
   /* for .markdownIt-Anchor */
   position: relative;
 }
 
-  :global .markdownIt-Anchor {
-    position: absolute;
-    left: -1.5rem;
-    opacity: .1;
-    transition: opacity .2s;
-  }
+:global .markdownIt-Anchor {
+  position: absolute;
+  left: -1.5rem;
+  opacity: .1;
+  transition: opacity .2s;
 
-    :global h1:hover .markdownIt-Anchor,
-    :global h2:hover .markdownIt-Anchor,
-    :global h3:hover .markdownIt-Anchor,
-    :global h4:hover .markdownIt-Anchor,
-    :global h5:hover .markdownIt-Anchor,
-    :global h6:hover .markdownIt-Anchor {
-      opacity: 1;
-    }
+  @nest :--headings:hover & {
+    opacity: 1;
+  }
+}
+
 a,
 a:visited {
   color: #31097a;
@@ -130,11 +125,11 @@ code {
 
   :global .hljs-comment {
     opacity: .4;
-  }
 
-    :global .hljs-comment:hover {
+    &:hover {
       opacity: .6;
     }
+  }
 
   :global .hljs-keyword {
     font-weight: bold;
