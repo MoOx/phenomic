@@ -50,6 +50,12 @@ For now you will just have a commented json
   // That's because es5 is not enough, right?
   "babel": {
     //...
+  },
+
+  // linting prevent errors
+  // See 'Good practices' section.
+  "eslintConfig": {
+    // ...
   }
 }
 ```

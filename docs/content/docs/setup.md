@@ -63,6 +63,13 @@ You can copy the following `package.json` content.
         ]
       }
     }
+  },
+
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "eslint-config-i-am-meticulous/react"
+    ]
   }
 }
 ```

@@ -1,25 +1,61 @@
 ---
-title: Good practises
-incomplete: true
+title: Good practices
 ---
 
 ## Linting
 
-Linting your code is a good practice.
-You can easily add a good convention by adding
-[ESLint](http://eslint.org/) with a existing config like
-[eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous).
+Linting your code is a good practice. That's why by default, you got some rules.
 
-By default, ESLint and the above config is already added in your dependencies.  
-You just need to add your `package.json` the following eslint config :
+[ESLint](http://eslint.org/) is a must have to enforce coding convention and to
+prevent some syntax errors.
+The default boilerplate provide you a particular ruleset
+[eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous)
+which provide a nice standard when you work is ES2015+ and React.
+
+That said, you might want less rules (or semicolons).
+
+### Less strict linting
+
+To remove the default config, you can replace the ``eslintConfig`` in your
+``package.json`` with the following eslint config :
 
 ```json
 {
   "eslintConfig": {
-    "extends": [
-      "eslint-config-i-am-meticulous",
-      "eslint-config-i-am-meticulous/react"
-    ]
+    "parser": "babel-eslint",
+    "extends": "eslint:recommended",
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    },
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true
+    }
   }
 }
 ```
+
+In this example, we used ``eslint:recommended``, but feel free to use one of the
+[many existing configs](https://www.npmjs.com/search?q=eslint-config).
+Here are some "popular" configs:
+
+- https://github.com/feross/eslint-config-standard
+- https://github.com/feross/eslint-config-standard-react
+- https://github.com/sindresorhus/eslint-config-xo
+- https://github.com/sindresorhus/eslint-config-xo-react
+
+If you switch to one of this configuration, you might get some linting errors.
+To fix that, simply use the following command:
+
+```console
+$ ./node_modules/.bin/eslint --fix .
+```
+
+This will fix all the errors that ESLint or plugins can handle.
+
+## No linting please
+
+If you just want linting for syntax (at least, you should do that),
+you can remove from the config above the `extends` line.
