@@ -1,7 +1,7 @@
 ---
-title: Advanced Usage
+title: Advanced Usage and tips
 ---
 
+- [Good practices](good-practices/)
 - [Understanding the engine](engine/)
-- [Good practices](good-practises/)
 - [Adding custom Redux reducers](redux/)
