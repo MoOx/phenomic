@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 
 import ga from "react-google-analytics"
 const GoogleAnalyticsInitiailizer = ga.Initializer
