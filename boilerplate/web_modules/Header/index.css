@@ -1,8 +1,32 @@
 .nav {
+  display: flex;
+  flex-direction: row;
   margin: 1rem 0;
   font-size: 0.75rem;
 }
 
+.navPart1 {
+  flex-grow: 1;
+}
+
+.navPart2 {
+  display: flex;
+  flex-direction: row;
+}
+
 .link {
+  display: flex;
+  align-items: center;
   font-weight: bold;
+}
+
+.link + .link {
+  margin-left: 1rem;
+}
+
+.link svg {
+  opacity: 0.5;
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
 }

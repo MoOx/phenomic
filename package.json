@@ -114,6 +114,7 @@
     "react-helmet": "^2.1.0",
     "react-redux": "^2.1.0",
     "react-router": "^1.0.0-rc3",
+    "react-svg-loader": "0.0.6",
     "redux": "^2.0.0",
     "redux-devtools": "^2.1.0",
     "redux-thunk": "^0.1.0",

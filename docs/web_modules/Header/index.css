@@ -1,11 +1,3 @@
-.logo {
-  display: block;
-
-  max-width: 20rem;
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
 .nav {
   display: flex;
   flex-direction: row;
@@ -14,7 +6,8 @@
   font-weight: 300;
   line-height: 3rem;
 
-  border-bottom: 5px solid color(#fff a(0.1));
+  color: #eee;
+  background: #111;
 }
 
 .link {
