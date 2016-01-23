@@ -26,12 +26,18 @@ export default function(reducer = {}, initialState = {}) {
   let finalCreateStore
 
   if (__DEVTOOLS__) {
-    const { devTools, persistState } = require("redux-devtools")
+    const devTools = require("../../client/DevTools").default.instrument
+    const { persistState } = require("redux-devtools")
+
+    const getDebugSessionKey = () => {
+      const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
+      return (matches && matches.length > 0)? matches[1] : null
+    }
 
     finalCreateStore = compose(
       applyMiddleware(promiseMiddleware, thunk),
       devTools(),
-      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+      persistState(getDebugSessionKey())
     )(createStore)
   }
   else {

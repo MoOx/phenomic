@@ -14,16 +14,8 @@ export default function statinamic({
 }) {
   let devtools = false
   if (__DEVTOOLS__) {
-    const {
-      DevTools,
-      DebugPanel,
-      LogMonitor,
-    } = require("redux-devtools/lib/react")
-    devtools = (
-      <DebugPanel top right bottom>
-        <DevTools store={ store } monitor={ LogMonitor } />
-      </DebugPanel>
-    )
+    const DevToolsComponent = require("./DevTools.js").default
+    devtools = <DevToolsComponent store={ store } />
   }
 
   const baseUrl = __BASE_URL__
