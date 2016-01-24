@@ -1,11 +1,28 @@
+import React from "react"
+import { Route } from "react-router"
+import PageContainer from "statinamic/lib/PageContainer"
+
 import { combineReducers } from "redux"
 import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
 import minifyCollection from "statinamic/lib/md-collection-loader/minify"
 
-import * as pageComponents from "app/pageComponents"
+import layouts from "./layouts"
 
-const store = createStore(
+/*
+ * Route Handler
+ */
+import Layout from "../Layout"
+export const routes = (
+  <Route component={ Layout }>
+    <Route path="*" component={ PageContainer } />
+  </Route>
+)
+
+/*
+ * Store
+ */
+export const store = createStore(
   combineReducers(statinamicReducers),
 
   // initialState
@@ -18,8 +35,6 @@ const store = createStore(
         minifyCollection(require("statinamic/lib/md-collection-loader/cache")),
     },
 
-    pageComponents,
+    pageComponents: layouts,
   }
 )
-
-export default store
