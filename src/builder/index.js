@@ -1,6 +1,5 @@
 import path from "path"
-import { sync as rm } from "rimraf"
-import { sync as mkdir } from "mkdirp"
+import fs from "fs-extra"
 import color from "chalk"
 import nanoLogger from "nano-logger"
 
@@ -14,18 +13,44 @@ export default function(options) {
     config,
   } = options
 
+  // Prepare staticAssets path and route
+  let { staticAssets } = options
+  if (staticAssets !== undefined) {
+    if (typeof staticAssets === "string") {
+      staticAssets = {
+        path: path.join(config.cwd, config.source, staticAssets),
+        route: staticAssets,
+      }
+    }
+    else if (
+      staticAssets.hasOwnProperty("path") &&
+      staticAssets.hasOwnProperty("route")
+    ) {
+      staticAssets = {
+        path: path.join(config.cwd, config.source, staticAssets.path),
+        route: staticAssets.route,
+      }
+    }
+    else {
+      throw new TypeError (
+        "staticAssets should be a string " +
+        "or an object with 2 keys: path and route"
+      )
+    }
+  }
+
   const log = nanoLogger("statinamic/lib/builder")
 
   JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
   const destination = path.join(config.cwd, config.destination)
-  rm(destination)
-  mkdir(destination)
+  fs.emptyDirSync(destination)
 
   const startDevServer = () => {
     devServer(options.clientWebpackConfig, {
       baseUrl: config.baseUrl,
       open: config.open,
+      staticAssets,
     })
   }
 
@@ -43,6 +68,13 @@ export default function(options) {
           pagesData[url] = JSON.parse(assets[name]._value)
         }
       })
+
+      // Copy static assets to build folder
+      if (staticAssets !== undefined) {
+        const copyDest = path.join(destination, staticAssets.route)
+        fs.copySync(staticAssets.path, copyDest)
+        log(color.green("✓ Static assets: copy static assets completed"))
+      }
 
       webpack(options.staticWebpackConfig, log, () => {
         log(color.green("✓ Static assets: static build completed"))

@@ -142,7 +142,7 @@ const webpackConfig = {
 
 builder({
   config,
-
+  staticAssets: "assets", // relative to content folder
   clientWebpackConfig: {
     ...webpackConfig,
 

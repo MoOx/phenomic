@@ -4,6 +4,8 @@ renamed accordingly.
 ``defaultLayout``
 - Changed: ``redux`` as been upgraded to v4.x.
 ([#91](https://github.com/MoOx/statinamic/pull/91))
+- Added: Option to add static assets such as images, video
+([#94](https://github.com/MoOx/statinamic/pull/94))
 - Added: ``statinamic`` section in ``package.json`` can be used to define core
 options like ``CNAME``.
 - Added: ``CNAME`` option to generate a ``CNAME`` file according to your

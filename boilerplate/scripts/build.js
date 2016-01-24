@@ -142,7 +142,10 @@ const webpackConfig = {
 
 builder({
   config,
-
+  // Add static assets (images, videos, ....)
+  // path is relative to content folder
+  // TODO: Add link to docs
+  staticAssets: "assets",
   clientWebpackConfig: {
     ...webpackConfig,
 
