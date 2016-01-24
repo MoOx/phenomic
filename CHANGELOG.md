@@ -2,6 +2,8 @@
 renamed accordingly.
 - Changed: ``defaultComponent`` prop of ``PageContainer`` is now
 ``defaultLayout``
+- Changed: ``redux`` as been upgraded to v4.x.
+([#91](https://github.com/MoOx/statinamic/pull/91))
 - Added: ``statinamic`` section in ``package.json`` can be used to define core
 options like ``CNAME``.
 - Added: ``CNAME`` option to generate a ``CNAME`` file according to your
