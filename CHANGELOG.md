@@ -1,20 +1,28 @@
-- Changed: ``static`` npm script has been renamed as ``build`` in the
-boilerplate to make the build step easier to find.
+- Changed: ``pageComponents`` are now called ``layouts``. All references should be
+renamed accordingly.
+- Changed: ``defaultComponent`` prop of ``PageContainer`` is now
+``defaultLayout``
 - Added: ``statinamic`` section in ``package.json`` can be used to define core
 options like ``CNAME``.
-- Changed: new ``source`` option need to be used to specify the source directory
-- Changed: new ``destination`` option need to be used to specify the destination
-directory
 - Added: ``CNAME`` option to generate a ``CNAME`` file according to your
 homepage
 ([#24](https://github.com/MoOx/statinamic/issues/24))
-- Added: default boilerplate now include [cssnext](http://cssnext.io/) instead
-2 postcss plugins.
-([#87](https://github.com/MoOx/statinamic/issues/87))
-- Added: default boilerplate now include [stylelint](http://stylelint.io/) and
-lint CSS with a standard configurator
-([#86](https://github.com/MoOx/statinamic/issues/86))
 - Added: ``nojekyll`` option to create `.nojekyll` file.
+
+## Boilerplate
+
+- Changed: boilerplate ``web_modules/app/layouts.js`` => `web_modules/layouts/index.js`
+- Changed: boilerplate ``web_modules/Page/`` => `web_modules/layouts/Page/`
+- Changed: boilerplate ``web_modules/PageError/`` => `web_modules/layouts/PageError/`
+- Changed: boilerplate ``Layout`` wrapper is now called ``LayoutContainer``
+- Changed: boilerplate ``static`` npm script has been renamed as ``build`` to
+make the build step easier to find.
+- Added: boilerplate includes [cssnext](http://cssnext.io/) instead 2 PostCSS
+plugins.
+([#87](https://github.com/MoOx/statinamic/issues/87))
+- Added: boilerplate includes [stylelint](http://stylelint.io/) and
+lint CSS with a standard configuration.
+([#86](https://github.com/MoOx/statinamic/issues/86))
 
 # 0.6.1 - 2016-01-19
 

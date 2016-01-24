@@ -16,13 +16,15 @@ There is only 2 important fields: `title` and `layout`.
 # title default = undefined
 title: "Page title"
 # layout default = "Page"
-layout: "MyComponent" # name referenced in `web_modules/app/pageComponents.js`
+layout: "MyComponent" # name referenced in `web_modules/layouts/index.js`
 
 # note that you can add more like `date` or anything you want/need to sort/filter
 ---
 
 ...
 ```
+
+**For `layout`, please read [Layouts](../layouts/) documentation.**
 
 ## Content
 

@@ -11,12 +11,12 @@ By default, Statinamic might need 2 layouts:
 - `PageError`
 
 If you use the `statinamic/lib/PageContainer`, you will need those components in
-your `pageComponents` definition
-(by default, declared in `app/pageComponents.js`).
+your `layouts` definition (by default, declared in `layouts/index.js`).
 
-To use your custom layout, add the `layout` option to the `YAML` frontmatter of your Markdown file like so:
+To use your custom layout, add the `layout` option to the `YAML` frontmatter of
+your Markdown file like so:
 
-```YAML
+```yaml
 title: Hello World
 layout: MyCustomLayoutComponent
 ```
@@ -26,9 +26,9 @@ layout: MyCustomLayoutComponent
 ### `Page`
 
 `Page` will be used as the default layout.
-**It is required for Statinamic to work.**
+**It is required for Statinamic to work by default.**
 
-[Check out the default Page and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/Page/index.js)
+[Check out the default Page and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
 
 ### `PageError`
 
@@ -38,7 +38,7 @@ layout: MyCustomLayoutComponent
 _This layout is optional_ and a `PageContainer` contains a minimal fallback if
 it is not available.
 
-[Check out the default PageError and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/PageError/index.js)
+[Check out the default PageError and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/PageError/index.js)
 
 ### `PageLoading`
 

@@ -20,7 +20,7 @@ plain React components. Statinamic is just an helper.
     [client](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-client.js) +
     [static](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-static.js)
   ) with:
-  - your [layout components](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/pageComponents.js)
+  - your [layout components](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/layouts/index.js)
   - some [routes](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/routes.js)
   - a [store](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/store.js) to keep data in memory
 * create your [build script](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/build.js) so you can:

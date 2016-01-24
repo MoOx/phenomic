@@ -3,7 +3,7 @@ import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
 import minifyCollection from "statinamic/lib/md-collection-loader/minify"
 
-import * as pageComponents from "app/pageComponents"
+import * as layouts from "layouts"
 
 const store = createStore(
   combineReducers(statinamicReducers),
@@ -18,7 +18,7 @@ const store = createStore(
         minifyCollection(require("statinamic/lib/md-collection-loader/cache")),
     },
 
-    pageComponents,
+    layouts,
   }
 )
 

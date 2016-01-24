@@ -16,15 +16,15 @@ global.__DEV__ = false
 const noop = () => {}
 const Page = () => <div className="Page"></div>
 const PageError = () => <div className="PageError"></div>
+const AnotherPage = () => <div className="AnotherPage"></div>
 
-test("PageContainer is properly rendered", () => {
+test("should render a Page if page is ok", () => {
   const renderer = createRenderer()
-
   renderer.render(
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": {} } }
-      pageComponents={ { Page } }
+      layouts={ { Page } }
       getPage={ noop }
     />
   )
@@ -35,15 +35,19 @@ test("PageContainer is properly rendered", () => {
   .toEqualJSX(
     <div>
       <Page />
-    </div>,
-    "should render a Page if page is ok"
+    </div>
   )
+})
 
+test(
+  "should render a visible error if page is not ok and no PageError available",
+  () => {
+  const renderer = createRenderer()
   renderer.render(
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test", errorText: "" } } }
-      pageComponents={ { Page } }
+      layouts={ { Page } }
       getPage={ noop }
     />
   )
@@ -57,15 +61,19 @@ test("PageContainer is properly rendered", () => {
         <h1>{ "Test" }</h1>
         <p>{ "" }</p>
       </div>
-    </div>,
-    "should render a visible error if page is not ok and no PageError available"
+    </div>
   )
+})
 
+test(
+  "should render a PageError if page is not ok and PageError is available",
+  () => {
+  const renderer = createRenderer()
   renderer.render(
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test" } } }
-      pageComponents={ { Page, PageError } }
+      layouts={ { Page, PageError } }
       getPage={ noop }
     />
   )
@@ -76,7 +84,30 @@ test("PageContainer is properly rendered", () => {
   .toEqualJSX(
     <div>
       <PageError error="Test" />
-    </div>,
-    "should render a PageError if page is not ok and PageError is available"
+    </div>
   )
+})
+
+test(
+  "should render a another page layout if defaultLayout is used",
+  () => {
+    const renderer = createRenderer()
+    renderer.render(
+      <PageContainer
+        params={ { splat: "" } }
+        pages={ { "": {} } }
+        layouts={ { AnotherPage } }
+        getPage={ noop }
+        defaultLayout={ "AnotherPage" }
+      />
+    )
+
+    expect(
+      renderer.getRenderOutput(),
+    )
+    .toEqualJSX(
+      <div>
+        <AnotherPage />
+      </div>
+    )
 })

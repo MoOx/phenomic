@@ -10,17 +10,17 @@ export default class PageContainer extends Component {
   static propTypes = {
 
     pages: PropTypes.object.isRequired,
-    pageComponents: PropTypes.object.isRequired,
+    layouts: PropTypes.object.isRequired,
     params: PropTypes.object,
 
-    defaultComponent: PropTypes.string,
+    defaultLayout: PropTypes.string,
 
     // actions
     getPage: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    defaultComponent: "Page",
+    defaultLayout: "Page",
   };
 
   componentWillMount() {
@@ -32,12 +32,12 @@ export default class PageContainer extends Component {
   }
 
   preparePage(props) {
-    if (!props.pageComponents[props.defaultComponent]) {
+    if (!props.layouts[props.defaultLayout]) {
       console.error(
         "statinamic: PageContainer: " +
-        `default component "${ props.defaultComponent }" doesn't exist. ` +
-        `Please check your configuration ("pageComponents" part). ` +
-        `If you haven't defined "${ props.defaultComponent }", you should. `
+        `default layout "${ props.defaultLayout }" doesn't exist. ` +
+        `Please check your configuration ("layouts" part). ` +
+        `If you haven't defined "${ props.defaultLayout }", you should. `
       )
     }
 
@@ -54,20 +54,20 @@ export default class PageContainer extends Component {
         return
       }
 
-      const PageComponent = this.getPageComponent(props, page)
-      if (page.type !== undefined && !PageComponent) {
+      const Layout = this.getLayout(props, page)
+      if (page.type !== undefined && !Layout) {
         console.error(
           "statinamic: PageContainer: " +
           `Unkown page type: "${ page.type }" component not available in ` +
-          `"pageComponents" property. ` +
+          `"layouts" property. ` +
           `Please check the "layout" or "type" of page "${ page }" header.`
         )
       }
     }
   }
 
-  getPageComponent(props, page) {
-    return props.pageComponents[page.type || props.defaultComponent]
+  getLayout(props, page) {
+    return props.layouts[page.type || props.defaultLayout]
   }
 
   render() {
@@ -87,9 +87,9 @@ export default class PageContainer extends Component {
       return null
     }
 
-    const PageLoading = this.props.pageComponents.PageLoading
-    const PageError = this.props.pageComponents.PageError
-    const PageComponent = this.getPageComponent(this.props, page)
+    const PageLoading = this.props.layouts.PageLoading
+    const PageError = this.props.layouts.PageError
+    const Layout = this.getLayout(this.props, page)
 
     return (
       <div>
@@ -109,8 +109,8 @@ export default class PageContainer extends Component {
           <PageError { ...page } />
         }
         {
-          !page.error && !page.loading && PageComponent &&
-          <PageComponent { ...page } />
+          !page.error && !page.loading && Layout &&
+          <Layout { ...page } />
         }
       </div>
     )

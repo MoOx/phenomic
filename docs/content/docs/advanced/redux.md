@@ -18,7 +18,7 @@ import * as statinamicReducers from "statinamic/lib/redux/modules"
 import * as reducers from "app/redux"
 
 // for initialState
-import * as pageComponents from "app/pageComponents"
+import * as layouts from "layouts"
 
 const store = createStore(
   // here we combine statinamic required reducers and your custom ones
@@ -37,12 +37,11 @@ const store = createStore(
         require("statinamic/lib/md-collection-loader/cache").default,
     },
 
-    // page components
-    pageComponents,
+    layouts,
   }
 )
 
-webpack hot loading
+// webpack hot loading
 if (module.hot) {
   // enable hot module replacement for reducers
   module.hot.accept([

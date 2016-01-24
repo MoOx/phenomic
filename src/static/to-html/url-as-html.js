@@ -74,7 +74,7 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               // async json file is prefered (file length concerns)
               collection: undefined,
               // already in bundle
-              pageComponents: undefined,
+              layouts: undefined,
             }
             script = `window.__INITIAL_STATE__ = ${
               escapeJSONforHTML(JSON.stringify(initialState))

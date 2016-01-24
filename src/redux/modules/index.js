@@ -1,3 +1,3 @@
 export collection from "./collection"
-export pageComponents from "./pageComponents"
+export layouts from "./layouts"
 export pages from "./pages"

@@ -3,11 +3,11 @@ import { Route } from "react-router"
 import PageContainer from "statinamic/lib/PageContainer"
 
 // components
-import Layout from "Layout"
+import LayoutContainer from "LayoutContainer"
 
 // routes
 export default (
-  <Route component={ Layout }>
+  <Route component={ LayoutContainer }>
     <Route path="*" component={ PageContainer } />
   </Route>
 )
