@@ -42,8 +42,8 @@ test("should render a Page if page is ok", () => {
 test(
   "should render a visible error if page is not ok and no PageError available",
   () => {
-  const renderer = createRenderer()
-  renderer.render(
+    const renderer = createRenderer()
+    renderer.render(
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test", errorText: "" } } }
@@ -52,7 +52,7 @@ test(
     />
   )
 
-  expect(
+    expect(
     renderer.getRenderOutput(),
   )
   .toEqualJSX(
@@ -63,13 +63,13 @@ test(
       </div>
     </div>
   )
-})
+  })
 
 test(
   "should render a PageError if page is not ok and PageError is available",
   () => {
-  const renderer = createRenderer()
-  renderer.render(
+    const renderer = createRenderer()
+    renderer.render(
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test" } } }
@@ -78,7 +78,7 @@ test(
     />
   )
 
-  expect(
+    expect(
     renderer.getRenderOutput(),
   )
   .toEqualJSX(
@@ -86,7 +86,7 @@ test(
       <PageError error="Test" />
     </div>
   )
-})
+  })
 
 test(
   "should render a another page layout if defaultLayout is used",
@@ -110,4 +110,4 @@ test(
         <AnotherPage />
       </div>
     )
-})
+  })

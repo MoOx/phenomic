@@ -17,4 +17,21 @@ export const testStore = createStore(
   }
 )
 
+export const testStoreWithCollection = createStore(
+  (state) => (state),
+  {
+    pages: {
+      "": {
+        home: "page",
+        head: {
+          collection: true,
+        },
+      },
+    },
+    collection: {
+      foo: "bar",
+    },
+  }
+)
+
 export const testRoutes = <Route path="*" component={ TestContainer } />

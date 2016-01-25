@@ -29,6 +29,7 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
           let head
           let body
           let script
+          let collection
 
           if (error) {
             return reject(error)
@@ -61,6 +62,13 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               headTags.link
             )
 
+            // get collection option from page head
+            // if none specific return undefined
+            collection = store.getState().pages[url].head.collection
+            if (collection && collection !== undefined) {
+              collection = store.getState().collection
+            }
+
             const initialState = {
               ...store.getState(),
 
@@ -70,9 +78,9 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               },
 
               // skip some data \\
-              // ensure collection is not in all pages output
-              // async json file is prefered (file length concerns)
-              collection: undefined,
+              // only dump collection with file
+              // has head ``collection: true``
+              collection,
               // already in bundle
               layouts: undefined,
             }
