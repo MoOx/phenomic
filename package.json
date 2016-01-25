@@ -135,7 +135,7 @@
     "prepublish": "npm run babelify",
     "predocs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json",
     "docs": "cd docs && npm install && npm test",
-    "lint:js": "eslint --fix .",
+    "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint '**/web_modules/**/*.css'",
     "lint": "npm run lint:js && npm run lint:css",
     "tests": "ava --verbose '**/__tests__/*.js'",
