@@ -1,7 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 
-export default function(reducer = {}, initialState = {}) {
+export default function(
+  reducer = {},
+  initialState = {},
+  extraMiddlewares = {},
+  extraStoreEnhancers = {}
+) {
   function promiseMiddleware() {
     return (next) => (action) => {
       const { promise, types, ...rest } = action
@@ -35,13 +40,25 @@ export default function(reducer = {}, initialState = {}) {
     }
 
     finalCreateStore = compose(
-      applyMiddleware(promiseMiddleware, thunk),
+      applyMiddleware(
+        promiseMiddleware,
+        thunk,
+        ...extraMiddlewares
+      ),
       devTools(),
-      persistState(getDebugSessionKey())
+      persistState(getDebugSessionKey()),
+      ...extraStoreEnhancers
     )(createStore)
   }
   else {
-    finalCreateStore = applyMiddleware(promiseMiddleware, thunk)(createStore)
+    finalCreateStore = compose(
+      applyMiddleware(
+        promiseMiddleware,
+        thunk,
+        ...extraMiddlewares
+      ),
+      ...extraStoreEnhancers
+    )(createStore)
   }
 
   return finalCreateStore(reducer, initialState)
