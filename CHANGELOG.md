@@ -1,3 +1,5 @@
+- Changed: ``react-router`` has been upgraded to v2.0.0
+([#95](https://github.com/MoOx/statinamic/pull/95))
 - Changed: ``pageComponents`` are now called ``layouts``. All references should be
 renamed accordingly.
 - Changed: ``defaultComponent`` prop of ``PageContainer`` is now
