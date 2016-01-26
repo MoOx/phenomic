@@ -1,3 +1,7 @@
+:root {
+  --nav-item-padding: 0.5rem;
+}
+
 .header {
   color: #eee;
   background: #111;
@@ -6,20 +10,15 @@
 .nav {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
-  max-width: 60rem;
+  max-width: calc(60rem + (var(--nav-item-padding) * 2));
   margin: 0 auto 1rem;
   padding: 0 1rem;
   line-height: 3rem;
 }
 
-.navPart1 {
-
-  @media (width >= 60rem) {
-    flex-grow: 1;
-  }
-}
-
+.navPart1,
 .navPart2 {
   display: flex;
   flex-direction: row;
@@ -29,7 +28,7 @@
   display: flex;
   align-items: center;
 
-  margin-left: 1rem;
+  padding: 0 var(--nav-item-padding);
 
   color: inherit;
   text-decoration: none;
