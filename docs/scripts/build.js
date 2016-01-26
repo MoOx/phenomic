@@ -46,25 +46,27 @@ const webpackConfig = {
       //
       {
         test: /\.md$/,
-        loader: "statinamic/lib/md-collection-loader" +
-          `?${ JSON.stringify({
-            context: path.join(config.cwd, config.source),
-            basepath: config.baseUrl.path,
-            feedsOptions: {
-              title: pkg.name,
-              site_url: pkg.homepage,
-            },
-            feeds: {
-              "feed.xml": {
-                collectionOptions: {
-                  filter: { layout: "Post" },
-                  sort: "date",
-                  reverse: true,
-                  limit: 20,
+        loaders: [
+          "statinamic/lib/md-collection-loader" +
+            `?${ JSON.stringify({
+              context: path.join(config.cwd, config.source),
+              basepath: config.baseUrl.path,
+              feedsOptions: {
+                title: pkg.name,
+                site_url: pkg.homepage,
+              },
+              feeds: {
+                "feed.xml": {
+                  collectionOptions: {
+                    filter: { layout: "Post" },
+                    sort: "date",
+                    reverse: true,
+                    limit: 20,
+                  },
                 },
               },
-            },
-          }) }`,
+            }) }`
+        ]
       },
       {
         test: /\.json$/,
@@ -190,7 +192,7 @@ builder({
     output: {
       ...webpackConfig.output,
       libraryTarget: "commonjs2",
-      path: __dirname,
+      path: path.join(__dirname, "..", config.destination),
     },
 
     plugins: [

@@ -2,7 +2,7 @@ import { combineReducers } from "redux"
 import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
 import minifyCollection from "statinamic/lib/md-collection-loader/minify"
-
+import loadPage from "../../scripts/load-async"
 import * as layouts from "layouts"
 
 const store = createStore(
@@ -19,6 +19,7 @@ const store = createStore(
     },
 
     layouts,
+    loadPage,
   }
 )
 

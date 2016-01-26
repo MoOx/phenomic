@@ -21,6 +21,7 @@ export default function reducer(state = {}, action) {
 
   case SET:
     const data = action.response.data
+    console.log(data)
     return {
       ...state,
       [action.page]: {
@@ -63,5 +64,15 @@ export function get(page) {
     ],
     page,
     promise: fetchJSON(path.join("/", page, "index.json")),
+  }
+}
+
+export function set(page, data) {
+  return {
+    type: SET,
+    page,
+    response: {
+      data,
+    },
   }
 }
