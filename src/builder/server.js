@@ -107,6 +107,12 @@ export default (config, options = {}) => {
     noInfo: true,
   }))
   server.use(options.baseUrl.pathname, router)
+  // Serve staticAssets on development
+  if (options.staticAssets !== undefined) {
+    const staticAssets = options.staticAssets
+    const route = options.baseUrl.pathname + staticAssets.route
+    server.use(route, express.static(staticAssets.path))
+  }
   server.use(webpackHotMiddleware(webpackCompiler))
   server.listen(options.baseUrl.port, options.baseUrl.hostname, (err) => {
     if (err) {
