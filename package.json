@@ -103,7 +103,6 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
     "highlight.js": "^8.5.0",
-    "history": "^1.17.0",
     "invariant": "^2.1.1",
     "json-loader": "^0.5.2",
     "markdown-it": "^5.0.0",
