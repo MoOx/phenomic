@@ -10,7 +10,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header className={ styles.header }>
         <div className={ styles.logo }>
           <StatinamicLogoSVG width="100%" height="auto" />
         </div>

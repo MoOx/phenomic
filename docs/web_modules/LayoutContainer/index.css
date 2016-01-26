@@ -1,33 +1,9 @@
-/* https://github.com/facebook/css-layout#default-values */
-div,
-span {
-  box-sizing: border-box;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  flex-shrink: 0;
-  align-content: flex-start;
-
-  border: 0 solid black;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  height: 100%;
-}
-
+/* GLOBAL STYLES, OMG ! */
 body {
   margin: 0;
-  padding: 0 1rem;
-  min-height: 100%;
 
-  @media (width > 50em) {
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
+  font-size: 1rem;
+  line-height: 1.5rem;
 
   /* stylelint-disable value-list-comma-newline-after */
 
@@ -37,30 +13,24 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
   /* stylelint-enable */
-
-  color: color(#1a1122 a(0.9));
-
-  /* stylelint-disable declaration-block-semicolon-space-before */
-
-  background:
-    linear-gradient(
-      120deg,
-      color(#bfd8ee a(0.95)) 20%,
-      color(#cbc3f7 a(0.95))
-    ) fixed,
-    url("https://farm7.staticflickr.com/6017/5963681346_0d620eff9a_z.jpg")
-    50% 50% / cover no-repeat fixed
-  ;
-
-  /* stylelint-enable */
 }
 
-.layout {
-  max-width: 60rem;
-  margin: auto;
+a {
+  color: inherit;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
-/* GLOBAL STYLES, OMG ! */
+hr {
+  margin: 2rem 0;
+  height: 1px;
+  border: 0;
+  background-image: linear-gradient(to right, color(#000 a(0)), color(#000 a(0.6)), color(#000 a(0)));
+}
+
 h1,
 h2,
 h3 {
@@ -86,20 +56,13 @@ h3 {
   }
 }
 
-a,
-a:visited {
-  color: #31097a;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 blockquote {
   text-align: center;
   opacity: 0.7;
-  margin: 2rem 0;
+  margin: 3rem 0 4rem;
+
+  font-size: 1.5rem;
+  font-weight: 200;
 }
 
 pre {
@@ -110,7 +73,7 @@ pre {
   line-height: 1.5rem;
   font-weight: 400;
 
-  color: color(#7340c4) l(-10%));
+  color: #332106;
   border: 1px solid #ddd;
   border-radius: 0.3em;
   background: color(#fafafa a(0.6));
@@ -145,5 +108,16 @@ code {
 :global .hljs-keyword,
 :global .hljs-pseudo,
 :global .hljs-function {
-  color: #7340c4;
+  color: #362508;
+}
+
+/* local styles */
+.layout {
+  /* placeholder */
+}
+
+.content {
+  max-width: 60rem;
+  margin: auto;
+  padding: 1rem 0.75rem;
 }

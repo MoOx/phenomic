@@ -1,12 +1,23 @@
+.header {
+  color: #eee;
+  background: #111;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
-  margin: 1rem 0;
-  font-size: 0.75rem;
+
+  max-width: 60rem;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  line-height: 3rem;
 }
 
 .navPart1 {
-  flex-grow: 1;
+
+  @media (width >= 60rem) {
+    flex-grow: 1;
+  }
 }
 
 .navPart2 {
@@ -17,14 +28,15 @@
 .link {
   display: flex;
   align-items: center;
-  font-weight: bold;
-}
 
-.link + .link {
   margin-left: 1rem;
+
+  color: inherit;
+  text-decoration: none;
 }
 
 .link svg {
+  fill: currentColor;
   opacity: 0.5;
   margin-right: 0.5rem;
   width: 1rem;

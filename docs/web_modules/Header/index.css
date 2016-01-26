@@ -1,17 +1,56 @@
+.header {
+  padding: 1rem;
+
+  @media (width >= 60rem) {
+    padding: 4rem 1rem;
+  }
+
+  color: color(#eee a(0.9));
+  font-weight: 200;
+
+  /* stylelint-disable declaration-block-semicolon-space-before */
+
+  background:
+    linear-gradient(
+      120deg,
+      color(#090601 a(0.9)) 20%,
+      color(#2a1d05 a(0.9))
+    ) fixed,
+    url("https://farm7.staticflickr.com/6017/5963681346_0d620eff9a_z.jpg")
+    50% 50% / cover no-repeat
+  ;
+
+  /* stylelint-enable */
+}
+
+.logo {
+  padding: 1rem 0;
+  max-width: 10rem;
+  margin: auto;
+
+  @media (width >= 50em) {
+    max-width: 30rem;
+  }
+}
+
 .nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  font-weight: 300;
+  max-width: 60rem;
+  margin: auto;
   line-height: 3rem;
 
-  color: #eee;
-  background: #111;
+  font-weight: 300;
 }
 
 .link {
-  flex-grow: 1;
+
+  @media (width >= 50em) {
+    flex-grow: 1;
+  }
+
   padding: 0 0.7rem;
   text-align: center;
   text-decoration: none;

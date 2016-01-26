@@ -12,7 +12,7 @@ export default class Footer extends Component {
           className={ styles.link }
         >
           { "Powered by " }
-          <span className={ styles.statinamic }>
+          <span className={ styles.reference }>
             {  "<Statinamic />" }
           </span>
         </a>

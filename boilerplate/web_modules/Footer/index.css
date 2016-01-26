@@ -1,5 +1,6 @@
 .footer {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
   font-size: 0.75rem;
   text-align: center;
 }
@@ -10,6 +11,6 @@
   text-decoration: none;
 }
 
-.statinamic {
+.reference {
   font-weight: 100;
 }

@@ -31,7 +31,9 @@ export default class Layout extends Component {
           ] }
         />
         <Header />
-        { this.props.children }
+        <div className={ styles.content }>
+          { this.props.children }
+        </div>
         <Footer />
       </div>
     )

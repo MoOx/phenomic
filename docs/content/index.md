@@ -59,4 +59,8 @@ etc, thanks to the flexibility of Webpack and its loaders.
 
 ---
 
-## [➡ _Let's try this now!_](docs/setup/)
+<center style="margin: 2rem;">
+  <a href="docs/setup/" style="font-size: 2rem; font-weight: 200;">
+    Let's try this now!
+  </a>
+</center>

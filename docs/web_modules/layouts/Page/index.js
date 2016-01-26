@@ -64,7 +64,7 @@ export default class Page extends Component {
         }
         {
           head.incomplete &&
-          <div className={ styles.callout + " " + styles.calloutInfo }>
+          <div className={ styles.callout + " " + styles.calloutWarning }>
             <strong className={ styles.calloutTitle }>{ "Incomplete" }</strong>
             {
               "This documentation is still a work in progress and might be " +
