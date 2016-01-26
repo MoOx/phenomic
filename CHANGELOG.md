@@ -6,6 +6,8 @@ renamed accordingly.
 ``defaultLayout``
 - Changed: ``redux`` as been upgraded to v4.x.
 ([#91](https://github.com/MoOx/statinamic/pull/91))
+- Added: Allow to pass extra middlewares and store enhancers to redux store
+([#102](https://github.com/MoOx/statinamic/pull/102))
 - Added: Option to add static assets such as images, video
 ([#94](https://github.com/MoOx/statinamic/pull/94))
 - Added: ``statinamic`` section in ``package.json`` can be used to define core
