@@ -21,7 +21,7 @@ const webpackConfig = {
     filename: "[name].js",
     publicPath: config.baseUrl.path,
   },
-
+  devtool: "eval",
   resolve: {
     extensions: [
       // node default extensions
@@ -37,6 +37,8 @@ const webpackConfig = {
   resolveLoader: {
     root: [ path.join(config.cwd, "node_modules") ],
   },
+
+  target: "web",
 
   module: {
     // ! \\ note that loaders are executed from bottom to top !
@@ -190,7 +192,7 @@ builder({
     output: {
       ...webpackConfig.output,
       libraryTarget: "commonjs2",
-      path: __dirname,
+      path: path.join(__dirname, "..", config.destination, "build"),
     },
 
     plugins: [
@@ -199,7 +201,7 @@ builder({
       // extract (and overwrite) statinamic client css
       // poor workaround to avoid having 2 identical files...
       new ExtractTextPlugin(
-        path.join("..", config.destination, "statinamic-client.css")
+        path.join(__dirname, "..", config.destination, "statinamic-client.css")
       ),
     ],
   },

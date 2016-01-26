@@ -15,6 +15,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
+    "bundle-loader": "^0.5.4",
     "classnames": "^2.2.3",
     "css-loader": "^0.17.0",
     "eslint": "^1.7.2",

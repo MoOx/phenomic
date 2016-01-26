@@ -129,5 +129,5 @@ module.exports = function(input) {
     }, 100)
   }
 
-  return "module.exports = __webpack_public_path__ + " + JSON.stringify(jsonUrl)
+  return "module.exports = " + JSON.stringify(mdObject)
 }
