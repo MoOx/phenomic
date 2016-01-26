@@ -44,7 +44,6 @@ test("writeAllHTMLFiles", (t) => {
       t.is(uri, "test-url")
     },
     writeHTMLFile: (basename, html) => {
-      console.info(beautifyHTML(html))
       const expectedHTML = (
       `<!doctype html>
 <html lang="en">

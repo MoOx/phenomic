@@ -60,20 +60,6 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               headTags.link
             )
 
-            let collection = store.getState().collection
-            const pageData = store.getState().pages[url]
-
-            if (pageData.hasOwnProperty('head')) {
-              const pageHead = pageData.head
-
-              if (
-                pageHead.hasOwnProperty('collection') &&
-                !pageHead.collection
-              ) {
-                collection = undefined
-              }
-            }
-
             const initialState = {
               ...store.getState(),
 
@@ -81,7 +67,6 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               pages: {
                 [url]: store.getState().pages[url],
               },
-              collection,
               // skip some data \\
               // already in bundle
               layouts: undefined,
