@@ -1,7 +1,7 @@
 // App
 import React from "react"
 import ReactDOM from "react-dom"
-import Router from "react-router"
+import Router, { browserHistory } from "react-router"
 import { Provider } from "react-redux"
 
 import fetchJSON from "../fetchJSON"
@@ -31,13 +31,11 @@ export default function statinamic({
       })
     )
 
-  const history = require("history/lib/createBrowserHistory")()
-
   ReactDOM.render(
     <div id="statinamic-container">
       <MetadataProvider metadata={ metadata }>
         <Provider store={ store }>
-          <Router history={ history } routes={ routes } />
+          <Router history={ browserHistory } routes={ routes } />
         </Provider>
       </MetadataProvider>
       { __DEVTOOLS__ && devtools }

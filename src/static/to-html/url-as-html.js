@@ -1,8 +1,7 @@
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 
-import { match, RoutingContext } from "react-router"
-
+import { match, RouterContext } from "react-router"
 import { Provider } from "react-redux"
 import Helmet from "react-helmet"
 
@@ -47,7 +46,7 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               <div id="statinamic-container">
                 <MetadataProvider metadata={ metadata }>
                   <Provider store={ store }>
-                    <RoutingContext { ...renderProps } />
+                    <RouterContext { ...renderProps } />
                   </Provider>
                 </MetadataProvider>
               </div>
