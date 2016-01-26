@@ -14,6 +14,13 @@ export const testStore = createStore(
         home: "page",
       },
     },
+    "collection": {
+      "": {
+        head: {
+          foo: "bar",
+        },
+      },
+    },
   }
 )
 
