@@ -70,6 +70,7 @@
     "fs-extra": "^0.26.4",
     "js-beautify": "^1.5.10",
     "lnfs-cli": "^1.0.1",
+    "lodash": "^4.0.1",
     "markdown-it": "^5.0.0",
     "npmpub": "^3.0.0",
     "nyc": "^5.2.0",
