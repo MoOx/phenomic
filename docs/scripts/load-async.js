@@ -1,14 +1,4 @@
-import enhanceCollection from "statinamic/lib/enhance-collection"
-
-const getFileFromContext = (context, filename) => {
-  const bundledResult = context.keys().map(context)
-  const result = enhanceCollection(bundledResult, {
-    filter: { __filename: filename },
-    limit: 1,
-  })
-
-  return result[0]
-}
+import fileFromContext from "statinamic/lib/file-from-context"
 
 export default function loadAsync(filename, callback) {
   if (__PROD__) {
@@ -17,12 +7,12 @@ export default function loadAsync(filename, callback) {
   }
   else if (__DEV__) {
     let context = require.context("../content", true, /\.md$/)
-    callback(getFileFromContext(context, filename))
+    callback(fileFromContext(context, filename))
 
     if (module.hot) {
       module.hot.accept(context.id, function() {
         context = require.context("../content", true, /\.md$/)
-        callback(getFileFromContext(context, filename))
+        callback(fileFromContext(context, filename))
       })
     }
   }
