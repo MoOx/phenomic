@@ -7,6 +7,7 @@ import Footer from "Footer"
 import GoogleAnalyticsTracker from "GoogleAnalyticsTracker"
 
 import styles from "./index.css"
+import "./hightlightjs.css"
 
 export default class Layout extends Component {
 
