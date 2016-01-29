@@ -67,14 +67,11 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
               pages: {
                 [url]: store.getState().pages[url],
               },
-
               // skip some data \\
-              // ensure collection is not in all pages output
-              // async json file is prefered (file length concerns)
-              collection: undefined,
               // already in bundle
               layouts: undefined,
             }
+
             script = `window.__INITIAL_STATE__ = ${
               escapeJSONforHTML(JSON.stringify(initialState))
             }`

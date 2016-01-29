@@ -40,6 +40,13 @@ test("url as html", async (t) => {
         "": {
           "home": "page"
         }
+      },
+      "collection": {
+        "": {
+          "head": {
+            "foo": "bar"
+          }
+        }
       }
     }
   </script>

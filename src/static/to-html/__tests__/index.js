@@ -61,7 +61,14 @@ test("writeAllHTMLFiles", (t) => {
   </div>
   <script>
     window.__INITIAL_STATE__ = {
-      "pages": {}
+      "pages": {},
+      "collection": {
+        "": {
+          "head": {
+            "foo": "bar"
+          }
+        }
+      }
     }
   </script>
   <script src="/statinamic-client.js"></script>
