@@ -8,7 +8,11 @@ export const FORGET = "statinamic/pages/FORGET"
 export const ERROR = "statinamic/pages/ERROR"
 
 // redux reducer
-export default function reducer(state = {}, action) {
+const initialState = {
+  getPage: () => {},
+}
+
+export default function reducer(state = initialState, action) {
 
   switch (action.type) {
   case GET:
@@ -63,5 +67,15 @@ export function get(page) {
     ],
     page,
     promise: fetchJSON(path.join("/", page, "index.json")),
+  }
+}
+
+export function set(page, data) {
+  return {
+    type: SET,
+    page,
+    response: {
+      data,
+    },
   }
 }

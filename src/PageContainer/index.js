@@ -4,12 +4,15 @@ import * as pageActions from "../redux/modules/pages"
 import PageContainer from "./component"
 
 export default connect(
-  ({ pages, layouts }) => {
-    return { pages, layouts }
-  },
+  ({ collection, pages, layouts }) => ({
+    collection,
+    getPage: pages.getPage,
+    pages,
+    layouts,
+  }),
   (dispatch) => {
     return {
-      getPage: (page) => dispatch(pageActions.get(page)),
+      setPage: (...args) => dispatch(pageActions.set(...args)),
     }
-  },
+  }
 )(PageContainer)

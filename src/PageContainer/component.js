@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
+import enhanceCollection from "../enhance-collection"
 
 function splatToUri(string) {
   return string.replace(/\/index\.html$/, "")
@@ -47,7 +47,20 @@ export default class PageContainer extends Component {
     }
     const page = props.pages[pageKey]
     if (!page) {
-      props.getPage(pageKey)
+      if (props.collection.length !== 0) {
+        // Handle index.md ==> /statinamic//
+        let pageObject = props.collection.map(page => ({
+          ...page,
+          __url: page.__url.replace("//", "/"),
+        }))
+        pageObject = enhanceCollection(pageObject, {
+          filter: { __url: "/" + props.params.splat + "/" },
+        })
+
+        props.getPage(pageObject[0].__filename, (result) => {
+          props.setPage(pageKey, result)
+        })
+      }
     }
     else {
       if (page.error) {
@@ -72,7 +85,6 @@ export default class PageContainer extends Component {
 
   render() {
     const pageKey = splatToUri(this.props.params.splat)
-
     const page = this.props.pages[pageKey]
 
     if (!page) {
