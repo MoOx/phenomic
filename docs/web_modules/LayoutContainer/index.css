@@ -86,31 +86,6 @@ code {
   font-family: Fira Code, Menlo, Monaco, monospace;
 }
 
-/* highlight.js theme */
-:global span[class|="hljs"] {
-  display: inline;
-}
-
-:global .hljs-comment {
-  opacity: 0.4;
-
-  &:hover {
-    opacity: 0.6;
-  }
-}
-
-:global .hljs-keyword {
-  font-weight: bold;
-}
-
-:global .hljs-class,
-:global .hljs-tag,
-:global .hljs-keyword,
-:global .hljs-pseudo,
-:global .hljs-function {
-  color: #362508;
-}
-
 /* local styles */
 .layout {
   /* placeholder */
