@@ -3,6 +3,10 @@ title: Advanced usage of Redux
 incomplete: true
 ---
 
+## Enabling Redux devtools
+
+Just start your dev server with the env var "REDUX_DEVTOOLS=1".
+
 ## Adding custom Redux reducers
 
 Here is an example of a store that will allow you to add
@@ -17,28 +21,13 @@ import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
 import * as reducers from "app/redux"
 
-// for initialState
-import * as layouts from "layouts"
-
 const store = createStore(
   // here we combine statinamic required reducers and your custom ones
   combineReducers({
     ...statinamicReducers,
     ...reducers,
   }),
-
-  // initialState
-  {
-    ...(typeof window !== "undefined") && window.__INITIAL_STATE__,
-
-    // static build optimization
-    ...__PROD__ && {
-      collection:
-        require("statinamic/lib/md-collection-loader/cache").default,
-    },
-
-    layouts,
-  }
+  { ...(typeof window !== "undefined") && window.__INITIAL_STATE__ },
 )
 
 // webpack hot loading
@@ -77,11 +66,8 @@ to Redux store
 import { combineReducers } from "redux"
 import createStore from "statinamic/lib/redux/createStore"
 import * as statinamicReducers from "statinamic/lib/redux/modules"
-import minifyCollection from "statinamic/lib/md-collection-loader/minify"
 import { reducer as searchReducer, reduxSearch } from "redux-search"
 import createLogger from "redux-logger"
-
-import * as layouts from "layouts"
 
 const extraMiddlewares = { createLogger() }
 const extraStoreEnhancers = {
@@ -102,22 +88,9 @@ const store = createStore(
       search: searchReducer
     }
   }),
-
-  // initialState
-  {
-    ...(typeof window !== "undefined") && window.__INITIAL_STATE__,
-
-    // static build optimization
-    ...__PROD__ && {
-      collection:
-        minifyCollection(require("statinamic/lib/md-collection-loader/cache")),
-    },
-
-    layouts,
-  },
+  { ...(typeof window !== "undefined") && window.__INITIAL_STATE__ },
   extraMiddlewares,
   extraStoreEnhancers,
-
 )
 
 export default store

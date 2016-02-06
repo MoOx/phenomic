@@ -7,54 +7,31 @@ import webpack from "./webpack"
 import devServer from "./server"
 
 import filenameToUrl from "../filename-to-url"
+import toStaticHTML from "../static"
 
 export default function(options) {
   const {
     config,
+    layouts,
+    metadata,
+    routes,
+    store,
   } = options
 
-  // Prepare staticAssets path and route
-  let { staticAssets } = options
-  if (staticAssets !== undefined) {
-    if (typeof staticAssets === "string") {
-      staticAssets = {
-        path: path.join(config.cwd, config.source, staticAssets),
-        route: staticAssets,
-      }
-    }
-    else if (
-      staticAssets.hasOwnProperty("path") &&
-      staticAssets.hasOwnProperty("route")
-    ) {
-      staticAssets = {
-        path: path.join(config.cwd, config.source, staticAssets.path),
-        route: staticAssets.route,
-      }
-    }
-    else {
-      throw new TypeError (
-        "staticAssets should be a string " +
-        "or an object with 2 keys: path and route"
-      )
-    }
-  }
-
   const log = nanoLogger("statinamic/lib/builder")
-
-  JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
+  // JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
   const destination = path.join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
-  const startDevServer = () => {
-    devServer(options.clientWebpackConfig, {
-      baseUrl: config.baseUrl,
-      open: config.open,
-      staticAssets,
-    })
-  }
-
   if (config.static) {
+    // Copy static assets to build folder
+    if (config.assets !== undefined) {
+      const copyDest = path.join(destination, config.assets.route)
+      fs.copySync(config.assets.path, copyDest)
+      log(color.green("✓ Static assets: copy static assets completed"))
+    }
+
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
@@ -69,39 +46,28 @@ export default function(options) {
         }
       })
 
-      // Copy static assets to build folder
-      if (staticAssets !== undefined) {
-        const copyDest = path.join(destination, staticAssets.route)
-        fs.copySync(staticAssets.path, copyDest)
-        log(color.green("✓ Static assets: copy static assets completed"))
-      }
-
-      webpack(options.staticWebpackConfig, log, () => {
-        log(color.green("✓ Static assets: static build completed"))
-
-        // use webpack static builded node script
-        const statinamicStatic = path.join(
-          options.staticWebpackConfig.output.path, "statinamic-static"
-        )
-        require(statinamicStatic)({
-          urls: [
-            ...options.urls || [],
-            ...getMdUrlsFromWebpackStats(stats, config.source),
-          ],
-          pagesData,
-          ...config,
-        })
-
-        .then(() => {
-          if (config.server) {
-            startDevServer()
-          }
-        })
+      toStaticHTML({
+        ...config,
+        urls: [
+          ...options.urls || [],
+          ...getMdUrlsFromWebpackStats(stats, config.source),
+        ],
+        pagesData,
+        layouts,
+        metadata,
+        routes,
+        store,
       })
     })
   }
   else if (config.server) {
-    startDevServer()
+    devServer(options.clientWebpackConfig, {
+      config,
+      layouts,
+      metadata,
+      routes,
+      store,
+    })
   }
   else {
     throw new Error("You need to specify --static or --server")

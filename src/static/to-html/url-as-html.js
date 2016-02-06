@@ -1,23 +1,34 @@
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 
-import { match, RouterContext } from "react-router"
-import { Provider } from "react-redux"
+import { match, RouterContext as RouterContextProvider } from "react-router"
+import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
 import htmlMetas from "../../html-metas"
 import Html from "./Html"
-import MetadataProvider from "../../MetadataProvider"
+import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../escapeJSONforHTML"
 
-export default (url, { metadata, routes, store, baseUrl }, testing) => {
+import minifyCollection from "../../md-collection-loader/minify"
+import collectionCache from "../../md-collection-loader/cache"
+
+export default (url, {
+  layouts,
+  metadata,
+  routes,
+  store,
+
+  baseUrl,
+  css,
+}, testing) => {
   const render = ReactDOMserver[
     !testing
     ? "renderToString"
     : "renderToStaticMarkup"
   ]
   return new Promise((resolve, reject) => {
-    const defaultMetas = htmlMetas("static", { baseUrl }).join("")
+    const defaultMetas = htmlMetas({ baseUrl, css }).join("")
     try {
       match(
         {
@@ -33,22 +44,27 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
             return reject(error)
           }
           else if (redirectLocation) {
-            // TODO: add a redirect page à la "jekyll redirect plugin"
+            // TODO add a redirect page à la "jekyll redirect plugin"
             console.error("statinamic (static) doesn't handle redirection yet")
             // body = ...
           }
           else if (renderProps) {
+            const collection = minifyCollection(collectionCache)
             // render app body as "react"ified html (with data-react-id)
             body = render(
               // the wrapper is used here because the client might have the
               // devtools at the same level as the <Provider>
               // the <noscript> reflect the potential devtools element
               <div id="statinamic-container">
-                <MetadataProvider metadata={ metadata }>
-                  <Provider store={ store }>
-                    <RouterContext { ...renderProps } />
-                  </Provider>
-                </MetadataProvider>
+                <StatinamicContextProvider
+                  collection={ collection }
+                  layouts={ layouts }
+                  metadata={ metadata }
+                >
+                  <ReduxContextProvider store={ store }>
+                    <RouterContextProvider { ...renderProps } />
+                  </ReduxContextProvider>
+                </StatinamicContextProvider>
               </div>
             )
 
@@ -62,25 +78,21 @@ export default (url, { metadata, routes, store, baseUrl }, testing) => {
 
             const initialState = {
               ...store.getState(),
-
               // only keep current page as others are not necessary
               pages: {
                 [url]: store.getState().pages[url],
               },
-
-              // skip some data \\
-              // ensure collection is not in all pages output
-              // async json file is prefered (file length concerns)
-              collection: undefined,
-              // already in bundle
-              layouts: undefined,
             }
-            script = `window.__INITIAL_STATE__ = ${
-              escapeJSONforHTML(JSON.stringify(initialState))
-            }`
+            script =
+              `window.__COLLECTION__ = ${
+                escapeJSONforHTML(JSON.stringify(collection))
+              };` +
+              `window.__INITIAL_STATE__ = ${
+                escapeJSONforHTML(JSON.stringify(initialState))
+              }`
           }
           else {
-            // TODO: add a 404 or just throw a fucking warning ?
+            // TODO add a 404 or just throw a fucking warning ?
             // this is not supposed to happen the way things are done as I am
             // writing this (lol)
             console.error(

@@ -1,18 +1,26 @@
 import { Component, PropTypes, Children } from "react"
 
-export default class MetadataProvider extends Component {
+export default class StatinamicContext extends Component {
 
   static propTypes = {
+    collection: PropTypes.array,
+    layouts: PropTypes.object,
     metadata: PropTypes.object,
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
   };
 
   static childContextTypes = {
+    collection: PropTypes.array,
+    layouts: PropTypes.object,
     metadata: PropTypes.object,
   };
 
   getChildContext() {
-    return { metadata: this.props.metadata }
+    return {
+      collection: this.props.collection,
+      layouts: this.props.layouts,
+      metadata: this.props.metadata,
+    }
   }
 
   render() {

@@ -1,30 +1,62 @@
 import url from "url"
+import { join } from "path"
 
 import minimist from "minimist"
 import changeCaseKeys from "change-case-keys"
 
 export default function config(pkg = {}, argv = process.argv) {
   const config = {
+    pkg,
 
-    // hardcoded options
+    // default options
     cwd: process.cwd(),
     source: "content",
     destination: "dist",
+    assets: "assets",
     CNAME: false,
     nojekyll: true,
+    devHost: "0.0.0.0",
+    devPort: "3000",
+    verbose: false,
+
+    // user config options
     ...changeCaseKeys(pkg.statinamic || {}, "camelize"),
 
-    // CLI options
+    // CLI only options
     dev: false,
-    prod: false,
+    production: false,
     static: false,
     server: false,
-    ...minimist(argv),
+
+    // user CLI only options
+    ...minimist(argv, {
+      alias: {
+        "dev-host": "devHost",
+        "dev-port": "devPort",
+      },
+
+      // TODO validate string and flags after, so values from pkg.json are
+      // validated too
+      string: [
+        "cwd",
+        "source",
+        "destination",
+        "assets",
+        "devHost",
+        "devPort",
+      ],
+      boolean: [
+        "CNAME",
+        "nojekyll",
+        "dev",
+        "production",
+        "static",
+        "server",
+      ],
+    }),
   }
 
   if (config.production) {
-    process.env.NODE_ENV = "production"
-
     if (!pkg.homepage) {
       throw new Error(
         "Your config require a 'homepage' field. " +
@@ -33,51 +65,51 @@ export default function config(pkg = {}, argv = process.argv) {
     }
   }
 
-  let baseUrl
   if (config.baseurl) {
-    baseUrl = url.parse(config.baseurl)
+    config.baseUrl = url.parse(config.baseurl)
   }
   else {
     const prodBaseUrl = pkg.homepage ? url.parse(pkg.homepage) : {}
-    baseUrl = config.production ? prodBaseUrl : {
-      ...url.parse("http://0.0.0.0:3000/"),
+    config.baseUrl = config.production ? prodBaseUrl : {
+      ...url.parse(`http://${ config.devHost }:${ config.devPort }/`),
       // get base from prod url
       pathname: prodBaseUrl.pathname,
     }
   }
 
   // ensure trailing slash
-  if (!baseUrl.pathname.endsWith("/")) {
-    baseUrl.pathname = baseUrl.pathname + "/"
+  if (!config.baseUrl.pathname.endsWith("/")) {
+    config.baseUrl.pathname = config.baseUrl.pathname + "/"
   }
 
-  // update baseUrl.href since pathname has been updated
-  baseUrl = url.parse(url.format(baseUrl))
+  // update config.baseUrl.href since pathname has been updated
+  config.baseUrl = url.parse(url.format(config.baseUrl))
 
-  const consts = {
-    ...{
-      __DEV__: false,
-      __PROD__: false,
-      __STATIC__: false,
-      __SERVER__: false,
-      __DEVTOOLS__: false,
-    },
-    __BASE_URL__: baseUrl,
-    __DEV__: Boolean(config.dev),
-    __PROD__: Boolean(config.production),
-    __STATIC__: Boolean(config.static),
-    __SERVER__: Boolean(config.server),
-    __DEVTOOLS__: Boolean(config.devtools),
-    ...config.production && {
-      "process.env": {
-        NODE_ENV: JSON.stringify("production"),
-      },
-    },
+  // Prepare config.assets path and route
+  if (config.assets !== undefined) {
+
+    // normalize simple string options
+    if (typeof config.assets === "string") {
+      config.assets = {
+        path: config.assets,
+        route: config.assets,
+      }
+    }
+
+    // adjust path and validate
+    if (config.assets.path && config.assets.route) {
+      config.assets = {
+        path: join(config.cwd, config.source, config.assets.path),
+        route: config.assets.route,
+      }
+    }
+    else {
+      throw new TypeError (
+        "'assets' should be a string, or an object with 2 keys: " +
+        "'path' and 'route'"
+      )
+    }
   }
 
-  return {
-    ...config,
-    consts,
-    baseUrl,
-  }
+  return config
 }

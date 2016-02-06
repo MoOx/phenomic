@@ -67,3 +67,11 @@ test(
     )
   }
 )
+
+test(
+  "should remove surrounding slashes",
+  (t) => t.is(
+    filenameToUrl("/some/thing/"),
+    "some/thing"
+  )
+)

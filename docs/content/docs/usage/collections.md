@@ -68,10 +68,8 @@ enhanceCollection(collection, {
 Now you will ask "But where `collection` come from?". Fair enough.
 Here is an example of a component that will display posts, sorted by date, and
 others pages (that are not a post) in a second list.
-You will see that the collection is retrieved from the redux store using the
-connect decorator.
-[There is currently an issue open to replace this way to do by a simpler method
-that might be based on react context](https://github.com/MoOx/statinamic/issues/40)
+You will see that the collection is retrieved from
+[the context](https://facebook.github.io/react/docs/context.html).
 
 ```js
 import React, { Component } from "react"
@@ -79,27 +77,23 @@ import { PropTypes } from "react"
 
 import Page from "Page"
 
-import { connect } from "react-redux"
 import enhanceCollection from "statinamic/lib/enhance-collection"
 
-export default
-@connect(
-  ({ collection }) => {
-    return { collection }
-  }
-)
-class Collection extends Component {
+export default class Collection extends Component {
 
   static propTypes = {
     head: PropTypes.object.isRequired,
     body: PropTypes.string.isRequired,
+  };
+
+  static contextTypes = {
     collection: PropTypes.array,
   };
 
   render() {
     const {
       collection,
-    } = this.props
+    } = this.context
     return (
       <div>
         <Page { ...this.props } />

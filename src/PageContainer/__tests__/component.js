@@ -8,9 +8,6 @@ import React from "react"
 import { createRenderer } from "react-addons-test-utils"
 import PageContainer from "../component"
 
-// yeah that's gross
-global.__DEV__ = false
-
 // fixtures
 /* eslint-disable react/no-multi-comp */
 const noop = () => {}
@@ -24,9 +21,9 @@ test("should render a Page if page is ok", () => {
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": {} } }
-      layouts={ { Page } }
       getPage={ noop }
-    />
+    />,
+    { layouts: { Page } },
   )
 
   expect(
@@ -46,9 +43,9 @@ available`, () => {
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test", errorText: "" } } }
-      layouts={ { Page } }
       getPage={ noop }
-    />
+    />,
+    { layouts: { Page } }
   )
 
   expect(
@@ -71,9 +68,10 @@ test(`should render a PageError if page is not ok and PageError is available`,
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": { error: "Test" } } }
-      layouts={ { Page, PageError } }
+
       getPage={ noop }
-    />
+    />,
+    { layouts: { Page, PageError } }
   )
 
   expect(
@@ -92,10 +90,10 @@ test("should render a another page layout if defaultLayout is used", () => {
     <PageContainer
       params={ { splat: "" } }
       pages={ { "": {} } }
-      layouts={ { AnotherPage } }
       getPage={ noop }
       defaultLayout={ "AnotherPage" }
-    />
+    />,
+    { layouts: { AnotherPage } }
   )
 
   expect(

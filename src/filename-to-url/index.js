@@ -14,6 +14,8 @@ export default function(filename, context) {
     .replace(/\.md$/, "")
     // replace windows backslash by slash
     .replace(/\\/g, "/")
+    // no leading slash
+    .replace(/^\//, "")
     // no trailing slash
     .replace(/\/$/, "")
     // no relative url

@@ -2,8 +2,9 @@ import React, { Component } from "react"
 import { Link } from "react-router"
 
 import styles from "./index.css"
-import TwitterSVG from "../icons/iconmonstr-twitter-1.svg"
-import GitHubSVG from "../icons/iconmonstr-github-1.svg"
+import SVG from "react-svg-inline"
+import twitterSVG from "../icons/iconmonstr-twitter-1.svg"
+import gitHubSVG from "../icons/iconmonstr-github-1.svg"
 
 export default class Header extends Component {
 
@@ -24,14 +25,14 @@ export default class Header extends Component {
               href="https://twitter.com/Statinamic"
               className={ styles.link }
             >
-              <TwitterSVG />
+              <SVG svg={ twitterSVG } />
               { "Twitter" }
             </a>
             <a
               href="https://github.com/MoOx/statinamic"
               className={ styles.link }
             >
-              <GitHubSVG />
+              <SVG svg={ gitHubSVG } />
               { "GitHub" }
             </a>
           </div>

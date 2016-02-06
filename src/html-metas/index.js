@@ -4,10 +4,10 @@ export const defaultMetas = [
   `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
 ]
 
-export default (env, { baseUrl } = {}) => {
+export default ({ baseUrl, css } = {}) => {
   const metas = [ ...defaultMetas ]
 
-  if (env === "static") {
+  if (css) {
     metas.push(
       `<link rel="stylesheet" href="${ baseUrl.path }statinamic-client.css" />`
     )

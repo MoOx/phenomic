@@ -24,7 +24,7 @@ test("url as html", async (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas("static", { baseUrl: { path: "/" } }).join("\n  ") }
+  ${ htmlMetas({ baseUrl: { path: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
@@ -35,6 +35,7 @@ test("url as html", async (t) => {
     </div>
   </div>
   <script>
+    window.__COLLECTION__ = [];
     window.__INITIAL_STATE__ = {
       "pages": {
         "": {
@@ -48,7 +49,7 @@ test("url as html", async (t) => {
 
 </html>`
     )
-    // console.log(beautifyHTML(html, htmlOptions))
+    // console.log(beautifyHTML(html))
     // console.log(expectedHTML)
     t.is(
       beautifyHTML(html),

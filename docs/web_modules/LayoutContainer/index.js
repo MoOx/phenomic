@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { PropTypes } from "react"
 import Helmet from "react-helmet"
 
-import Header from "Header"
-import Footer from "Footer"
-import GoogleAnalyticsTracker from "GoogleAnalyticsTracker"
+import Header from "../Header"
+import Footer from "../Footer"
+import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker"
 
 import styles from "./index.css"
 import "./hightlightjs.css"
