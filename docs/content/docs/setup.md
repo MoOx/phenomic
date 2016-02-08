@@ -54,9 +54,15 @@ You can copy the following `package.json` content.
       "stage-1"
     ],
     "env": {
-      "development": {
-        "presets": [
-          "react-hmre"
+      "statinamic": {
+        "plugins": [
+          [
+            "babel-plugin-webpack-loaders",
+            {
+              "config": "./scripts/webpack.config.babel.js",
+              "verbose": false
+            }
+          ]
         ]
       }
     }

@@ -63,7 +63,25 @@ Here is a commented ``package.json`` with only the interesting parts.
 
   // That's because es5 is not enough
   "babel": {
-    //...
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "env": {
+      // this section is very important and must be (for now) defined here
+      "statinamic": {
+        "plugins": [
+          [
+            "babel-plugin-webpack-loaders",
+            {
+              "config": "./scripts/webpack.config.babel.js",
+              "verbose": false
+            }
+          ]
+        ]
+      }
+    }
   },
 
   // linting prevent errors
