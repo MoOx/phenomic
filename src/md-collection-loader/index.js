@@ -34,7 +34,6 @@ import filenameToUrl from "../filename-to-url"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
-import minify from "./minify"
 
 let timeout
 
@@ -43,7 +42,6 @@ module.exports = function(input) {
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
 
-  const collectionUrl = query.collectionUrl || "collection.json"
   const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
     ? query.markdownIt
@@ -99,11 +97,6 @@ module.exports = function(input) {
   }
   else {
     setTimeout(() => {
-      // we emit a collection that contains only header info + metadata
-      const newJSON = JSON.stringify(minify(cache))
-      // emit updated collection
-      this.emitFile(collectionUrl, newJSON)
-
       // emit updated feeds
       const feeds = query.feeds || []
       const feedsOptions = query.feedsOptions || {}
