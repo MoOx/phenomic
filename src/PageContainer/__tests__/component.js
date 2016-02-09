@@ -1,107 +1,113 @@
 import test from "ava"; import "babel-core/register"
 
-import expect from "expect"
-import expectJSX from "expect-jsx"
-expect.extend(expectJSX)
-
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"
+// can't use jsx
+// https://github.com/sindresorhus/ava/issues/458
+const jsx = React.createElement
+import jsxify from "react-element-to-jsx-string"
+
 import PageContainer from "../component"
 
 // fixtures
 /* eslint-disable react/no-multi-comp */
 const noop = () => {}
-const Page = () => <div className="Page"></div>
-const PageError = () => <div className="PageError"></div>
-const AnotherPage = () => <div className="AnotherPage"></div>
+const Page = () => jsx("div", { className: "Page" })
+const PageError = () => jsx("div", { className: "PageError" })
+const AnotherPage = () => jsx("div", { className: "AnotherPage" })
 
-test("should render a Page if page is ok", () => {
+test("should render a Page if page is ok", (t) => {
   const renderer = createRenderer()
   renderer.render(
-    <PageContainer
-      params={ { splat: "" } }
-      pages={ { "": {} } }
-      getPage={ noop }
-    />,
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { "": {} },
+        getPage: noop,
+      }
+    ),
     { layouts: { Page } },
   )
 
-  expect(
-    renderer.getRenderOutput(),
-  )
-  .toEqualJSX(
-    <div>
-      <Page />
-    </div>
+  t.is(
+    jsxify(renderer.getRenderOutput()),
+    `<div>\n` +
+    `  <Page />\n` +
+    `</div>`
   )
 })
 
 test(`should render a visible error if page is not ok and no PageError
-available`, () => {
+available`, (t) => {
   const renderer = createRenderer()
   renderer.render(
-    <PageContainer
-      params={ { splat: "" } }
-      pages={ { "": { error: "Test", errorText: "" } } }
-      getPage={ noop }
-    />,
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { "": { error: "Test", errorText: "" } },
+        getPage: noop,
+      }
+    ),
     { layouts: { Page } }
   )
 
-  expect(
-    renderer.getRenderOutput(),
-  )
-  .toEqualJSX(
-    <div>
-      <div style={ { "text-align": "center" } }>
-        <h1>{ "Test" }</h1>
-        <p>{ "" }</p>
-      </div>
-    </div>
+  t.is(
+    jsxify(renderer.getRenderOutput()),
+    `<div>\n` +
+    `  <div style={{'text-align': 'center'}}>\n` +
+    `    <h1>\n` +
+    `      Test\n` +
+    `    </h1>\n` +
+    `    <p />\n` +
+    `  </div>\n` +
+    `</div>`
   )
 })
 
 test(`should render a PageError if page is not ok and PageError is available`,
-() => {
+(t) => {
   const renderer = createRenderer()
   renderer.render(
-    <PageContainer
-      params={ { splat: "" } }
-      pages={ { "": { error: "Test" } } }
-
-      getPage={ noop }
-    />,
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { "": { error: "Test" } },
+        getPage: noop,
+      }
+    ),
     { layouts: { Page, PageError } }
   )
 
-  expect(
-    renderer.getRenderOutput(),
-  )
-  .toEqualJSX(
-    <div>
-      <PageError error="Test" />
-    </div>
+  t.is(
+    jsxify(renderer.getRenderOutput()),
+    `<div>\n` +
+    `  <PageError error="Test" />\n` +
+    `</div>`
   )
 })
 
-test("should render a another page layout if defaultLayout is used", () => {
+test("should render a another page layout if defaultLayout is used", (t) => {
   const renderer = createRenderer()
   renderer.render(
-    <PageContainer
-      params={ { splat: "" } }
-      pages={ { "": {} } }
-      getPage={ noop }
-      defaultLayout={ "AnotherPage" }
-    />,
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { "": {} },
+        getPage: noop,
+        defaultLayout: "AnotherPage",
+      }
+    ),
     { layouts: { AnotherPage } }
   )
 
-  expect(
-    renderer.getRenderOutput(),
-  )
-  .toEqualJSX(
-    <div>
-      <AnotherPage />
-    </div>
+  t.is(
+    jsxify(renderer.getRenderOutput()),
+    `<div>\n` +
+    `  <AnotherPage />\n` +
+    `</div>`
   )
 })
