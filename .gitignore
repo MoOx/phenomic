@@ -20,7 +20,7 @@ src/md-collection-loader/__tests__/output/
 # docs build
 docs/node_modules
 docs/dist
-docs/scripts/statinamic-static.js
 
 # boilerplate files to work on it
 boilerplate/package.json
+boilerplate/dist

@@ -11,6 +11,7 @@
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
+    "babel-plugin-webpack-loaders": "^0.2.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
@@ -32,13 +33,14 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.7.0",
     "postcss-reporter": "^1.3.0",
+    "raw-loader": "^0.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-google-analytics": "^0.2.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
-    "react-router": "^2.0.0-rc5",
-    "react-svg-loader": "0.0.6",
+    "react-router": "^2.0.0-rc6",
+    "react-svg-inline": "^1.0.1",
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
@@ -51,9 +53,8 @@
     "whatwg-fetch": "^0.9.0"
   },
   "scripts": {
-    "start": "babel-node scripts/build --server --open --dev",
-    "build": "babel-node scripts/build --static --production",
-    "build+start": "babel-node scripts/build --static --server --open --dev",
+    "start": "BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
+    "build": "BABEL_ENV=statinamic babel-node scripts/build --static --production",
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint 'web_modules/**/*.css'",
     "lint": "npm run lint:js && npm run lint:css",
@@ -62,14 +63,20 @@
   },
   "babel": {
     "presets": [
-      "react",
-      "es2015",
-      "stage-1"
+      "babel-preset-react",
+      "babel-preset-es2015",
+      "babel-preset-stage-1"
     ],
     "env": {
-      "development": {
-        "presets": [
-          "react-hmre"
+      "statinamic": {
+        "plugins": [
+          [
+            "babel-plugin-webpack-loaders",
+            {
+              "config": "./scripts/webpack.config.babel.js",
+              "verbose": false
+            }
+          ]
         ]
       }
     }
@@ -78,13 +85,7 @@
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react"
-    ],
-    "globals": {
-      "__BASE_URL__": true,
-      "__DEV__": true,
-      "__PROD__": true,
-      "__DEVTOOLS__": true
-    }
+    ]
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

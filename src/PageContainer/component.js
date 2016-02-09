@@ -8,9 +8,7 @@ function splatToUri(string) {
 export default class PageContainer extends Component {
 
   static propTypes = {
-
     pages: PropTypes.object.isRequired,
-    layouts: PropTypes.object.isRequired,
     params: PropTypes.object,
 
     defaultLayout: PropTypes.string,
@@ -19,20 +17,24 @@ export default class PageContainer extends Component {
     getPage: PropTypes.func.isRequired,
   };
 
+  static contextTypes = {
+    layouts: PropTypes.object.isRequired,
+  };
+
   static defaultProps = {
     defaultLayout: "Page",
   };
 
   componentWillMount() {
-    this.preparePage(this.props)
+    this.preparePage(this.props, this.context)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.preparePage(nextProps)
+    this.preparePage(nextProps, this.context)
   }
 
-  preparePage(props) {
-    if (!props.layouts[props.defaultLayout]) {
+  preparePage(props, context) {
+    if (!context.layouts[props.defaultLayout]) {
       console.error(
         "statinamic: PageContainer: " +
         `default layout "${ props.defaultLayout }" doesn't exist. ` +
@@ -42,8 +44,11 @@ export default class PageContainer extends Component {
     }
 
     const pageKey = splatToUri(props.params.splat)
-    if (__DEV__) {
-      console.info(`statinamic: PageContainer: pageKey ${ pageKey }`)
+    if (
+      process.env.NODE_ENV !== "production" &&
+      typeof window !== "undefined"
+    ) {
+      console.info(`statinamic: PageContainer: pageKey '${ pageKey }'`)
     }
     const page = props.pages[pageKey]
     if (!page) {
@@ -54,7 +59,7 @@ export default class PageContainer extends Component {
         return
       }
 
-      const Layout = this.getLayout(props, page)
+      const Layout = this.getLayout(props, context, page)
       if (page.type !== undefined && !Layout) {
         console.error(
           "statinamic: PageContainer: " +
@@ -66,8 +71,8 @@ export default class PageContainer extends Component {
     }
   }
 
-  getLayout(props, page) {
-    return props.layouts[page.type || props.defaultLayout]
+  getLayout(props, context, page) {
+    return context.layouts[page.type || props.defaultLayout]
   }
 
   render() {
@@ -87,9 +92,8 @@ export default class PageContainer extends Component {
       return null
     }
 
-    const PageLoading = this.props.layouts.PageLoading
-    const PageError = this.props.layouts.PageError
-    const Layout = this.getLayout(this.props, page)
+    const { PageLoading, PageError } = this.context.layouts
+    const Layout = this.getLayout(this.props, this.context, page)
 
     return (
       <div>

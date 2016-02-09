@@ -2,13 +2,10 @@
 title: How to use configure Statinamic
 ---
 
-There is not too much to say for now.
-You can use the ``package.json`` file to store most static data you want to like
-some tracker id (eg: Google Analytics, Disqus...).
+The simplest way to configure Statinamic is by using your ``package.json`` to
+store your preferences.
 
-This is a documentation for the specific section for Statinamic core.
-
-For now you will just have a commented json
+Here is a commented ``package.json`` with only the interesting parts.
 
 ```js
 {
@@ -32,11 +29,19 @@ For now you will just have a commented json
 
   // Statinamic core section (default values)
   "statinamic": {
+    // current working directory
+    // you should not need to specify this, but who knows what you will do with
+    // it :D
+    "cwd": process.cwd(),
+
     // Where your markdown files are
     "source": "content",
 
     // Where to put the build files
     "destination": "dist",
+
+    // where you have your static assets
+    "assets": "assets",
 
     // CNAME file generated from `homepage` hostname in the destination folder
     // use `true` to enable
@@ -44,12 +49,39 @@ For now you will just have a commented json
 
     // .nojekyll file to avoid GitHub wasting time to run his default engine
     //   (and at the same time, allow filename prefixed by an `_`)
-    "nojekyll": true
+    "nojekyll": true,
+
+    // host for development
+    devHost: "0.0.0.0",
+
+    // port for development
+    devPort: "3000",
+
+    // flag to add information during development
+    verbose: false,
   },
 
-  // That's because es5 is not enough, right?
+  // That's because es5 is not enough
   "babel": {
-    //...
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "env": {
+      // this section is very important and must be (for now) defined here
+      "statinamic": {
+        "plugins": [
+          [
+            "babel-plugin-webpack-loaders",
+            {
+              "config": "./scripts/webpack.config.babel.js",
+              "verbose": false
+            }
+          ]
+        ]
+      }
+    }
   },
 
   // linting prevent errors
@@ -62,3 +94,9 @@ For now you will just have a commented json
   }
 }
 ```
+
+## Notes
+
+- You can use the ``package.json`` file to store most static data you want to like
+  some tracker id (eg: Google Analytics, Disqus...).
+- You can override every option as a cli flag/option (eg: ``--dev-port=4000``).

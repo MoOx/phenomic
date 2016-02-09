@@ -1,3 +1,4 @@
+import { join } from "path"
 import express, { Router } from "express"
 import webpack from "webpack"
 import webpackNanoLogs from "webpack-nano-logs"
@@ -9,18 +10,22 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import logger from "nano-logger"
 
-import htmlMetas from "../html-metas"
+import filenameToUrl from "../filename-to-url"
+import urlAsHtml from "../static/to-html/url-as-html"
+import * as pagesActions from "../redux/modules/pages"
+// import htmlMetas from "../html-metas"
 
 const log = logger("statinamic/builder/server")
 
-export default (config, options = {}) => {
+export default (webpackConfig, options = {}) => {
   options = {
     open: true,
     noDevEntriesTest: /^tests/,
     ...options,
   }
+  const { config } = options
 
-  if (!options.baseUrl) {
+  if (!config.baseUrl) {
     throw new Error(
       "You must provide a 'baseUrl' object that contains the following keys:" +
       "'href', 'port', 'hostname'. See https://nodejs.org/api/url.html"
@@ -32,24 +37,23 @@ export default (config, options = {}) => {
   ]
 
   const devConfig = {
-    ...config,
-    debug: true,
-    watch: true,
-    colors: true,
-    progress: true,
+    ...webpackConfig,
+    // debug: true,
+    // watch: true,
+    // colors: true,
     entry: {
       // add devEntries
-      ...Object.keys(config.entry)
+      ...Object.keys(webpackConfig.entry)
         .reduce(
           (acc, key) => {
             // some entries do not need extra stuff
             acc[key] = key.match(options.noDevEntriesTest) !== null
-              ? config.entry[key]
+              ? webpackConfig.entry[key]
               : [
                 ...devEntries,
-                ...Array.isArray(config.entry[key])
-                  ? config.entry[key]
-                  : [ config.entry[key] ],
+                ...Array.isArray(webpackConfig.entry[key])
+                  ? webpackConfig.entry[key]
+                  : [ webpackConfig.entry[key] ],
               ]
             return acc
           },
@@ -57,7 +61,7 @@ export default (config, options = {}) => {
         ),
     },
     plugins: [
-      ...(config.plugins || []),
+      ...(webpackConfig.plugins || []),
       ...(options.plugins || []),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
@@ -66,63 +70,108 @@ export default (config, options = {}) => {
       new WebpackErrorNotificationPlugin(),
     ],
     eslint: {
-      ...config.eslint,
+      ...webpackConfig.eslint,
       emitWarning: true,
     },
   }
 
-  const router = Router()
-  router.use(historyFallbackMiddleware())
-
-  router.get("*", express.static(config.output.path))
-
-  // hardcoded entry point
-  router.get("/index.html", (req, res) => {
-    res.setHeader("Content-Type", "text/html")
-    res.end(
-`<!doctype html>
-<html lang="en">
-<head>
-  ${ htmlMetas().join("\n  ") }
-</head>
-<body>
-  <div id="statinamic">...</div>
-  <script src="${ options.baseUrl.path }statinamic-client.js"></script>
-</body>
-</html>`
-    )
-  })
-
   const server = express()
+
+  // webpack requirements
   const webpackCompiler = webpack(devConfig)
   server.use(webpackDevMiddleware(webpackCompiler, {
-    publicPath: config.output.publicPath,
-    stats: {
-      colors: true,
-      // hide all chunk dependencies because it's unreadable
-      chunkModules: false,
-      // noize
-      assets: false,
-    },
-    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+    noInfo: !config.verbose,
   }))
-  server.use(options.baseUrl.pathname, router)
-  // Serve staticAssets on development
-  if (options.staticAssets !== undefined) {
-    const staticAssets = options.staticAssets
-    const route = options.baseUrl.pathname + staticAssets.route
-    server.use(route, express.static(staticAssets.path))
+
+  // routing for the part we want (starting to the baseUrl pathname)
+  const router = Router()
+  server.use(config.baseUrl.pathname, router)
+
+  // fallback to index for unknow pages?
+  router.use(historyFallbackMiddleware())
+
+  // webpack static ressources
+  router.get("*", express.static(webpackConfig.output.path))
+
+  // user static assets
+  if (config.assets !== undefined) {
+    server.use(
+      config.baseUrl.pathname + config.assets.route,
+      express.static(config.assets.path)
+    )
   }
+
+  // prerender pages when possible
+  const memoryFs = webpackCompiler.outputFileSystem
+  router.get("*", (req, res, next) => {
+    //                                       ↓ remove first slash
+    const uri = filenameToUrl(req.originalUrl.slice(1))
+    const relativeUri = req.originalUrl.replace(config.baseUrl.pathname, "")
+    const filepath = join(
+      config.cwd, config.destination, relativeUri, "index.json"
+    )
+
+    let fileContent
+    try {
+      fileContent = memoryFs.readFileSync(filepath)
+    }
+    catch (err) {
+      // this is probably not a page
+      console.log(`'${ filepath }' doesn't like a dynamic page (no data).`)
+    }
+
+    if (!fileContent) {
+      next()
+    }
+    else {
+      log(
+        `Using '${ filepath }' to pre-render '${ req.originalUrl }' (${ uri })`
+      )
+      const data = JSON.parse(fileContent.toString())
+      options.store.dispatch({
+        type: pagesActions.SET,
+        page: uri,
+        response: {
+          data,
+        },
+      })
+      urlAsHtml(uri, {
+        layouts: options.layouts,
+        metadata: options.metadata,
+        routes: options.routes,
+        store: options.store,
+
+        baseUrl: config.baseUrl,
+        css: !config.dev,
+      })
+      .then(
+        (html) => {
+          res.setHeader("Content-Type", "text/html")
+          res.end(html)
+        }
+      )
+      .catch((err) => {
+        console.log(err)
+        res.setHeader("Content-Type", "text/plain")
+        res.end(err.toString())
+      })
+    }
+  })
+
+  // HMR
   server.use(webpackHotMiddleware(webpackCompiler))
-  server.listen(options.baseUrl.port, options.baseUrl.hostname, (err) => {
+
+  // THAT'S IT
+  server.listen(config.baseUrl.port, config.baseUrl.hostname, (err) => {
     if (err) {
       log(err)
 
       return
     }
-    log(`Dev server started on ${ options.baseUrl.href }`)
+    log(`Dev server started on ${ config.baseUrl.href }`)
     if (options.open) {
-      opn(`${ options.baseUrl.href }`)
+      opn(`${ config.baseUrl.href }`)
     }
   })
 }

@@ -38,13 +38,6 @@ test("should contain 'pathname' in 'baseUrl'", (t) => {
   )
 })
 
-test("should return an 'consts' object in the config", (t) => {
-  t.is(
-    typeof config.consts,
-    "object"
-  )
-})
-
 test("should change case of 'statinamic' object", (t) => {
   t.is(
     config.testTest,

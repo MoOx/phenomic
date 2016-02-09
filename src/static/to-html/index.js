@@ -21,7 +21,7 @@ export function setPageData(url, uri, pagesData, store) {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
-      page: uri,
+      page: filenameToUrl(uri),
       response: {
         data: pagesData[url],
       },
@@ -34,7 +34,7 @@ export function forgetPageData(uri, store) {
   // pages
   store.dispatch({
     type: pagesActions.FORGET,
-    page: uri,
+    page: filenameToUrl(uri),
   })
 }
 
@@ -62,57 +62,65 @@ export function writeAllHTMLFiles({
   baseUrl,
   destination,
   pagesData,
-  store,
+
+  layouts,
   metadata,
   routes,
+  store,
+
   setPageData,
-  writeHTMLFile,
   forgetPageData,
+  writeHTMLFile,
 }, testing) {
   // create all html files
   return Promise.all(
     urls.map((url) => {
-      const uri = filenameToUrl(path.join(
-        // remove / surrounding baseUrl path
-        baseUrl.path.replace(/^\//, "").replace(/\/$/, ""),
-        url
-      ))
+      const uri = filenameToUrl(path.join(baseUrl.path, url))
       const basename = path.join(destination, url)
 
       setPageData(url, uri, pagesData, store)
       return (
         urlAsHtml(uri, {
+          layouts,
+          metadata,
           routes,
           store,
+
           baseUrl,
-          metadata,
+          css: true,
         }, testing)
         .then((html) => writeHTMLFile(basename, html))
-        .then(() => forgetPageData(uri, store))
+        .then(() => forgetPageData(url, store))
       )
     })
   )
 }
 
 export default ({
+  pagesData,
   urls,
+
   baseUrl,
   destination,
-  pagesData,
+
+  layouts,
+  metadata,
   routes,
   store,
-  metadata,
 }, testing) => (
   writeAllHTMLFiles({
     urls,
     baseUrl,
     destination,
     pagesData,
+
+    layouts,
+    metadata,
     routes,
     store,
-    metadata,
+
     setPageData,
-    writeHTMLFile,
     forgetPageData,
+    writeHTMLFile,
   }, testing)
 )

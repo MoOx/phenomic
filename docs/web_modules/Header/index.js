@@ -4,7 +4,8 @@ import cx from "classnames"
 
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
-import StatinamicLogoSVG from "../../../logo/statinamic-text.svg"
+import SVG from "react-svg-inline"
+import statinamicLogoSVG from "../../../logo/statinamic-text.svg"
 
 export default class Header extends Component {
 
@@ -12,7 +13,7 @@ export default class Header extends Component {
     return (
       <header className={ styles.header }>
         <div className={ styles.logo }>
-          <StatinamicLogoSVG width="100%" height="auto" />
+          <SVG svg={ statinamicLogoSVG } width="100%" height="auto" />
         </div>
         <nav className={ styles.nav }>
           <Link

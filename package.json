@@ -54,12 +54,14 @@
     "webpack-nano-logs": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "^0.9.1",
+    "ava": "^0.11.0",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
+    "babel-plugin-webpack-loaders": "^0.2.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "coveralls": "^2.11.6",
     "eslint": "^1.7.2",
@@ -76,13 +78,15 @@
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
     "react-dom": "^0.14.0",
+    "react-element-to-jsx-string": "^2.4.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
-    "react-router": "^2.0.0-rc5",
+    "react-router": "^2.0.0-rc6",
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
+    "redux-thunk": "^1.0.3",
     "stylelint": "^4.0.0",
     "stylelint-config-standard": "^2.0.0"
   },
@@ -91,6 +95,7 @@
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
+    "babel-plugin-webpack-loaders": "^0.2.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-1": "^6.3.13",
@@ -111,12 +116,13 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.7.0",
     "postcss-reporter": "^1.3.0",
+    "raw-loader": "^0.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
-    "react-router": "^2.0.0-rc5",
-    "react-svg-loader": "0.0.6",
+    "react-router": "^2.0.0-rc6",
+    "react-svg-inline": "^1.0.1",
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
@@ -153,22 +159,16 @@
   },
   "babel": {
     "presets": [
-      "react",
-      "es2015",
-      "stage-1"
+      "babel-preset-react",
+      "babel-preset-es2015",
+      "babel-preset-stage-1"
     ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react"
-    ],
-    "globals": {
-      "__BASE_URL__": true,
-      "__DEV__": true,
-      "__PROD__": true,
-      "__DEVTOOLS__": true
-    }
+    ]
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

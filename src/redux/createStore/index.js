@@ -30,7 +30,7 @@ export default function(
 
   let finalCreateStore
 
-  if (__DEVTOOLS__) {
+  if (process.env.REDUX_DEVTOOLS && process.env.CLIENT) {
     const devTools = require("../../client/DevTools").default.instrument
     const { persistState } = require("redux-devtools")
 

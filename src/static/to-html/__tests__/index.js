@@ -49,7 +49,7 @@ test("writeAllHTMLFiles", (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas("static", { baseUrl: { path: "/" } }).join("\n  ") }
+  ${ htmlMetas({ baseUrl: { path: "/" }, css: true }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
@@ -60,6 +60,7 @@ test("writeAllHTMLFiles", (t) => {
     </div>
   </div>
   <script>
+    window.__COLLECTION__ = [];
     window.__INITIAL_STATE__ = {
       "pages": {}
     }
