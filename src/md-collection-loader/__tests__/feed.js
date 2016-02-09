@@ -4,36 +4,35 @@ import feed from "../feed"
 
 test("statinamic/lib/md-collection-loader feed helper", (t) => {
 
-  t.is(
-    feed({
-      feedOptions: {
-        title: "test",
-        site_url: "http://statinamic.test/",
+  const feedXML = feed({
+    feedOptions: {
+      title: "test",
+      site_url: "http://statinamic.test/",
+    },
+    destination: "feed.xml",
+    collection: [
+      {
+        title: "One",
+        date: "2015-01-01",
+        description: "<strong>One</strong>",
+        __filename: "page/one.md",
+        __url: "/page/one/",
       },
-      destination: "feed.xml",
-      collection: [
-        {
-          title: "One",
-          date: "2015-01-01",
-          description: "<strong>One</strong>",
-          __filename: "page/one.md",
-          __url: "/page/one/",
-        },
-        {
-          title: "Two",
-          date: "2015-12-31",
-          description: "<strong>Two</strong>",
-          __filename: "page/two.md",
-          __url: "/page/two/",
-        },
-      ],
+      {
+        title: "Two",
+        date: "2015-12-31",
+        description: "<strong>Two</strong>",
+        __filename: "page/two.md",
+        __url: "/page/two/",
+      },
+    ],
 
-      // for testing
-      xmlOptions: { indent: "  " },
-    }),
+    // for testing
+    xmlOptions: { indent: "  " },
+  })
 
-    /* eslint-disable max-len */
-    `<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  /* eslint-disable max-len */
+  const feedXMLexpected = `<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title><![CDATA[test]]></title>
     <description><![CDATA[test]]></description>
@@ -56,7 +55,11 @@ test("statinamic/lib/md-collection-loader feed helper", (t) => {
       <pubDate>Thu, 31 Dec 2015 00:00:00 GMT</pubDate>
     </item>
   </channel>
-</rss>`,
+</rss>`
+
+  t.is(
+    feedXML,
+    feedXMLexpected,
     "should generate a feed from a collection"
   )
 })
