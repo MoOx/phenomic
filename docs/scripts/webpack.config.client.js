@@ -1,5 +1,6 @@
 import path from "path"
 
+import config from "./config.js"
 import webpackConfig from "./webpack.config.babel.js"
 import pkg from "../package.json"
 
@@ -21,8 +22,11 @@ export default {
           // hack for babel config to undo babel-plugin-webpack-loaders effect
           JSON.stringify({
             ...pkg.babel,
-            // add hot loading/error reporting
-            presets: [ ...pkg.babel.presets, "babel-preset-react-hmre" ],
+            // add hot loading/error reporting for development
+            presets: [
+              ...pkg.babel.presets,
+              ...config.dev && [ "babel-preset-react-hmre" ],
+            ],
             // forget "statinamic" env
             env: { ...pkg.babel.env, "statinamic": undefined },
             // prevent babel going to use your original config
