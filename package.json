@@ -139,7 +139,7 @@
     "prebabelify": "rimraf lib",
     "babelify": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
-    "predocs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json",
+    "predocs": "lnfs src docs/node_modules/statinamic/lib && lnfs package.json docs/node_modules/statinamic/package.json && lnfs node_modules/react docs/node_modules/react && lnfs node_modules/react-helmet docs/node_modules/react-helmet && lnfs node_modules/webpack docs/node_modules/webpack",
     "docs": "cd docs && npm install && npm test",
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
