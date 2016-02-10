@@ -125,6 +125,10 @@ export default (webpackConfig, options = {}) => {
       next()
     }
     else {
+      if (!req.originalUrl.endsWith("/")) {
+        res.redirect(req.originalUrl + "/")
+      }
+
       log(
         `Using '${ filepath }' to pre-render '${ req.originalUrl }' (${ uri })`
       )

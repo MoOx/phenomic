@@ -31,6 +31,10 @@ during development and static build should be faster than before.
   ([#95](https://github.com/MoOx/statinamic/pull/95))
 - Changed: ``redux`` as been upgraded to v4.x.
   ([#91](https://github.com/MoOx/statinamic/pull/91))
+- Fixed: Dev server now redirects pages without trailing slash
+  (eg: You call ``http://.../some/thing``; will redirect to
+  ``http://.../some/thing/``)
+  ([#22](https://github.com/MoOx/statinamic/issues/22))
 - Added: ``assets`` option to add static assets such as images, video
   ([#94](https://github.com/MoOx/statinamic/pull/94))
 - Added: ``statinamic`` section in ``package.json`` can be used to define core
