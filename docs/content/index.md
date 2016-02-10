@@ -58,11 +58,6 @@ The way Statinamic is done helps you to customize everything:
 choose your own Markdown engine (with your own plugins), your CSS preprocessor,
 etc, thanks to the flexibility of Webpack and its loaders.
 
-
-## Built with
-
-![React](assets/react.png)
-
 ---
 
 <center style="margin: 2rem;">
@@ -70,3 +65,11 @@ etc, thanks to the flexibility of Webpack and its loaders.
     Let's try this now!
   </a>
 </center>
+
+---
+
+Built with
+<a href="https://facebook.github.io/react/">
+  <img alt="" src="assets/react.svg" width="16" height="16" />
+  React
+</a>.

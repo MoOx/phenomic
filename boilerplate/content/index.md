@@ -11,6 +11,8 @@ the documentation :
 * [Usage](http://moox.io/statinamic/docs/usage/)
 * [FAQ](http://moox.io/statinamic/docs/faq/)
 
-Built with React
-
-![React](assets/react.png)
+Built with
+<a href="https://facebook.github.io/react/">
+  <img alt="" src="assets/react.svg" width="16" height="16" />
+  React
+</a>.
