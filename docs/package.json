@@ -56,7 +56,7 @@
     "start": "BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
     "build": "BABEL_ENV=statinamic babel-node scripts/build --static --production",
     "lint:js": "eslint --fix .",
-    "lint:css": "stylelint 'web_modules/**/*.css'",
+    "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "pretest": "npm run lint",
     "test": "npm run build"
