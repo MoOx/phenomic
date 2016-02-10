@@ -1,12 +1,20 @@
 import npmInstallPackage from "npm-install-package"
 
-import { peerDependencies as peerDeps } from "../../package.json"
+import {
+  peerDependencies as peerDeps,
+  optionalPeerDependencies as opPeerDeps,
+} from "../../package.json"
+
+const tobeInstalledDeps = {
+  ...peerDeps,
+  ...opPeerDeps,
+}
 
 console.log("Installing required dependencies...")
-const depsMap = Object.keys(peerDeps)
+const depsMap = Object.keys(tobeInstalledDeps)
   .reduce(
     (deps, dep) => {
-      deps.push(`${ dep }@${ peerDeps[dep] }`)
+      deps.push(`${ dep }@${ tobeInstalledDeps[dep] }`)
       return deps
     },
     []

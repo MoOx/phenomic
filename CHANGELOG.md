@@ -10,6 +10,8 @@ during development and static build should be faster than before.
 - Removed: All injected constantes like ``__DEV__`` and ``__PROD__`` have been
   replaced by ``process.env.*`` call to make code more universal.
   (eg: ``if (__DEV__)`` => ``if (process.env.NODE_ENV !== "production")``).
+- Changed: Move opinionated deps to optionalPeerDependencies
+  ([#99](https://github.com/MoOx/statinamic/issues/99))
 - Changed: the static build does not require a 3 steps process anymore. No more
   ``statinamic-static.js`` script.
   Every webpack transformations are now handled via
