@@ -41,8 +41,8 @@ You can copy the following `package.json` content.
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
   "scripts": {
-    "start": "babel-node scripts/build --server --open --dev",
-    "build": "babel-node scripts/build --static --production"
+    "start": "cross-env BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
+    "build": "cross-env BABEL_ENV=statinamic babel-node scripts/build --static --production"
   },
   "statinamic": {
     "CNAME": true

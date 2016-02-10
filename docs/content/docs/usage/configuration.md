@@ -23,8 +23,8 @@ Here is a commented ``package.json`` with only the interesting parts.
   // here is the script part, which the ones related to Statinamic
   // you can add more like linting and stuff like that :)
   "scripts": {
-    "start": "babel-node scripts/build --server --open --dev",
-    "build": "babel-node scripts/build --static --production"
+    "start": "cross-env BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
+    "build": "cross-env BABEL_ENV=statinamic babel-node scripts/build --static --production"
   },
 
   // Statinamic core section (default values)
