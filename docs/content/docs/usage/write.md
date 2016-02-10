@@ -24,6 +24,11 @@ layout: "MyComponent" # name referenced in `web_modules/layouts/index.js`
 ...
 ```
 
+For the ``title``, note that you can additionally use a ``metaTitle`` field to
+specify a alternative ``<title>``.
+This allow you to have a use a ``title`` (``<h1>``?) for the page ``<body>``,
+and ``metaTitle`` for the meta ``<title>`` of the page ``<head>``.
+
 **For `layout`, please read [Layouts](../layouts/) documentation.**
 
 ## Content

@@ -73,6 +73,10 @@ process:
 - Added: boilerplate includes [stylelint](http://stylelint.io/) and
   lint CSS with a standard configuration.
   ([#86](https://github.com/MoOx/statinamic/issues/86))
+- Added: boilerplate now support a new field from markdown files to specify the
+  ``<title>`` tag without affecting the body page title (``<h1>``)
+  (See _Writing_ section of the documentation for more information).
+  ([#76](https://github.com/MoOx/statinamic/issues/76))
 
 # 0.6.1 - 2016-01-19
 

@@ -40,13 +40,15 @@ export default class Page extends Component {
       `Your page '${ __filename }' needs a title`
     )
 
+    const metaTitle = head.metaTitle ? head.metaTitle : head.title
+
     const meta = [
-      { property: "og:title", content: head.title },
       { property: "og:type", content: "article" },
+      { property: "og:title", content: metaTitle },
       { property: "og:url", content: __url },
       // { property: "og:description", content: pageDescription(body) },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: head.title },
+      { name: "twitter:title", content: metaTitle },
       { name: "twitter:creator", content: `@${ pkg.twitter }` },
       // { name: "twitter:description", content: pageDescription(body) },
     ]
@@ -54,7 +56,7 @@ export default class Page extends Component {
     return (
       <div>
         <Helmet
-          title={ head.title }
+          title={ metaTitle }
           meta={ meta }
         />
 

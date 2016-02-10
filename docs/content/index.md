@@ -1,8 +1,9 @@
 ---
+metaTitle: "Statinamic, a static website generator to create dynamic website"
 title: ""
 ---
 
-> A static website generator to create dynamic website using React components
+> A static website generator to create dynamic website (using React components).
 
 **Note that _Statinamic_ is at an early stage**, so do not hesitate to :
 
