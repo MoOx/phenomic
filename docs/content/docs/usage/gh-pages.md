@@ -14,26 +14,22 @@ You can use your own method, using something like
 
 ---
 
-The following instructions show you how to do it with `git-directory-deploy`,
+The following instructions show you how to do it with `gh-pages`,
 but it should not be very different other solutions.
 
-This script is pretty solid, works on Travis-CI, play well with unstashed
-changes and handle errors pretty nicely.
+This package works on Travis-CI.
 
 ### Get the dependency
 
-The following instructions will get the `deploy.sh` script for you, at the right
-place
-
 ```console
-$ cd scripts
-$ wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh
-$ chmod +x deploy.sh
-$ cd ..
+$ npm i -D gh-pages
 ```
 
-By default, this script will deploy the `dist/` folder on your `gh-pages`
-branch.
+To learn a thing or two, try
+
+```console
+$ ./node_modules/.bin/gh-pages --help
+```
 
 ### Add a command to deploy
 
@@ -43,7 +39,7 @@ In your `package.json`, add the following items under the `scripts` section
 {
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "gh-pages"
   }
 }
 ```
@@ -90,16 +86,6 @@ deploy:
   on:
     branch: master
     node: '5'
-
-env:
-  global:
-    # for ./scripts/deploy.sh
-    # AJUST THE REPO URL HERE
-    # BECAREUL, KEEP .git AT THE END
-    - GIT_DEPLOY_REPO=https://$GH_TOKEN@github.com/YOU/YOUR_REPO.git
-    - GIT_DEPLOY_DIR=dist
-    # GH_TOKEN
-    # now we will have to add a github token, see doc below
 ```
 
 ##### Generate a new token
@@ -110,11 +96,35 @@ With only `repo` or `public_repo` scopes.
 
 ##### Copy and encrypt this new token
 
-*Note: replace `you/your_repo` and `your_token`.*
+*Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
 ```console
-$ sudo gem install travis
-$ travis encrypt --add --repo you/your_repo GH_TOKEN=your_token
+$ npm i -g travis-encrypt
+$ travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
+```
+
+## Create a script
+
+Here is an example of a small script that will use gh-pages.
+You can place it in ``./scripts/deploy.sh``.
+Please read and adjust it carefully.
+
+```sh
+#!/usr/bin/env bash
+
+if [ "$TRAVIS" = "true" ]
+then
+  # git need this, on Travis-CI nobody is defined
+  git config --global user.email "gh-pages@localhost"
+  git config --global user.name "npm gh-pages"
+fi
+
+./node_modules/.bin/gh-pages \
+  # ADJUST YOUR REMOTE HERE
+  --repo https://$GITHUB_TOKEN@github.com/{YOU/YOUR_REPO}.git \
+  # TO HIDE YOUR $GITHUB_TOKEN!
+  # this is really important
+  --silent
 ```
 
 ##### Add a `test` script in your `package.json` `scripts` section
