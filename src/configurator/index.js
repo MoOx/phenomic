@@ -12,7 +12,7 @@ export default function config(pkg = {}, argv = process.argv) {
     cwd: process.cwd(),
     source: "content",
     destination: "dist",
-    assets: "assets",
+    assets: undefined,
     CNAME: false,
     nojekyll: true,
     devHost: "0.0.0.0",
