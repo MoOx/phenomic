@@ -1,5 +1,6 @@
 import test from "ava"; import "babel-core/register"
 
+import { join } from "path"
 import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
 import htmlMetas from "../../../html-metas"
 
@@ -70,7 +71,7 @@ test("writeAllHTMLFiles", (t) => {
 
 </html>`
       )
-      t.is(basename, "destination/test-url")
+      t.is(basename, join("destination/test-url"))
       t.is(
         beautifyHTML(html),
         expectedHTML
