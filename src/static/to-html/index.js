@@ -62,6 +62,7 @@ export function writeAllHTMLFiles({
   baseUrl,
   destination,
   pagesData,
+  assetsFiles,
 
   layouts,
   metadata,
@@ -87,7 +88,7 @@ export function writeAllHTMLFiles({
           store,
 
           baseUrl,
-          css: true,
+          assetsFiles,
         }, testing)
         .then((html) => writeHTMLFile(basename, html))
         .then(() => forgetPageData(url, store))
@@ -98,6 +99,7 @@ export function writeAllHTMLFiles({
 
 export default ({
   pagesData,
+  assetsFiles,
   urls,
 
   baseUrl,
@@ -113,6 +115,7 @@ export default ({
     baseUrl,
     destination,
     pagesData,
+    assetsFiles,
 
     layouts,
     metadata,

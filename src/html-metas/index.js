@@ -7,10 +7,12 @@ export const defaultMetas = [
 export default ({ baseUrl, css } = {}) => {
   const metas = [ ...defaultMetas ]
 
-  if (css) {
-    metas.push(
-      `<link rel="stylesheet" href="${ baseUrl.path }statinamic-client.css" />`
-    )
+  if (css && Array.isArray(css)) {
+    css.forEach(fileName => {
+      metas.push(
+        `<link rel="stylesheet" href="${ baseUrl.path }${ fileName }" />`
+      )
+    })
   }
 
   return metas

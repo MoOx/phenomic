@@ -20,7 +20,7 @@ export default (url, {
   store,
 
   baseUrl,
-  css,
+  assetsFiles,
 }, testing) => {
   const render = ReactDOMserver[
     !testing
@@ -28,7 +28,11 @@ export default (url, {
     : "renderToStaticMarkup"
   ]
   return new Promise((resolve, reject) => {
-    const defaultMetas = htmlMetas({ baseUrl, css }).join("")
+    const defaultMetas = htmlMetas({
+      baseUrl,
+      css: assetsFiles.css,
+    }).join("")
+
     try {
       match(
         {
@@ -69,6 +73,7 @@ export default (url, {
             )
 
             const headTags = Helmet.rewind()
+
             head = (
               defaultMetas +
               headTags.meta +
@@ -100,7 +105,12 @@ export default (url, {
             )
             // body = ...
           }
-
+          let scriptTags = false
+          if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
+            scriptTags = assetsFiles.js.map(fileName =>
+              <script src={ `${ baseUrl.path }${ fileName }` }></script>
+            )
+          }
           // write htmlString as html files
           return resolve(
             // render html document as simple html
@@ -110,10 +120,7 @@ export default (url, {
                 head,
                 body,
                 script,
-                children: (
-                  <script src={ `${ baseUrl.path }statinamic-client.js` }>
-                  </script>
-                ),
+                children: scriptTags,
               })
             )
           )
