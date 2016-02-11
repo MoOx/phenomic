@@ -108,7 +108,10 @@ export default (url, {
           let scriptTags = false
           if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
             scriptTags = assetsFiles.js.map(fileName =>
-              <script src={ `${ baseUrl.path }${ fileName }` }></script>
+              <script
+                key={ filename }
+                src={ `${ baseUrl.path }${ fileName }` }
+              ></script>
             )
           }
           // write htmlString as html files
