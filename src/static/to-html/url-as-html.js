@@ -109,7 +109,7 @@ export default (url, {
           if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
             scriptTags = assetsFiles.js.map(fileName =>
               <script
-                key={ filename }
+                key={ fileName }
                 src={ `${ baseUrl.path }${ fileName }` }
               ></script>
             )
