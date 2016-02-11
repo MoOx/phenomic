@@ -37,6 +37,9 @@ during development and static build should be faster than before.
   (eg: You call ``http://.../some/thing``; will redirect to
   ``http://.../some/thing/``)
   ([#22](https://github.com/MoOx/statinamic/issues/22))
+- Added: the entire configuration is now inspected so you do not provide
+  unexpected types or unrecognized configuration values.
+  ([#120](https://github.com/MoOx/statinamic/issues/120))
 - Added: ``assets`` option to add static assets such as images, video
   ([#94](https://github.com/MoOx/statinamic/pull/94))
 - Added: ``statinamic`` section in ``package.json`` can be used to define core

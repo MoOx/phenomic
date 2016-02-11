@@ -2,6 +2,7 @@ import path from "path"
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 
+import pkg from "../package.json"
 import config from "./config.js"
 
 export default {
@@ -14,8 +15,8 @@ export default {
             context: path.join(config.cwd, config.source),
             basepath: config.baseUrl.path,
             feedsOptions: {
-              title: config.pkg.name,
-              site_url: config.pkg.homepage,
+              title: pkg.name,
+              site_url: pkg.homepage,
             },
             feeds: {
               "feed.xml": {

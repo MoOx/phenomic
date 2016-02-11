@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "chalk": "^1.1.0",
-    "change-case-keys": "0.0.4",
     "commander": "^2.9.0",
     "connect-history-api-fallback": "^1.1.0",
     "express": "^4.13.3",
