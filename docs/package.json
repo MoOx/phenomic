@@ -54,8 +54,8 @@
     "whatwg-fetch": "^0.9.0"
   },
   "scripts": {
-    "start": "cross-env BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
-    "build": "cross-env BABEL_ENV=statinamic babel-node scripts/build --static --production",
+    "start": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --server --open --dev",
+    "build": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --static --production",
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",

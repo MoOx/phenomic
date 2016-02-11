@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs-extra"
 import color from "chalk"
-import nanoLogger from "nano-logger"
+import debug from "debug"
 
 import webpack from "./webpack"
 import devServer from "./server"
@@ -18,7 +18,7 @@ export default function(options) {
     store,
   } = options
 
-  const log = nanoLogger("statinamic/lib/builder")
+  const log = debug("statinamic:builder")
   // JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
   const destination = path.join(config.cwd, config.destination)

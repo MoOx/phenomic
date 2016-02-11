@@ -8,14 +8,14 @@ import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackErrorNotificationPlugin from "webpack-error-notification"
 
 import opn from "opn"
-import logger from "nano-logger"
+import debug from "debug"
 
 import filenameToUrl from "../filename-to-url"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 // import htmlMetas from "../html-metas"
 
-const log = logger("statinamic/builder/server")
+const log = debug("statinamic:builder:server")
 
 export default (webpackConfig, options = {}) => {
   options = {
@@ -118,7 +118,7 @@ export default (webpackConfig, options = {}) => {
     }
     catch (err) {
       // this is probably not a page
-      console.log(`'${ filepath }' doesn't like a dynamic page (no data).`)
+      log(`'${ filepath }' doesn't like a dynamic page (no data).`)
     }
 
     if (!fileContent) {
@@ -156,7 +156,7 @@ export default (webpackConfig, options = {}) => {
         }
       )
       .catch((err) => {
-        console.log(err)
+        log(err)
         res.setHeader("Content-Type", "text/plain")
         res.end(err.toString())
       })

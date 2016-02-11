@@ -1,3 +1,4 @@
+import debug from "debug"
 import npmInstallPackage from "npm-install-package"
 
 import {
@@ -10,7 +11,10 @@ const tobeInstalledDeps = {
   ...opPeerDeps,
 }
 
-console.log("Installing required dependencies...")
+const log = debug("statinamic:bin:setup")
+
+log("Installing required dependencies...")
+
 const depsMap = Object.keys(tobeInstalledDeps)
   .reduce(
     (deps, dep) => {
@@ -29,6 +33,6 @@ npmInstallPackage(
       throw err
     }
 
-    console.log("Required dependencies successfully installed.")
+    log("Required dependencies successfully installed.")
   }
 )
