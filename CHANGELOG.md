@@ -10,6 +10,8 @@ during development and static build should be faster than before.
 - Removed: All injected constantes like ``__DEV__`` and ``__PROD__`` have been
   replaced by ``process.env.*`` call to make code more universal.
   (eg: ``if (__DEV__)`` => ``if (process.env.NODE_ENV !== "production")``).
+- Changed: remove mkdirp in favor of [fs-extra](https://www.npmjs.org/package/fs-extra)
+  ([#126](https://github.com/MoOx/statinamic/issues/126))
 - Changed: logs are now handled by [debug](https://www.npmjs.org/package/debug)
   ([#124](https://github.com/MoOx/statinamic/issues/124))
 - Changed: Move opinionated deps to optionalPeerDependencies

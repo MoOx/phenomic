@@ -2,8 +2,7 @@ import test from "ava"; import "babel-core/register"
 
 import postBuild from "../postbuild"
 import { join } from "path"
-import { sync as rm } from "rimraf"
-import { sync as mkdir } from "mkdirp"
+import { mkdirsSync, removeSync } from "fs-extra"
 import { readFile } from "fs-promise"
 
 const readOpts = { encoding: "utf8" }
@@ -22,8 +21,8 @@ test("post build nojekyll", async (t) => {
   }
 
   const destination = join(config.cwd, config.destination)
-  rm(destination)
-  mkdir(destination)
+  removeSync(destination)
+  mkdirsSync(destination)
 
   return postBuild(config, [], () => {})
   .then(
@@ -45,8 +44,8 @@ test("post build CNAME", async (t) => {
   }
 
   const destination = join(config.cwd, config.destination)
-  rm(destination)
-  mkdir(destination)
+  removeSync(destination)
+  mkdirsSync(destination)
 
   return postBuild(config, [], () => {})
   .then(
