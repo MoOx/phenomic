@@ -45,7 +45,7 @@ export default {
   output: {
     ...webpackConfig.output,
     libraryTarget: "var",
-    filename: "[name]_[hash].js",
+    filename: "[name].[hash].js",
   },
   entry: {
     "statinamic-client": path.join(__dirname, "index-client"),

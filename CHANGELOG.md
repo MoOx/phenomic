@@ -74,6 +74,7 @@ process:
 - Changed: boilerplate ``Layout`` wrapper is now called ``LayoutContainer``
 - Changed: boilerplate ``static`` npm script has been renamed as ``build`` to
   make the build step easier to find.
+- Changed: webpack entries now use hashed name by default
 - Added: boilerplate includes [cssnext](http://cssnext.io/) instead 2 PostCSS
   plugins.
   ([#87](https://github.com/MoOx/statinamic/issues/87))
