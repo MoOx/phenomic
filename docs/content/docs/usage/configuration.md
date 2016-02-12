@@ -22,9 +22,11 @@ Here is a commented ``package.json`` with only the interesting parts.
 
   // here is the script part, which the ones related to Statinamic
   // you can add more like linting and stuff like that :)
+  // BABEL_ENV is vital and helps run components code universally
+  // DEBUG=statinamic:* is optional (and mainly for development)
   "scripts": {
-    "start": "cross-env BABEL_ENV=statinamic babel-node scripts/build --server --open --dev",
-    "build": "cross-env BABEL_ENV=statinamic babel-node scripts/build --static --production"
+    "start": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --server --open --dev",
+    "build": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --static --production"
   },
 
   // Statinamic core section (default values)
