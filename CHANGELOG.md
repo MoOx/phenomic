@@ -1,3 +1,5 @@
+# 0.7.0 - 2016-02-12
+
 Lot's of changes in the boilerplate (`scripts/*`).
 You should better watch the default boilerplate and grab most of it, then add
 back your original modifications.
