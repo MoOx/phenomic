@@ -1,6 +1,5 @@
-import fs from "fs"
+import fs from "fs-extra"
 import path from "path"
-import mkdirp from "mkdirp"
 
 import debug from "debug"
 
@@ -44,7 +43,7 @@ export function forgetPageData(uri, store) {
 
 export function writeHTMLFile(basename, html) {
   return new Promise((resolve, reject) => {
-    mkdirp(basename, (err) => {
+    fs.mkdirs(basename, (err) => {
       if (err) {
         reject(err)
       }
