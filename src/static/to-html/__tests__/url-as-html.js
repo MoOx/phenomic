@@ -14,6 +14,9 @@ const fixture = {
   routes: testRoutes,
   store: testStore,
   baseUrl: url.parse("http://0.0.0.0:3000/"),
+  assetsFiles: {
+    js: [ "statinamic-client.js" ],
+  },
 }
 
 test("url as html", async (t) => {

@@ -38,11 +38,23 @@ export default function(options) {
       // There is probably a better way to get markdown as json without reading
       // fs, but I am tired
       const pagesData = {}
+      const assetsFiles = {
+        css: [],
+        js: [],
+      }
       const assets = stats.compilation.assets
       Object.keys(assets).forEach((name) => {
         if (name.endsWith("index.json")) {
           const url = filenameToUrl(name)
           pagesData[url] = JSON.parse(assets[name]._value)
+        }
+
+        if (name.endsWith(".js")) {
+          assetsFiles.js.push(name)
+        }
+
+        if (name.endsWith(".css")) {
+          assetsFiles.css.push(name)
         }
       })
 
@@ -53,6 +65,7 @@ export default function(options) {
           ...getMdUrlsFromWebpackStats(stats, config.source),
         ],
         pagesData,
+        assetsFiles,
         layouts,
         metadata,
         routes,

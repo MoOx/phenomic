@@ -59,6 +59,10 @@ export default (webpackConfig, options = {}) => {
           {}
         ),
     },
+    output: {
+      ...webpackConfig.output,
+      filename: "[name].js",
+    },
     plugins: [
       ...(webpackConfig.plugins || []),
       ...(options.plugins || []),
@@ -77,6 +81,7 @@ export default (webpackConfig, options = {}) => {
 
   // webpack requirements
   const webpackCompiler = webpack(devConfig)
+
   server.use(webpackDevMiddleware(webpackCompiler, {
     publicPath: webpackConfig.output.publicPath,
     noInfo: !config.verbose,
@@ -145,7 +150,10 @@ export default (webpackConfig, options = {}) => {
         store: options.store,
 
         baseUrl: config.baseUrl,
-        css: !config.dev,
+        assetsFiles: {
+          js: ["statinamic-client.js"],
+          css: !config.dev,
+        },
       })
       .then(
         (html) => {

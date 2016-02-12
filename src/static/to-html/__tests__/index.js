@@ -35,6 +35,10 @@ test("writeAllHTMLFiles", (t) => {
       "test-url",
     ],
     pagesData: {},
+    assetsFiles: {
+      js: [ "statinamic-client.js" ],
+      css: [ "statinamic-client.css" ],
+    },
     store: testStore,
     routes: testRoutes,
     destination: "destination",
@@ -50,7 +54,9 @@ test("writeAllHTMLFiles", (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { path: "/" }, css: true }).join("\n  ") }
+  ${ htmlMetas({
+    baseUrl: { path: "/" },
+    css: [ "statinamic-client.css" ] }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
