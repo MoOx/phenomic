@@ -1,3 +1,6 @@
+- Changed: better init setup command
+  ([#129](https://github.com/MoOx/statinamic/pull/129))
+
 # 0.7.0 - 2016-02-12
 
 Lot's of changes in the boilerplate (`scripts/*`).
