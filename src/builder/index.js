@@ -26,7 +26,7 @@ export default function(options) {
 
   if (config.static) {
     // Copy static assets to build folder
-    if (config.assets !== undefined) {
+    if (config.assets) {
       const copyDest = path.join(destination, config.assets.route)
       fs.copySync(config.assets.path, copyDest)
       log(color.green("✓ Static assets: copy static assets completed"))

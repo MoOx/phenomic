@@ -103,7 +103,7 @@ export default function config(pkg = {}, argv = process.argv) {
   config.baseUrl = { ... url.parse(url.format(config.baseUrl)) }
 
   // Prepare config.assets path and route
-  if (config.assets !== undefined) {
+  if (config.assets) {
 
     // normalize simple string options
     if (typeof config.assets === "string") {
