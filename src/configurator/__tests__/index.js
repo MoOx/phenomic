@@ -62,7 +62,6 @@ test("should allow to override some default values", (t) => {
 })
 
 test("should warn if config is invalid", (t) => {
-
   t.throws(
     () => {
       configurator({
@@ -76,11 +75,61 @@ test("should warn if config is invalid", (t) => {
 })
 
 test("should warn if config is invalid", (t) => {
-
   t.throws(
     () => {
       configurator({}, [ "--production" ])
     },
     (error) => error.message.includes("Your package.json require a 'homepage'")
+  )
+})
+
+test("should accept string for 'asset' option", (t) => {
+  const config = configurator({
+    statinamic: {
+      "assets": "AsSeTs",
+    },
+  })
+  t.same(
+    config.assets,
+    {
+      path: join(process.cwd(), config.source, "AsSeTs"),
+      route:"AsSeTs",
+    }
+  )
+})
+
+test("should accept true for 'asset' option", (t) => {
+  const config = configurator({
+    statinamic: {
+      "assets": true,
+    },
+  })
+  t.same(
+    config.assets,
+    {
+      path: join(process.cwd(), config.source, "assets"),
+      route:"assets",
+    }
+  )
+})
+
+test("should not accept false for 'asset' option", (t) => {
+  const config = configurator({ statinamic: { "assets": false } })
+  t.is(config.assets, false)
+})
+
+test("should not accept null for 'asset' option", (t) => {
+  const config = configurator({ statinamic: { "assets": null } })
+  t.is(config.assets, null)
+})
+
+test("should accept object for 'asset' option", (t) => {
+  t.throws(
+    () => {
+      configurator({ statinamic: { assets: { } } })
+    },
+    (error) => error.message.includes(
+      "You provided an object for 'assets' option."
+    )
   )
 })

@@ -26,7 +26,7 @@ const fieldTypes = {
   "cwd": "string",
   "source": "string",
   "destination": "string",
-  "assets": "string",
+  "assets": true, // accept object, boolean, falsy or string values
   "CNAME": "boolean",
   "nojekyll": "boolean",
   "devHost": "string",
@@ -48,7 +48,10 @@ export default function config(pkg = {}, argv = process.argv) {
         `Unknow option '${ key }'.`
       )
     }
-    else if (fieldTypes[key] !== typeof userConfig[key]) {
+    else if (
+      fieldTypes[key] !== true &&
+      fieldTypes[key] !== typeof userConfig[key]
+    ) {
       errors.push(
         `Wrong type for '${ key }': expected '${ fieldTypes[key] }', ` +
         `got '${ typeof userConfig[key] }'.`
@@ -106,25 +109,53 @@ export default function config(pkg = {}, argv = process.argv) {
   if (config.assets) {
 
     // normalize simple string options
-    if (typeof config.assets === "string") {
-      config.assets = {
-        path: config.assets,
-        route: config.assets,
-      }
+    if (typeof config.assets === "function") {
+      errors.push(
+        "You provided an function for 'assets' option." +
+        "This option accept a boolean value, a string, or an object."
+      )
     }
+    else if (
+        typeof config.assets === "object" &&
+        (
+          typeof config.assets.path !== "string" ||
+          typeof config.assets.route !== "string"
+        )
+    ) {
+      errors.push(
+        "You provided an object for 'assets' option." +
+        "You need to provide 2 keys: " +
+        "'route' (string) and 'path' (string)." +
+        "\n" +
+        "You provided the following keys: " +
+        Object.keys(config.assets).map(
+          (k) => `'${ k }' (${ typeof config.assets[k] })`
+        )
+      )
+    }
+    else {
+      if (typeof config.assets === "string") {
+        config.assets = {
+          path: config.assets,
+          route: config.assets,
+        }
+      }
+      else if (typeof config.assets === "boolean") {
+        // === true
+        config.assets = {
+          path: defaultOptions.assets,
+          route: defaultOptions.assets,
+        }
+      }
 
-    // adjust path and validate
-    if (config.assets.path && config.assets.route) {
+      // adjust path and validate
       config.assets = {
         path: join(config.cwd, config.source, config.assets.path),
         route: config.assets.route,
       }
-    }
-    else {
-      errors.push(
-        "'assets' should be a string, or an object with 2 keys: " +
-        "'path' and 'route'"
-      )
+
+      // TODO test folder
+      // https://github.com/MoOx/statinamic/issues/121
     }
   }
 
