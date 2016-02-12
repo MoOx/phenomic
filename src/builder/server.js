@@ -1,7 +1,6 @@
 import { join } from "path"
 import express, { Router } from "express"
 import webpack from "webpack"
-import webpackNanoLogs from "webpack-nano-logs"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
 import historyFallbackMiddleware from "connect-history-api-fallback"
@@ -66,7 +65,6 @@ export default (webpackConfig, options = {}) => {
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
-      webpackNanoLogs,
       new WebpackErrorNotificationPlugin(),
     ],
     eslint: {
