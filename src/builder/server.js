@@ -59,10 +59,6 @@ export default (webpackConfig, options = {}) => {
           {}
         ),
     },
-    output: {
-      ...webpackConfig.output,
-      filename: "[name].js",
-    },
     plugins: [
       ...(webpackConfig.plugins || []),
       ...(options.plugins || []),
@@ -86,6 +82,14 @@ export default (webpackConfig, options = {}) => {
     publicPath: webpackConfig.output.publicPath,
     noInfo: !config.verbose,
   }))
+
+  let entries = []
+  webpackCompiler.plugin("done", function(stats) {
+    const namedChunks = stats.compilation.namedChunks
+    Object.keys(namedChunks).forEach((chunkName) => {
+      entries = [ ...entries, namedChunks[chunkName].files ]
+    })
+  })
 
   // routing for the part we want (starting to the baseUrl pathname)
   const router = Router()
@@ -143,6 +147,7 @@ export default (webpackConfig, options = {}) => {
           data,
         },
       })
+
       urlAsHtml(uri, {
         layouts: options.layouts,
         metadata: options.metadata,
@@ -151,7 +156,7 @@ export default (webpackConfig, options = {}) => {
 
         baseUrl: config.baseUrl,
         assetsFiles: {
-          js: ["statinamic-client.js"],
+          js: entries,
           css: !config.dev,
         },
       })
