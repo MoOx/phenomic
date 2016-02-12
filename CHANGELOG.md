@@ -66,6 +66,8 @@ process:
 
 - Removed: boilerplate ``scripts/index-static.js`` (and so
   ``scripts/statinamic-static.js``)
+- Changed: shorter start and build script
+  ([#127](https://github.com/MoOx/statinamic/pull/127))
 - Changed: ``web_modules/app/store.js`` don't have references to
   ``pageComponents`` nor ``collection``.
 - Changed: boilerplate ``web_modules/app/layouts.js`` =>
