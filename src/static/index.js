@@ -1,10 +1,10 @@
 import color from "chalk"
-import nanoLogger from "nano-logger"
+import debug from "debug"
 
 import toStaticHtml from "./to-html"
 import postBuild from "./postbuild"
 
-const log = nanoLogger("statinamic/lib/static")
+const log = debug("statinamic:static")
 
 export default (config) => (
   toStaticHtml(config)

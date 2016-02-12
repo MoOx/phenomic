@@ -2,6 +2,8 @@ import fs from "fs"
 import path from "path"
 import mkdirp from "mkdirp"
 
+import debug from "debug"
+
 import urlAsHtml from "./url-as-html"
 import filenameToUrl from "../../filename-to-url"
 import * as pagesActions from "../../redux/modules/pages"
@@ -13,9 +15,11 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
+const log = debug("statinamic:static:to-html")
+
 export function setPageData(url, uri, pagesData, store) {
   if (!pagesData[url]) {
-    console.info(`No data in for url '${ url }'.`)
+    log(`No data in for url '${ url }'.`)
   }
   else {
     // prepare page data
