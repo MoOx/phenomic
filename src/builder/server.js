@@ -102,7 +102,7 @@ export default (webpackConfig, options = {}) => {
   router.get("*", express.static(webpackConfig.output.path))
 
   // user static assets
-  if (config.assets !== undefined) {
+  if (config.assets) {
     server.use(
       config.baseUrl.pathname + config.assets.route,
       express.static(config.assets.path)
