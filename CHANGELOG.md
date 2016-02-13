@@ -1,5 +1,8 @@
 - Fixed: ``process.env.NODE_ENV`` is adjusted by ``--production`` CLI flag
   ([#133](https://github.com/MoOx/statinamic/issues/133))
+- Fixed: during development (dev server), after a change and a page reload/new
+  page, ``<script>`` tags are now correct
+  ([#136](https://github.com/MoOx/statinamic/issues/136))
 
 # 0.7.0 - 2016-02-12
 
