@@ -3,6 +3,8 @@
 - Fixed: during development (dev server), after a change and a page reload/new
   page, ``<script>`` tags are now correct
   ([#136](https://github.com/MoOx/statinamic/issues/136))
+- Added: allow to disable automatically open new tab when start dev server
+  ([#135](https://github.com/MoOx/statinamic/pull/135))
 
 # 0.7.0 - 2016-02-12
 

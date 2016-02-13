@@ -18,7 +18,6 @@ const log = debug("statinamic:builder:server")
 
 export default (webpackConfig, options = {}) => {
   options = {
-    open: true,
     noDevEntriesTest: /^tests/,
     ...options,
   }
@@ -192,7 +191,7 @@ export default (webpackConfig, options = {}) => {
       return
     }
     log(`Dev server started on ${ config.baseUrl.href }`)
-    if (options.open) {
+    if (config.open) {
       opn(`${ config.baseUrl.href }`)
     }
   })
