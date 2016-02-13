@@ -78,6 +78,7 @@ export default function config(pkg = {}, argv = process.argv) {
   delete config._
 
   if (config.production) {
+    process.env.NODE_ENV = "production"
     if (!pkg.homepage) {
       errors.push(
         "Your package.json require a 'homepage' field."

@@ -1,3 +1,6 @@
+- Fixed: ``process.env.NODE_ENV`` is adjusted by ``--production`` CLI flag
+  ([#133](https://github.com/MoOx/statinamic/issues/133))
+
 # 0.7.0 - 2016-02-12
 
 Lot's of changes in the boilerplate (`scripts/*`).
