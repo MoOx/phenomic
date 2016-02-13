@@ -54,13 +54,16 @@ Here is a commented ``package.json`` with only the interesting parts.
     "nojekyll": true,
 
     // host for development
-    devHost: "0.0.0.0",
+    "devHost": "0.0.0.0",
 
     // port for development
-    devPort: "3000",
+    "devPort": "3000",
 
     // flag to add information during development
-    verbose: false,
+    "verbose": false,
+
+    // open a new tab when start dev server
+    "open": true
   },
 
   // That's because es5 is not enough

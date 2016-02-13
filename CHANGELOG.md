@@ -1,3 +1,6 @@
+- Added: allow to disable automatically open new tab when start dev server
+  ([#135](https://github.com/MoOx/statinamic/pull/135))
+
 # 0.7.0 - 2016-02-12
 
 Lot's of changes in the boilerplate (`scripts/*`).

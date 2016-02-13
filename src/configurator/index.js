@@ -13,6 +13,7 @@ const defaultOptions = {
   devHost: "0.0.0.0",
   devPort: "3000",
   verbose: false,
+  open: true,
 }
 
 const defaultOptionsCLIonly = {
@@ -35,6 +36,7 @@ const fieldTypes = {
   "production": "boolean",
   "static": "boolean",
   "server": "boolean",
+  "open": "boolean",
 }
 
 export default function config(pkg = {}, argv = process.argv) {
