@@ -20,7 +20,7 @@ import {
 (function() {
   program
     .option("-t, --test", "Test mode. Default value, no statinamic in devDeps")
-    .parse(process.argv);
+    .parse(process.argv)
 
   const cwd = process.cwd()
 
