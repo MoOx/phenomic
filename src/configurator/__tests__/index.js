@@ -98,14 +98,14 @@ test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
 test("should accept string for 'asset' option", (t) => {
   const config = configurator({
     statinamic: {
-      "assets": "AsSeTs",
+      "assets": "AsSeT",
     },
   })
   t.same(
     config.assets,
     {
-      path: join(process.cwd(), config.source, "AsSeTs"),
-      route:"AsSeTs",
+      path: join(process.cwd(), config.source, "AsSeT"),
+      route:"AsSeT",
     }
   )
 })
