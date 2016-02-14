@@ -24,3 +24,4 @@ docs/dist
 # boilerplate files to work on it
 boilerplate/package.json
 boilerplate/dist
+test-boilerplate

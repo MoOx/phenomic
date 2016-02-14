@@ -17,81 +17,33 @@ $ DIR=your-website-folder
 $ mkdir $DIR && cd $DIR
 ```
 
-You can also create a empty `package.json` file in it that we are going to fill.
+## Setup boilerplate
 
 ```console
-$ touch package.json
-[$ [xdg-]open package.json]
+$ npm init --force
+$ npm install statinamic
+$ ./node_modules/.bin/statinamic setup
 ```
 
-## Fill the `package.json`
+After answer some questions, you are setup with **Statinamic**.
 
-You can copy the following `package.json` content.
+Why run `npm init` with `force` option ?
+npm needs a valid `package.json` file to work.
+We are gonna overwrite this file so `force` option is a good choice.
 
-**Remember to adjust some values :**
-- `name`
-- `homepage`
-- `statinamic` section
-
-(And before you ask: `npm init` won't really help us in our case).
-
-```json
-{
-  "private": true,
-  "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
-  "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
-  "scripts": {
-    "statinamic": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
-    "start": "npm run statinamic -- --server --open --dev",
-    "build": "npm run statinamic -- --static --production"
-  },
-  "statinamic": {
-    "CNAME": true
-  },
-  "babel": {
-    "presets": [
-      "react",
-      "es2015",
-      "stage-1"
-    ],
-    "env": {
-      "statinamic": {
-        "plugins": [
-          [
-            "babel-plugin-webpack-loaders",
-            {
-              "config": "./scripts/webpack.config.babel.js",
-              "verbose": false
-            }
-          ]
-        ]
-      }
-    }
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": [
-      "eslint-config-i-am-meticulous/react"
-    ]
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard"
-  }
-}
-```
+_Tip:_ You can open `package.json` and adjust some values to fit your needs.
 
 _Check out [Configuration](../usage/configuration/) for more information about
 the configuration options._
 
-When you got this `package.json` right, you can run the following:
+When you are done. Run
 
 ```console
-$ npm install --save-dev statinamic
-$ cp -R ./node_modules/statinamic/boilerplate/ .
-$ ./node_modules/.bin/statinamic setup
+$ npm install
 ```
 
-The setup script should take a moment to install some peer dependencies.
+npm will install some peer dependencies for you.
+
 Why `peerDependencies`? That's an interesting question so let's discuss about
 that: by using `peerDependencies`, we ensure that _you_ control the dependencies
 you are using. This way you are totally aware of what you use and are not locked
