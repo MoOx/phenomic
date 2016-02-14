@@ -1,6 +1,6 @@
 import url from "url"
 import { join } from "path"
-
+import fs from "fs"
 import minimist from "minimist"
 
 const defaultOptions = {
@@ -78,6 +78,7 @@ export default function config(pkg = {}, argv = process.argv) {
   delete config._
 
   if (config.production) {
+    process.env.NODE_ENV = "production"
     if (!pkg.homepage) {
       errors.push(
         "Your package.json require a 'homepage' field."
@@ -154,8 +155,21 @@ export default function config(pkg = {}, argv = process.argv) {
         route: config.assets.route,
       }
 
-      // TODO test folder
-      // https://github.com/MoOx/statinamic/issues/121
+      // Test folder
+      try {
+        const stats = fs.lstatSync(config.assets.path)
+        if (!stats.isDirectory()) {
+          // Just throw a dump error
+          throw new Error("This is not a folder")
+        }
+      }
+      catch (e) {
+        errors.push(
+          config.assets.path +
+          " doesn't exist or isn't a folder. " +
+          "Please check your assets config"
+        )
+      }
     }
   }
 

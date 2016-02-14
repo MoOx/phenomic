@@ -85,9 +85,16 @@ export default (webpackConfig, options = {}) => {
 
   let entries = []
   webpackCompiler.plugin("done", function(stats) {
+    // reset entries
+    entries = []
     const namedChunks = stats.compilation.namedChunks
     Object.keys(namedChunks).forEach((chunkName) => {
-      entries = [ ...entries, namedChunks[chunkName].files ]
+      entries = [
+        ...entries,
+        ...namedChunks[chunkName].files.filter(
+          (file) => !file.endsWith(".hot-update.js")
+        ),
+      ]
     })
   })
 

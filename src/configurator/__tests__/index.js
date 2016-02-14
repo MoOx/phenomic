@@ -74,13 +74,25 @@ test("should warn if config is invalid", (t) => {
   )
 })
 
-test("should warn if config is invalid", (t) => {
+test("should warn if config is invalid when '--production' is used", (t) => {
   t.throws(
     () => {
       configurator({}, [ "--production" ])
     },
     (error) => error.message.includes("Your package.json require a 'homepage'")
   )
+})
+
+test("should not warn if config is valid when '--production' is used", (t) => {
+  process.env.NODE_ENV = undefined
+  const config = configurator({ homepage: "http://te.st/" }, [ "--production" ])
+  t.is(config.baseUrl.href, "http://te.st/")
+})
+
+test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
+  process.env.NODE_ENV = undefined
+  configurator({ homepage: "http://a.b/" }, [ "--production" ])
+  t.is(process.env.NODE_ENV, "production")
 })
 
 test("should accept string for 'asset' option", (t) => {
