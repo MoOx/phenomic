@@ -64,7 +64,7 @@
     "coveralls": "^2.11.6",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^2.0.0",
-    "eslint-plugin-react": "^3.6.2",
+    "eslint-plugin-react": "^3.16.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
     "gh-pages": "https://github.com/MoOx/gh-pages#silent-bin",
