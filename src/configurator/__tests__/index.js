@@ -19,6 +19,7 @@ test("should return a default configuration", (t) => {
     devHost: "0.0.0.0",
     devPort: "3000",
     verbose: false,
+    open: true,
     dev: false,
     production: false,
     static: false,
