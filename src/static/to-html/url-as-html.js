@@ -14,14 +14,25 @@ import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 
 export default (url, {
-  layouts,
-  metadata,
-  routes,
+  data,
   store,
 
   baseUrl,
   assetsFiles,
 }, testing) => {
+  // Import modules from require.resolve
+  Object.keys(data).forEach((t) => {
+    if (typeof data[t] === "string") {
+      data[t] = require(data[t]).default
+    }
+  })
+
+  const {
+    layouts,
+    metadata,
+    routes,
+  } = data
+
   const render = ReactDOMserver[
     !testing
     ? "renderToString"

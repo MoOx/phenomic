@@ -67,9 +67,7 @@ export function writeAllHTMLFiles({
   pagesData,
   assetsFiles,
 
-  layouts,
-  metadata,
-  routes,
+  data,
   store,
 
   setPageData,
@@ -85,9 +83,7 @@ export function writeAllHTMLFiles({
       setPageData(url, uri, pagesData, store)
       return (
         urlAsHtml(uri, {
-          layouts,
-          metadata,
-          routes,
+          data,
           store,
 
           baseUrl,
@@ -108,9 +104,7 @@ export default ({
   baseUrl,
   destination,
 
-  layouts,
-  metadata,
-  routes,
+  data,
   store,
 }, testing) => (
   writeAllHTMLFiles({
@@ -120,9 +114,7 @@ export default ({
     pagesData,
     assetsFiles,
 
-    layouts,
-    metadata,
-    routes,
+    data,
     store,
 
     setPageData,

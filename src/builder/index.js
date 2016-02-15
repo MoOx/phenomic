@@ -12,10 +12,8 @@ import toStaticHTML from "../static"
 export default function(options) {
   const {
     config,
-    layouts,
-    metadata,
-    routes,
     store,
+    data,
   } = options
 
   const log = debug("statinamic:builder")
@@ -66,20 +64,16 @@ export default function(options) {
         ],
         pagesData,
         assetsFiles,
-        layouts,
-        metadata,
-        routes,
         store,
+        data,
       })
     })
   }
   else if (config.server) {
     devServer(options.clientWebpackConfig, {
       config,
-      layouts,
-      metadata,
-      routes,
       store,
+      data,
     })
   }
   else {
