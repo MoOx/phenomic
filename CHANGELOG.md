@@ -1,3 +1,8 @@
+# 0.7.1 - 2016-02-12
+
+_Minor release since the only change only affects new setup (so this is not
+really a breaking change)._
+
 - Changed: better init setup command
   ([#129](https://github.com/MoOx/statinamic/pull/129))
 - Fixed: ``process.env.NODE_ENV`` is adjusted by ``--production`` CLI flag
