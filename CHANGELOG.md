@@ -1,3 +1,10 @@
+- Changed: build and client scripts now require an exports value
+  that must contains layouts, metadata and routes
+  ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Added: during development for pre-rendering, dev server will refresh
+  all files for each render
+  ([#145](https://github.com/MoOx/statinamic/pull/145))
+
 # 0.7.1 - 2016-02-12
 
 _Minor release since the only change only affects new setup (so this is not
