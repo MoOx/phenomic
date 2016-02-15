@@ -4,6 +4,7 @@ import feed from "../feed"
 
 test("statinamic/lib/md-collection-loader feed helper", (t) => {
 
+  const now = (new Date()).toUTCString()
   const feedXML = feed({
     feedOptions: {
       title: "test",
@@ -38,7 +39,7 @@ test("statinamic/lib/md-collection-loader feed helper", (t) => {
     <description><![CDATA[test]]></description>
     <link>http://statinamic.test/</link>
     <generator>RSS for Node</generator>
-    <lastBuildDate>${ (new Date()).toUTCString() }</lastBuildDate>
+    <lastBuildDate>${ now }</lastBuildDate>
     <atom:link href="http://statinamic.test/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title><![CDATA[One]]></title>
