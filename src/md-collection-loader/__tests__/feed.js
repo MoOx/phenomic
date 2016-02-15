@@ -4,7 +4,6 @@ import feed from "../feed"
 
 test("statinamic/lib/md-collection-loader feed helper", (t) => {
 
-  const now = (new Date()).toUTCString()
   const feedXML = feed({
     feedOptions: {
       title: "test",
@@ -31,6 +30,11 @@ test("statinamic/lib/md-collection-loader feed helper", (t) => {
     // for testing
     xmlOptions: { indent: "  " },
   })
+  // skip date to avoid failing test because of one second
+  .replace(
+    /<lastBuildDate>([^<]*)<\/lastBuildDate>/,
+    "<lastBuildDate>REPLACED_FOR_TEST</lastBuildDate>"
+  )
 
   /* eslint-disable max-len */
   const feedXMLexpected = `<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
@@ -39,7 +43,7 @@ test("statinamic/lib/md-collection-loader feed helper", (t) => {
     <description><![CDATA[test]]></description>
     <link>http://statinamic.test/</link>
     <generator>RSS for Node</generator>
-    <lastBuildDate>${ now }</lastBuildDate>
+    <lastBuildDate>REPLACED_FOR_TEST</lastBuildDate>
     <atom:link href="http://statinamic.test/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title><![CDATA[One]]></title>
