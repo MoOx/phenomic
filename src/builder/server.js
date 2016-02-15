@@ -154,10 +154,18 @@ export default (webpackConfig, options = {}) => {
         },
       })
 
+      // TODO: Don't clean cache in first run
+      Object.keys(require.cache)
+        .filter((t) =>
+          t.startsWith(config.cwd) &&
+          !t.startsWith(join(config.cwd, "node_modules"))
+        )
+        .forEach((t) => {
+          delete require.cache[t]
+        })
+
       urlAsHtml(uri, {
-        layouts: options.layouts,
-        metadata: options.metadata,
-        routes: options.routes,
+        exports: options.exports,
         store: options.store,
 
         baseUrl: config.baseUrl,

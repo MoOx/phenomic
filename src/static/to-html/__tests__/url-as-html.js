@@ -10,8 +10,10 @@ import urlAsHtml from "../url-as-html"
 import { testStore, testRoutes } from "./utils"
 
 const fixture = {
-  metadata: {},
-  routes: testRoutes,
+  exports: {
+    metadata: {},
+    routes: testRoutes,
+  },
   store: testStore,
   baseUrl: url.parse("http://0.0.0.0:3000/"),
   assetsFiles: {

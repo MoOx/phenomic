@@ -40,7 +40,9 @@ test("writeAllHTMLFiles", (t) => {
       css: [ "statinamic-client.css" ],
     },
     store: testStore,
-    routes: testRoutes,
+    exports: {
+      routes: testRoutes,
+    },
     destination: "destination",
     baseUrl: { path: "/" },
     ghPages: true,
