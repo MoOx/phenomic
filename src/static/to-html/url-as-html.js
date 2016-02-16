@@ -10,7 +10,7 @@ import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../escapeJSONforHTML"
 
-import filenameToUrl from "../../filename-to-url"
+import toUri from "../../to-uri"
 import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 
@@ -22,7 +22,7 @@ export default (url, {
   assetsFiles,
 }, testing) => {
 
-  const uri = filenameToUrl(url)
+  const uri = toUri(url)
 
   // Import modules from require.resolve
   const newExports = exports

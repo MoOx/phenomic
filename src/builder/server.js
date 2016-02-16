@@ -10,7 +10,7 @@ import opn from "opn"
 import debug from "debug"
 
 import collection from "../md-collection-loader/cache.js"
-import filenameToUrl from "../filename-to-url"
+import toUri from "../to-uri"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 // import htmlMetas from "../html-metas"
@@ -123,7 +123,7 @@ export default (webpackConfig, options = {}) => {
   const memoryFs = webpackCompiler.outputFileSystem
   router.get("*", (req, res, next) => {
     //                                       ↓ remove first slash
-    const uri = filenameToUrl(req.originalUrl.slice(1))
+    const uri = toUri(req.originalUrl.slice(1))
     const item = collection.find((item) => item.__url === req.originalUrl)
     if (!item) {
       next()

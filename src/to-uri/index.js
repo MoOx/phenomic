@@ -1,10 +1,4 @@
-import path from "path"
-
-export default function(filename, context) {
-  if (context) {
-    filename = path.relative(context, filename)
-  }
-
+export default function(filename) {
   return (
     filename
     // something/index.md => something

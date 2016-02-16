@@ -4,7 +4,7 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
-import filenameToUrl from "../../filename-to-url"
+import toUri from "../../to-uri"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -25,7 +25,7 @@ export function setPageData(url, collection, store) {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
-      page: filenameToUrl(url),
+      page: toUri(url),
       response: { data },
     })
   }
@@ -36,7 +36,7 @@ export function forgetPageData(url, store) {
   // pages
   store.dispatch({
     type: pagesActions.FORGET,
-    page: filenameToUrl(url),
+    page: toUri(url),
   })
 }
 

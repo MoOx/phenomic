@@ -34,7 +34,7 @@ import loaderUtils from "loader-utils"
 import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
-import filenameToUrl from "../filename-to-url"
+import toUri from "../to-uri"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
@@ -62,10 +62,10 @@ module.exports = function(input) {
   const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = parsed.data.route
     // custom route
-    ? filenameToUrl(parsed.data.route)
+    ? toUri(parsed.data.route)
 
     // default route
-    : filenameToUrl(relativePath)
+    : toUri(relativePath)
 
   const isUrlWithExtension = tmpUrl.match(fileExtensionRE)
   const url = isUrlWithExtension
