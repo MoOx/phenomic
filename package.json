@@ -152,7 +152,7 @@
     "test": "npm run tests && npm run docs && npm run test-boilerplate",
     "test-with-coverage": "nyc npm run tests && npm run docs && npm run test-boilerplate",
     "pretest-boilerplate": "rimraf test-boilerplate && npm run babelify && rimraf boilerplate/node_modules && rimraf boilerplate/package.json",
-    "test-boilerplate": "mkdirp test-boilerplate/node_modules && cd test-boilerplate && npm init -y && lnfs ../ node_modules/statinamic && node ./node_modules/statinamic/lib/bin/statinamic-setup -t",
+    "test-boilerplate": "mkdirp test-boilerplate/node_modules && cd test-boilerplate && npm init -y && lnfs ../ node_modules/statinamic && node ./node_modules/statinamic/lib/bin/statinamic-setup -t && npm install && npm build",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "release": "npmpub"
   },
