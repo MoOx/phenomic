@@ -22,14 +22,14 @@ const fixture = {
 }
 
 test("url as html", async (t) => {
-  urlAsHtml("", fixture, true)
+  urlAsHtml("/", fixture, true)
   .then((html) => {
     const expectedHTML = (
 `<!doctype html>
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { path: "/" } }).join("\n  ") }
+  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 

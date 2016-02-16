@@ -10,6 +10,7 @@ import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../escapeJSONforHTML"
 
+import filenameToUrl from "../../filename-to-url"
 import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 
@@ -20,6 +21,9 @@ export default (url, {
   baseUrl,
   assetsFiles,
 }, testing) => {
+
+  const uri = filenameToUrl(url)
+
   // Import modules from require.resolve
   const newExports = exports
   Object.keys(exports).forEach((t) => {
@@ -53,7 +57,7 @@ export default (url, {
       match(
         {
           routes,
-          location: "/" + url + "/",
+          location: url,
         },
         (error, redirectLocation, renderProps) => {
           let head
@@ -101,7 +105,7 @@ export default (url, {
               ...store.getState(),
               // only keep current page as others are not necessary
               pages: {
-                [url]: store.getState().pages[url],
+                [uri]: store.getState().pages[uri],
               },
             }
             script =
@@ -126,7 +130,7 @@ export default (url, {
             scriptTags = assetsFiles.js.map(fileName =>
               <script
                 key={ fileName }
-                src={ `${ baseUrl.path }${ fileName }` }
+                src={ `${ baseUrl.pathname }${ fileName }` }
               ></script>
             )
           }

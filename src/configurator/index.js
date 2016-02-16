@@ -95,7 +95,7 @@ export default function config(pkg = {}, argv = process.argv) {
     : {
       ...url.parse(devUrl),
       // get base from prod url
-      pathname: prodBaseUrl.pathname ? prodBaseUrl.pathname : "/",
+      pathname: prodBaseUrl.path ? prodBaseUrl.path : "/",
     }
 
   // ensure trailing slash

@@ -9,12 +9,16 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import debug from "debug"
 
+import collection from "../md-collection-loader/cache.js"
 import filenameToUrl from "../filename-to-url"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 // import htmlMetas from "../html-metas"
 
 const log = debug("statinamic:builder:server")
+
+// also in md-collection-loader/index.js
+const fileExtensionRE = /\.(.*)+$/
 
 export default (webpackConfig, options = {}) => {
   options = {
@@ -120,28 +124,21 @@ export default (webpackConfig, options = {}) => {
   router.get("*", (req, res, next) => {
     //                                       ↓ remove first slash
     const uri = filenameToUrl(req.originalUrl.slice(1))
-    const relativeUri = req.originalUrl.replace(config.baseUrl.pathname, "")
-    const filepath = join(
-      config.cwd, config.destination, relativeUri, "index.json"
-    )
-
-    let fileContent
-    try {
-      fileContent = memoryFs.readFileSync(filepath)
-    }
-    catch (err) {
-      // this is probably not a page
-      log(`'${ filepath }' doesn't like a dynamic page (no data).`)
-    }
-
-    if (!fileContent) {
+    const item = collection.find((item) => item.__url === req.originalUrl)
+    if (!item) {
       next()
     }
     else {
-      if (!req.originalUrl.endsWith("/")) {
+      if (
+        !req.originalUrl.match(fileExtensionRE) &&
+        !req.originalUrl.endsWith("/")
+      ) {
         res.redirect(req.originalUrl + "/")
       }
 
+      const relativeUri = item.__dataUrl.replace(config.baseUrl.pathname, "")
+      const filepath = join(config.cwd, config.destination, relativeUri)
+      const fileContent = memoryFs.readFileSync(filepath)
       log(
         `Using '${ filepath }' to pre-render '${ req.originalUrl }' (${ uri })`
       )
@@ -164,10 +161,10 @@ export default (webpackConfig, options = {}) => {
           delete require.cache[t]
         })
 
-      urlAsHtml(uri, {
+      urlAsHtml(req.originalUrl, {
         exports: options.exports,
         store: options.store,
-
+        // collection: options.collection,
         baseUrl: config.baseUrl,
         assetsFiles: {
           js: entries,

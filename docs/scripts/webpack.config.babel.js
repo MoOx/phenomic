@@ -13,7 +13,7 @@ export default {
         loader: "statinamic/lib/md-collection-loader" +
           `?${ JSON.stringify({
             context: path.join(config.cwd, config.source),
-            basepath: config.baseUrl.path,
+            basepath: config.baseUrl.pathname,
             feedsOptions: {
               title: pkg.name,
               site_url: pkg.homepage,
@@ -111,7 +111,7 @@ export default {
   output: {
     libraryTarget: "commonjs2", // for node usage, undone in client config
     path: path.join(config.cwd, config.destination),
-    publicPath: config.baseUrl.path,
+    publicPath: config.baseUrl.pathname,
   },
   resolve: {
     extensions: [ ".js", ".json", "" ],

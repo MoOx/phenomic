@@ -19,18 +19,18 @@ test(
 )
 
 test(
-  "should transform */index.json path to a simple url",
-  (t) => t.is(
-    filenameToUrl("something/index.json"),
-    "something"
-  )
-)
-
-test(
   "should transform md path to a simple url",
   (t) => t.is(
     filenameToUrl("something-else.md"),
     "something-else"
+  )
+)
+
+test(
+  "should not transform an html path",
+  (t) => t.is(
+    filenameToUrl("something-else.html"),
+    "something-else.html"
   )
 )
 

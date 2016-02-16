@@ -9,7 +9,8 @@ export default connect(
   },
   (dispatch) => {
     return {
-      getPage: (page) => dispatch(pageActions.get(page)),
+      getPage: (...args) => dispatch(pageActions.get(...args)),
+      setPageNotFound: (...args) => dispatch(pageActions.setNotFound(...args)),
     }
   },
 )(PageContainer)

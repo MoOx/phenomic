@@ -15,9 +15,11 @@ export default class PageContainer extends Component {
 
     // actions
     getPage: PropTypes.func.isRequired,
+    setPageNotFound: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
+    collection: PropTypes.array.isRequired,
     layouts: PropTypes.object.isRequired,
   };
 
@@ -48,11 +50,24 @@ export default class PageContainer extends Component {
       process.env.NODE_ENV !== "production" &&
       typeof window !== "undefined"
     ) {
-      console.info(`statinamic: PageContainer: pageKey '${ pageKey }'`)
+      console.info(`statinamic: PageContainer: '${ pageKey }' rendering...`)
     }
     const page = props.pages[pageKey]
     if (!page) {
-      props.getPage(pageKey)
+      const pageUrl = "/" + pageKey
+      const item = context.collection.find(
+        (item) => (
+          item.__url === pageUrl ||
+          item.__url === pageUrl + "/" ||
+          item.__resourceUrl === pageUrl
+        )
+      )
+      if (item) {
+        props.getPage(pageKey, item.__dataUrl)
+      }
+      else {
+        props.setPageNotFound(pageKey)
+      }
     }
     else {
       if (page.error) {
@@ -77,12 +92,19 @@ export default class PageContainer extends Component {
 
   render() {
     const pageKey = splatToUri(this.props.params.splat)
-
     const page = this.props.pages[pageKey]
 
     if (!page) {
-      console.info(`statinamic: PageContainer: no data for page ${ pageKey }`)
+      if (process.env.NODE_ENV !== "production") {
+        console.info(`statinamic: PageContainer: '${ pageKey }' no data`)
+      }
       return null
+    }
+    if (
+      process.env.NODE_ENV !== "production" &&
+      typeof window !== "undefined"
+    ) {
+      console.info(`statinamic: PageContainer: '${ pageKey }'`, page)
     }
 
     if (typeof page !== "object") {

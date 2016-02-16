@@ -25,9 +25,13 @@ test("should render a Page if page is ok", (t) => {
         params: { splat: "" },
         pages: { "": {} },
         getPage: noop,
+        setPageNotFound: noop,
       }
     ),
-    { layouts: { Page } },
+    {
+      layouts: { Page },
+      collection: [],
+    },
   )
 
   t.is(
@@ -48,9 +52,13 @@ available`, (t) => {
         params: { splat: "" },
         pages: { "": { error: "Test", errorText: "" } },
         getPage: noop,
+        setPageNotFound: noop,
       }
     ),
-    { layouts: { Page } }
+    {
+      layouts: { Page },
+      collection: [],
+    },
   )
 
   t.is(
@@ -76,9 +84,13 @@ test(`should render a PageError if page is not ok and PageError is available`,
         params: { splat: "" },
         pages: { "": { error: "Test" } },
         getPage: noop,
+        setPageNotFound: noop,
       }
     ),
-    { layouts: { Page, PageError } }
+    {
+      layouts: { Page, PageError },
+      collection: [],
+    },
   )
 
   t.is(
@@ -98,10 +110,14 @@ test("should render a another page layout if defaultLayout is used", (t) => {
         params: { splat: "" },
         pages: { "": {} },
         getPage: noop,
+        setPageNotFound: noop,
         defaultLayout: "AnotherPage",
       }
     ),
-    { layouts: { AnotherPage } }
+    {
+      layouts: { AnotherPage },
+      collection: [],
+    },
   )
 
   t.is(
