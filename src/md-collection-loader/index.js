@@ -34,6 +34,7 @@ import loaderUtils from "loader-utils"
 import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
+import joinUri from "../_utils/join-uri.js"
 import toUri from "../to-uri"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
@@ -78,15 +79,15 @@ module.exports = function(input) {
     // url with a file extension, don't touch
     ? tmpUrl
     // url without extension => folder => index.html
-    : path.join(tmpUrl, "index.html")
+    : joinUri(tmpUrl, "index.html")
 
   const dataUrl = resourceUrl + ".json"
 
   const metadata = {
     __filename: relativePath,
-    __url: path.join(basepath, url),
-    __resourceUrl: path.join(basepath, resourceUrl),
-    __dataUrl: path.join(basepath, dataUrl),
+    __url: joinUri(basepath, url),
+    __resourceUrl: joinUri(basepath, resourceUrl),
+    __dataUrl: joinUri(basepath, dataUrl),
   }
   const mdObject = {
     head: {
