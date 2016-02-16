@@ -5,12 +5,12 @@ import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
-import htmlMetas from "../../html-metas"
+import htmlMetas from "../../_utils/html-metas"
 import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
-import escapeJSONforHTML from "../escapeJSONforHTML"
+import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
-import toUri from "../../to-uri"
+import toUri from "../../_utils/to-uri"
 import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 

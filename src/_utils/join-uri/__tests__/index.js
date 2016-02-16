@@ -2,7 +2,7 @@ import test from "ava"; import "babel-core/register"
 
 import { sep } from "path"
 
-import joinUri from "../join-uri.js"
+import joinUri from ".."
 
 test("should join 2 uri parts", (t) => (
   t.is(

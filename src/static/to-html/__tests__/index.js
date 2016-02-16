@@ -1,7 +1,7 @@
 import test from "ava"; import "babel-core/register"
 
-import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
-import htmlMetas from "../../../html-metas"
+import beautifyHTML from "../../../_utils/beautify-html"
+import htmlMetas from "../../../_utils/html-metas"
 
 import toHTML, { writeAllHTMLFiles } from "../index"
 

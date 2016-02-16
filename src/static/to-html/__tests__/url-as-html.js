@@ -2,8 +2,8 @@ import test from "ava"; import "babel-core/register"
 
 import url from "url"
 
-import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
-import htmlMetas from "../../../html-metas"
+import beautifyHTML from "../../../_utils/beautify-html"
+import htmlMetas from "../../../_utils/html-metas"
 
 import urlAsHtml from "../url-as-html"
 

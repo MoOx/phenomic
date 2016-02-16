@@ -4,7 +4,7 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
-import toUri from "../../to-uri"
+import toUri from "../../_utils/to-uri"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {

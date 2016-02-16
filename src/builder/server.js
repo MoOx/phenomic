@@ -10,10 +10,10 @@ import opn from "opn"
 import debug from "debug"
 
 import collection from "../md-collection-loader/cache.js"
-import toUri from "../to-uri"
+import toUri from "../_utils/to-uri"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
-// import htmlMetas from "../html-metas"
+// import htmlMetas from "../../_utils/html-metas"
 
 const log = debug("statinamic:builder:server")
 
