@@ -1,3 +1,5 @@
+- Added: Generate meta description and bundle it to collection
+  ([#79](https://github.com/MoOx/statinamic/issues/79))
 - Changed: build and client scripts now require an exports value
   that must contains layouts, metadata and routes
   ([#145](https://github.com/MoOx/statinamic/pull/145))
