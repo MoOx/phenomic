@@ -84,6 +84,7 @@ export default (webpackConfig, options = {}) => {
   server.use(webpackDevMiddleware(webpackCompiler, {
     publicPath: webpackConfig.output.publicPath,
     noInfo: !config.verbose,
+    ...devConfig.devServer,
   }))
 
   let entries = []

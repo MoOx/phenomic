@@ -4,6 +4,8 @@
 - Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
   in your base url (``package.json/homepage``).
   ([#104](https://github.com/MoOx/statinamic/pull/104))
+- Fixed: ability to pass custom webpack devServer config
+  ([#157](https://github.com/MoOx/statinamic/issues/157))
 - Added: during development for pre-rendering, dev server will refresh
   all files for each render
   ([#145](https://github.com/MoOx/statinamic/pull/145))
