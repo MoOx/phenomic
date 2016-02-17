@@ -142,7 +142,6 @@ module.exports = function(input) {
             cache.map((item) => ({
               ...item.head,
               description: item.body,
-              __filename: item.__filename,
               __url: item.__url,
             })),
             collectionOptions
