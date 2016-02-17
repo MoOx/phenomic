@@ -46,7 +46,7 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
       const defaultRoute = stats.compilation.assets[
         //    fixtures/script.md
         // -> fixtures/script/index.html
-        path.join("fixtures", "script", "index.html.json")
+        "fixtures/script/index.html.json"
       ]
       if (!defaultRoute) {
         console.log(stats.compilation.assets)
