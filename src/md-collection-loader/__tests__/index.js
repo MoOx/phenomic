@@ -48,6 +48,9 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
         // -> fixtures/script/index.html
         path.join("fixtures", "script", "index.html.json")
       ]
+      if (!defaultRoute) {
+        console.log(stats.compilation.assets)
+      }
       t.ok(
         defaultRoute && defaultRoute._value,
         "should create a json for an given md"
