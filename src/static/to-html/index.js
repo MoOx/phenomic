@@ -4,6 +4,7 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
+import joinUri from "../../_utils/join-uri"
 import toUri from "../../_utils/to-uri"
 import * as pagesActions from "../../redux/modules/pages"
 
@@ -74,7 +75,7 @@ export function writeAllHTMLFiles({
   // create all html files
   return Promise.all(
     urls.map((url) => {
-      const fullUrl = path.join(baseUrl.pathname, url)
+      const fullUrl = joinUri(baseUrl.pathname, url)
       // console.log("fullUrl", fullUrl)
       const item = collection.find((item) => item.__url === fullUrl)
       const filename = item
