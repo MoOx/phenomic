@@ -1,3 +1,4 @@
+import path from "path"
 import test from "ava"; import "babel-core/register"
 
 import beautifyHTML from "../../../_utils/beautify-html"
@@ -82,7 +83,7 @@ test("writeAllHTMLFiles", (t) => {
 
 </html>`
       )
-      t.is(filename, "destination/test-url/index.html")
+      t.is(filename, path.join("destination", "test-url", "index.html"))
       t.is(
         beautifyHTML(html),
         expectedHTML

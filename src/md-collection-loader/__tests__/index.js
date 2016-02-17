@@ -1,5 +1,3 @@
-import path from "path"
-
 import test from "ava"; import "babel-core/register"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
