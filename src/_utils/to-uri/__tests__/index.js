@@ -1,11 +1,11 @@
 import test from "ava"; import "babel-core/register"
 
-import filenameToUrl from "../index"
+import toUri from "../index"
 
 test(
   "should transform */index.md path to a simple url",
   (t) => t.is(
-    filenameToUrl("something/index.md"),
+    toUri("something/index.md"),
     "something"
   )
 )
@@ -13,15 +13,7 @@ test(
 test(
   "should transform *\\index.md path to a simple url (windows compat)",
   (t) => t.is(
-    filenameToUrl("something\\index.md"),
-    "something"
-  )
-)
-
-test(
-  "should transform */index.json path to a simple url",
-  (t) => t.is(
-    filenameToUrl("something/index.json"),
+    toUri("something\\index.md"),
     "something"
   )
 )
@@ -29,15 +21,23 @@ test(
 test(
   "should transform md path to a simple url",
   (t) => t.is(
-    filenameToUrl("something-else.md"),
+    toUri("something-else.md"),
     "something-else"
+  )
+)
+
+test(
+  "should not transform an html path",
+  (t) => t.is(
+    toUri("something-else.html"),
+    "something-else.html"
   )
 )
 
 test(
   "should transform index.md path to a empty url",
   (t) => t.is(
-    filenameToUrl("index.md"),
+    toUri("index.md"),
     ""
   )
 )
@@ -45,7 +45,7 @@ test(
 test(
   "should handle windows backslash",
   (t) => t.is(
-    filenameToUrl("some\\thing\\else"),
+    toUri("some\\thing\\else"),
     "some/thing/else"
   )
 )
@@ -54,15 +54,15 @@ test(
   "should avoid relative '.' path",
   (t) => {
     t.is(
-      filenameToUrl("."),
+      toUri("."),
       ""
     )
     t.is(
-      filenameToUrl("./"),
+      toUri("./"),
       ""
     )
     t.is(
-      filenameToUrl("./stuff"),
+      toUri("./stuff"),
       "stuff"
     )
   }
@@ -71,7 +71,7 @@ test(
 test(
   "should remove surrounding slashes",
   (t) => t.is(
-    filenameToUrl("/some/thing/"),
+    toUri("/some/thing/"),
     "some/thing"
   )
 )

@@ -4,7 +4,8 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
-import filenameToUrl from "../../filename-to-url"
+import joinUri from "../../_utils/join-uri"
+import toUri from "../../_utils/to-uri"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -16,39 +17,37 @@ if (pagesActions.FORGET === undefined) {
 
 const log = debug("statinamic:static:to-html")
 
-export function setPageData(url, uri, pagesData, store) {
-  if (!pagesData[url]) {
+export function setPageData(url, collection, store) {
+  const data = collection.find((item) => item.__url === url)
+  if (!data) {
     log(`No data in for url '${ url }'.`)
   }
   else {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
-      page: filenameToUrl(uri),
-      response: {
-        data: pagesData[url],
-      },
+      page: toUri(url),
+      response: { data },
     })
   }
 }
 
-export function forgetPageData(uri, store) {
+export function forgetPageData(url, store) {
   // forget page data to avoid having all pages data in all
   // pages
   store.dispatch({
     type: pagesActions.FORGET,
-    page: filenameToUrl(uri),
+    page: toUri(url),
   })
 }
 
-export function writeHTMLFile(basename, html) {
+export function writeHTMLFile(filename, html) {
   return new Promise((resolve, reject) => {
-    fs.mkdirs(basename, (err) => {
+    fs.mkdirs(path.dirname(filename), (err) => {
       if (err) {
         reject(err)
       }
 
-      const filename = path.join(basename, "index.html")
       fs.writeFile(filename, html, (error) => {
         if (error) {
           reject(error)
@@ -64,59 +63,48 @@ export function writeAllHTMLFiles({
   urls,
   baseUrl,
   destination,
-  pagesData,
   assetsFiles,
-
   exports,
+  collection,
   store,
-
   setPageData,
   forgetPageData,
   writeHTMLFile,
 }, testing) {
+  // console.log("collection", collection)
   // create all html files
   return Promise.all(
     urls.map((url) => {
-      const uri = filenameToUrl(path.join(baseUrl.path, url))
-      const basename = path.join(destination, url)
+      const fullUrl = joinUri(baseUrl.pathname, url)
+      // console.log("fullUrl", fullUrl)
+      const item = collection.find((item) => item.__url === fullUrl)
+      const filename = item
+        ? path.join(
+          destination,
+          // remove pathname to get file path
+          item.__resourceUrl.replace(baseUrl.pathname, "")
+        )
+        : path.join(destination, url)
 
-      setPageData(url, uri, pagesData, store)
+      setPageData(fullUrl, collection, store)
       return (
-        urlAsHtml(uri, {
+        urlAsHtml(fullUrl, {
           exports,
           store,
 
           baseUrl,
           assetsFiles,
         }, testing)
-        .then((html) => writeHTMLFile(basename, html))
-        .then(() => forgetPageData(url, store))
+        .then((html) => writeHTMLFile(filename, html))
+        .then(() => forgetPageData(fullUrl, store))
       )
     })
   )
 }
 
-export default ({
-  pagesData,
-  assetsFiles,
-  urls,
-
-  baseUrl,
-  destination,
-
-  exports,
-  store,
-}, testing) => (
+export default (options, testing) => (
   writeAllHTMLFiles({
-    urls,
-    baseUrl,
-    destination,
-    pagesData,
-    assetsFiles,
-
-    exports,
-    store,
-
+    ...options,
     setPageData,
     forgetPageData,
     writeHTMLFile,

@@ -6,7 +6,7 @@ import debug from "debug"
 import webpack from "./webpack"
 import devServer from "./server"
 
-import filenameToUrl from "../filename-to-url"
+import collection from "../md-collection-loader/cache"
 import toStaticHTML from "../static"
 
 export default function(options) {
@@ -33,24 +33,16 @@ export default function(options) {
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
-      // There is probably a better way to get markdown as json without reading
-      // fs, but I am tired
-      const pagesData = {}
+      // TODO use a more reliable way to only get entry points
       const assetsFiles = {
         css: [],
         js: [],
       }
       const assets = stats.compilation.assets
       Object.keys(assets).forEach((name) => {
-        if (name.endsWith("index.json")) {
-          const url = filenameToUrl(name)
-          pagesData[url] = JSON.parse(assets[name]._value)
-        }
-
         if (name.endsWith(".js")) {
           assetsFiles.js.push(name)
         }
-
         if (name.endsWith(".css")) {
           assetsFiles.css.push(name)
         }
@@ -60,9 +52,12 @@ export default function(options) {
         ...config,
         urls: [
           ...options.urls || [],
-          ...getMdUrlsFromWebpackStats(stats, config.source),
+          ...collection.map(
+            // get url without the base path
+            (item) => item.__url.replace(config.baseUrl.pathname, "")
+          ),
         ],
-        pagesData,
+        collection,
         assetsFiles,
         exports,
         store,
@@ -79,14 +74,4 @@ export default function(options) {
   else {
     throw new Error("You need to specify --static or --server")
   }
-}
-
-function getMdUrlsFromWebpackStats(stats, source) {
-  return stats.compilation.fileDependencies.reduce(
-    (array, filename) => ([
-      ...(filename.match(/\.md$/) ? [ filenameToUrl(filename, source) ] : []),
-      ...array,
-    ]),
-    []
-  )
 }

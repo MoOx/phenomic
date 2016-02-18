@@ -5,11 +5,12 @@ import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
-import htmlMetas from "../../html-metas"
+import htmlMetas from "../../_utils/html-metas"
 import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
-import escapeJSONforHTML from "../escapeJSONforHTML"
+import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
+import toUri from "../../_utils/to-uri"
 import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 
@@ -20,6 +21,9 @@ export default (url, {
   baseUrl,
   assetsFiles,
 }, testing) => {
+
+  const uri = toUri(url)
+
   // Import modules from require.resolve
   const newExports = exports
   Object.keys(exports).forEach((t) => {
@@ -53,7 +57,7 @@ export default (url, {
       match(
         {
           routes,
-          location: "/" + url + "/",
+          location: url,
         },
         (error, redirectLocation, renderProps) => {
           let head
@@ -101,7 +105,7 @@ export default (url, {
               ...store.getState(),
               // only keep current page as others are not necessary
               pages: {
-                [url]: store.getState().pages[url],
+                [uri]: store.getState().pages[uri],
               },
             }
             script =
@@ -126,7 +130,7 @@ export default (url, {
             scriptTags = assetsFiles.js.map(fileName =>
               <script
                 key={ fileName }
-                src={ `${ baseUrl.path }${ fileName }` }
+                src={ `${ baseUrl.pathname }${ fileName }` }
               ></script>
             )
           }

@@ -43,6 +43,10 @@ Here is a commented ``package.json`` with only the interesting parts.
     "destination": "dist",
 
     // where you have your static assets
+    // you have multiple way to configure this field:
+    // - simple string (relative to source folder)
+    // - object with path (local path, relative to source) and route in web
+    // - a boolean to disable
     "assets": "assets",
 
     // CNAME file generated from `homepage` hostname in the destination folder

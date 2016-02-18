@@ -8,15 +8,23 @@ You can write your files using
 
 ## Header
 
-There is only 2 important fields: `title` and `layout`.
+Here is a review of the important fields you can use.
 
 
 ```md
 ---
 # title default = undefined
 title: "Page title"
+
 # layout default = "Page"
 layout: "MyComponent" # name referenced in `web_modules/layouts/index.js`
+
+# route default = normalized path of the markdown file
+# eg: content/some/thing.md => /some/thing/(index.html)
+route: my-custom-url # will create the file /my-custom-url/index.html
+# if you provide an extension, the url won't be converted to a folder + index.html
+# eg: route: 404.html # will create the file /404.html
+# eg: route: something.htm # will create the file /something.htm
 
 # note that you can add more like `date` or anything you want/need to sort/filter
 ---
@@ -41,4 +49,4 @@ title: "Page title"
 Here you **can** use some _markdown_.
 ```
 
-TODO make it clear on the prefered way to use link (relative? absolute?).
+TODO make it clear on the preferred way to use link (relative? absolute?).

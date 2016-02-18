@@ -1,8 +1,8 @@
+import path from "path"
 import test from "ava"; import "babel-core/register"
 
-import { join } from "path"
-import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
-import htmlMetas from "../../../html-metas"
+import beautifyHTML from "../../../_utils/beautify-html"
+import htmlMetas from "../../../_utils/html-metas"
 
 import toHTML, { writeAllHTMLFiles } from "../index"
 
@@ -12,11 +12,11 @@ test("don't break if there is nothing to transform", async (t) => {
   toHTML({
     urls: [],
     // metadata: {},
-    // pagesData: {},
+    // collection: [],
     // destination: "destination",
     // routes: {},
     // store: {},
-    // baseUrl: { path: "/" },
+    // baseUrl: { pathname: "/" },
   })
   .then((files) => {
     t.is(files.length, 0)
@@ -27,14 +27,19 @@ test("don't break if there is nothing to transform", async (t) => {
 })
 
 test("writeAllHTMLFiles", (t) => {
-  t.plan(5)
+  t.plan(4)
 
   return writeAllHTMLFiles({
     // metadata: {},
     urls: [
       "test-url",
     ],
-    pagesData: {},
+    collection: [
+      {
+        __url: "/test-url",
+        __resourceUrl: "/test-url/index.html",
+      },
+    ],
     assetsFiles: {
       js: [ "statinamic-client.js" ],
       css: [ "statinamic-client.css" ],
@@ -44,20 +49,19 @@ test("writeAllHTMLFiles", (t) => {
       routes: testRoutes,
     },
     destination: "destination",
-    baseUrl: { path: "/" },
+    baseUrl: { pathname: "/" },
     ghPages: true,
-    setPageData: (url, uri/* , pagesData, store */) => {
-      t.is(url, "test-url")
-      t.is(uri, "test-url")
+    setPageData: (url, /* , collection, store */) => {
+      t.is(url, "/test-url")
     },
-    writeHTMLFile: (basename, html) => {
+    writeHTMLFile: (filename, html) => {
       const expectedHTML = (
       `<!doctype html>
 <html lang="en">
 
 <head>
   ${ htmlMetas({
-    baseUrl: { path: "/" },
+    baseUrl: { pathname: "/" },
     css: [ "statinamic-client.css" ] }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
@@ -79,14 +83,14 @@ test("writeAllHTMLFiles", (t) => {
 
 </html>`
       )
-      t.is(basename, join("destination/test-url"))
+      t.is(filename, path.join("destination", "test-url", "index.html"))
       t.is(
         beautifyHTML(html),
         expectedHTML
       )
     },
-    forgetPageData: (uri) => {
-      t.is(uri, "test-url")
+    forgetPageData: (url) => {
+      t.is(url, "/test-url")
     },
   }, true)
   .catch((error) => {

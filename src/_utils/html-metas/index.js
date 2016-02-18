@@ -10,7 +10,7 @@ export default ({ baseUrl, css } = {}) => {
   if (css && Array.isArray(css)) {
     css.forEach(fileName => {
       metas.push(
-        `<link rel="stylesheet" href="${ baseUrl.path }${ fileName }" />`
+        `<link rel="stylesheet" href="${ baseUrl.pathname }${ fileName }" />`
       )
     })
   }

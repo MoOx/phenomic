@@ -1,9 +1,17 @@
 - Changed: build and client scripts now require an exports value
   that must contains layouts, metadata and routes
   ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
+  in your base url (``package.json/homepage``).
+  ([#104](https://github.com/MoOx/statinamic/pull/104))
+- Fixed: ability to pass custom webpack devServer config
+  ([#157](https://github.com/MoOx/statinamic/issues/157))
 - Added: during development for pre-rendering, dev server will refresh
   all files for each render
   ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Added: custom routes are supported if you use a `route` field in your markdown
+  front matter.
+  ([#47](https://github.com/MoOx/statinamic/pull/47))
 
 # 0.7.1 - 2016-02-12
 

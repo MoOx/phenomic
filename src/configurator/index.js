@@ -95,7 +95,7 @@ export default function config(pkg = {}, argv = process.argv) {
     : {
       ...url.parse(devUrl),
       // get base from prod url
-      pathname: prodBaseUrl.pathname ? prodBaseUrl.pathname : "/",
+      pathname: prodBaseUrl.path ? prodBaseUrl.path : "/",
     }
 
   // ensure trailing slash
@@ -128,7 +128,8 @@ export default function config(pkg = {}, argv = process.argv) {
       errors.push(
         "You provided an object for 'assets' option." +
         "You need to provide 2 keys: " +
-        "'route' (string) and 'path' (string)." +
+        "'path' (string, path of your assets, relative to 'source') " +
+        "and 'route' (string, path of your assets folder in the destination)." +
         "\n" +
         "You provided the following keys: " +
         Object.keys(config.assets).map(
@@ -169,7 +170,9 @@ export default function config(pkg = {}, argv = process.argv) {
         errors.push(
           config.assets.path +
           " doesn't exist or isn't a folder. " +
-          "Please check your assets config"
+          "Please check your 'assets' configuration. " +
+          "Note that if you don't need this option, " +
+          "you can set it up to `false`."
         )
       }
     }
