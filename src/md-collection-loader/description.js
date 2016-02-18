@@ -14,8 +14,8 @@ export default function description(mdObject, opts = {}) {
     throw new Error("Prune length must be larger than 0")
   }
 
-  // untouch mdObject if there is a description field
-  // in frontmatter
+  // Don't touch mdObject if there is a
+  // description field in frontmatter
   if (mdObject.head.description) {
     return mdObject
   }
