@@ -13,6 +13,10 @@
   front matter.
   ([#47](https://github.com/MoOx/statinamic/pull/47))
 
+## Under the hood
+
+- Changed: codecov is used for code coverage instead of coverall.
+
 # 0.7.1 - 2016-02-12
 
 _Minor release since the only change only affects new setup (so this is not

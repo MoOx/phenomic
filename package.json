@@ -64,7 +64,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
-    "coveralls": "^2.11.6",
+    "codecov": "^1.0.1",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^2.0.0",
     "eslint-plugin-react": "^3.6.2",
@@ -150,10 +150,10 @@
     "tests": "ava --verbose \"**/__tests__/*.js\"",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run docs && npm run test-boilerplate",
-    "test-with-coverage": "nyc npm run tests && npm run docs && npm run test-boilerplate",
+    "test-with-coverage": "nyc npm run test",
     "pretest-boilerplate": "rimraf test-boilerplate && npm run babelify && rimraf boilerplate/node_modules && rimraf boilerplate/package.json",
     "test-boilerplate": "mkdirp test-boilerplate/node_modules && cd test-boilerplate && npm init -y && lnfs ../ node_modules/statinamic && node ./node_modules/statinamic/lib/bin/statinamic-setup -t && npm install && npm build",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=lcovonly && codecov",
     "release": "npmpub"
   },
   "config": {

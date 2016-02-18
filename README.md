@@ -4,7 +4,7 @@
 
 [![Unix Build status](https://img.shields.io/travis/MoOx/statinamic/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/statinamic)
 [![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/statinamic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/statinamic/branch/master)
-[![Code Coverage](https://coveralls.io/repos/MoOx/statinamic/badge.svg?branch=master&service=github)](https://coveralls.io/github/MoOx/statinamic?branch=master)
+[![Code Coverage](https://img.shields.io/codecov/c/github/MoOx/statinamic/master.svg)](https://codecov.io/github/MoOx/statinamic?ref=master)
 [![Version](https://img.shields.io/npm/v/statinamic.svg)](https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md)
 [![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/statinamic)
 
