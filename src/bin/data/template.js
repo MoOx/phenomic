@@ -4,9 +4,14 @@ const template = {
   "name": undefined,
   "homepage": undefined,
   "scripts": {
+    "lint:js": "eslint --fix .",
+    "lint:css": "stylelint \"web_modules/**/*.css\"",
+    "lint": "npm run lint:js && npm run lint:css",
     "statinamic": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
     "start": "npm run statinamic -- --server --open --dev",
     "build": "npm run statinamic -- --static --production",
+    "pretest": "npm run lint",
+    "test": "npm run build",
   },
   "statinamic": {/* place holder */},
   "babel": {
@@ -38,7 +43,7 @@ const template = {
   "stylelint": {
     "extends": "stylelint-config-standard",
   },
-  "devDependencies": undefined,
+  "devDependencies": {},
 }
 
 export default template
