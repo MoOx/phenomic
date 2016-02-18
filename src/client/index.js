@@ -7,9 +7,11 @@ import { Provider as ReduxContextProvider } from "react-redux"
 import StatinamicContextProvider from "../ContextProvider"
 
 export default function statinamic({
-  layouts,
-  metadata,
-  routes,
+  exports: {
+    layouts,
+    metadata,
+    routes,
+  },
   store,
 }) {
   let devtools = false
