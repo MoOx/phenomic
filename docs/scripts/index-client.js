@@ -6,14 +6,10 @@ require.context("../content", true, /\.md$/)
 import "whatwg-fetch"
 import statinamicClient from "statinamic/lib/client"
 
-import * as layouts from "layouts"
-import metadata from "app/metadata"
-import routes from "app/routes"
+import { client as exports } from "../web_modules/app/exports"
 import store from "app/store"
 
 statinamicClient({
-  layouts,
-  metadata,
-  routes,
+  exports,
   store,
 })
