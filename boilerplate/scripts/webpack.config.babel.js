@@ -14,7 +14,6 @@ export default {
           `?${ JSON.stringify({
             context: path.join(config.cwd, config.source),
             basepath: config.baseUrl.pathname,
-            description: {},
             feedsOptions: {
               title: pkg.name,
               site_url: pkg.homepage,
