@@ -35,13 +35,10 @@ import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
 import joinUri from "../_utils/join-uri"
-import toUri from "../_utils/to-uri"
+import urlify from "../_utils/urlify"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
-
-// also in builder/server.js
-const fileExtensionRE = /\.(.*)+$/
 
 let timeout
 
@@ -61,25 +58,16 @@ module.exports = function(input) {
   const parsed = yamlHeaderParser(input)
 
   const relativePath = path.relative(context, this.resourcePath)
-  const tmpUrl = parsed.data.route
-    // custom route
-    ? toUri(parsed.data.route)
+  const tmpUrl = urlify(
+    parsed.data.route
+      // custom route
+      ? parsed.data.route
+      // default route
+      : relativePath
+  )
 
-    // default route
-    : toUri(relativePath)
-
-  const isUrlWithExtension = tmpUrl.match(fileExtensionRE)
-  const url = isUrlWithExtension
-    // url with a file extension, don't touch
-    ? tmpUrl
-    // url without extension => folder
-    : tmpUrl + "/"
-
-  const resourceUrl = isUrlWithExtension
-    // url with a file extension, don't touch
-    ? tmpUrl
-    // url without extension => folder => index.html
-    : joinUri(tmpUrl, "index.html")
+  const url = urlify(tmpUrl)
+  const resourceUrl = urlify(tmpUrl, true)
 
   const dataUrl = resourceUrl + ".json"
 

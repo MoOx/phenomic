@@ -10,16 +10,12 @@ import opn from "opn"
 import debug from "debug"
 
 import collection from "../md-collection-loader/cache.js"
-import toUri from "../_utils/to-uri"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
-// import htmlMetas from "../../_utils/html-metas"
+import { fileExtensionRE } from "../_utils/urlify"
 import cleanNodeCache from "../_utils/clean-node-cache"
 
 const log = debug("statinamic:builder:server")
-
-// also in md-collection-loader/index.js
-const fileExtensionRE = /\.(.*)+$/
 let firstRun = true
 
 export default (webpackConfig, options = {}) => {
@@ -125,8 +121,6 @@ export default (webpackConfig, options = {}) => {
   // prerender pages when possible
   const memoryFs = webpackCompiler.outputFileSystem
   router.get("*", (req, res, next) => {
-    //                                       ↓ remove first slash
-    const uri = toUri(req.originalUrl.slice(1))
     const item = collection.find((item) => item.__url === req.originalUrl)
     if (!item) {
       next()
@@ -143,12 +137,12 @@ export default (webpackConfig, options = {}) => {
       const filepath = join(config.cwd, config.destination, relativeUri)
       const fileContent = memoryFs.readFileSync(filepath)
       log(
-        `Using '${ filepath }' to pre-render '${ req.originalUrl }' (${ uri })`
+        `Using '${ filepath }' to pre-render '${ req.originalUrl }'`
       )
       const data = JSON.parse(fileContent.toString())
       options.store.dispatch({
         type: pagesActions.SET,
-        page: uri,
+        page: req.originalUrl,
         response: {
           data,
         },

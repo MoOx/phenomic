@@ -10,7 +10,6 @@ import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
-import toUri from "../../_utils/to-uri"
 import minifyCollection from "../../md-collection-loader/minify"
 import collectionCache from "../../md-collection-loader/cache"
 
@@ -21,9 +20,6 @@ export default (url, {
   baseUrl,
   assetsFiles,
 }, testing) => {
-
-  const uri = toUri(url)
-
   const {
     layouts,
     metadata,
@@ -93,7 +89,7 @@ export default (url, {
               ...store.getState(),
               // only keep current page as others are not necessary
               pages: {
-                [uri]: store.getState().pages[uri],
+                [url]: store.getState().pages[url],
               },
             }
             script =

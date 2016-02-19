@@ -5,7 +5,6 @@ import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
 import joinUri from "../../_utils/join-uri"
-import toUri from "../../_utils/to-uri"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -26,7 +25,7 @@ export function setPageData(url, collection, store) {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
-      page: toUri(url),
+      page: url,
       response: { data },
     })
   }
@@ -37,7 +36,7 @@ export function forgetPageData(url, store) {
   // pages
   store.dispatch({
     type: pagesActions.FORGET,
-    page: toUri(url),
+    page: url,
   })
 }
 

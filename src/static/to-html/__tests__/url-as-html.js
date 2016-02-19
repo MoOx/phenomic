@@ -43,7 +43,7 @@ test("url as html", async (t) => {
     window.__COLLECTION__ = [];
     window.__INITIAL_STATE__ = {
       "pages": {
-        "": {
+        "/": {
           "home": "page"
         }
       }

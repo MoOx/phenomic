@@ -23,7 +23,7 @@ test("should render a Page if page is ok", (t) => {
       PageContainer,
       {
         params: { splat: "" },
-        pages: { "": {} },
+        pages: { "/": {} },
         getPage: noop,
         setPageNotFound: noop,
       }
@@ -42,6 +42,65 @@ test("should render a Page if page is ok", (t) => {
   )
 })
 
+test.cb("should try to get a page if no page in cache", (t) => {
+  const renderer = createRenderer()
+  renderer.render(
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { },
+        getPage: (pageUrl, dataUrl) => {
+          t.is(pageUrl, "/")
+          t.is(dataUrl, "/j.son")
+          t.end()
+        },
+        setPageNotFound: (...args) => {
+          console.log(args)
+          t.fail()
+          t.end()
+        },
+      }
+    ),
+    {
+      layouts: { Page },
+      collection: [
+        {
+          __url: "/",
+          __dataUrl: "/j.son",
+        },
+      ],
+    },
+  )
+  renderer.getRenderOutput()
+})
+
+test.cb("should notify for page not found", (t) => {
+  const renderer = createRenderer()
+  renderer.render(
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "" },
+        pages: { },
+        getPage: () => {
+          t.fail()
+          t.end()
+        },
+        setPageNotFound: (pageUrl) => {
+          t.is(pageUrl, "/")
+          t.end()
+        },
+      }
+    ),
+    {
+      layouts: { Page },
+      collection: [ ],
+    },
+  )
+  renderer.getRenderOutput()
+})
+
 test(`should render a visible error if page is not ok and no PageError
 available`, (t) => {
   const renderer = createRenderer()
@@ -50,7 +109,7 @@ available`, (t) => {
       PageContainer,
       {
         params: { splat: "" },
-        pages: { "": { error: "Test", errorText: "" } },
+        pages: { "/": { error: "Test", errorText: "" } },
         getPage: noop,
         setPageNotFound: noop,
       }
@@ -82,7 +141,7 @@ test(`should render a PageError if page is not ok and PageError is available`,
       PageContainer,
       {
         params: { splat: "" },
-        pages: { "": { error: "Test" } },
+        pages: { "/": { error: "Test" } },
         getPage: noop,
         setPageNotFound: noop,
       }
@@ -108,7 +167,7 @@ test("should render a another page layout if defaultLayout is used", (t) => {
       PageContainer,
       {
         params: { splat: "" },
-        pages: { "": {} },
+        pages: { "/": {} },
         getPage: noop,
         setPageNotFound: noop,
         defaultLayout: "AnotherPage",

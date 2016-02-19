@@ -10,7 +10,7 @@ export const testStore = createStore(
   (state) => (state),
   {
     pages: {
-      "": {
+      "/": {
         home: "page",
       },
     },

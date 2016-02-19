@@ -1,35 +1,35 @@
 import test from "ava"; import "babel-core/register"
 
-import toUri from "../index"
+import urlify from "../index"
 
 test(
   "should transform */index.md path to a simple url",
   (t) => t.is(
-    toUri("something/index.md"),
-    "something"
+    urlify("something/index.md"),
+    "something/"
   )
 )
 
 test(
   "should transform *\\index.md path to a simple url (windows compat)",
   (t) => t.is(
-    toUri("something\\index.md"),
-    "something"
+    urlify("something\\index.md"),
+    "something/"
   )
 )
 
 test(
   "should transform md path to a simple url",
   (t) => t.is(
-    toUri("something-else.md"),
-    "something-else"
+    urlify("something-else.md"),
+    "something-else/"
   )
 )
 
 test(
   "should not transform an html path",
   (t) => t.is(
-    toUri("something-else.html"),
+    urlify("something-else.html"),
     "something-else.html"
   )
 )
@@ -37,16 +37,24 @@ test(
 test(
   "should transform index.md path to a empty url",
   (t) => t.is(
-    toUri("index.md"),
+    urlify("index.md"),
     ""
+  )
+)
+
+test(
+  "should transform index.md path to a empty url (with root)",
+  (t) => t.is(
+    urlify("/index.md"),
+    "/"
   )
 )
 
 test(
   "should handle windows backslash",
   (t) => t.is(
-    toUri("some\\thing\\else"),
-    "some/thing/else"
+    urlify("some\\thing\\else\\"),
+    "some/thing/else/"
   )
 )
 
@@ -54,24 +62,24 @@ test(
   "should avoid relative '.' path",
   (t) => {
     t.is(
-      toUri("."),
+      urlify("."),
       ""
     )
     t.is(
-      toUri("./"),
+      urlify("./"),
       ""
     )
     t.is(
-      toUri("./stuff"),
-      "stuff"
+      urlify("./stuff"),
+      "stuff/"
     )
   }
 )
 
 test(
-  "should remove surrounding slashes",
+  "should not remove surrounding slashes",
   (t) => t.is(
-    toUri("/some/thing/"),
-    "some/thing"
+    urlify("/some/thing/"),
+    "/some/thing/"
   )
 )

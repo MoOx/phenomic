@@ -1,9 +1,16 @@
 import React, { Component } from "react"
 import { PropTypes } from "react"
 
-function splatToUri(string) {
-  return string.replace(/\/index\.html$/, "")
+// react-router does not return leading and trailing slashes
+// so we need to normalize according to collection data
+import urlify from "../_utils/urlify"
+function splatToUrl(string) {
+  return "/" + urlify(string)
 }
+
+const isDevelopment = process.env.NODE_ENV !== "production"
+const isClient = typeof window !== "undefined"
+const isDevelopmentClient = isDevelopment && isClient
 
 export default class PageContainer extends Component {
 
@@ -45,28 +52,23 @@ export default class PageContainer extends Component {
       )
     }
 
-    const pageKey = splatToUri(props.params.splat)
-    if (
-      process.env.NODE_ENV !== "production" &&
-      typeof window !== "undefined"
-    ) {
-      console.info(`statinamic: PageContainer: '${ pageKey }' rendering...`)
+    const pageUrl = splatToUrl(props.params.splat)
+    if (isDevelopmentClient) {
+      console.info(`statinamic: PageContainer: '${ pageUrl }' rendering...`)
     }
-    const page = props.pages[pageKey]
+    const page = props.pages[pageUrl]
     if (!page) {
-      const pageUrl = "/" + pageKey
       const item = context.collection.find(
         (item) => (
           item.__url === pageUrl ||
-          item.__url === pageUrl + "/" ||
           item.__resourceUrl === pageUrl
         )
       )
       if (item) {
-        props.getPage(pageKey, item.__dataUrl)
+        props.getPage(pageUrl, item.__dataUrl)
       }
       else {
-        props.setPageNotFound(pageKey)
+        props.setPageNotFound(pageUrl)
       }
     }
     else {
@@ -91,25 +93,22 @@ export default class PageContainer extends Component {
   }
 
   render() {
-    const pageKey = splatToUri(this.props.params.splat)
-    const page = this.props.pages[pageKey]
+    const pageUrl = splatToUrl(this.props.params.splat)
+    const page = this.props.pages[pageUrl]
 
     if (!page) {
-      if (process.env.NODE_ENV !== "production") {
-        console.info(`statinamic: PageContainer: '${ pageKey }' no data`)
+      if (isDevelopmentClient) {
+        console.info(`statinamic: PageContainer: '${ pageUrl }' no data`)
       }
       return null
     }
-    if (
-      process.env.NODE_ENV !== "production" &&
-      typeof window !== "undefined"
-    ) {
-      console.info(`statinamic: PageContainer: '${ pageKey }'`, page)
+    if (isDevelopmentClient) {
+      console.info(`statinamic: PageContainer: '${ pageUrl }'`, page)
     }
 
     if (typeof page !== "object") {
       console.info(
-        `statinamic: PageContainer: page ${ pageKey } should be an object`
+        `statinamic: PageContainer: page ${ pageUrl } should be an object`
       )
       return null
     }
