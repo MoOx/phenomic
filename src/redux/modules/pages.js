@@ -1,5 +1,6 @@
 import fetchJSON from "../../fetchJSON"
 
+export const NOOP = "statinamic/pages/NOOP"
 export const GET = "statinamic/pages/GET"
 export const SET = "statinamic/pages/SET"
 export const SET_TYPE = "statinamic/pages/SET_TYPE"
@@ -58,6 +59,18 @@ export function get(page, url) {
   return {
     types: [
       GET,
+      SET,
+      ERROR,
+    ],
+    page,
+    promise: fetchJSON(url),
+  }
+}
+
+export function refresh(page, url) {
+  return {
+    types: [
+      NOOP,
       SET,
       ERROR,
     ],

@@ -69,7 +69,8 @@ module.exports = function(input) {
   const url = urlify(tmpUrl)
   const resourceUrl = urlify(tmpUrl, true)
 
-  const dataUrl = resourceUrl + ".json"
+  const hash = loaderUtils.getHashDigest(input)
+  const dataUrl = resourceUrl + "." + hash + ".json"
 
   const metadata = {
     __filename: relativePath,

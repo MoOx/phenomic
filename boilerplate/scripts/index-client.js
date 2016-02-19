@@ -1,8 +1,3 @@
-// all md files as JSON + generate collections
-require.context("../content", true, /\.md$/)
-
-// ---
-
 import "whatwg-fetch"
 import statinamicClient from "statinamic/lib/client"
 
@@ -17,3 +12,15 @@ statinamicClient({
   routes,
   store,
 })
+
+// md files → JSON && generate collection + hot loading for dev
+let mdContext = require.context("../content", true, /\.md$/)
+mdContext.keys().forEach(mdContext)
+if (module.hot) {
+  const mdHotUpdater = require("statinamic/lib/client/hot-md").default
+  module.hot.accept(mdContext.id, () => {
+    mdContext = require.context("../content", true, /\.md$/)
+    const requireUpdate = mdHotUpdater(mdContext, window.__COLLECTION__, store)
+    mdContext.keys().forEach(requireUpdate)
+  })
+}

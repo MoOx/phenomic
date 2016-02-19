@@ -44,7 +44,8 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
       const defaultRoute = stats.compilation.assets[
         //    fixtures/script.md
         // -> fixtures/script/index.html
-        "fixtures/script/index.html.json"
+        "fixtures/script/index.html" +
+        ".6a655e2e0dc8362c2dec75a73780abf4.json"
       ]
       if (!defaultRoute) {
         console.log(stats.compilation.assets)
@@ -57,7 +58,8 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
       const customRoute = stats.compilation.assets[
         //    fixtures/custom-route.md
         // -> fixtures/route-custom.html
-        "route-custom.html.json"
+        "route-custom.html"+
+        ".46aa87f4e34aa065935bd6ddd87b9f3c.json"
       ]
       t.ok(
         customRoute && customRoute._value,
@@ -67,7 +69,8 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
       const customRouteWithoutExtension = stats.compilation.assets[
         //    fixtures/custom-route-folder
         // -> fixtures/route-custom-folder/index.html
-        "route-custom-folder/index.html.json"
+        "route-custom-folder/index.html" +
+        ".90c288b307f5401be686452389c9c8e6.json"
       ]
       t.ok(
         customRouteWithoutExtension && customRouteWithoutExtension._value,
@@ -77,7 +80,8 @@ test.cb("statinamic/lib/md-collection-loader", (t) => {
       const customRouteWithoutSlash = stats.compilation.assets[
         //    fixtures/custom-route-folder-trailing-slash
         // -> fixtures/route-custom-folder-trailing-slash/index.html
-        "route-custom-folder-trailing-slash/index.html.json"
+        "route-custom-folder-trailing-slash/index.html" +
+        ".855f0b74436493523652693003d3f9d1.json"
       ]
       t.ok(
         customRouteWithoutSlash && customRouteWithoutSlash._value,

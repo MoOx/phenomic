@@ -12,6 +12,9 @@
 - Added: custom routes are supported if you use a `route` field in your markdown
   front matter.
   ([#47](https://github.com/MoOx/statinamic/pull/47))
+- Added: hot loading support for markdown content.
+  See changes in ``boilerplate/scripts/index-client.js``.
+  ([#11](https://github.com/MoOx/statinamic/pull/11))
 
 ## Under the hood
 
