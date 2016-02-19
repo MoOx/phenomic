@@ -24,23 +24,11 @@ export default (url, {
 
   const uri = toUri(url)
 
-  // Import modules from require.resolve
-  const newExports = exports
-  Object.keys(exports).forEach((t) => {
-    if (typeof exports[t] === "string") {
-      let a = require(exports[t])
-      if (a.hasOwnProperty("__esModule") && a.hasOwnProperty("default")) {
-        a = a.default
-      }
-      newExports[t] = a
-    }
-  })
-
   const {
     layouts,
     metadata,
     routes,
-  } = newExports
+  } = importExports(exports)
 
   const render = ReactDOMserver[
     !testing
