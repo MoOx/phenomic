@@ -14,6 +14,7 @@ import toUri from "../_utils/to-uri"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 // import htmlMetas from "../../_utils/html-metas"
+import cleanNodeCache from "../_utils/clean-node-cache"
 
 const log = debug("statinamic:builder:server")
 
