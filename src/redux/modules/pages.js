@@ -38,7 +38,7 @@ export default function reducer(state = {}, action) {
   case ERROR:
     return {
       ...state,
-      [action.page]: action.error.response
+      [action.page]: action.error && action.error.response
         ? {
           error: action.error.response.status,
           errorText: action.error.response.statusText,
