@@ -1,5 +1,7 @@
 - Changed: build and client scripts now require an exports value
-  that must contains layouts, metadata and routes
+  that must contains layouts, metadata and routes.
+  This values should be strings.
+  See changes in ``boilerplate/scripts/build.js``.
   ([#145](https://github.com/MoOx/statinamic/pull/145))
 - Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
   in your base url (``package.json/homepage``).
@@ -11,6 +13,7 @@
   ([#145](https://github.com/MoOx/statinamic/pull/145))
 - Added: custom routes are supported if you use a `route` field in your markdown
   front matter.
+  See example in ``boilerplate/content/404.md``.
   ([#47](https://github.com/MoOx/statinamic/pull/47))
 - Added: hot loading support for markdown content.
   See changes in ``boilerplate/scripts/index-client.js``.
