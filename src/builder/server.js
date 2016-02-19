@@ -121,24 +121,11 @@ export default (webpackConfig, options = {}) => {
   // prerender pages when possible
   const memoryFs = webpackCompiler.outputFileSystem
   router.get("*", (req, res, next) => {
-    const item = collection.find((item) => item.__url === req.originalUrl)
-    if (!item) {
-      next()
-    }
-    else {
-      if (
-        !req.originalUrl.match(fileExtensionRE) &&
-        !req.originalUrl.endsWith("/")
-      ) {
-        res.redirect(req.originalUrl + "/")
-      }
-
+    const item = getItemOrContinue(collection, req, res, next)
+    if (item) {
       const relativeUri = item.__dataUrl.replace(config.baseUrl.pathname, "")
       const filepath = join(config.cwd, config.destination, relativeUri)
       const fileContent = memoryFs.readFileSync(filepath)
-      log(
-        `Using '${ filepath }' to pre-render '${ req.originalUrl }'`
-      )
       const data = JSON.parse(fileContent.toString())
       options.store.dispatch({
         type: pagesActions.SET,
@@ -192,4 +179,20 @@ export default (webpackConfig, options = {}) => {
       opn(`${ config.baseUrl.href }`)
     }
   })
+}
+
+export function getItemOrContinue(collection, req, res, next) {
+  const item = collection.find((item) => item.__url === req.originalUrl)
+  if (!item) {
+    const folderUrl = req.originalUrl + "/"
+    if (collection.find((item) => item.__url === folderUrl)) {
+      res.redirect(folderUrl)
+    }
+    else {
+      next()
+    }
+    return false
+  }
+
+  return item
 }
