@@ -19,6 +19,7 @@ const log = debug("statinamic:builder:server")
 
 // also in md-collection-loader/index.js
 const fileExtensionRE = /\.(.*)+$/
+let firstRun = true
 
 export default (webpackConfig, options = {}) => {
   options = {
@@ -152,8 +153,10 @@ export default (webpackConfig, options = {}) => {
         },
       })
 
-      // TODO: Don't clean cache in first run
-      cleanNodeCache(config.cwd)
+      if (!firstRun) {
+        cleanNodeCache(config.cwd)
+      }
+      firstRun = false
 
       urlAsHtml(req.originalUrl, {
         exports: options.exports,
