@@ -1,4 +1,4 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import { getItemOrContinue } from "../server"
 

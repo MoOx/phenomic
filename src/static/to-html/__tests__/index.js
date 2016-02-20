@@ -1,5 +1,5 @@
 import path from "path"
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import beautifyHTML from "../../../_utils/beautify-html"
 import htmlMetas from "../../../_utils/html-metas"

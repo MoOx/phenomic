@@ -1,4 +1,4 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"

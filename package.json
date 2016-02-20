@@ -147,7 +147,7 @@
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "tests": "ava --verbose \"**/__tests__/*.js\"",
+    "tests": "ava",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run docs && npm run test-boilerplate",
     "test-with-coverage": "nyc npm run test",
@@ -178,5 +178,15 @@
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "ava": {
+    "files": [
+      "**/__tests__/*.js"
+    ],
+    "failFast": true,
+    "verbose": true,
+    "require": [
+      "babel-core/register"
+    ]
   }
 }

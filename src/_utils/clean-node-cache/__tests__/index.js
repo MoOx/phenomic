@@ -3,7 +3,7 @@ import fs from "fs"
 import { join } from "path"
 import { sync as rimraf } from "rimraf"
 import { sync as mkdirp } from "mkdirp"
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import cleanNodeCache from "../index.js"
 const fileNotToClean = join(
