@@ -15,15 +15,6 @@ body {
   /* stylelint-enable */
 }
 
-a {
-  color: inherit;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 hr {
   margin: 2rem 0;
   height: 1px;
@@ -73,7 +64,6 @@ pre {
   line-height: 1.5rem;
   font-weight: 400;
 
-  color: #332106;
   border: 1px solid #ddd;
   border-radius: 0.3em;
   background: color(#fafafa a(0.6));
@@ -95,4 +85,15 @@ code {
   max-width: 60rem;
   margin: auto;
   padding: 1rem 0.75rem;
+
+  & a {
+    color: #42a837;
+
+    &:hover {
+      color: #fff;
+      background: #42a837;
+      box-shadow: 0 0 0 4px #42a837;
+      border-radius: 0.5px;
+    }
+  }
 }
