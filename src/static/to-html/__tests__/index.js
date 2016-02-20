@@ -4,19 +4,14 @@ import test from "ava"; import "babel-core/register"
 import beautifyHTML from "../../../_utils/beautify-html"
 import htmlMetas from "../../../_utils/html-metas"
 
-import toHTML, { writeAllHTMLFiles } from "../index"
+import collection from "./fixtures/collection.js"
+import store from "./fixtures/store.js"
 
-import { testStore, testRoutes } from "./utils"
+import toHTML, { writeAllHTMLFiles } from "../index"
 
 test("don't break if there is nothing to transform", async (t) => {
   toHTML({
     urls: [],
-    // metadata: {},
-    // collection: [],
-    // destination: "destination",
-    // routes: {},
-    // store: {},
-    // baseUrl: { pathname: "/" },
   })
   .then((files) => {
     t.is(files.length, 0)
@@ -30,23 +25,17 @@ test("writeAllHTMLFiles", (t) => {
   t.plan(4)
 
   return writeAllHTMLFiles({
-    // metadata: {},
     urls: [
-      "test-url",
+      "/test-url",
     ],
-    collection: [
-      {
-        __url: "/test-url",
-        __resourceUrl: "/test-url/index.html",
-      },
-    ],
+    exports: {
+      routes: require.resolve("./fixtures/routes.js"),
+    },
+    collection,
+    store,
     assetsFiles: {
       js: [ "statinamic-client.js" ],
       css: [ "statinamic-client.css" ],
-    },
-    store: testStore,
-    exports: {
-      routes: testRoutes,
     },
     destination: "destination",
     baseUrl: { pathname: "/" },
@@ -73,7 +62,13 @@ test("writeAllHTMLFiles", (t) => {
     </div>
   </div>
   <script>
-    window.__COLLECTION__ = [];
+    window.__COLLECTION__ = [{
+      "__url": "/",
+      "__resourceUrl": "/index.html"
+    }, {
+      "__url": "/test-url",
+      "__resourceUrl": "/test-url/index.html"
+    }];
     window.__INITIAL_STATE__ = {
       "pages": {}
     }

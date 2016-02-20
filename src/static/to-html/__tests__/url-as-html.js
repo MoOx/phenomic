@@ -7,22 +7,25 @@ import htmlMetas from "../../../_utils/html-metas"
 
 import urlAsHtml from "../url-as-html"
 
-import { testStore, testRoutes } from "./utils"
-
-const fixture = {
-  exports: {
-    metadata: {},
-    routes: testRoutes,
-  },
-  store: testStore,
-  baseUrl: url.parse("http://0.0.0.0:3000/"),
-  assetsFiles: {
-    js: [ "statinamic-client.js" ],
-  },
-}
+import collection from "./fixtures/collection.js"
+import store from "./fixtures/store.js"
 
 test("url as html", async (t) => {
-  urlAsHtml("/", fixture, true)
+  urlAsHtml(
+    "/",
+    {
+      exports: {
+        routes: require.resolve("./fixtures/routes.js"),
+      },
+      collection,
+      store,
+      baseUrl: url.parse("http://0.0.0.0:3000/"),
+      assetsFiles: {
+        js: [ "statinamic-client.js" ],
+      },
+    },
+    true
+  )
   .then((html) => {
     const expectedHTML = (
 `<!doctype html>
@@ -40,7 +43,13 @@ test("url as html", async (t) => {
     </div>
   </div>
   <script>
-    window.__COLLECTION__ = [];
+    window.__COLLECTION__ = [{
+      "__url": "/",
+      "__resourceUrl": "/index.html"
+    }, {
+      "__url": "/test-url",
+      "__resourceUrl": "/test-url/index.html"
+    }];
     window.__INITIAL_STATE__ = {
       "pages": {
         "/": {
@@ -62,6 +71,6 @@ test("url as html", async (t) => {
     )
   })
   .catch((error) => {
-    t.fail(error)
+    t.fail(error.message)
   })
 })

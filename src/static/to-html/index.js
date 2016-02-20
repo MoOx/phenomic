@@ -89,6 +89,7 @@ export function writeAllHTMLFiles({
       return (
         urlAsHtml(fullUrl, {
           exports,
+          collection,
           store,
 
           baseUrl,

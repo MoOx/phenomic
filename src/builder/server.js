@@ -12,7 +12,6 @@ import debug from "debug"
 import collection from "../md-collection-loader/cache.js"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
-import { fileExtensionRE } from "../_utils/urlify"
 import cleanNodeCache from "../_utils/clean-node-cache"
 
 const log = debug("statinamic:builder:server")
@@ -143,7 +142,7 @@ export default (webpackConfig, options = {}) => {
       urlAsHtml(req.originalUrl, {
         exports: options.exports,
         store: options.store,
-        // collection: options.collection,
+        collection,
         baseUrl: config.baseUrl,
         assetsFiles: {
           js: entries,

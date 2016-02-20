@@ -55,8 +55,7 @@ test.cb("should try to get a page if no page in cache", (t) => {
           t.is(dataUrl, "/j.son")
           t.end()
         },
-        setPageNotFound: (...args) => {
-          console.log(args)
+        setPageNotFound: () => {
           t.fail()
           t.end()
         },
