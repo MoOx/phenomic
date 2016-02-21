@@ -67,6 +67,12 @@ test("should use default pruneLength if pruneLength < 10", (t) => {
     pruneString: "[...]"
   }
 
+  // Mocking console.warn
+  const originalConsole = console.warn
+  let called = false
+  console.warn = () => {
+    called = true
+  }
   const mdObject = {
     head: {},
     rawBody: fixtures.basic,
@@ -75,6 +81,9 @@ test("should use default pruneLength if pruneLength < 10", (t) => {
   const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad[...]"
 
   t.is(description(mdObject, opts).head.description, expectedResult)
+  t.true(called)
+
+  console.warn = originalConsole
 })
 
 test("should have no problem with special chars", (t) => {
