@@ -49,8 +49,9 @@ layout! That means you won't have to refresh your page during development when
 you will edit your pages. You will also see compilation errors and runtime errors.
 [Here is a GIF to see what this might looks like](https://cloud.githubusercontent.com/assets/1539088/11611771/ae1a6bd8-9bac-11e5-9206-42447e0fe064.gif).
 
-_For now, you will only need to refresh a page to refresh Markdown content
-([but we have an idea to improve that](https://github.com/MoOx/statinamic/issues/11))._
+<center>
+  <img src="https://cloud.githubusercontent.com/assets/3049054/12601289/8eb195b0-c4d2-11e5-821f-1bc1c894252d.gif" />
+</center>
 
 ### Choose your Statinamic flavor
 
