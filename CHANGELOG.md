@@ -3,6 +3,8 @@
   This values should be strings.
   See changes in ``boilerplate/scripts/build.js``.
   ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Fixed: Redux devtools cause invalid checksum
+  ([#152](https://github.com/MoOx/statinamic/issues/152))
 - Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
   in your base url (``package.json/homepage``).
   ([#104](https://github.com/MoOx/statinamic/pull/104))

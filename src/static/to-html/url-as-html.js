@@ -80,6 +80,7 @@ export default (url, {
                     <RouterContextProvider { ...renderProps } />
                   </ReduxContextProvider>
                 </StatinamicContextProvider>
+                { process.env.REDUX_DEVTOOLS && <noscript /> }
               </div>
             )
 
