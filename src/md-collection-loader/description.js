@@ -10,8 +10,14 @@ const defaultOpts = {
 export default function description(mdObject, opts = {}) {
   opts = { ...defaultOpts, ...opts }
 
-  if (opts.pruneLength <= 0) {
-    throw new Error("Prune length must be larger than 0")
+  if (opts.pruneLength < 10) {
+    console.warn(
+      `You defined 'description.pruneLength' of md-collection-loader ` +
+      `with an zero value. This does not make sense, ` +
+      `so the default value ${ defaultOpts.pruneLength } has been used.`
+    )
+
+    opts.pruneLength = defaultOpts.pruneLength
   }
 
   // Don't touch mdObject if there is a

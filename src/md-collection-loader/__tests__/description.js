@@ -32,7 +32,7 @@ test("should generate description with default option", (t) => {
 
   const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad…"
 
-  t.same(description(mdObject).head.description, expectedResult)
+  t.is(description(mdObject).head.description, expectedResult)
 })
 
 test("should allow setting description in frontmatter", (t) => {
@@ -43,9 +43,7 @@ test("should allow setting description in frontmatter", (t) => {
     rawBody: "",
   }
 
-  const expectedResult = "Tokyo rain bridge motion fetishism boat dissident long-chain hydrocarbons disposable sprawl warehouse cardboard Kowloon neon face forwards claymore mine spook cartel voodoo god film tattoo girl dome realism."
-
-  t.same(description(mdObject).head.description, expectedResult)
+  t.is(description(mdObject).head.description, mdObject.head.description)
 })
 
 test("should allow to override pruneLength and pruneString", (t) => {
@@ -60,15 +58,23 @@ test("should allow to override pruneLength and pruneString", (t) => {
   }
 
   const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur[...]"
-  t.same(description(mdObject, opts).head.description, expectedResult)
+  t.is(description(mdObject, opts).head.description, expectedResult)
 })
 
-test("should throw if pruneLength is set to 0", (t) => {
+test("should use default pruneLength if pruneLength < 10", (t) => {
   const opts = {
-    pruneLength: 0,
+    pruneLength: 4,
+    pruneString: "[...]"
   }
 
-  t.throws(() => description({}, opts), "Prune length must be larger than 0")
+  const mdObject = {
+    head: {},
+    rawBody: fixtures.basic,
+  }
+
+  const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad[...]"
+
+  t.is(description(mdObject, opts).head.description, expectedResult)
 })
 
 test("should have no problem with special chars", (t) => {
@@ -79,5 +85,5 @@ test("should have no problem with special chars", (t) => {
 
   const expectedResult = "Lörém ipšüm dõlœr sït āmêt.\n"
 
-  t.same(description(mdObject).head.description, expectedResult)
+  t.is(description(mdObject).head.description, expectedResult)
 })
