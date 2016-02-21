@@ -62,6 +62,17 @@ export default function(options) {
         exports,
         store,
       })
+      .then(() => {
+        if (config.server) {
+          devServer(null, { config })
+        }
+      })
+      .catch((error) => {
+        log(color.red("✗ Faild to start static server"))
+        setTimeout(() => {
+          throw error
+        }, 1)
+      })
     })
   }
   else if (config.server) {
