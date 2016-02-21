@@ -14,7 +14,7 @@ export default function statinamic({
 }) {
   let devtools = false
   if (process.env.REDUX_DEVTOOLS && process.env.CLIENT) {
-    const DevToolsComponent = require("./DevTools.js").default
+    const DevToolsComponent = require("./DevTools.js").DevToolsComponent
     devtools = <DevToolsComponent store={ store } />
   }
 
