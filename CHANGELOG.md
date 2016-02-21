@@ -20,6 +20,9 @@
 - Added: hot loading support for markdown content.
   See changes in ``boilerplate/scripts/index-client.js``.
   ([#11](https://github.com/MoOx/statinamic/pull/11))
+- Added: boilerplate now enable source maps by default during development.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+  ([#170](https://github.com/MoOx/statinamic/pull/170))
 
 ## Under the hood
 
