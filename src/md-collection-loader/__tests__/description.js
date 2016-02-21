@@ -64,7 +64,7 @@ test("should allow to override pruneLength and pruneString", (t) => {
 test("should use default pruneLength if pruneLength < 10", (t) => {
   const opts = {
     pruneLength: 4,
-    pruneString: "[...]"
+    pruneString: "[...]",
   }
 
   // Mocking console.warn
