@@ -8,6 +8,8 @@
   ([#104](https://github.com/MoOx/statinamic/pull/104))
 - Fixed: ability to pass custom webpack devServer config
   ([#157](https://github.com/MoOx/statinamic/issues/157))
+- Added: cli option to server static dist build `npm run build -- --server`
+  ([#163](https://github.com/MoOx/statinamic/pull/163))
 - Added: during development for pre-rendering, dev server will refresh
   all files for each render
   ([#145](https://github.com/MoOx/statinamic/pull/145))
