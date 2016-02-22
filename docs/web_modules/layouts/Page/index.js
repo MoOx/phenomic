@@ -1,11 +1,6 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
-
-// function pageDescription(text) {
-//   return text
-// }
 
 import styles from "./index.css"
 
@@ -46,11 +41,12 @@ export default class Page extends Component {
       { property: "og:type", content: "article" },
       { property: "og:title", content: metaTitle },
       { property: "og:url", content: __url },
-      // { property: "og:description", content: pageDescription(body) },
+      { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: metaTitle },
       { name: "twitter:creator", content: `@${ pkg.twitter }` },
-      // { name: "twitter:description", content: pageDescription(body) },
+      { name: "twitter:description", content: head.description },
+      { name: "description", content: head.description },
     ]
 
     return (

@@ -1,17 +1,13 @@
 /*
 Example
-
 ```md
   ---
   title: Test
   key: value
   ---
-
   _Md_ content
 ```
-
 return a object:
-
 ```json
 {
   __filename: ...
@@ -26,7 +22,6 @@ return a object:
   rawBody: "_Md_ content",
   raw: {initial content},
 }
-
 ```
  */
 import path from "path"
@@ -39,6 +34,7 @@ import urlify from "../_utils/urlify"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
+import description from "./description"
 
 let timeout
 
@@ -78,7 +74,7 @@ module.exports = function(input) {
     __resourceUrl: joinUri(basepath, resourceUrl),
     __dataUrl: joinUri(basepath, dataUrl),
   }
-  const mdObject = {
+  let mdObject = {
     head: {
       ...defaultHead,
       ...parsed.data,
@@ -88,6 +84,8 @@ module.exports = function(input) {
     raw: parsed.orig,
     ...metadata,
   }
+
+  mdObject = description(mdObject, query.description)
 
   if (!this.emitFile) {
     throw new Error("emitFile is required from module system")
