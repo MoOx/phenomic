@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link } from "react-router"
+import Link from "statinamic/lib/Link"
 import cx from "classnames"
 
 import styles from "./index.css"
@@ -26,28 +26,28 @@ export default class Header extends Component {
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
-            to="/statinamic/"
+            to="/"
           >
             { "Home" }
           </Link>
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
-            to="/statinamic/docs/setup/"
+            to="/docs/setup/"
           >
             { "Setup" }
           </Link>
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
-            to="/statinamic/docs/usage/"
+            to="/docs/usage/"
           >
             { "Usage" }
           </Link>
           <Link
             className={ styles.link }
             activeClassName={ styles.linkActive }
-            to="/statinamic/docs/faq/"
+            to="/docs/faq/"
           >
             { "FAQ" }
           </Link>

@@ -1,4 +1,5 @@
 import fetchJSON from "../../fetchJSON"
+import joinUri from "../../_utils/join-uri"
 
 export const NOOP = "statinamic/pages/NOOP"
 export const GET = "statinamic/pages/GET"
@@ -63,7 +64,10 @@ export function get(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(url),
+    promise: fetchJSON(joinUri(
+      process.env.STATINAMIC_PATHNAME,
+      url
+    )),
   }
 }
 
@@ -75,7 +79,10 @@ export function refresh(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(url),
+    promise: fetchJSON(joinUri(
+      process.env.STATINAMIC_PATHNAME,
+      url
+    )),
   }
 }
 

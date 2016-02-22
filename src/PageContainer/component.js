@@ -1,12 +1,9 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
+import urlify from "../_utils/urlify"
 
 // react-router does not return leading and trailing slashes
 // so we need to normalize according to collection data
-import urlify from "../_utils/urlify"
-function splatToUrl(string) {
-  return "/" + urlify(string)
-}
+const splatToUrl = (string) => ("/" + urlify(string))
 
 const isDevelopment = process.env.NODE_ENV !== "production"
 const isClient = typeof window !== "undefined"

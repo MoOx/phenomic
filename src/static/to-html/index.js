@@ -4,7 +4,7 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
-import joinUri from "../../_utils/join-uri"
+
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -70,24 +70,17 @@ export function writeAllHTMLFiles({
   forgetPageData,
   writeHTMLFile,
 }, testing) {
-  // console.log("collection", collection)
   // create all html files
   return Promise.all(
     urls.map((url) => {
-      const fullUrl = joinUri(baseUrl.pathname, url)
-      // console.log("fullUrl", fullUrl)
-      const item = collection.find((item) => item.__url === fullUrl)
+      const item = collection.find((item) => item.__url === url)
       const filename = item
-        ? path.join(
-          destination,
-          // remove pathname to get file path
-          item.__resourceUrl.replace(baseUrl.pathname, "")
-        )
+        ? path.join(destination, item.__resourceUrl)
         : path.join(destination, url)
 
-      setPageData(fullUrl, collection, store)
+      setPageData(url, collection, store)
       return (
-        urlAsHtml(fullUrl, {
+        urlAsHtml(url, {
           exports,
           collection,
           store,
@@ -96,7 +89,7 @@ export function writeAllHTMLFiles({
           assetsFiles,
         }, testing)
         .then((html) => writeHTMLFile(filename, html))
-        .then(() => forgetPageData(fullUrl, store))
+        .then(() => forgetPageData(url, store))
       )
     })
   )

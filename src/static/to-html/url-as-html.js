@@ -7,6 +7,7 @@ import Helmet from "react-helmet"
 
 import importExports from "../../_utils/import-exports"
 import htmlMetas from "../../_utils/html-metas"
+import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
@@ -32,6 +33,7 @@ export default (url, {
     ? "renderToString"
     : "renderToStaticMarkup"
   ]
+
   return new Promise((resolve, reject) => {
     const defaultMetas = htmlMetas({
       baseUrl,
@@ -43,6 +45,7 @@ export default (url, {
         {
           routes,
           location: url,
+          basename: baseUrl.pathname,
         },
         (error, redirectLocation, renderProps) => {
           let head
@@ -113,7 +116,7 @@ export default (url, {
             scriptTags = assetsFiles.js.map(fileName =>
               <script
                 key={ fileName }
-                src={ `${ baseUrl.pathname }${ fileName }` }
+                src={ `${ joinUri(baseUrl.pathname, fileName) }` }
               ></script>
             )
           }

@@ -17,7 +17,6 @@ export default function(options) {
   } = options
 
   const log = debug("statinamic:builder")
-  // JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
   const destination = path.join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
@@ -52,10 +51,7 @@ export default function(options) {
         ...config,
         urls: [
           ...options.urls || [],
-          ...collection.map(
-            // get url without the base path
-            (item) => item.__url.replace(config.baseUrl.pathname, "")
-          ),
+          ...collection.map((item) => item.__url),
         ],
         collection,
         assetsFiles,
