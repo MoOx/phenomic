@@ -36,7 +36,7 @@ test("should render a Page if page is ok", (t) => {
 
   t.is(
     jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
+    `<div ref={function noRefCheck() {}}>\n` +
     `  <Page />\n` +
     `</div>`
   )
@@ -121,7 +121,7 @@ available`, (t) => {
 
   t.is(
     jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
+    `<div ref={function noRefCheck() {}}>\n` +
     `  <div style={{'text-align': 'center'}}>\n` +
     `    <h1>\n` +
     `      Test\n` +
@@ -153,7 +153,7 @@ test(`should render a PageError if page is not ok and PageError is available`,
 
   t.is(
     jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
+    `<div ref={function noRefCheck() {}}>\n` +
     `  <PageError error="Test" />\n` +
     `</div>`
   )
@@ -180,7 +180,7 @@ test("should render a another page layout if defaultLayout is used", (t) => {
 
   t.is(
     jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
+    `<div ref={function noRefCheck() {}}>\n` +
     `  <AnotherPage />\n` +
     `</div>`
   )

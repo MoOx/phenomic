@@ -9,6 +9,14 @@ const isDevelopment = process.env.NODE_ENV !== "production"
 const isClient = typeof window !== "undefined"
 const isDevelopmentClient = isDevelopment && isClient
 
+let catchLinks
+let browserHistory
+
+if (isClient) {
+  catchLinks = require("../_utils/catch-links").default
+  browserHistory = require("../client").browserHistory
+}
+
 export default class PageContainer extends Component {
 
   static propTypes = {
@@ -35,8 +43,26 @@ export default class PageContainer extends Component {
     this.preparePage(this.props, this.context)
   }
 
+  componentDidMount() {
+    this.catchInternalLink()
+  }
+
   componentWillReceiveProps(nextProps) {
     this.preparePage(nextProps, this.context)
+  }
+
+  componentDidUpdate() {
+    this.catchInternalLink()
+  }
+
+  catchInternalLink() {
+    if (!isClient) {
+      return
+    }
+    catchLinks(this._content, (href) => {
+      const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
+      browserHistory.push(pathname)
+    })
   }
 
   preparePage(props, context) {
@@ -114,7 +140,7 @@ export default class PageContainer extends Component {
     const Layout = this.getLayout(this.props, this.context, page)
 
     return (
-      <div>
+      <div ref={ (ref) => this._content = ref }>
         {
           !page.error && page.loading && PageLoading &&
           <PageLoading />

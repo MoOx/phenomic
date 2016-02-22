@@ -14,6 +14,9 @@
   ([#104](https://github.com/MoOx/statinamic/pull/104))
 - Fixed: ability to pass custom webpack devServer config
   ([#157](https://github.com/MoOx/statinamic/issues/157))
+- Added: Intercept clicks on markdown links so they will not trigger
+  full page reload
+  ([#67](https://github.com/MoOx/statinamic/issues/67))
 - Added: Generate meta description and bundle it to collection
   See ``boilerplate/web_modules/layouts/Page/index.js`` for an example.
   ([#79](https://github.com/MoOx/statinamic/issues/79))
