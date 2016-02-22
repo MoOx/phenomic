@@ -32,20 +32,28 @@ export default function(options) {
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
-      // TODO use a more reliable way to only get entry points
       const assetsFiles = {
         css: [],
         js: [],
       }
-      const assets = stats.compilation.assets
-      Object.keys(assets).forEach((name) => {
-        if (name.endsWith(".js")) {
-          assetsFiles.js.push(name)
-        }
-        if (name.endsWith(".css")) {
-          assetsFiles.css.push(name)
-        }
-      })
+      const assets = stats.toJson().assetsByChunkName
+
+      // Flatten object of arrays
+      // sort a-z => predictable chunks order
+      Object.keys(assets)
+        .reduce((result, key) => {
+          const chunkAssets = assets[key]
+          return result.concat(chunkAssets)
+        }, [])
+        .sort((a, b) => (a.toLowerCase() > b.toLowerCase()) ? 1 : -1)
+        .forEach((name) => {
+          if (name.endsWith(".js")) {
+            assetsFiles.js.push(name)
+          }
+          else if (name.endsWith(".css")) {
+            assetsFiles.css.push(name)
+          }
+        })
 
       toStaticHTML({
         ...config,
