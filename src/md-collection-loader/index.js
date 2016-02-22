@@ -43,7 +43,6 @@ module.exports = function(input) {
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
 
-  const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
     ? query.markdownIt
     : this.options.markdownIt
@@ -70,9 +69,9 @@ module.exports = function(input) {
 
   const metadata = {
     __filename: relativePath,
-    __url: joinUri(basepath, url),
-    __resourceUrl: joinUri(basepath, resourceUrl),
-    __dataUrl: joinUri(basepath, dataUrl),
+    __url: joinUri("/", url),
+    __resourceUrl: joinUri("/", resourceUrl),
+    __dataUrl: joinUri("/", dataUrl),
   }
   let mdObject = {
     head: {

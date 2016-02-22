@@ -24,12 +24,12 @@ export default class PageError extends Component {
     return (
       <div className={ styles.container }>
         <div className={ styles.oops }>{ "😱 Oooops!" }</div>
-        <p className={ styles.text }>
-          <h1 className={ styles.title }>
+        <div className={ styles.text }>
+          <p className={ styles.title }>
             <strong>{ error }</strong>
             { " " }
             { errorText }
-          </h1>
+          </p>
           {
             error === 404 && [
               "It seems you find a broken link. ",
@@ -39,7 +39,7 @@ export default class PageError extends Component {
             ]
           }
 
-        </p>
+        </div>
       </div>
     )
   }

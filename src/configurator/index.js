@@ -108,6 +108,9 @@ export default function config(pkg = {}, argv = process.argv) {
   // returned by node (eg: make assertions difficult)
   config.baseUrl = { ... url.parse(url.format(config.baseUrl)) }
 
+  // Set basename to process.env for universal usage
+  process.env.STATINAMIC_PATHNAME = config.baseUrl.pathname
+
   // Prepare config.assets path and route
   if (config.assets) {
 

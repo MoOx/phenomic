@@ -5,12 +5,13 @@ import { getItemOrContinue } from "../server"
 // fixtures
 const item = { __url: "/test/" }
 const collection = [ item ]
+const baseUrl = { pathname: "/" }
 
 test("should return item if in collection", (t) => {
 
   const result = getItemOrContinue(
     collection,
-
+    baseUrl,
     // req
     { originalUrl: "/test/" },
 
@@ -26,7 +27,7 @@ test("should return item if in collection", (t) => {
 test("should redirect if missing /", (t) => {
   const result = getItemOrContinue(
     collection,
-
+    baseUrl,
     // req
     { originalUrl: "/test" },
 
@@ -44,6 +45,7 @@ test("should redirect if missing /", (t) => {
 test("should skip if not in collection", (t) => {
   const result = getItemOrContinue(
     collection,
+    baseUrl,
     // req
     { originalUrl: "/no" },
 

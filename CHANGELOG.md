@@ -1,6 +1,7 @@
-- Added: Generate meta description and bundle it to collection
-  See ``boilerplate/web_modules/layouts/Page/index.js`` for an example.
-  ([#79](https://github.com/MoOx/statinamic/issues/79))
+- Changed: use ``react-router`` basename feature.
+  All urls in collection do not contain base pathname anymore and
+  all url in components should not have it anymore
+  ([#165](https://github.com/MoOx/statinamic/pull/165))
 - Changed: build and client scripts now require an exports value
   that must contains layouts, metadata and routes.
   This values should be strings.
@@ -13,6 +14,9 @@
   ([#104](https://github.com/MoOx/statinamic/pull/104))
 - Fixed: ability to pass custom webpack devServer config
   ([#157](https://github.com/MoOx/statinamic/issues/157))
+- Added: Generate meta description and bundle it to collection
+  See ``boilerplate/web_modules/layouts/Page/index.js`` for an example.
+  ([#79](https://github.com/MoOx/statinamic/issues/79))
 - Added: cli option to server static dist build `npm run build -- --server`
   ([#163](https://github.com/MoOx/statinamic/pull/163))
 - Added: during development for pre-rendering, dev server will refresh

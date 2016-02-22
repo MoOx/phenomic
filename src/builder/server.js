@@ -15,6 +15,7 @@ import * as pagesActions from "../redux/modules/pages"
 import cleanNodeCache from "../_utils/clean-node-cache"
 
 const log = debug("statinamic:builder:server")
+
 let firstRun = true
 
 export default (webpackConfig, options = {}) => {
@@ -127,15 +128,21 @@ export default (webpackConfig, options = {}) => {
     // prerender pages when possible
     const memoryFs = webpackCompiler.outputFileSystem
     router.get("*", (req, res, next) => {
-      const item = getItemOrContinue(collection, req, res, next)
+      const item = getItemOrContinue(
+        collection,
+        config.baseUrl,
+        req,
+        res,
+        next
+      )
       if (item) {
-        const relativeUri = item.__dataUrl.replace(config.baseUrl.pathname, "")
-        const filepath = join(config.cwd, config.destination, relativeUri)
+        const filepath = join(config.cwd, config.destination, item.__dataUrl)
         const fileContent = memoryFs.readFileSync(filepath)
         const data = JSON.parse(fileContent.toString())
+
         options.store.dispatch({
           type: pagesActions.SET,
-          page: req.originalUrl,
+          page: item.__url,
           response: {
             data,
           },
@@ -146,7 +153,7 @@ export default (webpackConfig, options = {}) => {
         }
         firstRun = false
 
-        urlAsHtml(req.originalUrl, {
+        urlAsHtml(item.__url, {
           exports: options.exports,
           store: options.store,
           collection,
@@ -191,12 +198,19 @@ export default (webpackConfig, options = {}) => {
   })
 }
 
-export function getItemOrContinue(collection, req, res, next) {
-  const item = collection.find((item) => item.__url === req.originalUrl)
+export function getItemOrContinue(collection, baseUrl, req, res, next) {
+  const __url = req.originalUrl
+    .replace(baseUrl.pathname, "/")
+    .replace(/index\.html$/, "")
+
+  const item = collection.find((item) => item.__url === __url)
+
   if (!item) {
-    const folderUrl = req.originalUrl + "/"
+    const folderUrl = __url + "/"
     if (collection.find((item) => item.__url === folderUrl)) {
-      res.redirect(folderUrl)
+      res.redirect(
+        req.originalUrl + "/"
+      )
     }
     else {
       next()

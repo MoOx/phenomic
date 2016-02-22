@@ -1,3 +1,5 @@
+import joinUri from "../join-uri"
+
 export const defaultMetas = [
   `<meta charset="utf-8" />`,
   `<meta http-equiv="X-UA-Compatible" content="IE=edge" />`,
@@ -9,8 +11,9 @@ export default ({ baseUrl, css } = {}) => {
 
   if (css && Array.isArray(css)) {
     css.forEach(fileName => {
+      const path = joinUri(baseUrl.pathname, fileName)
       metas.push(
-        `<link rel="stylesheet" href="${ baseUrl.pathname }${ fileName }" />`
+        `<link rel="stylesheet" href="${path}" />`
       )
     })
   }
