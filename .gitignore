@@ -26,3 +26,6 @@ docs/dist
 boilerplate/package.json
 boilerplate/dist
 test-boilerplate
+
+# logo
+logo/*.png
