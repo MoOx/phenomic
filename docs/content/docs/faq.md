@@ -38,5 +38,5 @@ cover this case.
 
 ```diff
 -- import { Link } from "react-router"
-++ import Link from "statinamic/lib/Link"
+++ import { Link } from "statinamic/lib/Link"
 ```
