@@ -8,8 +8,9 @@
   font-weight: 200;
   color: #fdfdfd;
   background:
+    #08b09b
     linear-gradient(
-      160deg, #5295f0, #42a837
+      160deg, #006bf6, #10e951
     );
   text-shadow: 0 1px 0 color(#111 a(0.8));
   box-shadow: inset 0 -1rem 3rem color(#000 a(0.4));
@@ -113,7 +114,7 @@
   border-radius: 3px;
   text-shadow: 0 1px 0 color(#fff a(0.5));
   text-decoration: none;
-  color: #111;
+  color: #2d445d;
   background: #dedede linear-gradient(#fff, #efefef);
 }
 

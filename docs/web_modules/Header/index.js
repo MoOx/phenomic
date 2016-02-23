@@ -5,7 +5,7 @@ import cx from "classnames"
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
 import SVG from "react-svg-inline"
-import statinamicLogoSVG from "../../../logo/statinamic-text.svg"
+import statinamicLogoSVG from "../../../logo/statinamic-text-white.svg"
 import twitterSVG from "./iconmonstr-twitter-1.svg"
 import starSVG from "./iconmonstr-start.svg"
 

@@ -86,14 +86,25 @@ code {
   margin: auto;
   padding: 1rem 0.75rem;
 
+  color: #243a53;
+
   & a {
-    color: #42a837;
+    display: inline-block;
+    color: #08b09b;
 
     &:hover {
       color: #fff;
-      background: #42a837;
-      box-shadow: 0 0 0 4px #42a837;
+      background: #08b09b;
+      box-shadow: 0 0 0 2px #08b09b;
       border-radius: 0.5px;
     }
+  }
+
+  & img {
+    max-width: 100%;
+  }
+
+  & a > img {
+    display: block;
   }
 }
