@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react"
+import { findDOMNode } from "react-dom"
 import urlify from "../_utils/urlify"
 
 // react-router does not return leading and trailing slashes
@@ -27,7 +28,7 @@ export default class PageContainer extends Component {
 
     // actions
     getPage: PropTypes.func.isRequired,
-    setPageNotFound: PropTypes.func.isRequired,
+    setPageNotFound: PropTypes.func,
   };
 
   static contextTypes = {
@@ -59,7 +60,7 @@ export default class PageContainer extends Component {
     if (!isClient) {
       return
     }
-    catchLinks(this._content, (href) => {
+    catchLinks(findDOMNode(this._content), (href) => {
       const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
       browserHistory.push(pathname)
     })
@@ -91,7 +92,21 @@ export default class PageContainer extends Component {
         props.getPage(pageUrl, item.__dataUrl)
       }
       else {
-        props.setPageNotFound(pageUrl)
+        // Here we know we don't have the "internal" link in the collection
+        // so we can assume it's something else than a know page (eg: an asset)
+        // Refreshing the page will it the appropriate resource.
+        if (isClient) {
+          window.location.reload()
+        }
+        else if (props.setPageNotFound) {
+          props.setPageNotFound(pageUrl)
+        }
+        else {
+          console.error(
+            `statinamic: PageContainer: ` +
+            `${ pageUrl } is a page not found.`
+          )
+        }
       }
     }
     else {
