@@ -1,33 +1,38 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import url from "url"
 
-import beautifyHTML from "../../../__tests__/utils/beautifyHTML"
-import htmlMetas from "../../../html-metas"
+import beautifyHTML from "../../../_utils/beautify-html"
+import htmlMetas from "../../../_utils/html-metas"
 
 import urlAsHtml from "../url-as-html"
 
-import { testStore, testRoutes } from "./utils"
-
-const fixture = {
-  metadata: {},
-  routes: testRoutes,
-  store: testStore,
-  baseUrl: url.parse("http://0.0.0.0:3000/"),
-  assetsFiles: {
-    js: [ "statinamic-client.js" ],
-  },
-}
+import collection from "./fixtures/collection.js"
+import store from "./fixtures/store.js"
 
 test("url as html", async (t) => {
-  urlAsHtml("", fixture, true)
+  urlAsHtml(
+    "/",
+    {
+      exports: {
+        routes: require.resolve("./fixtures/routes.js"),
+      },
+      collection,
+      store,
+      baseUrl: url.parse("http://0.0.0.0:3000/"),
+      assetsFiles: {
+        js: [ "statinamic-client.js" ],
+      },
+    },
+    true
+  )
   .then((html) => {
     const expectedHTML = (
 `<!doctype html>
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { path: "/" } }).join("\n  ") }
+  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
@@ -38,10 +43,16 @@ test("url as html", async (t) => {
     </div>
   </div>
   <script>
-    window.__COLLECTION__ = [];
+    window.__COLLECTION__ = [{
+      "__url": "/",
+      "__resourceUrl": "/index.html"
+    }, {
+      "__url": "/test-url",
+      "__resourceUrl": "/test-url/index.html"
+    }];
     window.__INITIAL_STATE__ = {
       "pages": {
-        "": {
+        "/": {
           "home": "page"
         }
       }
@@ -60,6 +71,6 @@ test("url as html", async (t) => {
     )
   })
   .catch((error) => {
-    t.fail(error)
+    t.fail(error.message)
   })
 })

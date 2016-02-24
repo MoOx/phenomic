@@ -6,20 +6,17 @@ import debug from "debug"
 import webpack from "./webpack"
 import devServer from "./server"
 
-import filenameToUrl from "../filename-to-url"
+import collection from "../md-collection-loader/cache"
 import toStaticHTML from "../static"
 
 export default function(options) {
   const {
     config,
-    layouts,
-    metadata,
-    routes,
     store,
+    exports,
   } = options
 
   const log = debug("statinamic:builder")
-  // JSON.stringify(config, null, 2).split("\n").forEach(l => log(l))
 
   const destination = path.join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
@@ -35,64 +32,61 @@ export default function(options) {
     webpack(options.clientWebpackConfig, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
-      // There is probably a better way to get markdown as json without reading
-      // fs, but I am tired
-      const pagesData = {}
       const assetsFiles = {
         css: [],
         js: [],
       }
-      const assets = stats.compilation.assets
-      Object.keys(assets).forEach((name) => {
-        if (name.endsWith("index.json")) {
-          const url = filenameToUrl(name)
-          pagesData[url] = JSON.parse(assets[name]._value)
-        }
+      const assets = stats.toJson().assetsByChunkName
 
-        if (name.endsWith(".js")) {
-          assetsFiles.js.push(name)
-        }
-
-        if (name.endsWith(".css")) {
-          assetsFiles.css.push(name)
-        }
-      })
+      // Flatten object of arrays
+      // sort a-z => predictable chunks order
+      Object.keys(assets)
+        .reduce((result, key) => {
+          const chunkAssets = assets[key]
+          return result.concat(chunkAssets)
+        }, [])
+        .sort((a, b) => (a.toLowerCase() > b.toLowerCase()) ? 1 : -1)
+        .forEach((name) => {
+          if (name.endsWith(".js")) {
+            assetsFiles.js.push(name)
+          }
+          else if (name.endsWith(".css")) {
+            assetsFiles.css.push(name)
+          }
+        })
 
       toStaticHTML({
         ...config,
         urls: [
           ...options.urls || [],
-          ...getMdUrlsFromWebpackStats(stats, config.source),
+          ...collection.map((item) => item.__url),
         ],
-        pagesData,
+        collection,
         assetsFiles,
-        layouts,
-        metadata,
-        routes,
+        exports,
         store,
+      })
+      .then(() => {
+        if (config.server) {
+          devServer(null, { config })
+        }
+      })
+      .catch((error) => {
+        log(color.red("✗ Faild to start static server"))
+        setTimeout(() => {
+          throw error
+        }, 1)
       })
     })
   }
   else if (config.server) {
     devServer(options.clientWebpackConfig, {
       config,
-      layouts,
-      metadata,
-      routes,
+      exports,
       store,
     })
   }
   else {
     throw new Error("You need to specify --static or --server")
   }
-}
-
-function getMdUrlsFromWebpackStats(stats, source) {
-  return stats.compilation.fileDependencies.reduce(
-    (array, filename) => ([
-      ...(filename.match(/\.md$/) ? [ filenameToUrl(filename, source) ] : []),
-      ...array,
-    ]),
-    []
-  )
 }

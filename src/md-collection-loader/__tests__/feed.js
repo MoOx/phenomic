@@ -1,4 +1,4 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import feed from "../feed"
 
@@ -15,14 +15,12 @@ test("statinamic/lib/md-collection-loader feed helper", (t) => {
         title: "One",
         date: "2015-01-01",
         description: "<strong>One</strong>",
-        __filename: "page/one.md",
         __url: "/page/one/",
       },
       {
         title: "Two",
         date: "2015-12-31",
         description: "<strong>Two</strong>",
-        __filename: "page/two.md",
         __url: "/page/two/",
       },
     ],

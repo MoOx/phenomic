@@ -15,20 +15,16 @@ body {
   /* stylelint-enable */
 }
 
-a {
-  color: inherit;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 hr {
   margin: 2rem 0;
   height: 1px;
   border: 0;
   background-image: linear-gradient(to right, color(#000 a(0)), color(#000 a(0.6)), color(#000 a(0)));
+}
+
+h1,
+h2 {
+  line-height: 3rem;
 }
 
 h1,
@@ -73,7 +69,6 @@ pre {
   line-height: 1.5rem;
   font-weight: 400;
 
-  color: #332106;
   border: 1px solid #ddd;
   border-radius: 0.3em;
   background: color(#fafafa a(0.6));
@@ -95,4 +90,26 @@ code {
   max-width: 60rem;
   margin: auto;
   padding: 1rem 0.75rem;
+
+  color: #243a53;
+
+  & a {
+    display: inline-block;
+    color: #08b09b;
+
+    &:hover {
+      color: #fff;
+      background: #08b09b;
+      box-shadow: 0 0 0 2px #08b09b;
+      border-radius: 0.5px;
+    }
+  }
+
+  & img {
+    max-width: 100%;
+  }
+
+  & a > img {
+    display: block;
+  }
 }

@@ -1,10 +1,15 @@
 // App
 import React from "react"
 import ReactDOM from "react-dom"
-import { Router, browserHistory } from "react-router"
+import { Router, useRouterHistory } from "react-router"
+import createBrowserHistory from "history/lib/createBrowserHistory"
 import { Provider as ReduxContextProvider } from "react-redux"
 
 import StatinamicContextProvider from "../ContextProvider"
+
+export const browserHistory = useRouterHistory(createBrowserHistory)({
+  basename: process.env.STATINAMIC_PATHNAME,
+})
 
 export default function statinamic({
   layouts,
@@ -14,7 +19,7 @@ export default function statinamic({
 }) {
   let devtools = false
   if (process.env.REDUX_DEVTOOLS && process.env.CLIENT) {
-    const DevToolsComponent = require("./DevTools.js").default
+    const DevToolsComponent = require("./DevTools.js").DevToolsComponent
     devtools = <DevToolsComponent store={ store } />
   }
 

@@ -1,2 +1,1 @@
-const md = require("./script.md")
-console.log(md)
+require.context(".", true, /\.md$/)

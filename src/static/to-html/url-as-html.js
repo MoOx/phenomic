@@ -5,28 +5,35 @@ import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
-import htmlMetas from "../../html-metas"
+import importExports from "../../_utils/import-exports"
+import htmlMetas from "../../_utils/html-metas"
+import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
-import escapeJSONforHTML from "../escapeJSONforHTML"
+import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
 import minifyCollection from "../../md-collection-loader/minify"
-import collectionCache from "../../md-collection-loader/cache"
 
 export default (url, {
-  layouts,
-  metadata,
-  routes,
+  exports,
+  collection,
   store,
 
   baseUrl,
   assetsFiles,
 }, testing) => {
+  const {
+    layouts,
+    metadata,
+    routes,
+  } = importExports(exports)
+
   const render = ReactDOMserver[
     !testing
     ? "renderToString"
     : "renderToStaticMarkup"
   ]
+
   return new Promise((resolve, reject) => {
     const defaultMetas = htmlMetas({
       baseUrl,
@@ -37,7 +44,8 @@ export default (url, {
       match(
         {
           routes,
-          location: "/" + url + "/",
+          location: url,
+          basename: baseUrl.pathname,
         },
         (error, redirectLocation, renderProps) => {
           let head
@@ -49,11 +57,17 @@ export default (url, {
           }
           else if (redirectLocation) {
             // TODO add a redirect page à la "jekyll redirect plugin"
-            console.error("statinamic (static) doesn't handle redirection yet")
-            // body = ...
+            throw new Error (
+              "statinamic (static) doesn't handle redirection yet"
+            )
           }
-          else if (renderProps) {
-            const collection = minifyCollection(collectionCache)
+          else if (!renderProps) {
+            throw new Error (
+              "statinamic (static) doesn't handle page not found yet"
+            )
+          }
+          else {
+            const collectionMin = minifyCollection(collection)
             // render app body as "react"ified html (with data-react-id)
             body = render(
               // the wrapper is used here because the client might have the
@@ -61,7 +75,7 @@ export default (url, {
               // the <noscript> reflect the potential devtools element
               <div id="statinamic-container">
                 <StatinamicContextProvider
-                  collection={ collection }
+                  collection={ collectionMin }
                   layouts={ layouts }
                   metadata={ metadata }
                 >
@@ -69,6 +83,7 @@ export default (url, {
                     <RouterContextProvider { ...renderProps } />
                   </ReduxContextProvider>
                 </StatinamicContextProvider>
+                { process.env.REDUX_DEVTOOLS && <noscript /> }
               </div>
             )
 
@@ -90,27 +105,18 @@ export default (url, {
             }
             script =
               `window.__COLLECTION__ = ${
-                escapeJSONforHTML(JSON.stringify(collection))
+                escapeJSONforHTML(JSON.stringify(collectionMin))
               };` +
               `window.__INITIAL_STATE__ = ${
                 escapeJSONforHTML(JSON.stringify(initialState))
               }`
-          }
-          else {
-            // TODO add a 404 or just throw a fucking warning ?
-            // this is not supposed to happen the way things are done as I am
-            // writing this (lol)
-            console.error(
-              "statinamic (static) doesn't handle page not found yet"
-            )
-            // body = ...
           }
           let scriptTags = false
           if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
             scriptTags = assetsFiles.js.map(fileName =>
               <script
                 key={ fileName }
-                src={ `${ baseUrl.path }${ fileName }` }
+                src={ `${ joinUri(baseUrl.pathname, fileName) }` }
               ></script>
             )
           }

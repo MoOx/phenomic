@@ -6,6 +6,9 @@ import pkg from "../package.json"
 import config from "./config.js"
 
 export default {
+  ...config.dev && {
+    devtool: "cheap-module-eval-source-map",
+  },
   module: {
     loaders: [
       { // statinamic requirement
@@ -13,7 +16,6 @@ export default {
         loader: "statinamic/lib/md-collection-loader" +
           `?${ JSON.stringify({
             context: path.join(config.cwd, config.source),
-            basepath: config.baseUrl.path,
             feedsOptions: {
               title: pkg.name,
               site_url: pkg.homepage,
@@ -94,6 +96,7 @@ export default {
       ),
       CLIENT: true,
       REDUX_DEVTOOLS: Boolean(process.env.REDUX_DEVTOOLS),
+      STATINAMIC_PATHNAME: JSON.stringify(process.env.STATINAMIC_PATHNAME),
     } }),
 
     ...config.production && [
@@ -111,7 +114,7 @@ export default {
   output: {
     libraryTarget: "commonjs2", // for node usage, undone in client config
     path: path.join(config.cwd, config.destination),
-    publicPath: config.baseUrl.path,
+    publicPath: config.baseUrl.pathname,
   },
   resolve: {
     extensions: [ ".js", ".json", "" ],

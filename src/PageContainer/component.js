@@ -1,8 +1,21 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
+import { findDOMNode } from "react-dom"
+import urlify from "../_utils/urlify"
 
-function splatToUri(string) {
-  return string.replace(/\/index\.html$/, "")
+// react-router does not return leading and trailing slashes
+// so we need to normalize according to collection data
+const splatToUrl = (string) => ("/" + urlify(string))
+
+const isDevelopment = process.env.NODE_ENV !== "production"
+const isClient = typeof window !== "undefined"
+const isDevelopmentClient = isDevelopment && isClient
+
+let catchLinks
+let browserHistory
+
+if (isClient) {
+  catchLinks = require("../_utils/catch-links").default
+  browserHistory = require("../client").browserHistory
 }
 
 export default class PageContainer extends Component {
@@ -15,9 +28,11 @@ export default class PageContainer extends Component {
 
     // actions
     getPage: PropTypes.func.isRequired,
+    setPageNotFound: PropTypes.func,
   };
 
   static contextTypes = {
+    collection: PropTypes.array.isRequired,
     layouts: PropTypes.object.isRequired,
   };
 
@@ -29,8 +44,32 @@ export default class PageContainer extends Component {
     this.preparePage(this.props, this.context)
   }
 
+  componentDidMount() {
+    this.catchInternalLink()
+  }
+
   componentWillReceiveProps(nextProps) {
     this.preparePage(nextProps, this.context)
+  }
+
+  componentDidUpdate() {
+    this.catchInternalLink()
+  }
+
+  catchInternalLink() {
+    if (!isClient) {
+      return
+    }
+
+    if (this._content) {
+      const layoutDOMElement = findDOMNode(this._content)
+      if (layoutDOMElement) {
+        catchLinks(layoutDOMElement, (href) => {
+          const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
+          browserHistory.push(pathname)
+        })
+      }
+    }
   }
 
   preparePage(props, context) {
@@ -43,16 +82,38 @@ export default class PageContainer extends Component {
       )
     }
 
-    const pageKey = splatToUri(props.params.splat)
-    if (
-      process.env.NODE_ENV !== "production" &&
-      typeof window !== "undefined"
-    ) {
-      console.info(`statinamic: PageContainer: pageKey '${ pageKey }'`)
+    const pageUrl = splatToUrl(props.params.splat)
+    if (isDevelopmentClient) {
+      console.info(`statinamic: PageContainer: '${ pageUrl }' rendering...`)
     }
-    const page = props.pages[pageKey]
+    const page = props.pages[pageUrl]
     if (!page) {
-      props.getPage(pageKey)
+      const item = context.collection.find(
+        (item) => (
+          item.__url === pageUrl ||
+          item.__resourceUrl === pageUrl
+        )
+      )
+      if (item) {
+        props.getPage(pageUrl, item.__dataUrl)
+      }
+      else {
+        // Here we know we don't have the "internal" link in the collection
+        // so we can assume it's something else than a know page (eg: an asset)
+        // Refreshing the page will it the appropriate resource.
+        if (isClient) {
+          window.location.href = window.location.href
+        }
+        else if (props.setPageNotFound) {
+          props.setPageNotFound(pageUrl)
+        }
+        else {
+          console.error(
+            `statinamic: PageContainer: ` +
+            `${ pageUrl } is a page not found.`
+          )
+        }
+      }
     }
     else {
       if (page.error) {
@@ -76,18 +137,22 @@ export default class PageContainer extends Component {
   }
 
   render() {
-    const pageKey = splatToUri(this.props.params.splat)
-
-    const page = this.props.pages[pageKey]
+    const pageUrl = splatToUrl(this.props.params.splat)
+    const page = this.props.pages[pageUrl]
 
     if (!page) {
-      console.info(`statinamic: PageContainer: no data for page ${ pageKey }`)
+      if (isDevelopmentClient) {
+        console.info(`statinamic: PageContainer: '${ pageUrl }' no data`)
+      }
       return null
+    }
+    if (isDevelopmentClient) {
+      console.info(`statinamic: PageContainer: '${ pageUrl }'`, page)
     }
 
     if (typeof page !== "object") {
       console.info(
-        `statinamic: PageContainer: page ${ pageKey } should be an object`
+        `statinamic: PageContainer: page ${ pageUrl } should be an object`
       )
       return null
     }
@@ -114,7 +179,7 @@ export default class PageContainer extends Component {
         }
         {
           !page.error && !page.loading && Layout &&
-          <Layout { ...page } />
+          <Layout ref={ (ref) => this._content = ref } { ...page } />
         }
       </div>
     )

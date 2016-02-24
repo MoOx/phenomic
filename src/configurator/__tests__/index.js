@@ -1,4 +1,4 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import { join } from "path"
 import configurator from ".."

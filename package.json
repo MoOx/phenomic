@@ -34,6 +34,7 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "chalk": "^1.1.0",
+    "classnames": "^2.2.3",
     "commander": "^2.9.0",
     "connect-history-api-fallback": "^1.1.0",
     "debug": "^2.2.0",
@@ -46,8 +47,11 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "opn": "^3.0.2",
+    "remark": "^4.1.1",
     "rimraf": "^2.4.2",
     "rss": "^1.2.0",
+    "strip-markdown": "^0.3.1",
+    "underscore.string": "^3.2.3",
     "valid-url": "^1.0.9",
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.2.0",
@@ -55,7 +59,7 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "^0.11.0",
+    "ava": "^0.12.0",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
@@ -64,13 +68,13 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
-    "coveralls": "^2.11.6",
+    "codecov": "^1.0.1",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^2.0.0",
     "eslint-plugin-react": "^3.6.2",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
-    "gh-pages": "https://github.com/MoOx/gh-pages#silent-bin",
+    "gh-pages": "^0.10.0",
     "js-beautify": "^1.5.10",
     "lnfs-cli": "^1.0.1",
     "markdown-it": "^5.0.0",
@@ -82,7 +86,7 @@
     "react-element-to-jsx-string": "^2.4.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
-    "react-router": "^2.0.0-rc6",
+    "react-router": "^2.0.0",
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
@@ -101,11 +105,12 @@
     "babel-preset-react-hmre": "^1.0.1",
     "cross-env": "^1.0.7",
     "invariant": "^2.1.1",
+    "history": "^2.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
-    "react-router": "^2.0.0-rc6",
+    "react-router": "^2.0.0",
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
@@ -122,7 +127,7 @@
     "eslint-config-i-am-meticulous": "^2.0.0",
     "eslint-loader": "^1.1.0",
     "eslint-plugin-react": "^3.6.2",
-    "extract-text-webpack-plugin": "^0.8.2",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.1",
     "highlight.js": "^8.5.0",
     "json-loader": "^0.5.2",
@@ -147,13 +152,13 @@
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "tests": "ava --verbose \"**/__tests__/*.js\"",
+    "tests": "ava",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run docs && npm run test-boilerplate",
-    "test-with-coverage": "nyc npm run tests && npm run docs && npm run test-boilerplate",
+    "test-with-coverage": "nyc npm run test",
     "pretest-boilerplate": "rimraf test-boilerplate && npm run babelify && rimraf boilerplate/node_modules && rimraf boilerplate/package.json",
-    "test-boilerplate": "mkdirp test-boilerplate/node_modules && cd test-boilerplate && npm init -y && lnfs ../ node_modules/statinamic && node ./node_modules/statinamic/lib/bin/statinamic-setup -t",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test-boilerplate": "mkdirp test-boilerplate/node_modules && cd test-boilerplate && npm init -y && lnfs ../ node_modules/statinamic && node ./node_modules/statinamic/lib/bin/statinamic-setup -t && npm install && npm build",
+    "coverage": "nyc report --reporter=lcovonly && codecov",
     "release": "npmpub"
   },
   "config": {
@@ -178,5 +183,15 @@
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "ava": {
+    "files": [
+      "**/__tests__/*.js"
+    ],
+    "failFast": true,
+    "verbose": true,
+    "require": [
+      "babel-core/register"
+    ]
   }
 }

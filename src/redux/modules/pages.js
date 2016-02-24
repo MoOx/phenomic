@@ -1,6 +1,7 @@
-import path from "path"
 import fetchJSON from "../../fetchJSON"
+import joinUri from "../../_utils/join-uri"
 
+export const NOOP = "statinamic/pages/NOOP"
 export const GET = "statinamic/pages/GET"
 export const SET = "statinamic/pages/SET"
 export const SET_TYPE = "statinamic/pages/SET_TYPE"
@@ -38,13 +39,14 @@ export default function reducer(state = {}, action) {
   case ERROR:
     return {
       ...state,
-      [action.page]: action.error.response
+      [action.page]: action.error && action.error.response
         ? {
           error: action.error.response.status,
           errorText: action.error.response.statusText,
         }
         : {
-          ...action.error,
+          error: 404,
+          errorText: `Page Not Found`,
         },
     }
 
@@ -54,7 +56,7 @@ export default function reducer(state = {}, action) {
 }
 
 // redux actions
-export function get(page) {
+export function get(page, url) {
   return {
     types: [
       GET,
@@ -62,6 +64,31 @@ export function get(page) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(path.join("/", page, "index.json")),
+    promise: fetchJSON(joinUri(
+      process.env.STATINAMIC_PATHNAME,
+      url
+    )),
+  }
+}
+
+export function refresh(page, url) {
+  return {
+    types: [
+      NOOP,
+      SET,
+      ERROR,
+    ],
+    page,
+    promise: fetchJSON(joinUri(
+      process.env.STATINAMIC_PATHNAME,
+      url
+    )),
+  }
+}
+
+export function setNotFound(page) {
+  return {
+    type: ERROR,
+    page,
   }
 }

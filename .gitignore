@@ -7,6 +7,7 @@ npm-debug.log
 
 # code coverage
 .nyc_output
+coverage
 
 # build
 lib
@@ -17,7 +18,9 @@ src/md-collection-loader/__tests__/output/
 # tests results
 **/__tests__/_output*
 
-# docs build
+# docs
+docs/**/*.mov
+docs/**/*.pxm
 docs/node_modules
 docs/dist
 
@@ -25,3 +28,6 @@ docs/dist
 boilerplate/package.json
 boilerplate/dist
 test-boilerplate
+
+# logo
+logo/*.png

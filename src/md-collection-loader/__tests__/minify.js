@@ -1,4 +1,4 @@
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 
 import minify from "../minify"
 
@@ -10,6 +10,8 @@ test("statinamic/lib/md-collection-loader/minify", (t) => {
         body: "whatever",
         __filename: "test.t",
         __url: "test",
+        __resourceUrl: "test/index.html",
+        __dataUrl: "test/index.html.json",
       },
     ]),
     [
@@ -17,6 +19,8 @@ test("statinamic/lib/md-collection-loader/minify", (t) => {
         title: "",
         __filename: "test.t",
         __url: "test",
+        __resourceUrl: "test/index.html",
+        __dataUrl: "test/index.html.json",
       },
     ],
     "should create a minified collection (without body)"

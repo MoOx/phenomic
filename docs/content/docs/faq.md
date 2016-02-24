@@ -14,3 +14,29 @@ Warning: React attempted to reuse markup in a container but the checksum was inv
 
 The message is pretty clear. You have to examine your code and check carefully
 what can be rendered differently. Feel free to ask for help on the support chat.
+
+Here is some common cases for this warning
+
+### Date and time
+
+Due to the different timezone between build server and your visitors, generated
+date and can be different. You should set timezone when generating date.
+
+Example with `moment.js`
+
+```diff
+-- moment(data).format("DD MMM YYYY")
+++ moment(date).utc().format("DD MMM YYYY")
+```
+
+### Navigation links with active class
+
+With statinamic, a user can request a page with or with out trailing `index.html`.
+If you are using `react-router` `<Link />` component with `activeClassName` property,
+React will warn the above message. We provided a `<LinkWrapper />` component to
+cover this case.
+
+```diff
+-- import { Link } from "react-router"
+++ import { Link } from "statinamic/lib/Link"
+```

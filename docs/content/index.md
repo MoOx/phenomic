@@ -1,11 +1,12 @@
 ---
 metaTitle: "Statinamic, a static website generator to create dynamic website"
 title: ""
+layout: Homepage
 ---
 
 > A static website generator to create dynamic website (using React components).
 
-**Note that _Statinamic_ is at an early stage**, so do not hesitate to :
+**Note that _Statinamic_ is under active development**, so do not hesitate to :
 
 - ask question on [the support chat](https://gitter.im/MoOx/statinamic),
 - [open an issue](https://github.com/MoOx/statinamic/issues/new)
@@ -32,10 +33,10 @@ used to generate pages can render pages on both client and server.
 That's called ~~Isomorphic~~
 [Universal rendering](https://medium.com/@mjackson/universal-javascript-4761051b7ae9).
 
-A pre-rendered version of your website can easily be made as a static version.
+A pre-rendered version of your website is generated as a static version.
 When the client has established a connection with your website,
 **your users can get the same UX as an app by grabbing the minimal amount of
-data for each new page** (a single JSON file).
+data for each new page** (a single file that only contains your page data).
 
 ## Setup a website in a flash
 
@@ -47,29 +48,11 @@ Creating a website based on Statinamic should take a minute.
 During development, enjoy the benefit of hot loading with visual errors in your
 layout! That means you won't have to refresh your page during development when
 you will edit your pages. You will also see compilation errors and runtime errors.
-[Here is a GIF to see what this might looks like](https://cloud.githubusercontent.com/assets/1539088/11611771/ae1a6bd8-9bac-11e5-9206-42447e0fe064.gif).
 
-_For now, you will only need to refresh a page to refresh Markdown content
-([but we have an idea to improve that](https://github.com/MoOx/statinamic/issues/11))._
+[![Developer experience preview](/statinamic/assets/dx-play.jpg)](/statinamic/assets/dx.mp4)
 
 ### Choose your Statinamic flavor
 
 The way Statinamic is done helps you to customize everything:
 choose your own Markdown engine (with your own plugins), your CSS preprocessor,
 etc, thanks to the flexibility of Webpack and its loaders.
-
----
-
-<center style="margin: 2rem;">
-  <a href="docs/setup/" style="font-size: 2rem; font-weight: 200;">
-    Let's try this now!
-  </a>
-</center>
-
----
-
-Built with
-<a href="https://facebook.github.io/react/">
-  <img alt="" src="assets/react.svg" width="16" height="16" />
-  React
-</a>.

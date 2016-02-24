@@ -1,3 +1,45 @@
+- Changed: use ``react-router`` basename feature.
+  All urls in collection do not contain base pathname anymore and
+  all url in components should not have it anymore
+  ([#165](https://github.com/MoOx/statinamic/pull/165))
+- Changed: build and client scripts now require an exports value
+  that must contains layouts, metadata and routes.
+  This values should be strings.
+  See changes in ``boilerplate/scripts/build.js``
+  ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Fixed: Redux devtools cause invalid checksum
+  ([#152](https://github.com/MoOx/statinamic/issues/152))
+- Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
+  in your base url (``package.json/homepage``)
+  ([#104](https://github.com/MoOx/statinamic/pull/104))
+- Fixed: ability to pass custom webpack devServer config
+  ([#157](https://github.com/MoOx/statinamic/issues/157))
+- Added: Intercept clicks on markdown links so they will not trigger
+  full page reload
+  ([#67](https://github.com/MoOx/statinamic/issues/67))
+- Added: Generate meta description and bundle it to collection
+  See ``boilerplate/web_modules/layouts/Page/index.js`` for an example.
+  ([#79](https://github.com/MoOx/statinamic/issues/79))
+- Added: cli option to server static dist build `npm run build -- --server`
+  ([#163](https://github.com/MoOx/statinamic/pull/163))
+- Added: during development for pre-rendering, dev server will refresh
+  all files for each render
+  ([#145](https://github.com/MoOx/statinamic/pull/145))
+- Added: custom routes are supported if you use a `route` field in your markdown
+  front matter.
+  See example in ``boilerplate/content/404.md``
+  ([#47](https://github.com/MoOx/statinamic/pull/47))
+- Added: hot loading support for markdown content.
+  See changes in ``boilerplate/scripts/index-client.js``
+  ([#11](https://github.com/MoOx/statinamic/pull/11))
+- Added: boilerplate now enable source maps by default during development.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+  ([#170](https://github.com/MoOx/statinamic/pull/170))
+
+## Under the hood
+
+- Changed: codecov is used for code coverage instead of coverall.
+
 # 0.7.1 - 2016-02-12
 
 _Minor release since the only change only affects new setup (so this is not
@@ -25,7 +67,7 @@ during development and static build should be faster than before.
   now inlined in generated html pages, even during development so we can use and
   access the collection directly and it avoid a server/client request.
 - Removed: All injected constantes like ``__DEV__`` and ``__PROD__`` have been
-  replaced by ``process.env.*`` call to make code more universal.
+  replaced by ``process.env.*`` call to make code more universal
   (eg: ``if (__DEV__)`` => ``if (process.env.NODE_ENV !== "production")``).
 - Changed: remove mkdirp in favor of [fs-extra](https://www.npmjs.org/package/fs-extra)
   ([#126](https://github.com/MoOx/statinamic/issues/126))
@@ -52,14 +94,14 @@ during development and static build should be faster than before.
   change).
 - Changed: ``react-router`` has been upgraded to v2.0.0
   ([#95](https://github.com/MoOx/statinamic/pull/95))
-- Changed: ``redux`` as been upgraded to v4.x.
+- Changed: ``redux`` as been upgraded to v4.x
   ([#91](https://github.com/MoOx/statinamic/pull/91))
 - Fixed: Dev server now redirects pages without trailing slash
   (eg: You call ``http://.../some/thing``; will redirect to
   ``http://.../some/thing/``)
   ([#22](https://github.com/MoOx/statinamic/issues/22))
 - Added: the entire configuration is now inspected so you do not provide
-  unexpected types or unrecognized configuration values.
+  unexpected types or unrecognized configuration values
   ([#120](https://github.com/MoOx/statinamic/issues/120))
 - Added: ``assets`` option to add static assets such as images, video
   ([#94](https://github.com/MoOx/statinamic/pull/94))
@@ -97,14 +139,14 @@ process:
   make the build step easier to find.
 - Changed: webpack entries now use hashed name by default
 - Added: boilerplate includes [cssnext](http://cssnext.io/) instead 2 PostCSS
-  plugins.
+  plugins
   ([#87](https://github.com/MoOx/statinamic/issues/87))
 - Added: boilerplate includes [stylelint](http://stylelint.io/) and
-  lint CSS with a standard configuration.
+  lint CSS with a standard configuration
   ([#86](https://github.com/MoOx/statinamic/issues/86))
 - Added: boilerplate now support a new field from markdown files to specify the
   ``<title>`` tag without affecting the body page title (``<h1>``)
-  (See _Writing_ section of the documentation for more information).
+  (See _Writing_ section of the documentation for more information)
   ([#76](https://github.com/MoOx/statinamic/issues/76))
 
 # 0.6.1 - 2016-01-19
@@ -116,7 +158,7 @@ process:
 
 ## Under the hood
 
-- Changed: use babel-preset-stage-1 only (stage-0 is not really safe).
+- Changed: use babel-preset-stage-1 only (stage-0 is not really safe)
   ([#68](https://github.com/MoOx/statinamic/issues/68))
 - Fixed: static class properties (semicolon required)
 ([babel/babel#3225](https://github.com/babel/babel/pull/3225))
@@ -129,7 +171,7 @@ process:
   ([#42](https://github.com/MoOx/statinamic/issues/42))
 - Changed: boilerplate now rely on
   [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre)
-  to get hot loading and visual errors.
+  to get hot loading and visual errors
   ([#52](https://github.com/MoOx/statinamic/issues/52))
 - Fixed: "statinamic setup" message say that dependencies are installed when
   they actually are

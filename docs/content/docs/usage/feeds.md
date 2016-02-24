@@ -17,7 +17,7 @@ Here is a commented part of the webpack configuration that will helps:
         loader: "statinamic/lib/md-collection-loader" +
         `?${ JSON.stringify({
           context: source,
-          basepath: config.baseUrl.path,
+          basepath: config.baseUrl.pathname,
 
           // here you define generic metadata for your feed
           feedsOptions: {

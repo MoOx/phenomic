@@ -1,19 +1,19 @@
 /*
 Example
-
 ```md
   ---
   title: Test
   key: value
   ---
-
   _Md_ content
 ```
-
 return a object:
-
 ```json
 {
+  __filename: ...
+  __url: ...
+  __resourceUrl: ...
+  __dataUrl: ...
   head: {
     title: "Test",
     key: "value",
@@ -22,7 +22,6 @@ return a object:
   rawBody: "_Md_ content",
   raw: {initial content},
 }
-
 ```
  */
 import path from "path"
@@ -30,10 +29,12 @@ import loaderUtils from "loader-utils"
 import yamlHeaderParser from "gray-matter"
 import markdownIt from "markdown-it"
 
-import filenameToUrl from "../filename-to-url"
+import joinUri from "../_utils/join-uri"
+import urlify from "../_utils/urlify"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
+import description from "./description"
 
 let timeout
 
@@ -42,7 +43,6 @@ module.exports = function(input) {
   const query = loaderUtils.parseQuery(this.query)
   const context = query.context || this.options.context
 
-  const basepath = query.basepath || "/"
   const mdIt = query.markdownIt
     ? query.markdownIt
     : this.options.markdownIt
@@ -51,13 +51,29 @@ module.exports = function(input) {
 
   const defaultHead = query.defaultHead
   const parsed = yamlHeaderParser(input)
+
   const relativePath = path.relative(context, this.resourcePath)
-  const url = filenameToUrl(relativePath)
+  const tmpUrl = urlify(
+    parsed.data.route
+      // custom route
+      ? parsed.data.route
+      // default route
+      : relativePath
+  )
+
+  const url = urlify(tmpUrl)
+  const resourceUrl = urlify(tmpUrl, true)
+
+  const hash = loaderUtils.getHashDigest(input)
+  const dataUrl = resourceUrl + "." + hash + ".json"
+
   const metadata = {
     __filename: relativePath,
-    __url: path.join(basepath, url) + "/",
+    __url: joinUri("/", url),
+    __resourceUrl: joinUri("/", resourceUrl),
+    __dataUrl: joinUri("/", dataUrl),
   }
-  const mdObject = {
+  let mdObject = {
     head: {
       ...defaultHead,
       ...parsed.data,
@@ -68,14 +84,14 @@ module.exports = function(input) {
     ...metadata,
   }
 
-  const jsonUrl = path.join(url, "index.json")
+  mdObject = description(mdObject, query.description)
 
   if (!this.emitFile) {
     throw new Error("emitFile is required from module system")
   }
 
   // emit file
-  this.emitFile(jsonUrl, JSON.stringify(mdObject))
+  this.emitFile(dataUrl, JSON.stringify(mdObject))
 
   // update collection
   // replace or add depending on the cache state
@@ -112,7 +128,6 @@ module.exports = function(input) {
             cache.map((item) => ({
               ...item.head,
               description: item.body,
-              __filename: item.__filename,
               __url: item.__url,
             })),
             collectionOptions
@@ -122,5 +137,5 @@ module.exports = function(input) {
     }, 100)
   }
 
-  return "module.exports = __webpack_public_path__ + " + JSON.stringify(jsonUrl)
+  return "module.exports = __webpack_public_path__ + " + JSON.stringify(dataUrl)
 }
