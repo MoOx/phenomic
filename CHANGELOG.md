@@ -1,13 +1,15 @@
+# 0.8.0 - 2016-02-24
+
 - Changed: use ``react-router`` basename feature.
   All urls in collection do not contain base pathname anymore and
-  all url in components should not have it anymore
+  **all url in markdown or component should not have it anymore**
   ([#165](https://github.com/MoOx/statinamic/pull/165))
-- Changed: build and client scripts now require an exports value
-  that must contains layouts, metadata and routes.
+- Changed: build script now require an ``exports`` value
+  that must contains path to ``layouts``, ``metadata`` and ``routes``.
   This values should be strings.
   See changes in ``boilerplate/scripts/build.js``
   ([#145](https://github.com/MoOx/statinamic/pull/145))
-- Fixed: Redux devtools cause invalid checksum
+- Fixed: Redux devtools don't cause invalid checksum anymore
   ([#152](https://github.com/MoOx/statinamic/issues/152))
 - Fixed: Homepage url is not prerendered as ``//`` if you don't have a pathname
   in your base url (``package.json/homepage``)
@@ -25,8 +27,8 @@
 - Added: during development for pre-rendering, dev server will refresh
   all files for each render
   ([#145](https://github.com/MoOx/statinamic/pull/145))
-- Added: custom routes are supported if you use a `route` field in your markdown
-  front matter.
+- Added: custom routes are supported if you use a ``route`` field in your
+  markdown front matter.
   See example in ``boilerplate/content/404.md``
   ([#47](https://github.com/MoOx/statinamic/pull/47))
 - Added: hot loading support for markdown content.

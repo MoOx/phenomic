@@ -31,7 +31,6 @@ export default {
             env: { ...pkg.babel.env, "statinamic": undefined },
             // prevent babel going to use your original config
             babelrc: false,
-
           }),
           "eslint-loader?fix",
         ],
