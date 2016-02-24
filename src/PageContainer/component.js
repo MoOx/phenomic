@@ -18,6 +18,14 @@ if (isClient) {
   browserHistory = require("../client").browserHistory
 }
 
+function find(collection, pageUrl) {
+  return collection.find((item) => (
+    item.__url === pageUrl ||
+    item.__url === pageUrl + "/"||
+    item.__resourceUrl === pageUrl
+  ))
+}
+
 export default class PageContainer extends Component {
 
   static propTypes = {
@@ -28,7 +36,7 @@ export default class PageContainer extends Component {
 
     // actions
     getPage: PropTypes.func.isRequired,
-    setPageNotFound: PropTypes.func,
+    setPageNotFound: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -65,8 +73,13 @@ export default class PageContainer extends Component {
       const layoutDOMElement = findDOMNode(this._content)
       if (layoutDOMElement) {
         catchLinks(layoutDOMElement, (href) => {
-          const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
-          browserHistory.push(pathname)
+          const pageUrl = href.replace(process.env.STATINAMIC_PATHNAME, "")
+          const item = find(this.context.collection, pageUrl)
+          if (!item) {
+            return false
+          }
+          browserHistory.push(item.__url)
+          return true
         })
       }
     }
@@ -88,31 +101,16 @@ export default class PageContainer extends Component {
     }
     const page = props.pages[pageUrl]
     if (!page) {
-      const item = context.collection.find(
-        (item) => (
-          item.__url === pageUrl ||
-          item.__resourceUrl === pageUrl
-        )
-      )
+      const item = find(context.collection, pageUrl)
       if (item) {
         props.getPage(pageUrl, item.__dataUrl)
       }
       else {
-        // Here we know we don't have the "internal" link in the collection
-        // so we can assume it's something else than a know page (eg: an asset)
-        // Refreshing the page will it the appropriate resource.
-        if (isClient) {
-          window.location.href = window.location.href
-        }
-        else if (props.setPageNotFound) {
-          props.setPageNotFound(pageUrl)
-        }
-        else {
-          console.error(
-            `statinamic: PageContainer: ` +
-            `${ pageUrl } is a page not found.`
-          )
-        }
+        console.error(
+          `statinamic: PageContainer: ` +
+          `${ pageUrl } is a page not found.`
+        )
+        props.setPageNotFound(pageUrl)
       }
     }
     else {
