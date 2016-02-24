@@ -1,4 +1,10 @@
-- Fixed: Avoid warning of babel-plugin-webpack-loader in boilerplate
+- Added: dev server now send 404.html if there is any in collection when
+  url is not in collection
+  ([#181](https://github.com/MoOx/statinamic/pull/181))
+
+## Boilerplate
+
+- Fixed: Avoid warning of ``babel-plugin-webpack-loader`` in boilerplate
   ([#185](https://github.com/MoOx/statinamic/issues/185))
 
 # 0.8.0 - 2016-02-24

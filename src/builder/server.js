@@ -3,7 +3,6 @@ import express, { Router } from "express"
 import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
-import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackErrorNotificationPlugin from "webpack-error-notification"
 
 import opn from "opn"
@@ -107,16 +106,6 @@ export default (webpackConfig, options = {}) => {
       })
     })
 
-    // routing for the part we want (starting to the baseUrl pathname)
-    const router = Router()
-    server.use(config.baseUrl.pathname, router)
-
-    // fallback to index for unknow pages?
-    router.use(historyFallbackMiddleware())
-
-    // webpack static ressources
-    router.get("*", express.static(webpackConfig.output.path))
-
     // user static assets
     if (config.assets) {
       server.use(
@@ -125,56 +114,76 @@ export default (webpackConfig, options = {}) => {
       )
     }
 
+    // routing for the part we want (starting to the baseUrl pathname)
+    const router = Router()
+    server.use(config.baseUrl.pathname, router)
+
+    // webpack static ressources
+    router.get("*", express.static(webpackConfig.output.path))
+
     // prerender pages when possible
     const memoryFs = webpackCompiler.outputFileSystem
     router.get("*", (req, res, next) => {
-      const item = getItemOrContinue(
+      let item = getItemOrContinue(
         collection,
         config.baseUrl,
         req,
-        res,
-        next
+        res
       )
-      if (item) {
-        const filepath = join(config.cwd, config.destination, item.__dataUrl)
-        const fileContent = memoryFs.readFileSync(filepath)
-        const data = JSON.parse(fileContent.toString())
 
-        options.store.dispatch({
-          type: pagesActions.SET,
-          page: item.__url,
-          response: {
-            data,
-          },
-        })
-
-        if (!firstRun) {
-          cleanNodeCache(config.cwd)
-        }
-        firstRun = false
-
-        urlAsHtml(item.__url, {
-          exports: options.exports,
-          store: options.store,
+      // try 404.html is there is any
+      if (!item) {
+        req.url = "/404.html"
+        item = getItemOrContinue(
           collection,
-          baseUrl: config.baseUrl,
-          assetsFiles: {
-            js: entries,
-            css: !config.dev,
-          },
-        })
-        .then(
-          (html) => {
-            res.setHeader("Content-Type", "text/html")
-            res.end(html)
-          }
+          config.baseUrl,
+          req,
+          res
         )
-        .catch((err) => {
-          log(err)
-          res.setHeader("Content-Type", "text/plain")
-          res.end(err.toString())
-        })
       }
+
+      if (!item) {
+        next()
+        return
+      }
+      const filepath = join(config.cwd, config.destination, item.__dataUrl)
+      const fileContent = memoryFs.readFileSync(filepath)
+      const data = JSON.parse(fileContent.toString())
+
+      options.store.dispatch({
+        type: pagesActions.SET,
+        page: item.__url,
+        response: {
+          data,
+        },
+      })
+
+      if (!firstRun) {
+        cleanNodeCache(config.cwd)
+      }
+      firstRun = false
+
+      urlAsHtml(item.__url, {
+        exports: options.exports,
+        store: options.store,
+        collection,
+        baseUrl: config.baseUrl,
+        assetsFiles: {
+          js: entries,
+          css: !config.dev,
+        },
+      })
+      .then(
+        (html) => {
+          res.setHeader("Content-Type", "text/html")
+          res.end(html)
+        }
+      )
+      .catch((err) => {
+        log(err)
+        res.setHeader("Content-Type", "text/plain")
+        res.end(err.toString())
+      })
     })
 
     // HMR
@@ -198,22 +207,17 @@ export default (webpackConfig, options = {}) => {
   })
 }
 
-export function getItemOrContinue(collection, baseUrl, req, res, next) {
-  const __url = req.originalUrl
+export function getItemOrContinue(collection, baseUrl, req, res) {
+  const __url = req.url
     .replace(baseUrl.pathname, "/")
     .replace(/index\.html$/, "")
 
+  log("Looking for %s", __url)
   const item = collection.find((item) => item.__url === __url)
-
   if (!item) {
     const folderUrl = __url + "/"
     if (collection.find((item) => item.__url === folderUrl)) {
-      res.redirect(
-        req.originalUrl + "/"
-      )
-    }
-    else {
-      next()
+      res.redirect(req.url + "/")
     }
     return false
   }
