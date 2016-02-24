@@ -1,5 +1,7 @@
 # 0.8.0 - 2016-02-24
 
+→ [Example of update from 0.7 to 0.8](https://github.com/thangngoc89/blog/pull/58/files)
+
 - Changed: use ``react-router`` basename feature.
   All urls in collection do not contain base pathname anymore and
   **all url in markdown or component should not have it anymore**
