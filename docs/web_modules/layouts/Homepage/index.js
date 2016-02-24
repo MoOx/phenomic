@@ -21,7 +21,7 @@ export default class Homepage extends Component {
           } }
         >
           <Link
-            to={ "/docs/setup" }
+            to={ "/docs/setup/" }
             style={ {
               display: "inline-flex",
               textDecoration: "none",
