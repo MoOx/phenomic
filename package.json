@@ -34,6 +34,7 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "chalk": "^1.1.0",
+    "classnames": "^2.2.3",
     "commander": "^2.9.0",
     "connect-history-api-fallback": "^1.1.0",
     "debug": "^2.2.0",
@@ -67,7 +68,6 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
-    "classnames": "^2.2.3",
     "codecov": "^1.0.1",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^2.0.0",
