@@ -102,7 +102,7 @@ export default class PageContainer extends Component {
         // so we can assume it's something else than a know page (eg: an asset)
         // Refreshing the page will it the appropriate resource.
         if (isClient) {
-          window.location.reload()
+          window.location.href = window.location.href
         }
         else if (props.setPageNotFound) {
           props.setPageNotFound(pageUrl)
