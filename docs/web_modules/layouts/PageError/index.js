@@ -31,12 +31,13 @@ export default class PageError extends Component {
             { errorText }
           </p>
           {
-            error === 404 && [
-              "It seems you find a broken link. ",
-              "Sorry about that. ",
-              <br />,
-              "Do not hesitate to report us this page 😁.",
-            ]
+            error === 404 &&
+            <div>
+              { "It seems you find a broken link. " }
+              { "Sorry about that. " }
+              <br />
+              { "Do not hesitate to report us this page 😁." }
+            </div>
           }
 
         </div>
