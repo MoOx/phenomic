@@ -60,10 +60,16 @@ export default class PageContainer extends Component {
     if (!isClient) {
       return
     }
-    catchLinks(findDOMNode(this._content), (href) => {
-      const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
-      browserHistory.push(pathname)
-    })
+
+    if (this._content) {
+      const layoutDOMElement = findDOMNode(this._content)
+      if (layoutDOMElement) {
+        catchLinks(layoutDOMElement, (href) => {
+          const pathname = href.replace(process.env.STATINAMIC_PATHNAME, "")
+          browserHistory.push(pathname)
+        })
+      }
+    }
   }
 
   preparePage(props, context) {
@@ -155,7 +161,7 @@ export default class PageContainer extends Component {
     const Layout = this.getLayout(this.props, this.context, page)
 
     return (
-      <div ref={ (ref) => this._content = ref }>
+      <div>
         {
           !page.error && page.loading && PageLoading &&
           <PageLoading />
@@ -173,7 +179,7 @@ export default class PageContainer extends Component {
         }
         {
           !page.error && !page.loading && Layout &&
-          <Layout { ...page } />
+          <Layout ref={ (ref) => this._content = ref } { ...page } />
         }
       </div>
     )
