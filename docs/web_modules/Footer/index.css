@@ -3,11 +3,11 @@
   padding: 1rem;
   font-size: 0.75rem;
   text-align: center;
+  color: color(#000 a(0.4));
 }
 
 .link {
-  opacity: 0.4;
-  color: inherit;
+  color: #08b09b;
   text-decoration: none;
 }
 
