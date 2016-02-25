@@ -1,3 +1,5 @@
+# 0.8.1 - 2016-02-25
+
 - Fixed: URLs which does not have the required trailing slash are now adjusted.
   **This prevent relative links in loaded page content to be wrong.**
 - Fixed: infinite loop for page not found
