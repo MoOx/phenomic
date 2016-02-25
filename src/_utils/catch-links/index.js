@@ -31,9 +31,11 @@ export default function(root, cb) {
 
     if (u.host && u.host !== window.location.host) return true
 
-    ev.preventDefault()
+    if (!cb(url.resolve(window.location.pathname, u.path) + (u.hash || ""))) {
+      return true
+    }
 
-    cb(url.resolve(window.location.pathname, u.path) + (u.hash || ""))
+    ev.preventDefault()
     return false
   })
 }

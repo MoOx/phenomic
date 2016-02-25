@@ -1,3 +1,19 @@
+# 0.8.1 - 2016-02-25
+
+- Fixed: URLs which does not have the required trailing slash are now adjusted.
+  **This prevent relative links in loaded page content to be wrong.**
+- Fixed: infinite loop for page not found
+  ([#186](https://github.com/MoOx/statinamic/pull/186))
+- Fixed: dev server redirection if trailing slash is missing works again.
+- Added: dev server now send 404.html if there is any in collection when
+  url is not in collection
+  ([#181](https://github.com/MoOx/statinamic/pull/181))
+
+## Boilerplate
+
+- Fixed: Avoid warning of ``babel-plugin-webpack-loader`` in boilerplate
+  ([#185](https://github.com/MoOx/statinamic/issues/185))
+
 # 0.8.0 - 2016-02-24
 
 → [Example of update from 0.7 to 0.8](https://github.com/thangngoc89/blog/pull/58/files)
