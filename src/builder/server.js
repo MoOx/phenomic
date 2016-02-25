@@ -12,6 +12,7 @@ import collection from "../md-collection-loader/cache.js"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 import cleanNodeCache from "../_utils/clean-node-cache"
+import joinUri from "../_utils/join-uri"
 
 const log = debug("statinamic:builder:server")
 
@@ -209,15 +210,15 @@ export default (webpackConfig, options = {}) => {
 
 export function getItemOrContinue(collection, baseUrl, req, res) {
   const __url = req.url
-    .replace(baseUrl.pathname, "/")
     .replace(/index\.html$/, "")
-
-  log("Looking for %s", __url)
   const item = collection.find((item) => item.__url === __url)
   if (!item) {
+    log("%s not found", __url)
     const folderUrl = __url + "/"
     if (collection.find((item) => item.__url === folderUrl)) {
-      res.redirect(req.url + "/")
+      const newUrl = req.url + "/"
+      log("Redirecting to %s", newUrl)
+      res.redirect(joinUri(baseUrl.pathname, newUrl))
     }
     return false
   }

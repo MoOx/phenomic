@@ -13,7 +13,7 @@ test("should return item if in collection", (t) => {
     collection,
     baseUrl,
     // req
-    { originalUrl: "/test/" },
+    { url: "/test/" },
 
     // res
     { redirect: () => t.fail },
@@ -29,7 +29,7 @@ test("should redirect if missing /", (t) => {
     collection,
     baseUrl,
     // req
-    { originalUrl: "/test" },
+    { url: "/test" },
 
     // res
     { redirect: () => t.pass },
@@ -47,7 +47,7 @@ test("should skip if not in collection", (t) => {
     collection,
     baseUrl,
     // req
-    { originalUrl: "/no" },
+    { url: "/no" },
 
     // res
     { redirect: () => t.fail },
