@@ -23,11 +23,13 @@ Here is a commented ``package.json`` with only the interesting parts
 
   // here is the script part, which the ones related to Statinamic
   // you can add more like linting and stuff like that :)
+  // BABEL_DISABLE_CACHE is required to run webpack loaders correctly in Node
   // BABEL_ENV is vital and helps run components code universally
   // DEBUG=statinamic:* is optional (and mainly for development)
   "scripts": {
-    "start": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --server --open --dev",
-    "build": "cross-env BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build --static --production"
+    "statinamic": "cross-env BABEL_DISABLE_CACHE=1 BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
+    "start": "npm run statinamic -- --server --open --dev",
+    "build": "npm run statinamic -- --static --production",
   },
 
   // Statinamic core section (default values)
