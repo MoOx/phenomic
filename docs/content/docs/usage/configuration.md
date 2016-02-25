@@ -2,10 +2,11 @@
 title: How to use configure Statinamic
 ---
 
-The simplest way to configure Statinamic is by using your ``package.json`` to
-store your preferences.
+The simplest and easy way to configure Statinamic is by using updating
+the ``package.json`` where you can tweak some built-in features.
 
-Here is a commented ``package.json`` with only the interesting parts.
+Here is a commented ``package.json`` with only the interesting parts
+(with default values).
 
 ```js
 {
@@ -109,3 +110,24 @@ Here is a commented ``package.json`` with only the interesting parts.
 - You can use the ``package.json`` file to store most static data you want to like
   some tracker id (eg: Google Analytics, Disqus...).
 - You can override every option as a cli flag/option (eg: ``--dev-port=4000``).
+
+## Advanced configuration
+
+The part you can tweak in the ``package.json`` is just a piece of the iceberg.
+There is a lot you can do depending on your need.
+
+If you want to change stuff like CSS or JS preprocessors or linters, you might
+want to edit _webpack configurations_.
+
+The default boilerplate store 2 configurations:
+
+- ``scripts/webpack.config.babel.js`` used for the Universal code,
+- ``scripts/webpack.config.client.js`` used *only* for the client code.
+
+You can open those 2 files and tweak the parts you need or add some missing
+pieces.
+
+_Be sure to take a look to [webpack](http://webpack.github.io/docs/)._
+
+**We might add some commons changes you would like to make here. Feel free to
+open issues if you don't know how to make some changes.**
