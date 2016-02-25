@@ -6,6 +6,9 @@
   "twitter": "MoOx",
   "github": "MoOx",
   "repository": "https://github.com/MoOx/statinamic.git",
+  "statinamic": {
+    "appcache": true
+  },
   "scripts": {
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",

@@ -1,3 +1,6 @@
+- Added: Offline support via APPCACHE
+  ([#153](https://github.com/MoOx/statinamic/issues/153))
+
 # 0.8.1 - 2016-02-25
 
 - Fixed: URLs which does not have the required trailing slash are now adjusted.

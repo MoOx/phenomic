@@ -70,7 +70,11 @@ Here is a commented ``package.json`` with only the interesting parts
     "verbose": false,
 
     // open a new tab when start dev server
-    "open": true
+    "open": true,
+
+    // generate appcache manifest for offline access
+    // See docs/advanced/offline-browsing for more information
+    "appcache": true
   },
 
   // That's because es5 is not enough
