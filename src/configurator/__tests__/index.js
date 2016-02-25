@@ -18,6 +18,7 @@ test("should return a default configuration", (t) => {
     nojekyll: true,
     devHost: "0.0.0.0",
     devPort: "3000",
+    appcache : false,
     verbose: false,
     open: true,
     dev: false,
@@ -143,6 +144,56 @@ test("should accept object for 'asset' option", (t) => {
     },
     (error) => error.message.includes(
       "You provided an object for 'assets' option."
+    )
+  )
+})
+
+test("should default to false for 'appcache' option", (t) => {
+  t.is(
+    configurator({}).appcache,
+    false
+  )
+})
+
+test("should accept string for 'appcache' option", (t) => {
+  t.same(
+    configurator({ statinamic: { appcache: "foo" } }).appcache,
+    [ "foo" ]
+  )
+})
+
+test("should accept array for 'appcache' option", (t) => {
+  t.same(
+    configurator({ statinamic: { appcache: [ "foo" ] } }).appcache,
+    [ "foo" ]
+  )
+})
+
+test("should return default config when 'appcache' is true", (t) => {
+  t.same(
+    configurator({ statinamic: { appcache: true } }).appcache,
+    [ "**/*.*", "!**/*.html", "index.html" ]
+  )
+})
+
+test("should accept falsy for 'appcache' option", (t) => {
+  t.is(
+    configurator({ statinamic: { appcache: false } }).appcache,
+    false
+  )
+  t.is(
+    configurator({ statinamic: { appcache: null } }).appcache,
+    false
+  )
+})
+
+test("should not accept object for 'appcache' option", (t) => {
+  t.throws(
+    () => {
+      configurator({ statinamic: { appcache: { foo: "bar" } } })
+    },
+    (error) => error.message.includes(
+      "You provided an 'object' for 'appcache' option."
     )
   )
 })
