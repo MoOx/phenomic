@@ -73,12 +73,11 @@ export default class PageContainer extends Component {
       const layoutDOMElement = findDOMNode(this._content)
       if (layoutDOMElement) {
         catchLinks(layoutDOMElement, (href) => {
-          const pageUrl = href.replace(process.env.STATINAMIC_PATHNAME, "")
-          const item = find(this.context.collection, pageUrl)
-          if (!item) {
+          const pageUrl = href.replace(process.env.STATINAMIC_PATHNAME, "/")
+          if (!find(this.context.collection, pageUrl)) {
             return false
           }
-          browserHistory.push(item.__url)
+          browserHistory.push(pageUrl)
           return true
         })
       }
@@ -99,11 +98,34 @@ export default class PageContainer extends Component {
     if (isDevelopmentClient) {
       console.info(`statinamic: PageContainer: '${ pageUrl }' rendering...`)
     }
+
+    const item = find(context.collection, pageUrl)
+
+    if (isClient && item) {
+      // adjust url (eg: missing trailing slash)
+      const currentExactPageUrl = window.location.href
+        .replace(
+          (
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            process.env.STATINAMIC_PATHNAME
+          ),
+          "/"
+        )
+      if (currentExactPageUrl !== item.__url) {
+        console.log(
+          `statinamic: PageContainer: ` +
+          `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
+        )
+        browserHistory.replace(item.__url)
+      }
+    }
+
     const page = props.pages[pageUrl]
     if (!page) {
-      const item = find(context.collection, pageUrl)
       if (item) {
-        props.getPage(pageUrl, item.__dataUrl)
+        props.getPage(item.__url, item.__dataUrl)
       }
       else {
         console.error(

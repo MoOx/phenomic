@@ -1,3 +1,5 @@
+- Fixed: URLs which does not have the required trailing slash are now adjusted.
+  **This prevent relative links in loaded page content to be wrong.**
 - Fixed: infinite loop for page not found
   ([#186](https://github.com/MoOx/statinamic/pull/186))
 - Added: dev server now send 404.html if there is any in collection when
