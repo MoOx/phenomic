@@ -93,6 +93,9 @@ export default (webpackConfig, options = {}) => {
       ...devConfig.devServer,
     }))
 
+    // HMR
+    server.use(webpackHotMiddleware(webpackCompiler))
+
     let entries = []
     webpackCompiler.plugin("done", function(stats) {
       // reset entries
@@ -187,9 +190,6 @@ export default (webpackConfig, options = {}) => {
         res.end(redBoxRenderer(err))
       })
     })
-
-    // HMR
-    server.use(webpackHotMiddleware(webpackCompiler))
   }
 
   // THAT'S IT

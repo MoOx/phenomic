@@ -1,3 +1,4 @@
+- Fixed: 404 page overide webpack hmr route
 - Added: Offline support via APPCACHE
   ([#153](https://github.com/MoOx/statinamic/issues/153))
 
