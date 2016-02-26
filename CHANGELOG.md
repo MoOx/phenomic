@@ -1,3 +1,5 @@
+- Fixed: 404 page overide webpack hmr route
+
 # 0.8.1 - 2016-02-25
 
 - Fixed: URLs which does not have the required trailing slash are now adjusted.
