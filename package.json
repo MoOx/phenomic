@@ -100,7 +100,7 @@
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-plugin-webpack-loaders": "^0.3.2",
-    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "cross-env": "^1.0.7",
