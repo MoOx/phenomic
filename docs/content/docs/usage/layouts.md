@@ -28,7 +28,7 @@ layout: MyCustomLayoutComponent
 `Page` will be used as the default layout.
 **It is required for Statinamic to work by default.**
 
-[Check out the default Page and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
+[Check out the default `Page` and the `props` it has.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
 
 ### `PageError`
 
@@ -38,7 +38,7 @@ layout: MyCustomLayoutComponent
 _This layout is optional_ and a `PageContainer` contains a minimal fallback if
 it is not available.
 
-[Check out the default PageError and the props it got.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/PageError/index.js)
+[Check out the default `PageError` and the `props` it has.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/PageError/index.js)
 
 ### `PageLoading`
 

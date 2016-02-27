@@ -2,7 +2,7 @@
 title: How to use configure Statinamic
 ---
 
-The simplest and easy way to configure Statinamic is by using updating
+The simplest and easiest way to configure Statinamic is by updating
 the ``package.json`` where you can tweak some built-in features.
 
 Here is a commented ``package.json`` with only the interesting parts
@@ -10,21 +10,21 @@ Here is a commented ``package.json`` with only the interesting parts
 
 ```js
 {
-  // tell npm that there is a lot of field that you don't need
+  // tell npm that there are a lot of fields that you don't need
   // and prevent publishing this folder as a npm package
   "private": true,
 
-  // npm need a 'dashed-name' (optional?)
+  // npm needs a 'dashed-name' (optional?)
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
 
-  // statinamic use the default package.json homepage
+  // statinamic uses the default package.json homepage
   // ** it's a required field to adjust url for production build **
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
   // here is the script part, which the ones related to Statinamic
-  // you can add more like linting and stuff like that :)
+  // you can add some more like linting and stuff like that :)
   // BABEL_DISABLE_CACHE is required to run webpack loaders correctly in Node
-  // BABEL_ENV is vital and helps run components code universally
+  // BABEL_ENV is vital and helps run component code universally
   // DEBUG=statinamic:* is optional (and mainly for development)
   "scripts": {
     "statinamic": "cross-env BABEL_DISABLE_CACHE=1 BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
@@ -46,7 +46,7 @@ Here is a commented ``package.json`` with only the interesting parts
     "destination": "dist",
 
     // where you have your static assets
-    // you have multiple way to configure this field:
+    // you have multiple ways to configure this field:
     // - simple string (relative to source folder)
     // - object with path (local path, relative to source) and route in web
     // - a boolean to disable
@@ -69,7 +69,7 @@ Here is a commented ``package.json`` with only the interesting parts
     // flag to add information during development
     "verbose": false,
 
-    // open a new tab when start dev server
+    //  open a new tab when the dev server starts
     "open": true,
 
     // generate appcache manifest for offline access
@@ -113,19 +113,19 @@ Here is a commented ``package.json`` with only the interesting parts
 
 ## Notes
 
-- You can use the ``package.json`` file to store most static data you want to like
-  some tracker id (eg: Google Analytics, Disqus...).
+- You can use the ``package.json`` file to store most of your configuration,
+  such as trackers for example; Google Analytics, Disqus and so on.
 - You can override every option as a cli flag/option (eg: ``--dev-port=4000``).
 
 ## Advanced configuration
 
-The part you can tweak in the ``package.json`` is just a piece of the iceberg.
-There is a lot you can do depending on your need.
+The parts that you can tweak in ``package.json`` are just the tip of the iceberg.
+There is a lot you can do depending on your use case.
 
 If you want to change stuff like CSS or JS preprocessors or linters, you might
-want to edit _webpack configurations_.
+want to edit the _webpack configurations_.
 
-The default boilerplate store 2 configurations:
+The default boilerplate stores 2 configurations:
 
 - ``scripts/webpack.config.babel.js`` used for the Universal code,
 - ``scripts/webpack.config.client.js`` used *only* for the client code.
@@ -133,7 +133,7 @@ The default boilerplate store 2 configurations:
 You can open those 2 files and tweak the parts you need or add some missing
 pieces.
 
-_Be sure to take a look to [webpack](http://webpack.github.io/docs/)._
+_Be sure to check out the [webpack documentation](http://webpack.github.io/docs/)._
 
-**We might add some commons changes you would like to make here. Feel free to
+**We might add some common changes you would like to make here. Feel free to
 open issues if you don't know how to make some changes.**
