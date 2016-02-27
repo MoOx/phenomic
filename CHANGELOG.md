@@ -1,6 +1,11 @@
+# 0.8.2 - 2016-02-27
+
 - Fixed: 404 page overide webpack hmr route
+  ([#204](https://github.com/MoOx/statinamic/pull/204))
 - Added: Offline support via APPCACHE
   ([#153](https://github.com/MoOx/statinamic/issues/153))
+- Added: dev server now show stack strace for errors via react-redbox
+  ([#199](https://github.com/MoOx/statinamic/pull/199))
 
 # 0.8.1 - 2016-02-25
 
