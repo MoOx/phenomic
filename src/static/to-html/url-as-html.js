@@ -21,6 +21,7 @@ export default (url, {
 
   baseUrl,
   assetsFiles,
+  appcache,
 }, testing) => {
   const {
     layouts,
@@ -120,6 +121,11 @@ export default (url, {
               ></script>
             )
           }
+          // Add appcache manifest to html tag
+          const manifest =
+            (appcache && appcache !== "")
+            ? joinUri(baseUrl.pathname, "manifest.appcache")
+            : ""
           // write htmlString as html files
           return resolve(
             // render html document as simple html
@@ -129,6 +135,7 @@ export default (url, {
                 head,
                 body,
                 script,
+                manifest,
                 children: scriptTags,
               })
             )

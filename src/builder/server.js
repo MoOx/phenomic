@@ -13,6 +13,7 @@ import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 import cleanNodeCache from "../_utils/clean-node-cache"
 import joinUri from "../_utils/join-uri"
+import redBoxRenderer from "../_utils/redbox-renderer"
 
 const log = debug("statinamic:builder:server")
 
@@ -91,6 +92,9 @@ export default (webpackConfig, options = {}) => {
       noInfo: !config.verbose,
       ...devConfig.devServer,
     }))
+
+    // HMR
+    server.use(webpackHotMiddleware(webpackCompiler))
 
     let entries = []
     webpackCompiler.plugin("done", function(stats) {
@@ -182,13 +186,10 @@ export default (webpackConfig, options = {}) => {
       )
       .catch((err) => {
         log(err)
-        res.setHeader("Content-Type", "text/plain")
-        res.end(err.toString())
+        res.setHeader("Content-Type", "text/html")
+        res.end(redBoxRenderer(err))
       })
     })
-
-    // HMR
-    server.use(webpackHotMiddleware(webpackCompiler))
   }
 
   // THAT'S IT

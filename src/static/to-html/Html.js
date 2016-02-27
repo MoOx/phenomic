@@ -7,12 +7,21 @@ export default class Html extends Component {
     head: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     script: PropTypes.string.isRequired,
+    manifest: PropTypes.string,
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
   };
 
   render() {
+    const { manifest } = this.props
+
+    const htmlProps = {
+      lang: "en",
+      ...(manifest !== "") && {
+        manifest,
+      },
+    }
     return (
-      <html lang="en">
+      <html {...htmlProps}>
         <head
           dangerouslySetInnerHTML={ {
             __html: this.props.head,

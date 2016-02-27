@@ -69,6 +69,7 @@ export function writeAllHTMLFiles({
   setPageData,
   forgetPageData,
   writeHTMLFile,
+  appcache,
 }, testing) {
   // create all html files
   return Promise.all(
@@ -87,6 +88,7 @@ export function writeAllHTMLFiles({
 
           baseUrl,
           assetsFiles,
+          appcache,
         }, testing)
         .then((html) => writeHTMLFile(filename, html))
         .then(() => forgetPageData(url, store))

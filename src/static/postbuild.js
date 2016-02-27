@@ -1,6 +1,7 @@
 import { join } from "path"
 import color from "chalk"
 import { writeFile } from "fs-promise"
+import writeAppcache from "../_utils/appcache"
 
 export default (config, files, log) => {
   log(
@@ -26,6 +27,17 @@ export default (config, files, log) => {
         "",
       )
       .then(() => log(color.green(`✓ .nojekyll created.`)))
+    )
+  }
+
+  if (config.appcache) {
+    promises.push(
+      writeAppcache(
+        join(config.cwd, config.destination),
+        config.baseUrl.pathname,
+        config.appcache,
+      )
+      .then(() => log(color.green(`✓ manifest.appcache created.`)))
     )
   }
 
