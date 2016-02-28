@@ -2,7 +2,7 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
-test.cb("statinamic/lib/md-collection-loader", (t) => {
+test.cb("statinamic/lib/collection-loader", (t) => {
   const outputPath = __dirname + "/output/"
   const entry = __dirname + "/fixtures/script.js"
 

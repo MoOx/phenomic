@@ -2,7 +2,7 @@ import test from "ava"
 
 import minify from "../minify"
 
-test("statinamic/lib/md-collection-loader/minify", (t) => {
+test("statinamic/lib/collection-loader/minify", (t) => {
   t.same(
     minify([
       {

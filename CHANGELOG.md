@@ -1,3 +1,6 @@
+- Changed: Refactor md-collection-loader
+  - Pluggable markdown parser (can be ascii parser or something else)
+  - Move loader query to webpack option (avoid json.stringify)
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback

@@ -8,7 +8,7 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import debug from "debug"
 
-import collection from "../md-collection-loader/cache.js"
+import collection from "../collection-loader/cache.js"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 import cleanNodeCache from "../_utils/clean-node-cache"
