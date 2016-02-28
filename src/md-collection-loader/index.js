@@ -26,7 +26,7 @@ return a object:
  */
 import path from "path"
 import loaderUtils from "loader-utils"
-import yamlHeaderParser from "gray-matter"
+import fontMatterParser from "gray-matter"
 import markdownIt from "markdown-it"
 
 import joinUri from "../_utils/join-uri"
@@ -40,17 +40,15 @@ let timeout
 
 module.exports = function(input) {
 
-  const query = loaderUtils.parseQuery(this.query)
+  const query = this.options.statinamic || {}
   const context = query.context || this.options.context
 
-  const mdIt = query.markdownIt
-    ? query.markdownIt
-    : this.options.markdownIt
-      ? this.options.markdownIt
-      : markdownIt()
+  const mdParser = query.mdParser
+    ? query.mdParser
+    : (string) => markdownIt().render(string)
 
   const defaultHead = query.defaultHead
-  const parsed = yamlHeaderParser(input)
+  const parsed = fontMatterParser(input)
 
   const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = urlify(
@@ -78,7 +76,7 @@ module.exports = function(input) {
       ...defaultHead,
       ...parsed.data,
     },
-    body: mdIt.render(parsed.content),
+    body: mdParser(parsed.content),
     rawBody: parsed.content,
     raw: parsed.orig,
     ...metadata,
