@@ -6,7 +6,7 @@ import debug from "debug"
 import webpack from "./webpack"
 import devServer from "./server"
 
-import collection from "../md-collection-loader/cache"
+import collection from "../collection-loader/cache"
 import toStaticHTML from "../static"
 
 export default function(options) {

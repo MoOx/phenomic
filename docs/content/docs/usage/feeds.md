@@ -3,7 +3,7 @@ title: How to use generate feeds in Statinamic
 incomplete: true
 ---
 
-The `statinamic/lib/md-collection-loader` can handle that very easily.
+The `statinamic/lib/collection-loader` can handle that very easily.
 The default boilerplate already handle a default RSS feed that will grab the
 last 20 posts.
 
@@ -14,7 +14,7 @@ Here is a commented part of the webpack configuration that will helps:
     loaders: [
       {
         test: /\.md$/,
-        loader: "statinamic/lib/md-collection-loader" +
+        loader: "statinamic/lib/collection-loader" +
         `?${ JSON.stringify({
           context: source,
           basepath: config.baseUrl.pathname,
