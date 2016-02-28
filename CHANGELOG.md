@@ -1,3 +1,9 @@
+- Changed: Refactor md-collection-loader
+  - Pluggable markdown parser (can be ascii parser or something else)
+  - Move loader query to webpack option (avoid json.stringify)
+
+  See ([#217](https://github.com/MoOx/statinamic/pull/217)) for more information
+
 # 0.8.2 - 2016-02-27
 
 - Fixed: 404 page overide webpack hmr route
