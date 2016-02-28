@@ -3,15 +3,14 @@ title: Explanation about how the engine works
 incomplete: true
 ---
 
-During the build process, markdown files are parsed, and transformed as JSON
-files (one part with the YAML header meta informations, one part with the body
-as HTML).
-So both client and server can easily consume markdown files (as json) in order
-to render pages from React components. That's it !
+During the build process, markdown files are transformed into JSON; one part
+with the YAML metadata, and one part with the HTML body. So both client and
+server can easily consume these markdown files (as JSON) in order to render
+pages from React components.
 
-On top of that you can add pretty much whatever you want to write styles the way
-you like (CSS, inlines styles...) and you can even create your own pages from
-plain React components. Statinamic is just an helper.
+On top of that, you can easily add your own logic to style your pages the way
+that you like, whether that is via CSS files or inline styles. You can even
+create your own pages from plain React components; Statinamic is just a helper.
 
 ## The boilerplate
 
@@ -28,8 +27,8 @@ plain React components. Statinamic is just an helper.
     (eg: webpack loaders to add your favorite css preprocessor)
   * run the dev server (`(babel-)node build --server --dev`)
   * build the static version for production (`(babel-)node build --static --production`)
-
-You might as well need to:
+  
+Optionally, you can:
 
 * write or reuse [React components](http://react-components.com/)
 * tweak [webpack configuration](http://webpack.github.io/docs) in the build script
@@ -54,7 +53,7 @@ You might as well need to:
 * [React Helmet](https://github.com/nfl/react-helmet)
   for handling pages meta tags (title and meta...)
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
-  for awesome DX (developer experience).
+  for an awesome DX (developer experience).
 * [Express](http://expressjs.com/) with some middlewares for development:
   * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-server.html)
     for watching
