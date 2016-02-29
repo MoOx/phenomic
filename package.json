@@ -71,7 +71,7 @@
     "babel-preset-stage-1": "^6.3.13",
     "codecov": "^1.0.1",
     "eslint": "^1.7.2",
-    "eslint-config-i-am-meticulous": "^2.0.0",
+    "eslint-config-i-am-meticulous": "^3.0.0",
     "eslint-plugin-react": "^3.6.2",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
