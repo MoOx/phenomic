@@ -4,12 +4,22 @@ node_js:
   - '5'
   - '4'
 
+# fail asap when there is a failure
 matrix:
   fast_finish: true
 
+# cache node modules
+cache:
+  directories:
+    - node_modules
+    - docs/node_modules
+before_script: npm prune
+
 script: npm run test-with-coverage
+
 after_success: npm run coverage
 
+# deploy docs to gh-pages for commits in master
 deploy:
   skip_cleanup: true
   provider: script
