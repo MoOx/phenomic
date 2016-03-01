@@ -2,6 +2,8 @@
 ## Boilerplate
 
 - Changed: Use ``include`` instead ``exclude`` to catch files to transform.
+- Fixed: assets loader use the right context
+  (no big deal with default paths but still)
 
 # 0.8.2 - 2016-02-27
 
