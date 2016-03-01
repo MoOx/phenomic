@@ -34,7 +34,10 @@ export default {
           }),
           "eslint-loader?fix",
         ],
-        exclude: /node_modules/,
+        include: [
+          path.resolve(config.cwd, "scripts"),
+          path.resolve(config.cwd, "web_modules"),
+        ],
       },
     ],
   },

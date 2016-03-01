@@ -1,3 +1,8 @@
+
+## Boilerplate
+
+- Changed: Use ``include`` instead ``exclude`` to catch files to transform.
+
 # 0.8.2 - 2016-02-27
 
 - Fixed: 404 page overide webpack hmr route
