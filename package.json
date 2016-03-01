@@ -91,7 +91,7 @@
     "redux": "^3.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
-    "redux-devtools-log-monitor": "^1.0.1",
+    "redux-devtools-log-monitor": "^1.0.5",
     "redux-thunk": "^1.0.3",
     "stylelint": "^4.0.0",
     "stylelint-config-standard": "^2.0.0"
