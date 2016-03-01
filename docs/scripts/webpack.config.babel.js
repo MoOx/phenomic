@@ -36,13 +36,10 @@ export default {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
           "style-loader",
-        // loader:
-        //   "style-loader" +
-        //   "!" +
-          "css-loader" +
+          "css-loader" + (
             "?modules"+
-            "&localIdentName=[path][name]--[local]--[hash:base64:5]" +
-          "!" +
+            "&localIdentName=[path][name]--[local]--[hash:base64:5]"
+          ) + "!" +
           "postcss-loader",
         ),
       },

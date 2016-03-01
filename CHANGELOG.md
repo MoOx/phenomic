@@ -1,7 +1,8 @@
 
-## Boilerplate
+## Boilerplate (minor changes/improvements)
 
-- Changed: Use ``include`` instead ``exclude`` to catch files to transform.
+- Changed: Use ``include`` instead ``exclude`` to catch files to transform
+- Changed: Minor syntax change for css loaders section
 - Fixed: assets loader use the right context
   (no big deal with default paths but still)
 
