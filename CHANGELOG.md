@@ -1,3 +1,7 @@
+- Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
+  ([#200](https://github.com/MoOx/statinamic/pull/200))
+- Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
+  don’t return a boolean
 
 ## Boilerplate (minor changes/improvements)
 

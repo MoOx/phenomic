@@ -1,14 +1,16 @@
-export default function enhanceCollection(collection, options) {
+export default function enhanceCollection(
+  collection, options, console = console
+) {
   options = {
     ...options,
   }
 
   if (options.filter) {
-    collection = filter(collection, [ options.filter ])
+    collection = filter(collection, [ options.filter ], console)
   }
 
   if (options.filters) {
-    collection = filter(collection, options.filters)
+    collection = filter(collection, options.filters, console)
   }
 
   if (options.sort) {
@@ -30,20 +32,29 @@ export default function enhanceCollection(collection, options) {
   return collection
 }
 
-export function filter(collection, filters) {
+export function filter(collection, filters, console = console) {
   return collection.reduce((acc, item) => {
-    filters.forEach((filter) => {
+    let include = true
+    for (const filter of filters) {
       switch (typeof filter) {
       case "function":
-        if (filter(item)) {
-          acc.push(item)
+        const flag = filter(item)
+        if (typeof flag !== "boolean") {
+          console.warn(
+            "Function passed to filter item in 'enhanceCollection' should " +
+            "return a boolean value. \n" +
+            `You returned '${ typeof flag }'.`,
+          )
+        }
+        if (!flag) {
+          include = false
         }
         break
 
       case "object":
         const keys = Object.keys(filter)
         if (
-          keys.reduce(
+          !keys.reduce(
             (acc, key) => acc && (
               (
                 typeof filter[key] === "string" &&
@@ -52,25 +63,35 @@ export function filter(collection, filters) {
               ||
               (
                 filter[key] instanceof RegExp &&
+                item[key] &&
                 item[key].match(filter[key])
               )
             ),
             true
           )
         ) {
-          acc.push(item)
+          include = false
         }
         break
 
       case "string":
       default:
-        if (item[filter]) {
-          acc.push(item)
+        if (!item[filter]) {
+          include = false
         }
         break
 
       }
-    })
+
+      // break asap
+      if (!include) {
+        break
+      }
+    }
+
+    if (include) {
+      acc.push(item)
+    }
 
     return acc
   }, [])
