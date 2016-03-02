@@ -3,10 +3,20 @@ title: How to write content using Statinamic
 incomplete: true
 ---
 
-You can write your files using
-[Markdown](https://en.wikipedia.org/wiki/Markdown).
+You can write your files using any text based language like
+[Markdown](https://en.wikipedia.org/wiki/Markdown),
+[AsciiDoc](https://en.wikipedia.org/wiki/AsciiDoc),
+[Textile](https://en.wikipedia.org/wiki/Textile_(markup_language)).
+[Txt2tags](https://en.wikipedia.org/wiki/Txt2tags) or
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX).
 
-## Header
+Default boilerplate provide a markdown engine but you can use anything you want.
+See [Configuration](./configuration/) to know how to specify your own engine.
+
+One common thing that text files will require is a front matter that should
+contains some meta informations about the content.
+
+## Front matter
 
 Here is a review of the important fields you can use.
 
@@ -21,12 +31,13 @@ layout: "MyComponent" # name referenced in `web_modules/layouts/index.js`
 
 # route default = normalized path of the markdown file
 # eg: content/some/thing.md => /some/thing/(index.html)
-route: my-custom-url # will create the file /my-custom-url/index.html
+route: my-custom-url # will create the file /my-custom-url/(index.html)
 # if you provide an extension, the url won't be converted to a folder + index.html
 # eg: route: 404.html # will create the file /404.html
 # eg: route: something.htm # will create the file /something.htm
 
-# note that you can add more like `date` or anything you want/need to sort/filter
+# note that you can add more like `date` or anything you want/need to help you
+# sort and/or filter your entries
 ---
 
 ...
@@ -39,7 +50,24 @@ and ``metaTitle`` for the meta ``<title>`` of the page ``<head>``.
 
 **For `layout`, please read [Layouts](../layouts/) documentation.**
 
-## Content
+### Front matter format
+
+Currently **front matters can be written using YAML, JSON, TOML** (we rely on
+[gray-matter](https://www.npmjs.com/package/gray-matter) that supports all this
+format out of the box).
+
+You can change the language of your front matter by specifying it after the
+first front matter delimiter (eg: ``---``).
+
+```markdown
+---json
+{
+  "title": "Statinamic is awesome"
+}
+---
+```
+
+## Text format
 
 ```md
 ---
@@ -49,4 +77,7 @@ title: "Page title"
 Here you **can** use some _markdown_.
 ```
 
-TODO make it clear on the preferred way to use link (relative? absolute?).
+The default engine supports Markdown, but you can use whatever your want.
+_You will need an engine that can transform text to html._
+
+See [Configuration](./configuration/) to know how to specify your own engine.

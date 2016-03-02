@@ -40,20 +40,3 @@ cover this case.
 -- import { Link } from "react-router"
 ++ import { Link } from "statinamic/lib/Link"
 ```
-
-## Can I use different front matter format in markdown files ?
-
-Yes. Statinamic supports YAML, JSON, TOML out of the box. You can change the language by
-specifying it after the first delimiter (eg: ---)
-
-Example:
-
-```markdown
----json
-{
-  "title": "Statinamic is awesome"
-}
----
-```
-
-For more information, please refer to [gray-matter's documentation](https://www.npmjs.com/package/gray-matter)
