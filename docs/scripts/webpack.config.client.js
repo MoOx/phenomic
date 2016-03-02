@@ -37,6 +37,8 @@ export default {
         include: [
           path.resolve(config.cwd, "scripts"),
           path.resolve(config.cwd, "web_modules"),
+          // because docs use non transpiled code
+          path.resolve(config.cwd, "..", "src"),
         ],
       },
     ],
