@@ -136,7 +136,7 @@ export default (webpackConfig, options = {}) => {
         res
       )
 
-      // try 404.html is there is any
+      // try 404.html if there is any
       if (!item) {
         req.url = "/404.html"
         item = getItemOrContinue(

@@ -41,7 +41,7 @@ cover this case.
 ++ import { Link } from "statinamic/lib/Link"
 ```
 
-## Can I use different font matter format in markdown files ?
+## Can I use different front matter format in markdown files ?
 
 Yes. Statinamic supports YAML, JSON, TOML out of the box. You can change the language by
 specifying it after the first delimiter (eg: ---)
