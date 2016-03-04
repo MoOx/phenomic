@@ -46,7 +46,7 @@
     "loader-utils": "^0.2.11",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "opn": "^3.0.2",
+    "opn": "^4.0.1",
     "redbox-react": "^1.2.2",
     "remark": "^4.1.1",
     "rimraf": "^2.4.2",
