@@ -17,7 +17,9 @@ which allows you to have local CSS classnames in your React components.
 
 At first, you will probably found that not having global CSS is weird.
 But the way the web and UI are evolving is clearly by following a component
-approach. You should think about UI modules and styles your component on by one.
+approach. You should think about UI modules and style your components one by
+one.
+
 If you need some global CSS variables, [you can add some in the JavaScript
 configuration](http://cssnext.io/usage/#features).
 (but you should not use a lot).
@@ -35,6 +37,5 @@ Sadly, inline styles don't play well with pre rendering (at least yet).
 When we build the static version, we don't know the device where we are going
 to be displayed on, so viewport adjustments can't be done properly and will
 result in some visual changes/rerendering.
-You can probably provide a "not so bad" UX with the re-rendering is made
-smoothly but it's not an easy thing. If you think it easy, feel free to open an
+You can probably provide a "not so bad" UX with a smooth re-rendering, but it's not an easy thing. If you think it easy, feel free to open an
 issue to discuss about that!

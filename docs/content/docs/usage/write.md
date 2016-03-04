@@ -11,7 +11,7 @@ You can write your files using any text based language like
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX).
 
 Default boilerplate provide a markdown engine but you can use anything you want.
-See [Configuration](./configuration/) to know how to specify your own engine.
+See [Configuration](../configuration/) to know how to specify your own engine.
 
 One common thing that text files will require is a front matter that should
 contains some meta informations about the content.
@@ -21,7 +21,7 @@ contains some meta informations about the content.
 Here is a review of the important fields you can use.
 
 
-```md
+```yml
 ---
 # title default = undefined
 title: "Page title"
@@ -40,7 +40,7 @@ route: my-custom-url # will create the file /my-custom-url/(index.html)
 # sort and/or filter your entries
 ---
 
-...
+Page content...
 ```
 
 For the ``title``, note that you can additionally use a ``metaTitle`` field to
@@ -59,7 +59,7 @@ format out of the box).
 You can change the language of your front matter by specifying it after the
 first front matter delimiter (eg: ``---``).
 
-```markdown
+```json
 ---json
 {
   "title": "Statinamic is awesome"
@@ -69,7 +69,7 @@ first front matter delimiter (eg: ``---``).
 
 ## Text format
 
-```md
+```yml
 ---
 title: "Page title"
 ---
@@ -80,4 +80,4 @@ Here you **can** use some _markdown_.
 The default engine supports Markdown, but you can use whatever your want.
 _You will need an engine that can transform text to html._
 
-See [Configuration](./configuration/) to know how to specify your own engine.
+See [Configuration](../configuration/) to know how to specify your own engine.
