@@ -1,5 +1,4 @@
 import test from "ava"
-
 import enhanceCollection from ".."
 
 const collec = [
@@ -11,112 +10,114 @@ const collec = [
   { q: "uh" },
 ]
 
-test("filter by object", (t) => {
+test("sort with a field name", (t) => {
   t.same(
     enhanceCollection(
       collec,
       {
-        filter: { k: "ey" },
+        sort: "k",
       }
     ),
     [
-      { k: "ey", l: "hi" },
-      { k: "ey", l: [ "a", "b" ] },
-    ],
-    "should filter by object { key: string }"
-  )
-
-  t.same(
-    enhanceCollection(
-      collec,
-      {
-        filter: { k: /y$/ },
-      }
-    ),
-    [
-      { k: "ey", l: "hi" },
-      { k: "ey", l: [ "a", "b" ] },
+      { q: "uh" },
       { k: "ay", q: "hu" },
-    ],
-    "should filter by object { key: regexp }"
-  )
-})
-
-test("filter by custom function", (t) => {
-  t.same(
-    enhanceCollection(
-      collec,
-      {
-        filter: (item) => item.k === "eye",
-      }
-    ),
-    [
+      { k: "ei" },
+      { k: "ey", l: "hi" },
+      { k: "ey", l: [ "a", "b" ] },
       { k: "eye" },
     ]
   )
 })
 
-test("filter by custom function (and warn if not boolean)", (t) => {
-  const messages = []
+test("sort with a custom function", (t) => {
   t.same(
     enhanceCollection(
       collec,
       {
-        filter: (item) => item.k && item.k.indexOf("eye") + 1,
+        sort: (a, b) => {
+          a = a["k"]
+          b = b["k"]
+          if (!a && !b) return 0
+          if (!a) return -1
+          if (!b) return 1
+          if (b > a) return -1
+          if (a > b) return 1
+          return 0
+        },
+      }
+    ),
+    [
+      { q: "uh" },
+      { k: "ay", q: "hu" },
+      { k: "ei" },
+      { k: "ey", l: "hi" },
+      { k: "ey", l: [ "a", "b" ] },
+      { k: "eye" },
+    ]
+  )
+})
+
+test("reverse", (t) => {
+  t.same(
+    enhanceCollection(
+      collec,
+      {
+        reverse: true,
+      }
+    ),
+    [
+      { q: "uh" },
+      { k: "eye" },
+      { k: "ei" },
+      { k: "ay", q: "hu" },
+      { k: "ey", l: [ "a", "b" ] },
+      { k: "ey", l: "hi" },
+    ]
+  )
+})
+
+test("limit", (t) => {
+  t.same(
+    enhanceCollection(
+      collec,
+      {
+        limit: 1,
+      }
+    ),
+    [
+      { k: "ey", l: "hi" },
+    ]
+  )
+})
+
+test("addSiblingReferences", (t) => {
+  const collec = [
+    { k: 1 },
+    { k: 2 },
+    { k: 3 },
+  ]
+
+  t.same(
+    enhanceCollection(
+      collec,
+      {
+        addSiblingReferences: true,
+      }
+    ),
+    [
+      {
+        k: 1,
+        next: { k: 2 },
       },
-      // console
-      { warn: (msg) => messages.push(msg) },
-    ),
-    [
-      { k: "eye" },
-    ]
-  )
-  t.ok(messages.length > 0)
-})
-
-test("filter by string", (t) => {
-  t.same(
-    enhanceCollection(
-      collec,
       {
-        filter: "l",
-      }
-    ),
-    [
-      { k: "ey", l: "hi" },
-      { k: "ey", l: [ "a", "b" ] },
-    ],
-  )
-})
-
-test("multiple filters", (t) => {
-  t.same(
-    enhanceCollection(
-      collec,
+        k: 2,
+        previous: { k: 1 },
+        next: { k: 3 },
+      },
       {
-        filters: [ "q", "k" ],
-      }
-    ),
-    [
-      { k: "ay", q: "hu" },
-    ]
-  )
-})
-
-test("mix filters ", (t) => {
-  t.same(
-    enhanceCollection(
-      collec,
-      {
-        filters: [
-          { k: /y$/ },
-          "l",
-          (item) => Array.isArray(item.l),
-        ],
-      }
-    ),
-    [
-      { k: "ey", l: [ "a", "b" ] },
+        k: 3,
+        previous: { k: 2 },
+      },
     ]
   )
 })
