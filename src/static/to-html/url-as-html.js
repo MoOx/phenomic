@@ -12,7 +12,7 @@ import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
-import minifyCollection from "../../collection-loader/minify"
+import minifyCollection from "../../content-loader/minify"
 
 export default (url, {
   exports,

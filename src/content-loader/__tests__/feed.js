@@ -2,7 +2,7 @@ import test from "ava"
 
 import feed from "../feed"
 
-test("statinamic/lib/collection-loader feed helper", (t) => {
+test("statinamic/lib/content-loader feed helper", (t) => {
 
   const feedXML = feed({
     feedOptions: {

@@ -1,6 +1,52 @@
-- Changed: Refactor md-collection-loader
-  - Pluggable markdown parser (can be ascii parser or something else)
-  - Move loader query to webpack option (avoid json.stringify)
+- Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
+- Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
+  as the default markdown engine.
+  - If you want to use the new engine, just remove your ``markdownIt`` section
+    in your ``scripts/webpack.config.babel.js`` configuration.
+    You will also probably need to update in your CSS references to
+    ``.markdownIt-Anchor`` to ``.statinamic-HeadingAnchor``.
+  - If you want to keep your current engine, just take the content of your
+    ``markdownIt`` section, wrap it in a function and return ``.render()``
+    method.
+
+    - Remove this of your ``scripts/webpack.config.babel.js``
+      ```js
+      // ...
+      markdownIt: (
+        require("markdown-it")({
+          html: true,
+          // ...
+        })
+          .use(/* ... */)
+      )
+      ```
+    - Add in the configuration of ``content-loader``
+      (former ``md-collection-loader``)
+      ```js
+      // ...
+      { // statinamic requirement
+        test: /\.md$/,
+        loader: "statinamic/lib/content-loader",
+        query: {
+          context: path.join(config.cwd, config.source),
+          // WRAP HERE
+          renderer: (text) => (
+            require("markdown-it")({
+              html: true,
+              // ...
+            })
+              .use(/* ... */)
+              .render(text) // ADD THIS
+          )
+          // ...
+        }
+      )
+      ```
+
+- Added: ``content-loader`` now accept any renderer.
+  You can provide your own callback to transform the text content into html
+  via the `renderer` option.
+  See _Configuration_ section of the documentation.
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
@@ -8,10 +54,17 @@
 
 ## Boilerplate (minor changes/improvements)
 
-- Changed: Use ``include`` instead ``exclude`` to catch files to transform
-- Changed: Minor syntax change for css loaders section
+- Changed: Use ``include`` instead ``exclude`` to catch files to transform.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+- Changed: (minor) syntax change for css loaders section.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+- Changed: (minor) ``content-loader`` (former ``md-collection-loader``) now
+  don't use ``JSON.stringify`` anymore.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+  ([#209](https://github.com/MoOx/statinamic/pull/209))
 - Fixed: assets loader use the right context
-  (no big deal with default paths but still)
+  (no big deal with default paths, but still).
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
 
 # 0.8.2 - 2016-02-27
 
@@ -282,8 +335,8 @@ set to `production`.
 # 0.3.0 - 2015-10-30
 
 - Changed: some peer deps versions updated
-- Changed: `markdown-as-json-loader` is now `md-collection-loader`
-- Added: ability to generate rss feeds using `md-collection-loader`
+- Changed: `markdown-as-json-loader` is now `md-content-loader`
+- Added: ability to generate rss feeds using `md-content-loader`
 
 # 0.2.0 - 2015-10-29
 

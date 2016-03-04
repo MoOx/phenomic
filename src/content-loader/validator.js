@@ -8,14 +8,8 @@ const fieldTypes = {
   description: "object",
 }
 
-const throwError = (err) => {
-  throw new Error(err)
-}
-
 const validator = (
-  userConfig = {},
-  configName = "collection loader",
-  emitError = throwError
+  userConfig = {}
 ) => {
   const errors = []
 
@@ -34,8 +28,8 @@ const validator = (
   })
 
   if (errors.length > 0) {
-    emitError(
-      `Your ${ configName } config is invalid. Please fix the errors: \n- ` +
+    throw new Error(
+      `Your 'content-loader' config is invalid. Please fix the errors: \n- ` +
       errors.join("\n- ") +
       "\n\n" +
       "See 'Configuration' section in documentation."

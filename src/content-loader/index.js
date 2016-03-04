@@ -1,32 +1,6 @@
-/*
-Example
-```md
-  ---
-  title: Test
-  key: value
-  ---
-  _Md_ content
-```
-return a object:
-```json
-{
-  __filename: ...
-  __url: ...
-  __resourceUrl: ...
-  __dataUrl: ...
-  head: {
-    title: "Test",
-    key: "value",
-  },
-  body: "<em>Md</em> content",
-  rawBody: "_Md_ content",
-  raw: {initial content},
-}
-```
- */
 import path from "path"
 import loaderUtils from "loader-utils"
-import fontMatterParser from "gray-matter"
+import frontMatterParser from "gray-matter"
 
 import joinUri from "../_utils/join-uri"
 import urlify from "../_utils/urlify"
@@ -35,36 +9,25 @@ import feed from "./feed"
 import cache from "./cache"
 import description from "./description"
 import validator from "./validator"
+import defaultRenderer from "./default-renderer"
 
 let timeout
 
 module.exports = function(input) {
-  const loaderQuery = loaderUtils.parseQuery(this.query)
-  const query = {
-    ...loaderQuery,
-    ...this.options.statinamic && this.options.statinamic.collection,
+  const query = loaderUtils.parseQuery(this.query)
+
+  try {
+    validator(query)
   }
-
-  validator(
-    loaderQuery,
-    "collection-loader query",
-    this.emitError
-  )
-
-  if (this.options.statinamic) {
-    validator(
-      this.options.statinamic.collection,
-      "statinamic.collection",
-      this.emitError
-    )
+  catch (err) {
+    this.emitError(err)
   }
 
   const context = query.context || this.options.context
-
-  const renderer = query.renderer || ((text) => text)
+  const renderer = query.renderer || defaultRenderer
 
   const defaultHead = query.defaultHead
-  const parsed = fontMatterParser(input)
+  const parsed = frontMatterParser(input)
 
   const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = urlify(
@@ -87,7 +50,7 @@ module.exports = function(input) {
     __resourceUrl: joinUri("/", resourceUrl),
     __dataUrl: joinUri("/", dataUrl),
   }
-  let mdObject = {
+  let textData = {
     head: {
       ...defaultHead,
       ...parsed.data,
@@ -98,14 +61,14 @@ module.exports = function(input) {
     ...metadata,
   }
 
-  mdObject = description(mdObject, query.description)
+  textData = description(textData, query.description)
 
   if (!this.emitFile) {
     throw new Error("emitFile is required from module system")
   }
 
   // emit file
-  this.emitFile(dataUrl, JSON.stringify(mdObject))
+  this.emitFile(dataUrl, JSON.stringify(textData))
 
   // update collection
   // replace or add depending on the cache state
@@ -116,10 +79,10 @@ module.exports = function(input) {
     }
   })
   if (previousIndex) {
-    cache[previousIndex] = mdObject
+    cache[previousIndex] = textData
   }
   else {
-    cache.push(mdObject)
+    cache.push(textData)
   }
 
   if (timeout) {

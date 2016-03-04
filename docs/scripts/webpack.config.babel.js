@@ -13,7 +13,24 @@ export default {
     loaders: [
       { // statinamic requirement
         test: /\.md$/,
-        loader: "statinamic/lib/collection-loader",
+        loader: "statinamic/lib/content-loader",
+        query: {
+          context: path.join(config.cwd, config.source),
+          feedsOptions: {
+            title: pkg.name,
+            site_url: pkg.homepage,
+          },
+          feeds: {
+            "feed.xml": {
+              collectionOptions: {
+                filter: { layout: "Post" },
+                sort: "date",
+                reverse: true,
+                limit: 20,
+              },
+            },
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -40,45 +57,6 @@ export default {
 
       // client side specific loaders are located in webpack.config.client.js
     ],
-  },
-
-  statinamic: {
-    collection: {
-      context: path.join(config.cwd, config.source),
-      renderer: (string) => (
-        require("markdown-it")({
-          html: true,
-          linkify: true,
-          typographer: true,
-          highlight: (code, lang) => {
-            code = code.trim()
-            const hljs = require("highlight.js")
-            // language is recognized by highlight.js
-            if (lang && hljs.getLanguage(lang)) {
-              return hljs.highlight(lang, code).value
-            }
-            // ...or fallback to auto
-            return hljs.highlightAuto(code).value
-          },
-        })
-        .use(require("markdown-it-toc-and-anchor"), { tocFirstLevel: 2 })
-        .render(string)
-      ),
-      feedsOptions: {
-        title: pkg.name,
-        site_url: pkg.homepage,
-      },
-      feeds: {
-        "feed.xml": {
-          collectionOptions: {
-            filter: { layout: "Post" },
-            sort: "date",
-            reverse: true,
-            limit: 20,
-          },
-        },
-      },
-    },
   },
 
   postcss: () => [
