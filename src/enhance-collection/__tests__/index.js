@@ -92,9 +92,9 @@ test("limit", (t) => {
 
 test("addSiblingReferences", (t) => {
   const collec = [
-    {k: 1},
-    {k: 2},
-    {k: 3},
+    { k: 1 },
+    { k: 2 },
+    { k: 3 },
   ]
 
   t.same(
@@ -107,16 +107,16 @@ test("addSiblingReferences", (t) => {
     [
       {
         k: 1,
-        next: {k: 2},
+        next: { k: 2 },
       },
       {
         k: 2,
-        previous: {k: 1},
-        next: {k: 3},
+        previous: { k: 1 },
+        next: { k: 3 },
       },
       {
         k: 3,
-        previous: {k: 2},
+        previous: { k: 2 },
       },
     ]
   )
