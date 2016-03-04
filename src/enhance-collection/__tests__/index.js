@@ -101,7 +101,7 @@ test("addSiblingReferences", (t) => {
     enhanceCollection(
       collec,
       {
-        addSiblingReferences: true
+        addSiblingReferences: true,
       }
     ),
     [
