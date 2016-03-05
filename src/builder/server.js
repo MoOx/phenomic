@@ -153,13 +153,13 @@ export default (webpackConfig, options = {}) => {
       }
       const filepath = join(config.cwd, config.destination, item.__dataUrl)
       const fileContent = memoryFs.readFileSync(filepath)
-      const data = JSON.parse(fileContent.toString())
+      const json = JSON.parse(fileContent.toString())
 
       options.store.dispatch({
         type: pagesActions.SET,
         page: item.__url,
         response: {
-          data,
+          json,
         },
       })
 

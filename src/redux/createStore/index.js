@@ -23,7 +23,7 @@ export default function(
       next({ ...rest, type: REQUEST })
       return promise.then(
         (response) => next({ ...rest, response, type: SUCCESS }),
-        (error) => next({ ...rest, error, type: FAILURE })
+        (response) => next({ ...rest, response, type: FAILURE })
       )
     }
   }

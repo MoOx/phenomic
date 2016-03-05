@@ -17,16 +17,16 @@ if (pagesActions.FORGET === undefined) {
 const log = debug("statinamic:static:to-html")
 
 export function setPageData(url, collection, store) {
-  const data = collection.find((item) => item.__url === url)
-  if (!data) {
-    log(`No data in for url '${ url }'.`)
+  const json = collection.find((item) => item.__url === url)
+  if (!json) {
+    log(`No json in for url '${ url }'.`)
   }
   else {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
       page: url,
-      response: { data },
+      response: { json },
     })
   }
 }

@@ -1,4 +1,4 @@
-import fetchJSON from "../../fetchJSON"
+import jsonFetch from "simple-json-fetch"
 import joinUri from "../../_utils/join-uri"
 
 export const NOOP = "statinamic/pages/NOOP"
@@ -21,12 +21,16 @@ export default function reducer(state = {}, action) {
     }
 
   case SET:
-    const data = action.response.data
+    const { json } = action.response
     return {
       ...state,
       [action.page]: {
-        ...data,
-        type: data.head ? data.head.layout || data.head.type : undefined,
+        ...json,
+        type: (
+          json.head
+          ? json.head.layout || json.head.type
+          : undefined
+        ),
       },
     }
 
@@ -39,10 +43,11 @@ export default function reducer(state = {}, action) {
   case ERROR:
     return {
       ...state,
-      [action.page]: action.error && action.error.response
+      [action.page]: (
+        (action.response && action.response.status)
         ? {
-          error: action.error.response.status,
-          errorText: action.error.response.statusText,
+          error: action.response.status,
+          errorText: action.response.statusText,
         }
         : {
           error: 404,
@@ -64,7 +69,7 @@ export function get(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(joinUri(
+    promise: jsonFetch(joinUri(
       process.env.STATINAMIC_PATHNAME,
       url
     )),
@@ -79,7 +84,7 @@ export function refresh(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(joinUri(
+    promise: jsonFetch(joinUri(
       process.env.STATINAMIC_PATHNAME,
       url
     )),

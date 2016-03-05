@@ -79,6 +79,7 @@
     "expect-jsx": "^2.2.1",
     "gh-pages": "^0.10.0",
     "js-beautify": "^1.5.10",
+    "simple-json-fetch": "^1.0.1",
     "lnfs-cli": "^1.0.1",
     "npmpub": "^3.0.0",
     "nyc": "^5.2.0",
