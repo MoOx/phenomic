@@ -21,6 +21,7 @@
   "author": "Maxime Thirouin",
   "license": "MIT",
   "repository": "https://github.com/MoOx/statinamic.git",
+  "main": "lib/index.js",
   "files": [
     "boilerplate",
     "docs/content",
