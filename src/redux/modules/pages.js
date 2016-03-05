@@ -50,9 +50,14 @@ export default function reducer(state = {}, action) {
           errorText: action.response.statusText,
         }
         : {
-          error: 404,
-          errorText: `Page Not Found`,
-        },
+          error: "Unexpected Error",
+          errorText: (
+            action.response.message ||
+            (action.response.error && action.response.error.message) ||
+            "Seriously, this is weird."
+          ),
+        }
+      ),
     }
 
   default:
