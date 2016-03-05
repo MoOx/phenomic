@@ -166,7 +166,7 @@
     "docs-links": "lnfs ./node_modules/react docs/node_modules/react && lnfs ./node_modules/react-helmet docs/node_modules/react-helmet && lnfs ./node_modules/webpack docs/node_modules/webpack",
     "predocs": "rimraf docs/node_modules/statinamic",
     "docs": "cd docs && npm prune && cd .. && npm run docs-links && cd docs && npm install",
-    "postdocs": "lnfs ./lib docs/node_modules/statinamic/lib && lnfs ./package.json docs/node_modules/statinamic/package.json && cd docs && npm test",
+    "postdocs": "lnfs ./src docs/node_modules/statinamic/lib && lnfs ./package.json docs/node_modules/statinamic/package.json && cd docs && npm test",
     "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
     "pretest": "npm run lint",
     "test": "npm run tests && npm run test-boilerplate",
