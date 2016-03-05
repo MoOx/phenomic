@@ -335,8 +335,8 @@ set to `production`.
 # 0.3.0 - 2015-10-30
 
 - Changed: some peer deps versions updated
-- Changed: `markdown-as-json-loader` is now `md-content-loader`
-- Added: ability to generate rss feeds using `md-content-loader`
+- Changed: `markdown-as-json-loader` is now `md-collection-loader`
+- Added: ability to generate rss feeds using `md-collection-loader`
 
 # 0.2.0 - 2015-10-29
 
