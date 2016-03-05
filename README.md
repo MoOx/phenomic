@@ -2,11 +2,11 @@
 
 > A static website generator to create dynamic website using React components.
 
-[![Unix Build status](https://img.shields.io/travis/MoOx/statinamic/next.svg?label=unix%20build&style=flat-square)](https://travis-ci.org/MoOx/statinamic)
-[![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/statinamic/master.svg?label=window%20build&style=flat-square)](https://ci.appveyor.com/project/MoOx/statinamic/branch/master)
-[![Code Coverage](https://img.shields.io/codecov/c/github/MoOx/statinamic/next.svg?style=flat-square)](https://codecov.io/github/MoOx/statinamic?ref=next)
-[![Version](https://img.shields.io/npm/v/statinamic.svg?style=flat-square)](https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md)
-[![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg?style=flat-square)](https://gitter.im/MoOx/statinamic)
+[![Unix Build status](https://img.shields.io/travis/MoOx/statinamic/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/statinamic)
+[![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/statinamic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/statinamic/branch/master)
+[![Code Coverage](https://img.shields.io/codecov/c/github/MoOx/statinamic/master.svg)](https://codecov.io/github/MoOx/statinamic?ref=master)
+[![Version](https://img.shields.io/npm/v/statinamic.svg)](https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md)
+[![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/statinamic)
 
 ---
 
