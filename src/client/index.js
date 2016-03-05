@@ -7,9 +7,12 @@ import { Provider as ReduxContextProvider } from "react-redux"
 
 import StatinamicContextProvider from "../ContextProvider"
 
-export const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: process.env.STATINAMIC_PATHNAME,
-})
+export const browserHistory =
+  typeof window !== "undefined" // just for node testing
+  ? useRouterHistory(createBrowserHistory)({
+    basename: process.env.STATINAMIC_PATHNAME,
+  })
+  : null
 
 export default function statinamic({
   layouts,

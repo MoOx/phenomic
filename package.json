@@ -171,7 +171,7 @@
     "pretest": "npm run lint",
     "test": "npm run tests && npm run test-boilerplate",
     "posttest": "npm run docs",
-    "test-with-coverage": "nyc --all --require babel-core/register npm run tests && npm run test-boilerplate",
+    "test-with-coverage": "nyc npm run tests && npm run test-boilerplate",
     "posttest-with-coverage": "npm run docs ",
     "coverage": "nyc report --reporter=lcovonly && codecov",
     "release": "npmpub"
