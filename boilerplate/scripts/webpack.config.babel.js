@@ -68,7 +68,9 @@ export default {
   ],
 
   plugins: [
-    new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+    new ExtractTextPlugin("[name].[hash].css", {
+      disable: config.dev ||  process.env.BABEL_ENV === "statinamic",
+    }),
     new webpack.DefinePlugin({ "process.env": {
       NODE_ENV: JSON.stringify(
         config.production ? "production" : process.env.NODE_ENV
