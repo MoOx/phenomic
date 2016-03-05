@@ -9,6 +9,7 @@ import "../utils/inquirer.js"
 // import "./index.js"
 // import "./statinamic-setup.js"
 
-test("todo", () => {
+test("todo", (t) => {
   console.log("TODO: test src/bin/*")
+  t.pass()
 })

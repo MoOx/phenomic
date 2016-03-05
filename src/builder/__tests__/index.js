@@ -4,6 +4,7 @@ import test from "ava"
 import "../index.js"
 import "../webpack.js"
 
-test("todo", () => {
+test("todo", (t) => {
   console.log("TODO: test src/builder/*")
+  t.pass()
 })
