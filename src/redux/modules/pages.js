@@ -44,18 +44,26 @@ export default function reducer(state = {}, action) {
     return {
       ...state,
       [action.page]: (
-        (action.response && action.response.status)
-        ? {
-          error: action.response.status,
-          errorText: action.response.statusText,
-        }
+        action.response
+        ? (
+          action.response.status
+          ? {
+            error: action.response.status,
+            errorText: action.response.statusText,
+          }
+          : {
+            error: "Unexpected Error",
+            errorText: (
+              action.response.message ||
+              (action.response.error && action.response.error.message) ||
+              // here we are just in a deseperate case
+              "Seriously, this is weird. Please report this page."
+            ),
+          }
+        )
+        // no response, it's certainly a 404
         : {
-          error: "Unexpected Error",
-          errorText: (
-            action.response.message ||
-            (action.response.error && action.response.error.message) ||
-            "Seriously, this is weird."
-          ),
+          error: 404,
         }
       ),
     }
