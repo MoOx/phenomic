@@ -6,7 +6,7 @@ import styles from "./index.css"
 export default class PageError extends Component {
 
   static propTypes = {
-    error: PropTypes.number,
+    error: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
     errorText: PropTypes.string,
   };
 

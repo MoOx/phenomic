@@ -52,9 +52,10 @@ export default function reducer(state = {}, action) {
         : {
           error: "Unexpected Error",
           errorText: (
-            action.response.message ||
-            (action.response.error && action.response.error.message) ||
-            "Seriously, this is weird."
+            (action.response)
+            ? action.response.message ||
+              (action.response.error && action.response.error.message)
+            : "Seriously, this is weird."
           ),
         }
       ),
