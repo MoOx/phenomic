@@ -6,8 +6,9 @@ import styles from "./index.css"
 export default class PageError extends Component {
 
   static propTypes = {
-    error: PropTypes.number,
-    errorText: PropTypes.string,
+    error:
+      PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
+    errorText: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
