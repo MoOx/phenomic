@@ -10,6 +10,7 @@
     method.
 
     - Remove this of your ``scripts/webpack.config.babel.js``
+
       ```js
       // ...
       markdownIt: (
@@ -20,8 +21,10 @@
           .use(/* ... */)
       )
       ```
+
     - Add in the configuration of ``content-loader``
       (former ``md-collection-loader``)
+
       ```js
       // ...
       { // statinamic requirement
