@@ -11,6 +11,8 @@
     (that's why ``config`` must expose your webpack configurations)
   - You webpack configuration can now skip some tiny weird part specific to
     statinamic.
+- Changed: Use localhost as default address to open new browser tab (for Windows
+  compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.
