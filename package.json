@@ -94,7 +94,7 @@
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
-    "redux-thunk": "^1.0.3",
+    "redux-thunk": "^2.0.1",
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",
     "remark-highlight.js": "^3.0.0",
