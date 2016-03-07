@@ -205,7 +205,7 @@ export default (options = {}) => {
     const href = `http://${ devHost }:${ devPort }${ config.baseUrl.pathname }`
     log(`Dev server started on ${ href }`)
     if (config.open) {
-      opn(href)
+      opn(href.replace(devHost, "localhost"))
     }
   })
 }
