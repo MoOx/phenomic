@@ -13,6 +13,29 @@
     statinamic.
 - Changed: Use localhost as default address to open new browser tab (for Windows
   compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
+- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
+  Redux will probably become part of the private API, which will reduce
+  the boilerplate. In order to do that, we will gradually remove Redux from all
+  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
+  Here is the instruction to pull this change:
+
+  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
+  `redux-devtools-dock-monitor` from your dependencies list.
+  - Remove these variables in webpack.config.client.js, DefinePlugin section:
+
+    - process.env.REDUX_DEVTOOLS
+    - process.env.CLIENT : This is totally up you. You can keep it if you want.
+    But we recommended that you use a more common way to do this:
+
+    ```diff
+    ---if (process.env.CLIENT) {
+    +++if (typeof window !== "undefined") {
+      // client-side specific code
+    }
+    ```
+    See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
+
+>>>>>>> Drop redux-devtools, process.env.REDUX_TOOLS and process.env.CLIENT
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.
