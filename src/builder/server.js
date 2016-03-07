@@ -19,12 +19,13 @@ const log = debug("statinamic:builder:server")
 
 let firstRun = true
 
-export default (webpackConfig, options = {}) => {
+export default (options = {}) => {
   options = {
     noDevEntriesTest: /^tests/,
     ...options,
   }
   const { config } = options
+  const { webpackConfigClient: webpackConfig } = config
 
   if (!config.baseUrl) {
     throw new Error(

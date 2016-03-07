@@ -29,7 +29,7 @@ export default function(options) {
       log(color.green("✓ Static assets: copy static assets completed"))
     }
 
-    webpack(options.clientWebpackConfig, log, (stats) => {
+    webpack(config.webpackConfigClient, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
       const assetsFiles = {
@@ -80,7 +80,7 @@ export default function(options) {
     })
   }
   else if (config.server) {
-    devServer(options.clientWebpackConfig, {
+    devServer({
       config,
       exports,
       store,

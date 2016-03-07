@@ -1,3 +1,16 @@
+- Changed: simplified boilerplate and "start" and "build" commands !
+  **Be sure to checkout new (smaller) boilerplate**.
+  - ``scripts/webpack.config.*.js`` now needs to export function that accept an object.
+  - ``scripts/config.js`` is now responsible for exporting webpack configurations.
+  - You can replace ``start`` and ``build`` npm scripts by
+    ``statinamic start/build``
+  - ``scripts/build.js`` do not need to expose webpack configuration anymore
+    (since it's included in ``config`` object).
+  - You can now remove awkward babel env configuration from your babel
+    configuration. _It's now handled secretly by default_.
+    (that's why ``config`` must expose your webpack configurations)
+  - You webpack configuration can now skip some tiny weird part specific to
+    statinamic.
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.

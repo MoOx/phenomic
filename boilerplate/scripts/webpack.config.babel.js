@@ -1,11 +1,9 @@
 import path from "path"
+
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 
-import pkg from "../package.json"
-import config from "./config.js"
-
-export default {
+export default ({ config, pkg }) => ({
   ...config.dev && {
     devtool: "cheap-module-eval-source-map",
   },
@@ -50,13 +48,10 @@ export default {
           "?name=[path][name].[ext]&context=" +
           path.join(config.cwd, config.source),
       },
-
       {
         test: /\.svg$/,
         loader: "raw-loader",
       },
-
-      // client side specific loaders are located in webpack.config.client.js
     ],
   },
 
@@ -77,7 +72,6 @@ export default {
       REDUX_DEVTOOLS: Boolean(process.env.REDUX_DEVTOOLS),
       STATINAMIC_PATHNAME: JSON.stringify(process.env.STATINAMIC_PATHNAME),
     } }),
-
     ...config.production && [
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
@@ -88,16 +82,15 @@ export default {
     ],
   ],
 
-  // ↓ HANDLE WITH CARE ↓ \\
-
   output: {
-    libraryTarget: "commonjs2", // for node usage, undone in client config
     path: path.join(config.cwd, config.destination),
     publicPath: config.baseUrl.pathname,
+    filename: "[name].[hash].js",
   },
+
   resolve: {
     extensions: [ ".js", ".json", "" ],
     root: [ path.join(config.cwd, "node_modules") ],
   },
   resolveLoader: { root: [ path.join(config.cwd, "node_modules") ] },
-}
+})
