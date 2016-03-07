@@ -33,8 +33,6 @@ Here is a commented ``package.json`` with only the interesting parts
   // Here are some default environnement variable set by "statinamic" bin
   // BABEL_DISABLE_CACHE=1
   //  (required to run webpack loaders correctly in Node
-  // BABEL_ENV=statinamic
-  //  this is vital and helps run components code universally
   // DEBUG=statinamic:*
   //  (to get some visual feedback during development and build)
 
