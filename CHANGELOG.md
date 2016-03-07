@@ -50,20 +50,6 @@
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Fixed: network errors will not appear as 404 error anymore
-- Fixed: `main.*.css` files are not produced anymore by the default boilerplate.
-  To benefit of this fix, just edit you ``scripts/webpack.config.babel.js``
-  ``new ExtractTextPlugin`` definition (in ``plugins`` array):
-
-  ```js
-  plugins: [
-    new ExtractTextPlugin("[name].[hash].css", {
-      // add the test on process.env.BABEL_ENV
-      disable: config.dev || process.env.BABEL_ENV === "statinamic",
-    }),
-    //...
-  ]
-  ```
-
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
   don’t return a boolean
 
