@@ -28,38 +28,14 @@ export default function(
     }
   }
 
-  let finalCreateStore
-
-  if (process.env.REDUX_DEVTOOLS && process.env.CLIENT) {
-    const devTools = require("../../client/DevTools").default.instrument
-    const { persistState } = require("redux-devtools")
-
-    const getDebugSessionKey = () => {
-      const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
-      return (matches && matches.length > 0)? matches[1] : null
-    }
-
-    finalCreateStore = compose(
-      applyMiddleware(
-        promiseMiddleware,
-        thunk,
-        ...extraMiddlewares
-      ),
-      devTools(),
-      persistState(getDebugSessionKey()),
-      ...extraStoreEnhancers
-    )(createStore)
-  }
-  else {
-    finalCreateStore = compose(
-      applyMiddleware(
-        promiseMiddleware,
-        thunk,
-        ...extraMiddlewares
-      ),
-      ...extraStoreEnhancers
-    )(createStore)
-  }
+  const finalCreateStore = compose(
+    applyMiddleware(
+      promiseMiddleware,
+      thunk,
+      ...extraMiddlewares
+    ),
+    ...extraStoreEnhancers
+  )(createStore)
 
   return finalCreateStore(reducer, initialState)
 }

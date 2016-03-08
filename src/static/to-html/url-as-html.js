@@ -71,21 +71,15 @@ export default (url, {
             const collectionMin = minifyCollection(collection)
             // render app body as "react"ified html (with data-react-id)
             body = render(
-              // the wrapper is used here because the client might have the
-              // devtools at the same level as the <Provider>
-              // the <noscript> reflect the potential devtools element
-              <div id="statinamic-container">
-                <StatinamicContextProvider
-                  collection={ collectionMin }
-                  layouts={ layouts }
-                  metadata={ metadata }
-                >
-                  <ReduxContextProvider store={ store }>
-                    <RouterContextProvider { ...renderProps } />
-                  </ReduxContextProvider>
-                </StatinamicContextProvider>
-                { process.env.REDUX_DEVTOOLS && <noscript /> }
-              </div>
+              <StatinamicContextProvider
+                collection={ collectionMin }
+                layouts={ layouts }
+                metadata={ metadata }
+              >
+                <ReduxContextProvider store={ store }>
+                  <RouterContextProvider { ...renderProps } />
+                </ReduxContextProvider>
+              </StatinamicContextProvider>
             )
 
             const headTags = Helmet.rewind()

@@ -38,9 +38,7 @@ test("url as html", async (t) => {
 
 <body>
   <div id="statinamic">
-    <div id="statinamic-container">
-      <p>TestContainer</p>
-    </div>
+    <p>TestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{
