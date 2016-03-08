@@ -91,6 +91,8 @@
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Fixed: network errors will not appear as 404 error anymore
+- Fixed: `main.*.css` files are not produced anymore by the default boilerplate
+  ([#214](https://github.com/MoOx/statinamic/pull/214))
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
   don’t return a boolean
 

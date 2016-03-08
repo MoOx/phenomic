@@ -17,11 +17,11 @@ test("should have a CSS file", (t) => {
 
 // babel-plugin-webpack-loaders garbage
 // https://github.com/MoOx/statinamic/issues/214
-// test("should not have lot's of main CSS files", (t) => {
-//   t.is(
-//     files.filter(
-//       (file) => file.startsWith("main.") && file.endsWith(".css")
-//     ).length,
-//     0
-//   )
-// })
+test("should not have lot's of main CSS files", (t) => {
+  t.is(
+    files.filter(
+      (file) => file.startsWith("main.") && file.endsWith(".css")
+    ).length,
+    0
+  )
+})
