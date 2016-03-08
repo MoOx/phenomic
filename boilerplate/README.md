@@ -1,10 +1,19 @@
-To work on the boilerplate, run the following:
+# Statinamic boilerplate
+
+## Install dependencies
 
 ```console
-cd boilerplate
-ln -sf ../docs/package.json
-ln -sf ../docs/node_modules node_modules
-npm start
+$ npm install
 ```
 
-It just use "docs/node_modules" and config. Which should be good.
+## Run development server
+
+```console
+$ npm start
+```
+
+## Build for production
+
+```console
+$ npm run build
+```
