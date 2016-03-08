@@ -84,7 +84,7 @@
     "lnfs-cli": "^1.0.1",
     "npmpub": "^3.0.0",
     "nyc": "^5.2.0",
-    "react": "^0.14.0",
+    "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.1",
     "react-dom": "^0.14.0",
     "react-element-to-jsx-string": "^2.4.0",
