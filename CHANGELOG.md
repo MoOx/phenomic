@@ -13,6 +13,7 @@
     statinamic.
 - Changed: Use localhost as default address to open new browser tab (for Windows
   compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
+  ([#257](https://github.com/MoOx/statinamic/issues/257))
 - Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
   Redux will probably become part of the private API, which will reduce
   the boilerplate. In order to do that, we will gradually remove Redux from all
@@ -23,9 +24,10 @@
   `redux-devtools-dock-monitor` from your dependencies list.
   - Remove these variables in webpack.config.client.js, DefinePlugin section:
 
-    - process.env.REDUX_DEVTOOLS
-    - process.env.CLIENT : This is totally up you. You can keep it if you want.
-    But we recommended that you use a more common way to do this:
+    - ``process.env.REDUX_DEVTOOLS``
+    - ``process.env.CLIENT`` : This is totally up you.
+      You can keep it if you use it.
+      We recommended you to use a more portable way to do this:
 
     ```diff
     ---if (process.env.CLIENT) {
@@ -33,9 +35,8 @@
       // client-side specific code
     }
     ```
-    See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
+  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
 
->>>>>>> Drop redux-devtools, process.env.REDUX_TOOLS and process.env.CLIENT
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.
@@ -100,9 +101,9 @@
 
 - Changed: Use ``include`` instead ``exclude`` to catch files to transform.
   See changes in ``boilerplate/scripts/webpack.config.babel.js``
-- Changed: (minor) syntax change for css loaders section.
+- Changed: syntax change for css loaders section.
   See changes in ``boilerplate/scripts/webpack.config.babel.js``
-- Changed: (minor) ``content-loader`` (former ``md-collection-loader``) now
+- Changed: ``content-loader`` (former ``md-collection-loader``) now
   don't use ``JSON.stringify`` anymore.
   See changes in ``boilerplate/scripts/webpack.config.babel.js``
   ([#209](https://github.com/MoOx/statinamic/pull/209))
