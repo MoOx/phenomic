@@ -87,7 +87,7 @@
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
     "react-dom": "^0.14.0",
-    "react-element-to-jsx-string": "^2.4.0",
+    "react-element-to-jsx-string": "^2.5.0",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0",
