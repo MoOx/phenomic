@@ -110,7 +110,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "cross-env": "^1.0.7",
-    "invariant": "^2.1.1",
+    "invariant": "^2.2.1",
     "history": "^2.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
