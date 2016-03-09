@@ -77,7 +77,7 @@
     "eslint-config-i-am-meticulous": "^2.0.0",
     "eslint-plugin-react": "^3.6.2",
     "expect": "^1.13.4",
-    "expect-jsx": "^2.2.1",
+    "expect-jsx": "^2.4.0",
     "gh-pages": "^0.10.0",
     "js-beautify": "^1.5.10",
     "simple-json-fetch": "^1.0.1",
