@@ -10,8 +10,14 @@ deploy: off
 matrix:
   fast_finish: true
 
+cache:
+  - node_modules
+  - test-boilerplate/node_modules
+  - docs/node_modules
+
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm prune
   - npm install
 
 test_script:
