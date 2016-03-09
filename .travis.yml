@@ -13,7 +13,8 @@ cache:
     - node_modules
     - test-boilerplate/node_modules
     - docs/node_modules
-before_script: npm prune
+
+before_install: npm prune
 
 script: npm run test-with-coverage
 
