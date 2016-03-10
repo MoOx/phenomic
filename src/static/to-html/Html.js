@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 
 export default class Html extends Component {
 
@@ -9,6 +8,10 @@ export default class Html extends Component {
     script: PropTypes.string.isRequired,
     manifest: PropTypes.string,
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  };
+
+  static defaultProps = {
+    manifest: "",
   };
 
   render() {
