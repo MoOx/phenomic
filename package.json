@@ -33,7 +33,7 @@
     "statinamic": "lib/bin/index.js"
   },
   "dependencies": {
-    "babel-polyfill": "^6.5.0",
+    "babel-polyfill": "^6.7.2",
     "chalk": "^1.1.0",
     "classnames": "^2.2.3",
     "commander": "^2.9.0",
