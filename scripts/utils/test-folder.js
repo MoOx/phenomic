@@ -2,8 +2,7 @@
 // boost CI testing, tune with care if you dare to
 
 import { denodeify as asyncify } from "promise"
-import nodeRm from "rimraf"
-const rm = asyncify(nodeRm)
+import { remove as rm } from "fs-promise"
 import lnfs from "lnfs"
 import execCmd from "exec-cmd"
 import nodeCmdShim from "cmd-shim"

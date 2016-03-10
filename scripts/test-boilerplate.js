@@ -1,6 +1,4 @@
-import { denodeify as asyncify } from "promise"
-import nodeRm from "rimraf"
-const rm = asyncify(nodeRm)
+import { remove as rm } from "fs-promise"
 import testFolder, { exec } from "./utils/test-folder.js"
 
 const target = "test-boilerplate"
