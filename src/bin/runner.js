@@ -13,8 +13,9 @@ export default
     }
   ) => {
     spawn(
-      join(__dirname, "runner-cmd.js"),
+      "node",
       [
+        join(__dirname, "runner-cmd.js"),
         join(cwd, script),
         ...options.length === 0 ? defaultOptions : options,
       ],

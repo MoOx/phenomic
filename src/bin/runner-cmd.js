@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 
 // babel register, yeah
 require("babel-register")({
