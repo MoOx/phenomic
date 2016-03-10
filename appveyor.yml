@@ -11,9 +11,9 @@ matrix:
   fast_finish: true
 
 cache:
-  - node_modules
-  - test-boilerplate/node_modules
-  - docs/node_modules
+  - node_modules -> package.json
+  - test-boilerplate/node_modules -> package.json
+  - docs/node_modules -> package.json
 
 install:
   - ps: Install-Product node $env:nodejs_version
