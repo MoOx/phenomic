@@ -1,3 +1,6 @@
+- Changed: Remove redux-thunk middleware. If you want to add it back, [follow
+  advange redux usage](docs/content/docs/advanced/redux.md#adding-custom-middlewares-and-store-enhancers-to-redux-store)
+  ([#279](https://github.com/MoOx/statinamic/pull/279))
 - Changed: simplified boilerplate and "start" and "build" commands !
   **Be sure to checkout new (smaller) boilerplate**.
   - ``scripts/webpack.config.*.js`` now needs to export function that accept an object.
