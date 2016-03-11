@@ -76,13 +76,15 @@
     "codecov": "^1.0.1",
     "eslint": "^1.7.2",
     "eslint-config-i-am-meticulous": "^2.0.0",
+    "eslint-plugin-flow-vars": "^0.2.1",
     "eslint-plugin-react": "^3.6.2",
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
+    "flow-bin": "^0.22.1",
+    "flow-interfaces": "^0.3.1",
     "gh-pages": "^0.10.0",
     "js-beautify": "^1.5.10",
-    "simple-json-fetch": "^1.0.1",
     "lnfs": "^3.0.0",
     "npmpub": "^3.0.0",
     "nyc": "^5.2.0",
@@ -101,6 +103,7 @@
     "remark-highlight.js": "^3.0.0",
     "remark-html": "^3.0.0",
     "remark-slug": "^4.1.0",
+    "simple-json-fetch": "^1.0.1",
     "stylelint": "^4.0.0",
     "stylelint-config-standard": "^2.0.0"
   },
@@ -151,9 +154,10 @@
     "prebabelify": "rimraf lib",
     "babelify": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run babelify",
-    "lint:js": "eslint --ignore-path .gitignore --fix .",
+    "lint:js": "eslint --ignore-path .gitignore --fix . && npm run flow",
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
+    "flow": "babel-node scripts/flow-check.js",
     "tests": "ava",
     "integration-tests": "ava __tests__/index.js",
     "pretest-boilerplate": "npm run babelify",
@@ -188,7 +192,14 @@
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react"
-    ]
+    ],
+    "plugins" : [
+      "flow-vars"
+    ],
+    "rules": {
+      "flow-vars/define-flow-type": 1,
+      "flow-vars/use-flow-type": 1
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

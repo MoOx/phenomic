@@ -1,3 +1,4 @@
+/* @flow */
 import jsonFetch from "simple-json-fetch"
 import joinUri from "../../_utils/join-uri"
 
@@ -9,7 +10,14 @@ export const FORGET = "statinamic/pages/FORGET"
 export const ERROR = "statinamic/pages/ERROR"
 
 // redux reducer
-export default function reducer(state = {}, action) {
+export default function reducer(
+  state: Object = {},
+  action: {
+    type: string,
+    page: string,
+    response: Object
+  }
+): Object {
 
   switch (action.type) {
   case GET:
@@ -74,7 +82,7 @@ export default function reducer(state = {}, action) {
 }
 
 // redux actions
-export function get(page, url) {
+export function get(page: string, url: string): PromiseAction {
   return {
     types: [
       GET,
@@ -89,7 +97,7 @@ export function get(page, url) {
   }
 }
 
-export function refresh(page, url) {
+export function refresh(page: string, url:string): PromiseAction {
   return {
     types: [
       NOOP,
@@ -104,7 +112,7 @@ export function refresh(page, url) {
   }
 }
 
-export function setNotFound(page) {
+export function setNotFound(page: string): Action {
   return {
     type: ERROR,
     page,

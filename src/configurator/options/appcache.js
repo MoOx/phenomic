@@ -1,4 +1,8 @@
-export default ({ config, errors }) => {
+// @flow
+export default (
+  { config, errors }:
+  { config: StatinamicConfig, errors: Array<string>}
+) => {
   if (typeof config.appcache === "string") {
     config.appcache = [ config.appcache ]
   }

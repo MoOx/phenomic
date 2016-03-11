@@ -1,3 +1,5 @@
+// @flow
+/* eslint-disable react/sort-comp */
 import React, { Component, PropTypes } from "react"
 import { findDOMNode } from "react-dom"
 import urlify from "../_utils/urlify"
@@ -18,7 +20,10 @@ if (isClient) {
   browserHistory = require("../client").browserHistory
 }
 
-function find(collection, pageUrl) {
+function find(
+  collection: StatinamicCollection,
+  pageUrl: string
+): Object {
   return collection.find((item) => (
     item.__url === pageUrl ||
     item.__url === pageUrl + "/"||
@@ -26,7 +31,26 @@ function find(collection, pageUrl) {
   ))
 }
 
-export default class PageContainer extends Component {
+type DefaultProps = {
+  defaultLayout: string,
+}
+type Props = {
+  pages: Object,
+  params: {
+    splat: string
+  },
+  defaultLayout: string,
+  getPage: Function,
+  setPageNotFound: Function,
+}
+
+type Context = {
+  collection: StatinamicCollection,
+  layouts: Object
+}
+
+class PageContainer extends Component<DefaultProps, Props, void> {
+  _content: Element;
 
   static propTypes = {
     pages: PropTypes.object.isRequired,
@@ -56,7 +80,7 @@ export default class PageContainer extends Component {
     this.catchInternalLink()
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props): void {
     this.preparePage(nextProps, this.context)
   }
 
@@ -77,14 +101,16 @@ export default class PageContainer extends Component {
           if (!find(this.context.collection, pageUrl)) {
             return false
           }
-          browserHistory.push(pageUrl)
+          if (browserHistory) {
+            browserHistory.push(pageUrl)
+          }
           return true
         })
       }
     }
   }
 
-  preparePage(props, context) {
+  preparePage(props: Props, context: Context): void {
     if (!context.layouts[props.defaultLayout]) {
       console.error(
         "statinamic: PageContainer: " +
@@ -118,7 +144,9 @@ export default class PageContainer extends Component {
           `statinamic: PageContainer: ` +
           `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
         )
-        browserHistory.replace(item.__url)
+        if (browserHistory) {
+          browserHistory.replace(item.__url)
+        }
       }
     }
 
@@ -152,7 +180,7 @@ export default class PageContainer extends Component {
     }
   }
 
-  getLayout(props, context, page) {
+  getLayout(props: Props, context: Context, page: Object): ReactClass {
     return context.layouts[page.type || props.defaultLayout]
   }
 
@@ -205,3 +233,5 @@ export default class PageContainer extends Component {
     )
   }
 }
+
+export default PageContainer

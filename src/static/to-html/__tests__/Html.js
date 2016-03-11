@@ -5,7 +5,7 @@ import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"
 import expectJSX from "expect-jsx"
 
-expect.extend(expectJSX);
+expect.extend(expectJSX)
 
 import Html from "../Html"
 
@@ -32,13 +32,13 @@ test("should render html string", () => {
     <html
       lang="en"
     >
-      <head dangerouslySetInnerHTML={{__html: head}} />
+      <head dangerouslySetInnerHTML={ { __html: head } } />
       <body>
         <div
-          dangerouslySetInnerHTML={{__html: body}}
+          dangerouslySetInnerHTML={ { __html: body } }
           id="statinamic"
         />
-        <script dangerouslySetInnerHTML={{__html: script}} />
+        <script dangerouslySetInnerHTML={ { __html: script } } />
       </body>
     </html>
   )
@@ -61,13 +61,13 @@ test("should render html string, manifest and children", () => {
       lang="en"
       manifest="manifest"
     >
-      <head dangerouslySetInnerHTML={{__html: head}} />
+      <head dangerouslySetInnerHTML={ { __html: head } } />
       <body>
         <div
-          dangerouslySetInnerHTML={{__html: body}}
+          dangerouslySetInnerHTML={ { __html: body } }
           id="statinamic"
         />
-        <script dangerouslySetInnerHTML={{__html: script}} />
+        <script dangerouslySetInnerHTML={ { __html: script } } />
         <p>{ "foo" }</p>
       </body>
     </html>

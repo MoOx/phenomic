@@ -1,22 +1,33 @@
+// @flow
 import React, { PropTypes } from "react"
 import cx from "classnames"
 
 import { Link as RouterLink } from "react-router"
 
-export const Link = (props, { router }) => (
-  <RouterLink
-    { ...props }
-    className={ cx({
-      [props.className]: true,
-      [props.activeClassName]: (router && (
-        router.isActive({ pathname: props.to }) ||
-        router.isActive({ pathname: props.to + "index.html" })
-      )),
-    }) }
-  >
-    { props.children }
-  </RouterLink>
-)
+export function Link(
+  props: {
+    className: string,
+    activeClassName: string,
+    to: string,
+    children: any,
+  },
+  { router }: { router: Object }
+): React$Element {
+  return (
+    <RouterLink
+      { ...props }
+      className={ cx({
+        [props.className]: true,
+        [props.activeClassName]: (router && (
+          router.isActive({ pathname: props.to }) ||
+          router.isActive({ pathname: props.to + "index.html" })
+        )),
+      }) }
+    >
+      { props.children }
+    </RouterLink>
+  )
+}
 
 Link.propTypes = {
   children: PropTypes.node,

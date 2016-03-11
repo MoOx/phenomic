@@ -1,7 +1,11 @@
+// @flow
 import url from "url"
 
-export default function(root, cb) {
-  root.addEventListener("click", function(ev) {
+export default function(
+  root: Element,
+  cb: Function
+): void {
+  root.addEventListener("click", function(ev: any): boolean {
     if (
       ev.altKey ||
       ev.ctrlKey ||
@@ -29,9 +33,16 @@ export default function(root, cb) {
 
     const u = url.parse(href)
 
-    if (u.host && u.host !== window.location.host) return true
+    if (u.host && u.host !== window.location.host) {
+      return true
+    }
 
-    if (!cb(url.resolve(window.location.pathname, u.path) + (u.hash || ""))) {
+    const finalUrl = url.resolve(
+      window.location.pathname,
+      u.path || ""
+    ) + (u.hash || "")
+  
+    if (!cb(finalUrl)) {
       return true
     }
 

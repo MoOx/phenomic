@@ -1,4 +1,5 @@
-import fs from "fs-extra"
+// @flow
+import fs from "fs-promise"
 import path from "path"
 
 import debug from "debug"
@@ -16,7 +17,11 @@ if (pagesActions.FORGET === undefined) {
 
 const log = debug("statinamic:static:to-html")
 
-export function setPageData(url, collection, store) {
+export function setPageData(
+  url: string,
+  collection: StatinamicCollection,
+  store: Object
+): void {
   const json = collection.find((item) => item.__url === url)
   if (!json) {
     log(`No json in for url '${ url }'.`)
@@ -31,7 +36,10 @@ export function setPageData(url, collection, store) {
   }
 }
 
-export function forgetPageData(url, store) {
+export function forgetPageData(
+  url: string,
+  store: Object
+): void {
   // forget page data to avoid having all pages data in all
   // pages
   store.dispatch({
@@ -40,22 +48,15 @@ export function forgetPageData(url, store) {
   })
 }
 
-export function writeHTMLFile(filename, html) {
-  return new Promise((resolve, reject) => {
-    fs.mkdirs(path.dirname(filename), (err) => {
-      if (err) {
-        reject(err)
-      }
-
-      fs.writeFile(filename, html, (error) => {
-        if (error) {
-          reject(error)
-        }
-
-        resolve(filename)
-      })
-    })
-  })
+export function writeHTMLFile(
+  filename: string,
+  html: string
+): Promise<string> {
+  return fs.mkdirs(path.dirname(filename))
+    .then(() => Promise.all([
+      fs.writeFile(filename, html),
+    ]))
+    .then(() => filename)
 }
 
 export function writeAllHTMLFiles({
@@ -70,7 +71,19 @@ export function writeAllHTMLFiles({
   forgetPageData,
   writeHTMLFile,
   appcache,
-}, testing) {
+}: {
+  urls: Array<string>,
+  baseUrl: Object,
+  destination: string,
+  assetsFiles: Object,
+  exports: Object,
+  collection: StatinamicCollection,
+  store: Object,
+  setPageData: Function,
+  forgetPageData: Function,
+  writeHTMLFile: Function,
+  appcache: StatinamicAppcacheConfig,
+}, testing?: boolean): Promise {
   // create all html files
   return Promise.all(
     urls.map((url) => {
@@ -97,11 +110,11 @@ export function writeAllHTMLFiles({
   )
 }
 
-export default (options, testing) => (
-  writeAllHTMLFiles({
+export default function(options: Object, testing?: boolean): Promise {
+  return writeAllHTMLFiles({
     ...options,
     setPageData,
     forgetPageData,
     writeHTMLFile,
   }, testing)
-)
+}

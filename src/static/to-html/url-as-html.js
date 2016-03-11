@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 
@@ -14,7 +15,7 @@ import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
 import minifyCollection from "../../content-loader/minify"
 
-export default (url, {
+export default function(url: string, {
   exports,
   collection,
   store,
@@ -22,7 +23,15 @@ export default (url, {
   baseUrl,
   assetsFiles,
   appcache,
-}, testing) => {
+}: {
+  exports: Object,
+  collection: StatinamicCollection,
+  store: Object,
+
+  baseUrl: Object,
+  assetsFiles: Object,
+  appcache: StatinamicAppcacheConfig,
+}, testing?: boolean): Promise<string> {
   const {
     layouts,
     metadata,
