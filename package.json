@@ -74,7 +74,7 @@
     "babel-preset-stage-1": "^6.3.13",
     "cmd-shim": "^2.0.2",
     "codecov": "^1.0.1",
-    "eslint": "^1.7.2",
+    "eslint": "^2.3.0",
     "eslint-config-i-am-meticulous": "^2.0.0",
     "eslint-plugin-react": "^3.6.2",
     "exec-cmd": "^2.0.1",
