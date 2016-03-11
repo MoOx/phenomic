@@ -101,7 +101,7 @@
     "remark-highlight.js": "^3.0.0",
     "remark-html": "^3.0.0",
     "remark-slug": "^4.1.0",
-    "stylelint": "^4.0.0",
+    "stylelint": "^5.0.0",
     "stylelint-config-standard": "^2.0.0"
   },
   "peerDependencies": {
