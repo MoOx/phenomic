@@ -14,7 +14,11 @@ cache:
     - test-boilerplate/node_modules
     - docs/node_modules
 
-before_install: npm prune
+before_install:
+  # nyc fail on npm@3.7.1. Remove this patch when node upgrade npm
+  # https://github.com/bcoe/nyc/issues/190
+  - npm install -g npm@latest
+  - npm prune
 
 script: npm run test-with-coverage
 
