@@ -1,22 +1,22 @@
 import test from "ava"
 
-import React from "react"
+import React, { createElement as jsx } from "react"
 import { createRenderer } from "react-addons-test-utils"
-// can't use jsx
-// https://github.com/sindresorhus/ava/issues/458
-const jsx = React.createElement
-import jsxify from "react-element-to-jsx-string"
+import expect from "expect"
+import expectJSX from "expect-jsx"
+
+expect.extend(expectJSX)
 
 import PageContainer from "../component"
 
 // fixtures
 /* eslint-disable react/no-multi-comp */
 const noop = () => {}
-const Page = () => jsx("div", { className: "Page" })
-const PageError = () => jsx("div", { className: "PageError" })
-const AnotherPage = () => jsx("div", { className: "AnotherPage" })
+const Page = () => <div className="Page" />
+const PageError = () => <div className="PageError" />
+const AnotherPage = () => <div className="AnotherPage" />
 
-test("should render a Page if page is ok", (t) => {
+test("should render a Page if page is ok", () => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -33,11 +33,10 @@ test("should render a Page if page is ok", (t) => {
       collection: [],
     },
   )
-  t.is(
-    jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
-    `  <Page ref={function noRefCheck() {}} />\n` +
-    `</div>`
+  expect(renderer.getRenderOutput()).toEqualJSX(
+    <div>
+      <Page ref={ function noRefCheck() {} } />
+    </div>
   )
 })
 
@@ -100,7 +99,7 @@ test.cb("should notify for page not found", (t) => {
 })
 
 test(`should render a visible error if page is not ok and no PageError
-available`, (t) => {
+available`, () => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -118,21 +117,20 @@ available`, (t) => {
     },
   )
 
-  t.is(
-    jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
-    `  <div style={{'text-align': 'center'}}>\n` +
-    `    <h1>\n` +
-    `      Test\n` +
-    `    </h1>\n` +
-    `    <p />\n` +
-    `  </div>\n` +
-    `</div>`
+  expect(renderer.getRenderOutput()).toEqualJSX(
+    <div>
+      <div style={ { "text-align": "center" } }>
+        <h1>
+          { "Test" }
+        </h1>
+        <p />
+      </div>
+    </div>
   )
 })
 
 test(`should render a PageError if page is not ok and PageError is available`,
-(t) => {
+() => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -150,15 +148,14 @@ test(`should render a PageError if page is not ok and PageError is available`,
     },
   )
 
-  t.is(
-    jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
-    `  <PageError error="Test" />\n` +
-    `</div>`
+  expect(renderer.getRenderOutput()).toEqualJSX(
+    <div>
+      <PageError error="Test" />
+    </div>
   )
 })
 
-test("should render a another page layout if defaultLayout is used", (t) => {
+test("should render a another page layout if defaultLayout is used", () => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -177,10 +174,9 @@ test("should render a another page layout if defaultLayout is used", (t) => {
     },
   )
 
-  t.is(
-    jsxify(renderer.getRenderOutput()),
-    `<div>\n` +
-    `  <AnotherPage ref={function noRefCheck() {}} />\n` +
-    `</div>`
+  expect(renderer.getRenderOutput()).toEqualJSX(
+    <div>
+      <AnotherPage ref={ function noRefCheck() {} } />
+    </div>
   )
 })
