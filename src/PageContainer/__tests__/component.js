@@ -16,6 +16,11 @@ const Page = () => <div className="Page" />
 const PageError = () => <div className="PageError" />
 const AnotherPage = () => <div className="AnotherPage" />
 
+// Don't print noisy log unless I mocked you
+test.beforeEach(() => {
+  console.info = noop
+})
+
 test("should render a Page if page is ok", () => {
   const renderer = createRenderer()
   renderer.render(
@@ -67,32 +72,6 @@ test.cb("should try to get a page if no page in cache", (t) => {
           __dataUrl: "/j.son",
         },
       ],
-    },
-  )
-  renderer.getRenderOutput()
-})
-
-test.cb("should notify for page not found", (t) => {
-  const renderer = createRenderer()
-  renderer.render(
-    jsx(
-      PageContainer,
-      {
-        params: { splat: "" },
-        pages: { },
-        getPage: () => {
-          t.fail()
-          t.end()
-        },
-        setPageNotFound: (pageUrl) => {
-          t.is(pageUrl, "/")
-          t.end()
-        },
-      }
-    ),
-    {
-      layouts: { Page },
-      collection: [ ],
     },
   )
   renderer.getRenderOutput()
