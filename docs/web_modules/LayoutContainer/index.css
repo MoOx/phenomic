@@ -9,8 +9,8 @@ body {
 
   /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
   /* stylelint-enable */
 }
@@ -78,7 +78,7 @@ pre {
 }
 
 code {
-  font-family: Fira Code, Menlo, Monaco, monospace;
+  font-family: "Fira Code", Menlo, Monaco, monospace;
 }
 
 /* local styles */
