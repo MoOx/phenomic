@@ -54,7 +54,6 @@
     "react-router": "^2.0.0",
     "react-svg-inline": "^1.0.1",
     "redux": "^3.0.0",
-    "redux-thunk": "^1.0.3",
     "style-loader": "^0.12.3",
     "stylelint": "^5.0.1",
     "stylelint-config-standard": "^4.0.1",

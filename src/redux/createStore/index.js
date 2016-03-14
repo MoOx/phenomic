@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from "redux"
-import thunk from "redux-thunk"
 
 export default function(
   reducer = {},
@@ -31,7 +30,6 @@ export default function(
   const finalCreateStore = compose(
     applyMiddleware(
       promiseMiddleware,
-      thunk,
       ...extraMiddlewares
     ),
     ...extraStoreEnhancers
