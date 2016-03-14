@@ -8,9 +8,9 @@ import urlify from "../_utils/urlify"
 // so we need to normalize according to collection data
 const splatToUrl = (string) => ("/" + urlify(string))
 
-const isDevelopment = () => process.env.NODE_ENV !== "production"
-const isClient = () => typeof window !== "undefined"
-const isDevelopmentClient = () => isDevelopment() && isClient
+const isDevelopment = (): boolean => process.env.NODE_ENV !== "production"
+const isClient = (): boolean => typeof window !== "undefined"
+const isDevelopmentClient = (): boolean => isDevelopment() && isClient()
 
 let catchLinks
 let browserHistory
