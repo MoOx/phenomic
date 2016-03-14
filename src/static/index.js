@@ -11,7 +11,7 @@ export default function(config: StatinamicConfig): Promise<void> {
   return toStaticHtml(config)
   .then(files => postBuild(config, files, log))
   .catch((error) => {
-    log(color.red(`✗ Static build failed`))
+    log(color.red("✗ Static build failed"))
     setTimeout(() => {
       throw error
     }, 1)

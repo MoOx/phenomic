@@ -3,7 +3,7 @@ import { join } from "path"
 import fs from "fs"
 
 export default function(
-  { defaultConfig, config, errors, }:
+  { defaultConfig, config, errors }:
   {
     defaultConfig: Object,
     config: StatinamicConfig,

@@ -23,8 +23,8 @@ test("Generate template based on an array of files", (t) => {
 test("Throw error when not providing an array", (t) => {
   t.throws(
     () => template({ foo: "bar" }),
-    `You must provide an array for ` +
+    "You must provide an array for " +
     `generating appcache template\n` +
-    `You are prodiving "object"`
+    "You are prodiving \"object\""
   )
 })

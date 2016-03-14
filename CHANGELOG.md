@@ -110,6 +110,7 @@
   don't use ``JSON.stringify`` anymore.
   See changes in ``boilerplate/scripts/webpack.config.babel.js``
   ([#209](https://github.com/MoOx/statinamic/pull/209))
+- Changed: upgrade to eslint@2 and friends.
 - Fixed: assets loader use the right context
   (no big deal with default paths, but still).
   See changes in ``boilerplate/scripts/webpack.config.babel.js``

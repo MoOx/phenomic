@@ -26,9 +26,12 @@ To remove the default config, you can replace the ``eslintConfig`` in your
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "eslint:recommended",
-    "ecmaFeatures": {
-      "modules": true,
-      "experimentalObjectRestSpread": true
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      },
     },
     "env": {
       "node": true,

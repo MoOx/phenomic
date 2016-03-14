@@ -28,7 +28,7 @@ export default function reducer(
       },
     }
 
-  case SET:
+  case SET: {
     const { json } = action.response
     return {
       ...state,
@@ -41,6 +41,7 @@ export default function reducer(
         ),
       },
     }
+  }
 
   case FORGET:
     return {

@@ -44,7 +44,7 @@ export default (options = {}) => {
   }
   else {
     const devEntries = [
-      require.resolve(`webpack-hot-middleware/client`),
+      require.resolve("webpack-hot-middleware/client"),
     ]
 
     const devConfig = {
