@@ -194,7 +194,7 @@
     "extends": [
       "eslint-config-i-am-meticulous/react"
     ],
-    "plugins" : [
+    "plugins": [
       "flow-vars"
     ],
     "rules": {

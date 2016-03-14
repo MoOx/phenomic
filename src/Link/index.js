@@ -20,7 +20,7 @@ export function Link(
         [props.activeClassName]: (router && (
           router.isActive({ pathname: props.to }) ||
           router.isActive({ pathname: props.to + "index.html" })
-        )),
+        )) && props.activeClassName,
       }) }
     >
       { props.children }

@@ -13,9 +13,9 @@ const head = "head"
 const body = "body"
 const script = "script"
 
-const renderer = (component) => {
+const renderer = (...args) => {
   const render = createRenderer()
-  render.render(component)
+  render.render(...args)
   return render.getRenderOutput()
 }
 
