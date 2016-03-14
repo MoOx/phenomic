@@ -1,4 +1,7 @@
-export default (collection) => {
+// @flow
+export default (
+  collection: StatinamicCollection
+): StatinamicCollection => {
   if (!Array.isArray(collection)) {
     throw new Error(
       `minify except a valid collection instead of ${ typeof collection }`

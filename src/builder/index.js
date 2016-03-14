@@ -1,3 +1,4 @@
+// @flow
 import path from "path"
 import fs from "fs-extra"
 import color from "chalk"
@@ -9,7 +10,7 @@ import devServer from "./server"
 import collection from "../content-loader/cache"
 import toStaticHTML from "../static"
 
-export default function(options) {
+export default function(options: Object): void {
   const {
     config,
     store,

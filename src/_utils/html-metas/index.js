@@ -1,3 +1,4 @@
+// @flow
 import joinUri from "../join-uri"
 
 export const defaultMetas = [
@@ -6,7 +7,9 @@ export const defaultMetas = [
   `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
 ]
 
-export default ({ baseUrl, css } = {}) => {
+export default function(
+  { baseUrl, css}: {baseUrl: {pathname: string}, css: Array<string> } = {}
+): Array<string> {
   const metas = [ ...defaultMetas ]
 
   if (css && Array.isArray(css)) {

@@ -1,6 +1,9 @@
+// @flow
 import url from "url"
 
-export default ({ pkg, config }) => {
+export default function(
+  { pkg, config }: { pkg: Object, config: StatinamicConfig }
+): void {
   const devUrl = `http://${ config.devHost }:${ config.devPort }/`
   const prodBaseUrl = url.parse(pkg.homepage ? pkg.homepage : devUrl)
   config.baseUrl = config.production
@@ -12,7 +15,10 @@ export default ({ pkg, config }) => {
     }
 
   // ensure trailing slash
-  if (!config.baseUrl.pathname.endsWith("/")) {
+  if (
+    config.baseUrl.pathname &&
+    !config.baseUrl.pathname.endsWith("/")
+  ) {
     config.baseUrl.pathname = config.baseUrl.pathname + "/"
   }
 

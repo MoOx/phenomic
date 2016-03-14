@@ -1,3 +1,4 @@
+// @flow
 import memoize from "lru-memoize"
 
 const fieldTypes = {
@@ -8,9 +9,9 @@ const fieldTypes = {
   description: "object",
 }
 
-const validator = (
-  userConfig = {}
-) => {
+const validator = function(
+  userConfig: Object = {}
+): void {
   const errors = []
 
   Object.keys(userConfig).forEach((key) => {

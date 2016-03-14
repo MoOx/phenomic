@@ -3,7 +3,7 @@ import color from "chalk"
 import { writeFile } from "fs-promise"
 import writeAppcache from "../_utils/appcache"
 
-export default (config, files, log) => {
+export default function(config, files, log) {
   log(
     color.green(`✓ Static html files: ${ files.length } files written.`)
   )

@@ -1,7 +1,9 @@
+// @flow
 // App
 import React from "react"
 import ReactDOM from "react-dom"
-import { Router, useRouterHistory } from "react-router"
+import Router from "react-router/lib/Router"
+import useRouterHistory from "react-router/lib/useRouterHistory"
 import createBrowserHistory from "history/lib/createBrowserHistory"
 import { Provider as ReduxContextProvider } from "react-redux"
 
@@ -19,10 +21,20 @@ export default function statinamic({
   metadata,
   routes,
   store,
-}) {
+}: {
+  layouts: Object,
+  metadata: Object,
+  routes: React$Element,
+  store: Object,
+}): void {
+  const collection =
+    (typeof window !== "undefined")
+    ? window.__COLLECTION__
+    : []
+
   ReactDOM.render(
     <StatinamicContextProvider
-      collection={ typeof window !== "undefined" && window.__COLLECTION__ }
+      collection={ collection }
       layouts={ layouts }
       metadata={ metadata }
     >

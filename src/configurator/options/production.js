@@ -1,4 +1,8 @@
-export default ({ pkg, config, errors }) => {
+// @flow
+export default function(
+  { pkg, config, errors, } :
+  { pkg: Object, config: StatinamicConfig, errors: Array<string> }
+): void {
   if (config.production) {
     process.env.NODE_ENV = "production"
     if (!pkg.homepage) {

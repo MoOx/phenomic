@@ -1,7 +1,15 @@
+// @flow
 import { join } from "path"
 import fs from "fs"
 
-export default ({ defaultConfig, config, errors }) => {
+export default function(
+  { defaultConfig, config, errors, }:
+  {
+    defaultConfig: Object,
+    config: StatinamicConfig,
+    errors: Array<string>,
+  }
+): void {
   // Prepare config.assets path and route
   if (config.assets) {
 
@@ -28,7 +36,7 @@ export default ({ defaultConfig, config, errors }) => {
         "You provided the following keys: " +
         Object.keys(config.assets).map(
           (k) => `'${ k }' (${ typeof config.assets[k] })`
-        )
+        ).toString()
       )
     }
     else {
