@@ -16,8 +16,7 @@ export function Link(
   return (
     <RouterLink
       { ...props }
-      className={ cx({
-        [props.className]: true,
+      className={ cx(props.className, {
         [props.activeClassName]: (router && (
           router.isActive({ pathname: props.to }) ||
           router.isActive({ pathname: props.to + "index.html" })

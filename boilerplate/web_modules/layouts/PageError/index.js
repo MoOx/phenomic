@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 
 export default class PageError extends Component {
 

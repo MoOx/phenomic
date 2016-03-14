@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
 

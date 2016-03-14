@@ -1,6 +1,4 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
-
+import React, { Component, PropTypes } from "react"
 import styles from "./index.css"
 
 export default class PageError extends Component {
@@ -40,7 +38,6 @@ export default class PageError extends Component {
               { "Do not hesitate to report us this page 😁." }
             </div>
           }
-
         </div>
       </div>
     )
