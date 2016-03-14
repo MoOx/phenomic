@@ -8,14 +8,14 @@ import urlify from "../_utils/urlify"
 // so we need to normalize according to collection data
 const splatToUrl = (string) => ("/" + urlify(string))
 
-const isDevelopment = process.env.NODE_ENV !== "production"
-const isClient = typeof window !== "undefined"
-const isDevelopmentClient = isDevelopment && isClient
+const isDevelopment = () => process.env.NODE_ENV !== "production"
+const isClient = () => typeof window !== "undefined"
+const isDevelopmentClient = () => isDevelopment() && isClient
 
 let catchLinks
 let browserHistory
 
-if (isClient) {
+if (isClient()) {
   catchLinks = require("../_utils/catch-links").default
   browserHistory = require("../client").browserHistory
 }
@@ -89,7 +89,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
   }
 
   catchInternalLink() {
-    if (!isClient) {
+    if (!isClient()) {
       return
     }
 
@@ -121,13 +121,12 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     }
 
     const pageUrl = splatToUrl(props.params.splat)
-    if (isDevelopmentClient) {
+    if (isDevelopmentClient()) {
       console.info(`statinamic: PageContainer: '${ pageUrl }' rendering...`)
     }
 
     const item = find(context.collection, pageUrl)
-
-    if (isClient && item) {
+    if (isClient() && item) {
       // adjust url (eg: missing trailing slash)
       const currentExactPageUrl = window.location.href
         .replace(
@@ -139,8 +138,10 @@ class PageContainer extends Component<DefaultProps, Props, void> {
           ),
           "/"
         )
+        .replace(window.location.hash, "")
+
       if (currentExactPageUrl !== item.__url) {
-        console.log(
+        console.info(
           `statinamic: PageContainer: ` +
           `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
         )
@@ -189,16 +190,19 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const page = this.props.pages[pageUrl]
 
     if (!page) {
-      if (isDevelopmentClient) {
+      if (isDevelopmentClient()) {
         console.info(`statinamic: PageContainer: '${ pageUrl }' no data`)
       }
       return null
     }
-    if (isDevelopmentClient) {
+    if (isDevelopmentClient()) {
       console.info(`statinamic: PageContainer: '${ pageUrl }'`, page)
     }
 
-    if (typeof page !== "object") {
+    if (
+      typeof page !== "object" ||
+      page.toString() !== "[object Object]"
+    ) {
       console.info(
         `statinamic: PageContainer: page ${ pageUrl } should be an object`
       )
