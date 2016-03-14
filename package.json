@@ -88,7 +88,7 @@
     "jsdom": "^8.1.0",
     "lnfs": "^3.0.0",
     "npmpub": "^3.0.0",
-    "nyc": "^5.2.0",
+    "nyc": "^6.1.1",
     "promise": "^7.1.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.1",
@@ -194,7 +194,7 @@
     "extends": [
       "eslint-config-i-am-meticulous/react"
     ],
-    "plugins" : [
+    "plugins": [
       "flow-vars"
     ],
     "rules": {
