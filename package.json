@@ -106,8 +106,8 @@
     "remark-slug": "^4.1.0",
     "simple-json-fetch": "^1.0.1",
     "sinon": "^1.17.3",
-    "stylelint": "^4.0.0",
-    "stylelint-config-standard": "^2.0.0"
+    "stylelint": "^5.0.1",
+    "stylelint-config-standard": "^4.0.1"
   },
   "peerDependencies": {
     "babel-cli": "^6.3.17",
@@ -149,8 +149,8 @@
     "raw-loader": "^0.5.1",
     "react-svg-inline": "^1.0.1",
     "style-loader": "^0.12.3",
-    "stylelint": "^4.0.0",
-    "stylelint-config-standard": "^2.0.0"
+    "stylelint": "^5.0.1",
+    "stylelint-config-standard": "^4.0.1"
   },
   "scripts": {
     "prebabelify": "rimraf lib",
