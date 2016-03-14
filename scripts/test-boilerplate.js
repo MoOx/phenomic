@@ -18,4 +18,3 @@ testFolder(
     },
   }
 )
-.catch(console.log)
