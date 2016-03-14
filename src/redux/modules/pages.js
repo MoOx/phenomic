@@ -11,7 +11,7 @@ export const ERROR = "statinamic/pages/ERROR"
 
 // redux reducer
 export default function reducer(
-  state: Object = {},
+  state?: Object = {},
   action: {
     type: string,
     page: string,
@@ -97,7 +97,7 @@ export function get(page: string, url: string): PromiseAction {
   }
 }
 
-export function refresh(page: string, url:string): PromiseAction {
+export function refresh(page: string, url: string): PromiseAction {
   return {
     types: [
       NOOP,
