@@ -175,7 +175,8 @@
   "config": {
     "nyc": {
       "exclude": [
-        "**/__tests__/**/*.js"
+        "**/__tests__/**/*.js",
+        "**/__tests__/*.js"
       ],
       "include": [
         "src/**"
