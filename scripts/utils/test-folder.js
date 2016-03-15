@@ -18,35 +18,43 @@ export default async function test(
   target,
   { cleanup, init } = { cleanup: noop, init: noop }
 ) {
-  const targetModules = `${ target }/node_modules`
+  try {
+    const targetModules = `${ target }/node_modules`
 
-  cleanup()
+    cleanup()
 
-  await Promise.all([
-    // node_modules link to avoid duplicate package related issues
-    lnfs("node_modules/react/", `${ targetModules }/react`),
-    lnfs("node_modules/react-helmet", `${ targetModules }/react-helmet`),
-    lnfs("node_modules/webpack", `${ targetModules }/webpack`),
+    await Promise.all([
+      // node_modules link to avoid duplicate package related issues
+      lnfs("node_modules/react/", `${ targetModules }/react`),
+      lnfs("node_modules/react-helmet", `${ targetModules }/react-helmet`),
+      lnfs("node_modules/webpack", `${ targetModules }/webpack`),
 
-    // delete statinamic link to pruning devdeps
-    rm(`${ targetModules }/statinamic`),
-  ])
+      // delete statinamic link to pruning devdeps
+      rm(`${ targetModules }/statinamic`),
+    ])
 
-  await init()
+    await init()
 
-  // install
-  await exec("npm prune", { cwd: target })
-  await exec("npm install", { cwd: target })
+    // install
+    await exec("npm prune", { cwd: target })
+    await exec("npm install", { cwd: target })
 
-  // we don't use a link on statinamic directly, otherwise
-  // statinamic/node_modules contains too many dependencies (dev deps) and the
-  // prune that will be executed next time will remove some, which goes again
-  // what we try to achieve by tuning the install to have a fast CI
-  await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
-  await lnfs("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
-  await lnfs("lib", `${ targetModules }/statinamic/lib`)
-  await lnfs("package.json", `${ targetModules }/statinamic/package.json`)
+    // we don't use a link on statinamic directly, otherwise
+    // statinamic/node_modules contains too many dependencies (dev deps) and the
+    // prune that will be executed next time will remove some, which goes again
+    // what we try to achieve by tuning the install to have a fast CI
+    await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
+    await lnfs("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
+    await lnfs("lib", `${ targetModules }/statinamic/lib`)
+    await lnfs("package.json", `${ targetModules }/statinamic/package.json`)
 
-  // test
-  return exec("npm test", { cwd: target })
+    // test
+    await exec("npm test", { cwd: target })
+  }
+  catch (err) {
+    // async workaround :)
+    setTimeout(() => {
+      throw err
+    }, 1)
+  }
 }
