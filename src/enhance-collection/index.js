@@ -44,7 +44,7 @@ export function filter(
     let include = true
     for (const filter of filters) {
       switch (typeof filter) {
-      case "function":
+      case "function": {
         const flag = filter(item)
         if (typeof flag !== "boolean") {
           console.warn(
@@ -57,8 +57,8 @@ export function filter(
           include = false
         }
         break
-
-      case "object":
+      }
+      case "object": {
         const keys = Object.keys(filter)
         if (
           !keys.reduce(
@@ -80,14 +80,13 @@ export function filter(
           include = false
         }
         break
-
+      }
       case "string":
       default:
         if (!item[filter]) {
           include = false
         }
         break
-
       }
 
       // break asap

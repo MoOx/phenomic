@@ -108,7 +108,7 @@ available`, () => {
   )
 })
 
-test(`should render a PageError if page is not ok and PageError is available`,
+test("should render a PageError if page is not ok and PageError is available",
 () => {
   const renderer = createRenderer()
   renderer.render(

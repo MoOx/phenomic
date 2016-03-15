@@ -19,7 +19,7 @@ export default (
   ) {
     errors.push(
       `You provided an '${ typeof config.appcache }' for 'appcache' option. ` +
-      `This option accepts a boolean value, a string, or an array.`
+      "This option accepts a boolean value, a string, or an array."
     )
   }
 

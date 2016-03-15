@@ -15,4 +15,4 @@ export const noDescription =
 - bar
 - baz`
 
-export const specialChars = `Lörém ipšüm dõlœr sït āmêt.`
+export const specialChars = "Lörém ipšüm dõlœr sït āmêt."

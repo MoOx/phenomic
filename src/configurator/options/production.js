@@ -1,6 +1,6 @@
 // @flow
 export default function(
-  { pkg, config, errors, } :
+  { pkg, config, errors } :
   { pkg: Object, config: StatinamicConfig, errors: Array<string> }
 ): void {
   if (config.production) {

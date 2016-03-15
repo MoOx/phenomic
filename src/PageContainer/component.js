@@ -115,7 +115,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       console.error(
         "statinamic: PageContainer: " +
         `default layout "${ props.defaultLayout }" doesn't exist. ` +
-        `Please check your configuration ("layouts" part). ` +
+        "Please check your configuration (\"layouts\" part). " +
         `If you haven't defined "${ props.defaultLayout }", you should. `
       )
     }
@@ -142,7 +142,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
       if (currentExactPageUrl !== item.__url) {
         console.info(
-          `statinamic: PageContainer: ` +
+          "statinamic: PageContainer: " +
           `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
         )
         if (browserHistory) {
@@ -158,7 +158,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       else {
         console.error(
-          `statinamic: PageContainer: ` +
+          "statinamic: PageContainer: " +
           `${ pageUrl } is a page not found.`
         )
         props.setPageNotFound(pageUrl)
@@ -174,7 +174,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         console.error(
           "statinamic: PageContainer: " +
           `Unkown page type: "${ page.type }" component not available in ` +
-          `"layouts" property. ` +
+          "\"layouts\" property. " +
           `Please check the "layout" or "type" of page "${ page }" header.`
         )
       }

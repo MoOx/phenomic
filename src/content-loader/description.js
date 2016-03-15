@@ -12,8 +12,8 @@ export default function description(mdObject, opts = {}) {
 
   if (opts.pruneLength < 10) {
     console.warn(
-      `You defined 'description.pruneLength' of content-loader ` +
-      `with an zero value. This does not make sense, ` +
+      "You defined 'description.pruneLength' of content-loader " +
+      "with an zero value. This does not make sense, " +
       `so the default value ${ defaultOpts.pruneLength } has been used.`
     )
 

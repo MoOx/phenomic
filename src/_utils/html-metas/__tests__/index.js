@@ -19,7 +19,7 @@ test("html static metas", (t) => {
     }),
     [
       ...defaultMetas,
-      `<link rel="stylesheet" href="/statinamic-client.css" />`,
+      "<link rel=\"stylesheet\" href=\"/statinamic-client.css\" />",
     ]
   )
 })
@@ -32,7 +32,7 @@ test("html static metas with path", (t) => {
     }),
     [
       ...defaultMetas,
-      `<link rel="stylesheet" href="/basep/statinamic-client.css" />`,
+      "<link rel=\"stylesheet\" href=\"/basep/statinamic-client.css\" />",
     ]
   )
 })
