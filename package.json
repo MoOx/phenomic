@@ -172,15 +172,13 @@
     "coverage": "nyc report --reporter=lcovonly && codecov",
     "release": "npmpub"
   },
-  "config": {
-    "nyc": {
-      "exclude": [
-        "**/__tests__/**"
-      ],
-      "include": [
-        "src/**"
-      ]
-    }
+  "nyc": {
+    "exclude": [
+      "**/__tests__/**"
+    ],
+    "include": [
+      "src/**"
+    ]
   },
   "babel": {
     "presets": [
