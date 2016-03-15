@@ -92,6 +92,7 @@
   You can provide your own callback to transform the text content into html
   via the `renderer` option.
   See _Configuration_ section of the documentation.
+- Added: Support React to 15.x
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Fixed: network errors will not appear as 404 error anymore
