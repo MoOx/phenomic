@@ -27,10 +27,12 @@
     "docs/content",
     "lib",
     "src",
+    "scripts/npm-postinstall.js",
+    "scripts/cli.js",
     "!**/__tests__"
   ],
   "bin": {
-    "statinamic": "lib/bin/index.js"
+    "statinamic": "scripts/cli.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
@@ -172,7 +174,8 @@
     "test": "npm run all-tests && npm run docs",
     "test-with-coverage": "nyc npm run all-tests && npm run docs",
     "coverage": "nyc report --reporter=lcovonly && codecov",
-    "release": "npmpub"
+    "release": "npmpub",
+    "postinstall": "node scripts/npm-postinstall.js"
   },
   "nyc": {
     "exclude": [
