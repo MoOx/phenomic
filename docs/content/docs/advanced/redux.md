@@ -6,10 +6,8 @@ incomplete: true
 ## Adding custom Redux reducers
 
 Here is an example of a store that will allow you to add
-with your own reducers, _with support of hot loading_.
-
-It is based on the default boilerplate and add (and combine) your custom
-reducers.
+your own reducers, _with hot loading support_. It is based on the
+default boilerplate.
 
 ```js
 import { combineReducers } from "redux"
@@ -51,12 +49,12 @@ export default store
 ## Adding custom middlewares and store enhancers to Redux store
 
 `statinamic/lib/redux/createStore` accepts two extra parameters that
-allow you to pass custom middlewares and store enhancers
+allow you to pass custom middlewares and store enhancers.
 
 Here is an example of adding
 [redux-logger](https://github.com/fcomb/redux-logger) and
 [redux-search](https://github.com/treasure-data/redux-search)
-to Redux store
+to Redux store:
 
 ```js
 import { combineReducers } from "redux"

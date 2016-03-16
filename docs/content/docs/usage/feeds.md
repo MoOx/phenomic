@@ -3,8 +3,8 @@ title: How to use generate feeds in Statinamic
 incomplete: true
 ---
 
-The `statinamic/lib/content-loader` can handle that very easily.
-The default boilerplate already handle a default RSS feed that will grab the
+The `statinamic/lib/content-loader` can handle this very easily.
+The default boilerplate already handles a default RSS feed that will grab the
 last 20 posts.
 
 Here is a commented part of the webpack configuration that will helps:

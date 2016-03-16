@@ -5,13 +5,13 @@ incomplete: true
 
 By default, Statinamic provides 2 things to help you work with collections:
 
-- it create file that contains all pages metadata in a unique collection,
-- it provides an helper that helps you filter/sort/limit the collection.
+- it creates a file that contains all page metadata in a unique collection,
+- it provides a helper that helps you filter/sort/limit the collection.
 
 ## Collection file
 
-Here is a minimal and simple example of a collection file.
-Note that metadata have two additional fields: `__filename` and `__url`.
+Here is a simple collection example; note that the metadata defines the
+additional fields `__filename` & `__url`.
 
 ```json
 [
@@ -42,9 +42,9 @@ Note that metadata have two additional fields: `__filename` and `__url`.
 ]
 ```
 
-As you can see, this file contains all pages, index and post.
+As you can see, this file contains all pages, indexes and posts.
 
-The easy way to get some data is to use Statinamic helper
+The easiest way to get some data is to use the Statinamic helper:
 
 ```js
 // es6
@@ -54,7 +54,7 @@ import enhanceCollection from "statinamic/lib/enhance-collection"
 var enhanceCollection = require("statinamic/lib/enhance-collection").default
 ```
 
-With it, anywhere in your components you can easily filter some pages:
+With it, you can easily filter some pages anywhere in your components:
 
 ```js
 enhanceCollection(collection, {
@@ -65,10 +65,9 @@ enhanceCollection(collection, {
 })
 ```
 
-Now you will ask "But where `collection` come from?". Fair enough.
-Here is an example of a component that will display posts, sorted by date, and
-others pages (that are not a post) in a second list.
-You will see that the collection is retrieved from
+So, where does this collection come from? Here is an example of a component
+that will display posts, sorted by date, and other pages (that are not a post)
+in a second list. You will see that the collection is retrieved from
 [the context](https://facebook.github.io/react/docs/context.html).
 
 ```js

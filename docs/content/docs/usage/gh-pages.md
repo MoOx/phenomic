@@ -5,7 +5,7 @@ title: Automatic deployment on GitHub Pages
 **Be sure that you use the ``statinamic.CNAME`` option in your
 ``package.json`. See [Configuration](./configuration/)**
 
-You will have multiples possibilities to deploy your `dist` folder on the
+You will have multiple possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
 You can use your own method, using something like
 - [gh-pages](https://www.npmjs.com/package/gh-pages)
@@ -15,7 +15,7 @@ You can use your own method, using something like
 ---
 
 The following instructions show you how to do it with `gh-pages`,
-but it should not be very different other solutions.
+but it should not be very different from other solutions.
 
 This package works on Travis-CI.
 
@@ -33,7 +33,7 @@ $ ./node_modules/.bin/gh-pages --help
 
 ### Add a command to deploy
 
-In your `package.json`, add the following items under the `scripts` section
+In your `package.json`, add the following items under the `scripts` section:
 
 ```json
 {
@@ -44,7 +44,7 @@ In your `package.json`, add the following items under the `scripts` section
 }
 ```
 
-Now run
+Now run:
 
 ```console
 $ npm run deploy
@@ -61,7 +61,7 @@ pushed to master that should take a couple of minutes to setup:
 
 - https://travis-ci.org/profile
 
-You may need to hit the `Sync` button to see your repository if it's need.
+You may need to hit the `Sync` button to see your repository if it's not there.
 
 ##### Create a `.travis.yml`
 
@@ -71,11 +71,11 @@ node_js:
   - '5'
   - '4'
 
-# (by default, Travis will run "npm test" script when language is node_js)
+# (by default, Travis will run "npm test" script when the language is node_js)
 
 # deploy is run after "npm test"
 deploy:
-  # keep build we just made with "npm test" (dist/)
+  # keep the build we just made with "npm test" (dist/)
   skip_cleanup: true
 
   # define the script to use for deployment
@@ -137,7 +137,7 @@ fi
 }
 ```
 
-Now, commit and push to master, wait a couple of minute and it should be good.
+Now, commit and push to master, wait a couple of minutes and it should be good.
 
-**If you plan to rely on Travis only, you can probably remove `predeploy` and
-`deploy` script we defined earlier.**
+**If you plan to rely on Travis only, you can probably remove the `predeploy` and
+`deploy` scripts that we defined earlier.**

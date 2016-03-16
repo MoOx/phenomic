@@ -4,22 +4,22 @@ title: Good practices
 
 ## Linting
 
-Linting your code is a good practice. That's why by default, you got some rules.
+Our boilerplate comes with best-in-class tools for linting both JavaScript
+and CSS. Linting your code is a good practice because it reduces the probability
+of errors and helps to enforce code consistency.
 
 ## JavaScript Linting
 
-[ESLint](http://eslint.org/) is a must have to enforce coding convention and to
-prevent some syntax errors.
-The default boilerplate provide you a particular ruleset
-[eslint-config-i-am-meticulous](https://github.com/MoOx/eslint-config-i-am-meticulous)
-which provide a nice standard when you work is ES2015+ and React.
+[ESLint](http://eslint.org/) is a must have JavaScript linter; the default
+boilerplate provides you with a nice [standard set of rules](https://github.com/MoOx/eslint-config-i-am-meticulous)
+for ES2015+ & React.
 
-That said, you might want less rules (or semicolons).
+That being said, you might want less rules (or semicolons).
 
 ### Less strict JavaScript linting
 
 To remove the default config, you can replace the ``eslintConfig`` in your
-``package.json`` with the following eslint config :
+``package.json`` with the following config:
 
 ```json
 {
@@ -51,30 +51,17 @@ Here are some "popular" configs:
 - https://github.com/sindresorhus/eslint-config-xo
 - https://github.com/sindresorhus/eslint-config-xo-react
 
-If you switch to one of this configuration, you might get some linting errors.
-To fix that, simply use the following command:
+If you switch to one of these configurations, you might get some linting errors.
+To fix this, simply use the following command:
 
 ```console
 $ ./node_modules/.bin/eslint --fix .
 ```
 
-This will fix all the errors that ESLint or plugins can handle.
-
-## No JavaScript linting ?
-
-Please don't do that.
-But if you really just want linting for syntax (at least, you should do that),
-you can remove from the config above the `extends` line.
-
+This will fix all the errors that ESLint or its plugins can handle.
 
 ## CSS Linting
 
-[stylelint](http://stylelint.io/) is a must have to enforce coding convention
-and to prevent some syntax errors.
-The default boilerplate provide you a standard ruleset
-[stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
-which provide a nice standard when you work is modern CSS.
-
-## No CSS linting ?
-
-Please don't do that.
+[stylelint](http://stylelint.io/) is a must have CSS linter; the default
+boilerplate provides you with a nice [standard set of rules](https://github.com/stylelint/stylelint-config-standard)
+for modern CSS development.
