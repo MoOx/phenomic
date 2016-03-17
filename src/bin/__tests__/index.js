@@ -7,6 +7,6 @@ import "../utils/inquirer.js"
 // we need to explode those files into function and just call functions
 // in the bins
 // import "./index.js"
-// import "./statinamic-setup.js"
+// import "./commands/setup.js"
 
 test.todo("test src/bin/*")

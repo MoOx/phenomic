@@ -60,7 +60,8 @@
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-error-notification": "^0.1.4",
-    "webpack-hot-middleware": "^2.0.0"
+    "webpack-hot-middleware": "^2.0.0",
+    "yargs": "^4.3.1"
   },
   "devDependencies": {
     "ava": "^0.13.0",

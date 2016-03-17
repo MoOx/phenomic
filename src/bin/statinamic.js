@@ -1,24 +1,44 @@
 /* eslint-disable no-var */
-var program = require("commander")
-var pkg = require("../../package.json")
+import yargs from "../configurator/yargs.js"
 
 import runner from "./runner.js"
+import setup from "./commands/setup.js"
 
-program.version(pkg.version)
+const startAndBuildOptions = {
+  script: {
+    default: "scripts/build.js",
+  },
+  config: {
+    alias: "c",
+    type: "string",
+    describe: "Configuration file",
+    default: "scripts/config.js",
+  },
+}
 
-program
-  .command("setup", "setup a project")
+yargs
+  .command(
+    "setup",
+    "setup a project", {
+      test: {
+        describe: "Test mode (don't use this option).",
+      },
+    },
+    setup,
+  )
 
-program
-  .command("start [script] [options...]")
-  .description("start your project (server / development mode)")
-  .option("-c, --config <file>", "Configuration file")
-  .action(runner([ "--dev", "--server", "--open" ]))
+  .command(
+    "start [script]",
+    "start your project (server / development mode)",
+    startAndBuildOptions,
+    runner([ "--dev", "--server", "--open" ])
+  )
 
-program
-  .command("build [script] [options...]")
-  .description("build your project (static / production mode)")
-  .option("-c, --config <file>", "Configuration file")
-  .action(runner([ "--production", "--static" ]))
+  .command(
+    "build [script]",
+    "build your project (static / production mode)",
+    startAndBuildOptions,
+    runner([ "--production", "--static" ])
+  )
 
-program.parse(process.argv)
+  .parse(process.argv)

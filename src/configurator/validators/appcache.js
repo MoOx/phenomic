@@ -10,7 +10,9 @@ export default (
   else if (typeof config.appcache === "boolean" && config.appcache) {
     config.appcache = [ "**/*.*", "!**/*.html", "index.html" ]
   }
-  else if (config.appcache === null) {
+  // not sure why yet, but yargs send "undefined", if an option as default to
+  // false with not defined type
+  else if (config.appcache === null || config.appcache === undefined) {
     config.appcache = false
   }
   else if (

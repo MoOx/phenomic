@@ -2,10 +2,11 @@
 import { join } from "path"
 import fs from "fs"
 
+import definitions from "../definitions.js"
+
 export default function(
-  { defaultConfig, config, errors }:
+  { config, errors }:
   {
-    defaultConfig: Object,
     config: StatinamicConfig,
     errors: Array<string>,
   }
@@ -49,8 +50,8 @@ export default function(
       else if (typeof config.assets === "boolean") {
         // === true
         config.assets = {
-          path: defaultConfig.assets,
-          route: defaultConfig.assets,
+          path: definitions.assets.default,
+          route: definitions.assets.default,
         }
       }
 
