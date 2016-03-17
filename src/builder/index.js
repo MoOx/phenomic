@@ -69,7 +69,7 @@ export default function(options: Object): void {
       })
       .then(() => {
         if (config.server) {
-          devServer(null, { config })
+          devServer({ config })
         }
       })
       .catch((error) => {
