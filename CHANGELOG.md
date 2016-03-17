@@ -1,6 +1,28 @@
-- Changed: Remove redux-thunk middleware. If you want to add it back, [follow
-  advange redux usage](docs/content/docs/advanced/redux.md#adding-custom-middlewares-and-store-enhancers-to-redux-store)
-  ([#279](https://github.com/MoOx/statinamic/pull/279))
+# 0.9.0 - 2016-03-??
+
+## tl;dr;
+
+### Breaking changes
+
+- ``md-collection-loader`` has been renamed to ``content-loader``.
+- Default markdown parser is now remark _but you can use anything you want, even
+  a non markdown parser (eg: latex, asciidocs...)._
+- (minor) ``redux-devtools`` and ``redux-thunk`` have been removed
+  (``redux`` will become private soon anyway, or might even be dropped).
+
+### Minor changes
+
+- Less boilerplate for commands to start/build.
+
+### Patches
+
+- No more duplicates in collection.
+- No more `main.*.css` files in `dist`.
+- Anchors in url are not being removed when clicking a link with an anchor.
+- Network errors are not reported as 404 anymore, but as network errors.
+
+## Details
+
 - Changed: simplified boilerplate and "start" and "build" commands !
   **Be sure to checkout new (smaller) boilerplate**.
   - ``scripts/webpack.config.*.js`` now needs to export function that accept an object.
@@ -17,29 +39,6 @@
 - Changed: Use localhost as default address to open new browser tab (for Windows
   compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
   ([#257](https://github.com/MoOx/statinamic/issues/257))
-- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
-  Redux will probably become part of the private API, which will reduce
-  the boilerplate. In order to do that, we will gradually remove Redux from all
-  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
-  Here is the instruction to pull this change:
-
-  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
-  `redux-devtools-dock-monitor` from your dependencies list.
-  - Remove these variables in webpack.config.client.js, DefinePlugin section:
-
-    - ``process.env.REDUX_DEVTOOLS``
-    - ``process.env.CLIENT`` : This is totally up you.
-      You can keep it if you use it.
-      We recommended you to use a more portable way to do this:
-
-    ```diff
-    ---if (process.env.CLIENT) {
-    +++if (typeof window !== "undefined") {
-      // client-side specific code
-    }
-    ```
-  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
-
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.
@@ -88,6 +87,31 @@
       )
       ```
 
+- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
+  Redux will probably become part of the private API, which will reduce
+  the boilerplate. In order to do that, we will gradually remove Redux from all
+  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
+  Here is the instruction to pull this change:
+
+  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
+  `redux-devtools-dock-monitor` from your dependencies list.
+  - Remove these variables in webpack.config.client.js, DefinePlugin section:
+
+    - ``process.env.REDUX_DEVTOOLS``
+    - ``process.env.CLIENT`` : This is totally up you.
+      You can keep it if you use it.
+      We recommended you to use a more portable way to do this:
+
+    ```diff
+    ---if (process.env.CLIENT) {
+    +++if (typeof window !== "undefined") {
+      // client-side specific code
+    }
+    ```
+
+  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
+- Removed: unused ``redux-thunk`` middleware.
+  ([#279](https://github.com/MoOx/statinamic/pull/279))
 - Added: ``content-loader`` now accept any renderer.
   You can provide your own callback to transform the text content into html
   via the `renderer` option.
@@ -98,6 +122,9 @@
 - Fixed: network errors will not appear as 404 error anymore
 - Fixed: `main.*.css` files are not produced anymore by the default boilerplate
   ([#214](https://github.com/MoOx/statinamic/pull/214))
+- Fixed: url with anchors are NOT being replaced with url without anchors
+  anymore
+  ([#284](https://github.com/MoOx/statinamic/pull/284))
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
   don’t return a boolean
 
