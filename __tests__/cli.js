@@ -17,7 +17,7 @@ test("should throw if a CLI flag is NOT recognized", async (t) => {
     .then(
       () => t.fail(),
       (err) => {
-        t.ok(err.message.indexOf("nknown option `--lol'") > -1)
+        t.ok(err.message.indexOf("Unknown option `--lol'") > -1)
       }
     )
   )
@@ -30,6 +30,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     // should die quickly...
     (err) => {
       if (err) {
+        clearTimeout(timeout)
         t.fail()
         t.end()
       }
@@ -38,7 +39,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
 
   // ...or be ok quickly
   // (so we assume it's ok and kill the process, we don't need the actual build)
-  setTimeout(() => {
+  const timeout = setTimeout(() => {
     t.pass()
     t.end()
     child.kill()
