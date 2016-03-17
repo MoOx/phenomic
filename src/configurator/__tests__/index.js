@@ -66,11 +66,14 @@ test("should allow to override some default values", (t) => {
 test("should warn if config is invalid", (t) => {
   t.throws(
     () => {
-      configurator({
-        statinamic: {
-          "lol": true,
+      configurator(
+        {
+          statinamic: {
+            "lol": true,
+          },
         },
-      })
+        []
+      )
     },
     (error) => error.message.includes("Unknow option 'lol'.")
   )
@@ -98,11 +101,14 @@ test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
 })
 
 test("should accept string for 'asset' option", (t) => {
-  const config = configurator({
-    statinamic: {
-      "assets": "AsSeT",
+  const config = configurator(
+    {
+      statinamic: {
+        "assets": "AsSeT",
+      },
     },
-  })
+    []
+  )
   t.same(
     config.assets,
     {
@@ -113,11 +119,14 @@ test("should accept string for 'asset' option", (t) => {
 })
 
 test("should accept true for 'asset' option", (t) => {
-  const config = configurator({
-    statinamic: {
-      "assets": true,
+  const config = configurator(
+    {
+      statinamic: {
+        "assets": true,
+      },
     },
-  })
+    []
+  )
   t.same(
     config.assets,
     {
@@ -128,19 +137,19 @@ test("should accept true for 'asset' option", (t) => {
 })
 
 test("should not accept false for 'asset' option", (t) => {
-  const config = configurator({ statinamic: { "assets": false } })
+  const config = configurator({ statinamic: { "assets": false } }, [])
   t.is(config.assets, false)
 })
 
 test("should not accept null for 'asset' option", (t) => {
-  const config = configurator({ statinamic: { "assets": null } })
+  const config = configurator({ statinamic: { "assets": null } }, [])
   t.is(config.assets, null)
 })
 
 test("should accept object for 'asset' option", (t) => {
   t.throws(
     () => {
-      configurator({ statinamic: { assets: { } } })
+      configurator({ statinamic: { assets: { } } }, [])
     },
     (error) => error.message.includes(
       "You provided an object for 'assets' option."
@@ -150,39 +159,39 @@ test("should accept object for 'asset' option", (t) => {
 
 test("should default to false for 'appcache' option", (t) => {
   t.is(
-    configurator({}).appcache,
+    configurator({}, []).appcache,
     false
   )
 })
 
 test("should accept string for 'appcache' option", (t) => {
   t.same(
-    configurator({ statinamic: { appcache: "foo" } }).appcache,
+    configurator({ statinamic: { appcache: "foo" } }, []).appcache,
     [ "foo" ]
   )
 })
 
 test("should accept array for 'appcache' option", (t) => {
   t.same(
-    configurator({ statinamic: { appcache: [ "foo" ] } }).appcache,
+    configurator({ statinamic: { appcache: [ "foo" ] } }, []).appcache,
     [ "foo" ]
   )
 })
 
 test("should return default config when 'appcache' is true", (t) => {
   t.same(
-    configurator({ statinamic: { appcache: true } }).appcache,
+    configurator({ statinamic: { appcache: true } }, []).appcache,
     [ "**/*.*", "!**/*.html", "index.html" ]
   )
 })
 
 test("should accept falsy for 'appcache' option", (t) => {
   t.is(
-    configurator({ statinamic: { appcache: false } }).appcache,
+    configurator({ statinamic: { appcache: false } }, []).appcache,
     false
   )
   t.is(
-    configurator({ statinamic: { appcache: null } }).appcache,
+    configurator({ statinamic: { appcache: null } }, []).appcache,
     false
   )
 })
@@ -190,7 +199,7 @@ test("should accept falsy for 'appcache' option", (t) => {
 test("should not accept object for 'appcache' option", (t) => {
   t.throws(
     () => {
-      configurator({ statinamic: { appcache: { foo: "bar" } } })
+      configurator({ statinamic: { appcache: { foo: "bar" } } }, [])
     },
     (error) => error.message.includes(
       "You provided an 'object' for 'appcache' option."
