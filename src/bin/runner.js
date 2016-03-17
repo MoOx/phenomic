@@ -32,4 +32,7 @@ export default
         },
       }
     )
+    // close current process with spawned code
+    // allow to exit(1) if spawned exited with 1
+    .on("close", process.exit)
   }
