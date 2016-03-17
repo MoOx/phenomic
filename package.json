@@ -159,7 +159,7 @@
     "lint": "npm run lint:js && npm run lint:css",
     "pretests": "npm run lint",
     "tests": "ava",
-    "integration-tests": "ava __tests__/index.js",
+    "integration-tests": "ava __tests__/*.js",
     "pretest-boilerplate": "npm run babelify",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
     "docs": "babel-node scripts/docs.js",
