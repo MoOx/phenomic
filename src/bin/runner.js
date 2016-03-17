@@ -13,14 +13,16 @@ export default
     // get argv that are not recognized as command by yargs
     const args = realArgs.filter((arg) => argv._.indexOf(arg) === -1)
 
+    const spawnArgs = [
+      join(__dirname, "runner-cmd.js"),
+      join(cwd, argv.script),
+      ...defaultOptions,
+      ...args,
+    ]
+
     spawn(
       "node",
-      [
-        join(__dirname, "runner-cmd.js"),
-        join(cwd, argv.script),
-        // pass collected args, or default if there is none
-        ...args.length ? args : defaultOptions,
-      ],
+      spawnArgs,
       {
         stdio: "inherit",
         env: {
