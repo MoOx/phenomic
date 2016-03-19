@@ -23,16 +23,15 @@
   "repository": "https://github.com/MoOx/statinamic.git",
   "main": "lib/index.js",
   "files": [
-    "boilerplate",
-    "docs/content",
+    "npm",
     "lib",
     "src",
-    "scripts/npm-postinstall.js",
-    "scripts/cli.js",
+    "boilerplate",
+    "docs/content",
     "!**/__tests__"
   ],
   "bin": {
-    "statinamic": "scripts/cli.js"
+    "statinamic": "npm/bin.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
@@ -155,9 +154,9 @@
     "stylelint-config-standard": "^4.0.1"
   },
   "scripts": {
-    "prebabelify": "rimraf lib",
-    "babelify": "babel --ignore __tests__ --copy-files src --out-dir lib",
-    "prepublish": "npm run babelify",
+    "postinstall": "node npm/postinstall.js",
+    "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
+    "prepublish": "rimraf lib && npm run transpile",
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
     "lint:js:flow": "babel-node scripts/flow-check.js",
     "lint:js": "npm run lint:js:eslint && npm run lint:js:flow",
@@ -166,7 +165,7 @@
     "pretests": "npm run lint",
     "tests": "ava",
     "integration-tests": "ava __tests__/*.js",
-    "pretest-boilerplate": "npm run babelify",
+    "pretest-boilerplate": "npm run transpile",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
     "docs": "babel-node scripts/docs.js",
     "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
@@ -174,8 +173,7 @@
     "test": "npm run all-tests && npm run docs",
     "test-with-coverage": "nyc npm run all-tests && npm run docs",
     "coverage": "nyc report --reporter=lcovonly && codecov",
-    "release": "npmpub",
-    "postinstall": "node scripts/npm-postinstall.js"
+    "release": "npmpub"
   },
   "nyc": {
     "exclude": [
