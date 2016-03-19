@@ -53,11 +53,16 @@
     "react-router": "^2.0.0",
     "react-svg-inline": "^1.1.0",
     "redux": "^3.0.0",
+    "remark": "^4.1.1",
+    "remark-autolink-headings": "^3.0.0",
+    "remark-highlight.js": "^3.0.0",
+    "remark-html": "^3.0.0",
+    "remark-slug": "^4.1.0",
     "style-loader": "^0.12.3",
     "stylelint": "^5.0.1",
     "stylelint-config-standard": "^4.0.1",
     "webpack": "^1.12.1",
-    "whatwg-fetch": "^0.9.0"
+    "whatwg-fetch": "^0.11.0"
   },
   "babel": {
     "presets": [
