@@ -9,7 +9,6 @@ import feed from "./feed"
 import cache from "./cache"
 import description from "./description"
 import validator from "./validator"
-import defaultRenderer from "./default-renderer"
 
 let timeout
 
@@ -24,7 +23,7 @@ module.exports = function(input) {
   }
 
   const context = query.context || this.options.context
-  const renderer = query.renderer || defaultRenderer
+  const renderer = query.renderer || require("./default-renderer").default
 
   const defaultHead = query.defaultHead
   const parsed = frontMatterParser(input)
