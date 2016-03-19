@@ -13,7 +13,10 @@ import validator from "./validator"
 let timeout
 
 module.exports = function(input) {
-  const query = loaderUtils.parseQuery(this.query)
+  const query =
+    this.options.statinamic
+      ? this.options.statinamic.loader
+      : loaderUtils.parseQuery(this.query)
 
   try {
     validator(query)
