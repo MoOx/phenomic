@@ -13,10 +13,16 @@ stat("lib", function(error, stats1) {
   }
 
   console.warn(
+    "-".repeat(40) + "\n" +
     "Builded sources not found. It looks like you might be attempting " +
     `to install ${ pkg.name } from git. ` +
     "Sources need to be transpiled before use and this will require you to " +
-    `have babel-cli installed as well as ${ pkg.babel.presets }.`
+    `have babel-cli installed as well as ${ pkg.babel.presets }.\n` +
+    "-".repeat(40) + "\n" +
+    "TL;DR;\n" +
+    "Type this command\n" +
+    "npm install babel-core babel-cli " + pkg.babel.presets.join(" ") +
+    " && npm rebuild statinamic"
   )
 
   var installer = spawn("npm", [ "run", "transpile" ], {
