@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require("./lib/bin/index.js")
+require("../lib/bin/index.js")
