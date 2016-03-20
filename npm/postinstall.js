@@ -27,6 +27,6 @@ stat("lib", function(error, stats1) {
   installer.on("error", function(err) {
     console.error(`Failed to build ${ pkg.name } automatically. `)
 
-    throw err
+    console.error(err)
   })
 })
