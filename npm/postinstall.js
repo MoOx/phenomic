@@ -3,7 +3,10 @@ const spawn = require("child_process").spawn
 const join = require("path").join
 const pkg = require("../package.json")
 
-console.log(pkg.name, "post-install", process.cwd())
+// no need for this step on CI
+if (process.env.CI) {
+  process.exit(0)
+}
 
 stat("lib", function(error, stats1) {
   if (!error && stats1.isDirectory()) {
