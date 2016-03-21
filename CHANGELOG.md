@@ -7,6 +7,11 @@
 - ``md-collection-loader`` has been renamed to ``content-loader``.
 - Default markdown parser is now remark _but you can use anything you want, even
   a non markdown parser (eg: latex, asciidocs...)._
+  **``markdownIt`` configuration is not supported any more but you can still use
+  the same engine, see details below.**
+- ``scripts/webpack.config.*.js`` now needs to export function that accept
+  config as the first parameter.
+- ``scripts/config.js`` is now responsible for exporting webpack configurations.
 - (minor) ``redux-devtools`` and ``redux-thunk`` have been removed
   (``redux`` will become private soon anyway, or might even be dropped).
 
@@ -25,7 +30,8 @@
 
 - Changed: simplified boilerplate and "start" and "build" commands !
   **Be sure to checkout new (smaller) boilerplate**.
-  - ``scripts/webpack.config.*.js`` now needs to export function that accept an object.
+  - ``scripts/webpack.config.*.js`` now needs to export function that accept
+    config as the first parameter.
   - ``scripts/config.js`` is now responsible for exporting webpack configurations.
   - You can replace ``start`` and ``build`` npm scripts by
     ``statinamic start/build``
