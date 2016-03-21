@@ -2,11 +2,30 @@ const stat = require("fs").stat
 const spawn = require("child_process").spawn
 const join = require("path").join
 const pkg = require("../package.json")
-
+const fs = require("fs-extra")
 // no need for th is step on CI
 if (process.env.CI) {
   process.exit(0)
 }
+
+const boilerplateDir = join(__dirname, "../boilerplate")
+
+stat(join(boilerplateDir, ".npmignore"), function(err) {
+  if (err) {
+    console.log("No .npmignore in boilerplate to rename")
+    return true
+  }
+
+  fs.move(
+    join(boilerplateDir, ".npmignore"),
+    join(boilerplateDir, ".gitignore"),
+    function(err) {
+      if (err) {
+        throw new Error("Cannot rename .npmignore to .gitignore in boilerplate")
+      }
+    }
+  )
+})
 
 stat("lib", function(error, stats1) {
   if (!error && stats1.isDirectory()) {
