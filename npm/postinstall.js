@@ -1,9 +1,7 @@
-/* eslint-disable no-var */
-
-var stat = require("fs").stat
-var spawn = require("child_process").spawn
-var join = require("path").join
-var pkg = require("../package.json")
+const stat = require("fs").stat
+const spawn = require("child_process").spawn
+const join = require("path").join
+const pkg = require("../package.json")
 
 console.log(pkg.name, "post-install", process.cwd())
 
@@ -13,26 +11,42 @@ stat("lib", function(error, stats1) {
   }
 
   console.warn(
-    "-".repeat(40) + "\n" +
+    "\n" +
     "Builded sources not found. It looks like you might be attempting " +
-    `to install ${ pkg.name } from git. ` +
-    "Sources need to be transpiled before use and this will require you to " +
-    `have babel-cli installed as well as ${ pkg.babel.presets }.\n` +
-    "-".repeat(40) + "\n" +
-    "TL;DR;\n" +
-    "Type this command\n" +
-    "npm install babel-core babel-cli " + pkg.babel.presets.join(" ") +
-    " && npm rebuild statinamic"
+    `to install ${ pkg.name } from git. \n` +
+    "Sources need to be transpiled before use. This may take a moment." +
+    "\n"
   )
 
-  var installer = spawn("npm", [ "run", "transpile" ], {
+  const spawnOpts = {
     stdio: "inherit",
     cwd: join(__dirname, "../"),
-  })
+  }
 
-  installer.on("error", function(err) {
+  const fail  = (err) => {
     console.error(`Failed to build ${ pkg.name } automatically. `)
 
-    console.error(err)
+    if (err) {
+      throw err
+    }
+  }
+
+  const installTranspiler = spawn(
+    "npm",
+    [ "i" , "babel-core", "babel-cli", ...pkg.babel.presets ],
+    spawnOpts
+  )
+
+  installTranspiler.on("error", fail)
+  installTranspiler.on("close", (code) => {
+    if (code === 0) {
+      const installer = spawn(
+        "npm",
+        [ "run", "transpile" ],
+        spawnOpts
+      )
+
+      installer.on("error", fail)
+    }
   })
 })
