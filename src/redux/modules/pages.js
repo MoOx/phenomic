@@ -1,4 +1,5 @@
-import fetchJSON from "../../fetchJSON"
+/* @flow */
+import jsonFetch from "simple-json-fetch"
 import joinUri from "../../_utils/join-uri"
 
 export const NOOP = "statinamic/pages/NOOP"
@@ -9,7 +10,14 @@ export const FORGET = "statinamic/pages/FORGET"
 export const ERROR = "statinamic/pages/ERROR"
 
 // redux reducer
-export default function reducer(state = {}, action) {
+export default function reducer(
+  state?: Object = {},
+  action: {
+    type: string,
+    page: string,
+    response: Object
+  }
+): Object {
 
   switch (action.type) {
   case GET:
@@ -20,15 +28,20 @@ export default function reducer(state = {}, action) {
       },
     }
 
-  case SET:
-    const data = action.response.data
+  case SET: {
+    const { json } = action.response
     return {
       ...state,
       [action.page]: {
-        ...data,
-        type: data.head ? data.head.layout || data.head.type : undefined,
+        ...json,
+        type: (
+          json.head
+          ? json.head.layout || json.head.type
+          : undefined
+        ),
       },
     }
+  }
 
   case FORGET:
     return {
@@ -39,15 +52,29 @@ export default function reducer(state = {}, action) {
   case ERROR:
     return {
       ...state,
-      [action.page]: action.error && action.error.response
-        ? {
-          error: action.error.response.status,
-          errorText: action.error.response.statusText,
-        }
+      [action.page]: (
+        action.response
+        ? (
+          action.response.status
+          ? {
+            error: action.response.status,
+            errorText: action.response.statusText,
+          }
+          : {
+            error: "Unexpected Error",
+            errorText: (
+              action.response.message ||
+              (action.response.error && action.response.error.message) ||
+              // here we are just in a deseperate case
+              "Seriously, this is weird. Please report this page."
+            ),
+          }
+        )
+        // no response, it's certainly a 404
         : {
           error: 404,
-          errorText: `Page Not Found`,
-        },
+        }
+      ),
     }
 
   default:
@@ -56,7 +83,7 @@ export default function reducer(state = {}, action) {
 }
 
 // redux actions
-export function get(page, url) {
+export function get(page: string, url: string): PromiseAction {
   return {
     types: [
       GET,
@@ -64,14 +91,14 @@ export function get(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(joinUri(
+    promise: jsonFetch(joinUri(
       process.env.STATINAMIC_PATHNAME,
       url
     )),
   }
 }
 
-export function refresh(page, url) {
+export function refresh(page: string, url: string): PromiseAction {
   return {
     types: [
       NOOP,
@@ -79,14 +106,14 @@ export function refresh(page, url) {
       ERROR,
     ],
     page,
-    promise: fetchJSON(joinUri(
+    promise: jsonFetch(joinUri(
       process.env.STATINAMIC_PATHNAME,
       url
     )),
   }
 }
 
-export function setNotFound(page) {
+export function setNotFound(page: string): Action {
   return {
     type: ERROR,
     page,

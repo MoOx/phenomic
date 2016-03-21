@@ -17,7 +17,9 @@ which allows you to have local CSS classnames in your React components.
 
 At first, you will probably find that not having global CSS is weird.
 But the way the web and UI are evolving is clearly by following a component
-approach. You should think about UI modules and styles your component one by one.
+approach. You should think about UI modules and styles your component one by
+one.
+
 If you need some global CSS variables, [you can add some in the JavaScript
 configuration](http://cssnext.io/usage/#features).
 (but you should not use many of these).

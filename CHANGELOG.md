@@ -1,3 +1,154 @@
+# 0.9.0 - 2016-03-??
+
+## tl;dr;
+
+### Breaking changes
+
+- ``md-collection-loader`` has been renamed to ``content-loader``.
+- Default markdown parser is now remark _but you can use anything you want, even
+  a non markdown parser (eg: latex, asciidocs...)._
+  **``markdownIt`` configuration is not supported any more but you can still use
+  the same engine, see details below.**
+- ``scripts/webpack.config.*.js`` now needs to export function that accept
+  config as the first parameter.
+- ``scripts/config.js`` is now responsible for exporting webpack configurations.
+- (minor) ``redux-devtools`` and ``redux-thunk`` have been removed
+  (``redux`` will become private soon anyway, or might even be dropped).
+
+### Minor changes
+
+- Less boilerplate for commands to start/build.
+
+### Patches
+
+- No more duplicates in collection.
+- No more `main.*.css` files in `dist`.
+- Anchors in url are not being removed when clicking a link with an anchor.
+- Network errors are not reported as 404 anymore, but as network errors.
+
+## Details
+
+- Changed: simplified boilerplate and "start" and "build" commands !
+  **Be sure to checkout new (smaller) boilerplate**.
+  - ``scripts/webpack.config.*.js`` now needs to export function that accept
+    config as the first parameter.
+  - ``scripts/config.js`` is now responsible for exporting webpack configurations.
+  - You can replace ``start`` and ``build`` npm scripts by
+    ``statinamic start/build``
+  - ``scripts/build.js`` do not need to expose webpack configuration anymore
+    (since it's included in ``config`` object).
+  - You can now remove awkward babel env configuration from your babel
+    configuration. _It's now handled secretly by default_.
+    (that's why ``config`` must expose your webpack configurations)
+  - You webpack configuration can now skip some tiny weird part specific to
+    statinamic.
+- Changed: Use localhost as default address to open new browser tab (for Windows
+  compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
+  ([#257](https://github.com/MoOx/statinamic/issues/257))
+- Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
+- Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
+  as the default markdown engine.
+  - If you want to use the new engine, just remove your ``markdownIt`` section
+    in your ``scripts/webpack.config.babel.js`` configuration.
+    You will also probably need to update in your CSS references to
+    ``.markdownIt-Anchor`` to ``.statinamic-HeadingAnchor``.
+  - If you want to keep your current engine, just take the content of your
+    ``markdownIt`` section, wrap it in a function and return ``.render()``
+    method.
+
+    - Remove this of your ``scripts/webpack.config.babel.js``
+
+      ```js
+      // ...
+      markdownIt: (
+        require("markdown-it")({
+          html: true,
+          // ...
+        })
+          .use(/* ... */)
+      )
+      ```
+
+    - Add in the configuration of ``content-loader``
+      (former ``md-collection-loader``)
+
+      ```js
+      // ...
+      { // statinamic requirement
+        test: /\.md$/,
+        loader: "statinamic/lib/content-loader",
+        query: {
+          context: path.join(config.cwd, config.source),
+          // WRAP HERE
+          renderer: (text) => (
+            require("markdown-it")({
+              html: true,
+              // ...
+            })
+              .use(/* ... */)
+              .render(text) // ADD THIS
+          )
+          // ...
+        }
+      )
+      ```
+
+- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
+  Redux will probably become part of the private API, which will reduce
+  the boilerplate. In order to do that, we will gradually remove Redux from all
+  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
+  Here is the instruction to pull this change:
+
+  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
+  `redux-devtools-dock-monitor` from your dependencies list.
+  - Remove these variables in webpack.config.client.js, DefinePlugin section:
+
+    - ``process.env.REDUX_DEVTOOLS``
+    - ``process.env.CLIENT`` : This is totally up you.
+      You can keep it if you use it.
+      We recommended you to use a more portable way to do this:
+
+    ```diff
+    ---if (process.env.CLIENT) {
+    +++if (typeof window !== "undefined") {
+      // client-side specific code
+    }
+    ```
+
+  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
+- Removed: unused ``redux-thunk`` middleware.
+  ([#279](https://github.com/MoOx/statinamic/pull/279))
+- Added: ``content-loader`` now accept any renderer.
+  You can provide your own callback to transform the text content into html
+  via the `renderer` option.
+  See _Configuration_ section of the documentation.
+- Added: Support React to 15.x
+- Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
+  ([#200](https://github.com/MoOx/statinamic/pull/200))
+- Fixed: network errors will not appear as 404 error anymore
+- Fixed: `main.*.css` files are not produced anymore by the default boilerplate
+  ([#214](https://github.com/MoOx/statinamic/pull/214))
+- Fixed: url with anchors are NOT being replaced with url without anchors
+  anymore
+  ([#284](https://github.com/MoOx/statinamic/pull/284))
+- Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
+  don’t return a boolean
+
+## Boilerplate (minor changes/improvements)
+
+- Changed: Use ``include`` instead ``exclude`` to catch files to transform.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+- Changed: syntax change for css loaders section.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+- Changed: ``content-loader`` (former ``md-collection-loader``) now
+  don't use ``JSON.stringify`` anymore.
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+  ([#209](https://github.com/MoOx/statinamic/pull/209))
+- Changed: upgrade to eslint@2 and friends.
+- Fixed: assets loader use the right context
+  (no big deal with default paths, but still).
+  See changes in ``boilerplate/scripts/webpack.config.babel.js``
+
 # 0.8.2 - 2016-02-27
 
 - Fixed: 404 page overide webpack hmr route

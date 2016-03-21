@@ -9,8 +9,8 @@ body {
 
   /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
   /* stylelint-enable */
 }
@@ -32,12 +32,12 @@ h3 {
 
 @custom-selector :--headings h1, h2, h3, h4, h5, h6;
 
-/* for .markdownIt-Anchor */
+/* for .statinamic-HeadingAnchor */
 :--headings {
   position: relative;
 }
 
-:global .markdownIt-Anchor {
+:global .statinamic-HeadingAnchor {
   position: absolute;
   left: -1.5rem;
   opacity: 0.1;

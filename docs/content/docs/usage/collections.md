@@ -71,8 +71,7 @@ in a second list. You will see that the collection is retrieved from
 [the context](https://facebook.github.io/react/docs/context.html).
 
 ```js
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 
 import Page from "Page"
 

@@ -41,3 +41,20 @@ cover this case.
 -- import { Link } from "react-router"
 ++ import { Link } from "statinamic/lib/Link"
 ```
+
+### How to debug this checksum issue?
+
+- Take the rendered html (viewsource is your friend)
+- In your developer tools, copy the HTML from the `<html` node
+  (something like right click > "Copy Outer HTML" should exists)
+- Beautify both result with the same tool
+  (eg: [atom-beautifier](https://atom.io/packages/atom-beautifier))
+- Make a diff (if you are a GUI guy, use
+  [diffchecker](https://www.diffchecker.com/)).
+  Notes:
+    - remove the beginning of each `data-reactid` to avoid a huge diff
+    - ignore the first huge `<style>` tag
+    - ignore diff related to the style of self-closing tag (html or xhtml) if
+      you have some
+
+You should find the source of the error pretty quickly this way.

@@ -1,8 +1,12 @@
+// @flow
 import joinUri from "../join-uri"
 
 export const fileExtensionRE = /\.html?$/
 
-export default function urlify(string, full = false) {
+export default function urlify(
+  string: string,
+  full: boolean = false
+): string {
   const hasExtension = string.match(fileExtensionRE)
 
   let url = string

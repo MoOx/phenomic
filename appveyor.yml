@@ -3,7 +3,6 @@
 environment:
   matrix:
     - nodejs_version: '5'
-    - nodejs_version: '4'
 
 version: "{build}"
 build: off
@@ -11,11 +10,22 @@ deploy: off
 matrix:
   fast_finish: true
 
+cache:
+  - node_modules -> package.json
+#   - test-boilerplate/node_modules -> package.json
+#   - docs/node_modules -> package.json
+
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm prune
   - npm install
 
 test_script:
   - node --version
   - npm --version
   - npm test
+
+# debug
+# https://twitter.com/appveyor/status/708038858793836545
+# on_finish:
+# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

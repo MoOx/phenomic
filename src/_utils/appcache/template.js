@@ -1,7 +1,7 @@
 const template = (files, fallback = "/") => {
   if (!Array.isArray(files)) {
     throw new Error(
-      `You must provide an array for ` +
+      "You must provide an array for " +
       `generating appcache template\n` +
       `You are prodiving "${ typeof files }"`
     )

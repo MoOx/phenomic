@@ -8,7 +8,7 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 import opn from "opn"
 import debug from "debug"
 
-import collection from "../md-collection-loader/cache.js"
+import collection from "../content-loader/cache.js"
 import urlAsHtml from "../static/to-html/url-as-html"
 import * as pagesActions from "../redux/modules/pages"
 import cleanNodeCache from "../_utils/clean-node-cache"
@@ -19,12 +19,13 @@ const log = debug("statinamic:builder:server")
 
 let firstRun = true
 
-export default (webpackConfig, options = {}) => {
+export default (options = {}) => {
   options = {
     noDevEntriesTest: /^tests/,
     ...options,
   }
   const { config } = options
+  const { webpackConfigClient: webpackConfig } = config
 
   if (!config.baseUrl) {
     throw new Error(
@@ -43,7 +44,7 @@ export default (webpackConfig, options = {}) => {
   }
   else {
     const devEntries = [
-      require.resolve(`webpack-hot-middleware/client`),
+      require.resolve("webpack-hot-middleware/client"),
     ]
 
     const devConfig = {
@@ -136,7 +137,7 @@ export default (webpackConfig, options = {}) => {
         res
       )
 
-      // try 404.html is there is any
+      // try 404.html if there is any
       if (!item) {
         req.url = "/404.html"
         item = getItemOrContinue(
@@ -153,13 +154,13 @@ export default (webpackConfig, options = {}) => {
       }
       const filepath = join(config.cwd, config.destination, item.__dataUrl)
       const fileContent = memoryFs.readFileSync(filepath)
-      const data = JSON.parse(fileContent.toString())
+      const json = JSON.parse(fileContent.toString())
 
       options.store.dispatch({
         type: pagesActions.SET,
         page: item.__url,
         response: {
-          data,
+          json,
         },
       })
 
@@ -204,7 +205,7 @@ export default (webpackConfig, options = {}) => {
     const href = `http://${ devHost }:${ devPort }${ config.baseUrl.pathname }`
     log(`Dev server started on ${ href }`)
     if (config.open) {
-      opn(href)
+      opn(href.replace(devHost, "localhost"))
     }
   })
 }

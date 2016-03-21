@@ -22,15 +22,19 @@ Here is a commented ``package.json`` with only the interesting parts
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
   // here is the script part, which the ones related to Statinamic
-  // you can add some more like linting and stuff like that :)
-  // BABEL_DISABLE_CACHE is required to run webpack loaders correctly in Node
-  // BABEL_ENV is vital and helps run component code universally
-  // DEBUG=statinamic:* is optional (and mainly for development)
+  // you can add more like linting and stuff like that :)
   "scripts": {
-    "statinamic": "cross-env BABEL_DISABLE_CACHE=1 BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
-    "start": "npm run statinamic -- --server --open --dev",
-    "build": "npm run statinamic -- --static --production",
+    "start": "statinamic start",
+    "build": "statinamic build",
   },
+  // Note that you can provide some flags but for now they are not documented
+  // (start and build should be enough)
+  //
+  // Here are some default environnement variable set by "statinamic" bin
+  // BABEL_DISABLE_CACHE=1
+  //  (required to run webpack loaders correctly in Node
+  // DEBUG=statinamic:*
+  //  (to get some visual feedback during development and build)
 
   // Statinamic core section (default values)
   "statinamic": {
@@ -84,20 +88,6 @@ Here is a commented ``package.json`` with only the interesting parts
       "es2015",
       "stage-1"
     ],
-    "env": {
-      // this section is very important and must be (for now) defined here
-      "statinamic": {
-        "plugins": [
-          [
-            "babel-plugin-webpack-loaders",
-            {
-              "config": "./scripts/webpack.config.babel.js",
-              "verbose": false
-            }
-          ]
-        ]
-      }
-    }
   },
 
   // linting prevent errors

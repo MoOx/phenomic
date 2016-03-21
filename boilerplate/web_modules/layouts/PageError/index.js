@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
+import React, { Component, PropTypes } from "react"
 
 export default class PageError extends Component {
 
   static propTypes = {
-    error: PropTypes.number.isRequired,
+    error:
+      PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
     errorText: PropTypes.string.isRequired,
   };
 

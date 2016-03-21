@@ -1,3 +1,4 @@
+// @flow
 import path from "path"
 import fs from "fs-extra"
 import color from "chalk"
@@ -6,10 +7,10 @@ import debug from "debug"
 import webpack from "./webpack"
 import devServer from "./server"
 
-import collection from "../md-collection-loader/cache"
+import collection from "../content-loader/cache"
 import toStaticHTML from "../static"
 
-export default function(options) {
+export default function(options: Object): void {
   const {
     config,
     store,
@@ -29,7 +30,7 @@ export default function(options) {
       log(color.green("✓ Static assets: copy static assets completed"))
     }
 
-    webpack(options.clientWebpackConfig, log, (stats) => {
+    webpack(config.webpackConfigClient, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
       const assetsFiles = {
@@ -68,7 +69,7 @@ export default function(options) {
       })
       .then(() => {
         if (config.server) {
-          devServer(null, { config })
+          devServer({ config })
         }
       })
       .catch((error) => {
@@ -80,7 +81,7 @@ export default function(options) {
     })
   }
   else if (config.server) {
-    devServer(options.clientWebpackConfig, {
+    devServer({
       config,
       exports,
       store,

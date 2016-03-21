@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-import program from "commander"
+// still in src/, handy to play
+if (__filename.indexOf("statinamic/src") > 1) {
+  require("babel-register")
+}
 
-import pkg from "../../package.json"
-
-program
-  .version(pkg.version)
-  .command("setup", "setup a project using statinamic")
-  .parse(process.argv)
+require("./statinamic.js")

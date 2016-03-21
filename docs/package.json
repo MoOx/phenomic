@@ -13,16 +13,15 @@
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "statinamic": "cross-env BABEL_DISABLE_CACHE=1 BABEL_ENV=statinamic DEBUG=statinamic:* babel-node scripts/build",
-    "start": "npm run statinamic -- --server --open --dev",
-    "build": "npm run statinamic -- --static --production",
+    "start": "statinamic start",
+    "build": "statinamic build",
     "pretest": "npm run lint",
     "test": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
-    "babel-eslint": "^4.1.6",
+    "babel-eslint": "^6.0.0-beta.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-webpack-loaders": "^0.3.2",
     "babel-preset-es2015": "^6.3.13",
@@ -30,62 +29,47 @@
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "classnames": "^2.2.3",
-    "cross-env": "^1.0.7",
     "css-loader": "^0.17.0",
-    "eslint": "^1.7.2",
-    "eslint-config-i-am-meticulous": "^2.0.0",
-    "eslint-loader": "^1.1.0",
-    "eslint-plugin-react": "^3.6.2",
+    "eslint": "^2.0.0",
+    "eslint-config-i-am-meticulous": "^3.0.0",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-react": "^4.0.0",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.1",
     "highlight.js": "^8.5.0",
     "history": "^2.0.0",
     "invariant": "^2.1.1",
     "json-loader": "^0.5.2",
-    "markdown-it": "^5.0.0",
-    "markdown-it-toc-and-anchor": "^1.0.1",
     "postcss-browser-reporter": "^0.4.0",
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.7.0",
     "postcss-reporter": "^1.3.0",
     "raw-loader": "^0.5.1",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^15.0.0-rc.1",
+    "react-dom": "^15.0.0-rc.1",
     "react-google-analytics": "^0.2.0",
     "react-helmet": "^2.1.0",
-    "react-redux": "^4.0.6",
+    "react-redux": "^4.4.1",
     "react-router": "^2.0.0",
-    "react-svg-inline": "^1.0.1",
+    "react-svg-inline": "^1.1.0",
     "redux": "^3.0.0",
-    "redux-devtools": "^3.0.1",
-    "redux-devtools-dock-monitor": "^1.0.1",
-    "redux-devtools-log-monitor": "^1.0.1",
-    "redux-thunk": "^1.0.3",
+    "remark": "^4.1.1",
+    "remark-autolink-headings": "^3.0.0",
+    "remark-highlight.js": "^3.0.0",
+    "remark-html": "^3.0.0",
+    "remark-slug": "^4.1.0",
     "style-loader": "^0.12.3",
-    "stylelint": "^4.0.0",
-    "stylelint-config-standard": "^2.0.0",
+    "stylelint": "^5.0.1",
+    "stylelint-config-standard": "^4.0.1",
     "webpack": "^1.12.1",
-    "whatwg-fetch": "^0.9.0"
+    "whatwg-fetch": "^0.11.0"
   },
   "babel": {
     "presets": [
       "babel-preset-react",
       "babel-preset-es2015",
       "babel-preset-stage-1"
-    ],
-    "env": {
-      "statinamic": {
-        "plugins": [
-          [
-            "babel-plugin-webpack-loaders",
-            {
-              "config": "./scripts/webpack.config.babel.js",
-              "verbose": false
-            }
-          ]
-        ]
-      }
-    }
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",

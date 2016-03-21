@@ -1,6 +1,9 @@
+// @flow
 import { join } from "path"
 
-export default function cleanNodeCache(dir) {
+export default function cleanNodeCache(
+  dir: string
+): void {
   Object.keys(require.cache)
   .filter((t) =>
     t.startsWith(dir) &&

@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 
@@ -12,9 +13,9 @@ import Html from "./Html"
 import StatinamicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
-import minifyCollection from "../../md-collection-loader/minify"
+import minifyCollection from "../../content-loader/minify"
 
-export default (url, {
+export default function(url: string, {
   exports,
   collection,
   store,
@@ -22,7 +23,15 @@ export default (url, {
   baseUrl,
   assetsFiles,
   appcache,
-}, testing) => {
+}: {
+  exports: Object,
+  collection: StatinamicCollection,
+  store: Object,
+
+  baseUrl: Object,
+  assetsFiles: Object,
+  appcache: StatinamicAppcacheConfig,
+}, testing?: boolean): Promise<string> {
   const {
     layouts,
     metadata,
@@ -71,21 +80,15 @@ export default (url, {
             const collectionMin = minifyCollection(collection)
             // render app body as "react"ified html (with data-react-id)
             body = render(
-              // the wrapper is used here because the client might have the
-              // devtools at the same level as the <Provider>
-              // the <noscript> reflect the potential devtools element
-              <div id="statinamic-container">
-                <StatinamicContextProvider
-                  collection={ collectionMin }
-                  layouts={ layouts }
-                  metadata={ metadata }
-                >
-                  <ReduxContextProvider store={ store }>
-                    <RouterContextProvider { ...renderProps } />
-                  </ReduxContextProvider>
-                </StatinamicContextProvider>
-                { process.env.REDUX_DEVTOOLS && <noscript /> }
-              </div>
+              <StatinamicContextProvider
+                collection={ collectionMin }
+                layouts={ layouts }
+                metadata={ metadata }
+              >
+                <ReduxContextProvider store={ store }>
+                  <RouterContextProvider { ...renderProps } />
+                </ReduxContextProvider>
+              </StatinamicContextProvider>
             )
 
             const headTags = Helmet.rewind()

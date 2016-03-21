@@ -3,10 +3,6 @@ title: Advanced usage of Redux
 incomplete: true
 ---
 
-## Enabling Redux devtools
-
-Just start your dev server with the environment variable "REDUX_DEVTOOLS=1".
-
 ## Adding custom Redux reducers
 
 Here is an example of a store that will allow you to add
