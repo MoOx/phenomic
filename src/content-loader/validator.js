@@ -7,6 +7,7 @@ const fieldTypes = {
   feedsOptions: "object",
   feeds: "object",
   description: "object",
+  defaultHead: "object",
 }
 
 const validator = function(
