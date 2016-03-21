@@ -1,4 +1,6 @@
-# 0.9.0 - 2016-03-??
+# 0.9.0 - 2016-03-21
+
+→ [Example of update from 0.8 to 0.9](https://github.com/putaindecode/putaindecode.io/commit/4eea549?w=1)
 
 ## tl;dr;
 
