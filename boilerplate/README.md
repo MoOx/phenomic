@@ -1,4 +1,4 @@
-# Statinamic boilerplate
+# [Statinamic](https://github.com/MoOx/statinamic) boilerplate
 
 ## Install dependencies
 
