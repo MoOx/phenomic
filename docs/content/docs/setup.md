@@ -36,7 +36,18 @@ _Tip:_ You can open `package.json` and adjust some values to fit your needs.
 _Check out [Configuration](../usage/configuration/) for more information about
 the configuration options._
 
-When you are done, run:
+### Install from git
+
+To install from git, you will need to get some deps to transpile sources
+
+```console
+$ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1
+$ npm install https://github.com/MoOx/statinamic.git
+```
+
+## Install dependencies
+
+When you are done the setup, it's time to get all dependencies.
 
 ```console
 $ npm install
@@ -48,7 +59,7 @@ of what you use and are not locked in to using packages that you don't want to.
 
 Now it's time to...
 
-## START THE engine
+## START the engine
 
 ```console
 $ npm start
