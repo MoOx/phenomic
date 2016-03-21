@@ -2,7 +2,7 @@ import "babel-polyfill"
 
 import color from "chalk"
 import { join } from "path"
-import fs from "fs-extra"
+import fs from "fs-promise"
 
 import { prompt } from  "../utils/inquirer"
 import questions, { defaultTestAnswers } from "../data/questions"
@@ -15,17 +15,10 @@ import {
 
 export default async function setup(argv) {
   const cwd = process.cwd()
+  const testMode = argv.test
 
   try {
-    let answers
-    const testMode = argv.test
-
-    if (testMode) {
-      answers = defaultTestAnswers
-    }
-    else {
-      answers = await prompt(questions)
-    }
+    const answers = testMode ? defaultTestAnswers : await prompt(questions)
     const { name, homepage, ...statinamic } = answers
 
     const devDependencies = {
@@ -44,11 +37,11 @@ export default async function setup(argv) {
       devDependencies,
     }
 
-    fs.writeJsonSync(join(cwd, "package.json"), pkg)
+    await fs.writeJson(join(cwd, "package.json"), pkg)
     console.log(color.green("Generated package.json file"))
 
     const boilerplatePath = join(__dirname, "../../../boilerplate")
-    fs.copySync(boilerplatePath, cwd)
+    await fs.copy(boilerplatePath, cwd)
     console.log(color.green("Copied boilerplate"))
 
     console.log(
