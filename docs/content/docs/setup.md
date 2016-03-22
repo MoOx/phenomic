@@ -12,14 +12,14 @@ Here is a quick way to setup the boilerplate in a minute:
 
 That's an easy step.
 
-```console
+```sh
 $ DIR=your-website-folder
 $ mkdir $DIR && cd $DIR
 ```
 
 ## Setup boilerplate
 
-```console
+```sh
 $ npm init --force
 $ npm install statinamic
 $ ./node_modules/.bin/statinamic setup
@@ -40,7 +40,7 @@ the configuration options._
 
 To install from git, you will need to get some deps to transpile sources
 
-```console
+```sh
 $ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1
 $ npm install https://github.com/MoOx/statinamic.git
 ```
@@ -49,7 +49,7 @@ $ npm install https://github.com/MoOx/statinamic.git
 
 When you are done the setup, it's time to get all dependencies.
 
-```console
+```sh
 $ npm install
 ```
 
@@ -61,7 +61,7 @@ Now it's time to...
 
 ## START the engine
 
-```console
+```sh
 $ npm start
 ```
 

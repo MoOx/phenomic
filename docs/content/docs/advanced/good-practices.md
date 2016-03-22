@@ -54,7 +54,7 @@ Here are some "popular" configs:
 If you switch to one of these configurations, you might get some linting errors.
 To fix this, simply use the following command:
 
-```console
+```sh
 $ ./node_modules/.bin/eslint --fix .
 ```
 
