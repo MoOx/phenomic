@@ -1,3 +1,6 @@
+- Added: Use node-portfinder to avoid error when port is used
+  ([#320](https://github.com/MoOx/statinamic/issues/320))
+
 # 0.9.3 - 2016-04-04
 
 ## Boilerplate

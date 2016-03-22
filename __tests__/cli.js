@@ -4,6 +4,7 @@ import { join } from "path"
 import { exec } from "child_process"
 
 const target = join(__dirname, "..", "test-boilerplate")
+// const execOpts = { cwd: target, stdio: "inherit" }
 const execOpts = { cwd: target }
 
 const statinamic = "node ./node_modules/.bin/statinamic"
@@ -47,9 +48,41 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     }
   )
 
+  // ...or be ok quickly
+  // (so we assume it's ok and kill the process, we don't need the actual build)
   const timeout = setTimeout(() => {
     child.kill()
     t.pass()
     t.end()
   }, 500)
+})
+
+test.cb("should NOT throw if port is used", (t) => {
+  const app = require("express")()
+
+  const server = app.listen(5432, (err) => {
+    if (err) {
+      t.fail()
+      t.end()
+    }
+
+    const child = exec(
+      `${ statinamic } start --devPort=5432`, execOpts,
+
+      (err) => {
+        if (err) {
+          clearTimeout(timeout)
+          t.fail()
+          t.end()
+        }
+      }
+    )
+
+    const timeout = setTimeout(() => {
+      child.kill()
+      server.close()
+      t.pass()
+      t.end()
+    }, 2000)
+  })
 })
