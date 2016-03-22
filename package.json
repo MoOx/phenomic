@@ -33,6 +33,10 @@
   "bin": {
     "statinamic": "npm/bin.js"
   },
+  "engines": {
+    "node": ">=4.2.0",
+    "npm": ">=2.0.0"
+  },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "chalk": "^1.1.0",
