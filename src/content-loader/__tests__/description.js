@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 import description from "../description"
 import * as fixtures from "./fixtures/description"
 
