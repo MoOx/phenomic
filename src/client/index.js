@@ -2,8 +2,7 @@
 // App
 import React from "react"
 import ReactDOM from "react-dom"
-import Router from "react-router/lib/Router"
-import useRouterHistory from "react-router/lib/useRouterHistory"
+import { Router, useRouterHistory } from "react-router"
 import createBrowserHistory from "history/lib/createBrowserHistory"
 import { Provider as ReduxContextProvider } from "react-redux"
 
