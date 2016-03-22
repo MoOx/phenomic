@@ -21,13 +21,13 @@ This package works on Travis-CI.
 
 ### Get the dependency
 
-```console
+```sh
 $ npm i -D gh-pages
 ```
 
 To learn a thing or two, try
 
-```console
+```sh
 $ ./node_modules/.bin/gh-pages --help
 ```
 
@@ -46,7 +46,7 @@ In your `package.json`, add the following items under the `scripts` section:
 
 Now run:
 
-```console
+```sh
 $ npm run deploy
 ```
 
@@ -98,7 +98,7 @@ With only `repo` or `public_repo` scopes.
 
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
-```console
+```sh
 $ npm i -g travis-encrypt
 $ travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
