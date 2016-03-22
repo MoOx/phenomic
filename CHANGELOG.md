@@ -1,3 +1,6 @@
+- Fixed: Missing babel-register package.
+  ([#335](https://github.com/MoOx/statinamic/issues/335))
+
 # 0.9.1 - 2016-03-21
 
 - Fixed: default boilerplate have a correct .gitignore file (not .npmignore)

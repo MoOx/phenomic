@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
+    "babel-register": "^6.6.5",
     "chalk": "^1.1.0",
     "classnames": "^2.2.3",
     "debug": "^2.2.0",
@@ -211,7 +212,7 @@
     "failFast": true,
     "verbose": true,
     "require": [
-      "babel-core/register"
+      "babel-register"
     ],
     "babel": "inherit"
   }
