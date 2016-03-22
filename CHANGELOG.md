@@ -1,3 +1,5 @@
+# 0.9.2 - 2016-03-22
+
 - Fixed: Missing babel-register package.
   ([#335](https://github.com/MoOx/statinamic/issues/335))
 
