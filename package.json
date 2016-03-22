@@ -1,7 +1,8 @@
 {
   "name": "statinamic",
   "version": "0.9.1",
-  "description": "A static website generator to create dynamic website using React components.",
+  "version": "0.9.0",
+  "description": "Modern static website generator to create dynamic websites using React components.",
   "keywords": [
     "react",
     "ssg",
@@ -82,7 +83,7 @@
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "cmd-shim": "^2.0.2",
-    "codecov": "^1.0.1",
+    "coveralls": "^2.11.8",
     "eslint": "^2.0.0",
     "eslint-config-i-am-meticulous": "^3.0.0",
     "eslint-loader": "^1.3.0",
@@ -170,7 +171,7 @@
     "all-tests": "npm run tests && npm run test-boilerplate",
     "test": "npm run all-tests && npm run docs",
     "test-with-coverage": "nyc npm run all-tests && npm run docs",
-    "coverage": "nyc report --reporter=lcovonly && codecov",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "release": "npmpub"
   },
   "nyc": {
