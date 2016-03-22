@@ -15,6 +15,7 @@ cache:
     - docs/node_modules
 
 before_install:
+  - npm set progress=false
   # nyc fail on npm@3.7.1. Remove this patch when node upgrade npm
   # https://github.com/bcoe/nyc/issues/190
   - npm install -g npm@latest
