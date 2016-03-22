@@ -3,7 +3,7 @@ title: How to setup Statinamic
 ---
 
 Statinamic uses
-[Node.js](http://nodejs.org/)/[npm](http://npmjs.com/)
+[Node.js >= 4.2.0](http://nodejs.org/)/[npm](http://npmjs.com/)
 and requires a minimal boilerplate, in order to provide you some
 flexibility.  
 Here is a quick way to setup the boilerplate in a minute:
