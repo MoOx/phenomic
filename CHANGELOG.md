@@ -1,3 +1,8 @@
+## Boilerplate
+
+- Removed: Remove unused define environment variables in webpack client config
+  ([#315](https://github.com/MoOx/statinamic/pull/351))
+
 # 0.9.2 - 2016-03-22
 
 - Fixed: Missing babel-register package.
