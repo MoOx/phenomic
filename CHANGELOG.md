@@ -1,3 +1,5 @@
+# 0.9.3 - 2016-04-04
+
 ## Boilerplate
 
 - Removed: Remove unused define environment variables in webpack client config
