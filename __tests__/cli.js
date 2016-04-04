@@ -39,6 +39,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     // should die quickly...
     (err) => {
       if (err) {
+        console.log(err)
         clearTimeout(timeout)
         t.fail()
         t.end()
