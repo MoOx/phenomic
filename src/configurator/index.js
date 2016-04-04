@@ -18,7 +18,8 @@ export default function config(pkg = {}, argv = process.argv) {
   // validate user parameters
   const errors = [
     ...minimalValidator(userJSConfig, definitions),
-    ...minimalValidator(defaultAndCLIconfig, definitions),
+    // https://github.com/MoOx/statinamic/issues/363
+    // ...minimalValidator(defaultAndCLIconfig, definitions),
   ]
 
   const config = {
