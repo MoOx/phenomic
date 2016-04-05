@@ -2,6 +2,7 @@ language: node_js
 
 node_js:
   - '5'
+  - '4'
 
 # fail asap when there is a failure
 matrix:
