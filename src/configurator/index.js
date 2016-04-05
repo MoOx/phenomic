@@ -1,30 +1,11 @@
 import yargs from "./yargs.js"
 
 import definitions from "./definitions.js"
+import minimalValidator from "./minimal-validator.js"
 import * as validators from "./validators.js"
 
 export default function config(pkg = {}, argv = process.argv) {
   const userJSConfig = pkg.statinamic || {}
-
-  const errors = []
-
-  // validate user parameters
-  Object.keys(userJSConfig).forEach((key) => {
-    if (!definitions[key]) {
-      errors.push(
-        `Unknow option '${ key }'.`
-      )
-    }
-    else if (
-      definitions[key].type !== undefined &&
-      definitions[key].type !== typeof userJSConfig[key]
-    ) {
-      errors.push(
-        `Wrong type for '${ key }': expected '${ definitions[key].type }', ` +
-        `got '${ typeof userJSConfig[key] }'.`
-      )
-    }
-  })
 
   const defaultAndCLIconfig = yargs.parse(argv)
 
@@ -33,6 +14,13 @@ export default function config(pkg = {}, argv = process.argv) {
   delete defaultAndCLIconfig._
   delete defaultAndCLIconfig.help
   delete defaultAndCLIconfig.version
+
+  // validate user parameters
+  const errors = [
+    ...minimalValidator(userJSConfig, definitions),
+    // https://github.com/MoOx/statinamic/issues/363
+    // ...minimalValidator(defaultAndCLIconfig, definitions),
+  ]
 
   const config = {
     ...defaultAndCLIconfig,

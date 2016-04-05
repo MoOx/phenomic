@@ -167,6 +167,7 @@
     "integration-tests": "ava __tests__/*.js",
     "pretest-boilerplate": "npm run transpile",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
+    "posttest-boilerplate": "npm run integration-tests",
     "docs": "babel-node scripts/docs.js",
     "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
     "all-tests": "npm run tests && npm run test-boilerplate",
