@@ -6,7 +6,7 @@ import { exec } from "child_process"
 const target = join(__dirname, "..", "test-boilerplate")
 const execOpts = { cwd: target }
 
-const statinamic = "./node_modules/.bin/statinamic"
+const statinamic = process.execPath + " ./node_modules/.bin/statinamic"
 
 // cannot be done for now
 // see the mess in configurator which use process.argv directly
