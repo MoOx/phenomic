@@ -7,6 +7,7 @@ import WebpackErrorNotificationPlugin from "webpack-error-notification"
 
 import opn from "opn"
 import debug from "debug"
+import portFinder from "portfinder"
 
 import collection from "../content-loader/cache.js"
 import urlAsHtml from "../static/to-html/url-as-html"
@@ -196,17 +197,26 @@ export default (options = {}) => {
   // THAT'S IT
   const { devHost, devPort } = config
 
-  server.listen(devPort, devHost, (err) => {
-    if (err) {
-      log(err)
+  portFinder.basePort = devPort
 
-      return
+  portFinder.getPort((err, port) => {
+    if (err) {
+      throw err
     }
-    const href = `http://${ devHost }:${ devPort }${ config.baseUrl.pathname }`
-    log(`Dev server started on ${ href }`)
-    if (config.open) {
-      opn(href.replace(devHost, "localhost"))
+
+    if (port !== devHost) {
+      log(`Port ${ devPort } is not available. Using port ${ port } instead.`)
     }
+    server.listen(port, devHost, (err) => {
+      if (err) {
+        throw err
+      }
+      const href = `http://${ devHost }:${ port }${ config.baseUrl.pathname }`
+      log(`Dev server started on ${ href }`)
+      if (config.open) {
+        opn(href.replace(devHost, "localhost"))
+      }
+    })
   })
 }
 
