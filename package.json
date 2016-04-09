@@ -54,6 +54,7 @@
     "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
     "opn": "^3.0.2",
+    "portfinder": "^1.0.2",
     "redbox-react": "^1.2.2",
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",

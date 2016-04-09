@@ -47,9 +47,42 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     }
   )
 
+  // ...or be ok quickly
+  // (so we assume it's ok and kill the process, we don't need the actual build)
   const timeout = setTimeout(() => {
     child.kill()
     t.pass()
     t.end()
   }, 500)
+})
+
+test.cb("should NOT throw if port is used", (t) => {
+  const app = require("express")()
+
+  const server = app.listen(8081, (err) => {
+    if (err) {
+      t.fail()
+      t.end()
+    }
+
+    const child = exec(
+      `${ statinamic } start --devPort=8081`, execOpts,
+
+      (err) => {
+        if (err) {
+          console.log(err)
+          clearTimeout(timeout)
+          t.fail()
+          t.end()
+        }
+      }
+    )
+
+    const timeout = setTimeout(() => {
+      child.kill()
+      server.close()
+      t.pass()
+      t.end()
+    }, 2000)
+  })
 })
