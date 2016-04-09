@@ -11,7 +11,7 @@ const collec = [
 ]
 
 test("filter by object", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -25,7 +25,7 @@ test("filter by object", (t) => {
     "should filter by object { key: string }"
   )
 
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -42,7 +42,7 @@ test("filter by object", (t) => {
 })
 
 test("filter by custom function", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -57,7 +57,7 @@ test("filter by custom function", (t) => {
 
 test("filter by custom function (and warn if not boolean)", (t) => {
   const messages = []
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -70,11 +70,11 @@ test("filter by custom function (and warn if not boolean)", (t) => {
       { k: "eye" },
     ]
   )
-  t.ok(messages.length > 0)
+  t.truthy(messages.length > 0)
 })
 
 test("filter by string", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -89,7 +89,7 @@ test("filter by string", (t) => {
 })
 
 test("multiple filters", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -103,7 +103,7 @@ test("multiple filters", (t) => {
 })
 
 test("mix filters ", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {

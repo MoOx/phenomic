@@ -13,12 +13,12 @@ const resolvedPaths = {
 }
 
 test("should import exports", (t) => {
-  t.same(
+  t.deepEqual(
     fixtures,
     resolvedPaths
   )
 
-  t.same(
+  t.deepEqual(
     importExports(fixtures),
     {
       common: "COMMON",
@@ -26,7 +26,7 @@ test("should import exports", (t) => {
     }
   )
 
-  t.same(
+  t.deepEqual(
     fixtures,
     resolvedPaths
   )

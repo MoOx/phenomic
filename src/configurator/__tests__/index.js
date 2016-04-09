@@ -41,7 +41,7 @@ test("should return a default configuration", (t) => {
     },
   }
 
-  t.same(
+  t.deepEqual(
     config,
     expected
   )
@@ -109,7 +109,7 @@ test("should accept string for 'asset' option", (t) => {
     },
     []
   )
-  t.same(
+  t.deepEqual(
     config.assets,
     {
       path: join(process.cwd(), config.source, "AsSeT"),
@@ -127,7 +127,7 @@ test("should accept true for 'asset' option", (t) => {
     },
     []
   )
-  t.same(
+  t.deepEqual(
     config.assets,
     {
       path: join(process.cwd(), config.source, "assets"),
@@ -165,21 +165,21 @@ test("should default to false for 'appcache' option", (t) => {
 })
 
 test("should accept string for 'appcache' option", (t) => {
-  t.same(
+  t.deepEqual(
     configurator({ statinamic: { appcache: "foo" } }, []).appcache,
     [ "foo" ]
   )
 })
 
 test("should accept array for 'appcache' option", (t) => {
-  t.same(
+  t.deepEqual(
     configurator({ statinamic: { appcache: [ "foo" ] } }, []).appcache,
     [ "foo" ]
   )
 })
 
 test("should return default config when 'appcache' is true", (t) => {
-  t.same(
+  t.deepEqual(
     configurator({ statinamic: { appcache: true } }, []).appcache,
     [ "**/*.*", "!**/*.html", "index.html" ]
   )
