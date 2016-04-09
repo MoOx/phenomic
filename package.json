@@ -111,7 +111,7 @@
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
     "stylelint": "^5.0.1",
-    "stylelint-config-standard": "^4.0.1",
+    "stylelint-config-standard": "^5.0.0",
     "throat": "^2.0.2"
   },
   "peerDependencies": {
