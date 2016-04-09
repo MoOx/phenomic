@@ -22,12 +22,12 @@ test("invalidate js cache", (t) => {
     "should get the direct exported value"
   )
 
-  t.ok(
+  t.truthy(
     typeof require.cache[jsfile] !== undefined,
     "should have the cache"
   )
   const isFileNotToCleanInCache = Boolean(require.cache[fileNotToClean])
-  t.ok(
+  t.truthy(
     isFileNotToCleanInCache,
     "should have the cache for a node module"
   )
@@ -36,12 +36,12 @@ test("invalidate js cache", (t) => {
 
   fs.writeFileSync(jsfile, "module.exports = 2")
 
-  t.notOk(
+  t.falsy(
     Boolean(require.cache[jsfile]),
     "should delete cacheof the changed file"
   )
 
-  t.ok(
+  t.truthy(
     Boolean(require.cache[fileNotToClean]),
     "should not delete cache outside metalsmith folder"
   )

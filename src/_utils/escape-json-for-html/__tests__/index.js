@@ -9,7 +9,7 @@ test("escape JSON for HTML", (t) => {
     "<script><\\/script><script><\\/script>",
     "function should escape all end of script tag"
   )
-  t.notOk(
+  t.falsy(
     escaped.includes("</script>"),
     "result should not contain unescaped end of script tag"
   )
