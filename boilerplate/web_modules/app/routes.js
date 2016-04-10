@@ -6,6 +6,7 @@ import StatinamicPageContainer from "statinamic/lib/PageContainer"
 
 import Page from "../layouts/Page"
 import PageError from "../layouts/PageError"
+import PageLoading from "../layouts/PageLoading"
 
 class PageContainer extends Component {
   render() {
@@ -16,6 +17,7 @@ class PageContainer extends Component {
         layouts={ {
           Page,
           PageError,
+          PageLoading,
         } }
       />
     )

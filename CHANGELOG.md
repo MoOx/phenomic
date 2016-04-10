@@ -45,6 +45,18 @@
 - Added: Use node-portfinder to avoid error when port is used
   ([#320](https://github.com/MoOx/statinamic/issues/320))
 
+## Boilerplate
+
+- Added: a ``PageLoading`` component is now provided and include 2 indicators:
+  - A [topbar](https://github.com/buunguyen/topbar) via
+    [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
+  - A simple CSS loading spinner.
+
+  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+
+- Added: link to 404 and loading page in the footer, so new users can see and
+  try those easily.
+
 # 0.9.3 - 2016-04-04
 
 ## Boilerplate

@@ -32,11 +32,19 @@ export default class Footer extends Component {
           { "News on Twitter" }
         </a>
         { " | " }
+        { "Pages: " }
         <Link
           className={ styles.link }
           to="/404.html"
         >
           { "404" }
+        </Link>
+        { ", " }
+        <Link
+          className={ styles.link }
+          to="/loading/"
+        >
+          { "Loading" }
         </Link>
       </footer>
     )

@@ -42,5 +42,19 @@ it is not available.
 
 ### `PageLoading`
 
-_This layout is optional_ and not in the default boilerplate. You might want to
-use it to add a loader while a page is loading.
+_This layout is optional_.
+
+If you are not satisfied with the default loading layout, feel free
+adjust it by grabbing some CSS or SVG spinners/loaders from:
+
+- http://codepen.io/collection/jifIK/4/
+- http://projects.lukehaas.me/css-loaders/
+- http://tobiasahlin.com/spinkit/
+- https://github.com/jlong/css-spinners
+- http://codepen.io/collection/HtAne/
+- http://iconmonstr.com/?s=loading
+
+Or learn how to make your own:
+
+- http://www.paulund.co.uk/css-loading-spinners
+- http://stephanwagner.me/only-css-loading-spinner
