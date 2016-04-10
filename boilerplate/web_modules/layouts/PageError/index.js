@@ -3,9 +3,13 @@ import React, { Component, PropTypes } from "react"
 export default class PageError extends Component {
 
   static propTypes = {
-    error:
-      PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
-    errorText: PropTypes.string.isRequired,
+    error: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+    errorText: PropTypes.string,
+  };
+
+  static defaultProps = {
+    error: 404,
+    errorText: "Page Not Found",
   };
 
   render() {
