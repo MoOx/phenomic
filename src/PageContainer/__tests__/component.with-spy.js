@@ -78,8 +78,8 @@ test("should log error if default layout doesn't exits", (t) => {
   )
   t.true(spy.calledOnce)
   t.true(
-    spy.firstCall.calledWithMatch(
-      /default layout \"AnotherPage\" doesn\'t exist./
+    spy.calledWithMatch(
+      /default layout \"AnotherPage\" not provided./
     )
   )
 })
