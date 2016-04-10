@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react"
+import styles from "./index.css"
 
 export default class PageError extends Component {
 
@@ -19,9 +20,24 @@ export default class PageError extends Component {
     } = this.props
 
     return (
-      <div>
-        <h1>{ error }</h1>
-        <p>{ errorText }</p>
+      <div className={ styles.container }>
+        <div className={ styles.oops }>{ "😱 Oooops!" }</div>
+        <div className={ styles.text }>
+          <p className={ styles.title }>
+            <strong>{ error }</strong>
+            { " " }
+            { errorText }
+          </p>
+          {
+            error === 404 &&
+            <div>
+              { "It seems you find a broken link. " }
+              { "Sorry about that. " }
+              <br />
+              { "Do not hesitate to report us this page 😁." }
+            </div>
+          }
+        </div>
       </div>
     )
   }

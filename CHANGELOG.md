@@ -47,6 +47,11 @@
 
 ## Boilerplate
 
+- Fixed: ``PageError`` warning about missing PropTypes
+  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+
+- Changed: ``PageError`` is nicer and now looks like documentation 404.
+
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
     [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
