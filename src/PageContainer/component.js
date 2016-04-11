@@ -209,6 +209,10 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     }
   }
 
+  saveContentRef(ref: Element) {
+    this._content = ref
+  }
+
   render() {
     const { props, context } = this
 
@@ -259,7 +263,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         }
         {
           !page.error && !page.loading && Layout &&
-          <Layout ref={ (ref) => this._content = ref } { ...page } />
+          <Layout ref={ this.saveContentRef } { ...page } />
         }
       </div>
     )
