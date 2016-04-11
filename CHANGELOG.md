@@ -50,6 +50,9 @@
 - Fixed: ``PageError`` warning about missing PropTypes
   ([#357](https://github.com/MoOx/statinamic/issues/357)).
 
+- Changed: Bump css-loader to ^0.23.0. This may improve performance a little bit
+  ([#374](https://github.com/MoOx/statinamic/issues/374))
+
 - Changed: ``PageError`` is nicer and now looks like documentation 404.
 
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
