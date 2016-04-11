@@ -87,10 +87,10 @@
     "cmd-shim": "^2.0.2",
     "coveralls": "^2.11.8",
     "eslint": "^2.0.0",
-    "eslint-config-i-am-meticulous": "^3.0.0",
+    "eslint-config-i-am-meticulous": "^4.1.1",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-flow-vars": "^0.3.0",
-    "eslint-plugin-react": "^4.0.0",
+    "eslint-plugin-react": "^4.3.0",
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
@@ -139,9 +139,9 @@
     "babel-preset-stage-1": "^6.3.13",
     "css-loader": "^0.23.0",
     "eslint": "^2.0.0",
-    "eslint-config-i-am-meticulous": "^3.0.0",
+    "eslint-config-i-am-meticulous": "^4.1.1",
     "eslint-loader": "^1.3.0",
-    "eslint-plugin-react": "^4.0.0",
+    "eslint-plugin-react": "^4.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.1",
     "json-loader": "^0.5.2",
@@ -204,16 +204,13 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "eslint-config-i-am-meticulous/react"
-    ],
-    "plugins": [
-      "flow-vars"
+      "eslint-config-i-am-meticulous/react-flow"
     ],
     "rules": {
-      "flow-vars/define-flow-type": 1,
-      "flow-vars/use-flow-type": 1
+      "react/prefer-stateless-function": 0
     }
   },
+  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/statinamic/issues/46",
   "stylelint": {
     "extends": "stylelint-config-standard"
   },
