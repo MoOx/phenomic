@@ -21,7 +21,7 @@ test("should have action to handle get", async (t) => {
   const action = module.get("/page", "/url")
 
   t.is(action.page, "/page")
-  t.same(action.types, [ module.GET, module.SET, module.ERROR ])
+  t.deepEqual(action.types, [ module.GET, module.SET, module.ERROR ])
 })
 
 test("should have action to handle refresh", async (t) => {
@@ -40,11 +40,11 @@ test("should have action to handle refresh", async (t) => {
   const action = module.refresh("/page", "/url")
 
   t.is(action.page, "/page")
-  t.same(action.types, [ module.NOOP, module.SET, module.ERROR ])
+  t.deepEqual(action.types, [ module.NOOP, module.SET, module.ERROR ])
 })
 
 test("should have action to handle not found", (t) => {
-  t.same(
+  t.deepEqual(
     module.setNotFound("/page"),
     {
       type: module.ERROR,
@@ -55,7 +55,7 @@ test("should have action to handle not found", (t) => {
 
 test("reducer should handle initial state", (t) => {
   const nextState = reducer(undefined, { type: "@@INITIAL" })
-  t.same(nextState, { })
+  t.deepEqual(nextState, { })
 })
 
 test("reducer <-- GET, should set loading state", (t) => {
@@ -67,7 +67,7 @@ test("reducer <-- GET, should set loading state", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       loading: true,
     },
@@ -85,7 +85,7 @@ test("reducer <-- FORGET", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": undefined,
   })
 })
@@ -104,7 +104,7 @@ test("reducer should SET page", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       type: undefined,
       foo: "bar",
@@ -128,7 +128,7 @@ test("reducer should SET page with type from head.type", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       head: {
         type: "foo",
@@ -154,7 +154,7 @@ test("reducer should SET page with type from head.layout", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       head: {
         layout: "foo",
@@ -173,7 +173,7 @@ test("reducer <-- ERROR, no response", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       error: 404,
     },
@@ -193,7 +193,7 @@ test("reducer <-- ERROR, set error messages with response.status", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       error: 404,
       errorText: "Foo",
@@ -213,7 +213,7 @@ test("reducer <-- ERROR, set error messages with response.message", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       error: "Unexpected Error",
       errorText: "Foo",
@@ -236,7 +236,7 @@ test("reducer <-- ERROR, set error messages with response.error.message",
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       error: "Unexpected Error",
       errorText: "Foo",
@@ -256,7 +256,7 @@ test("reducer <-- ERROR, set error messages with default message", (t) => {
     }
   )
 
-  t.same(nextState, {
+  t.deepEqual(nextState, {
     "/foo": {
       error: "Unexpected Error",
       errorText: "Seriously, this is weird. Please report this page.",

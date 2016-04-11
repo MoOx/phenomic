@@ -1,3 +1,13 @@
+- Added: Use node-portfinder to avoid error when port is used
+  ([#320](https://github.com/MoOx/statinamic/issues/320))
+
+# 0.9.3 - 2016-04-04
+
+## Boilerplate
+
+- Removed: Remove unused define environment variables in webpack client config
+  ([#315](https://github.com/MoOx/statinamic/pull/351))
+
 # 0.9.2 - 2016-03-22
 
 - Fixed: Missing babel-register package.

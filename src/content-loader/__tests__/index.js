@@ -31,12 +31,12 @@ test.cb("statinamic/lib/content-loader", (t) => {
         throw err
       }
 
-      t.notOk(stats.hasErrors(), "doesn't give any error")
+      t.falsy(stats.hasErrors(), "doesn't give any error")
       if (stats.hasErrors()) {
         console.error(stats.compilation.errors)
       }
 
-      t.notOk(stats.hasWarnings(), "doesn't give any warning")
+      t.falsy(stats.hasWarnings(), "doesn't give any warning")
       if (stats.hasWarnings()) {
         console.log(stats.compilation.warnings)
       }
@@ -50,7 +50,7 @@ test.cb("statinamic/lib/content-loader", (t) => {
       if (!defaultRoute) {
         console.log(stats.compilation.assets)
       }
-      t.ok(
+      t.truthy(
         defaultRoute && defaultRoute._value,
         "should create a json for an given md"
       )
@@ -61,7 +61,7 @@ test.cb("statinamic/lib/content-loader", (t) => {
         "route-custom.html"+
         ".46aa87f4e34aa065935bd6ddd87b9f3c.json"
       ]
-      t.ok(
+      t.truthy(
         customRoute && customRoute._value,
         "should create a proper json for custom route with an extension"
       )
@@ -72,7 +72,7 @@ test.cb("statinamic/lib/content-loader", (t) => {
         "route-custom-folder/index.html" +
         ".90c288b307f5401be686452389c9c8e6.json"
       ]
-      t.ok(
+      t.truthy(
         customRouteWithoutExtension && customRouteWithoutExtension._value,
         "should create a proper json for custom route with an extension"
       )
@@ -83,7 +83,7 @@ test.cb("statinamic/lib/content-loader", (t) => {
         "route-custom-folder-trailing-slash/index.html" +
         ".855f0b74436493523652693003d3f9d1.json"
       ]
-      t.ok(
+      t.truthy(
         customRouteWithoutSlash && customRouteWithoutSlash._value,
         "should create a proper json for custom route with an extension"
       )

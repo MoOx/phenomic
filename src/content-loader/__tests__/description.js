@@ -21,7 +21,7 @@ test("should not touch other properties in mdObject", (t) => {
     bar: undefined,
   }
 
-  t.same(description(mdObject), expectedObject)
+  t.deepEqual(description(mdObject), expectedObject)
 })
 
 test("should generate description with default option", (t) => {
