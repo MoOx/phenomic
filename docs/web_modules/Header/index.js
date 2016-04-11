@@ -4,10 +4,10 @@ import cx from "classnames"
 
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
-import SVG from "react-svg-inline"
-import statinamicLogoSVG from "../../../logo/statinamic-text-white.svg"
-import twitterSVG from "./iconmonstr-twitter-1.svg"
-import starSVG from "./iconmonstr-start.svg"
+import Svg from "react-svg-inline"
+import statinamicLogoSvg from "../../../logo/statinamic-text-white.svg"
+import twitterSvg from "./iconmonstr-twitter-1.svg"
+import starSvg from "./iconmonstr-start.svg"
 
 export default class Header extends Component {
 
@@ -15,8 +15,8 @@ export default class Header extends Component {
     return (
       <header className={ styles.header }>
         <div className={ styles.logo }>
-          <SVG
-            svg={ statinamicLogoSVG }
+          <Svg
+            svg={ statinamicLogoSvg }
             width="100%" height="auto"
             fill="#fff"
             cleanup
@@ -64,8 +64,8 @@ export default class Header extends Component {
             href="https://github.com/MoOx/statinamic"
           >
             <span className={ "mx-SocialButton-icon" } >
-              <SVG
-                svg={ starSVG }
+              <Svg
+                svg={ starSvg }
                 width={ "1rem" }
                 fill={ "currentColor" }
                 cleanup
@@ -81,8 +81,8 @@ export default class Header extends Component {
             href="https://twitter.com/Statinamic"
           >
             <span className={ "mx-SocialButton-icon" } >
-              <SVG
-                svg={ twitterSVG }
+              <Svg
+                svg={ twitterSvg }
                 width={ "1rem" }
                 fill={ "#55acee" }
                 cleanup
