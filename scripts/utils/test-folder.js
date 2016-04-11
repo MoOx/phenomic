@@ -16,7 +16,7 @@ export function exec(cmd, opts) {
 
 export default async function test(
   target,
-  { cleanup, init } = { cleanup: noop, init: noop }
+  { cleanup = noop, init = noop, lib = "lib", test = true }
 ) {
   try {
     const targetModules = `${ target }/node_modules`
@@ -45,11 +45,13 @@ export default async function test(
     // what we try to achieve by tuning the install to have a fast CI
     await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
     await lnfs("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
-    await lnfs("lib", `${ targetModules }/statinamic/lib`)
+    await lnfs(lib, `${ targetModules }/statinamic/lib`)
     await lnfs("package.json", `${ targetModules }/statinamic/package.json`)
 
     // test
-    await exec("npm test", { cwd: target })
+    if (test) {
+      await exec("npm test", { cwd: target })
+    }
   }
   catch (err) {
     // async workaround :)

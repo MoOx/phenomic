@@ -5,7 +5,7 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 export default ({ config, pkg }) => ({
   ...config.dev && {
-    devtool: "cheap-module-eval-source-map",
+    devtool: "#cheap-module-eval-source-map",
   },
   module: {
     loaders: [

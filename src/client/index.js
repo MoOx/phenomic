@@ -16,12 +16,12 @@ export const browserHistory =
   : null
 
 export default function statinamic({
-  layouts,
+  layouts, // deprecated
   metadata,
   routes,
   store,
 }: {
-  layouts: Object,
+  layouts: Object, // deprecated
   metadata: Object,
   routes: React$Element,
   store: Object,
@@ -34,7 +34,7 @@ export default function statinamic({
   ReactDOM.render(
     <StatinamicContextProvider
       collection={ collection }
-      layouts={ layouts }
+      layouts={ layouts } // deprecated
       metadata={ metadata }
     >
       <ReduxContextProvider store={ store }>

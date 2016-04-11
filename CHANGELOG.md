@@ -1,5 +1,66 @@
+- Changed: ``layouts`` should not be defined in build and client scripts
+  anymore. This method will be deprecated in a future version.
+  Instead please directly pass ``layouts`` in the ``routes`` definitions with a
+  HoC.
+  Here is an example:
+
+  ```js
+  import React, { Component } from "react"
+  import { Route } from "react-router"
+
+  import LayoutContainer from "../LayoutContainer"
+  import StatinamicPageContainer from "statinamic/lib/PageContainer"
+
+  import Page from "../layouts/Page"
+  import PageError from "../layouts/PageError"
+  import PageLoading from "../layouts/PageLoading"
+  import Homepage from "../layouts/Homepage"
+
+  class PageContainer extends Component {
+    render() {
+      const { props } = this
+      return (
+        <StatinamicPageContainer
+          { ...props }
+          layouts={ {
+            Page,
+            PageError,
+            PageLoading,
+            Homepage,
+          } }
+        />
+      )
+    }
+  }
+
+  export default (
+    <Route component={ LayoutContainer }>
+      <Route path="*" component={ PageContainer } />
+    </Route>
+  )
+  ```
+
+  You should take a new look to the [default boilerplate](boilerplate).
+
 - Added: Use node-portfinder to avoid error when port is used
   ([#320](https://github.com/MoOx/statinamic/issues/320))
+
+## Boilerplate
+
+- Fixed: ``PageError`` warning about missing PropTypes
+  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+
+- Changed: ``PageError`` is nicer and now looks like documentation 404.
+
+- Added: a ``PageLoading`` component is now provided and include 2 indicators:
+  - A [topbar](https://github.com/buunguyen/topbar) via
+    [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
+  - A simple CSS loading spinner.
+
+  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+
+- Added: link to 404 and loading page in the footer, so new users can see and
+  try those easily.
 
 # 0.9.3 - 2016-04-04
 
