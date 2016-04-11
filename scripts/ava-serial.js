@@ -5,9 +5,19 @@ import throat from "throat"
 
 const spawnAva = (file) => (
   new Promise((resolve, reject) => {
+    if (typeof file === "string") {
+      file = [ file ]
+    }
+    console.log("=".repeat(20))
+    console.log(file)
+    console.log("=".repeat(20))
+
     const ps = spawn(
-      process.execPath,
-      [ "node_modules/.bin/ava", file ],
+      "node",
+      [
+        "./node_modules/.bin/ava",
+        ...file,
+      ],
       {
         stdio: "inherit",
       }
@@ -24,17 +34,22 @@ const spawnAva = (file) => (
 
 const pattern = pkg.ava.files
 
-if (process.env.TRAVIS && /v4/.test(process.version)) {
+const exit = (err) => {
+  setImmediate(() => {
+    process.exit(err)
+  })
+}
+
+if (process.env.TRAVIS && process.version.startsWith("v4")) {
   globby(pattern)
-  .then((tests) => {
+  .then((tests) => (
     Promise.all(
       tests.map(throat(3, (file) => spawnAva(file)))
-    )
-  })
-  .catch((err) => {
-    throw err
-  })
+    ))
+  )
+  .catch(exit)
 }
 else {
   spawnAva(pattern)
+  .catch(exit)
 }
