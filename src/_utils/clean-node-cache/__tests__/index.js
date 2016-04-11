@@ -1,8 +1,7 @@
 import fs from "fs"
 // import { relative as relativePath, join } from "path"
 import { join } from "path"
-import { sync as rimraf } from "rimraf"
-import { sync as mkdirp } from "mkdirp"
+import { mkdirsSync, removeSync } from "fs-extra"
 import test from "ava"
 
 import cleanNodeCache from "../index.js"
@@ -12,8 +11,8 @@ const fileNotToClean = join(
 
 test("invalidate js cache", (t) => {
   const folder = join(__dirname, "ouput", "cache")
-  rimraf(folder)
-  mkdirp(folder)
+  removeSync(folder)
+  mkdirsSync(folder)
   const jsfile = join(folder, "thing.js")
   fs.writeFileSync(jsfile, "module.exports = 1")
   t.is(
@@ -54,5 +53,5 @@ test("invalidate js cache", (t) => {
   //   "should get the direct fresh exported value"
   // )
 
-  rimraf(folder)
+  removeSync(folder)
 })
