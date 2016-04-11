@@ -204,7 +204,7 @@ export default (options = {}) => {
       throw err
     }
 
-    if (port !== devHost) {
+    if (port !== devPort) {
       log(`Port ${ devPort } is not available. Using port ${ port } instead.`)
     }
     server.listen(port, devHost, (err) => {
