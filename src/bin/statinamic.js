@@ -1,8 +1,8 @@
-/* eslint-disable no-var */
+import "babel-polyfill"
 import yargs from "../configurator/yargs.js"
 
 import runner from "./runner.js"
-import setup from "./commands/setup.js"
+import setup from "./commands/setup/index.js"
 
 const startAndBuildOptions = {
   script: {
