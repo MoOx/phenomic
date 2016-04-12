@@ -25,7 +25,11 @@ const template = {
     "extends": [
       "eslint-config-i-am-meticulous/react",
     ],
+    "rules": {
+      "react/prefer-stateless-function": 0,
+    },
   },
+  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/statinamic/issues/46",
   "stylelint": {
     "extends": "stylelint-config-standard",
   },
