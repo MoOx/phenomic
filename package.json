@@ -113,6 +113,7 @@
     "sinon": "^1.17.3",
     "stylelint": "^5.0.1",
     "stylelint-config-standard": "^5.0.0",
+    "suppose": "^0.5.2",
     "throat": "^2.0.2"
   },
   "peerDependencies": {
@@ -166,7 +167,7 @@
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "pretests": "npm run lint",
-    "tests": "babel-node scripts/ava-serial.js",
+    "tests": "ava",
     "integration-tests": "ava __tests__/*.js",
     "pretest-boilerplate": "npm run transpile",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
