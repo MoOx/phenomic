@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import pkg from "../../../package.json"
 
-const metaGenerator = (
+export const metaGenerator = (
   "<meta name=\"generator\" " +
   `content="${ pkg.name } ${ pkg.version } ${ pkg.repository }" />`
 )

@@ -7,7 +7,7 @@ import expectJSX from "expect-jsx"
 
 expect.extend(expectJSX)
 
-import Html from "../Html"
+import Html, { metaGenerator } from "../Html"
 
 const head = "head"
 const body = "body"
@@ -32,7 +32,7 @@ test("should render html string", () => {
     <html
       lang="en"
     >
-      <head dangerouslySetInnerHTML={ { __html: head } } />
+      <head dangerouslySetInnerHTML={ { __html: metaGenerator + head } } />
       <body>
         <div
           dangerouslySetInnerHTML={ { __html: body } }
@@ -61,7 +61,7 @@ test("should render html string, manifest and children", () => {
       lang="en"
       manifest="manifest"
     >
-      <head dangerouslySetInnerHTML={ { __html: head } } />
+      <head dangerouslySetInnerHTML={ { __html: metaGenerator + head } } />
       <body>
         <div
           dangerouslySetInnerHTML={ { __html: body } }
