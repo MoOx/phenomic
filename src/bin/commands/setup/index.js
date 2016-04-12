@@ -1,17 +1,15 @@
-import "babel-polyfill"
-
 import color from "chalk"
 import { join } from "path"
 import fs from "fs-promise"
 
-import { prompt } from  "../utils/inquirer"
-import questions, { defaultTestAnswers } from "../data/questions"
-import template from "../data/template"
+import { prompt } from  "inquirer"
+import questions, { defaultTestAnswers } from "./questions"
+import template from "./template"
 import {
   version as statinamicVersion,
   peerDependencies as peerDeps,
   optionalPeerDependencies as opPeerDeps,
-} from "../../../package.json"
+} from "../../../../package.json"
 
 export default async function setup(argv) {
   const cwd = process.cwd()
@@ -40,7 +38,7 @@ export default async function setup(argv) {
     await fs.writeJson(join(cwd, "package.json"), pkg)
     console.log(color.green("Generated package.json file"))
 
-    const boilerplatePath = join(__dirname, "../../../boilerplate")
+    const boilerplatePath = join(__dirname, "../../../../boilerplate")
     await fs.copy(boilerplatePath, cwd)
     console.log(color.green("Copied boilerplate"))
 
