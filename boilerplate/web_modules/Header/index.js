@@ -22,7 +22,7 @@ export default class Header extends Component {
           </div>
           <div className={ styles.navPart2 }>
             <a
-              href="https://twitter.com/Phenomic"
+              href="https://twitter.com/Phenomic_app"
               className={ styles.link }
             >
               <Svg svg={ twitterSvg } />

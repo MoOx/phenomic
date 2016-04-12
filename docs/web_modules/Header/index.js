@@ -78,7 +78,7 @@ export default class Header extends Component {
           { " " }
           <a
             target="_blank" className={ "mx-SocialButton" }
-            href="https://twitter.com/Phenomic"
+            href="https://twitter.com/Phenomic_app"
           >
             <span className={ "mx-SocialButton-icon" } >
               <Svg
