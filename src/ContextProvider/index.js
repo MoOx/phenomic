@@ -2,9 +2,9 @@
 /* eslint-disable react/sort-comp */
 import { Component, PropTypes, Children } from "react"
 
-export default class StatinamicContext extends Component {
+export default class PhenomicContext extends Component {
   props: {
-    collection: StatinamicCollection,
+    collection: PhenomicCollection,
     layouts: Object, // deprecated
     metadata: Object,
     children?: any,

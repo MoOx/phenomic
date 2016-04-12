@@ -1,7 +1,7 @@
 // @flow
 export default (
   { config, errors }:
-  { config: StatinamicConfig, errors: Array<string>}
+  { config: PhenomicConfig, errors: Array<string>}
 ) => {
   if (typeof config.appcache === "string") {
     config.appcache = [ config.appcache ]

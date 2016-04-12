@@ -1,5 +1,5 @@
 ---
-title: How to use generate feeds in Statinamic
+title: How to use generate feeds in Phenomic
 incomplete: true
 ---
 

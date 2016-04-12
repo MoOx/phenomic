@@ -1,5 +1,5 @@
 ---
-title: How to style your app/website in Statinamic
+title: How to style your app/website in Phenomic
 incomplete: true
 ---
 

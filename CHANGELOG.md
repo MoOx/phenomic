@@ -9,7 +9,7 @@
   import { Route } from "react-router"
 
   import LayoutContainer from "../LayoutContainer"
-  import StatinamicPageContainer from "statinamic/lib/PageContainer"
+  import PhenomicPageContainer from "statinamic/lib/PageContainer"
 
   import Page from "../layouts/Page"
   import PageError from "../layouts/PageError"
@@ -20,7 +20,7 @@
     render() {
       const { props } = this
       return (
-        <StatinamicPageContainer
+        <PhenomicPageContainer
           { ...props }
           layouts={ {
             Page,

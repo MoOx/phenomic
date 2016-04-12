@@ -78,7 +78,7 @@ export default class Header extends Component {
           { " " }
           <a
             target="_blank" className={ "mx-SocialButton" }
-            href="https://twitter.com/Statinamic"
+            href="https://twitter.com/Phenomic"
           >
             <span className={ "mx-SocialButton-icon" } >
               <Svg
@@ -89,7 +89,7 @@ export default class Header extends Component {
               />
             </span>
             <span className={ "mx-SocialButton-text" }>
-              { "Follow @Statinamic" }
+              { "Follow @Phenomic" }
             </span>
           </a>
         </div>

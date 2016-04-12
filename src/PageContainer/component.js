@@ -22,7 +22,7 @@ type Props = {
 }
 
 type Context = {
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   layouts: Object // deprecated
 }
 
@@ -43,7 +43,7 @@ if (isClient()) {
 }
 
 function find(
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   pageUrl: string
 ): Object {
   return collection.find((item) => (

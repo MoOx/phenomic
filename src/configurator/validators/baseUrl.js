@@ -2,7 +2,7 @@
 import url from "url"
 
 export default function(
-  { pkg, config }: { pkg: Object, config: StatinamicConfig }
+  { pkg, config }: { pkg: Object, config: PhenomicConfig }
 ): void {
   const devUrl = `http://${ config.devHost }:${ config.devPort }/`
   const prodBaseUrl = url.parse(pkg.homepage ? pkg.homepage : devUrl)

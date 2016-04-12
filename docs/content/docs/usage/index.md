@@ -1,5 +1,5 @@
 ---
-title: How to use Statinamic
+title: How to use Phenomic
 incomplete: true
 ---
 

@@ -27,7 +27,7 @@ export default class Footer extends Component {
         { " | " }
         <a
           className={ styles.link }
-          href="https://twitter.com/Statinamic"
+          href="https://twitter.com/Phenomic"
         >
           { "News on Twitter" }
         </a>

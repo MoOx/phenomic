@@ -1,7 +1,7 @@
 import validUrl from "valid-url"
 
 export const defaultTestAnswers = {
-  name: "Statinamic",
+  name: "Phenomic",
   homepage: "http://moox.io/statinamic/",
   CNAME: false,
 }

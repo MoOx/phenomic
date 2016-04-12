@@ -14,7 +14,7 @@ export default class Footer extends Component {
         >
           { "Powered by " }
           <span className={ styles.reference }>
-            {  "<Statinamic />" }
+            {  "<Phenomic />" }
           </span>
         </a>
 

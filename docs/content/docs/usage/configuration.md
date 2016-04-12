@@ -1,8 +1,8 @@
 ---
-title: How to use configure Statinamic
+title: How to use configure Phenomic
 ---
 
-The simplest and easiest way to configure Statinamic is by updating
+The simplest and easiest way to configure Phenomic is by updating
 the ``package.json`` where you can tweak some built-in features.
 
 Here is a commented ``package.json`` with only the interesting parts
@@ -21,7 +21,7 @@ Here is a commented ``package.json`` with only the interesting parts
   // ** it's a required field to adjust url for production build **
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
-  // here is the script part, which the ones related to Statinamic
+  // here is the script part, which the ones related to Phenomic
   // you can add more like linting and stuff like that :)
   "scripts": {
     "start": "statinamic start",
@@ -36,7 +36,7 @@ Here is a commented ``package.json`` with only the interesting parts
   // DEBUG=statinamic:*
   //  (to get some visual feedback during development and build)
 
-  // Statinamic core section (default values)
+  // Phenomic core section (default values)
   "statinamic": {
     // current working directory
     // you should not need to specify this, but who knows what you will do with

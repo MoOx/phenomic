@@ -10,7 +10,7 @@ import importExports from "../../_utils/import-exports"
 import htmlMetas from "../../_utils/html-metas"
 import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
-import StatinamicContextProvider from "../../ContextProvider"
+import PhenomicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
 import minifyCollection from "../../content-loader/minify"
@@ -25,12 +25,12 @@ export default function(url: string, {
   appcache,
 }: {
   exports: Object,
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   store: Object,
 
   baseUrl: Object,
   assetsFiles: Object,
-  appcache: StatinamicAppcacheConfig,
+  appcache: PhenomicAppcacheConfig,
 }, testing?: boolean): Promise<string> {
   const {
     layouts,
@@ -80,7 +80,7 @@ export default function(url: string, {
             const collectionMin = minifyCollection(collection)
             // render app body as "react"ified html (with data-react-id)
             body = render(
-              <StatinamicContextProvider
+              <PhenomicContextProvider
                 collection={ collectionMin }
                 layouts={ layouts }
                 metadata={ metadata }
@@ -88,7 +88,7 @@ export default function(url: string, {
                 <ReduxContextProvider store={ store }>
                   <RouterContextProvider { ...renderProps } />
                 </ReduxContextProvider>
-              </StatinamicContextProvider>
+              </PhenomicContextProvider>
             )
 
             const headTags = Helmet.rewind()

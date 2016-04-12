@@ -1,9 +1,9 @@
 ---
-title: How to use Collections in Statinamic
+title: How to use Collections in Phenomic
 incomplete: true
 ---
 
-By default, Statinamic provides 2 things to help you work with collections:
+By default, Phenomic provides 2 things to help you work with collections:
 
 - it creates a file that contains all page metadata in a unique collection,
 - it provides a helper that helps you filter/sort/limit the collection.
@@ -44,7 +44,7 @@ additional fields `__filename` & `__url`.
 
 As you can see, this file contains all pages, indexes and posts.
 
-The easiest way to get some data is to use the Statinamic helper:
+The easiest way to get some data is to use the Phenomic helper:
 
 ```js
 // es6

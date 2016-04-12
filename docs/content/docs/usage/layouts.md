@@ -1,11 +1,11 @@
 ---
-title: How to use create your page layouts in Statinamic
+title: How to use create your page layouts in Phenomic
 incomplete: true
 ---
 
-Statinamic uses React components as layouts.
+Phenomic uses React components as layouts.
 
-By default, Statinamic might need 2 layouts:
+By default, Phenomic might need 2 layouts:
 
 - `Page`
 - `PageError`
@@ -21,12 +21,12 @@ title: Hello World
 layout: MyCustomLayoutComponent
 ```
 
-## Default page layouts that Statinamic can use
+## Default page layouts that Phenomic can use
 
 ### `Page`
 
 `Page` will be used as the default layout.
-**It is required for Statinamic to work by default.**
+**It is required for Phenomic to work by default.**
 
 [Check out the default `Page` and the `props` it has.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
 

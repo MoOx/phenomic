@@ -10,7 +10,7 @@ pages from React components.
 
 On top of that, you can easily add your own logic to style your pages the way
 that you like, whether that is via CSS files or inline styles. You can even
-create your own pages from plain React components; Statinamic is just a helper.
+create your own pages from plain React components; Phenomic is just a helper.
 
 ## The boilerplate
 

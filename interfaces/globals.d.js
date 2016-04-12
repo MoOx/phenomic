@@ -10,6 +10,6 @@ declare var process: {
 }
 
 declare var window: {
-  __COLLECTION__: StatinamicCollection,
+  __COLLECTION__: PhenomicCollection,
   location: Object,
 }

@@ -1,5 +1,5 @@
 ---
-title: "How to contribute to Statinamic"
+title: "How to contribute to Phenomic"
 ---
 
 ## Update the boilerplate
