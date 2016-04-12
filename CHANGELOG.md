@@ -1,3 +1,21 @@
+- Changed: project has been renamed due to a possible confusion with a PHP CMS
+  called statamic.
+  [Read more](https://github.com/MoOx/statinamic/issues/306).
+  For an easy migration, you can simply run the following commands
+
+  ```console
+  $ npm remove --save-dev statinamic
+  $ npm install --save-dev phenomic
+  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \) -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \) -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  ```
+
+  If you want to double check what files will be changed, just run
+
+  ```console
+  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \)
+  ```
+
 - Changed: ``layouts`` should not be defined in build and client scripts
   anymore. This method will be deprecated in a future version.
   Instead please directly pass ``layouts`` in the ``routes`` definitions with a
@@ -68,6 +86,13 @@
 
 - Added: link to 404 and loading page in the footer, so new users can see and
   try those easily.
+
+---
+
+# Statinamic
+
+Before 0.10,
+[project was named Statinamic](https://github.com/MoOx/statinamic/issues/306).
 
 # 0.9.3 - 2016-04-04
 
