@@ -15,7 +15,7 @@ export const browserHistory =
   })
   : null
 
-export default function statinamic({
+export default function phenomic({
   layouts, // deprecated
   metadata,
   routes,
@@ -41,6 +41,6 @@ export default function statinamic({
         <Router history={ browserHistory } routes={ routes } />
       </ReduxContextProvider>
     </PhenomicContextProvider>,
-    document.getElementById("statinamic")
+    document.getElementById("phenomic")
   )
 }

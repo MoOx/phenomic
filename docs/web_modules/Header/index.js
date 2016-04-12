@@ -1,11 +1,11 @@
 import React, { Component } from "react"
-import Link from "statinamic/lib/Link"
+import Link from "phenomic/lib/Link"
 import cx from "classnames"
 
 import styles from "./index.css"
 import npmPkg from "../../../package.json"
 import Svg from "react-svg-inline"
-import statinamicLogoSvg from "../../../logo/statinamic-text-white.svg"
+import phenomicLogoSvg from "../../../logo/phenomic-text-white.svg"
 import twitterSvg from "./iconmonstr-twitter-1.svg"
 import starSvg from "./iconmonstr-start.svg"
 
@@ -16,7 +16,7 @@ export default class Header extends Component {
       <header className={ styles.header }>
         <div className={ styles.logo }>
           <Svg
-            svg={ statinamicLogoSvg }
+            svg={ phenomicLogoSvg }
             width="100%" height="auto"
             fill="#fff"
             cleanup
@@ -53,7 +53,7 @@ export default class Header extends Component {
           </Link>
           <a
             className={ styles.link }
-            href={ "https://gitter.im/MoOx/statinamic" }
+            href={ "https://gitter.im/MoOx/phenomic" }
           >
             { "Support 💬" }
           </a>
@@ -61,7 +61,7 @@ export default class Header extends Component {
         <div className={ styles.social }>
           <a
             target="_blank" className="mx-SocialButton"
-            href="https://github.com/MoOx/statinamic"
+            href="https://github.com/MoOx/phenomic"
           >
             <span className={ "mx-SocialButton-icon" } >
               <Svg
@@ -96,7 +96,7 @@ export default class Header extends Component {
         <a
           className={ cx(styles.link, styles.version) }
           href={
-            "https://github.com/MoOx/statinamic/blob/master/CHANGELOG.md"
+            "https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md"
           }
         >
           { `v${ npmPkg.version }` }

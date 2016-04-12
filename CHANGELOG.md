@@ -9,7 +9,7 @@
   import { Route } from "react-router"
 
   import LayoutContainer from "../LayoutContainer"
-  import PhenomicPageContainer from "statinamic/lib/PageContainer"
+  import PhenomicPageContainer from "phenomic/lib/PageContainer"
 
   import Page from "../layouts/Page"
   import PageError from "../layouts/PageError"
@@ -43,28 +43,28 @@
   You should take a new look to the [default boilerplate](boilerplate).
 
 - Added: Use node-portfinder to avoid error when port is used
-  ([#320](https://github.com/MoOx/statinamic/issues/320))
+  ([#320](https://github.com/MoOx/phenomic/issues/320))
 
 ## Boilerplate
 
 - Fixed: ``PageError`` warning about missing PropTypes
-  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+  ([#357](https://github.com/MoOx/phenomic/issues/357)).
 
 - Changed: Bump css-loader to ^0.23.0. This may improve performance a little bit
-  ([#374](https://github.com/MoOx/statinamic/issues/374))
+  ([#374](https://github.com/MoOx/phenomic/issues/374))
 
 - Changed: ``PageError`` is nicer and now looks like documentation 404.
 
 - Changed: Production build now produces short CSS classnames. You should apply this
   change for a smaller HTML file.
-  ([#385](https://github.com/MoOx/statinamic/pull/385))
+  ([#385](https://github.com/MoOx/phenomic/pull/385))
 
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
     [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
   - A simple CSS loading spinner.
 
-  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+  ([#182](https://github.com/MoOx/phenomic/issues/182)).
 
 - Added: link to 404 and loading page in the footer, so new users can see and
   try those easily.

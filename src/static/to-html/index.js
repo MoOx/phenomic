@@ -15,7 +15,7 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
-const log = debug("statinamic:static:to-html")
+const log = debug("phenomic:static:to-html")
 
 export function setPageData(
   url: string,

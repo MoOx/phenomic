@@ -15,11 +15,11 @@ test("html static metas", (t) => {
   t.deepEqual(
     htmlMetas({
       baseUrl: url.parse("http://domain.ext/"),
-      css: [ "statinamic-client.css" ],
+      css: [ "phenomic-client.css" ],
     }),
     [
       ...defaultMetas,
-      "<link rel=\"stylesheet\" href=\"/statinamic-client.css\" />",
+      "<link rel=\"stylesheet\" href=\"/phenomic-client.css\" />",
     ]
   )
 })
@@ -28,11 +28,11 @@ test("html static metas with path", (t) => {
   t.deepEqual(
     htmlMetas({
       baseUrl: url.parse("http://domain.ext/basep/"),
-      css: [ "statinamic-client.css" ],
+      css: [ "phenomic-client.css" ],
     }),
     [
       ...defaultMetas,
-      "<link rel=\"stylesheet\" href=\"/basep/statinamic-client.css\" />",
+      "<link rel=\"stylesheet\" href=\"/basep/phenomic-client.css\" />",
     ]
   )
 })

@@ -17,7 +17,7 @@ export default function(options: Object): void {
     exports,
   } = options
 
-  const log = debug("statinamic:builder")
+  const log = debug("phenomic:builder")
 
   const destination = path.join(config.cwd, config.destination)
   fs.emptyDirSync(destination)

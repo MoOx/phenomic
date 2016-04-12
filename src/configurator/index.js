@@ -5,7 +5,7 @@ import minimalValidator from "./minimal-validator.js"
 import * as validators from "./validators.js"
 
 export default function config(pkg = {}, argv = process.argv) {
-  const userJSConfig = pkg.statinamic || {}
+  const userJSConfig = pkg.phenomic || {}
 
   const defaultAndCLIconfig = yargs.parse(argv)
 
@@ -18,7 +18,7 @@ export default function config(pkg = {}, argv = process.argv) {
   // validate user parameters
   const errors = [
     ...minimalValidator(userJSConfig, definitions),
-    // https://github.com/MoOx/statinamic/issues/363
+    // https://github.com/MoOx/phenomic/issues/363
     // ...minimalValidator(defaultAndCLIconfig, definitions),
   ]
 

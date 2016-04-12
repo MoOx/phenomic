@@ -29,7 +29,7 @@ export default class Header extends Component {
               { "Twitter" }
             </a>
             <a
-              href="https://github.com/MoOx/statinamic"
+              href="https://github.com/MoOx/phenomic"
               className={ styles.link }
             >
               <Svg svg={ gitHubSvg } />

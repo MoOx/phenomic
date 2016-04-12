@@ -32,7 +32,7 @@ export default class Html extends Component {
         />
         <body>
           <div
-            id="statinamic"
+            id="phenomic"
             dangerouslySetInnerHTML={ {
               __html: this.props.body,
             } }

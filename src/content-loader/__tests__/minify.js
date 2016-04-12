@@ -2,7 +2,7 @@ import test from "ava"
 
 import minify from "../minify"
 
-test("statinamic/lib/content-loader/minify", (t) => {
+test("phenomic/lib/content-loader/minify", (t) => {
   t.deepEqual(
     minify([
       {

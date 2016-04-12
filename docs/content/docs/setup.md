@@ -21,8 +21,8 @@ $ mkdir $DIR && cd $DIR
 
 ```console
 $ npm init --force
-$ npm install statinamic
-$ ./node_modules/.bin/statinamic setup
+$ npm install phenomic
+$ ./node_modules/.bin/phenomic setup
 ```
 
 After you answer some questions, you are setup with **Phenomic**.
@@ -42,7 +42,7 @@ To install from git, you will need to get some deps to transpile sources
 
 ```console
 $ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1
-$ npm install https://github.com/MoOx/statinamic.git
+$ npm install https://github.com/MoOx/phenomic.git
 ```
 
 ## Install dependencies

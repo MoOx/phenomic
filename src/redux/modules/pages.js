@@ -2,12 +2,12 @@
 import jsonFetch from "simple-json-fetch"
 import joinUri from "../../_utils/join-uri"
 
-export const NOOP = "statinamic/pages/NOOP"
-export const GET = "statinamic/pages/GET"
-export const SET = "statinamic/pages/SET"
-export const SET_TYPE = "statinamic/pages/SET_TYPE"
-export const FORGET = "statinamic/pages/FORGET"
-export const ERROR = "statinamic/pages/ERROR"
+export const NOOP = "phenomic/pages/NOOP"
+export const GET = "phenomic/pages/GET"
+export const SET = "phenomic/pages/SET"
+export const SET_TYPE = "phenomic/pages/SET_TYPE"
+export const FORGET = "phenomic/pages/FORGET"
+export const ERROR = "phenomic/pages/ERROR"
 
 // redux reducer
 export default function reducer(

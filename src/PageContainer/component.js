@@ -67,7 +67,7 @@ function adjustCurrentUrl(location: Object, item: Object, props: Props): void {
 
   if (currentExactPageUrl !== item.__url) {
     props.logger.info(
-      "statinamic: PageContainer: " +
+      "phenomic: PageContainer: " +
       `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
     )
     if (browserHistory) {
@@ -87,7 +87,7 @@ function getLayout(
   if (context.layouts && context.layouts[layout]) {
     if (warn && !layoutFromContextWarning) {
       props.logger.warn(
-        "statinamic: You are using a layout defined in the client and build  " +
+        "phenomic: You are using a layout defined in the client and build  " +
         `scripts ('${ layout }'). \n` +
         "This method is deprecated and will be removed in the future. \n" +
         "In order to have more flexibility, you should create your own " +
@@ -123,7 +123,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
     if (!getLayout(props.defaultLayout, props, context)) {
       props.logger.error(
-        "statinamic: PageContainer: " +
+        "phenomic: PageContainer: " +
         `default layout "${ props.defaultLayout }" not provided. `
       )
     }
@@ -171,7 +171,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const pageUrl = splatToUrl(props.params.splat)
     if (isDevelopmentClient()) {
       props.logger.info(
-        `statinamic: PageContainer: '${ pageUrl }' rendering...`
+        `phenomic: PageContainer: '${ pageUrl }' rendering...`
       )
     }
 
@@ -187,7 +187,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       else {
         props.logger.error(
-          `statinamic: PageContainer: ${ pageUrl } is a page not found.`
+          `phenomic: PageContainer: ${ pageUrl } is a page not found.`
         )
         props.setPageNotFound(pageUrl)
       }
@@ -200,7 +200,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       const Layout = getLayout(page.type, props, context)
       if (page.type !== undefined && !Layout) {
         props.logger.error(
-          "statinamic: PageContainer: " +
+          "phenomic: PageContainer: " +
           `Unkown page type: "${ page.type }" component not available in ` +
           "\"layouts\" property. " +
           `Please check the "layout" or "type" of page "${ page }" header.`
@@ -221,12 +221,12 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
     if (!page) {
       if (isDevelopmentClient()) {
-        props.logger.info(`statinamic: PageContainer: '${ pageUrl }' no data`)
+        props.logger.info(`phenomic: PageContainer: '${ pageUrl }' no data`)
       }
       return null
     }
     if (isDevelopmentClient()) {
-      props.logger.info(`statinamic: PageContainer: '${ pageUrl }'`, page)
+      props.logger.info(`phenomic: PageContainer: '${ pageUrl }'`, page)
     }
 
     if (
@@ -234,7 +234,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       page.toString() !== "[object Object]"
     ) {
       props.logger.info(
-        `statinamic: PageContainer: page ${ pageUrl } should be an object`
+        `phenomic: PageContainer: page ${ pageUrl } should be an object`
       )
       return null
     }

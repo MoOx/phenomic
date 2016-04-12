@@ -14,8 +14,8 @@ let timeout
 
 module.exports = function(input) {
   const query =
-    this.options.statinamic
-      ? this.options.statinamic.loader
+    this.options.phenomic
+      ? this.options.phenomic.loader
       : loaderUtils.parseQuery(this.query)
 
   try {

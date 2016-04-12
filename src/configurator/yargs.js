@@ -10,7 +10,7 @@ yargs
   .showHelpOnFail()
   .epilogue(
     "For more information about the configuration, " +
-    "http://moox.io/statinamic/"
+    "http://moox.io/phenomic/"
   )
 
 Object.keys(definitions).forEach((optName) => {

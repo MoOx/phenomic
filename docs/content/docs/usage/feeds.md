@@ -3,7 +3,7 @@ title: How to use generate feeds in Phenomic
 incomplete: true
 ---
 
-The `statinamic/lib/content-loader` can handle this very easily.
+The `phenomic/lib/content-loader` can handle this very easily.
 The default boilerplate already handles a default RSS feed that will grab the
 last 20 posts.
 
@@ -12,9 +12,9 @@ Here is a commented part of the webpack configuration that will helps:
 ```js
   module: {
    loaders: [
-     { // statinamic requirement
+     { // phenomic requirement
        test: /\.md$/,
-       loader: "statinamic/lib/content-loader",
+       loader: "phenomic/lib/content-loader",
        query: {
          context: path.join(config.cwd, config.source),
 

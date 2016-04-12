@@ -19,7 +19,7 @@ export default {
     filename: undefined,
 
     // prevent babel-plugin-webpack-loaders emited files to be in your dist
-    // folder, see // https://github.com/MoOx/statinamic/issues/214
+    // folder, see // https://github.com/MoOx/phenomic/issues/214
     path: tmpdir(),
   },
 }

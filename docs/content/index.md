@@ -8,8 +8,8 @@ layout: Homepage
 
 **Note that _Phenomic_ is under active development**, so do not hesitate to:
 
-- Ask questions on [the support chat](https://gitter.im/MoOx/statinamic),
-- [Open an issue](https://github.com/MoOx/statinamic/issues/new)
+- Ask questions on [the support chat](https://gitter.im/MoOx/phenomic),
+- [Open an issue](https://github.com/MoOx/phenomic/issues/new)
   when you find a bug (or think you have one).
 
 ## Easy to use
@@ -46,7 +46,7 @@ During development, enjoy the benefit of hot loading with visual errors in your
 layout! That means you won't have to refresh your page during development when
 you edit your website. You will also see compilation & runtime errors.
 
-[![Developer experience preview](/statinamic/assets/dx-play.jpg)](/statinamic/assets/dx.mp4)
+[![Developer experience preview](/phenomic/assets/dx-play.jpg)](/phenomic/assets/dx.mp4)
 
 ### Choose your Phenomic flavor
 

@@ -9,9 +9,9 @@ test("writeAppcache", async (t) => {
   const dest = join(distPath, "manifest.appcache")
 
   const files = [
-    "/statinamic/foo/bar/index.json",
-    "/statinamic/index.json",
-    "/statinamic/index.html",
+    "/phenomic/foo/bar/index.json",
+    "/phenomic/index.json",
+    "/phenomic/index.html",
   ]
 
   try {
@@ -21,7 +21,7 @@ test("writeAppcache", async (t) => {
 
   return writeAppcache(
       distPath,
-      "/statinamic",
+      "/phenomic",
       [ "**/*.*", "!**/*.html", "index.html" ]
     )
     .then(
@@ -32,7 +32,7 @@ test("writeAppcache", async (t) => {
     .then((content) => {
       t.is(
         content.toString(),
-        template(files, "/statinamic/")
+        template(files, "/phenomic/")
       )
     })
     .catch((err) => {

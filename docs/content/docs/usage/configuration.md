@@ -17,27 +17,27 @@ Here is a commented ``package.json`` with only the interesting parts
   // npm needs a 'dashed-name' (optional?)
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
 
-  // statinamic uses the default package.json homepage
+  // phenomic uses the default package.json homepage
   // ** it's a required field to adjust url for production build **
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
   // here is the script part, which the ones related to Phenomic
   // you can add more like linting and stuff like that :)
   "scripts": {
-    "start": "statinamic start",
-    "build": "statinamic build",
+    "start": "phenomic start",
+    "build": "phenomic build",
   },
   // Note that you can provide some flags but for now they are not documented
   // (start and build should be enough)
   //
-  // Here are some default environnement variable set by "statinamic" bin
+  // Here are some default environnement variable set by "phenomic" bin
   // BABEL_DISABLE_CACHE=1
   //  (required to run webpack loaders correctly in Node
-  // DEBUG=statinamic:*
+  // DEBUG=phenomic:*
   //  (to get some visual feedback during development and build)
 
   // Phenomic core section (default values)
-  "statinamic": {
+  "phenomic": {
     // current working directory
     // you should not need to specify this, but who knows what you will do with
     // it :D

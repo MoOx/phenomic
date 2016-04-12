@@ -9,9 +9,9 @@ export default ({ config, pkg }) => ({
   },
   module: {
     loaders: [
-      { // statinamic requirement
+      { // phenomic requirement
         test: /\.md$/,
-        loader: "statinamic/lib/content-loader",
+        loader: "phenomic/lib/content-loader",
         query: {
           context: path.join(config.cwd, config.source),
           // renderer: (text) => html

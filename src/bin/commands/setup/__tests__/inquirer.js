@@ -9,8 +9,8 @@ test.cb("test inquirer interface", (t) => {
     { debug: fs.createWriteStream("debug.txt") }
   )
   .when(/Name of your project/, "Phenomic\n")
-  .when(/Homepage url for your website/, "http://moox.io/statinamic\n")
-  .when(/Should statinamic generate a CNAME file/, "\n")
+  .when(/Homepage url for your website/, "http://moox.io/phenomic\n")
+  .when(/Should phenomic generate a CNAME file/, "\n")
   .on("error", function(error) {
     console.error(error)
     t.fail()

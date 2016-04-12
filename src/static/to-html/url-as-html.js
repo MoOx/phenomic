@@ -68,12 +68,12 @@ export default function(url: string, {
           else if (redirectLocation) {
             // TODO add a redirect page à la "jekyll redirect plugin"
             throw new Error (
-              "statinamic (static) doesn't handle redirection yet"
+              "phenomic (static) doesn't handle redirection yet"
             )
           }
           else if (!renderProps) {
             throw new Error (
-              "statinamic (static) doesn't handle page not found yet"
+              "phenomic (static) doesn't handle page not found yet"
             )
           }
           else {

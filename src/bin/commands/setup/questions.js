@@ -2,7 +2,7 @@ import validUrl from "valid-url"
 
 export const defaultTestAnswers = {
   name: "Phenomic",
-  homepage: "http://moox.io/statinamic/",
+  homepage: "http://moox.io/phenomic/",
   CNAME: false,
 }
 
@@ -33,7 +33,7 @@ const questions = [
   {
     type: "confirm",
     name: "CNAME",
-    message: "Should statinamic generate a CNAME file ?",
+    message: "Should phenomic generate a CNAME file ?",
     default: false,
   },
 ]

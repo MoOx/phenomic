@@ -10,7 +10,7 @@ By default, Phenomic might need 2 layouts:
 - `Page`
 - `PageError`
 
-If you use the `statinamic/lib/PageContainer`, you will need those components in
+If you use the `phenomic/lib/PageContainer`, you will need those components in
 your `layouts` definition (by default, declared in `layouts/index.js`).
 
 To use your custom layout, add the `layout` option to the `YAML` frontmatter of
@@ -28,7 +28,7 @@ layout: MyCustomLayoutComponent
 `Page` will be used as the default layout.
 **It is required for Phenomic to work by default.**
 
-[Check out the default `Page` and the `props` it has.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
+[Check out the default `Page` and the `props` it has.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
 
 ### `PageError`
 
@@ -38,7 +38,7 @@ layout: MyCustomLayoutComponent
 _This layout is optional_ and a `PageContainer` contains a minimal fallback if
 it is not available.
 
-[Check out the default `PageError` and the `props` it has.](https://github.com/MoOx/statinamic/blob/master/boilerplate/web_modules/layouts/PageError/index.js)
+[Check out the default `PageError` and the `props` it has.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/PageError/index.js)
 
 ### `PageLoading`
 

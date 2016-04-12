@@ -16,13 +16,13 @@ create your own pages from plain React components; Phenomic is just a helper.
 
 * initialize your bundles
   (
-    [client](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-client.js) +
-    [static](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/index-static.js)
+    [client](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/scripts/index-client.js) +
+    [static](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/scripts/index-static.js)
   ) with:
-  - your [layout components](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/layouts/index.js)
-  - some [routes](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/routes.js)
-  - a [store](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/web_modules/app/store.js) to keep data in memory
-* create your [build script](https://github.com/MoOx/statinamic/blob/master/src/boilerplate/scripts/build.js) so you can:
+  - your [layout components](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/web_modules/layouts/index.js)
+  - some [routes](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/web_modules/app/routes.js)
+  - a [store](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/web_modules/app/store.js) to keep data in memory
+* create your [build script](https://github.com/MoOx/phenomic/blob/master/src/boilerplate/scripts/build.js) so you can:
   * define your configuration
     (eg: webpack loaders to add your favorite css preprocessor)
   * run the dev server (`(babel-)node build --server --dev`)

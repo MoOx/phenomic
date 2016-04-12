@@ -57,9 +57,9 @@ stat("lib", function(error, stats1) {
       "\n\n" +
       `$ npm install babel-cli ${ pkg.babel.presets }` +
       "\n\n" +
-      "Then rebuild statinamic by running: " +
+      "Then rebuild phenomic by running: " +
       "\n\n" +
-      "$ npm rebuild statinamic" +
+      "$ npm rebuild phenomic" +
       "\n\n"
     )
 

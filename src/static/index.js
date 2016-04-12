@@ -5,7 +5,7 @@ import debug from "debug"
 import toStaticHtml from "./to-html"
 import postBuild from "./postbuild"
 
-const log = debug("statinamic:static")
+const log = debug("phenomic:static")
 
 export default function(config: PhenomicConfig): Promise<void> {
   return toStaticHtml(config)

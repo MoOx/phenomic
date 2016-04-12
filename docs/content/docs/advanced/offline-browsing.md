@@ -29,12 +29,12 @@ This is the old one, IE 10 (and above) supports it.
 You can config Phenomic to generate a AppCache manifest for you after build.
 
 To enable this feature, add an ``appcache`` field to ``package.json`` under
-``statinamic`` section.
+``phenomic`` section.
 
 ```js
 {
   ...
-  "statinamic": {
+  "phenomic": {
     "appcache": true
   }
   ...
@@ -67,4 +67,4 @@ Congratulation. Your website is now a offline-first application.
 
 ## Service worker
 
-Not implemented yet.  [help us](https://github.com/MoOx/statinamic/issues/153)
+Not implemented yet.  [help us](https://github.com/MoOx/phenomic/issues/153)
