@@ -166,7 +166,7 @@
     "lint:css": "stylelint \"**/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "pretests": "npm run lint",
-    "tests": "babel-node scripts/ava-serial.js",
+    "tests": "ava",
     "integration-tests": "ava __tests__/*.js",
     "pretest-boilerplate": "npm run transpile",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
