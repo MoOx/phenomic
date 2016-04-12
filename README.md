@@ -10,7 +10,7 @@
 
 ---
 
-**[Check out the website](http://moox.io/phenomic) for online documentation**
+**[Check out the website](https://phenomic.io) for online documentation**
 (or `phenomic/docs/content` for raw markdown documentation).
 
 ---

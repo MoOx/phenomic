@@ -2,7 +2,7 @@ import validUrl from "valid-url"
 
 export const defaultTestAnswers = {
   name: "Phenomic",
-  homepage: "http://moox.io/phenomic/",
+  homepage: "https://phenomic.io/",
   CNAME: false,
 }
 

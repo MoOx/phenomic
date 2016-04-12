@@ -7,9 +7,9 @@ title: Phenomic default boilerplate
 Before having fun with Phenomic, be sure to read (or at least pretend to)
 the documentation :
 
-* [Setup](http://moox.io/phenomic/docs/setup/)
-* [Usage](http://moox.io/phenomic/docs/usage/)
-* [FAQ](http://moox.io/phenomic/docs/faq/)
+* [Setup](https://phenomic.io/docs/setup/)
+* [Usage](https://phenomic.io/docs/usage/)
+* [FAQ](https://phenomic.io/docs/faq/)
 
 Built with
 <a href="https://facebook.github.io/react/">

@@ -9,7 +9,7 @@ export default class Footer extends Component {
     return (
       <footer className={ styles.footer }>
         <a
-          href="http://moox.io/phenomic/"
+          href="https://phenomic.io/"
           className={ styles.link }
         >
           { "Powered by " }

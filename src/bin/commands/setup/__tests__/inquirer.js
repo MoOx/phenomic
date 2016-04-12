@@ -9,7 +9,7 @@ test.cb("test inquirer interface", (t) => {
     { debug: fs.createWriteStream("debug.txt") }
   )
   .when(/Name of your project/, "Phenomic\n")
-  .when(/Homepage url for your website/, "http://moox.io/phenomic\n")
+  .when(/Homepage url for your website/, "https://phenomic.io\n")
   .when(/Should phenomic generate a CNAME file/, "\n")
   .on("error", function(error) {
     console.error(error)
