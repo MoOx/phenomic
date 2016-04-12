@@ -57,7 +57,7 @@
 
 - Changed: Production build now produces short CSS classnames. You should apply this
   change for a smaller HTML file.
-  ([#]())
+  ([#385](https://github.com/MoOx/statinamic/pull/385))
 
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
