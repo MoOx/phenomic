@@ -125,7 +125,7 @@ fi
   # TO HIDE YOUR $GITHUB_TOKEN!
   # this is really important
   --silent \
-  #  base directory for all source files
+  # base directory for all source files
   --dist dist
   
 ```
