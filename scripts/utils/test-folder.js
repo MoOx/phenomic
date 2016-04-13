@@ -29,8 +29,8 @@ export default async function test(
       lnfs("node_modules/react-helmet", `${ targetModules }/react-helmet`),
       lnfs("node_modules/webpack", `${ targetModules }/webpack`),
 
-      // delete statinamic link to pruning devdeps
-      rm(`${ targetModules }/statinamic`),
+      // delete phenomic link to pruning devdeps
+      rm(`${ targetModules }/phenomic`),
     ])
 
     await init()
@@ -39,14 +39,14 @@ export default async function test(
     await exec("npm prune", { cwd: target })
     await exec("npm install", { cwd: target })
 
-    // we don't use a link on statinamic directly, otherwise
-    // statinamic/node_modules contains too many dependencies (dev deps) and the
+    // we don't use a link on phenomic directly, otherwise
+    // phenomic/node_modules contains too many dependencies (dev deps) and the
     // prune that will be executed next time will remove some, which goes again
     // what we try to achieve by tuning the install to have a fast CI
-    await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
-    await lnfs("lib/bin/index.js", `${ targetModules }/.bin/statinamic`)
-    await lnfs(lib, `${ targetModules }/statinamic/lib`)
-    await lnfs("package.json", `${ targetModules }/statinamic/package.json`)
+    await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/phenomic`)
+    await lnfs("lib/bin/index.js", `${ targetModules }/.bin/phenomic`)
+    await lnfs(lib, `${ targetModules }/phenomic/lib`)
+    await lnfs("package.json", `${ targetModules }/phenomic/package.json`)
 
     // test
     if (test) {

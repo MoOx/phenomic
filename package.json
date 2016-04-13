@@ -1,5 +1,5 @@
 {
-  "name": "statinamic",
+  "name": "phenomic",
   "version": "0.9.3",
   "description": "Modern static website generator to create dynamic websites using React components.",
   "keywords": [
@@ -20,7 +20,7 @@
   ],
   "author": "Maxime Thirouin",
   "license": "MIT",
-  "repository": "https://github.com/MoOx/statinamic.git",
+  "repository": "https://github.com/MoOx/phenomic.git",
   "main": "lib/index.js",
   "files": [
     "npm",
@@ -31,7 +31,7 @@
     "!**/__tests__"
   ],
   "bin": {
-    "statinamic": "npm/bin.js"
+    "phenomic": "npm/bin.js"
   },
   "engines": {
     "node": ">=4.2.0",
@@ -211,7 +211,7 @@
       "react/prefer-stateless-function": 0
     }
   },
-  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/statinamic/issues/46",
+  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/phenomic/issues/46",
   "stylelint": {
     "extends": "stylelint-config-standard"
   },

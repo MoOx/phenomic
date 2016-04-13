@@ -34,8 +34,8 @@ test("writeAllHTMLFiles", (t) => {
     collection,
     store,
     assetsFiles: {
-      js: [ "statinamic-client.js" ],
-      css: [ "statinamic-client.css" ],
+      js: [ "phenomic-client.js" ],
+      css: [ "phenomic-client.css" ],
     },
     destination: "destination",
     baseUrl: { pathname: "/" },
@@ -51,12 +51,12 @@ test("writeAllHTMLFiles", (t) => {
 <head>
   ${ htmlMetas({
     baseUrl: { pathname: "/" },
-    css: [ "statinamic-client.css" ] }).join("\n  ") }
+    css: [ "phenomic-client.css" ] }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
 <body>
-  <div id="statinamic">
+  <div id="phenomic">
     <p>TestContainer</p>
   </div>
   <script>
@@ -71,7 +71,7 @@ test("writeAllHTMLFiles", (t) => {
       "pages": {}
     }
   </script>
-  <script src="/statinamic-client.js"></script>
+  <script src="/phenomic-client.js"></script>
 </body>
 
 </html>`

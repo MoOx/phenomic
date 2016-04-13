@@ -1,3 +1,26 @@
+- Changed: project has been renamed due to a possible confusion with a PHP CMS
+  called statamic.
+  [Read more](https://github.com/MoOx/statinamic/issues/306).
+  For an easy migration, you can simply run the following commands
+
+  ```console
+  $ npm remove --save-dev statinamic
+  $ npm install --save-dev phenomic
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  ```
+
+  If you want to double check what files will be changed, just run
+
+  ```console
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
+  ```
+
+  _This will look for S|statinamic occurence and will replace it by P|phenomic in
+  all .js and .json files that are not in .git or in node_modules._
+
 - Changed: ``layouts`` should not be defined in build and client scripts
   anymore. This method will be deprecated in a future version.
   Instead please directly pass ``layouts`` in the ``routes`` definitions with a
@@ -9,7 +32,7 @@
   import { Route } from "react-router"
 
   import LayoutContainer from "../LayoutContainer"
-  import StatinamicPageContainer from "statinamic/lib/PageContainer"
+  import PhenomicPageContainer from "phenomic/lib/PageContainer"
 
   import Page from "../layouts/Page"
   import PageError from "../layouts/PageError"
@@ -20,7 +43,7 @@
     render() {
       const { props } = this
       return (
-        <StatinamicPageContainer
+        <PhenomicPageContainer
           { ...props }
           layouts={ {
             Page,
@@ -43,31 +66,38 @@
   You should take a new look to the [default boilerplate](boilerplate).
 
 - Added: Use node-portfinder to avoid error when port is used
-  ([#320](https://github.com/MoOx/statinamic/issues/320))
+  ([#320](https://github.com/MoOx/phenomic/issues/320))
 
 ## Boilerplate
 
 - Fixed: ``PageError`` warning about missing PropTypes
-  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+  ([#357](https://github.com/MoOx/phenomic/issues/357)).
 
 - Changed: Bump css-loader to ^0.23.0. This may improve performance a little bit
-  ([#374](https://github.com/MoOx/statinamic/issues/374))
+  ([#374](https://github.com/MoOx/phenomic/issues/374))
 
 - Changed: ``PageError`` is nicer and now looks like documentation 404.
 
 - Changed: Production build now produces short CSS classnames. You should apply this
   change for a smaller HTML file.
-  ([#385](https://github.com/MoOx/statinamic/pull/385))
+  ([#385](https://github.com/MoOx/phenomic/pull/385))
 
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
     [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
   - A simple CSS loading spinner.
 
-  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+  ([#182](https://github.com/MoOx/phenomic/issues/182)).
 
 - Added: link to 404 and loading page in the footer, so new users can see and
   try those easily.
+
+---
+
+# Statinamic
+
+Before 0.10,
+[project was named Statinamic](https://github.com/MoOx/statinamic/issues/306).
 
 # 0.9.3 - 2016-04-04
 

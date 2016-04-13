@@ -8,5 +8,5 @@ fi
 
 ./node_modules/.bin/gh-pages \
   --silent \
-  --repo https://$GITHUB_TOKEN@github.com/MoOx/statinamic.git \
+  --repo https://$GITHUB_TOKEN@github.com/MoOx/phenomic.git \
   --dist docs/dist

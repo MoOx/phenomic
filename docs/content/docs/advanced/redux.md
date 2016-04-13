@@ -11,14 +11,14 @@ default boilerplate.
 
 ```js
 import { combineReducers } from "redux"
-import createStore from "statinamic/lib/redux/createStore"
-import * as statinamicReducers from "statinamic/lib/redux/modules"
+import createStore from "phenomic/lib/redux/createStore"
+import * as phenomicReducers from "phenomic/lib/redux/modules"
 import * as reducers from "app/redux"
 
 const store = createStore(
-  // here we combine statinamic required reducers and your custom ones
+  // here we combine phenomic required reducers and your custom ones
   combineReducers({
-    ...statinamicReducers,
+    ...phenomicReducers,
     ...reducers,
   }),
   { ...(typeof window !== "undefined") && window.__INITIAL_STATE__ },
@@ -28,7 +28,7 @@ const store = createStore(
 if (module.hot) {
   // enable hot module replacement for reducers
   module.hot.accept([
-    // "statinamic/lib/redux/modules",
+    // "phenomic/lib/redux/modules",
     // will not be updated since it's a lib :)
     // but will still needs to be required
 
@@ -37,7 +37,7 @@ if (module.hot) {
   ], () => {
     const updatedReducer = combineReducers({
       // we still need to combine all reducers
-      ...require("statinamic/lib/redux/modules"),
+      ...require("phenomic/lib/redux/modules"),
       ...require("app/redux/modules"),
     })
     store.replaceReducer(updatedReducer)
@@ -48,7 +48,7 @@ export default store
 ```
 ## Adding custom middlewares and store enhancers to Redux store
 
-`statinamic/lib/redux/createStore` accepts two extra parameters that
+`phenomic/lib/redux/createStore` accepts two extra parameters that
 allow you to pass custom middlewares and store enhancers.
 
 Here is an example of adding
@@ -58,8 +58,8 @@ to Redux store:
 
 ```js
 import { combineReducers } from "redux"
-import createStore from "statinamic/lib/redux/createStore"
-import * as statinamicReducers from "statinamic/lib/redux/modules"
+import createStore from "phenomic/lib/redux/createStore"
+import * as phenomicReducers from "phenomic/lib/redux/modules"
 import { reducer as searchReducer, reduxSearch } from "redux-search"
 import createLogger from "redux-logger"
 
@@ -77,7 +77,7 @@ const extraStoreEnhancers = {
 
 const store = createStore(
   combineReducers({
-    ...statinamicReducers,
+    ...phenomicReducers,
     ...{
       search: searchReducer
     }

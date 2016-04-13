@@ -14,7 +14,7 @@ testFolder(
 
     init: async () => {
       await exec("npm init -y", { cwd: target })
-      await exec("node ../lib/bin/statinamic setup --test", { cwd: target })
+      await exec("node ../lib/bin/phenomic setup --test", { cwd: target })
     },
   }
 )

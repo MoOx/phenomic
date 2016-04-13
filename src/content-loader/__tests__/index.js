@@ -2,7 +2,7 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
-test.cb("statinamic/lib/content-loader", (t) => {
+test.cb("phenomic/lib/content-loader", (t) => {
   const outputPath = __dirname + "/output/"
   const entry = __dirname + "/fixtures/script.js"
 

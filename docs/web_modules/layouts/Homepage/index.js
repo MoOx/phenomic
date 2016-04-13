@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Link from "statinamic/lib/Link"
+import Link from "phenomic/lib/Link"
 
 import Button from "../../Button"
 import Page from "../Page"

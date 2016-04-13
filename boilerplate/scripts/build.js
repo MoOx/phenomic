@@ -1,4 +1,4 @@
-import builder from "statinamic/lib/builder"
+import builder from "phenomic/lib/builder"
 
 import config from "./config.js"
 

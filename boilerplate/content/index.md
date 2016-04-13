@@ -1,15 +1,15 @@
 ---
-title: Statinamic default boilerplate
+title: Phenomic default boilerplate
 ---
 
 > Hi there.
 
-Before having fun with Statinamic, be sure to read (or at least pretend to)
+Before having fun with Phenomic, be sure to read (or at least pretend to)
 the documentation :
 
-* [Setup](http://moox.io/statinamic/docs/setup/)
-* [Usage](http://moox.io/statinamic/docs/usage/)
-* [FAQ](http://moox.io/statinamic/docs/faq/)
+* [Setup](https://phenomic.io/docs/setup/)
+* [Usage](https://phenomic.io/docs/usage/)
+* [FAQ](https://phenomic.io/docs/faq/)
 
 Built with
 <a href="https://facebook.github.io/react/">

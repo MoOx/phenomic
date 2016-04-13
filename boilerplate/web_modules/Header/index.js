@@ -22,14 +22,14 @@ export default class Header extends Component {
           </div>
           <div className={ styles.navPart2 }>
             <a
-              href="https://twitter.com/Statinamic"
+              href="https://twitter.com/Phenomic_app"
               className={ styles.link }
             >
               <Svg svg={ twitterSvg } />
               { "Twitter" }
             </a>
             <a
-              href="https://github.com/MoOx/statinamic"
+              href="https://github.com/MoOx/phenomic"
               className={ styles.link }
             >
               <Svg svg={ gitHubSvg } />

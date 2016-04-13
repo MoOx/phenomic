@@ -16,7 +16,7 @@ import cleanNodeCache from "../_utils/clean-node-cache"
 import joinUri from "../_utils/join-uri"
 import redBoxRenderer from "../_utils/redbox-renderer"
 
-const log = debug("statinamic:builder:server")
+const log = debug("phenomic:builder:server")
 
 let firstRun = true
 
@@ -197,7 +197,7 @@ export default (options = {}) => {
   // THAT'S IT
   const { devHost, devPort } = config
 
-  portFinder.basePort = devPort
+  portFinder.basePort = parseInt(devPort, 10)
 
   portFinder.getPort((err, port) => {
     if (err) {

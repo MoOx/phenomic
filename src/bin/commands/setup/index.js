@@ -6,7 +6,7 @@ import { prompt } from  "inquirer"
 import questions, { defaultTestAnswers } from "./questions"
 import template from "./template"
 import {
-  version as statinamicVersion,
+  version as phenomicVersion,
   peerDependencies as peerDeps,
   optionalPeerDependencies as opPeerDeps,
 } from "../../../../package.json"
@@ -17,13 +17,13 @@ export default async function setup(argv) {
 
   try {
     const answers = testMode ? defaultTestAnswers : await prompt(questions)
-    const { name, homepage, ...statinamic } = answers
+    const { name, homepage, ...phenomic } = answers
 
     const devDependencies = {
       ...peerDeps,
       ...opPeerDeps,
       ...!testMode && {
-        statinamic: `^${ statinamicVersion }`,
+        phenomic: `^${ phenomicVersion }`,
       },
     }
 
@@ -31,7 +31,7 @@ export default async function setup(argv) {
       ...template,
       name,
       homepage,
-      statinamic,
+      phenomic,
       devDependencies,
     }
 

@@ -15,11 +15,11 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
-const log = debug("statinamic:static:to-html")
+const log = debug("phenomic:static:to-html")
 
 export function setPageData(
   url: string,
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   store: Object
 ): void {
   const json = collection.find((item) => item.__url === url)
@@ -77,12 +77,12 @@ export function writeAllHTMLFiles({
   destination: string,
   assetsFiles: Object,
   exports: Object,
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   store: Object,
   setPageData: Function,
   forgetPageData: Function,
   writeHTMLFile: Function,
-  appcache: StatinamicAppcacheConfig,
+  appcache: PhenomicAppcacheConfig,
 }, testing?: boolean): Promise {
   // create all html files
   return Promise.all(

@@ -2,12 +2,12 @@ import test from "ava"
 
 import feed from "../feed"
 
-test("statinamic/lib/content-loader feed helper", (t) => {
+test("phenomic/lib/content-loader feed helper", (t) => {
 
   const feedXML = feed({
     feedOptions: {
       title: "test",
-      site_url: "http://statinamic.test/",
+      site_url: "http://phenomic.test/",
     },
     destination: "feed.xml",
     collection: [
@@ -39,22 +39,22 @@ test("statinamic/lib/content-loader feed helper", (t) => {
   <channel>
     <title><![CDATA[test]]></title>
     <description><![CDATA[test]]></description>
-    <link>http://statinamic.test/</link>
+    <link>http://phenomic.test/</link>
     <generator>RSS for Node</generator>
     <lastBuildDate>REPLACED_FOR_TEST</lastBuildDate>
-    <atom:link href="http://statinamic.test/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="http://phenomic.test/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title><![CDATA[One]]></title>
       <description><![CDATA[<strong>One</strong>]]></description>
-      <link>http://statinamic.test/page/one/</link>
-      <guid isPermaLink="true">http://statinamic.test/page/one/</guid>
+      <link>http://phenomic.test/page/one/</link>
+      <guid isPermaLink="true">http://phenomic.test/page/one/</guid>
       <pubDate>Thu, 01 Jan 2015 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Two]]></title>
       <description><![CDATA[<strong>Two</strong>]]></description>
-      <link>http://statinamic.test/page/two/</link>
-      <guid isPermaLink="true">http://statinamic.test/page/two/</guid>
+      <link>http://phenomic.test/page/two/</link>
+      <guid isPermaLink="true">http://phenomic.test/page/two/</guid>
       <pubDate>Thu, 31 Dec 2015 00:00:00 GMT</pubDate>
     </item>
   </channel>

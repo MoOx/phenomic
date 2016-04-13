@@ -28,7 +28,7 @@ export default
         env: {
           ...process.env,
           BABEL_DISABLE_CACHE: process.env.BABEL_DISABLE_CACHE || 1,
-          DEBUG: process.env.DEBUG || "statinamic:*",
+          DEBUG: process.env.DEBUG || "phenomic:*",
           STATINAMIC_CONFIG:
             process.env.STATINAMIC_CONFIG || join(cwd, argv.config),
         },

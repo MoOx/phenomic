@@ -12,7 +12,7 @@ export default (text) => (
     // https://github.com/ben-eb/remark-autolink-headings
     .use(autoLinkHeadings, {
       attributes: {
-        class: "statinamic-HeadingAnchor",
+        class: "phenomic-HeadingAnchor",
       },
       template: "#",
     })

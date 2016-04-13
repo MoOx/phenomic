@@ -2,7 +2,7 @@
 title: Automatic deployment on GitHub Pages
 ---
 
-**Be sure that you use the ``statinamic.CNAME`` option in your
+**Be sure that you use the ``phenomic.CNAME`` option in your
 ``package.json`. See [Configuration](./configuration/)**
 
 You will have multiple possibilities to deploy your `dist` folder on the

@@ -1,5 +1,5 @@
 import pkg from "../package.json"
-import configurator from "statinamic/lib/configurator"
+import configurator from "phenomic/lib/configurator"
 import webpackConfig from "./webpack.config.babel.js"
 import webpackConfigClient from "./webpack.config.client.js"
 

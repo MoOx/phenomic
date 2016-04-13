@@ -9,14 +9,14 @@ const files = globby.sync("**/*", {
 test("should have a CSS file", (t) => {
   t.is(
     files.filter(
-      (file) => file.startsWith("statinamic-client.") && file.endsWith(".css")
+      (file) => file.startsWith("phenomic-client.") && file.endsWith(".css")
     ).length,
     1
   )
 })
 
 // babel-plugin-webpack-loaders garbage
-// https://github.com/MoOx/statinamic/issues/214
+// https://github.com/MoOx/phenomic/issues/214
 test("should not have lot's of main CSS files", (t) => {
   t.is(
     files.filter(
