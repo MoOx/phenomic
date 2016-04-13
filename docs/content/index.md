@@ -4,7 +4,8 @@ title: ""
 layout: Homepage
 ---
 
-> A static website generator for creating dynamic websites using React components.
+> Modern static website generator for creating dynamic websites using React
+components.
 
 **Note that _Phenomic_ is under active development**, so do not hesitate to:
 

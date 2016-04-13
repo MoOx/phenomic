@@ -21,16 +21,16 @@ export default class Header extends Component {
             fill="#fff"
             cleanup
           />
-          { "Formerly" } <strong>{ "Statinamic" }</strong>{ " " }
-          <small>
-            <a
-              href={ "https://github.com/MoOx/statinamic/issues/306" }
-              style={ { color: "inherit" } }
-              title="Read more about this change"
-            >
-              { "+" }
-            </a>
-          </small>
+          <a
+            style={ {
+              opacity: 0.6,
+              color: "inherit",
+              textDecoration: "none",
+            } }
+            href={ "https://github.com/MoOx/statinamic/issues/306" }
+          >
+            { "(Formerly" } <strong>{ "Statinamic" }</strong>{ ")" }
+          </a>
         </div>
         <nav className={ styles.nav }>
           <Link

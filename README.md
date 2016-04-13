@@ -1,5 +1,7 @@
 # phenomic
 
+## (Formerly Statinamic)
+
 > Modern static website generator to create dynamic websites using React components.
 
 [![Unix Build status](https://img.shields.io/travis/MoOx/phenomic/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/phenomic)
