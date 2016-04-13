@@ -46,7 +46,7 @@ During development, enjoy the benefit of hot loading with visual errors in your
 layout! That means you won't have to refresh your page during development when
 you edit your website. You will also see compilation & runtime errors.
 
-[![Developer experience preview](/phenomic/assets/dx-play.jpg)](/phenomic/assets/dx.mp4)
+[![Developer experience preview](/assets/dx-play.jpg)](/assets/dx.mp4)
 
 ### Choose your Phenomic flavor
 
