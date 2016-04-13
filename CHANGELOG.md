@@ -82,6 +82,9 @@
   change for a smaller HTML file.
   ([#385](https://github.com/MoOx/phenomic/pull/385))
 
+- Changed: upgrade of ``stylelint`` and ``stylelint-config-standard``
+  to latest 5.x versions
+
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
     [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
