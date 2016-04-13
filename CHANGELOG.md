@@ -6,15 +6,20 @@
   ```console
   $ npm remove --save-dev statinamic
   $ npm install --save-dev phenomic
-  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \) -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
-  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \) -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|statinamic|phenomic|g' {} \;
   ```
 
   If you want to double check what files will be changed, just run
 
   ```console
-  $ find . -type f -not \( -path './.git/*' -o -path './node_modules/*' \)
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
   ```
+
+  _This will look for S|statinamic occurence and will replace it by P|phenomic in
+  all .js and .json files that are not in .git or in node_modules._
 
 - Changed: ``layouts`` should not be defined in build and client scripts
   anymore. This method will be deprecated in a future version.
