@@ -7,7 +7,8 @@
   "github": "MoOx",
   "repository": "https://github.com/MoOx/phenomic.git",
   "phenomic": {
-    "appcache": true
+    "appcache": true,
+    "CNAME": true
   },
   "scripts": {
     "lint:js": "eslint --fix .",
