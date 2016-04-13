@@ -89,7 +89,7 @@ export default class Header extends Component {
               />
             </span>
             <span className={ "mx-SocialButton-text" }>
-              { "Follow @Phenomic" }
+              { "Follow @Phenomic_app" }
             </span>
           </a>
         </div>
