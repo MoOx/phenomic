@@ -7,6 +7,7 @@
   "github": "MoOx",
   "repository": "https://github.com/MoOx/phenomic.git",
   "phenomic": {
+    "CNAME": true,
     "appcache": true
   },
   "scripts": {
