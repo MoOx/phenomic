@@ -209,9 +209,9 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     }
   }
 
-  saveContentRef(ref: Element) {
+  saveContentRef: Function = (ref: Element): void => {
     this._content = ref
-  }
+  };
 
   render() {
     const { props, context } = this
