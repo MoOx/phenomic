@@ -124,7 +124,10 @@ fi
   --repo https://$GITHUB_TOKEN@github.com/{YOU/YOUR_REPO}.git \
   # TO HIDE YOUR $GITHUB_TOKEN!
   # this is really important
-  --silent
+  --silent \
+  # base directory for all source files
+  --dist dist
+  
 ```
 
 ##### Add a `test` script in your `package.json` `scripts` section
