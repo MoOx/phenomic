@@ -1,3 +1,17 @@
+# 0.10.0 - 2016-04-13
+
+## tl;dr;
+
+- You can safely update from statinamic to phenomic without any changes in your
+  code except renaming the "S|statinamic" references (see instructions below).
+- Only one major breaking change, but previous method will probably still be
+  supported until 1.0
+- More stuff in the default boilerplate (404, loading...)
+
+→ [Example of update from statinamic 0.9 to phenomic 0.10](https://github.com/putaindecode/putaindecode.io/commit/8d63776cf8fe0cb30672646d656c93ee0c803802)
+
+## Details
+
 - Changed: project has been renamed due to a possible confusion with a PHP CMS
   called statamic.
   [Read more](https://github.com/MoOx/statinamic/issues/306).
@@ -24,8 +38,14 @@
 - Changed: ``layouts`` should not be defined in build and client scripts
   anymore. This method will be deprecated in a future version.
   Instead please directly pass ``layouts`` in the ``routes`` definitions with a
-  HoC.
-  Here is an example:
+  HoC.  
+  What are HoC? Higher order Component, more about this:
+
+  - https://medium.com/@bloodyowl/the-provider-and-higher-order-component-patterns-with-react-d16ab2d1636
+  - http://jamesknelson.com/structuring-react-applications-higher-order-components/
+  - http://natpryce.com/articles/000814.html
+
+  Here is an example (based on the default boilerplate):
 
   ```js
   import React, { Component } from "react"
