@@ -48,7 +48,6 @@ export default {
     default: "0.0.0.0",
   },
   "devPort": {
-    type: "number",
     description: "port used during development",
     default: 3000,
   },
