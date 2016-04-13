@@ -17,6 +17,7 @@ cache:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm set progress=false
   - npm prune
   - npm install
 

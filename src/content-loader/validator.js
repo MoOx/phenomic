@@ -1,3 +1,4 @@
+// @flow
 import memoize from "lru-memoize"
 
 const fieldTypes = {
@@ -6,11 +7,12 @@ const fieldTypes = {
   feedsOptions: "object",
   feeds: "object",
   description: "object",
+  defaultHead: "object",
 }
 
-const validator = (
-  userConfig = {}
-) => {
+const validator = function(
+  userConfig: Object = {}
+): void {
   const errors = []
 
   Object.keys(userConfig).forEach((key) => {

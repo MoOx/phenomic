@@ -36,8 +36,8 @@ route: my-custom-url # will create the file /my-custom-url/(index.html)
 # eg: route: 404.html # will create the file /404.html
 # eg: route: something.htm # will create the file /something.htm
 
-# note that you can add more like `date` or anything you want/need to help you
-# sort and/or filter your entries
+# note that you can add others, such as `date` or anything you want/need to
+# sort/filter
 ---
 
 Page content...

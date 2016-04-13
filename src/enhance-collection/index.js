@@ -1,6 +1,9 @@
+// @flow
 export default function enhanceCollection(
-  collection, options, console = console
-) {
+  collection: StatinamicCollection,
+  options: Object,
+  console: Object = console
+): StatinamicCollection {
   options = {
     ...options,
   }
@@ -32,12 +35,16 @@ export default function enhanceCollection(
   return collection
 }
 
-export function filter(collection, filters, console = console) {
+export function filter(
+  collection: StatinamicCollection,
+  filters: any,
+  console: Object = console
+): StatinamicCollection {
   return collection.reduce((acc, item) => {
     let include = true
     for (const filter of filters) {
       switch (typeof filter) {
-      case "function":
+      case "function": {
         const flag = filter(item)
         if (typeof flag !== "boolean") {
           console.warn(
@@ -50,8 +57,8 @@ export function filter(collection, filters, console = console) {
           include = false
         }
         break
-
-      case "object":
+      }
+      case "object": {
         const keys = Object.keys(filter)
         if (
           !keys.reduce(
@@ -73,14 +80,13 @@ export function filter(collection, filters, console = console) {
           include = false
         }
         break
-
+      }
       case "string":
       default:
         if (!item[filter]) {
           include = false
         }
         break
-
       }
 
       // break asap
@@ -97,7 +103,10 @@ export function filter(collection, filters, console = console) {
   }, [])
 }
 
-export function sort(collection, sort = "date") {
+export function sort(
+  collection: StatinamicCollection,
+  sort: Function | string = "date"
+):StatinamicCollection {
   collection = [ ...collection ]
 
   if (typeof sort === "function") {
@@ -119,23 +128,40 @@ export function sort(collection, sort = "date") {
   return collection
 }
 
-export function reverse(collection) {
+export function reverse(
+  collection: StatinamicCollection
+): StatinamicCollection {
   collection = [ ...collection ]
   collection.reverse()
   return collection
 }
 
-export function limit(collection, limit) {
+export function limit(
+  collection: StatinamicCollection,
+  limit: number
+): StatinamicCollection {
   return collection.slice(0, limit)
 }
 
-export function addSiblingReferences(collection) {
+export function addSiblingReferences(
+  collection: StatinamicCollection
+): StatinamicCollection {
   const last = collection.length - 1
+  // TODO: Use commented code when flow can understand it
+  // return collection.map((item, i) => ({
+  //   ...item,
+  //   ...(0 != i) && { previous: collection[i-1] },
+  //   ...(last != i) && { next: collection[i+1] },
+  // }))
   return collection.map((item, i) => {
-    return {
-      ...item,
-      ...(0 != i) && { previous: collection[i-1] },
-      ...(last != i) && { next: collection[i+1] },
+    const newItem = { ...item }
+    if (0 != i) {
+      newItem.previous = collection[i-1]
     }
+    if (last != i) {
+      newItem.next = collection[i+1]
+    }
+
+    return newItem
   })
 }

@@ -9,12 +9,14 @@ import feed from "./feed"
 import cache from "./cache"
 import description from "./description"
 import validator from "./validator"
-import defaultRenderer from "./default-renderer"
 
 let timeout
 
 module.exports = function(input) {
-  const query = loaderUtils.parseQuery(this.query)
+  const query =
+    this.options.statinamic
+      ? this.options.statinamic.loader
+      : loaderUtils.parseQuery(this.query)
 
   try {
     validator(query)
@@ -24,7 +26,7 @@ module.exports = function(input) {
   }
 
   const context = query.context || this.options.context
-  const renderer = query.renderer || defaultRenderer
+  const renderer = query.renderer || require("./default-renderer").default
 
   const defaultHead = query.defaultHead
   const parsed = frontMatterParser(input)

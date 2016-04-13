@@ -10,7 +10,9 @@
   background:
     #08b09b
     linear-gradient(
-      160deg, #006bf6, #10e951
+      160deg,
+      #006bf6,
+      #10e951
     );
   text-shadow: 0 1px 0 color(#111 a(0.8));
   box-shadow: inset 0 -1rem 3rem color(#000 a(0.4));
@@ -42,7 +44,6 @@
 }
 
 .link {
-
   @media (width >= 50em) {
     flex-grow: 1;
   }

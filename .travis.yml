@@ -2,6 +2,7 @@ language: node_js
 
 node_js:
   - '5'
+  - '4'
 
 # fail asap when there is a failure
 matrix:
@@ -14,11 +15,16 @@ cache:
     - test-boilerplate/node_modules
     - docs/node_modules
 
-before_install: npm prune
+before_install:
+  - npm set progress=false
+  # nyc fail on npm@3.7.1. Remove this patch when node upgrade npm
+  # https://github.com/bcoe/nyc/issues/190
+  - npm install -g npm@latest
+  - npm prune
 
 script: npm run test-with-coverage
 
-after_success: npm run coverage
+after_success: '[ \"$TRAVIS_PULL_REQUEST\" != \"false\" ] && npm run coverage'
 
 # deploy docs to gh-pages for commits in master
 deploy:

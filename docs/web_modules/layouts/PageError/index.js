@@ -1,14 +1,11 @@
-import React, { Component } from "react"
-import { PropTypes } from "react"
-
+import React, { Component, PropTypes } from "react"
 import styles from "./index.css"
 
 export default class PageError extends Component {
 
   static propTypes = {
-    error:
-      PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
-    errorText: PropTypes.string.isRequired,
+    error: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+    errorText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -40,7 +37,6 @@ export default class PageError extends Component {
               { "Do not hesitate to report us this page 😁." }
             </div>
           }
-
         </div>
       </div>
     )

@@ -3,7 +3,7 @@ import test from "ava"
 import minify from "../minify"
 
 test("statinamic/lib/content-loader/minify", (t) => {
-  t.same(
+  t.deepEqual(
     minify([
       {
         head: { title: "" },

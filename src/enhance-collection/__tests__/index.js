@@ -11,7 +11,7 @@ const collec = [
 ]
 
 test("sort with a field name", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -30,7 +30,7 @@ test("sort with a field name", (t) => {
 })
 
 test("sort with a custom function", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -58,7 +58,7 @@ test("sort with a custom function", (t) => {
 })
 
 test("reverse", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -77,7 +77,7 @@ test("reverse", (t) => {
 })
 
 test("limit", (t) => {
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {
@@ -97,7 +97,7 @@ test("addSiblingReferences", (t) => {
     { k: 3 },
   ]
 
-  t.same(
+  t.deepEqual(
     enhanceCollection(
       collec,
       {

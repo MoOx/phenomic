@@ -5,7 +5,7 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 export default ({ config, pkg }) => ({
   ...config.dev && {
-    devtool: "cheap-module-eval-source-map",
+    devtool: "#cheap-module-eval-source-map",
   },
   module: {
     loaders: [
@@ -37,7 +37,12 @@ export default ({ config, pkg }) => ({
           "style-loader",
           "css-loader" + (
             "?modules"+
-            "&localIdentName=[path][name]--[local]--[hash:base64:5]"
+            "&localIdentName=" +
+            (
+              process.env.NODE_ENV === "production"
+              ? "[hash:base64:5]"
+              : "[path][name]--[local]--[hash:base64:5]"
+            ).toString()
           ) + "!" +
           "postcss-loader",
         ),

@@ -1,6 +1,127 @@
+- Changed: ``layouts`` should not be defined in build and client scripts
+  anymore. This method will be deprecated in a future version.
+  Instead please directly pass ``layouts`` in the ``routes`` definitions with a
+  HoC.
+  Here is an example:
+
+  ```js
+  import React, { Component } from "react"
+  import { Route } from "react-router"
+
+  import LayoutContainer from "../LayoutContainer"
+  import StatinamicPageContainer from "statinamic/lib/PageContainer"
+
+  import Page from "../layouts/Page"
+  import PageError from "../layouts/PageError"
+  import PageLoading from "../layouts/PageLoading"
+  import Homepage from "../layouts/Homepage"
+
+  class PageContainer extends Component {
+    render() {
+      const { props } = this
+      return (
+        <StatinamicPageContainer
+          { ...props }
+          layouts={ {
+            Page,
+            PageError,
+            PageLoading,
+            Homepage,
+          } }
+        />
+      )
+    }
+  }
+
+  export default (
+    <Route component={ LayoutContainer }>
+      <Route path="*" component={ PageContainer } />
+    </Route>
+  )
+  ```
+
+  You should take a new look to the [default boilerplate](boilerplate).
+
+- Added: Use node-portfinder to avoid error when port is used
+  ([#320](https://github.com/MoOx/statinamic/issues/320))
+
+## Boilerplate
+
+- Fixed: ``PageError`` warning about missing PropTypes
+  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+
+- Changed: Bump css-loader to ^0.23.0. This may improve performance a little bit
+  ([#374](https://github.com/MoOx/statinamic/issues/374))
+
+- Changed: ``PageError`` is nicer and now looks like documentation 404.
+
+- Changed: Production build now produces short CSS classnames. You should apply this
+  change for a smaller HTML file.
+  ([#385](https://github.com/MoOx/statinamic/pull/385))
+
+- Added: a ``PageLoading`` component is now provided and include 2 indicators:
+  - A [topbar](https://github.com/buunguyen/topbar) via
+    [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
+  - A simple CSS loading spinner.
+
+  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+
+- Added: link to 404 and loading page in the footer, so new users can see and
+  try those easily.
+
+# 0.9.3 - 2016-04-04
+
+## Boilerplate
+
+- Removed: Remove unused define environment variables in webpack client config
+  ([#315](https://github.com/MoOx/statinamic/pull/351))
+
+# 0.9.2 - 2016-03-22
+
+- Fixed: Missing babel-register package.
+  ([#335](https://github.com/MoOx/statinamic/issues/335))
+
+# 0.9.1 - 2016-03-21
+
+- Fixed: default boilerplate have a correct .gitignore file (not .npmignore)
+  ([#323](https://github.com/MoOx/statinamic/issues/323))
+
+# 0.9.0 - 2016-03-21
+
+→ [Example of update from 0.8 to 0.9](https://github.com/putaindecode/putaindecode.io/commit/4eea549?w=1)
+
+## tl;dr;
+
+### Breaking changes
+
+- ``md-collection-loader`` has been renamed to ``content-loader``.
+- Default markdown parser is now remark _but you can use anything you want, even
+  a non markdown parser (eg: latex, asciidocs...)._
+  **``markdownIt`` configuration is not supported any more but you can still use
+  the same engine, see details below.**
+- ``scripts/webpack.config.*.js`` now needs to export function that accept
+  config as the first parameter.
+- ``scripts/config.js`` is now responsible for exporting webpack configurations.
+- (minor) ``redux-devtools`` and ``redux-thunk`` have been removed
+  (``redux`` will become private soon anyway, or might even be dropped).
+
+### Minor changes
+
+- Less boilerplate for commands to start/build.
+
+### Patches
+
+- No more duplicates in collection.
+- No more `main.*.css` files in `dist`.
+- Anchors in url are not being removed when clicking a link with an anchor.
+- Network errors are not reported as 404 anymore, but as network errors.
+
+## Details
+
 - Changed: simplified boilerplate and "start" and "build" commands !
   **Be sure to checkout new (smaller) boilerplate**.
-  - ``scripts/webpack.config.*.js`` now needs to export function that accept an object.
+  - ``scripts/webpack.config.*.js`` now needs to export function that accept
+    config as the first parameter.
   - ``scripts/config.js`` is now responsible for exporting webpack configurations.
   - You can replace ``start`` and ``build`` npm scripts by
     ``statinamic start/build``
@@ -14,29 +135,6 @@
 - Changed: Use localhost as default address to open new browser tab (for Windows
   compatibility since Windows doesn't resolve 0.0.0.0 as localhost/127.0.0.1)
   ([#257](https://github.com/MoOx/statinamic/issues/257))
-- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
-  Redux will probably become part of the private API, which will reduce
-  the boilerplate. In order to do that, we will gradually remove Redux from all
-  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
-  Here is the instruction to pull this change:
-
-  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
-  `redux-devtools-dock-monitor` from your dependencies list.
-  - Remove these variables in webpack.config.client.js, DefinePlugin section:
-
-    - ``process.env.REDUX_DEVTOOLS``
-    - ``process.env.CLIENT`` : This is totally up you.
-      You can keep it if you use it.
-      We recommended you to use a more portable way to do this:
-
-    ```diff
-    ---if (process.env.CLIENT) {
-    +++if (typeof window !== "undefined") {
-      // client-side specific code
-    }
-    ```
-  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
-
 - Changed: **``md-collection-loader`` has been renamed to ``content-loader``.**
 - Changed: ``content-loader`` now use [remark](https://github.com/wooorm/remark)
   as the default markdown engine.
@@ -85,15 +183,44 @@
       )
       ```
 
+- Changed: Remove redux devtools and `process.env.CLIENT` environment variables.
+  Redux will probably become part of the private API, which will reduce
+  the boilerplate. In order to do that, we will gradually remove Redux from all
+  public interface ([#40](https://github.com/MoOx/statinamic/issues/40)).
+  Here is the instruction to pull this change:
+
+  - Remove `redux-devtools`, `redux-devtools-log-monitor` and
+  `redux-devtools-dock-monitor` from your dependencies list.
+  - Remove these variables in webpack.config.client.js, DefinePlugin section:
+
+    - ``process.env.REDUX_DEVTOOLS``
+    - ``process.env.CLIENT`` : This is totally up you.
+      You can keep it if you use it.
+      We recommended you to use a more portable way to do this:
+
+    ```diff
+    ---if (process.env.CLIENT) {
+    +++if (typeof window !== "undefined") {
+      // client-side specific code
+    }
+    ```
+
+  See ([#261](https://github.com/MoOx/statinamic/pull/261)) for details.
+- Removed: unused ``redux-thunk`` middleware.
+  ([#279](https://github.com/MoOx/statinamic/pull/279))
 - Added: ``content-loader`` now accept any renderer.
   You can provide your own callback to transform the text content into html
   via the `renderer` option.
   See _Configuration_ section of the documentation.
+- Added: Support React to 15.x
 - Fixed: ``statinamic/lib/enhance-collection`` do not create duplicates anymore
   ([#200](https://github.com/MoOx/statinamic/pull/200))
 - Fixed: network errors will not appear as 404 error anymore
 - Fixed: `main.*.css` files are not produced anymore by the default boilerplate
   ([#214](https://github.com/MoOx/statinamic/pull/214))
+- Fixed: url with anchors are NOT being replaced with url without anchors
+  anymore
+  ([#284](https://github.com/MoOx/statinamic/pull/284))
 - Added: ``statinamic/lib/enhance-collection`` will warn if filter callback
   don’t return a boolean
 
@@ -107,6 +234,7 @@
   don't use ``JSON.stringify`` anymore.
   See changes in ``boilerplate/scripts/webpack.config.babel.js``
   ([#209](https://github.com/MoOx/statinamic/pull/209))
+- Changed: upgrade to eslint@2 and friends.
 - Fixed: assets loader use the right context
   (no big deal with default paths, but still).
   See changes in ``boilerplate/scripts/webpack.config.babel.js``

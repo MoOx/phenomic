@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import test from "ava"; import "babel-core/register"
+import test from "ava"
 import description from "../description"
 import * as fixtures from "./fixtures/description"
 
@@ -21,7 +21,7 @@ test("should not touch other properties in mdObject", (t) => {
     bar: undefined,
   }
 
-  t.same(description(mdObject), expectedObject)
+  t.deepEqual(description(mdObject), expectedObject)
 })
 
 test("should generate description with default option", (t) => {

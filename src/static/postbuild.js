@@ -3,7 +3,7 @@ import color from "chalk"
 import { writeFile } from "fs-promise"
 import writeAppcache from "../_utils/appcache"
 
-export default (config, files, log) => {
+export default function(config, files, log) {
   log(
     color.green(`✓ Static html files: ${ files.length } files written.`)
   )
@@ -26,7 +26,7 @@ export default (config, files, log) => {
         join(config.cwd, config.destination, ".nojekyll"),
         "",
       )
-      .then(() => log(color.green(`✓ .nojekyll created.`)))
+      .then(() => log(color.green("✓ .nojekyll created.")))
     )
   }
 
@@ -37,10 +37,10 @@ export default (config, files, log) => {
         config.baseUrl.pathname,
         config.appcache,
       )
-      .then(() => log(color.green(`✓ manifest.appcache created.`)))
+      .then(() => log(color.green("✓ manifest.appcache created.")))
     )
   }
 
   return Promise.all(promises)
-    .then(() => log(color.green(`✓ Build successful.`)))
+    .then(() => log(color.green("✓ Build successful.")))
 }

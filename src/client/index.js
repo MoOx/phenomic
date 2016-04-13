@@ -1,3 +1,4 @@
+// @flow
 // App
 import React from "react"
 import ReactDOM from "react-dom"
@@ -15,15 +16,25 @@ export const browserHistory =
   : null
 
 export default function statinamic({
-  layouts,
+  layouts, // deprecated
   metadata,
   routes,
   store,
-}) {
+}: {
+  layouts: Object, // deprecated
+  metadata: Object,
+  routes: React$Element,
+  store: Object,
+}): void {
+  const collection =
+    (typeof window !== "undefined")
+    ? window.__COLLECTION__
+    : []
+
   ReactDOM.render(
     <StatinamicContextProvider
-      collection={ typeof window !== "undefined" && window.__COLLECTION__ }
-      layouts={ layouts }
+      collection={ collection }
+      layouts={ layouts } // deprecated
       metadata={ metadata }
     >
       <ReduxContextProvider store={ store }>
