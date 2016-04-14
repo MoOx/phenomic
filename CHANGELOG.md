@@ -1,3 +1,7 @@
+- Fixed: dev server show wrong log message about used port
+  ``Port 3000 is not available. Using port 3000 instead``.
+  ([#392](https://github.com/MoOx/phenomic/pull/392))
+
 # 0.10.0 - 2016-04-13
 
 ## tl;dr;
