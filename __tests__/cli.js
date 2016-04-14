@@ -15,7 +15,7 @@ const phenomic = "node ./node_modules/.bin/phenomic"
 // https://github.com/MoOx/phenomic/issues/363
 // test.cb("should throw if a CLI flag is NOT recognized", (t) => {
 //   const child = exec(
-//     `${ phenomic } start --lol --open=false`, execOpts,
+//     `${ phenomic } start --open=false --lol`, execOpts,
 //     (err) => {
 //       if (err) {
 //         clearTimeout(timeout)
@@ -29,12 +29,12 @@ const phenomic = "node ./node_modules/.bin/phenomic"
 //     child.kill()
 //     t.fail()
 //     t.end()
-//   }, 500)
+//   }, 1000)
 // })
 
 test.cb("should NOT throw if a CLI flag is recognized", (t) => {
   const child = exec(
-    `${ phenomic } start --devPort=4000 --open=false`, execOpts,
+    `${ phenomic } start --open=false --devPort=4000`, execOpts,
 
     // should die quickly...
     (err) => {
@@ -53,7 +53,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     child.kill()
     t.pass()
     t.end()
-  }, 500)
+  }, 1000)
 })
 
 test.cb("should NOT throw if port is used", (t) => {
@@ -66,7 +66,7 @@ test.cb("should NOT throw if port is used", (t) => {
     }
 
     const child = exec(
-      `${ phenomic } start --devPort=8081`, execOpts,
+      `${ phenomic } start --open=false --devPort=8081`, execOpts,
 
       (err) => {
         if (err) {
