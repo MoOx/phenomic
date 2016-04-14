@@ -13,6 +13,18 @@ export default (
   { config, errors }:
   { config: PhenomicConfig, errors: Array<string>}
 ) => {
+  // Deprecated
+  if (config.appcache) {
+    config.offline = true
+
+    log(yellow(
+      "DEPRECATED: phenomic.appcache option is deprecated " +
+      "and will be removed soon. We updated your configurator to use " +
+      "default offline globby pattern with AppCache and ServiceWorker. " +
+      "Your custom globby pattern was ignore. Please refer the docs to " +
+      "update the configuration accordingly"
+    ))
+  }
   // Disable offline for development
   if (config.dev) {
     config.offline = false
