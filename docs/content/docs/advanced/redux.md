@@ -63,8 +63,8 @@ import * as phenomicReducers from "phenomic/lib/redux/modules"
 import { reducer as searchReducer, reduxSearch } from "redux-search"
 import createLogger from "redux-logger"
 
-const extraMiddlewares = { createLogger() }
-const extraStoreEnhancers = {
+const extraMiddlewares = [ createLogger() ]
+const extraStoreEnhancers = [
   reduxSearch({
     resourceIndexes: {
       books: ['author', 'title']
@@ -73,7 +73,7 @@ const extraStoreEnhancers = {
       return state.resources.get(resourceName)
     }
   })
-}
+]
 
 const store = createStore(
   combineReducers({
