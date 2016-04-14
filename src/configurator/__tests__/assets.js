@@ -3,7 +3,7 @@ import test from "ava"
 import { join } from "path"
 import configurator from ".."
 
-test("should accept string for 'asset' option", (t) => {
+test("should accept string", (t) => {
   const config = configurator(
     {
       phenomic: {
@@ -21,7 +21,7 @@ test("should accept string for 'asset' option", (t) => {
   )
 })
 
-test("should accept true for 'asset' option", (t) => {
+test("should accept true", (t) => {
   const config = configurator(
     {
       phenomic: {
@@ -39,17 +39,17 @@ test("should accept true for 'asset' option", (t) => {
   )
 })
 
-test("should not accept false for 'asset' option", (t) => {
+test("should accept false", (t) => {
   const config = configurator({ phenomic: { "assets": false } }, [])
   t.is(config.assets, false)
 })
 
-test("should not accept null for 'asset' option", (t) => {
+test("should accept null", (t) => {
   const config = configurator({ phenomic: { "assets": null } }, [])
   t.is(config.assets, null)
 })
 
-test("should accept object for 'asset' option", (t) => {
+test("should not accept object without `route` and `path` keys", (t) => {
   t.throws(
     () => {
       configurator({ phenomic: { assets: { } } }, [])
