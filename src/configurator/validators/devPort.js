@@ -9,7 +9,7 @@ export default function(
   }
   else {
     errors.push(
-      "devPort can be a string or a number and must be a legal port"
+      "`devPort` must be a legal http port number"
     )
   }
 }
