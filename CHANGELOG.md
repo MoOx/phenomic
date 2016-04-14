@@ -1,3 +1,5 @@
+# 0.10.2 - 2016-04-14
+
 - Fixed: replacement of some references that have been missed during the rename:
   - STATINAMIC (in .js)
   - statinamic (in .css).
