@@ -1,3 +1,7 @@
+- Fixed: boilerplate comes with react-router@2.1.1 until
+  [react-router#3307](https://github.com/reactjs/react-router/issues/3307)
+  is fixed
+  ([#393](https://github.com/MoOx/phenomic/issue/393))
 - Fixed: dev server show wrong log message about used port
   ``Port 3000 is not available. Using port 3000 instead``.
   ([#392](https://github.com/MoOx/phenomic/pull/392))
