@@ -1,4 +1,9 @@
-# 0.10.1 - 2016-04-13
+
+- Fixed: boilerplate now ship latest version of react-router, since
+  react-router@2.2.2 fixes the issue that create homepage to be not rendered.
+  ([#393](https://github.com/MoOx/phenomic/issues/393))
+
+# 0.10.1 - 2016-04-14
 
 - Fixed: boilerplate comes with react-router@2.1.1 until
   [react-router#3307](https://github.com/reactjs/react-router/issues/3307)
