@@ -1,4 +1,7 @@
 // @flow
+import { yellow } from "chalk"
+const log = require("debug")("phenomic:configurator:offline")
+
 const defaultPattern = [ "**", "!**/*.html", "index.html" ]
 const defaultOfflineConfig = {
   appcache: true,
@@ -13,6 +16,7 @@ export default (
   // Disable offline for development
   if (config.dev) {
     config.offline = false
+    log(yellow("Offline support is disabled in development mode"))
     return
   }
 
