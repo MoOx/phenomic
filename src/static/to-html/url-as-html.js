@@ -73,7 +73,11 @@ export default function(url: string, {
           }
           else if (!renderProps) {
             throw new Error (
-              "phenomic (static) doesn't handle page not found yet"
+              "phenomic (static) doesn't handle page not found yet. " +
+              "You are not supposed so see this message because this code is " +
+              "not supposed to be executed the way thing are, so this can " +
+              "be a react-router issue. Check out opened issue to find a " +
+              "workaround: https://github.com/MoOx/phenomic/issues"
             )
           }
           else {
