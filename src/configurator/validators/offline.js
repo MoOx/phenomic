@@ -86,7 +86,7 @@ export default (
   }
   else {
     errors.push(
-      `Your prodided an '${ typeof config.offline }'` +
+      `Your provided an '${ typeof config.offline }'` +
       "for 'phenomic.offline'. This option accepts a boolean or an object" +
       "with 3 keys: `appcache`, `serviceWorker` and `pattern`"
     )
