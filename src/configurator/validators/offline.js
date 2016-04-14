@@ -25,8 +25,9 @@ export default (
 
     log(yellow(
       "DEPRECATED: phenomic.appcache option was deprecated " +
-      "and will be removed soon. We updated your configurator to use " +
-      "default offline globby pattern with AppCache and ServiceWorker. " +
+      "and will be removed soon. We assumed you want to " +
+      "enable offline support, so we used default offline globby pattern " +
+      "with AppCache and ServiceWorker. " +
       "Your custom globby pattern was ignore. Please refer the docs to " +
       "update the configuration accordingly"
     ))
