@@ -25,8 +25,7 @@ test("should ONLY accept boolean for 'appcache' and 'serviceWorker'", (t) => {
     () => {
       configurator({
         phenomic: {
-          offline: true,
-          offlineConfig: {
+          offline: {
             appcache: "foo",
             serviceWorker: 1,
           },
@@ -34,10 +33,10 @@ test("should ONLY accept boolean for 'appcache' and 'serviceWorker'", (t) => {
       }, [])
     },
     (error) => error.message.includes(
-      "- You provided an 'string' for 'phenomic.offlineConfig.appcache' " +
+      "- You provided an 'string' for 'phenomic.offline.appcache' " +
       "option. This option accepts a boolean value.\n" +
       "- You provided an 'number' for " +
-      "'phenomic.offlineConfig.serviceWorker' option. " +
+      "'phenomic.offline.serviceWorker' option. " +
       "This option accepts a boolean value."
     )
   )
@@ -46,8 +45,7 @@ test("should ONLY accept boolean for 'appcache' and 'serviceWorker'", (t) => {
 test("should accept string for 'pattern' option", (t) => {
   t.deepEqual(
     configurator({ phenomic: {
-      offline: true,
-      offlineConfig: {
+      offline: {
         pattern: "foo",
       },
     } }, []).offlineConfig.pattern,
@@ -58,8 +56,7 @@ test("should accept string for 'pattern' option", (t) => {
 test("should accept array for 'pattern' option", (t) => {
   t.deepEqual(
     configurator({ phenomic: {
-      offline: false,
-      offlineConfig: {
+      offline: {
         pattern: [ "foo", "bar" ],
       },
     } }, []).offlineConfig.pattern,
@@ -72,60 +69,78 @@ test("should NOT accept boolean, null, undefined for 'pattern' option", (t) => {
     () => {
       configurator({
         phenomic: {
-          offline: true,
-          offlineConfig: {
+          offline: {
             pattern: false,
           },
         },
       }, [])
     },
     (error) => error.message.includes(
-      "You provided an 'boolean' for 'phenomic.offlineConfig.pattern'"
+      "You provided an 'boolean' for 'phenomic.offline.pattern'"
     )
   )
   t.throws(
     () => {
       configurator({
         phenomic: {
-          offline: true,
-          offlineConfig: {
+          offline: {
             pattern: null,
           },
         },
       }, [])
     },
     (error) => error.message.includes(
-      "You provided an 'object' for 'phenomic.offlineConfig.pattern'"
+      "You provided an 'object' for 'phenomic.offline.pattern'"
     )
   )
   t.throws(
     () => {
       configurator({
         phenomic: {
-          offline: true,
-          offlineConfig: {
+          offline: {
             pattern: undefined,
           },
         },
       }, [])
     },
     (error) => error.message.includes(
-      "You provided an 'undefined' for 'phenomic.offlineConfig.pattern'"
+      "You provided an 'undefined' for 'phenomic.offline.pattern'"
     )
   )
   t.throws(
     () => {
       configurator({
         phenomic: {
-          offline: true,
-          offlineConfig: {
+          offline: {
             pattern: undefined,
           },
         },
       }, [])
     },
     (error) => error.message.includes(
-      "You provided an 'undefined' for 'phenomic.offlineConfig.pattern'"
+      "You provided an 'undefined' for 'phenomic.offline.pattern'"
+    )
+  )
+})
+
+// belows are deprecated
+test("should fallback to config.offline = true when set appcache", (t) => {
+  t.true(configurator({ phenomic: { appcache: true } }, []).offline)
+  t.true(configurator({ phenomic: { appcache: "foo" } }, []).offline)
+  t.true(configurator({ phenomic: { appcache: [ "foo" ] } }, []).offline)
+})
+
+test("should throw when define both appcache and offline option", (t) => {
+  t.throws(
+    () => {
+      configurator({ phenomic: {
+        appcache: true,
+        offline: true,
+      } }, [])
+    },
+    (error) => error.message.includes(
+      "phenomic.appcache option was replaced by phenomic.offline option. " +
+      " You can't define both of them at the same time."
     )
   )
 })

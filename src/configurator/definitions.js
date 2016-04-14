@@ -17,19 +17,17 @@ export default {
     default: "dist",
   },
   "assets": {
-    // type: "string",
-    // also accept
-    // accept object, boolean, falsy or string values
+    // types: string, objects, boolean and falsy value
     description: "path to static assets (images, media etc)",
     default: "assets",
   },
-  "offline": {
-    type: "boolean",
-    description: "flag to enable offline usage via appcache and service worker",
-    default: false,
+  "appcache": {
+    // deprecated
+    description: "DEPRECATED: enable appcache support",
   },
-  "offlineConfig": {
-    type: "object",
+  "offline": {
+    // types: boolean, object
+    description: "flag to enable offline usage via appcache and service worker",
   },
   "CNAME": {
     type: "boolean",

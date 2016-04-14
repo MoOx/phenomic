@@ -15,16 +15,23 @@ export default (
 ) => {
   // Deprecated
   if (config.appcache) {
+    if (typeof config.offline !== "undefined") {
+      errors.push(
+        "phenomic.appcache option was replaced by phenomic.offline option. " +
+        " You can't define both of them at the same time."
+      )
+    }
     config.offline = true
 
     log(yellow(
-      "DEPRECATED: phenomic.appcache option is deprecated " +
+      "DEPRECATED: phenomic.appcache option was deprecated " +
       "and will be removed soon. We updated your configurator to use " +
       "default offline globby pattern with AppCache and ServiceWorker. " +
       "Your custom globby pattern was ignore. Please refer the docs to " +
       "update the configuration accordingly"
     ))
   }
+
   // Disable offline for development
   if (config.dev) {
     config.offline = false
@@ -33,6 +40,7 @@ export default (
   }
 
   if (!config.offline) {
+    config.offline = false
     return
   }
 
@@ -50,14 +58,14 @@ export default (
     if (typeof config.offlineConfig.appcache !== "boolean") {
       errors.push(
         `You provided an '${ typeof config.offlineConfig.appcache }' ` +
-        "for 'phenomic.offlineConfig.appcache' option. " +
+        "for 'phenomic.offline.appcache' option. " +
         "This option accepts a boolean value."
       )
     }
     if (typeof config.offlineConfig.serviceWorker !== "boolean") {
       errors.push(
         `You provided an '${ typeof config.offlineConfig.serviceWorker }' ` +
-        "for 'phenomic.offlineConfig.serviceWorker' option. " +
+        "for 'phenomic.offline.serviceWorker' option. " +
         "This option accepts a boolean value."
       )
     }
@@ -70,7 +78,7 @@ export default (
     else if (!Array.isArray(config.offlineConfig.pattern)) {
       errors.push(
         `You provided an '${ typeof config.offlineConfig.pattern }' ` +
-        "for 'phenomic.offlineConfig.pattern' option. " +
+        "for 'phenomic.offline.pattern' option. " +
         "This option accepts a string or an array."
       )
     }
