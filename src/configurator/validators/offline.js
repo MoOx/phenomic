@@ -36,16 +36,17 @@ export default (
     return
   }
 
-  if (!config.offlineConfig) {
+  // If config.offline = true ==> set offlineConfig to defaultOfflineConfig
+  if (typeof config.offline === "boolean") {
     config.offlineConfig = defaultOfflineConfig
   }
-  else {
-    // Merge with default config
-    config.offlineConfig = {
+  else if (typeof config.offline === "object") {
+    // Merge config with default config
+    config.offlineConfig =  {
       ...defaultOfflineConfig,
-      ...config.offlineConfig,
+      ...config.offline,
     }
-
+    // Validate nested config.offline
     if (typeof config.offlineConfig.appcache !== "boolean") {
       errors.push(
         `You provided an '${ typeof config.offlineConfig.appcache }' ` +
@@ -70,8 +71,15 @@ export default (
       errors.push(
         `You provided an '${ typeof config.offlineConfig.pattern }' ` +
         "for 'phenomic.offlineConfig.pattern' option. " +
-        "This option accepts a string, or an array."
+        "This option accepts a string or an array."
       )
     }
+  }
+  else {
+    errors.push(
+      `Your prodided an '${ typeof config.offline }'` +
+      "for 'phenomic.offline'. This option accepts a boolean or an object" +
+      "with 3 keys: `appcache`, `serviceWorker` and `pattern`"
+    )
   }
 }
