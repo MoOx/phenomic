@@ -1,9 +1,17 @@
+// @flow
 import { join } from "path"
 import color from "chalk"
 import { writeFile } from "fs-promise"
-import writeAppcache from "../_utils/appcache"
+import {
+  appcache as writeAppcache,
+  serviceWorker as writeServiceWorker,
+} from "../_utils/offline"
 
-export default function(config, files, log) {
+export default function(
+  config: PhenomicConfig,
+  files: Array<any>,
+  log: Function
+): Promise {
   log(
     color.green(`✓ Static html files: ${ files.length } files written.`)
   )
@@ -30,15 +38,27 @@ export default function(config, files, log) {
     )
   }
 
-  if (config.appcache) {
-    promises.push(
-      writeAppcache(
-        join(config.cwd, config.destination),
-        config.baseUrl.pathname,
-        config.appcache,
+  if (config.offline) {
+    if (config.offlineConfig.appcache) {
+      promises.push(
+        writeAppcache(
+          join(config.cwd, config.destination),
+          config.baseUrl.pathname,
+          config.offlineConfig.pattern,
+        )
+        .then(() => log(color.green("✓ manifest.appcache created.")))
       )
-      .then(() => log(color.green("✓ manifest.appcache created.")))
-    )
+    }
+    if (config.offlineConfig.serviceWorker) {
+      promises.push(
+        writeServiceWorker(
+          join(config.cwd, config.destination),
+          config.baseUrl.pathname,
+          config.offlineConfig.pattern,
+        )
+        .then(() => log(color.green("✓ service worker files created.")))
+      )
+    }
   }
 
   return Promise.all(promises)

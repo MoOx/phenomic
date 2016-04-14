@@ -23,11 +23,13 @@ export default {
     description: "path to static assets (images, media etc)",
     default: "assets",
   },
-  "appcache": {
-    // type: "boolean",
-    // also accept array, falsy or string values
-    description: "flag to enable offline usage via appcache",
+  "offline": {
+    type: "boolean",
+    description: "flag to enable offline usage via appcache and service worker",
     default: false,
+  },
+  "offlineConfig": {
+    type: "object",
   },
   "CNAME": {
     type: "boolean",
