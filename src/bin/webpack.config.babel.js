@@ -1,6 +1,6 @@
 import { tmpdir } from "os"
 
-const config = require(process.env.STATINAMIC_CONFIG).default
+const config = require(process.env.PHENOMIC_CONFIG).default
 
 // TODO warn about config like entry
 // TODO warn for output config

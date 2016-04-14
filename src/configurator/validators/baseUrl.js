@@ -28,5 +28,5 @@ export default function(
   config.baseUrl = { ... url.parse(url.format(config.baseUrl)) }
 
   // Set basename to process.env for universal usage
-  process.env.STATINAMIC_PATHNAME = config.baseUrl.pathname
+  process.env.PHENOMIC_PATHNAME = config.baseUrl.pathname
 }

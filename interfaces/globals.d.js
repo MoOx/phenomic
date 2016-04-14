@@ -3,7 +3,7 @@ declare function cwd(): string;
 declare var process: {
   env: {
     NODE_ENV? : "production",
-    STATINAMIC_PATHNAME: string,
+    PHENOMIC_PATHNAME: string,
   },
   cwd: cwd,
   agrv: Array<string>,

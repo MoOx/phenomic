@@ -1,3 +1,18 @@
+- Fixed: replacement of some references that have been missed during the rename:
+  - STATINAMIC (in .js)
+  - statinamic (in .css).
+  To be sure, run the following commands.
+
+  ```console
+  $ npm remove --save-dev statinamic
+  $ npm install --save-dev phenomic@^0.10.2
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|STATINAMIC|PHENOMIC|g' {} \;
+  ```
 
 - Fixed: boilerplate now ship latest version of react-router, since
   react-router@2.2.2 fixes the issue that create homepage to be not rendered.
@@ -31,6 +46,8 @@
   called statamic.
   [Read more](https://github.com/MoOx/statinamic/issues/306).
   For an easy migration, you can simply run the following commands
+
+  _EDIT: the commands below are not enough, see release **0.10.2**._
 
   ```console
   $ npm remove --save-dev statinamic

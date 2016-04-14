@@ -27,7 +27,7 @@ export default class Header extends Component {
               color: "inherit",
               textDecoration: "none",
             } }
-            href={ "https://github.com/MoOx/statinamic/issues/306" }
+            href={ "https://github.com/MoOx/phenomic/issues/306" }
           >
             { "(Formerly" } <strong>{ "Statinamic" }</strong>{ ")" }
           </a>
