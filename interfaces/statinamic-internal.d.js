@@ -25,7 +25,7 @@ type PhenomicConfig = {
   CNAME: boolean,
   nojekyll: boolean,
   devHost: string,
-  devPort: string,
+  devPort: number,
   dev: boolean,
   production: boolean,
   static: boolean,

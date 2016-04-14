@@ -197,7 +197,7 @@ export default (options = {}) => {
   // THAT'S IT
   const { devHost, devPort } = config
 
-  portFinder.basePort = parseInt(devPort, 10)
+  portFinder.basePort = devPort
 
   portFinder.getPort((err, port) => {
     if (err) {
