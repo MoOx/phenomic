@@ -1,3 +1,5 @@
+# 0.10.1 - 2016-04-13
+
 - Fixed: boilerplate comes with react-router@2.1.1 until
   [react-router#3307](https://github.com/reactjs/react-router/issues/3307)
   is fixed
