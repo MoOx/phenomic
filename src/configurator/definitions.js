@@ -48,9 +48,8 @@ export default {
     default: "0.0.0.0",
   },
   "devPort": {
-    type: "string",
     description: "port used during development",
-    default: "3000",
+    default: 3000,
   },
   "verbose": {
     type: "boolean",

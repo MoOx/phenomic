@@ -17,7 +17,7 @@ test("should return a default configuration", (t) => {
     CNAME: false,
     nojekyll: true,
     devHost: "0.0.0.0",
-    devPort: "3000",
+    devPort: 3000,
     appcache : false,
     verbose: false,
     open: true,
@@ -52,14 +52,14 @@ test("should allow to override some default values", (t) => {
     {
       phenomic: {
         "CNAME": true,
-        "devPort": "2000",
+        "devPort": 2000,
       },
     },
     [ "--devHost=1.2.3.4" ]
   )
 
   t.is(config.CNAME, true)
-  t.is(config.devPort, "2000")
+  t.is(config.devPort, 2000)
   t.is(config.devHost, "1.2.3.4")
 })
 
