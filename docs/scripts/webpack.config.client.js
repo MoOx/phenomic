@@ -33,8 +33,8 @@ export default ({ config }) => {
     },
 
     entry: {
-      "statinamic-client": path.join(__dirname, "index-client"),
-      "statinamic-bundle": [
+      "phenomic-client": path.join(__dirname, "index-client"),
+      "phenomic-bundle": [
         "react",
         "react-dom",
         "redux",
@@ -54,7 +54,7 @@ export default ({ config }) => {
       plugins: [
         ...webpackConfig.plugins,
         new webpack.optimize.CommonsChunkPlugin({
-          names: [ "statinamic-bundle", "manifest" ],
+          names: [ "phenomic-bundle", "manifest" ],
         }),
       ],
     },
