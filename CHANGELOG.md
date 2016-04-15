@@ -1,3 +1,10 @@
+- Added: Initial support for Service Worker
+  ([#343](https://github.com/MoOx/phenomic/pull/343))
+- Changed: Remove the ability to define a custom globby pattern via appcache option.
+  `appcache` option was deprecated and will be removed soon.
+  You should update your configuration to use the latest `offline` option.
+  ([#343](https://github.com/MoOx/phenomic/pull/343))
+
 # 0.10.2 - 2016-04-14
 
 - Fixed: replacement of some references that have been missed during the rename:
