@@ -34,7 +34,7 @@ This is a part of ES2015 specifications , only modern browsers support it.
 
 - [Service worker browser support from caniuse](http://caniuse.com/#search=service-worker)
 
-## How to use
+## How to enable offline support
 
 To enable this feature, add an ``offline`` field to ``package.json`` under
 ``phenomic`` section.
@@ -54,23 +54,27 @@ Available values for `offline`:
 - `false`: Default value. Disable `offline` support.
 - `true`: Use default globby patterns `[ "**", "!**/*.html", "index.html" ]`
 
-  This pattern means that only json files will be downloaded.
-  Downloading HTML files too is not useful since we only needs a single file HTML serves as a fallback for all routes.
+  This pattern means that we will download all files but only 1 main `index.html`. We use some magic under the hood to make that file a fallback for all routes.
 
-  Phenomic uses [globby](https://www.npmjs.com/package/globby) for matching files in
-  ``dist`` folder.
+  Phenomic uses [globby](https://www.npmjs.com/package/globby) for matching files in ``dist`` folder.
 
   Checkout [globby documentation for more information](https://www.npmjs.com/package/globby)
 
-- `object`: Contains 3 keys. Please aware that you don't need to define all of 3 keys. They will be defined with their default values.
+- `object`: Contains 3 keys. Please be aware that you don't need to define all of 3 keys. They will be defined with their default values.
 
   - `appcache: boolean = true`: Enable/Disable AppCache seperately
   - `serviceWorker: boolean = true`: Enable/Disable Service Worker seperately
   - `pattern: Array = [ "**", "!**/*.html", "index.html" ]`: Define your own globby pattern. A useful case for this option is when you need to remove images from caching list if your website is quite big. But be careful, double check everything before you apply the change.
 
-Now rebuild your website and you will notice some new files such as  ``manifest.appcache``, ``sw.js``, ``sw-register.js``
-file your ``dist`` folder.
+Now rebuild your website and you may notice some new files in ``dist`` folder such as  ``manifest.appcache``, ``sw.js``, ``sw-register.js`` depending on the options you provided.
 
 > **NOTE**: Offline support will **not be enabled** in development mode
 
 Congratulation. Your website is now a offline-first application.
+
+## FAQ
+
+### What happened when both AppCache and Service Worker ?
+
+> If you use AppCache and Service Worker on a page, browsers that don’t support SW but do support AppCache will use that, and browsers that support both will ignore the AppCache and let Service Worker take over.
+> - [from MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#Registering_your_worker)
