@@ -1,9 +1,9 @@
 ---
-title: How to use Collections in Statinamic
+title: How to use Collections in Phenomic
 incomplete: true
 ---
 
-By default, Statinamic provides 2 things to help you work with collections:
+By default, Phenomic provides 2 things to help you work with collections:
 
 - it creates a file that contains all page metadata in a unique collection,
 - it provides a helper that helps you filter/sort/limit the collection.
@@ -44,14 +44,14 @@ additional fields `__filename` & `__url`.
 
 As you can see, this file contains all pages, indexes and posts.
 
-The easiest way to get some data is to use the Statinamic helper:
+The easiest way to get some data is to use the Phenomic helper:
 
 ```js
 // es6
-import enhanceCollection from "statinamic/lib/enhance-collection"
+import enhanceCollection from "phenomic/lib/enhance-collection"
 
 // es5
-var enhanceCollection = require("statinamic/lib/enhance-collection").default
+var enhanceCollection = require("phenomic/lib/enhance-collection").default
 ```
 
 With it, you can easily filter some pages anywhere in your components:
@@ -75,7 +75,7 @@ import React, { Component, PropTypes } from "react"
 
 import Page from "Page"
 
-import enhanceCollection from "statinamic/lib/enhance-collection"
+import enhanceCollection from "phenomic/lib/enhance-collection"
 
 export default class Collection extends Component {
 

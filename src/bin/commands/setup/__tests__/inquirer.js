@@ -8,9 +8,9 @@ test.cb("test inquirer interface", (t) => {
     [ "./stub/spawn-prompt.js" ],
     { debug: fs.createWriteStream("debug.txt") }
   )
-  .when(/Name of your project/, "Statinamic\n")
-  .when(/Homepage url for your website/, "http://moox.io/statinamic\n")
-  .when(/Should statinamic generate a CNAME file/, "\n")
+  .when(/Name of your project/, "Phenomic\n")
+  .when(/Homepage url for your website/, "https://phenomic.io\n")
+  .when(/Should phenomic generate a CNAME file/, "\n")
   .on("error", function(error) {
     console.error(error)
     t.fail()

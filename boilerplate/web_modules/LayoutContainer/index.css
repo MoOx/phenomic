@@ -32,12 +32,12 @@ h3 {
 
 @custom-selector :--headings h1, h2, h3, h4, h5, h6;
 
-/* for .statinamic-HeadingAnchor */
+/* for .phenomic-HeadingAnchor */
 :--headings {
   position: relative;
 }
 
-:global .statinamic-HeadingAnchor {
+:global .phenomic-HeadingAnchor {
   position: absolute;
   left: -1.5rem;
   opacity: 0.1;

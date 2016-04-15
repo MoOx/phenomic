@@ -36,7 +36,7 @@ test("should render html string", () => {
       <body>
         <div
           dangerouslySetInnerHTML={ { __html: body } }
-          id="statinamic"
+          id="phenomic"
         />
         <script dangerouslySetInnerHTML={ { __html: script } } />
       </body>
@@ -65,7 +65,7 @@ test("should render html string, manifest and children", () => {
       <body>
         <div
           dangerouslySetInnerHTML={ { __html: body } }
-          id="statinamic"
+          id="phenomic"
         />
         <script dangerouslySetInnerHTML={ { __html: script } } />
         <p>{ "foo" }</p>

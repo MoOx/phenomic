@@ -6,26 +6,31 @@ type PromiseAction = {
   promise: Promise,
 }
 
-type StatinamicCollection = Array<Object>
+type PhenomicCollection = Array<Object>
 
-type StatinamicAssetsConfig = {
+type PhenomicAssetsConfig = {
   route: string,
   path: string,
 }
 
-type StatinamicAppcacheConfig = Array<string> | false
+type PhenomicOfflineConfig = {
+  appcache: boolean,
+  serviceWorker: boolean,
+  pattern: Array<string>,
+}
 
 // Configs generated from configurator
-type StatinamicConfig = {
+type PhenomicConfig = {
   cwd: string,
   source: string,
   destination: string,
-  assets: StatinamicAssetsConfig, // no string type
-  appcache: StatinamicAppcacheConfig, // no string type
+  assets: PhenomicAssetsConfig, // no string type
+  offline: boolean,
+  offlineConfig: PhenomicOfflineConfig,
   CNAME: boolean,
   nojekyll: boolean,
   devHost: string,
-  devPort: string,
+  devPort: number,
   dev: boolean,
   production: boolean,
   static: boolean,

@@ -1,15 +1,99 @@
+- Added: Initial support for Service Worker
+  ([#343](https://github.com/MoOx/phenomic/pull/343))
+- Changed: Remove the ability to define a custom globby pattern via appcache option.
+  `appcache` option was deprecated and will be removed soon.
+  You should update your configuration to use the latest `offline` option.
+  ([#343](https://github.com/MoOx/phenomic/pull/343))
+
+# 0.10.2 - 2016-04-14
+
+- Fixed: replacement of some references that have been missed during the rename:
+  - STATINAMIC (in .js)
+  - statinamic (in .css).
+  To be sure, run the following commands.
+
+  ```console
+  $ npm remove --save-dev statinamic
+  $ npm install --save-dev phenomic@^0.10.2
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|STATINAMIC|PHENOMIC|g' {} \;
+  ```
+
+- Fixed: boilerplate now ship latest version of react-router, since
+  react-router@2.2.2 fixes the issue that create homepage to be not rendered.
+  ([#393](https://github.com/MoOx/phenomic/issues/393))
+
+# 0.10.1 - 2016-04-14
+
+- Fixed: boilerplate comes with react-router@2.1.1 until
+  [react-router#3307](https://github.com/reactjs/react-router/issues/3307)
+  is fixed
+  ([#393](https://github.com/MoOx/phenomic/issue/393))
+- Fixed: dev server show wrong log message about used port
+  ``Port 3000 is not available. Using port 3000 instead``.
+  ([#392](https://github.com/MoOx/phenomic/pull/392))
+
+# 0.10.0 - 2016-04-13
+
+## tl;dr;
+
+- You can safely update from statinamic to phenomic without any changes in your
+  code except renaming the "S|statinamic" references (see instructions below).
+- Only one major breaking change, but previous method will probably still be
+  supported until 1.0
+- More stuff in the default boilerplate (404, loading...)
+
+→ [Example of update from statinamic 0.9 to phenomic 0.10](https://github.com/putaindecode/putaindecode.io/commit/8d63776cf8fe0cb30672646d656c93ee0c803802)
+
+## Details
+
+- Changed: project has been renamed due to a possible confusion with a PHP CMS
+  called statamic.
+  [Read more](https://github.com/MoOx/statinamic/issues/306).
+  For an easy migration, you can simply run the following commands
+
+  _EDIT: the commands below are not enough, see release **0.10.2**._
+
+  ```console
+  $ npm remove --save-dev statinamic
+  $ npm install --save-dev phenomic
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+    -exec sed -i '' 's|statinamic|phenomic|g' {} \;
+  ```
+
+  If you want to double check what files will be changed, just run
+
+  ```console
+  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
+  ```
+
+  _This will look for S|statinamic occurence and will replace it by P|phenomic in
+  all .js and .json files that are not in .git or in node_modules._
+
 - Changed: ``layouts`` should not be defined in build and client scripts
   anymore. This method will be deprecated in a future version.
   Instead please directly pass ``layouts`` in the ``routes`` definitions with a
-  HoC.
-  Here is an example:
+  HoC.  
+  What are HoC? Higher order Component, more about this:
+
+  - https://medium.com/@bloodyowl/the-provider-and-higher-order-component-patterns-with-react-d16ab2d1636
+  - http://jamesknelson.com/structuring-react-applications-higher-order-components/
+  - http://natpryce.com/articles/000814.html
+
+  Here is an example (based on the default boilerplate):
 
   ```js
   import React, { Component } from "react"
   import { Route } from "react-router"
 
   import LayoutContainer from "../LayoutContainer"
-  import StatinamicPageContainer from "statinamic/lib/PageContainer"
+  import PhenomicPageContainer from "phenomic/lib/PageContainer"
 
   import Page from "../layouts/Page"
   import PageError from "../layouts/PageError"
@@ -20,7 +104,7 @@
     render() {
       const { props } = this
       return (
-        <StatinamicPageContainer
+        <PhenomicPageContainer
           { ...props }
           layouts={ {
             Page,
@@ -46,27 +130,41 @@
   ([#361](https://github.com/MoOx/statinamic/issues/361))
 
 - Added: Use node-portfinder to avoid error when port is used
-  ([#320](https://github.com/MoOx/statinamic/issues/320))
+  ([#320](https://github.com/MoOx/phenomic/issues/320))
 
 ## Boilerplate
 
 - Fixed: ``PageError`` warning about missing PropTypes
-  ([#357](https://github.com/MoOx/statinamic/issues/357)).
+  ([#357](https://github.com/MoOx/phenomic/issues/357)).
 
 - Changed: Bump css-loader to ^0.23.0. This may improve performance a little bit
-  ([#374](https://github.com/MoOx/statinamic/issues/374))
+  ([#374](https://github.com/MoOx/phenomic/issues/374))
 
 - Changed: ``PageError`` is nicer and now looks like documentation 404.
+
+- Changed: Production build now produces short CSS classnames. You should apply this
+  change for a smaller HTML file.
+  ([#385](https://github.com/MoOx/phenomic/pull/385))
+
+- Changed: upgrade of ``stylelint`` and ``stylelint-config-standard``
+  to latest 5.x versions
 
 - Added: a ``PageLoading`` component is now provided and include 2 indicators:
   - A [topbar](https://github.com/buunguyen/topbar) via
     [react-topbar-progress-indicator](https://github.com/MoOx/react-topbar-progress-indicator).
   - A simple CSS loading spinner.
 
-  ([#182](https://github.com/MoOx/statinamic/issues/182)).
+  ([#182](https://github.com/MoOx/phenomic/issues/182)).
 
 - Added: link to 404 and loading page in the footer, so new users can see and
   try those easily.
+
+---
+
+# Statinamic
+
+Before 0.10,
+[project was named Statinamic](https://github.com/MoOx/statinamic/issues/306).
 
 # 0.9.3 - 2016-04-04
 

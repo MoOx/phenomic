@@ -32,7 +32,7 @@ export default ({ config }) => {
     },
 
     entry: {
-      "statinamic-client": path.join(__dirname, "index-client"),
+      "phenomic-client": path.join(__dirname, "index-client"),
     },
   }
 }

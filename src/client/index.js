@@ -6,16 +6,16 @@ import { Router, useRouterHistory } from "react-router"
 import createBrowserHistory from "history/lib/createBrowserHistory"
 import { Provider as ReduxContextProvider } from "react-redux"
 
-import StatinamicContextProvider from "../ContextProvider"
+import PhenomicContextProvider from "../ContextProvider"
 
 export const browserHistory =
   typeof window !== "undefined" // just for node testing
   ? useRouterHistory(createBrowserHistory)({
-    basename: process.env.STATINAMIC_PATHNAME,
+    basename: process.env.PHENOMIC_PATHNAME,
   })
   : null
 
-export default function statinamic({
+export default function phenomic({
   layouts, // deprecated
   metadata,
   routes,
@@ -32,7 +32,7 @@ export default function statinamic({
     : []
 
   ReactDOM.render(
-    <StatinamicContextProvider
+    <PhenomicContextProvider
       collection={ collection }
       layouts={ layouts } // deprecated
       metadata={ metadata }
@@ -40,7 +40,7 @@ export default function statinamic({
       <ReduxContextProvider store={ store }>
         <Router history={ browserHistory } routes={ routes } />
       </ReduxContextProvider>
-    </StatinamicContextProvider>,
-    document.getElementById("statinamic")
+    </PhenomicContextProvider>,
+    document.getElementById("phenomic")
   )
 }

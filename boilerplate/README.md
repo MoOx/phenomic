@@ -1,4 +1,4 @@
-# [Statinamic](https://github.com/MoOx/statinamic) boilerplate
+# [Phenomic](https://github.com/MoOx/phenomic) boilerplate
 
 ## Install dependencies
 

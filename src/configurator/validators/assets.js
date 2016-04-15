@@ -7,7 +7,7 @@ import definitions from "../definitions.js"
 export default function(
   { config, errors }:
   {
-    config: StatinamicConfig,
+    config: PhenomicConfig,
     errors: Array<string>,
   }
 ): void {

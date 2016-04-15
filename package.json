@@ -1,6 +1,6 @@
 {
-  "name": "statinamic",
-  "version": "0.9.3",
+  "name": "phenomic",
+  "version": "0.10.2",
   "description": "Modern static website generator to create dynamic websites using React components.",
   "keywords": [
     "react",
@@ -20,7 +20,7 @@
   ],
   "author": "Maxime Thirouin",
   "license": "MIT",
-  "repository": "https://github.com/MoOx/statinamic.git",
+  "repository": "https://github.com/MoOx/phenomic.git",
   "main": "lib/index.js",
   "files": [
     "npm",
@@ -31,7 +31,7 @@
     "!**/__tests__"
   ],
   "bin": {
-    "statinamic": "npm/bin.js"
+    "phenomic": "npm/bin.js"
   },
   "engines": {
     "node": ">=4.2.0",
@@ -51,10 +51,12 @@
     "gray-matter": "^2.0.0",
     "inquirer": "^1.0.0",
     "loader-utils": "^0.2.11",
+    "lodash.template": "^4.2.2",
     "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
     "opn": "^3.0.2",
     "portfinder": "^1.0.2",
+    "pify": "^2.3.0",
     "redbox-react": "^1.2.2",
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",
@@ -100,18 +102,18 @@
     "js-beautify": "^1.5.10",
     "jsdom": "^8.1.0",
     "lnfs": "^3.0.0",
+    "mock-fs": "^3.8.0",
     "npmpub": "^3.0.0",
-    "nyc": "^6.1.1",
-    "promise": "^7.1.1",
+    "nyc": "^6.3.0",
     "react": "^15.0.0-rc.1",
     "react-addons-test-utils": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.0",
-    "react-router": "^2.0.0",
+    "react-router": "^2.2.2",
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
-    "stylelint": "^5.0.1",
+    "stylelint": "^5.4.0",
     "stylelint-config-standard": "^5.0.0",
     "suppose": "^0.5.2",
     "throat": "^2.0.2"
@@ -130,7 +132,7 @@
     "react-dom": "^0.14.0 || ^15.0.0-rc.1",
     "react-helmet": "^2.1.0",
     "react-redux": "^4.0.0",
-    "react-router": "^2.0.0",
+    "react-router": "^2.2.2",
     "redux": "^3.0.0",
     "webpack": "^1.12.1",
     "whatwg-fetch": "^0.11.0"
@@ -154,8 +156,8 @@
     "react-svg-inline": "^1.1.0",
     "react-topbar-progress-indicator": "^1.0.0",
     "style-loader": "^0.12.3",
-    "stylelint": "^5.0.1",
-    "stylelint-config-standard": "^4.0.1"
+    "stylelint": "^5.4.0",
+    "stylelint-config-standard": "^5.0.0"
   },
   "scripts": {
     "postinstall": "node npm/postinstall.js",
@@ -164,7 +166,7 @@
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
     "lint:js:flow": "babel-node scripts/flow-check.js",
     "lint:js": "npm run lint:js:eslint && npm run lint:js:flow",
-    "lint:css": "stylelint \"**/web_modules/**/*.css\"",
+    "lint:css": "stylelint \"+(boilerplate|docs)/web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "pretests": "npm run lint",
     "tests": "ava",
@@ -186,7 +188,8 @@
   },
   "nyc": {
     "exclude": [
-      "**/__tests__/**"
+      "**/__tests__/**",
+      "**.template.js"
     ],
     "include": [
       "src/**"
@@ -211,7 +214,7 @@
       "react/prefer-stateless-function": 0
     }
   },
-  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/statinamic/issues/46",
+  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/phenomic/issues/46",
   "stylelint": {
     "extends": "stylelint-config-standard"
   },

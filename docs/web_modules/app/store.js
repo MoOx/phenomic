@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
-import createStore from "statinamic/lib/redux/createStore"
-import * as statinamicReducers from "statinamic/lib/redux/modules"
+import createStore from "phenomic/lib/redux/createStore"
+import * as phenomicReducers from "phenomic/lib/redux/modules"
 
 const store = createStore(
-  combineReducers(statinamicReducers),
+  combineReducers(phenomicReducers),
   { ...(typeof window !== "undefined") && window.__INITIAL_STATE__ },
 )
 

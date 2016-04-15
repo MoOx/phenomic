@@ -2,7 +2,7 @@
 import url from "url"
 
 export default function(
-  { pkg, config }: { pkg: Object, config: StatinamicConfig }
+  { pkg, config }: { pkg: Object, config: PhenomicConfig }
 ): void {
   const devUrl = `http://${ config.devHost }:${ config.devPort }/`
   const prodBaseUrl = url.parse(pkg.homepage ? pkg.homepage : devUrl)
@@ -28,5 +28,5 @@ export default function(
   config.baseUrl = { ... url.parse(url.format(config.baseUrl)) }
 
   // Set basename to process.env for universal usage
-  process.env.STATINAMIC_PATHNAME = config.baseUrl.pathname
+  process.env.PHENOMIC_PATHNAME = config.baseUrl.pathname
 }

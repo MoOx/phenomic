@@ -45,8 +45,8 @@ Link.displayName = "Link"
   exported as default and Link so people can easily switch their
   import { Link } from "react-router"
   to
-  import { Link } from "statinamic/lib/Link"
+  import { Link } from "phenomic/lib/Link"
   or
-  import Link from "statinamic/lib/Link"
+  import Link from "phenomic/lib/Link"
 */
 export default Link

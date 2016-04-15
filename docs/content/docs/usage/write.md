@@ -1,5 +1,5 @@
 ---
-title: How to write content using Statinamic
+title: How to write content using Phenomic
 incomplete: true
 ---
 
@@ -62,7 +62,7 @@ first front matter delimiter (eg: ``---``).
 ```json
 ---json
 {
-  "title": "Statinamic is awesome"
+  "title": "Phenomic is awesome"
 }
 ---
 ```

@@ -1,6 +1,6 @@
 import { tmpdir } from "os"
 
-const config = require(process.env.STATINAMIC_CONFIG).default
+const config = require(process.env.PHENOMIC_CONFIG).default
 
 // TODO warn about config like entry
 // TODO warn for output config
@@ -19,7 +19,7 @@ export default {
     filename: undefined,
 
     // prevent babel-plugin-webpack-loaders emited files to be in your dist
-    // folder, see // https://github.com/MoOx/statinamic/issues/214
+    // folder, see // https://github.com/MoOx/phenomic/issues/214
     path: tmpdir(),
   },
 }

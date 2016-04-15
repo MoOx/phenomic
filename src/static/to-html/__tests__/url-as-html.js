@@ -22,7 +22,7 @@ test("url as html", async (t) => {
       store,
       baseUrl: url.parse("http://0.0.0.0:3000/"),
       assetsFiles: {
-        js: [ "statinamic-client.js" ],
+        js: [ "phenomic-client.js" ],
       },
     },
     true
@@ -39,7 +39,7 @@ test("url as html", async (t) => {
 </head>
 
 <body>
-  <div id="statinamic">
+  <div id="phenomic">
     <p>TestContainer</p>
   </div>
   <script>
@@ -58,7 +58,7 @@ test("url as html", async (t) => {
       }
     }
   </script>
-  <script src="/statinamic-client.js"></script>
+  <script src="/phenomic-client.js"></script>
 </body>
 
 </html>`

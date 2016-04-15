@@ -20,14 +20,14 @@ export default class Footer extends Component {
         { " | " }
         <a
           className={ styles.link }
-          href="https://github.com/MoOx/statinamic"
+          href="https://github.com/MoOx/phenomic"
         >
           { "Source on GitHub" }
         </a>
         { " | " }
         <a
           className={ styles.link }
-          href="https://twitter.com/Statinamic"
+          href="https://twitter.com/Phenomic_app"
         >
           { "News on Twitter" }
         </a>

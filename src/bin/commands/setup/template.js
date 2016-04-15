@@ -7,12 +7,12 @@ const template = {
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "start": "statinamic start",
-    "build": "statinamic build",
+    "start": "phenomic start",
+    "build": "phenomic build",
     "pretest": "npm run lint",
     "test": "npm run build",
   },
-  "statinamic": {/* placeholder */},
+  "phenomic": {/* placeholder */},
   "babel": {
     "presets": [
       "react",
@@ -29,7 +29,7 @@ const template = {
       "react/prefer-stateless-function": 0,
     },
   },
-  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/statinamic/issues/46",
+  "eslintConfigRuleReact/prefer-stateless-function": "https://github.com/MoOx/phenomic/issues/46",
   "stylelint": {
     "extends": "stylelint-config-standard",
   },

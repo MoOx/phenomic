@@ -2,7 +2,7 @@
 title: Automatic deployment on GitHub Pages
 ---
 
-**Be sure that you use the ``statinamic.CNAME`` option in your
+**Be sure that you use the ``phenomic.CNAME`` option in your
 ``package.json`. See [Configuration](./configuration/)**
 
 You will have multiple possibilities to deploy your `dist` folder on the
@@ -124,7 +124,10 @@ fi
   --repo https://$GITHUB_TOKEN@github.com/{YOU/YOUR_REPO}.git \
   # TO HIDE YOUR $GITHUB_TOKEN!
   # this is really important
-  --silent
+  --silent \
+  # base directory for all source files
+  --dist dist
+  
 ```
 
 ##### Add a `test` script in your `package.json` `scripts` section

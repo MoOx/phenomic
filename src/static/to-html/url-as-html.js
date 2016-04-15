@@ -10,7 +10,7 @@ import importExports from "../../_utils/import-exports"
 import htmlMetas from "../../_utils/html-metas"
 import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
-import StatinamicContextProvider from "../../ContextProvider"
+import PhenomicContextProvider from "../../ContextProvider"
 import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
 import minifyCollection from "../../content-loader/minify"
@@ -22,15 +22,17 @@ export default function(url: string, {
 
   baseUrl,
   assetsFiles,
-  appcache,
+  offline,
+  offlineConfig,
 }: {
   exports: Object,
-  collection: StatinamicCollection,
+  collection: PhenomicCollection,
   store: Object,
 
   baseUrl: Object,
   assetsFiles: Object,
-  appcache: StatinamicAppcacheConfig,
+  offline: boolean,
+  offlineConfig: PhenomicOfflineConfig,
 }, testing?: boolean): Promise<string> {
   const {
     layouts,
@@ -68,19 +70,23 @@ export default function(url: string, {
           else if (redirectLocation) {
             // TODO add a redirect page à la "jekyll redirect plugin"
             throw new Error (
-              "statinamic (static) doesn't handle redirection yet"
+              "phenomic (static) doesn't handle redirection yet"
             )
           }
           else if (!renderProps) {
             throw new Error (
-              "statinamic (static) doesn't handle page not found yet"
+              "phenomic (static) doesn't handle page not found yet. " +
+              "You are not supposed so see this message because this code is " +
+              "not supposed to be executed the way thing are, so this can " +
+              "be a react-router issue. Check out opened issue to find a " +
+              "workaround: https://github.com/MoOx/phenomic/issues"
             )
           }
           else {
             const collectionMin = minifyCollection(collection)
             // render app body as "react"ified html (with data-react-id)
             body = render(
-              <StatinamicContextProvider
+              <PhenomicContextProvider
                 collection={ collectionMin }
                 layouts={ layouts }
                 metadata={ metadata }
@@ -88,7 +94,7 @@ export default function(url: string, {
                 <ReduxContextProvider store={ store }>
                   <RouterContextProvider { ...renderProps } />
                 </ReduxContextProvider>
-              </StatinamicContextProvider>
+              </PhenomicContextProvider>
             )
 
             const headTags = Helmet.rewind()
@@ -115,20 +121,23 @@ export default function(url: string, {
                 escapeJSONforHTML(JSON.stringify(initialState))
               }`
           }
-          let scriptTags = false
-          if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
-            scriptTags = assetsFiles.js.map(fileName =>
-              <script
-                key={ fileName }
-                src={ `${ joinUri(baseUrl.pathname, fileName) }` }
-              ></script>
-            )
+          // service worker
+          if (offline && offlineConfig.serviceWorker) {
+            assetsFiles.js.push("sw-register.js")
           }
-          // Add appcache manifest to html tag
+          // appcache
           const manifest =
-            (appcache && appcache !== "")
+            (offline && offlineConfig.appcache)
             ? joinUri(baseUrl.pathname, "manifest.appcache")
             : ""
+
+          const scriptTags = assetsFiles.js.map(fileName =>
+            <script
+              key={ fileName }
+              src={ `${ joinUri(baseUrl.pathname, fileName) }` }
+            ></script>
+          )
+
           // write htmlString as html files
           return resolve(
             // render html document as simple html

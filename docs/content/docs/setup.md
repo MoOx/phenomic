@@ -1,8 +1,8 @@
 ---
-title: How to setup Statinamic
+title: How to setup Phenomic
 ---
 
-Statinamic uses
+Phenomic uses
 [Node.js >= 4.2.0](http://nodejs.org/)/[npm](http://npmjs.com/)
 and requires a minimal boilerplate, in order to provide you some
 flexibility.  
@@ -21,11 +21,11 @@ $ mkdir $DIR && cd $DIR
 
 ```console
 $ npm init --force
-$ npm install statinamic
-$ ./node_modules/.bin/statinamic setup
+$ npm install phenomic
+$ ./node_modules/.bin/phenomic setup
 ```
 
-After you answer some questions, you are setup with **Statinamic**.
+After you answer some questions, you are setup with **Phenomic**.
 
 We use `npm init` with the `force` option because npm needs a valid `package.json`
 file to work; as you will overwrite this file anyway, it is a good choice for a
@@ -41,8 +41,8 @@ the configuration options._
 To install from git, you will need to get some deps to transpile sources
 
 ```console
-$ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1
-$ npm install https://github.com/MoOx/statinamic.git
+$ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1 babel-plugin-flow-react-proptypes
+$ npm install https://github.com/MoOx/phenomic.git
 ```
 
 ## Install dependencies
@@ -70,7 +70,7 @@ It's that simple.
 This command calls the `start` command from the `scripts` section of your
 `package.json`.
 As you can see this will execute a Node.js script that will load the
-configuration (`scripts/build.js`) and run Statinamic in development mode.
+configuration (`scripts/build.js`) and run Phenomic in development mode.
 
 Now just wait for your browser to show up (yes this development mode should open
 your development server in your favorite browser).
