@@ -1,6 +1,6 @@
 // @flow
 import { join } from "path"
-import color from "chalk"
+import { green } from "chalk"
 import { writeFile } from "fs-promise"
 import {
   appcache as writeAppcache,
@@ -12,9 +12,7 @@ export default function(
   files: Array<any>,
   log: Function
 ): Promise {
-  log(
-    color.green(`✓ Static html files: ${ files.length } files written.`)
-  )
+  log(green(`✓ Static html files: ${ files.length } files written.`))
 
   const promises = []
 
@@ -24,7 +22,7 @@ export default function(
         join(config.cwd, config.destination, "CNAME"),
         config.baseUrl.hostname,
       )
-      .then(() => log(color.green(`✓ CNAME is ${ config.baseUrl.hostname }.`)))
+      .then(() => log(green(`✓ CNAME is ${ config.baseUrl.hostname }.`)))
     )
   }
 
@@ -34,7 +32,7 @@ export default function(
         join(config.cwd, config.destination, ".nojekyll"),
         "",
       )
-      .then(() => log(color.green("✓ .nojekyll created.")))
+      .then(() => log(green("✓ .nojekyll created.")))
     )
   }
 
@@ -46,7 +44,7 @@ export default function(
           config.baseUrl.pathname,
           config.offlineConfig.pattern,
         )
-        .then(() => log(color.green("✓ manifest.appcache created.")))
+        .then(() => log(green("✓ manifest.appcache created.")))
       )
     }
     if (config.offlineConfig.serviceWorker) {
@@ -56,11 +54,11 @@ export default function(
           config.baseUrl.pathname,
           config.offlineConfig.pattern,
         )
-        .then(() => log(color.green("✓ service worker files created.")))
+        .then(() => log(green("✓ service worker files created.")))
       )
     }
   }
 
   return Promise.all(promises)
-    .then(() => log(color.green("✓ Build successful.")))
+    .then(() => log(green("✓ Build successful.")))
 }
