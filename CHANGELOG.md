@@ -1,3 +1,4 @@
+- Removed: layouts/index.js, because we move from layouts to routes.
 - Added: Initial support for Service Worker
   ([#343](https://github.com/MoOx/phenomic/pull/343))
 - Changed: Remove the ability to define a custom globby pattern via appcache option.
