@@ -2,59 +2,50 @@ import test from "ava"
 
 import postBuild from "../postbuild"
 import { join } from "path"
-import { mkdirsSync, removeSync } from "fs-extra"
-import { readFile } from "fs-promise"
+import pify from "pify"
+import mockFs from "mock-fs"
+import fs from "fs"
+const { readFile } = pify(fs)
 
 const readOpts = { encoding: "utf8" }
 
 const baseConfig = {
   baseUrl: { hostname: "test.host" },
   cwd: __dirname,
-  destination: "_output",
+  destination: "output",
 }
+
+const noop = () => {}
+
+test.before(() => {
+  mockFs({
+    [process.cwd() + "/output"]: {},
+  })
+})
+
+test.after(() => {
+  mockFs.restore()
+})
 
 test("post build nojekyll", async (t) => {
   const config = {
     ...baseConfig,
-    destination: "_output-.nojekyll",
     nojekyll: true,
   }
 
-  const destination = join(config.cwd, config.destination)
-  removeSync(destination)
-  mkdirsSync(destination)
+  await postBuild(config, [], noop)
+  const file = await readFile(join(config.destination, ".nojekyll"), readOpts)
 
-  return postBuild(config, [], () => {})
-  .then(
-    () => Promise.all([
-      readFile(join(config.cwd, config.destination, ".nojekyll"), readOpts),
-    ])
-  )
-  .then((files) => t.is(files[0], ""))
-  .catch((err) => {
-    t.fail(err)
-  })
+  t.is(file, "")
 })
 
 test("post build CNAME", async (t) => {
   const config = {
     ...baseConfig,
-    destination: "_output-CNAME",
     CNAME: true,
   }
 
-  const destination = join(config.cwd, config.destination)
-  removeSync(destination)
-  mkdirsSync(destination)
-
-  return postBuild(config, [], () => {})
-  .then(
-    () => Promise.all([
-      readFile(join(config.cwd, config.destination, "CNAME"), readOpts),
-    ])
-  )
-  .then((files) => t.is(files[0], config.baseUrl.hostname))
-  .catch((err) => {
-    t.fail(err)
-  })
+  await postBuild(config, [], noop)
+  const file = await readFile(join(config.destination, "CNAME"), readOpts)
+  t.is(file, config.baseUrl.hostname)
 })

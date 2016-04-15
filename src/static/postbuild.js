@@ -1,7 +1,9 @@
 // @flow
 import { join } from "path"
 import { green } from "chalk"
-import { writeFile } from "fs-promise"
+import fs from "fs"
+import pify from "pify"
+const { writeFile } = pify(fs)
 import {
   appcache as writeAppcache,
   serviceWorker as writeServiceWorker,
