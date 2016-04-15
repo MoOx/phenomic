@@ -7,7 +7,8 @@
   ([#343](https://github.com/MoOx/phenomic/pull/343))
 
 ## Boilerplate
-- Removed: layouts/index.js, because we move from layouts to routes.
+
+- Removed: ``layouts/index.js``. It is not used since 0.10.0.
 
 # 0.10.2 - 2016-04-14
 
