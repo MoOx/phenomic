@@ -2,8 +2,16 @@ import test from "ava"
 
 import { join } from "path"
 import configurator from ".."
+import mockFs from "mock-fs"
 
 test("should accept string", (t) => {
+  mockFs({
+    [process.cwd() + "/content"]: {
+      AsSeT: mockFs.directory({
+        mode: 755,
+      }),
+    },
+  })
   const config = configurator(
     {
       phenomic: {
@@ -19,9 +27,18 @@ test("should accept string", (t) => {
       route:"AsSeT",
     }
   )
+
+  mockFs.restore()
 })
 
 test("should accept true", (t) => {
+  mockFs({
+    [process.cwd() + "/content"]: {
+      assets: mockFs.directory({
+        mode: 755,
+      }),
+    },
+  })
   const config = configurator(
     {
       phenomic: {
@@ -37,6 +54,7 @@ test("should accept true", (t) => {
       route:"assets",
     }
   )
+  mockFs.restore()
 })
 
 test("should accept false", (t) => {
