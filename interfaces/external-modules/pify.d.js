@@ -1,9 +1,6 @@
 declare module "pify" {
-  declare class PromisifyFunction {
-    (...args: any): Promise
-  }
   declare class Pify {
-    (callback: Function): PromisifyFunction
+    (callback: Function | Object): any
   }
   declare var exports: Pify
 }
