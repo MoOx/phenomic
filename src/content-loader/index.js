@@ -31,11 +31,15 @@ module.exports = function(input) {
   const defaultHead = query.defaultHead
   const parsed = frontMatterParser(input)
 
+  // Normalize all data to JSON compaitable types
+  // See https://github.com/MoOx/phenomic/issues/397
+  const parsedData = JSON.parse(JSON.stringify(parsed.data))
+
   const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = urlify(
-    parsed.data.route
+    parsedData.route
       // custom route
-      ? parsed.data.route
+      ? parsedData.route
       // default route
       : relativePath
   )
@@ -55,7 +59,7 @@ module.exports = function(input) {
   let textData = {
     head: {
       ...defaultHead,
-      ...parsed.data,
+      ...parsedData,
     },
     body: renderer(parsed.content),
     rawBody: parsed.content,
