@@ -51,10 +51,12 @@
     "gray-matter": "^2.0.0",
     "inquirer": "^1.0.0",
     "loader-utils": "^0.2.11",
+    "lodash.template": "^4.2.2",
     "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
     "opn": "^3.0.2",
     "portfinder": "^1.0.2",
+    "pify": "^2.3.0",
     "redbox-react": "^1.2.2",
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",
@@ -100,9 +102,9 @@
     "js-beautify": "^1.5.10",
     "jsdom": "^8.1.0",
     "lnfs": "^3.0.0",
+    "mock-fs": "^3.8.0",
     "npmpub": "^3.0.0",
-    "nyc": "^6.1.1",
-    "promise": "^7.1.1",
+    "nyc": "^6.3.0",
     "react": "^15.0.0-rc.1",
     "react-addons-test-utils": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
@@ -186,7 +188,8 @@
   },
   "nyc": {
     "exclude": [
-      "**/__tests__/**"
+      "**/__tests__/**",
+      "**.template.js"
     ],
     "include": [
       "src/**"

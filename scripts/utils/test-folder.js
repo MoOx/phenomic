@@ -1,12 +1,13 @@
 // All these weird steps for this 'simple' test-boilerplate has been made to
 // boost CI testing, tune with care if you dare to
 
-import { denodeify as asyncify } from "promise"
+import pify from "pify"
 import { remove as rm } from "fs-promise"
 import lnfs from "lnfs"
 import execCmd from "exec-cmd"
 import nodeCmdShim from "cmd-shim"
-const cmdShim = asyncify(nodeCmdShim)
+
+const cmdShim = pify(nodeCmdShim)
 
 const noop = () => {}
 

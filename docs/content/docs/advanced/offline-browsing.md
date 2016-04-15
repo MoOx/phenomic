@@ -16,55 +16,65 @@ on the run without a internet connection.
 That's awesome right ? And you know what ?
 Phenomic supports offline browsing **out of the box.**
 
-Here is two different technique to enable offline experience for your website:
+There are two different technique to enable offline experience for your website:
 
 ## AppCache
 
 This is the old one, IE 10 (and above) supports it.
 
-### [Learn about AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/)
+- [Learn about AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/)
 
-### [AppCache browser support from caniuse](http://caniuse.com/#search=appcache)
+- [AppCache browser support from caniuse](http://caniuse.com/#search=appcache)
 
-You can config Phenomic to generate a AppCache manifest for you after build.
+## Service Worker
 
-To enable this feature, add an ``appcache`` field to ``package.json`` under
+This is a part of ES2015 specifications , only modern browsers support it.
+
+- [Learn about Service Worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)
+
+- [Service worker browser support from caniuse](http://caniuse.com/#search=service-worker)
+
+## How to enable offline support
+
+To enable this feature, add an ``offline`` field to ``package.json`` under
 ``phenomic`` section.
 
 ```js
 {
   ...
   "phenomic": {
-    "appcache": true
+    "offline": true
   }
   ...
 }
 ```
 
-Available values for appcache:
+Available values for `offline`:
 
-- `false` or `null`: Default value. Disable appcache manifest generation
-- `true`: Use default globby patterns `[ "**/*.*", "!**/*.html", "index.html" ]`
+- `false`: Default value. Disable `offline` support.
+- `true`: Use default globby patterns `[ "**", "!**/*.html", "index.html" ]`
 
-  This pattern means that only json files will be downloaded.
-  Downloading HTML files too is not useful since appcache will have a
-  proper FALLBACK option to redirect all URLs (when offline) to a
-  single entry point that will start the client app (which will consume json).
-- `array`: Specify your own globby patterns. Be careful, it's all yours.
-- `string`: like array, will be converted to array. Ex: `"foo"` --> `["foo"]`
+  This pattern means that we will download all files but only 1 main `index.html`. We use some magic under the hood to make that file a fallback for all routes.
 
-Phenomic uses [globby](https://www.npmjs.com/package/globby) for matching files in
-``dist`` folder.
+  Phenomic uses [globby](https://www.npmjs.com/package/globby) for matching files in ``dist`` folder.
 
-Checkout [globby documentation for more information](https://www.npmjs.com/package/globby)
+  Checkout [globby documentation for more information](https://www.npmjs.com/package/globby)
 
-Now rebuild your website and you will notice a new ``manifest.appcache``
-file your ``dist`` folder.
+- `object`: Contains 3 keys. Please be aware that you don't need to define all of 3 keys. They will be defined with their default values.
 
-> **NOTE**: AppCache will **not be enabled** in development mode
+  - `appcache: boolean = true`: Enable/Disable AppCache seperately
+  - `serviceWorker: boolean = true`: Enable/Disable Service Worker seperately
+  - `pattern: Array = [ "**", "!**/*.html", "index.html" ]`: Define your own globby pattern. A useful case for this option is when you need to remove images from caching list if your website is quite big. But be careful, double check everything before you apply the change.
+
+Now rebuild your website and you may notice some new files in ``dist`` folder such as  ``manifest.appcache``, ``sw.js``, ``sw-register.js`` depending on the options you provided.
+
+> **NOTE**: Offline support will **not be enabled** in development mode
 
 Congratulation. Your website is now a offline-first application.
 
-## Service worker
+## FAQ
 
-Not implemented yet.  [help us](https://github.com/MoOx/phenomic/issues/153)
+### What happened when both AppCache and Service Worker ?
+
+> If you use AppCache and Service Worker on a page, browsers that don’t support SW but do support AppCache will use that, and browsers that support both will ignore the AppCache and let Service Worker take over.
+> - [from MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#Registering_your_worker)

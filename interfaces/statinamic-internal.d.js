@@ -13,7 +13,11 @@ type PhenomicAssetsConfig = {
   path: string,
 }
 
-type PhenomicAppcacheConfig = Array<string> | false
+type PhenomicOfflineConfig = {
+  appcache: boolean,
+  serviceWorker: boolean,
+  pattern: Array<string>,
+}
 
 // Configs generated from configurator
 type PhenomicConfig = {
@@ -21,7 +25,8 @@ type PhenomicConfig = {
   source: string,
   destination: string,
   assets: PhenomicAssetsConfig, // no string type
-  appcache: PhenomicAppcacheConfig, // no string type
+  offline: boolean,
+  offlineConfig: PhenomicOfflineConfig,
   CNAME: boolean,
   nojekyll: boolean,
   devHost: string,
