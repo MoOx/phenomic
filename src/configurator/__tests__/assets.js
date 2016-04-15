@@ -4,6 +4,17 @@ import { join } from "path"
 import configurator from ".."
 import mockFs from "mock-fs"
 
+test("should throws when for an invalid folder", (t) => {
+  t.throws(
+    () => {
+      configurator({}, [])
+    },
+    (error) => error.message.includes(
+      "doesn't exist or isn't a folder"
+    )
+  )
+})
+
 test("should accept string", (t) => {
   mockFs({
     [process.cwd() + "/content"]: {
@@ -12,14 +23,7 @@ test("should accept string", (t) => {
       }),
     },
   })
-  const config = configurator(
-    {
-      phenomic: {
-        "assets": "AsSeT",
-      },
-    },
-    []
-  )
+  const config = configurator({ phenomic: { "assets": "AsSeT" } }, [])
   t.deepEqual(
     config.assets,
     {
@@ -39,14 +43,7 @@ test("should accept true", (t) => {
       }),
     },
   })
-  const config = configurator(
-    {
-      phenomic: {
-        "assets": true,
-      },
-    },
-    []
-  )
+  const config = configurator({ phenomic: { "assets": true } }, [])
   t.deepEqual(
     config.assets,
     {
