@@ -86,7 +86,7 @@ Of course. Here is some useful pattern that covers 90% cases of Phenomic's user.
 
 - `["index.html", "**.css", "**.js"]`: Only cache css, js files and the main `index.html`.
   Everything else will be cache on demand.
-- `["index.html", "**.json", "**.css", "**.js"]`: Cache all posts' content with
+- `["index.html", "**/**.json", "**.css", "**.js"]`: Cache all posts' content with
   css, js files and the main `index.html`. Everything else will be cache on demand.
 
 ### How can I provide my own Service Worker logic ?
