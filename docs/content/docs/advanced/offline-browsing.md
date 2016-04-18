@@ -92,7 +92,7 @@ Of course. Here is some useful pattern that covers 90% cases of Phenomic's user.
 ### How can I provide my own Service Worker logic ?
 
 Sorry, It's not possible at the moment.
-I created an issue at [#399](https://github.com/MoOx/phenomic/issues/399).
+An issue is opened at [#399](https://github.com/MoOx/phenomic/issues/399).
 If you can, please help us implementing it.
 
 ### What happened when both AppCache and Service Worker ?
