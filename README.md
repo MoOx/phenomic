@@ -1,4 +1,4 @@
-# phenomic
+# [phenomic](https://phenomic.io)
 
 ## (Formerly Statinamic)
 

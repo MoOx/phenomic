@@ -16,15 +16,17 @@ cache:
     - docs/node_modules
 
 before_install:
+  # ensure npm @ 3 is installed (check only first number of npm)
+  - NPM_VERSION=$(npm --version)
+  - 'if [ "${NPM_VERSION:0:2}" = "2." ]; then npm i -g npm@latest; fi'
+  # faster npm install
   - npm set progress=false
-  # nyc fail on npm@3.7.1. Remove this patch when node upgrade npm
-  # https://github.com/bcoe/nyc/issues/190
-  - npm install -g npm@latest
+  # remove useless/non listed deps
   - npm prune
 
 script: npm run test-with-coverage
 
-after_success: '[ \"$TRAVIS_PULL_REQUEST\" != \"false\" ] && npm run coverage'
+after_success: npm run coverage
 
 # deploy docs to gh-pages for commits in master
 deploy:
