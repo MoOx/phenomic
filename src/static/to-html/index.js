@@ -70,7 +70,8 @@ export function writeAllHTMLFiles({
   setPageData,
   forgetPageData,
   writeHTMLFile,
-  appcache,
+  offline,
+  offlineConfig,
 }: {
   urls: Array<string>,
   baseUrl: Object,
@@ -82,7 +83,8 @@ export function writeAllHTMLFiles({
   setPageData: Function,
   forgetPageData: Function,
   writeHTMLFile: Function,
-  appcache: PhenomicAppcacheConfig,
+  offline: boolean,
+  offlineConfig: PhenomicOfflineConfig,
 }, testing?: boolean): Promise {
   // create all html files
   return Promise.all(
@@ -101,7 +103,8 @@ export function writeAllHTMLFiles({
 
           baseUrl,
           assetsFiles,
-          appcache,
+          offline,
+          offlineConfig,
         }, testing)
         .then((html) => writeHTMLFile(filename, html))
         .then(() => forgetPageData(url, store))

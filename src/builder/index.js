@@ -1,10 +1,11 @@
 // @flow
-import path from "path"
+import { join } from "path"
 import fs from "fs-extra"
 import color from "chalk"
 import debug from "debug"
 
 import webpack from "./webpack"
+import sortAssets from "./webpack/sortAssets"
 import devServer from "./server"
 
 import collection from "../content-loader/cache"
@@ -19,13 +20,13 @@ export default function(options: Object): void {
 
   const log = debug("phenomic:builder")
 
-  const destination = path.join(config.cwd, config.destination)
+  const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
   if (config.static) {
     // Copy static assets to build folder
     if (config.assets) {
-      const copyDest = path.join(destination, config.assets.route)
+      const copyDest = join(destination, config.assets.route)
       fs.copySync(config.assets.path, copyDest)
       log(color.green("✓ Static assets: copy static assets completed"))
     }
@@ -33,28 +34,7 @@ export default function(options: Object): void {
     webpack(config.webpackConfigClient, log, (stats) => {
       log(color.green("✓ Static assets: client build completed"))
 
-      const assetsFiles = {
-        css: [],
-        js: [],
-      }
-      const assets = stats.toJson().assetsByChunkName
-
-      // Flatten object of arrays
-      // sort a-z => predictable chunks order
-      Object.keys(assets)
-        .reduce((result, key) => {
-          const chunkAssets = assets[key]
-          return result.concat(chunkAssets)
-        }, [])
-        .sort((a, b) => (a.toLowerCase() > b.toLowerCase()) ? 1 : -1)
-        .forEach((name) => {
-          if (name.endsWith(".js")) {
-            assetsFiles.js.push(name)
-          }
-          else if (name.endsWith(".css")) {
-            assetsFiles.css.push(name)
-          }
-        })
+      const assetsFiles = sortAssets(stats.toJson().assetsByChunkName)
 
       toStaticHTML({
         ...config,

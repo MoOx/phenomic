@@ -22,7 +22,8 @@ export default function(url: string, {
 
   baseUrl,
   assetsFiles,
-  appcache,
+  offline,
+  offlineConfig,
 }: {
   exports: Object,
   collection: PhenomicCollection,
@@ -30,7 +31,8 @@ export default function(url: string, {
 
   baseUrl: Object,
   assetsFiles: Object,
-  appcache: PhenomicAppcacheConfig,
+  offline: boolean,
+  offlineConfig: PhenomicOfflineConfig,
 }, testing?: boolean): Promise<string> {
   const {
     layouts,
@@ -119,20 +121,23 @@ export default function(url: string, {
                 escapeJSONforHTML(JSON.stringify(initialState))
               }`
           }
-          let scriptTags = false
-          if (assetsFiles.js && Array.isArray(assetsFiles.js)) {
-            scriptTags = assetsFiles.js.map(fileName =>
-              <script
-                key={ fileName }
-                src={ `${ joinUri(baseUrl.pathname, fileName) }` }
-              ></script>
-            )
+          // service worker
+          if (offline && offlineConfig.serviceWorker) {
+            assetsFiles.js.push("sw-register.js")
           }
-          // Add appcache manifest to html tag
+          // appcache
           const manifest =
-            (appcache && appcache !== "")
+            (offline && offlineConfig.appcache)
             ? joinUri(baseUrl.pathname, "manifest.appcache")
             : ""
+
+          const scriptTags = assetsFiles.js.map(fileName =>
+            <script
+              key={ fileName }
+              src={ `${ joinUri(baseUrl.pathname, fileName) }` }
+            ></script>
+          )
+
           // write htmlString as html files
           return resolve(
             // render html document as simple html

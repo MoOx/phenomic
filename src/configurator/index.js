@@ -26,7 +26,6 @@ export default function config(pkg = {}, argv = process.argv) {
     ...defaultAndCLIconfig,
     ...userJSConfig,
   }
-
   // validation/adjustement for each options
   Object.keys(validators).forEach((key) => {
     validators[key]({

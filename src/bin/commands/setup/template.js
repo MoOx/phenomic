@@ -6,7 +6,7 @@ const template = {
   "scripts": {
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "npm-run-all --parallel lint:*",
     "start": "phenomic start",
     "build": "phenomic build",
     "pretest": "npm run lint",
