@@ -16,6 +16,9 @@ cache:
     - docs/node_modules
 
 before_install:
+  # ensure npm @ 3 is installed (check only first number of npm)
+  - NPM_VERSION=$(npm --version)
+  - 'if [ "${NPM_VERSION:0:2}" = "2." ]; then npm i -g npm@latest; fi'
   # faster npm install
   - npm set progress=false
   # remove useless/non listed deps
