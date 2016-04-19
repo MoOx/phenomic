@@ -50,7 +50,7 @@
     "react": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
     "react-google-analytics": "^0.2.0",
-    "react-helmet": "^2.1.0",
+    "react-helmet": "^3.0.0",
     "react-redux": "^4.4.1",
     "react-router": "^2.2.2",
     "react-svg-inline": "^1.1.0",

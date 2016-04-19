@@ -1,3 +1,15 @@
+- Changed: Require `react-helmet@^3.0.0`. We support all react-helmet's methods
+  right now including: `base`, `link`, `meta`, `script` and `htmlAttributes`.
+  Check out [react-helmet's documentation](https://github.com/nfl/react-helmet)
+  for more information
+  ([#348](https://github.com/MoOx/phenomic/pull/348))
+
+## Boilerplate
+
+- Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
+  to make sure your website work with old browsers as well.
+  ([#348](https://github.com/MoOx/phenomic/pull/348))
+
 # 0.11.0 - 2016-04-19
 
 - Changed: `appcache` option has been deprecated and has been replaced by

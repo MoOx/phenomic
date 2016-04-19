@@ -12,6 +12,7 @@ import Html from "../Html"
 const head = "head"
 const body = "body"
 const script = "script"
+const htmlProps = { lang: "en" }
 
 const renderer = (...args) => {
   const render = createRenderer()
@@ -19,39 +20,14 @@ const renderer = (...args) => {
   return render.getRenderOutput()
 }
 
-test("should render html string", () => {
+test("should render Html componnent", () => {
   expect(
     renderer(
       <Html
+        htmlProps={ htmlProps }
         head={ head }
         body={ body }
         script={ script }
-      />
-    )
-  ).toEqualJSX(
-    <html
-      lang="en"
-    >
-      <head dangerouslySetInnerHTML={ { __html: head } } />
-      <body>
-        <div
-          dangerouslySetInnerHTML={ { __html: body } }
-          id="phenomic"
-        />
-        <script dangerouslySetInnerHTML={ { __html: script } } />
-      </body>
-    </html>
-  )
-})
-
-test("should render html string, manifest and children", () => {
-  expect(
-    renderer(
-      <Html
-        head={ head }
-        body={ body }
-        script={ script }
-        manifest="manifest"
       >
         <p>{ "foo" }</p>
       </Html>
@@ -59,7 +35,6 @@ test("should render html string, manifest and children", () => {
   ).toEqualJSX(
     <html
       lang="en"
-      manifest="manifest"
     >
       <head dangerouslySetInnerHTML={ { __html: head } } />
       <body>
