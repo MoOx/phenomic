@@ -8,6 +8,8 @@
 
 ## Boilerplate
 
+- Added: Run lint process in parallel with [npm-run-all](https://www.npmjs.com/package/npm-run-all)
+  ([#402](https://github.com/MoOx/phenomic/pull/343))
 - Removed: ``layouts/index.js``. It is not used since 0.10.0.
 
 # 0.10.2 - 2016-04-14

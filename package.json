@@ -103,6 +103,7 @@
     "jsdom": "^8.1.0",
     "lnfs": "^3.0.0",
     "mock-fs": "^3.8.0",
+    "npm-run-all": "^1.7.0",
     "npmpub": "^3.0.0",
     "nyc": "^6.3.0",
     "react": "^15.0.0-rc.1",
@@ -152,6 +153,7 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.7.0",
     "postcss-reporter": "^1.3.0",
+    "npm-run-all": "^1.7.0",
     "raw-loader": "^0.5.1",
     "react-svg-inline": "^1.1.0",
     "react-topbar-progress-indicator": "^1.0.0",
@@ -163,11 +165,11 @@
     "postinstall": "node npm/postinstall.js",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm interfaces docs/scripts docs/src docs/web_modules boilerplate/scripts boilerplate/src boilerplate/web_modules",
     "lint:js:flow": "babel-node scripts/flow-check.js",
-    "lint:js": "npm run lint:js:eslint && npm run lint:js:flow",
+    "lint:js": "npm-run-all --parallel lint:js:*",
     "lint:css": "stylelint \"+(boilerplate|docs)/web_modules/**/*.css\"",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "npm-run-all --parallel lint:*",
     "pretests": "npm run lint",
     "tests": "ava",
     "integration-tests": "ava __tests__/*.js",
@@ -206,6 +208,7 @@
     ]
   },
   "eslintConfig": {
+    "root": true,
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react-flow"
