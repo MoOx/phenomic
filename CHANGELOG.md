@@ -1,14 +1,17 @@
-- Added: Initial support for Service Worker
+# 0.11.0 - 2016-04-19
+
+- Changed: `appcache` option has been deprecated and has been replaced by
+  the ``offline`` option. You should update your configuration accordingly.
+  Please refer https://phenomic.io/docs/advanced/offline-browsing/.
   ([#343](https://github.com/MoOx/phenomic/pull/343))
-- Changed: Remove the ability to define a custom globby pattern via appcache option.
-  `appcache` option was deprecated and will be removed soon.
-  You should update your configuration to use the latest `offline` option.
-  ([#343](https://github.com/MoOx/phenomic/pull/343))
+- Added: Initial support for Service Worker via ``offline`` option.
+  ([#343](https://github.com/MoOx/phenomic/pull/343),
+  [#405](https://github.com/MoOx/phenomic/pull/405))
 
 ## Boilerplate
 
-- Removed: ``layouts/index.js``. It is not used since 0.10.0.
 - Removed: (boilerplate) ``layouts/index.js``. It is not used since 0.10.0.
+  ([#401](https://github.com/MoOx/phenomic/pull/401))
 - Added: Run lint process in parallel with [npm-run-all](https://www.npmjs.com/package/npm-run-all)
   ([#402](https://github.com/MoOx/phenomic/pull/343))
 - Added: (boilerplate) more layouts and components so new users have more
