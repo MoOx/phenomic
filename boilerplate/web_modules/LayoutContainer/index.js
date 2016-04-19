@@ -28,6 +28,9 @@ export default class Layout extends Component {
             { property: "og:site_name", content: pkg.name },
             { name: "twitter:site", content: `@${ pkg.twitter }` },
           ] }
+          script={ [
+            { src: "https://cdn.polyfill.io/v2/polyfill.min.js" },
+          ] }
         />
         <Header />
         <div className={ styles.content }>
