@@ -165,7 +165,7 @@
     "postinstall": "node npm/postinstall.js",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm interfaces docs/scripts docs/src docs/web_modules boilerplate/scripts boilerplate/src boilerplate/web_modules",
     "lint:js:flow": "babel-node scripts/flow-check.js",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint:css": "stylelint \"+(boilerplate|docs)/web_modules/**/*.css\"",
@@ -208,6 +208,7 @@
     ]
   },
   "eslintConfig": {
+    "root": true,
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react-flow"
