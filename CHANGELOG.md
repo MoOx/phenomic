@@ -145,6 +145,9 @@
 
   You should take a new look to the [default boilerplate](boilerplate).
 
+- Added: meta generator tag in HTML result
+  ([#361](https://github.com/MoOx/statinamic/issues/361))
+
 - Added: Use node-portfinder to avoid error when port is used
   ([#320](https://github.com/MoOx/phenomic/issues/320))
 

@@ -5,6 +5,7 @@ import url from "url"
 import beautifyHTML from "../../../_utils/beautify-html"
 import htmlMetas from "../../../_utils/html-metas"
 
+import { metaGenerator }  from "../Html"
 import urlAsHtml from "../url-as-html"
 
 import collection from "./fixtures/collection.js"
@@ -32,6 +33,7 @@ test("url as html", async (t) => {
 <html lang="en">
 
 <head>
+  ${ metaGenerator }
   ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>

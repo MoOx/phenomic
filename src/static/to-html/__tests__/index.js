@@ -8,6 +8,7 @@ import collection from "./fixtures/collection.js"
 import store from "./fixtures/store.js"
 
 import toHTML, { writeAllHTMLFiles } from "../index"
+import { metaGenerator }  from "../Html"
 
 test("don't break if there is nothing to transform", async (t) => {
   toHTML({
@@ -49,6 +50,7 @@ test("writeAllHTMLFiles", (t) => {
 <html lang="en">
 
 <head>
+  ${ metaGenerator }
   ${ htmlMetas({
     baseUrl: { pathname: "/" },
     css: [ "phenomic-client.css" ] }).join("\n  ") }

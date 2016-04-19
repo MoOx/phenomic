@@ -1,4 +1,10 @@
 import React, { Component, PropTypes } from "react"
+import pkg from "../../../package.json"
+
+export const metaGenerator = (
+  "<meta name=\"generator\" " +
+  `content="${ pkg.name } ${ pkg.version } ${ pkg.repository }" />`
+)
 
 export default class Html extends Component {
 
@@ -27,7 +33,7 @@ export default class Html extends Component {
       <html {...htmlProps}>
         <head
           dangerouslySetInnerHTML={ {
-            __html: this.props.head,
+            __html: metaGenerator + this.props.head,
           } }
         />
         <body>
