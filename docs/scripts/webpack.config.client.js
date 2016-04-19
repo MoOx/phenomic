@@ -1,4 +1,5 @@
 import path from "path"
+import webpack from "webpack"
 
 // ! client side loader only \\
 export default ({ config }) => {
@@ -33,6 +34,29 @@ export default ({ config }) => {
 
     entry: {
       "phenomic-client": path.join(__dirname, "index-client"),
+      "phenomic-bundle": [
+        "react",
+        "react-dom",
+        "redux",
+        "react-redux",
+        "react-helmet",
+        "whatwg-fetch",
+      ],
+    },
+
+    ...config.production && {
+      output: {
+        ...webpackConfig.output,
+        filename: "[name].[chunkhash].js",
+        chunkFilename: "[chunkhash].js",
+      },
+
+      plugins: [
+        ...webpackConfig.plugins,
+        new webpack.optimize.CommonsChunkPlugin({
+          names: [ "phenomic-bundle", "manifest" ],
+        }),
+      ],
     },
   }
 }
