@@ -1,4 +1,5 @@
-
+- Added: Polyfill for non-ES6 browser compatibility.
+  ([#407](https://github.com/MoOx/phenomic/issues/407))
 - Added: Initial support for Service Worker
   ([#343](https://github.com/MoOx/phenomic/pull/343))
 - Changed: Remove the ability to define a custom globby pattern via appcache option.

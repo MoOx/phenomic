@@ -1,5 +1,6 @@
 // @flow
 // App
+import "./polyfill"
 import React from "react"
 import ReactDOM from "react-dom"
 import { Router, useRouterHistory } from "react-router"
