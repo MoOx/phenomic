@@ -1,3 +1,5 @@
+- Fixed: Wrong `sw-register.js` path when website is not at domain's root
+
 # 0.11.0 - 2016-04-19
 
 - Changed: `appcache` option has been deprecated and has been replaced by

@@ -123,7 +123,9 @@ export default function(url: string, {
           }
           // service worker
           if (offline && offlineConfig.serviceWorker) {
-            assetsFiles.js.push("sw-register.js")
+            assetsFiles.js.push(
+              joinUri(baseUrl.pathname, "sw-register.js")
+            )
           }
           // appcache
           const manifest =
