@@ -167,6 +167,7 @@
     "prepublish": "rimraf lib && npm run transpile",
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
     "lint:js:flow": "babel-node scripts/flow-check.js",
+    "lint:js": "npm-run-all --parallel lint:js:*",
     "lint:css": "stylelint \"+(boilerplate|docs)/web_modules/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "pretests": "npm run lint",
