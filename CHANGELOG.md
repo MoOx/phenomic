@@ -1,4 +1,3 @@
-
 - Added: Initial support for Service Worker
   ([#343](https://github.com/MoOx/phenomic/pull/343))
 - Changed: Remove the ability to define a custom globby pattern via appcache option.
@@ -8,9 +7,19 @@
 
 ## Boilerplate
 
+- Removed: ``layouts/index.js``. It is not used since 0.10.0.
+- Removed: (boilerplate) ``layouts/index.js``. It is not used since 0.10.0.
 - Added: Run lint process in parallel with [npm-run-all](https://www.npmjs.com/package/npm-run-all)
   ([#402](https://github.com/MoOx/phenomic/pull/343))
-- Removed: ``layouts/index.js``. It is not used since 0.10.0.
+- Added: (boilerplate) more layouts and components so new users have more
+  example to show list of entries:
+
+  - ``Homepage`` layout that include a list of posts
+  - ``Post`` layout
+  - ``PagesList`` component to easily show page preview
+  - ``PagePreview`` to display page meta
+
+  ([#71](https://github.com/MoOx/statinamic/issues/71))
 
 # 0.10.2 - 2016-04-14
 

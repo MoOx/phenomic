@@ -1,5 +1,6 @@
 ---
 title: Phenomic default boilerplate
+layout: Homepage
 ---
 
 > Hi there.
