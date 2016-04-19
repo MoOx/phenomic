@@ -11,7 +11,7 @@ import collection from "./fixtures/collection.js"
 import store from "./fixtures/store.js"
 
 test("url as html", async (t) => {
-  urlAsHtml(
+  const html = await urlAsHtml(
     "/",
     {
       exports: {
@@ -26,8 +26,8 @@ test("url as html", async (t) => {
     },
     true
   )
-  .then((html) => {
-    const expectedHTML = (
+
+  const expectedHTML = (
 `<!doctype html>
 <html lang="en">
 
@@ -59,16 +59,121 @@ test("url as html", async (t) => {
   <script src="/phenomic-client.js"></script>
 </body>
 
-</html>`
-    )
-    // console.log(beautifyHTML(html))
-    // console.log(expectedHTML)
-    t.is(
-      beautifyHTML(html),
-      expectedHTML
-    )
-  })
-  .catch((error) => {
-    t.fail(error.message)
-  })
+</html>`)
+  t.is(beautifyHTML(html),  expectedHTML)
+})
+
+test("baseUrl with offline support", async (t) => {
+  const html = await urlAsHtml(
+    "/",
+    {
+      exports: {
+        routes: require.resolve("./fixtures/routes.js"),
+      },
+      collection,
+      store,
+      offline: true,
+      offlineConfig: {
+        serviceWorker: true,
+        appcache: true,
+      },
+      baseUrl: url.parse("http://0.0.0.0:3000/phenomic"),
+      assetsFiles: {
+        js: [ "phenomic-client.js" ],
+      },
+    },
+    true
+  )
+
+  const expectedHTML = (
+`<!doctype html>
+<html lang="en" manifest="/phenomic/manifest.appcache">
+
+<head>
+  ${ htmlMetas({ baseUrl: { pathname: "/phenomic" } }).join("\n  ") }
+  <title data-react-helmet="true"></title>
+</head>
+
+<body>
+  <div id="phenomic">
+    <p>TestContainer</p>
+  </div>
+  <script>
+    window.__COLLECTION__ = [{
+      "__url": "/",
+      "__resourceUrl": "/index.html"
+    }, {
+      "__url": "/test-url",
+      "__resourceUrl": "/test-url/index.html"
+    }];
+    window.__INITIAL_STATE__ = {
+      "pages": {
+        "/": {
+          "home": "page"
+        }
+      }
+    }
+  </script>
+  <script src="/phenomic/phenomic-client.js"></script>
+  <script src="/phenomic/sw-register.js"></script>
+</body>
+
+</html>`)
+  t.is(beautifyHTML(html),  expectedHTML)
+})
+
+test("custom script tags", async (t) => {
+  const html = await urlAsHtml(
+    "/",
+    {
+      exports: {
+        routes: require.resolve("./fixtures/routesWithCustomScript.js"),
+      },
+      collection,
+      store,
+      baseUrl: url.parse("http://0.0.0.0:3000/"),
+      assetsFiles: {
+        js: [ "phenomic-client.js" ],
+      },
+    },
+    true
+  )
+
+  const expectedHTML = (
+`<!doctype html>
+<html lang="en">
+
+<head>
+  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
+  <title data-react-helmet="true"></title>
+</head>
+
+<body>
+  <div id="phenomic">
+    <div>
+      <p>TestContainer</p>
+    </div>
+  </div>
+  <script>
+    window.__COLLECTION__ = [{
+      "__url": "/",
+      "__resourceUrl": "/index.html"
+    }, {
+      "__url": "/test-url",
+      "__resourceUrl": "/test-url/index.html"
+    }];
+    window.__INITIAL_STATE__ = {
+      "pages": {
+        "/": {
+          "home": "page"
+        }
+      }
+    }
+  </script>
+  <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
+  <script src="/phenomic-client.js"></script>
+</body>
+
+</html>`)
+  t.is(beautifyHTML(html),  expectedHTML)
 })

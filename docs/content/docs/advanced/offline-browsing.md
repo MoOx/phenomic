@@ -74,7 +74,30 @@ Congratulation. Your website is now a offline-first application.
 
 ## FAQ
 
+### How to enable on demand cache for files that weren't cache on initial load ?
+
+This is the default behavior of the builtin Service Worker logic.
+It will cache everything under the same origin on demand.
+
+### Can you provide other useful globby patterns ?
+
+Of course. Here is some useful pattern that covers 90% cases of Phenomic's user.
+(along with the default pattern)
+
+- `["index.html", "**.css", "**.js"]`: Only cache css, js files and the main `index.html`.
+  Everything else will be cache on demand.
+- `["index.html", "**/**.json", "**.css", "**.js"]`: Cache all posts' content with
+  css, js files and the main `index.html`. Everything else will be cache on demand.
+
+### How can I provide my own Service Worker logic ?
+
+Sorry, It's not possible at the moment.
+An issue is opened at [#399](https://github.com/MoOx/phenomic/issues/399).
+If you can, please help us implementing it.
+
 ### What happened when both AppCache and Service Worker ?
 
-> If you use AppCache and Service Worker on a page, browsers that don’t support SW but do support AppCache will use that, and browsers that support both will ignore the AppCache and let Service Worker take over.
+> If you use AppCache and Service Worker on a page, browsers that don’t support
+> SW but do support AppCache will use that, and browsers that support both will
+> ignore the AppCache and let Service Worker take over.
 > - [from MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#Registering_your_worker)

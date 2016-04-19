@@ -2,31 +2,22 @@ import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
 
-export default class Page extends Component {
-
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-    __filename: PropTypes.string.isRequired,
-    __url: PropTypes.string.isRequired,
-    head: PropTypes.object.isRequired,
-    body: PropTypes.string.isRequired,
-  };
-
-  static contextTypes = {
-    metadata: PropTypes.object.isRequired,
-  };
-
+class Page extends Component {
   render() {
+    const { props, context } = this
+
     const {
       pkg,
-    } = this.context.metadata
+    } = context.metadata
 
     const {
       __filename,
       __url,
       head,
       body,
-    } = this.props
+      header,
+      footer,
+    } = props
 
     invariant(
       typeof head.title === "string",
@@ -58,14 +49,32 @@ export default class Page extends Component {
           head.title &&
           <h1>{ head.title }</h1>
         }
+        { header }
         {
           body &&
           <div
             dangerouslySetInnerHTML={ { __html: body } }
           />
         }
-        { this.props.children }
+        { props.children }
+        { footer }
       </div>
     )
   }
 }
+
+Page.propTypes = {
+  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  __filename: PropTypes.string.isRequired,
+  __url: PropTypes.string.isRequired,
+  head: PropTypes.object.isRequired,
+  body: PropTypes.string.isRequired,
+  header: PropTypes.element,
+  footer: PropTypes.element,
+}
+
+Page.contextTypes = {
+  metadata: PropTypes.object.isRequired,
+}
+
+export default Page

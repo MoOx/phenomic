@@ -97,14 +97,7 @@ export default function(url: string, {
               </PhenomicContextProvider>
             )
 
-            const headTags = Helmet.rewind()
-
-            head = (
-              defaultMetas +
-              headTags.meta +
-              headTags.title +
-              headTags.link
-            )
+            head = Helmet.rewind()
 
             const initialState = {
               ...store.getState(),
@@ -121,22 +114,38 @@ export default function(url: string, {
                 escapeJSONforHTML(JSON.stringify(initialState))
               }`
           }
-          // service worker
-          if (offline && offlineConfig.serviceWorker) {
-            assetsFiles.js.push("sw-register.js")
-          }
-          // appcache
-          const manifest =
-            (offline && offlineConfig.appcache)
-            ? joinUri(baseUrl.pathname, "manifest.appcache")
-            : ""
 
-          const scriptTags = assetsFiles.js.map(fileName =>
+          const headTags = (
+            head.base.toString() +
+            defaultMetas +
+            head.meta.toString() +
+            head.title.toString() +
+            head.link.toString()
+          )
+
+          const htmlProps = {
+            lang: "en",
+            ...head.htmlAttributes.toComponent(),
+            ...offline && offlineConfig.appcache && {
+              manifest: joinUri(baseUrl.pathname, "manifest.appcache"),
+            },
+          }
+
+          const jsFiles = assetsFiles.js
+          if (offline && offlineConfig.serviceWorker) {
+            // We will add baseUrl later for all files in jsFiles
+            jsFiles.push("sw-register.js")
+          }
+
+          const scriptTags = jsFiles.map((fileName) =>
             <script
               key={ fileName }
               src={ `${ joinUri(baseUrl.pathname, fileName) }` }
-            ></script>
+            />
           )
+
+          // TODO: How to let's user push custom tags to the end of the array ?
+          scriptTags.unshift(head.script.toComponent())
 
           // write htmlString as html files
           return resolve(
@@ -144,10 +153,10 @@ export default function(url: string, {
             "<!doctype html>" +
             ReactDOMserver.renderToStaticMarkup(
               React.createElement(Html, {
-                head,
+                htmlProps,
+                head: headTags,
                 body,
                 script,
-                manifest,
                 children: scriptTags,
               })
             )

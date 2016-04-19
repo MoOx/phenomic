@@ -1,14 +1,40 @@
-
-- Added: Initial support for Service Worker
-  ([#343](https://github.com/MoOx/phenomic/pull/343))
-- Changed: Remove the ability to define a custom globby pattern via appcache option.
-  `appcache` option was deprecated and will be removed soon.
-  You should update your configuration to use the latest `offline` option.
-  ([#343](https://github.com/MoOx/phenomic/pull/343))
+- Changed: Require `react-helmet@^3.0.0`. We support all react-helmet's methods
+  right now including: `base`, `link`, `meta`, `script` and `htmlAttributes`.
+  Check out [react-helmet's documentation](https://github.com/nfl/react-helmet)
+  for more information
+  ([#348](https://github.com/MoOx/phenomic/pull/348))
 
 ## Boilerplate
 
-- Removed: ``layouts/index.js``. It is not used since 0.10.0.
+- Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
+  to make sure your website work with old browsers as well.
+  ([#348](https://github.com/MoOx/phenomic/pull/348))
+
+# 0.11.0 - 2016-04-19
+
+- Changed: `appcache` option has been deprecated and has been replaced by
+  the ``offline`` option. You should update your configuration accordingly.
+  Please refer https://phenomic.io/docs/advanced/offline-browsing/.
+  ([#343](https://github.com/MoOx/phenomic/pull/343))
+- Added: Initial support for Service Worker via ``offline`` option.
+  ([#343](https://github.com/MoOx/phenomic/pull/343),
+  [#405](https://github.com/MoOx/phenomic/pull/405))
+
+## Boilerplate
+
+- Removed: (boilerplate) ``layouts/index.js``. It is not used since 0.10.0.
+  ([#401](https://github.com/MoOx/phenomic/pull/401))
+- Added: Run lint process in parallel with [npm-run-all](https://www.npmjs.com/package/npm-run-all)
+  ([#402](https://github.com/MoOx/phenomic/pull/343))
+- Added: (boilerplate) more layouts and components so new users have more
+  example to show list of entries:
+
+  - ``Homepage`` layout that include a list of posts
+  - ``Post`` layout
+  - ``PagesList`` component to easily show page preview
+  - ``PagePreview`` to display page meta
+
+  ([#71](https://github.com/MoOx/statinamic/issues/71))
 
 # 0.10.2 - 2016-04-14
 
