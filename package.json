@@ -35,7 +35,7 @@
   },
   "engines": {
     "node": ">=4.2.0",
-    "npm": ">=2.0.0"
+    "npm": ">=3.0.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
