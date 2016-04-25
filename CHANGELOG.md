@@ -9,6 +9,8 @@
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Added: Use dynamic values for GitHub and Twitter.
+  ([#419](https://github.com/MoOx/phenomic/pull/419))
 
 # 0.11.0 - 2016-04-19
 
