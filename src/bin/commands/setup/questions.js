@@ -3,6 +3,7 @@ import validUrl from "valid-url"
 export const defaultTestAnswers = {
   name: "Phenomic",
   homepage: "https://phenomic.io/",
+  twitter: "Phenomic_app",
   CNAME: false,
 }
 
@@ -16,7 +17,7 @@ const questions = [
       if (pass) {
         return true
       }
-      return "Project name must contains only letters, numbers and dashes"
+      return "Only letters, numbers and dashes are allowed."
     },
   },
   {
@@ -28,6 +29,29 @@ const questions = [
         return true
       }
       return "Please provide a valid url"
+    },
+  },
+  {
+    type: "input",
+    name: "repository",
+    message: "Your repository url for this project (optional)",
+    validate: value => {
+      if (validUrl.isWebUri(value)) {
+        return true
+      }
+      return "Please provide a valid url"
+    },
+  },
+  {
+    type: "input",
+    name: "twitter",
+    message: "Your project's twitter account (optional)",
+    validate: value => {
+      const pass = /^[a-zA-Z0-9\-_]+$/.test(value)
+      if (pass) {
+        return true
+      }
+      return "Only letters, numbers, dashes & underscores are allowed."
     },
   },
   {
