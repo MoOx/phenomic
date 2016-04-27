@@ -67,6 +67,8 @@ boilerplate:
   You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
 - Changed: ``devPort`` option must be a integer.
+- Added: unknown CLI args now throw errors
+  ([#363](https://github.com/MoOx/phenomic/pull/363))
 
 ## Boilerplate
 

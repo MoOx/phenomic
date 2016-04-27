@@ -6,6 +6,8 @@ import * as validators from "./validators.js"
 export default function config({ argv = [], pkg = {} } = {}) {
   const userJSConfig = pkg.phenomic || {}
 
+  yargs.strict()
+
   const defaultAndCLIconfig = yargs.parse(argv)
 
   // delete unwanted yargs parameters
