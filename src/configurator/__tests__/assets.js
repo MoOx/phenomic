@@ -1,12 +1,12 @@
 import test from "ava"
 
 import { join } from "path"
-import configurator from ".."
+import { testConfig } from ".."
 
 test("should throws when for an invalid folder", (t) => {
   t.throws(
     () => {
-      configurator({ phenomic: { assets: "foo" } }, [])
+      testConfig({ assets: "foo" })
     },
     (error) => error.message.includes(
       "doesn't exist or isn't a folder"
@@ -15,7 +15,7 @@ test("should throws when for an invalid folder", (t) => {
 })
 
 test("should accept string", (t) => {
-  const config = configurator({ phenomic: { "assets": "AsSeT" } }, [])
+  const config = testConfig({ "assets": "AsSeT" })
   t.deepEqual(
     config.assets,
     {
@@ -26,7 +26,7 @@ test("should accept string", (t) => {
 })
 
 test("should accept true", (t) => {
-  const config = configurator({ phenomic: { "assets": true } }, [])
+  const config = testConfig({ "assets": true })
   t.deepEqual(
     config.assets,
     {
@@ -37,19 +37,19 @@ test("should accept true", (t) => {
 })
 
 test("should accept false", (t) => {
-  const config = configurator({ phenomic: { "assets": false } }, [])
+  const config = testConfig({ "assets": false })
   t.is(config.assets, false)
 })
 
 test("should accept null", (t) => {
-  const config = configurator({ phenomic: { "assets": null } }, [])
+  const config = testConfig({ "assets": null })
   t.is(config.assets, null)
 })
 
 test("should not accept object without `route` and `path` keys", (t) => {
   t.throws(
     () => {
-      configurator({ phenomic: { assets: { } } }, [])
+      testConfig({ assets: { } })
     },
     (error) => error.message.includes(
       "You provided an object for 'assets' option."

@@ -1,11 +1,80 @@
-- Changed: Require `react-helmet@^3.0.0`. We support all react-helmet's methods
-  right now including: `base`, `link`, `meta`, `script` and `htmlAttributes`.
-  Check out [react-helmet's documentation](https://github.com/nfl/react-helmet)
-  for more information
+## tl;dr;
+
+**Don't be afraid by the length of this release notes. It's for the better.**
+
+Most noticeable change occurs in the ``scripts`` folder.
+It might be a good idea is to take a look to the new folder of the default
+boilerplate:
+
+- There is now just 2 files: ``phenomic.browser.js`` (client runtime) and
+``phenomic.node.js`` (for static build).
+- webpack configs can be moved at the root of you project and merged into a
+  single one ``webpack.config.babel.js``. Phenomic specific configuration can be
+  removed (eg: ``entry``) and is now injected via Phenomic itself.
+
+## Details
+
+- Removed: layouts now must be passed via props to ``PageContainer`` component.
+  This change has been introduced in ``0.10.0`` but old way (via a
+  parameter in the former ``scripts/build.js`` and ``scripts/index-client.js``)
+  was still accepted.
+  _If you do not have a warning in ``0.10.0`` or newer, you won‘t be affected by
+  this change._
+- Removed: dev server does not pre-render anymore. During development, only
+  client side version is used. This is to avoid huge performance issue
+  introduced in ``statinamic@0.7.0``. We might re-enable pre-rendering in a near
+  future.
+  See change below for more information
+  ([#301](https://github.com/MoOx/phenomic/issues/301))
+- Changed: **major refactoring** to fix huge performance issue introduced in
+  ``statinamic@0.7.0``
+  ([#301](https://github.com/MoOx/phenomic/issues/301)).
+  At the same time we introduced some internal changes, we have reduced the
+  required boilerplate and make some changes in order to simplify everything:
+
+    - Removed: ``scripts/config.js``. Configuration is now builded from a
+      "classic" webpack config. See change related to the webpack config below.
+    - Removed: ``scripts/webpack.config.client.js`` content should be merged
+      with your ``webpack.config.babel.js`` (please read the change below).
+    - Changed: ``scripts/webpack.config.babel.js`` is now expected by default
+      to be found at the root of your project, like a classic webpack config.
+      Webpack configuration parts specific to Phenomic are now injected by
+      Phenomic itself.
+      **Note that your config must ``export`` a ``makeConfig``**. This is
+      required so Phenomic can easily create dynamic configurations.
+      This also prepare the upgrade to ``webpack@2.0.0``
+      ([which is in beta for a while, but starts to be
+      mature](https://github.com/MoOx/phenomic/issues/421)) that natively
+      allow webpack config to be exported as a function.
+      _The path can be specified via an option (via CLI or config)._
+    - Removed: ``scripts/build.js`` in favor of ``scripts/phenomic.node.js``.
+      _The path can be specified via an option (via CLI or config)._
+      Note that this file will be builded as
+      ``scripts/phenomic.node.bundled.js`` for performance.
+      (New boilerplate (git)ignores ``*.bundle.js`` files).
+    - Changed: ``scripts/index-client.js`` is now
+      ``scripts/phenomic.browser.js``.
+      _The path can be specified via an option (via CLI or config)._
+
+
+- Changed: ``react-helmet@^3.0.0`` is now required.
+  This brings us the ability to use all latest ``react-helmet``'s methods,
+  including: ``base``, ``link``, ``meta``, ``script`` and ``htmlAttributes``.
+  Check out [react-helmet‘s documentation](https://github.com/nfl/react-helmet)
+  for more information.
+  Except new features, no real breaking changes (except that ``react-helmet``
+  don‘t includes some (may be) required polyfills by default).
+  You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Changed: ``devPort`` option must be a integer.
 
 ## Boilerplate
 
+- Changed: big changes in the ``scripts`` folder. Read note above.
+- Changed: lint command now ignore gitignored files in to be sure you don‘t
+  lint some builded files.
+  Note the  ``--ignore-path .gitignore`` part:
+  ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))

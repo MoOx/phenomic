@@ -44,8 +44,8 @@ export default async function test(
     // phenomic/node_modules contains too many dependencies (dev deps) and the
     // prune that will be executed next time will remove some, which goes again
     // what we try to achieve by tuning the install to have a fast CI
-    await cmdShim("lib/bin/index.js", `${ targetModules }/.bin/phenomic`)
-    await lnfs("lib/bin/index.js", `${ targetModules }/.bin/phenomic`)
+    await cmdShim(`${ lib }/bin/index.js`, `${ targetModules }/.bin/phenomic`)
+    await lnfs(`${ lib }/bin/index.js`, `${ targetModules }/.bin/phenomic`)
     await lnfs(lib, `${ targetModules }/phenomic/lib`)
     await lnfs("package.json", `${ targetModules }/phenomic/package.json`)
 

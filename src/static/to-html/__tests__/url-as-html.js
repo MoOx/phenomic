@@ -14,14 +14,12 @@ test("url as html", async (t) => {
   const html = await urlAsHtml(
     "/",
     {
-      exports: {
-        routes: require.resolve("./fixtures/routes.js"),
-      },
+      routes: require("./fixtures/routes.js").default,
       collection,
       store,
       baseUrl: url.parse("http://0.0.0.0:3000/"),
       assetsFiles: {
-        js: [ "phenomic-client.js" ],
+        js: [ "test.js" ],
       },
     },
     true
@@ -56,7 +54,7 @@ test("url as html", async (t) => {
       }
     }
   </script>
-  <script src="/phenomic-client.js"></script>
+  <script src="/test.js"></script>
 </body>
 
 </html>`)
@@ -67,9 +65,7 @@ test("baseUrl with offline support", async (t) => {
   const html = await urlAsHtml(
     "/",
     {
-      exports: {
-        routes: require.resolve("./fixtures/routes.js"),
-      },
+      routes: require("./fixtures/routes.js").default,
       collection,
       store,
       offline: true,
@@ -79,7 +75,7 @@ test("baseUrl with offline support", async (t) => {
       },
       baseUrl: url.parse("http://0.0.0.0:3000/phenomic"),
       assetsFiles: {
-        js: [ "phenomic-client.js" ],
+        js: [ "test.js" ],
       },
     },
     true
@@ -114,7 +110,7 @@ test("baseUrl with offline support", async (t) => {
       }
     }
   </script>
-  <script src="/phenomic/phenomic-client.js"></script>
+  <script src="/phenomic/test.js"></script>
   <script src="/phenomic/sw-register.js"></script>
 </body>
 
@@ -126,14 +122,12 @@ test("custom script tags", async (t) => {
   const html = await urlAsHtml(
     "/",
     {
-      exports: {
-        routes: require.resolve("./fixtures/routesWithCustomScript.js"),
-      },
+      routes: require("./fixtures/routesWithCustomScript.js").default,
       collection,
       store,
       baseUrl: url.parse("http://0.0.0.0:3000/"),
       assetsFiles: {
-        js: [ "phenomic-client.js" ],
+        js: [ "test.js" ],
       },
     },
     true
@@ -171,7 +165,7 @@ test("custom script tags", async (t) => {
     }
   </script>
   <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
-  <script src="/phenomic-client.js"></script>
+  <script src="/test.js"></script>
 </body>
 
 </html>`)

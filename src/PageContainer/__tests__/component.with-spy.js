@@ -42,11 +42,11 @@ test.cb("should notify for page not found", (t) => {
           t.is(pageUrl, "/")
           t.end()
         },
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
-      collection: [ ],
+      collection: [],
     },
   )
   t.true(
@@ -69,10 +69,10 @@ test("should log error if default layout doesn't exits", (t) => {
         defaultLayout: "AnotherPage",
         getPage: noop,
         setPageNotFound: noop,
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
       collection: [],
     },
   )
@@ -100,10 +100,10 @@ test("should log error if required layout doesn't exits", (t) => {
         } },
         getPage: noop,
         setPageNotFound: noop,
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
       collection: [],
     },
   )
@@ -129,10 +129,10 @@ test("should notify if page is not an object", (t) => {
         pages: { "/": [] },
         getPage: noop,
         setPageNotFound: noop,
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
       collection: [],
     },
   )
@@ -160,10 +160,10 @@ test("should redirect if url doesn't match needed", (t) => {
         pages: { "/foo/": {} },
         getPage: noop,
         setPageNotFound: noop,
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
       collection: [ {
         __url: "/foo/",
       } ],
@@ -196,10 +196,10 @@ test("should NOT redirect if url contains hash", (t) => {
         pages: { "/foo/": {} },
         getPage: noop,
         setPageNotFound: noop,
+        layouts: { Page },
       }
     ),
     {
-      layouts: { Page },
       collection: [ {
         __url: "/foo/",
       } ],

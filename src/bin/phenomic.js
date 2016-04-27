@@ -1,44 +1,69 @@
 import "babel-polyfill"
-import yargs from "../configurator/yargs.js"
+import { join } from "path"
 
-import runner from "./runner.js"
 import setup from "./commands/setup/index.js"
 
+import builder from "../builder/index.js"
+import yargs from "../configurator/yargs.js"
+import configurator from "../configurator/index.js"
+
+const runner = () => {
+  const cwd = process.cwd()
+  const pkg = require(join(cwd, "package.json"))
+  const config = configurator({ argv: process.argv, pkg })
+  builder(config)
+}
+
 const startAndBuildOptions = {
-  script: {
-    default: "scripts/build.js",
-  },
-  config: {
-    alias: "c",
+  "webpack-config": {
     type: "string",
-    describe: "Configuration file",
-    default: "scripts/config.js",
+    describe: "Webpack config (must expose a 'makeConfig' function)",
+    default: "webpack.config.babel.js",
+  },
+  "script-browser": {
+    type: "string",
+    describe: "Phenomic entry point (browser)",
+    default: join("scripts", "phenomic.browser.js"),
+  },
+  "script-node": {
+    type: "string",
+    describe: "Phenomic entry point (node)",
+    default: join("scripts", "phenomic.node.js"),
   },
 }
 
-yargs
-  .command(
-    "setup",
-    "setup a project", {
-      test: {
-        describe: "Test mode (don't use this option).",
-      },
+yargs.command(
+  "setup",
+  "setup a project",
+  {
+    test: {
+      describe: "Test mode (don't use this option).",
     },
-    setup,
-  )
+  },
+  setup,
+)
 
-  .command(
-    "start [script]",
-    "start your project (server / development mode)",
-    startAndBuildOptions,
-    runner([ "--dev", "--server", "--open" ])
-  )
+yargs.command(
+  "start",
+  "start your project (server / development mode)",
+  {
+    ...startAndBuildOptions,
+    dev: { default: true },
+    server: { default: true },
+    open: { default: true },
+  },
+  runner
+)
 
-  .command(
-    "build [script]",
-    "build your project (static / production mode)",
-    startAndBuildOptions,
-    runner([ "--production", "--static" ])
-  )
+yargs.command(
+  "build",
+  "build your project (static / production mode)",
+  {
+    ...startAndBuildOptions,
+    production: { default: true },
+    static: { default: true },
+  },
+  runner
+)
 
-  .parse(process.argv)
+yargs.parse(process.argv)

@@ -59,33 +59,38 @@ export function writeHTMLFile(
     .then(() => filename)
 }
 
-export function writeAllHTMLFiles({
-  urls,
-  baseUrl,
-  destination,
-  assetsFiles,
-  exports,
-  collection,
-  store,
-  setPageData,
-  forgetPageData,
-  writeHTMLFile,
-  offline,
-  offlineConfig,
-}: {
-  urls: Array<string>,
-  baseUrl: Object,
-  destination: string,
-  assetsFiles: Object,
-  exports: Object,
-  collection: PhenomicCollection,
-  store: Object,
-  setPageData: Function,
-  forgetPageData: Function,
-  writeHTMLFile: Function,
-  offline: boolean,
-  offlineConfig: PhenomicOfflineConfig,
-}, testing?: boolean): Promise {
+export function writeAllHTMLFiles(
+  {
+    urls,
+    baseUrl,
+    destination,
+    assetsFiles,
+    metadata,
+    routes,
+    store,
+    collection,
+    setPageData,
+    forgetPageData,
+    writeHTMLFile,
+    offline,
+    offlineConfig,
+  }: {
+    urls: Array<string>,
+    baseUrl: Object,
+    destination: string,
+    assetsFiles: Object,
+    metadata: Object,
+    routes: Object,
+    store: Object,
+    collection: PhenomicCollection,
+    setPageData: Function,
+    forgetPageData: Function,
+    writeHTMLFile: Function,
+    offline: boolean,
+    offlineConfig: PhenomicOfflineConfig,
+  },
+  testing?: boolean
+): Promise {
   // create all html files
   return Promise.all(
     urls.map((url) => {
@@ -97,9 +102,10 @@ export function writeAllHTMLFiles({
       setPageData(url, collection, store)
       return (
         urlAsHtml(url, {
-          exports,
-          collection,
+          metadata,
+          routes,
           store,
+          collection,
 
           baseUrl,
           assetsFiles,

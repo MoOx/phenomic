@@ -17,7 +17,7 @@ const phenomic = "node ./node_modules/.bin/phenomic"
 //   const child = exec(
 //     `${ phenomic } start --open=false --lol`, execOpts,
 //     (err) => {
-//       if (err) {
+//       if (err && !err.killed) {
 //         clearTimeout(timeout)
 //         t.ok(err.message.indexOf("Unknown argument") > -1)
 //         t.end()
@@ -38,7 +38,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
 
     // should die quickly...
     (err) => {
-      if (err) {
+      if (err && !err.killed) {
         console.log(err)
         clearTimeout(timeout)
         t.fail()
@@ -69,7 +69,7 @@ test.cb("should NOT throw if port is used", (t) => {
       `${ phenomic } start --open=false --devPort=8081`, execOpts,
 
       (err) => {
-        if (err) {
+        if (err && !err.killed) {
           console.log(err)
           clearTimeout(timeout)
           t.fail()

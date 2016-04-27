@@ -6,7 +6,6 @@ import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
-import importExports from "../../_utils/import-exports"
 import htmlMetas from "../../_utils/html-metas"
 import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
@@ -15,30 +14,31 @@ import escapeJSONforHTML from "../../_utils/escape-json-for-html"
 
 import minifyCollection from "../../content-loader/minify"
 
-export default function(url: string, {
-  exports,
-  collection,
-  store,
-
-  baseUrl,
-  assetsFiles,
-  offline,
-  offlineConfig,
-}: {
-  exports: Object,
-  collection: PhenomicCollection,
-  store: Object,
-
-  baseUrl: Object,
-  assetsFiles: Object,
-  offline: boolean,
-  offlineConfig: PhenomicOfflineConfig,
-}, testing?: boolean): Promise<string> {
-  const {
-    layouts,
+export default function(
+  url: string,
+  {
     metadata,
     routes,
-  } = importExports(exports)
+    store,
+    collection,
+
+    baseUrl,
+    assetsFiles,
+    offline,
+    offlineConfig,
+  }: {
+    metadata: Object,
+    routes: Object,
+    store: Object,
+    collection: PhenomicCollection,
+
+    baseUrl: Object,
+    assetsFiles: Object,
+    offline: boolean,
+    offlineConfig: PhenomicOfflineConfig,
+  },
+  testing?: boolean
+): Promise<string> {
 
   const render = ReactDOMserver[
     !testing
@@ -88,7 +88,6 @@ export default function(url: string, {
             body = render(
               <PhenomicContextProvider
                 collection={ collectionMin }
-                layouts={ layouts }
                 metadata={ metadata }
               >
                 <ReduxContextProvider store={ store }>

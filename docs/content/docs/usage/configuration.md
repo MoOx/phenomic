@@ -31,8 +31,6 @@ Here is a commented ``package.json`` with only the interesting parts
   // (start and build should be enough)
   //
   // Here are some default environnement variable set by "phenomic" bin
-  // BABEL_DISABLE_CACHE=1
-  //  (required to run webpack loaders correctly in Node
   // DEBUG=phenomic:*
   //  (to get some visual feedback during development and build)
 
@@ -68,7 +66,7 @@ Here is a commented ``package.json`` with only the interesting parts
     "devHost": "0.0.0.0",
 
     // port for development
-    "devPort": "3000",
+    "devPort": 3000,
 
     // flag to add information during development
     "verbose": false,
@@ -76,9 +74,9 @@ Here is a commented ``package.json`` with only the interesting parts
     //  open a new tab when the dev server starts
     "open": true,
 
-    // generate appcache manifest for offline access
+    // generate offline requirements (service worker / appcache)
     // See docs/advanced/offline-browsing for more information
-    "appcache": true
+    "offline": true
   },
 
   // That's because es5 is not enough
