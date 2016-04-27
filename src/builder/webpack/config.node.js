@@ -3,7 +3,7 @@ import { join, basename, dirname } from "path"
 // import { readdirSync } from "fs"
 import { BannerPlugin } from "webpack"
 
-const nodeFilename = "phenomic.node"
+export const chunkNameNode = "phenomic.node"
 
 export default (config) => {
   return {
@@ -11,7 +11,7 @@ export default (config) => {
 
     entry: {
       // no need for other entries
-      [nodeFilename]: join(config.cwd, config.scriptNode),
+      [chunkNameNode]: join(config.cwd, config.scriptNode),
     },
 
     output: {

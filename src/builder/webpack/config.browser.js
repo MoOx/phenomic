@@ -1,6 +1,6 @@
 import { join } from "path"
 
-export const browserFilename = "phenomic.browser"
+export const chunkNameBrowser = "phenomic.browser"
 
 export default (config) => {
   return {
@@ -9,7 +9,7 @@ export default (config) => {
     entry: {
       ...config.webpackConfig.entry,
       // no need for other entries
-      [browserFilename]: join(config.cwd, config.scriptBrowser),
+      [chunkNameBrowser]: join(config.cwd, config.scriptBrowser),
     },
   }
 }
