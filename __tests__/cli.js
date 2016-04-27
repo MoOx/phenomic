@@ -24,7 +24,7 @@ test.cb("should throw if a CLI flag is NOT recognized", (t) => {
     child.kill()
     t.fail()
     t.end()
-  }, 1000)
+  }, 2000)
 })
 
 test.cb("should NOT throw if a CLI flag is recognized", (t) => {
@@ -48,7 +48,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     child.kill()
     t.pass()
     t.end()
-  }, 1000)
+  }, 2000)
 })
 
 test.cb("should NOT throw if port is used", (t) => {
