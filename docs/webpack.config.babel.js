@@ -100,12 +100,6 @@ export const makeConfig = (config = {}) => {
 
     plugins: [
       new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
-      new webpack.DefinePlugin({ "process.env": {
-        NODE_ENV: JSON.stringify(
-          config.production ? "production" : process.env.NODE_ENV
-        ),
-        PHENOMIC_PATHNAME: JSON.stringify(process.env.PHENOMIC_PATHNAME),
-      } }),
       ...config.production && [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(

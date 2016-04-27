@@ -77,6 +77,9 @@ boilerplate:
   lint some builded files.
   Note the  ``--ignore-path .gitignore`` part:
   ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
+- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
+  boilerplate. These are now automatically defined.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
