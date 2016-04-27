@@ -74,9 +74,9 @@ Here is a commented ``package.json`` with only the interesting parts
     //  open a new tab when the dev server starts
     "open": true,
 
-    // generate appcache manifest for offline access
+    // generate offline requirements (service worker / appcache)
     // See docs/advanced/offline-browsing for more information
-    "appcache": true
+    "offline": true
   },
 
   // That's because es5 is not enough
