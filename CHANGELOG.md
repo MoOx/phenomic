@@ -73,6 +73,14 @@ boilerplate:
 - Changed: ``devPort`` option must be a integer.
 - Added: unknown CLI args now throw errors
   ([#363](https://github.com/MoOx/phenomic/pull/363))
+- Added: new injected constants in ``process.env``:
+  - ``process.env.PHENOMIC_NAME``: Phenomic pretty name
+  - ``process.env.PHENOMIC_VERSION``: Phenomic version
+  - ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
+  - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
+  ([#412](https://github.com/MoOx/phenomic/issues/412) &
+  [#361](https://github.com/MoOx/phenomic/issues/361))
+
 
 ## Boilerplate
 
@@ -87,6 +95,8 @@ boilerplate:
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Added: (boilerplate) meta generator tag
+  ([#361](https://github.com/MoOx/phenomic/pull/361))
 
 # 0.11.0 - 2016-04-19
 

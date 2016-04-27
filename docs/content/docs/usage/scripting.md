@@ -23,3 +23,7 @@ Several constants are exposed (injected) in your JavaScript code in
 
 - ``process.env.NODE_ENV``: "production" for production (static) build
 - ``process.env.PHENOMIC_USER_PATHNAME``: the base path of your website/app
+- ``process.env.PHENOMIC_NAME``: Phenomic pretty name
+- ``process.env.PHENOMIC_VERSION``: Phenomic version
+- ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
+- ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url

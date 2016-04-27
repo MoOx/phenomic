@@ -1,5 +1,7 @@
 import { DefinePlugin } from "webpack"
 
+import pkg from "../../../package.json"
+
 export const chunkNameBrowser = "phenomic.browser"
 
 const wrap = JSON.stringify
@@ -19,6 +21,11 @@ export default (config) => {
         ),
 
         PHENOMIC_USER_PATHNAME: wrap(process.env.PHENOMIC_USER_PATHNAME),
+
+        PHENOMIC_NAME: wrap(pkg.version),
+        PHENOMIC_VERSION: wrap(pkg.version),
+        PHENOMIC_HOMEPAGE: wrap(pkg.homepage),
+        PHENOMIC_REPOSITORY: wrap(pkg.repository),
       } }),
     ],
   }
