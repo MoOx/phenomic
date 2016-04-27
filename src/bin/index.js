@@ -5,7 +5,10 @@ if (!process.env.DEBUG) {
 }
 
 // still in src/, handy to play
-if (__filename.indexOf("phenomic/src") > 1) {
+if (
+  __filename.endsWith("src/bin/index.js") ||
+  __filename.endsWith("src\\bin\\index.js")
+) {
   require("babel-register")
 }
 else {
