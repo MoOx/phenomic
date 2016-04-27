@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
+const path = require("path")
+
 if (!process.env.DEBUG) {
   process.env.DEBUG = "phenomic:*"
 }
 
 // still in src/, handy to play
-if (
-  __filename.endsWith("src/bin/index.js") ||
-  __filename.endsWith("src\\bin\\index.js")
-) {
+if (__filename.endsWith(path.join("src/bin/index.js"))) {
   require("babel-register")
 }
 else {
