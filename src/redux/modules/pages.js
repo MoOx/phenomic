@@ -92,7 +92,7 @@ export function get(page: string, url: string): PromiseAction {
     ],
     page,
     promise: jsonFetch(joinUri(
-      process.env.PHENOMIC_PATHNAME,
+      process.env.PHENOMIC_USER_PATHNAME,
       url
     )),
   }
@@ -107,7 +107,7 @@ export function refresh(page: string, url: string): PromiseAction {
     ],
     page,
     promise: jsonFetch(joinUri(
-      process.env.PHENOMIC_PATHNAME,
+      process.env.PHENOMIC_USER_PATHNAME,
       url
     )),
   }

@@ -66,6 +66,10 @@ boilerplate:
   don‘t includes some (may be) required polyfills by default).
   You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Changed: ``PHENOMIC_PATHNAME`` is now ``PHENOMIC_USER_PATHNAME``.
+  But no need to update that in your configuration as it's injected
+  automatically. See changes in the boilerplate.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: ``devPort`` option must be a integer.
 - Added: unknown CLI args now throw errors
   ([#363](https://github.com/MoOx/phenomic/pull/363))

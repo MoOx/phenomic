@@ -54,7 +54,8 @@ function find(
 
 function getBase(location: Object): string {
   return (
-    location.protocol + "//" + location.host + process.env.PHENOMIC_PATHNAME
+    location.protocol + "//" + location.host +
+    process.env.PHENOMIC_USER_PATHNAME
   )
 }
 
@@ -135,7 +136,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       const layoutDOMElement = findDOMNode(this._content)
       if (layoutDOMElement) {
         catchLinks(layoutDOMElement, (href) => {
-          const pageUrl = href.replace(process.env.PHENOMIC_PATHNAME, "/")
+          const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
           if (!find(this.context.collection, pageUrl)) {
             return false
           }

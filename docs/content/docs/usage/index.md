@@ -4,10 +4,11 @@ incomplete: true
 ---
 
 - [Configuration](configuration/)
-- [Page layouts](layouts/)
-- [Styling](styling/)
 - [Writing](write/)
+- [Layouts](layouts/)
+- [Styling](styling/)
 - [Collections](collections/)
+- [Scripting](scripting/)
 - [RSS Feeds](feeds/)
 - [Automatic deployment on GitHub Pages (gh-pages)](gh-pages/)
 - [Advanced Usage and tips](../advanced/)

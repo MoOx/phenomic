@@ -11,7 +11,7 @@ import PhenomicContextProvider from "../ContextProvider"
 export const browserHistory =
   typeof window !== "undefined" // just for node testing
   ? useRouterHistory(createBrowserHistory)({
-    basename: process.env.PHENOMIC_PATHNAME,
+    basename: process.env.PHENOMIC_USER_PATHNAME,
   })
   : null
 
