@@ -26,14 +26,6 @@ export default (config) => {
 
     target: "node",
 
-    // externals for absolute name
-    // plugins: [
-    //   ...config.webpackConfig.plugins || [],
-    //   new ExternalsPlugin({
-    //     include: join(config.cwd, "node_modules"),
-    //   }),
-    // ],
-
     // externals for package/relative name
     externals: [
       ...config.webpackConfig.externals || [
