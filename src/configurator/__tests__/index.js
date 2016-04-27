@@ -4,7 +4,7 @@ import { join } from "path"
 import configurator from ".."
 
 test("should return a default configuration", (t) => {
-  const config = configurator({}, [])
+  const config = configurator()
 
   const expected = {
     cwd: process.cwd(),
@@ -50,15 +50,15 @@ test("should return a default configuration", (t) => {
 })
 
 test("should allow to override some default values", (t) => {
-  const config = configurator(
-    {
+  const config = configurator({
+    pkg: {
       phenomic: {
         "CNAME": true,
         "devPort": 2000,
       },
     },
-    [ "--devHost=1.2.3.4" ]
-  )
+    argv: [ "--devHost=1.2.3.4" ],
+  })
 
   t.is(config.CNAME, true)
   t.is(config.devPort, 2000)
@@ -67,16 +67,13 @@ test("should allow to override some default values", (t) => {
 
 test("should warn if config is invalid", (t) => {
   t.throws(
-    () => {
-      configurator(
-        {
-          phenomic: {
-            "lol": true,
-          },
+    () => configurator({
+      pkg: {
+        phenomic: {
+          lol: true,
         },
-        []
-      )
-    },
+      },
+    }),
     (error) => error.message.includes("Unknow option 'lol'.")
   )
 })
@@ -84,7 +81,9 @@ test("should warn if config is invalid", (t) => {
 test("should warn if config is invalid when '--production' is used", (t) => {
   t.throws(
     () => {
-      configurator({}, [ "--production" ])
+      configurator({
+        argv: [ "--production" ],
+      })
     },
     (error) => error.message.includes("Your package.json require a 'homepage'")
   )
@@ -92,12 +91,18 @@ test("should warn if config is invalid when '--production' is used", (t) => {
 
 test("should not warn if config is valid when '--production' is used", (t) => {
   process.env.NODE_ENV = undefined
-  const config = configurator({ homepage: "http://te.st/" }, [ "--production" ])
+  const config = configurator({
+    pkg: { homepage: "http://te.st/" },
+    argv: [ "--production" ],
+  })
   t.is(config.baseUrl.href, "http://te.st/")
 })
 
 test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
   process.env.NODE_ENV = undefined
-  configurator({ homepage: "http://a.b/" }, [ "--production" ])
+  configurator({
+    pkg: { homepage: "http://a.b/" },
+    argv: [ "--production" ],
+  })
   t.is(process.env.NODE_ENV, "production")
 })

@@ -28,14 +28,12 @@ test("writeAllHTMLFiles", (t) => {
     urls: [
       "/test-url",
     ],
-    exports: {
-      routes: require.resolve("./fixtures/routes.js"),
-    },
+    routes: require("./fixtures/routes.js").default,
     collection,
     store,
     assetsFiles: {
-      js: [ "phenomic-client.js" ],
-      css: [ "phenomic-client.css" ],
+      js: [ "test.js" ],
+      css: [ "test.css" ],
     },
     destination: "destination",
     baseUrl: { pathname: "/" },
@@ -51,7 +49,7 @@ test("writeAllHTMLFiles", (t) => {
 <head>
   ${ htmlMetas({
     baseUrl: { pathname: "/" },
-    css: [ "phenomic-client.css" ] }).join("\n  ") }
+    css: [ "test.css" ] }).join("\n  ") }
   <title data-react-helmet="true"></title>
 </head>
 
@@ -71,7 +69,7 @@ test("writeAllHTMLFiles", (t) => {
       "pages": {}
     }
   </script>
-  <script src="/phenomic-client.js"></script>
+  <script src="/test.js"></script>
 </body>
 
 </html>`

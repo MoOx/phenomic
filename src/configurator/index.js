@@ -1,10 +1,9 @@
 import yargs from "./yargs.js"
-
 import definitions from "./definitions.js"
 import minimalValidator from "./minimal-validator.js"
 import * as validators from "./validators.js"
 
-export default function config(pkg = {}, argv = process.argv) {
+export default function config({ argv = [], pkg = {} } = {}) {
   const userJSConfig = pkg.phenomic || {}
 
   const defaultAndCLIconfig = yargs.parse(argv)
@@ -26,6 +25,7 @@ export default function config(pkg = {}, argv = process.argv) {
     ...defaultAndCLIconfig,
     ...userJSConfig,
   }
+
   // validation/adjustement for each options
   Object.keys(validators).forEach((key) => {
     validators[key]({
@@ -46,4 +46,10 @@ export default function config(pkg = {}, argv = process.argv) {
   }
 
   return config
+}
+
+export function testConfig(cfg) {
+  return config({
+    pkg: { phenomic: cfg },
+  })
 }

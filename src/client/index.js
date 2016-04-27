@@ -16,12 +16,10 @@ export const browserHistory =
   : null
 
 export default function phenomic({
-  layouts, // deprecated
   metadata,
   routes,
   store,
 }: {
-  layouts: Object, // deprecated
   metadata: Object,
   routes: React$Element,
   store: Object,
@@ -34,7 +32,6 @@ export default function phenomic({
   ReactDOM.render(
     <PhenomicContextProvider
       collection={ collection }
-      layouts={ layouts } // deprecated
       metadata={ metadata }
     >
       <ReduxContextProvider store={ store }>

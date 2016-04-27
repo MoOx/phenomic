@@ -23,7 +23,6 @@ type Props = {
 
 type Context = {
   collection: PhenomicCollection,
-  layouts: Object // deprecated
 }
 
 // react-router does not return leading and trailing slashes
@@ -76,29 +75,11 @@ function adjustCurrentUrl(location: Object, item: Object, props: Props): void {
   }
 }
 
-let layoutFromContextWarning = false
 function getLayout(
-  layout: string, props: Props, context: Context, warn: boolean = true
+  layout: string, props: Props
 ): ReactClass | void {
   if (props.layouts && props.layouts[layout]) {
     return props.layouts[layout]
-  }
-
-  if (context.layouts && context.layouts[layout]) {
-    if (warn && !layoutFromContextWarning) {
-      props.logger.warn(
-        "phenomic: You are using a layout defined in the client and build  " +
-        `scripts ('${ layout }'). \n` +
-        "This method is deprecated and will be removed in the future. \n" +
-        "In order to have more flexibility, you should create your own " +
-        "PageContainer and provide layouts to it via a `layouts` prop. " +
-        "This will allow your to have more control over components by being "+
-        "more explicit. \n"+
-        "Check out migration instruction in the CHANGELOG. "
-      )
-      layoutFromContextWarning = true
-    }
-    return context.layouts[layout]
   }
 }
 
@@ -118,10 +99,10 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     logger: console,
   };
 
-  constructor(props: Props, context: Context) {
+  constructor(props: Props) {
     super(props)
 
-    if (!getLayout(props.defaultLayout, props, context)) {
+    if (!getLayout(props.defaultLayout, props)) {
       props.logger.error(
         "phenomic: PageContainer: " +
         `default layout "${ props.defaultLayout }" not provided. `
@@ -197,7 +178,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         return
       }
 
-      const Layout = getLayout(page.type, props, context)
+      const Layout = getLayout(page.type, props)
       if (page.type !== undefined && !Layout) {
         props.logger.error(
           "phenomic: PageContainer: " +
@@ -214,7 +195,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
   };
 
   render() {
-    const { props, context } = this
+    const { props } = this
 
     const pageUrl = splatToUrl(props.params.splat)
     const page = props.pages[pageUrl]
@@ -239,10 +220,10 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       return null
     }
 
-    const PageLoading = getLayout("PageLoading", props, context, false)
-    const PageError = getLayout("PageError", props, context, false)
-    const LayoutFallback = getLayout(props.defaultLayout, props, context, false)
-    const Layout = getLayout(page.type, props, context, false) || LayoutFallback
+    const PageLoading = getLayout("PageLoading", props)
+    const PageError = getLayout("PageError", props)
+    const LayoutFallback = getLayout(props.defaultLayout, props)
+    const Layout = getLayout(page.type, props) || LayoutFallback
 
     return (
       <div>

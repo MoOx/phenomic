@@ -3,30 +3,23 @@ import express, { Router } from "express"
 import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
+import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackErrorNotificationPlugin from "webpack-error-notification"
 
 import opn from "opn"
 import debug from "debug"
 import portFinder from "portfinder"
 
+import minifyCollection from "../content-loader/minify"
+import escapeJSONforHTML from "../_utils/escape-json-for-html"
+
 import collection from "../content-loader/cache.js"
-import urlAsHtml from "../static/to-html/url-as-html"
-import * as pagesActions from "../redux/modules/pages"
-import cleanNodeCache from "../_utils/clean-node-cache"
 import joinUri from "../_utils/join-uri"
-import redBoxRenderer from "../_utils/redbox-renderer"
 
 const log = debug("phenomic:builder:server")
 
-let firstRun = true
-
-export default (options = {}) => {
-  options = {
-    noDevEntriesTest: /^tests/,
-    ...options,
-  }
-  const { config } = options
-  const { webpackConfigClient: webpackConfig } = config
+export default (config) => {
+  const { webpackConfigBrowser: webpackConfig } = config
 
   if (!config.baseUrl) {
     throw new Error(
@@ -56,25 +49,21 @@ export default (options = {}) => {
       entry: {
         // add devEntries
         ...Object.keys(webpackConfig.entry)
-          .reduce(
-            (acc, key) => {
-              // some entries do not need extra stuff
-              acc[key] = key.match(options.noDevEntriesTest) !== null
+          .reduce((acc, key) => {
+            // some entries do not need extra stuff
+            acc[key] = [
+              ...devEntries,
+              ...Array.isArray(webpackConfig.entry[key])
                 ? webpackConfig.entry[key]
-                : [
-                  ...devEntries,
-                  ...Array.isArray(webpackConfig.entry[key])
-                    ? webpackConfig.entry[key]
-                    : [ webpackConfig.entry[key] ],
-                ]
-              return acc
-            },
-            {}
-          ),
+                : [ webpackConfig.entry[key] ],
+            ]
+            return acc
+          },
+          {}
+        ),
       },
       plugins: [
         ...(webpackConfig.plugins || []),
-        ...(options.plugins || []),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
@@ -100,6 +89,8 @@ export default (options = {}) => {
 
     let entries = []
     webpackCompiler.plugin("done", function(stats) {
+      log("Webpack compilation done")
+
       // reset entries
       entries = []
       const namedChunks = stats.compilation.namedChunks
@@ -125,72 +116,39 @@ export default (options = {}) => {
     const router = Router()
     server.use(config.baseUrl.pathname, router)
 
+    // fallback to index for unknow pages?
+    router.use(historyFallbackMiddleware())
+
     // webpack static ressources
     router.get("*", express.static(webpackConfig.output.path))
 
-    // prerender pages when possible
-    const memoryFs = webpackCompiler.outputFileSystem
-    router.get("*", (req, res, next) => {
-      let item = getItemOrContinue(
-        collection,
-        config.baseUrl,
-        req,
-        res
+    // hardcoded entry point
+    router.get("/index.html", (req, res) => {
+      const collectionMin = minifyCollection(collection)
+      res.setHeader("Content-Type", "text/html")
+      res.end(
+  `<!doctype html>
+  <html>
+  <head><meta charset="utf8" /></head>
+  <body>
+    <div id="phenomic">
+      ...
+    </div>
+    <script>
+    window.__COLLECTION__ = ${
+      escapeJSONforHTML(JSON.stringify(collectionMin))
+    };
+    </script>
+    ${
+      entries.map((fileName) =>
+        `<script src="${
+          joinUri(config.baseUrl.pathname, fileName)
+        }"></script>`
       )
-
-      // try 404.html if there is any
-      if (!item) {
-        req.url = "/404.html"
-        item = getItemOrContinue(
-          collection,
-          config.baseUrl,
-          req,
-          res
-        )
-      }
-
-      if (!item) {
-        next()
-        return
-      }
-      const filepath = join(config.cwd, config.destination, item.__dataUrl)
-      const fileContent = memoryFs.readFileSync(filepath)
-      const json = JSON.parse(fileContent.toString())
-
-      options.store.dispatch({
-        type: pagesActions.SET,
-        page: item.__url,
-        response: {
-          json,
-        },
-      })
-
-      if (!firstRun) {
-        cleanNodeCache(config.cwd)
-      }
-      firstRun = false
-
-      urlAsHtml(item.__url, {
-        exports: options.exports,
-        store: options.store,
-        collection,
-        baseUrl: config.baseUrl,
-        assetsFiles: {
-          js: entries,
-          css: !config.dev,
-        },
-      })
-      .then(
-        (html) => {
-          res.setHeader("Content-Type", "text/html")
-          res.end(html)
-        }
+    }
+  </body>
+  </html>`
       )
-      .catch((err) => {
-        log(err)
-        res.setHeader("Content-Type", "text/html")
-        res.end(redBoxRenderer(err))
-      })
     })
   }
 
@@ -218,22 +176,4 @@ export default (options = {}) => {
       }
     })
   })
-}
-
-export function getItemOrContinue(collection, baseUrl, req, res) {
-  const __url = req.url
-    .replace(/index\.html$/, "")
-  const item = collection.find((item) => item.__url === __url)
-  if (!item) {
-    log("%s not found", __url)
-    const folderUrl = __url + "/"
-    if (collection.find((item) => item.__url === folderUrl)) {
-      const newUrl = req.url + "/"
-      log("Redirecting to %s", newUrl)
-      res.redirect(joinUri(baseUrl.pathname, newUrl))
-    }
-    return false
-  }
-
-  return item
 }

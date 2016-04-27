@@ -31,8 +31,6 @@ Here is a commented ``package.json`` with only the interesting parts
   // (start and build should be enough)
   //
   // Here are some default environnement variable set by "phenomic" bin
-  // BABEL_DISABLE_CACHE=1
-  //  (required to run webpack loaders correctly in Node
   // DEBUG=phenomic:*
   //  (to get some visual feedback during development and build)
 
