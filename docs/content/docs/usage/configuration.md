@@ -66,7 +66,7 @@ Here is a commented ``package.json`` with only the interesting parts
     "devHost": "0.0.0.0",
 
     // port for development
-    "devPort": "3000",
+    "devPort": 3000,
 
     // flag to add information during development
     "verbose": false,

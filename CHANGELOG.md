@@ -66,6 +66,7 @@ boilerplate:
   don‘t includes some (may be) required polyfills by default).
   You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Changed: ``devPort`` option must be a integer.
 
 ## Boilerplate
 
