@@ -7,6 +7,7 @@ const target = join(__dirname, "..", "test-boilerplate")
 const execOpts = { cwd: target }
 
 const phenomic = "node ./node_modules/.bin/phenomic"
+const timing = process.env.CI ? 4000 : 1500
 
 test.cb("should throw if a CLI flag is NOT recognized", (t) => {
   const child = exec(
@@ -24,7 +25,7 @@ test.cb("should throw if a CLI flag is NOT recognized", (t) => {
     child.kill()
     t.fail()
     t.end()
-  }, 2000)
+  }, timing)
 })
 
 test.cb("should NOT throw if a CLI flag is recognized", (t) => {
@@ -48,7 +49,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     child.kill()
     t.pass()
     t.end()
-  }, 2000)
+  }, timing)
 })
 
 test.cb("should NOT throw if port is used", (t) => {
@@ -78,6 +79,6 @@ test.cb("should NOT throw if port is used", (t) => {
       server.close()
       t.pass()
       t.end()
-    }, 2000)
+    }, timing * 2)
   })
 })
