@@ -4,7 +4,7 @@ const template = {
   "name": undefined,
   "homepage": undefined,
   "scripts": {
-    "lint:js": "eslint --fix .",
+    "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "start": "phenomic start",

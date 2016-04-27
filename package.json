@@ -165,6 +165,7 @@
     "postinstall": "node npm/postinstall.js",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
+    "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm interfaces docs/scripts docs/src docs/web_modules boilerplate/scripts boilerplate/src boilerplate/web_modules",
     "lint:js:flow": "babel-node scripts/flow-check.js",
     "lint:js": "npm-run-all --parallel lint:js:*",

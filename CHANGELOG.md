@@ -6,6 +6,10 @@
 
 ## Boilerplate
 
+- Changed: lint command now ignore gitignored files in to be sure you don‘t
+  lint some builded files.
+  Note the  ``--ignore-path .gitignore`` part:
+  ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
