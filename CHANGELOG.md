@@ -76,11 +76,13 @@ boilerplate:
 - Added: unknown CLI args now throw errors
   ([#363](https://github.com/MoOx/phenomic/pull/363))
 - Added: new injected constants in ``process.env``:
+  - ``process.env.PHENOMIC_USER_URL``: your website homepage url
+    (`package.json/homepage` field)
+  - ``process.env.PHENOMIC_USER_PATHNAME``: the base path of your website/app
   - ``process.env.PHENOMIC_NAME``: Phenomic pretty name
   - ``process.env.PHENOMIC_VERSION``: Phenomic version
   - ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
   - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
-  - ``process.env.PHENOMIC_USER_URL``: your website homepage url (`package.json/homepage` field)
   ([#412](https://github.com/MoOx/phenomic/issues/412) &
   [#361](https://github.com/MoOx/phenomic/issues/361))
 
