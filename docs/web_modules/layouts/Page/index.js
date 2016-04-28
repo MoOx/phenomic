@@ -37,12 +37,14 @@ export default class Page extends Component {
     )
 
     const metaTitle = head.metaTitle ? head.metaTitle : head.title
-    const fullUrl = joinUri(process.env.PHENOMIC_USER_URL, __url)
 
     const meta = [
       { property: "og:type", content: "article" },
       { property: "og:title", content: metaTitle },
-      { property: "og:url", content: fullUrl },
+      {
+        property: "og:url",
+        content: joinUri(process.env.PHENOMIC_USER_URL, __url),
+      },
       { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: metaTitle },
