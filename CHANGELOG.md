@@ -14,6 +14,8 @@ boilerplate:
 
 ## Details
 
+- Fixed: Meta description should not contains new lines
+  ([#414](https://github.com/MoOx/phenomic/issues/414))
 - Removed: layouts now must be passed via props to ``PageContainer`` component.
   This change has been introduced in ``0.10.0`` but old way (via a
   parameter in the former ``scripts/build.js`` and ``scripts/index-client.js``)
