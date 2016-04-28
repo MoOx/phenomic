@@ -19,6 +19,16 @@ const template = {
       "es2015",
       "stage-1",
     ],
+    "env": {
+      "production": {
+        "presets": [
+          "react",
+          "react-optimize",
+          "es2015",
+          "stage-1",
+        ],
+      },
+    },
   },
   "eslintConfig": {
     "parser": "babel-eslint",
