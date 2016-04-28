@@ -117,8 +117,7 @@
     "sinon": "^1.17.3",
     "stylelint": "^5.4.0",
     "stylelint-config-standard": "^5.0.0",
-    "suppose": "^0.5.2",
-    "throat": "^2.0.2"
+    "suppose": "^0.5.2"
   },
   "peerDependencies": {
     "babel-cli": "^6.3.17",
