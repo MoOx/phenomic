@@ -99,6 +99,9 @@ boilerplate:
   ([#348](https://github.com/MoOx/phenomic/pull/348))
 - Added: (boilerplate) meta generator tag
   ([#361](https://github.com/MoOx/phenomic/pull/361))
+- Added: Improve React's performance in production build by using
+  [babel-preset-react-optimize](https://github.com/thejameskyle/babel-react-optimize)
+  ([#377](https://github.com/MoOx/phenomic/issues/377))
 
 # 0.11.0 - 2016-04-19
 
