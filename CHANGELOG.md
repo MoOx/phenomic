@@ -80,12 +80,15 @@ boilerplate:
   - ``process.env.PHENOMIC_VERSION``: Phenomic version
   - ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
   - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
+  - ``process.env.PHENOMIC_USER_URL``: your website homepage url (`package.json/homepage` field)
   ([#412](https://github.com/MoOx/phenomic/issues/412) &
   [#361](https://github.com/MoOx/phenomic/issues/361))
 
 
 ## Boilerplate
 
+- Fixed: Meta og:url must be a full url
+  ([#432](https://github.com/MoOx/phenomic/pull/432)
 - Changed: big changes in the ``scripts`` folder. Read note above.
 - Changed: lint command now ignore gitignored files in to be sure you don‘t
   lint some builded files.
@@ -102,8 +105,6 @@ boilerplate:
 - Added: Improve React's performance in production build by using
   [babel-preset-react-optimize](https://github.com/thejameskyle/babel-react-optimize)
   ([#377](https://github.com/MoOx/phenomic/issues/377))
-- Fixed: Meta og:url must be a full url
-  ([#432](https://github.com/MoOx/phenomic/pull/432)
 
 # 0.11.0 - 2016-04-19
 
