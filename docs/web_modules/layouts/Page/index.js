@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
+import { joinUri } from "phenomic"
 
 import styles from "./index.css"
 
@@ -36,11 +37,12 @@ export default class Page extends Component {
     )
 
     const metaTitle = head.metaTitle ? head.metaTitle : head.title
+    const fullUrl = joinUri(process.env.PHENOMIC_USER_URL, __url)
 
     const meta = [
       { property: "og:type", content: "article" },
       { property: "og:title", content: metaTitle },
-      { property: "og:url", content: __url },
+      { property: "og:url", content: fullUrl },
       { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: metaTitle },

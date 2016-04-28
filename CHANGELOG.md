@@ -102,6 +102,8 @@ boilerplate:
 - Added: Improve React's performance in production build by using
   [babel-preset-react-optimize](https://github.com/thejameskyle/babel-react-optimize)
   ([#377](https://github.com/MoOx/phenomic/issues/377))
+- Fixed: Meta og:url must be a full url
+  ([#432](https://github.com/MoOx/phenomic/pull/432)
 
 # 0.11.0 - 2016-04-19
 

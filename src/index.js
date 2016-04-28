@@ -1,3 +1,1 @@
-throw new Error(
-  "Please use submodules directly (e.g.: 'phenomic/lib/client')"
-)
+export joinUri from "./_utils/join-uri"
