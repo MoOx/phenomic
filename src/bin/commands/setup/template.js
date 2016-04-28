@@ -15,17 +15,14 @@ const template = {
   "phenomic": {/* placeholder */},
   "babel": {
     "presets": [
-      "react",
-      "es2015",
-      "stage-1",
+      "babel-preset-react",
+      "babel-preset-es2015",
+      "babel-preset-stage-1",
     ],
     "env": {
       "production": {
         "presets": [
-          "react",
-          "react-optimize",
-          "es2015",
-          "stage-1",
+          "babel-preset-react-optimize",
         ],
       },
     },
