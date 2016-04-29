@@ -7,6 +7,13 @@ export const defaultTestAnswers = {
   CNAME: false,
 }
 
+export const validateUrl = value => {
+  if (validUrl.isWebUri(value)) {
+    return true
+  }
+  return "Please provide a valid url"
+}
+
 const questions = [
   {
     type: "input",
@@ -24,23 +31,13 @@ const questions = [
     type: "input",
     name: "homepage",
     message: "Homepage url for your website",
-    validate: value => {
-      if (validUrl.isWebUri(value)) {
-        return true
-      }
-      return "Please provide a valid url"
-    },
+    validate: validateUrl,
   },
   {
     type: "input",
     name: "repository",
     message: "Your repository url for this project (optional)",
-    validate: value => {
-      if (validUrl.isWebUri(value)) {
-        return true
-      }
-      return "Please provide a valid url"
-    },
+    validate: validateUrl,
   },
   {
     type: "input",
