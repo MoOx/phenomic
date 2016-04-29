@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
+import { joinUri } from "phenomic"
 
 class Page extends Component {
   render() {
@@ -29,7 +30,10 @@ class Page extends Component {
     const meta = [
       { property: "og:type", content: "article" },
       { property: "og:title", content: metaTitle },
-      { property: "og:url", content: __url },
+      {
+        property: "og:url",
+        content: joinUri(process.env.PHENOMIC_USER_URL, __url),
+      },
       { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: metaTitle },

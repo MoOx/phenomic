@@ -147,7 +147,7 @@ test("should redirect if url doesn't match needed", (t) => {
   const spy = sinon.spy()
   console.info = spy
 
-  process.env.PHENOMIC_PATHNAME = "/"
+  process.env.PHENOMIC_USER_PATHNAME = "/"
   dom("http://localhost/foo")
 
   const PageContainer = require("../component").default
@@ -182,7 +182,7 @@ test("should redirect if url doesn't match needed", (t) => {
 })
 
 test("should NOT redirect if url contains hash", (t) => {
-  process.env.PHENOMIC_PATHNAME = "/"
+  process.env.PHENOMIC_USER_PATHNAME = "/"
   dom("http://localhost/foo/#some-hash")
 
   const PageContainer = require("../component").default

@@ -1,10 +1,13 @@
 import { join } from "path"
 
+import commonWebpackConfig from "./config.common.js"
+
 export const chunkNameBrowser = "phenomic.browser"
 
 export default (config) => {
+  const webpackConfig = commonWebpackConfig(config)
   return {
-    ...config.webpackConfig,
+    ...webpackConfig,
 
     entry: {
       ...config.webpackConfig.entry,

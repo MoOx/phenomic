@@ -10,7 +10,7 @@ import htmlMetas from "../../_utils/html-metas"
 import joinUri from "../../_utils/join-uri"
 import Html from "./Html"
 import PhenomicContextProvider from "../../ContextProvider"
-import escapeJSONforHTML from "../../_utils/escape-json-for-html"
+import serialize from "../../_utils/serialize"
 
 import minifyCollection from "../../content-loader/minify"
 
@@ -107,10 +107,10 @@ export default function(
             }
             script =
               `window.__COLLECTION__ = ${
-                escapeJSONforHTML(JSON.stringify(collectionMin))
+                serialize(collectionMin)
               };` +
               `window.__INITIAL_STATE__ = ${
-                escapeJSONforHTML(JSON.stringify(initialState))
+                serialize(initialState)
               }`
           }
 

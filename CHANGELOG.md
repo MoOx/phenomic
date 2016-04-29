@@ -14,6 +14,8 @@ boilerplate:
 
 ## Details
 
+- Fixed: Meta description should not contains new lines
+  ([#414](https://github.com/MoOx/phenomic/issues/414))
 - Removed: layouts now must be passed via props to ``PageContainer`` component.
   This change has been introduced in ``0.10.0`` but old way (via a
   parameter in the former ``scripts/build.js`` and ``scripts/index-client.js``)
@@ -26,6 +28,16 @@ boilerplate:
   future.
   See change below for more information
   ([#301](https://github.com/MoOx/phenomic/issues/301))
+- Changed: dates of the front matter are now always strings,
+  [for now](https://github.com/MoOx/phenomic/issues/397#issuecomment-215628881),
+  until [we serve pages as JavaScript (and not JSON)](https://github.com/MoOx/phenomic/issues/434).
+  By default the front-matter parsing method recognize dates as JavaScript dates
+  but when converted to JSON we end up with string.
+  The problem is that during the static build, we use date in memory
+  (real dates) and on the client, strings are used.
+  So, to ensure consistency, between static build and client build we are now
+  forcing string
+  ([#397](https://github.com/MoOx/phenomic/issues/397))
 - Changed: **major refactoring** to fix huge performance issue introduced in
   ``statinamic@0.7.0``
   ([#301](https://github.com/MoOx/phenomic/issues/301)).
@@ -66,18 +78,47 @@ boilerplate:
   don‘t includes some (may be) required polyfills by default).
   You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Changed: ``PHENOMIC_PATHNAME`` is now ``PHENOMIC_USER_PATHNAME``.
+  But no need to update that in your configuration as it's injected
+  automatically. See changes in the boilerplate.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: ``devPort`` option must be a integer.
+- Added: unknown CLI args now throw errors
+  ([#363](https://github.com/MoOx/phenomic/pull/363))
+- Added: new injected constants in ``process.env``:
+  - ``process.env.PHENOMIC_USER_URL``: your website homepage url
+    (`package.json/homepage` field)
+  - ``process.env.PHENOMIC_USER_PATHNAME``: the base path of your website/app
+  - ``process.env.PHENOMIC_NAME``: Phenomic pretty name
+  - ``process.env.PHENOMIC_VERSION``: Phenomic version
+  - ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
+  - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
+  ([#412](https://github.com/MoOx/phenomic/issues/412) &
+  [#361](https://github.com/MoOx/phenomic/issues/361))
+
 
 ## Boilerplate
 
+- Fixed: Meta og:url must be a full url
+  ([#432](https://github.com/MoOx/phenomic/pull/432)
 - Changed: big changes in the ``scripts`` folder. Read note above.
 - Changed: lint command now ignore gitignored files in to be sure you don‘t
   lint some builded files.
   Note the  ``--ignore-path .gitignore`` part:
   ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
+- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
+  boilerplate. These are now automatically defined.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
+- Added: (boilerplate) meta generator tag
+  ([#361](https://github.com/MoOx/phenomic/pull/361))
+- Added: Improve React's performance in production build by using
+  [babel-preset-react-optimize](https://github.com/thejameskyle/babel-react-optimize)
+  ([#377](https://github.com/MoOx/phenomic/issues/377))
+- Added: Use dynamic values for GitHub and Twitter.
+  ([#419](https://github.com/MoOx/phenomic/pull/419))
 
 # 0.11.0 - 2016-04-19
 

@@ -9,12 +9,12 @@ export default class Footer extends Component {
     return (
       <footer className={ styles.footer }>
         <a
-          href="https://phenomic.io/"
+          href={ process.env.PHENOMIC_HOMEPAGE }
           className={ styles.link }
         >
           { "Powered by " }
           <span className={ styles.reference }>
-            {  "<Phenomic />" }
+            {  `<${ process.env.PHENOMIC_NAME} />` }
           </span>
         </a>
 

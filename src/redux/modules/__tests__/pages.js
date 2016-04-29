@@ -3,7 +3,7 @@ import test from "ava"
 import * as module from "../pages"
 import reducer from "../pages"
 
-process.env.PHENOMIC_PATHNAME = "/"
+process.env.PHENOMIC_USER_PATHNAME = "/"
 
 test("should have action to handle get", async (t) => {
   t.plan(3)

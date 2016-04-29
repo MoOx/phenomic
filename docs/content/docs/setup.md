@@ -28,6 +28,13 @@ _By installing it locally, you ensure that several projects can rely on
 different versions of Phenomic.
 Anyway, Phenomic will probably not work installed globally._
 
+```console
+$ mkdir node_modules
+```
+
+_This command is to be sure that phenomic will be installed in the current
+folder._
+
 ### Install from npm
 
 ```console
@@ -82,11 +89,9 @@ It's that simple.
 This command calls the `start` command from the `scripts` section of your
 `package.json`.
 As you can see this will execute ``phenomic start`` command that will load the
-configuration (`scripts/build.js`) and run the development mode.
+configuration and run the development mode.
 
 Now just wait for your browser to show up (yes this development mode should open
 your development server in your favorite browser).
-
-[This can take more than 30s for now, but we are working on this](https://github.com/MoOx/phenomic/issues/301).
 
 When you get the hello world, you will be able to [start hacking!](../usage/)

@@ -1,13 +1,14 @@
-// import ExternalsPlugin from "webpack-externals-plugin"
 import { join, basename, dirname } from "path"
-// import { readdirSync } from "fs"
 import { BannerPlugin } from "webpack"
+
+import commonWebpackConfig from "./config.common.js"
 
 export const chunkNameNode = "phenomic.node"
 
 export default (config) => {
+  const webpackConfig = commonWebpackConfig(config)
   return {
-    ...config.webpackConfig,
+    ...webpackConfig,
 
     entry: {
       // no need for other entries
@@ -15,7 +16,7 @@ export default (config) => {
     },
 
     output: {
-      ...config.webpackConfig.output,
+      ...webpackConfig.output,
       path: join(
         config.cwd,
         dirname(config.scriptNode)
@@ -28,7 +29,7 @@ export default (config) => {
 
     // externals for package/relative name
     externals: [
-      ...config.webpackConfig.externals || [
+      ...webpackConfig.externals || [
         // node modules
         /^[a-z0-9-_]/,
       ],
@@ -40,7 +41,7 @@ export default (config) => {
     // sourcemaps
     devtool: "#eval-source-map",
     plugins: [
-      ...config.webpackConfig.plugins || [],
+      ...webpackConfig.plugins || [],
       new BannerPlugin(
         "require('source-map-support').install();",
         { raw: true, entryOnly: false }

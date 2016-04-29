@@ -117,8 +117,7 @@
     "sinon": "^1.17.3",
     "stylelint": "^5.4.0",
     "stylelint-config-standard": "^5.0.0",
-    "suppose": "^0.5.2",
-    "throat": "^2.0.2"
+    "suppose": "^0.5.2"
   },
   "peerDependencies": {
     "babel-cli": "^6.3.17",
@@ -141,6 +140,7 @@
   "optionalPeerDependencies": {
     "babel-eslint": "^6.0.0-beta.0",
     "babel-preset-stage-1": "^6.3.13",
+    "babel-preset-react-optimize": "^1.0.1",
     "css-loader": "^0.23.0",
     "eslint": "^2.0.0",
     "eslint-config-i-am-meticulous": "^4.1.1",
@@ -179,7 +179,7 @@
     "docs": "babel-node scripts/docs.js",
     "predocs-start": "babel-node scripts/docs.js",
     "docs-start": "cd docs && npm start",
-    "preboilerplate-start": "babel-node scripts/boilerplate.js",
+    "preboilerplate-start": "npm -s run transpile && babel-node scripts/boilerplate.js",
     "boilerplate-start": "cd boilerplate && npm start",
     "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
     "preall-tests": "npm run lint",

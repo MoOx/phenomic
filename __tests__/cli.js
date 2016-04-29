@@ -7,30 +7,26 @@ const target = join(__dirname, "..", "test-boilerplate")
 const execOpts = { cwd: target }
 
 const phenomic = "node ./node_modules/.bin/phenomic"
+const timing = process.env.CI ? 10000 : 1500
 
-// cannot be done for now
-// see the mess in configurator which use process.argv directly
-// and since build.js is spawned, we got too many args and cannot use
-// yargs.strict()
-// https://github.com/MoOx/phenomic/issues/363
-// test.cb("should throw if a CLI flag is NOT recognized", (t) => {
-//   const child = exec(
-//     `${ phenomic } start --open=false --lol`, execOpts,
-//     (err) => {
-//       if (err && !err.killed) {
-//         clearTimeout(timeout)
-//         t.ok(err.message.indexOf("Unknown argument") > -1)
-//         t.end()
-//       }
-//     }
-//   )
-//
-//   const timeout = setTimeout(() => {
-//     child.kill()
-//     t.fail()
-//     t.end()
-//   }, 1000)
-// })
+test.cb("should throw if a CLI flag is NOT recognized", (t) => {
+  const child = exec(
+    `${ phenomic } start --open=false --lol`, execOpts,
+    (err) => {
+      if (err && !err.killed) {
+        clearTimeout(timeout)
+        t.truthy(err.message.indexOf("Unknown argument") > -1)
+        t.end()
+      }
+    }
+  )
+
+  const timeout = setTimeout(() => {
+    child.kill()
+    t.fail()
+    t.end()
+  }, timing)
+})
 
 test.cb("should NOT throw if a CLI flag is recognized", (t) => {
   const child = exec(
@@ -53,7 +49,7 @@ test.cb("should NOT throw if a CLI flag is recognized", (t) => {
     child.kill()
     t.pass()
     t.end()
-  }, 1000)
+  }, timing)
 })
 
 test.cb("should NOT throw if port is used", (t) => {
@@ -83,6 +79,6 @@ test.cb("should NOT throw if port is used", (t) => {
       server.close()
       t.pass()
       t.end()
-    }, 2000)
+    }, timing * 2)
   })
 })

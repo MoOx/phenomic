@@ -28,6 +28,10 @@ export default class Layout extends Component {
       <GoogleAnalyticsTracker params={ this.props.params }>
         <Helmet
           meta={ [
+            {
+              name: "generator", content: `${
+              process.env.PHENOMIC_NAME } ${ process.env.PHENOMIC_VERSION }`,
+            },
             { property: "og:site_name", content: pkg.name },
             { name: "twitter:site", content: `@${ pkg.twitter }` },
           ] }

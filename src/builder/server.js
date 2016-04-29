@@ -11,7 +11,7 @@ import debug from "debug"
 import portFinder from "portfinder"
 
 import minifyCollection from "../content-loader/minify"
-import escapeJSONforHTML from "../_utils/escape-json-for-html"
+import serialize from "../_utils/serialize"
 
 import collection from "../content-loader/cache.js"
 import joinUri from "../_utils/join-uri"
@@ -136,7 +136,7 @@ export default (config) => {
     </div>
     <script>
     window.__COLLECTION__ = ${
-      escapeJSONforHTML(JSON.stringify(collectionMin))
+      serialize(collectionMin)
     };
     </script>
     ${

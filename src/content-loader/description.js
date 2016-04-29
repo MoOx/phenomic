@@ -30,10 +30,15 @@ export default function description(mdObject, opts = {}) {
 
   description = prune(description, opts.pruneLength, opts.pruneString)
 
-  description =
-    description && description.length > 0
-    ? description
-    : null
+  if (description && description.length > 0) {
+    description = description
+      .replace(/\n+/g, "\n") // Replace multiple new lines with one
+      .replace(/\n/g, " ") // Avoid useless new lines
+      .trim()
+  }
+  else {
+    description = null
+  }
 
   return {
     ...mdObject,

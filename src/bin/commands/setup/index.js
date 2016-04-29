@@ -17,7 +17,7 @@ export default async function setup(argv) {
 
   try {
     const answers = testMode ? defaultTestAnswers : await prompt(questions)
-    const { name, homepage, ...phenomic } = answers
+    const { name, homepage, twitter, repository, ...phenomic } = answers
 
     const devDependencies = {
       ...peerDeps,
@@ -32,6 +32,8 @@ export default async function setup(argv) {
       name,
       homepage,
       phenomic,
+      twitter,
+      repository,
       devDependencies,
     }
 

@@ -27,6 +27,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
+    "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.0",
@@ -40,11 +41,11 @@
     "history": "^2.0.0",
     "invariant": "^2.1.1",
     "json-loader": "^0.5.2",
+    "npm-run-all": "^1.7.0",
     "postcss-browser-reporter": "^0.4.0",
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.7.0",
     "postcss-reporter": "^1.3.0",
-    "npm-run-all": "^1.7.0",
     "raw-loader": "^0.5.1",
     "react": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
@@ -71,7 +72,14 @@
       "babel-preset-react",
       "babel-preset-es2015",
       "babel-preset-stage-1"
-    ]
+    ],
+    "env": {
+      "production": {
+        "presets": [
+          "babel-preset-react-optimize"
+        ]
+      }
+    }
   },
   "eslintConfig": {
     "parser": "babel-eslint",

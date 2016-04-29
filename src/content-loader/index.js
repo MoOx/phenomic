@@ -31,11 +31,16 @@ module.exports = function(input) {
   const defaultHead = query.defaultHead
   const parsed = frontMatterParser(input)
 
+  // poor workaround to normalize date as string
+  // blocked by
+  // https://github.com/MoOx/phenomic/issues/397
+  const head = JSON.parse(JSON.stringify(parsed))
+
   const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = urlify(
-    parsed.data.route
+    head.data.route
       // custom route
-      ? parsed.data.route
+      ? head.data.route
       // default route
       : relativePath
   )
@@ -55,11 +60,11 @@ module.exports = function(input) {
   let textData = {
     head: {
       ...defaultHead,
-      ...parsed.data,
+      ...head.data,
     },
-    body: renderer(parsed.content),
-    rawBody: parsed.content,
-    raw: parsed.orig,
+    body: renderer(head.content),
+    rawBody: head.content,
+    raw: head.orig,
     ...metadata,
   }
 

@@ -2,7 +2,12 @@
 title: FAQ
 ---
 
-## ``[BABEL] Note: The code generator has deoptimised the styling of ...``
+## How to contribute to this project?
+
+Contributions are very welcome.
+Just [take a look to this contributing guide](/contributing/).
+
+## I have a weird warning "[BABEL] Note: The code generator has deoptimised the styling of ..."
 
 _This is not an issue. Just a simple information._
 

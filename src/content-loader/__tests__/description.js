@@ -15,7 +15,7 @@ test("should not touch other properties in mdObject", (t) => {
   const expectedObject = {
     head: {
       foo: null,
-      description: "foo\n",
+      description: "foo",
     },
     rawBody: "foo",
     bar: undefined,
@@ -30,7 +30,7 @@ test("should generate description with default option", (t) => {
     rawBody: fixtures.basic,
   }
 
-  const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad…"
+  const expectedResult = "Lorem ipsum Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad…"
 
   t.is(description(mdObject).head.description, expectedResult)
 })
@@ -57,7 +57,7 @@ test("should allow to override pruneLength and pruneString", (t) => {
     pruneString: "[...]",
   }
 
-  const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur[...]"
+  const expectedResult = "Lorem ipsum Dolor sit amet, consectetur[...]"
   t.is(description(mdObject, opts).head.description, expectedResult)
 })
 
@@ -78,7 +78,7 @@ test("should use default pruneLength if pruneLength < 10", (t) => {
     rawBody: fixtures.basic,
   }
 
-  const expectedResult = "Lorem ipsum\n\nDolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad[...]"
+  const expectedResult = "Lorem ipsum Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad[...]"
 
   t.is(description(mdObject, opts).head.description, expectedResult)
   t.true(called)
@@ -92,7 +92,7 @@ test("should have no problem with special chars", (t) => {
     rawBody: fixtures.specialChars,
   }
 
-  const expectedResult = "Lörém ipšüm dõlœr sït āmêt.\n"
+  const expectedResult = "Lörém ipšüm dõlœr sït āmêt."
 
   t.is(description(mdObject).head.description, expectedResult)
 })
