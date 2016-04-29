@@ -179,7 +179,7 @@
     "docs": "babel-node scripts/docs.js",
     "predocs-start": "babel-node scripts/docs.js",
     "docs-start": "cd docs && npm start",
-    "preboilerplate-start": "babel-node scripts/boilerplate.js",
+    "preboilerplate-start": "npm -s run transpile && babel-node scripts/boilerplate.js",
     "boilerplate-start": "cd boilerplate && npm start",
     "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
     "preall-tests": "npm run lint",
