@@ -28,6 +28,16 @@ boilerplate:
   future.
   See change below for more information
   ([#301](https://github.com/MoOx/phenomic/issues/301))
+- Changed: dates of the front matter are now always strings,
+  [for now](https://github.com/MoOx/phenomic/issues/397#issuecomment-215628881),
+  until [we serve pages as JavaScript (and not JSON)](https://github.com/MoOx/phenomic/issues/434).
+  By default the front-matter parsing method recognize dates as JavaScript dates
+  but when converted to JSON we end up with string.
+  The problem is that during the static build, we use date in memory
+  (real dates) and on the client, strings are used.
+  So, to ensure consistency, between static build and client build we are now
+  forcing string
+  ([#397](https://github.com/MoOx/phenomic/issues/397))
 - Changed: **major refactoring** to fix huge performance issue introduced in
   ``statinamic@0.7.0``
   ([#301](https://github.com/MoOx/phenomic/issues/301)).
