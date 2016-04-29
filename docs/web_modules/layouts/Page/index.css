@@ -21,3 +21,9 @@
 
 .calloutInfo { border-left-color: #111; }
 .calloutInfo .calloutTitle { color: #111; }
+
+.pageActions {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+}

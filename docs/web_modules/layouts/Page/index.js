@@ -3,6 +3,8 @@ import Helmet from "react-helmet"
 import invariant from "invariant"
 import { joinUri } from "phenomic"
 
+import EditThisPage from "../../EditThisPage"
+
 import styles from "./index.css"
 
 export default class Page extends Component {
@@ -53,16 +55,28 @@ export default class Page extends Component {
       { name: "description", content: head.description },
     ]
 
+    const PageActions = (
+      <div className={ styles.pageActions }>
+        <EditThisPage filename={ __filename } />
+      </div>
+    )
+
     return (
       <div>
         <Helmet
           title={ metaTitle }
           meta={ meta }
         />
-
         {
           head.title &&
           <h1>{ head.title }</h1>
+        }
+        {
+          // to avoid "weird" visual result, we put actions at the top only
+          // if page has a title, other wise (eg: homepage) it can be a little
+          // weird
+          head.title &&
+          PageActions
         }
         {
           head.incomplete &&
@@ -81,6 +95,7 @@ export default class Page extends Component {
           />
         }
         { this.props.children }
+        { PageActions }
       </div>
     )
   }
