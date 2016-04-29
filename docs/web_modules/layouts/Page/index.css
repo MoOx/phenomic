@@ -16,8 +16,8 @@
 .calloutDanger { border-left-color: #d9534f; }
 .calloutDanger .calloutTitle { color: #ce4844; }
 
-.calloutWarning { border-left-color: #aa6708; }
-.calloutWarning .calloutTitle { color: #4f3004; }
+.calloutWarning { border-left-color: #0cca79; }
+.calloutWarning .calloutTitle { color: #0abd8a; }
 
 .calloutInfo { border-left-color: #111; }
 .calloutInfo .calloutTitle { color: #111; }
