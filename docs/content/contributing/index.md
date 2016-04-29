@@ -21,10 +21,14 @@ $ npm run docs-start
 ## Work on the core
 
 Every core files are in `src/`. Tests are located relative to modules.
-For every modification, please run the entire test suit by using `npm test`.
 
-But when you are working on a specific component, to work faster, just be
-focused on what you are interested on.
+_After every modification, please run the entire test suit by using `npm test`._
+Note that the full test suit can take a few minutes, as it run unit tests and
+integration tests (with several builds, including docs and a new project from
+the default boilerplate).
+
+When you are working on a specific component, to work faster, you can keep your
+focus on what you are interested on.
 
 ### Example with PageContainer
 
@@ -36,3 +40,6 @@ To run test for ``PageContainer`` component:
 ```console
 $ ava src/PageContainer/__tests__/*
 ```
+
+When you think you are done with your update, remember to run `$ npm test`.
+Anyway, CI will warn us if something goes wrong.
