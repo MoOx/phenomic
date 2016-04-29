@@ -2,15 +2,14 @@ import test from "ava"
 import suppose from "suppose"
 import fs from "fs"
 
+// This test created to test inquirer public API
 test.cb("test inquirer interface", (t) => {
   suppose(
     "node",
     [ "./stub/spawn-prompt.js" ],
     { debug: fs.createWriteStream("debug.txt") }
   )
-  .when(/Name of your project/, "Phenomic\n")
-  .when(/Homepage url for your website/, "https://phenomic.io\n")
-  .when(/Should phenomic generate a CNAME file/, "\n")
+  .when(/In 1 word describe phenomic/, "Awesome\n")
   .on("error", function(error) {
     console.error(error)
     t.fail()

@@ -3,6 +3,8 @@ const template = {
   "private": true,
   "name": undefined,
   "homepage": undefined,
+  "twitter": undefined,
+  "repository": undefined,
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
