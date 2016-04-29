@@ -61,6 +61,13 @@ export default class Header extends Component {
           >
             { "FAQ" }
           </Link>
+          <Link
+            className={ styles.link }
+            activeClassName={ styles.linkActive }
+            to="/showcase/"
+          >
+            { "Showcase" }
+          </Link>
           <a
             className={ styles.link }
             href={ "https://gitter.im/MoOx/phenomic" }

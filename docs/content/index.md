@@ -36,6 +36,8 @@ a user browses your website, **they can get the same UX as an app by grabbing
 the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
+<center style="font-weight: bold"><a href="showcase/">Showcase</a></center>
+
 ## Setup a website in a flash
 
 Creating a website based on Phenomic only takes a minute.

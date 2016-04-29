@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  width: 50%;
+  min-width: 20rem;
+
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+
+.itemLink {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.itemLinkSource {
+  font-size: 0.75rem;
+  text-decoration: none;
+}
