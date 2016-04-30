@@ -2,8 +2,24 @@
 title: How to use configure Phenomic
 ---
 
+You have multiple things you can tweak to adjust Phenomic behavior to your
+needs.
+
+- [Phenomic configuration](#phenomic)
+- [Webpack configuration](#webpack)
+- [HTML head/meta of pages via ``react-helmet``](#react-helmet)
+
+## Phenomic
+
 The simplest and easiest way to configure Phenomic is by updating
 the ``package.json`` where you can tweak some built-in features.
+
+### Notes
+
+- You can use the ``package.json`` file to store most of your configuration,
+  such as trackers for example; Google Analytics, Disqus and so on.
+- You can override almost every option as a CLI flag/option
+  (eg: ``--devPort=4000``).
 
 Here is a commented ``package.json`` with only the interesting parts
 (with default values).
@@ -82,9 +98,9 @@ Here is a commented ``package.json`` with only the interesting parts
   // That's because es5 is not enough
   "babel": {
     "presets": [
-      "react",
-      "es2015",
-      "stage-1"
+      "babel-preset-react",
+      "babel-preset-es2015",
+      "babel-preset-stage-1"
     ],
   },
 
@@ -99,29 +115,21 @@ Here is a commented ``package.json`` with only the interesting parts
 }
 ```
 
-## Notes
-
-- You can use the ``package.json`` file to store most of your configuration,
-  such as trackers for example; Google Analytics, Disqus and so on.
-- You can override every option as a cli flag/option (eg: ``--dev-port=4000``).
-
-## Advanced configuration
+## Webpack
 
 The parts that you can tweak in ``package.json`` are just the tip of the iceberg.
 There is a lot you can do depending on your use case.
 
 If you want to change stuff like CSS or JS preprocessors or linters, you might
-want to edit the _webpack configurations_.
-
-The default boilerplate stores 2 configurations:
-
-- ``scripts/webpack.config.babel.js`` used for the Universal code,
-- ``scripts/webpack.config.client.js`` used *only* for the client code.
-
-You can open those 2 files and tweak the parts you need or add some missing
-pieces.
+want to edit the _webpack configuration_ (``webpack.config.babel.js``).
 
 _Be sure to check out the [webpack documentation](http://webpack.github.io/docs/)._
+
+Keep in mind that Phenomic will add some pieces to the final webpack
+configuration to fit its requirements.
+
+
+
 
 ## React-Helmet
 
