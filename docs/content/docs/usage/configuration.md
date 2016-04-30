@@ -123,5 +123,19 @@ pieces.
 
 _Be sure to check out the [webpack documentation](http://webpack.github.io/docs/)._
 
+## React-Helmet
+
+[React-Helmet](https://github.com/nfl/react-helmet) is the best document head
+manager available for React that allows you to manage all of your definitions
+and changes to your documents head with support for
+_document title, meta, link, script, and base tags._
+It's like ``react-document-title`` but on steroid.
+
+The default boilerplate uses ``react-helmet`` in several layouts.
+
+[To know more about how to use ``react-helmet``, please read the documentation](https://github.com/nfl/react-helmet#readme)
+
+---
+
 **We might add some common changes you would like to make here. Feel free to
 open issues if you don't know how to make some changes.**
