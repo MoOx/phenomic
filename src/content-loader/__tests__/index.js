@@ -2,29 +2,31 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
+const outputPath = __dirname + "/output/"
+rimraf(outputPath)
+
+const config = {
+  resolve: { extensions: [ "" ] },
+  module: {
+    loaders: [
+      {
+        test: /\.md$/,
+        loader: __dirname + "/../index.js",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  entry: __dirname + "/fixtures/script.js",
+}
+
 test.cb("phenomic/lib/content-loader", (t) => {
-  const outputPath = __dirname + "/output/"
-  const entry = __dirname + "/fixtures/script.js"
-
-  rimraf(outputPath)
-
   webpack(
     {
+      ...config,
       output: {
-        path: outputPath,
-        filename: "bundle.js",
+        path: outputPath + "/routes",
+        filename: "routes.js",
       },
-      resolve: { extensions: [ "" ] },
-      module: {
-        loaders: [
-          {
-            test: /\.md$/,
-            loader: __dirname + "/../index.js",
-            exclude: /node_modules/,
-          },
-        ],
-      },
-      entry,
     },
     function(err, stats) {
       if (err) {
@@ -86,6 +88,104 @@ test.cb("phenomic/lib/content-loader", (t) => {
       t.truthy(
         customRouteWithoutSlash && customRouteWithoutSlash._value,
         "should create a proper json for custom route with an extension"
+      )
+
+      t.end()
+    }
+  )
+})
+
+test.cb("phenomic/lib/content-loader options via phenomic.contentLoader",
+(t) => {
+  webpack(
+    {
+      ...config,
+      output: {
+        path: outputPath + "/config",
+        filename: "config.js",
+      },
+      phenomic: {
+        contentLoader: {
+          renderer: (text) => text.toUpperCase(),
+        },
+      },
+    },
+    function(err, stats) {
+      if (err) {
+        throw err
+      }
+
+      t.falsy(stats.hasErrors(), "doesn't give any error")
+      if (stats.hasErrors()) {
+        console.error(stats.compilation.errors)
+      }
+
+      t.falsy(stats.hasWarnings(), "doesn't give any warning")
+      if (stats.hasWarnings()) {
+        console.log(stats.compilation.warnings)
+      }
+
+      const defaultRoute = stats.compilation.assets[
+        "fixtures/script/index.html" +
+        ".6a655e2e0dc8362c2dec75a73780abf4.json"
+      ]
+      if (!defaultRoute) {
+        console.log(stats.compilation.assets)
+      }
+
+      t.is(
+        JSON.parse(defaultRoute._value).body,
+        "\n```JS\n<SCRIPT>\nWHATEVER\n</SCRIPT>\n```\n",
+        "custom renderer should be used"
+      )
+
+      t.end()
+    }
+  )
+})
+
+// deprecated
+test.cb("phenomic/lib/content-loader options via phenomic.loader", (t) => {
+  webpack(
+    {
+      ...config,
+      output: {
+        path: outputPath + "/config",
+        filename: "config.js",
+      },
+      phenomic: {
+        loader: {
+          renderer: (text) => text.toUpperCase(),
+        },
+      },
+    },
+    function(err, stats) {
+      if (err) {
+        throw err
+      }
+
+      t.falsy(stats.hasErrors(), "doesn't give any error")
+      if (stats.hasErrors()) {
+        console.error(stats.compilation.errors)
+      }
+
+      t.falsy(stats.hasWarnings(), "doesn't give any warning")
+      if (stats.hasWarnings()) {
+        console.log(stats.compilation.warnings)
+      }
+
+      const defaultRoute = stats.compilation.assets[
+        "fixtures/script/index.html" +
+        ".6a655e2e0dc8362c2dec75a73780abf4.json"
+      ]
+      if (!defaultRoute) {
+        console.log(stats.compilation.assets)
+      }
+
+      t.is(
+        JSON.parse(defaultRoute._value).body,
+        "\n```JS\n<SCRIPT>\nWHATEVER\n</SCRIPT>\n```\n",
+        "custom renderer should be used"
       )
 
       t.end()

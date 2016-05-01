@@ -83,6 +83,10 @@ boilerplate:
   automatically. See changes in the boilerplate.
   ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: ``devPort`` option must be a integer.
+- Changed: ``content-loader`` options that are defined in the ``phenomic``
+  section of the webpack configuration should be defined under
+  ``contentLoader``, not ``loader`` (even if this one is still supported for
+  now).
 - Changed: ``content-loader`` options are now taken from ``query`` AND
   ``phenomic.contentLoader`` section (both are merged).
 - Added: unknown CLI args now throw errors
@@ -103,14 +107,14 @@ boilerplate:
 
 - Fixed: Meta og:url must be a full url
   ([#432](https://github.com/MoOx/phenomic/pull/432)
+- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
+  boilerplate. These are now automatically defined.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: big changes in the ``scripts`` folder. Read note above.
 - Changed: lint command now ignore gitignored files in to be sure you don‘t
   lint some builded files.
   Note the  ``--ignore-path .gitignore`` part:
   ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
-- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
-  boilerplate. These are now automatically defined.
-  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))

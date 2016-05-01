@@ -1,6 +1,7 @@
 import path from "path"
 import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
+import colors from "chalk"
 
 import joinUri from "../_utils/join-uri"
 import urlify from "../_utils/urlify"
@@ -12,9 +13,24 @@ import validator from "./validator"
 
 let timeout
 
+let deprecatedWarning = false
+
 module.exports = function(input) {
+  // deprecated
+  if (
+    !deprecatedWarning &&
+    this.options && this.options.phenomic && this.options.phenomic.loader
+  ) {
+    console.warn(colors.yellow(
+      "You are defining Phenomic `content-loader` configuration under the "+
+      "`phenomic.loader` section. \nPlease use ``contentLoader`` section " +
+      "instead of `loader` (that will be ignored in the future)."
+    ))
+    deprecatedWarning = true
+  }
   const query = {
     ...(this.options.phenomic && this.options.phenomic.loader) || {},
+    ...(this.options.phenomic && this.options.phenomic.contentLoader) || {},
     ...loaderUtils.parseQuery(this.query),
   }
 
