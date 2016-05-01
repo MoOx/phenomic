@@ -13,10 +13,10 @@ import validator from "./validator"
 let timeout
 
 module.exports = function(input) {
-  const query =
-    this.options.phenomic
-      ? this.options.phenomic.loader
-      : loaderUtils.parseQuery(this.query)
+  const query = {
+    ...(this.options.phenomic && this.options.phenomic.loader) || {},
+    ...loaderUtils.parseQuery(this.query),
+  }
 
   try {
     validator(query)

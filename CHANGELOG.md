@@ -83,6 +83,8 @@ boilerplate:
   automatically. See changes in the boilerplate.
   ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: ``devPort`` option must be a integer.
+- Changed: ``content-loader`` options are now taken from ``query`` AND
+  ``phenomic.contentLoader`` section (both are merged).
 - Added: unknown CLI args now throw errors
   ([#363](https://github.com/MoOx/phenomic/pull/363))
 - Added: new injected constants in ``process.env``:
