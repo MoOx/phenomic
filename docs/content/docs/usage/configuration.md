@@ -5,21 +5,21 @@ title: How to use configure Phenomic
 You have multiple things you can tweak to adjust Phenomic behavior to your
 needs.
 
-- [Phenomic configuration](#phenomic)
-- [Webpack configuration](#webpack)
-- [HTML head/meta of pages via ``react-helmet``](#react-helmet)
+- [Phenomic configuration](#phenomic) for built-in features
+- [Webpack configuration](#webpack) to adjust behavior of consumed files
+  (CSS, JS, MD...)
+- [``react-helmet``](#react-helmet) to handle HTML head/meta of pages
 
 ## Phenomic
 
-The simplest and easiest way to configure Phenomic is by updating
-the ``package.json`` where you can tweak some built-in features.
+The ``package.json`` is currently the place where you can tweak
+Phenomic built-in features.
 
-### Notes
+You can use the ``package.json`` to store most of your configuration,
+such as trackers for example; Google Analytics, Disqus and so on.
 
-- You can use the ``package.json`` file to store most of your configuration,
-  such as trackers for example; Google Analytics, Disqus and so on.
-- You can override almost every option as a CLI flag/option
-  (eg: ``--devPort=4000``).
+_Note: You can override almost every option as a CLI flag/option
+(eg: ``--devPort=4000``)._
 
 Here is a commented ``package.json`` with only the interesting parts
 (with default values).
@@ -128,7 +128,88 @@ _Be sure to check out the [webpack documentation](http://webpack.github.io/docs/
 Keep in mind that Phenomic will add some pieces to the final webpack
 configuration to fit its requirements.
 
+### ``content-loader``
 
+One particular piece of the webpack configuration is important for Phenomic.
+The section that defines a loader for ``.md`` files (or any other text format)
+is crucial (in the default boilerplate, it's the first loader) :
+
+- it allows you to control what text engine to use
+  (default to Markdown using [remark](http://remark.js.org/)
+  using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/content-loader/default-renderer.js))
+- it allows you to generate some RSS feeds
+
+There is two ways to send option to the ``content-loader``:
+
+- use webpack loader ``query`` option (_not recommended_, see below)
+- use a ``phenomic.contentLoader`` section in webpack configuration.
+
+**The last method is recommended because ``query`` cannot contains (and ignores
+without warnings) things that are not JSON (eg: functions).**
+And to use a custom renderer, you might need to use a function.
+
+
+Here is a commented part of a webpack configuration that use all options
+
+```js
+//...
+
+import pkg from "./package.json"
+
+export const makeConfig = (config = {}) => {
+  return {
+    // ...
+    module: {
+      loaders: [
+        {
+          test: /\.md$/,
+          loader: "phenomic/lib/content-loader",
+          // you can also define options here, but functions will be ignored
+          // because how webpack works
+          // query: {
+          //   ...
+          // }
+        },
+        // ...
+      ],
+    },
+
+    phenomic: {
+      contentLoader: {
+        // the context where to read .md to
+        context: path.join(__dirname, config.source),
+        // renderer: (text) => {
+        //   // here you can use whatever engine you want,
+        //   // you just need to return some HTML
+        //   retur html
+        // }
+
+        // RSS global options
+        feedsOptions: {
+          title: pkg.name,
+          site_url: pkg.homepage,
+        },
+
+        feeds: {
+          // RSS
+          "feed.xml": {
+            collectionOptions: {
+              // here, you can filter using
+              // phenomic/lib/enhance-collection API
+              // see /docs/usage/collections/
+              filter: { layout: "Post" },
+              sort: "date",
+              reverse: true,
+              limit: 20,
+            },
+          },
+        },
+      },
+    },
+    // ...
+  }
+}
+```
 
 
 ## React-Helmet
@@ -139,7 +220,8 @@ and changes to your documents head with support for
 _document title, meta, link, script, and base tags._
 It's like ``react-document-title`` but on steroid.
 
-The default boilerplate uses ``react-helmet`` in several layouts.
+The default boilerplate uses ``react-helmet`` in several places
+(look for ``<Helmet`` usage).
 
 [To know more about how to use ``react-helmet``, please read the documentation](https://github.com/nfl/react-helmet#readme)
 
