@@ -17,27 +17,13 @@ export const makeConfig = (config = {}) => {
     module: {
       noParse: /\.min\.js/,
       loaders: [
-        { // phenomic requirement
+        {
+          // phenomic requirement
           test: /\.md$/,
           loader: "phenomic/lib/content-loader",
-          query: {
-            context: path.join(__dirname, config.source),
-            // renderer: (text) => html
-            feedsOptions: {
-              title: pkg.name,
-              site_url: pkg.homepage,
-            },
-            feeds: {
-              "feed.xml": {
-                collectionOptions: {
-                  filter: { layout: "Post" },
-                  sort: "date",
-                  reverse: true,
-                  limit: 20,
-                },
-              },
-            },
-          },
+          // config is in phenomic.contentLoader section below
+          // so you can use functions (and not just JSON) due to a restriction
+          // of webpack that serialize/deserialize loader `query` option.
         },
         {
           test: /\.json$/,
@@ -89,6 +75,27 @@ export const makeConfig = (config = {}) => {
           loader: "raw-loader",
         },
       ],
+    },
+
+    phenomic: {
+      contentLoader: {
+        context: path.join(__dirname, config.source),
+        // renderer: (text) => html
+        feedsOptions: {
+          title: pkg.name,
+          site_url: pkg.homepage,
+        },
+        feeds: {
+          "feed.xml": {
+            collectionOptions: {
+              filter: { layout: "Post" },
+              sort: "date",
+              reverse: true,
+              limit: 20,
+            },
+          },
+        },
+      },
     },
 
     postcss: () => [

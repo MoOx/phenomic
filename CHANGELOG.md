@@ -115,6 +115,9 @@ boilerplate:
   lint some builded files.
   Note the  ``--ignore-path .gitignore`` part:
   ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
+- Changed: ``content-loader`` options are defined in the
+  ``phenomic.contentLoader`` section of the webpack configuration so you can use
+  functions (eg: custom renderer).
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
