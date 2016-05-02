@@ -52,7 +52,7 @@ const Showcase = (props) => {
           {
             "To add your own, you just need to "
           }
-          <EditThisPage filename={ __filename } />
+          <EditThisPage filename={ props.__filename } />
         </p>
       </Page>
     </div>
