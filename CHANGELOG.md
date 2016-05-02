@@ -52,8 +52,8 @@ boilerplate:
       to be found at the root of your project, like a classic webpack config.
       Webpack configuration parts specific to Phenomic are now injected by
       Phenomic itself.
-      **Note that your config must ``export`` a ``makeConfig``**. This is
-      required so Phenomic can easily create dynamic configurations.
+      **Note that your config must ``export`` a ``makeConfig`` function**.
+      This is required so Phenomic can easily create dynamic configurations.
       This also prepare the upgrade to ``webpack@2.0.0``
       ([which is in beta for a while, but starts to be
       mature](https://github.com/MoOx/phenomic/issues/421)) that natively
