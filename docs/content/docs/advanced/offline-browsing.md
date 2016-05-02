@@ -23,16 +23,18 @@ There are two different technique to enable offline experience for your website:
 This is the old one, IE 10 (and above) supports it.
 
 - [Learn about AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/)
-
 - [AppCache browser support from caniuse](http://caniuse.com/#search=appcache)
 
 ## Service Worker
 
-This is a part of ES2015 specifications , only modern browsers support it.
+This is a part of ES2015 specifications, only some modern browsers support it.
 
 - [Learn about Service Worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)
-
 - [Service worker browser support from caniuse](http://caniuse.com/#search=service-worker)
+
+**Note: Service workers only run over HTTPS, for security reasons.**
+Having modified network requests wide open to man in the middle attacks would
+be really bad.
 
 ## How to enable offline support
 

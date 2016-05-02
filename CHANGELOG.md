@@ -101,7 +101,8 @@ boilerplate:
   - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
   ([#412](https://github.com/MoOx/phenomic/issues/412) &
   [#361](https://github.com/MoOx/phenomic/issues/361))
-
+- Added: Warning for Service Worker when not using HTTPS
+  ([#406](https://github.com/MoOx/phenomic/issues/406))
 
 ## Boilerplate
 

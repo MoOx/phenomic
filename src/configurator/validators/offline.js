@@ -1,8 +1,10 @@
 // @flow
 import { yellow } from "chalk"
-const log = require("debug")("phenomic:configurator:offline")
+const log: Function = require("debug")("phenomic:configurator:offline")
 
-const defaultPattern = [ "**", "!**/*.html", "index.html" ]
+import { parse } from "url"
+
+const defaultPattern: Array<string> = [ "**", "!**/*.html", "index.html" ]
 const defaultOfflineConfig = {
   appcache: true,
   serviceWorker: true,
@@ -10,8 +12,8 @@ const defaultOfflineConfig = {
 }
 
 export default (
-  { config, errors }:
-  { config: PhenomicConfig, errors: Array<string>}
+  { pkg, config, errors }:
+  { pkg: Object, config: PhenomicConfig, errors: Array<string> }
 ) => {
   // Deprecated
   if (config.appcache) {
@@ -90,5 +92,17 @@ export default (
       "for 'phenomic.offline'. This option accepts a boolean or an object" +
       "with 3 keys: `appcache`, `serviceWorker` and `pattern`"
     )
+  }
+
+  if (
+    pkg.homepage &&
+    parse(pkg.homepage).protocol === "http:" &&
+    config.offlineConfig.serviceWorker
+  ) {
+    console.warn(yellow(
+      "ServiceWorker (for Offline access) only works with HTTPS protocol." +
+      "You are currently using HTTP, so ServiceWorker will be ignored by " +
+      "browsers."
+    ))
   }
 }
