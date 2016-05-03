@@ -5,10 +5,11 @@ incomplete: true
 
 Phenomic uses React components as layouts.
 
-By default, Phenomic might need 2 layouts:
+By default, Phenomic offers you the following layouts:
 
-- `Page`
-- `PageError`
+- [`Page`](#page)
+- [`PageError`](#pageerror)
+- [`PageLoading`](#pageloading)
 
 If you use the `phenomic/lib/PageContainer`, you will need those components in
 your `layouts` definition (by default, declared in `app/routes.js`).
@@ -20,6 +21,8 @@ your Markdown file like so:
 title: Hello World
 layout: MyCustomLayoutComponent
 ```
+
+---
 
 ## Default page layouts that Phenomic can use
 
