@@ -5,11 +5,32 @@ title: How to setup Phenomic
 Phenomic require at least
 [Node.js@^4.2.0](http://nodejs.org/) / [npm@^3.0.0](http://npmjs.com/).
 
-It need a minimal boilerplate, in order to provide you some
-flexibility.  
-Here is how to setup the boilerplate in a minute.
+**A minimal boilerplate is required, in order to provide you some
+flexibility.**
 
-## Create a new folder
+## One command setup
+
+_Note: we recommend you to read the [detailed setup](#detailed-setup)
+if you are new to Phenomic._
+
+
+### OS X / Linux
+
+```console
+$ DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
+npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
+```
+
+### Windows
+
+```console
+> SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
+npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
+```
+
+## Detailed setup
+
+### Create a new folder
 
 That's an easy step.
 
@@ -18,7 +39,7 @@ $ DIR=your-website-folder
 $ mkdir $DIR && cd $DIR
 ```
 
-## Get Phenomic
+### Get Phenomic
 
 You will need to install Phenomic first, to generate the required boilerplate.
 You can install Phenomic from npm to get latest stable version, or install
@@ -35,13 +56,13 @@ $ mkdir node_modules
 _This command is to be sure that phenomic will be installed in the current
 folder._
 
-### Install from npm
+#### Install from npm
 
 ```console
 $ npm install phenomic
 ```
 
-### Install from git
+#### Install from git
 
 To install from git, you will need to get some deps to transpile sources
 
@@ -50,7 +71,7 @@ $ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stag
 $ npm install https://github.com/MoOx/phenomic.git
 ```
 
-## Setup boilerplate
+### Setup boilerplate
 
 ```console
 $ ./node_modules/.bin/phenomic setup
@@ -64,7 +85,7 @@ _Tip:_ You can open `package.json` and adjust some values to fit your needs.
 _Check out [Configuration](../usage/configuration/) for more information about
 the configuration options._
 
-## Install dependencies
+### Install dependencies
 
 When you are done the setup, it's time to get all dependencies.
 
@@ -78,7 +99,7 @@ of what you use and are not locked in to using packages that you don't want to.
 
 Now it's time to...
 
-## Start the engine
+### Start the engine
 
 ```console
 $ npm start
