@@ -52,8 +52,8 @@ boilerplate:
       to be found at the root of your project, like a classic webpack config.
       Webpack configuration parts specific to Phenomic are now injected by
       Phenomic itself.
-      **Note that your config must ``export`` a ``makeConfig``**. This is
-      required so Phenomic can easily create dynamic configurations.
+      **Note that your config must ``export`` a ``makeConfig`` function**.
+      This is required so Phenomic can easily create dynamic configurations.
       This also prepare the upgrade to ``webpack@2.0.0``
       ([which is in beta for a while, but starts to be
       mature](https://github.com/MoOx/phenomic/issues/421)) that natively
@@ -83,6 +83,12 @@ boilerplate:
   automatically. See changes in the boilerplate.
   ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: ``devPort`` option must be a integer.
+- Changed: ``content-loader`` options that are defined in the ``phenomic``
+  section of the webpack configuration should be defined under
+  ``contentLoader``, not ``loader`` (even if this one is still supported for
+  now).
+- Changed: ``content-loader`` options are now taken from ``query`` AND
+  ``phenomic.contentLoader`` section (both are merged).
 - Added: unknown CLI args now throw errors
   ([#363](https://github.com/MoOx/phenomic/pull/363))
 - Added: new injected constants in ``process.env``:
@@ -95,20 +101,24 @@ boilerplate:
   - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
   ([#412](https://github.com/MoOx/phenomic/issues/412) &
   [#361](https://github.com/MoOx/phenomic/issues/361))
-
+- Added: Warning for Service Worker when not using HTTPS
+  ([#406](https://github.com/MoOx/phenomic/issues/406))
 
 ## Boilerplate
 
 - Fixed: Meta og:url must be a full url
   ([#432](https://github.com/MoOx/phenomic/pull/432)
+- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
+  boilerplate. These are now automatically defined.
+  ([#412](https://github.com/MoOx/phenomic/issues/412))
 - Changed: big changes in the ``scripts`` folder. Read note above.
 - Changed: lint command now ignore gitignored files in to be sure you don‘t
   lint some builded files.
   Note the  ``--ignore-path .gitignore`` part:
   ``"lint:js": "eslint --ignore-path .gitignore --fix ."``
-- Removed: ``NODE_ENV`` and ``PHENOMIC_PATHNAME`` have been removed from the
-  boilerplate. These are now automatically defined.
-  ([#412](https://github.com/MoOx/phenomic/issues/412))
+- Changed: ``content-loader`` options are defined in the
+  ``phenomic.contentLoader`` section of the webpack configuration so you can use
+  functions (eg: custom renderer).
 - Added: [Polyfill CDN](https://cdn.polyfill.io/v2/docs/)
   to make sure your website work with old browsers as well.
   ([#348](https://github.com/MoOx/phenomic/pull/348))
