@@ -164,8 +164,9 @@ export const makeConfig = (config = {}) => {
         {
           test: /\.md$/,
           loader: "phenomic/lib/content-loader",
-          // you can also define options here, but functions will be ignored
-          // because how webpack works
+
+          // you can also define options here, but functions will be silently
+          // ignored because how webpack works
           // query: {
           //   ...
           // }
@@ -176,13 +177,15 @@ export const makeConfig = (config = {}) => {
 
     phenomic: {
       contentLoader: {
+
         // the context where to read .md to
         context: path.join(__dirname, config.source),
-        // renderer: (text) => {
-        //   // here you can use whatever engine you want,
-        //   // you just need to return some HTML
-        //   retur html
-        // }
+
+        renderer: (text) => {
+          // here you can use whatever engine you want,
+          // you just need to return some HTML
+          return html
+        }
 
         // RSS global options
         feedsOptions: {

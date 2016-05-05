@@ -1,3 +1,5 @@
+# 0.12.0 - 2016-05-05
+
 ## tl;dr;
 
 **Don't be afraid by the length of this release notes. It's for the better.**
@@ -11,6 +13,9 @@ boilerplate:
 - webpack configs can be moved at the root of you project and merged into a
   single one ``webpack.config.babel.js``. Phenomic specific configuration can be
   removed (eg: ``entry``) and is now injected via Phenomic itself.
+
+→ [Example of update from phenomic 0.10 to 0.12](https://github.com/putaindecode/putaindecode.io/commit/6c830193a4f873790df3d10df9ef3e2e89bbd36b)
+
 
 ## Details
 
@@ -62,7 +67,7 @@ boilerplate:
     - Removed: ``scripts/build.js`` in favor of ``scripts/phenomic.node.js``.
       _The path can be specified via an option (via CLI or config)._
       Note that this file will be builded as
-      ``scripts/phenomic.node.bundled.js`` for performance.
+      ``scripts/phenomic.node.bundle.js`` for performance.
       (New boilerplate (git)ignores ``*.bundle.js`` files).
     - Changed: ``scripts/index-client.js`` is now
       ``scripts/phenomic.browser.js``.
