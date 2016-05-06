@@ -26,4 +26,6 @@ list:
 - name: Learn C++ (Vietnamese)
   url: https://khoanguyen.me/dnh-cpp/
   source: https://github.com/thangngoc89/dnh-cpp/
+- name: Bluejay Wireless
+  url: https://www.bluejaywireless.com/
 ---
