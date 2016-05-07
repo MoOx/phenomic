@@ -179,15 +179,17 @@
     "docs": "babel-node scripts/docs.js",
     "predocs-start": "babel-node scripts/docs.js",
     "docs-start": "cd docs && npm start",
+    "predocs-deploy": "cd docs && npm run build",
+    "docs-deploy": "./docs/scripts/deploy.sh",
     "preboilerplate-start": "npm -s run transpile && babel-node scripts/boilerplate.js",
     "boilerplate-start": "cd boilerplate && npm start",
-    "#test": "'docs' is run after tests just to be sure (and on CI because result is deployed on gh-pages)",
     "preall-tests": "npm run lint",
-    "all-tests": "npm run tests && npm run test-boilerplate",
-    "test": "npm run all-tests && npm run docs",
-    "test-with-coverage": "nyc npm run all-tests && npm run docs",
+    "all-tests": "npm run tests && npm run test-boilerplate && npm run docs",
+    "test": "npm run all-tests",
+    "test-with-coverage": "nyc npm run all-tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "release": "git checkout next && npmpub && git checkout master && git merge next && git push && git checkout next"
+    "release": "npmpub",
+    "postrelease": "npm -s run docs-deploy"
   },
   "nyc": {
     "exclude": [
