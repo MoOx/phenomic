@@ -27,17 +27,3 @@ before_install:
 script: npm run test-with-coverage
 
 after_success: npm run coverage
-
-# deploy docs to gh-pages for commits in master
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ./docs/scripts/deploy.sh
-  on:
-    branch: master
-    node: '5'
-
-env:
-  global:
-    # GITHUB_TOKEN
-    - secure: YdtJZ5EnoKt57uHq1ue8RNXk4tZJqx3Fr7SkPlNFPVmRLH3DLkHs4hNoWw5xot2/D8dreGNVF6iDEXwyGQkRriVwBlvyU1LBQRH1QQLnd5Q3+8OosxZRrslUajW1XhK82FnWmI7ueXngwYTsnZP3UOdYSZt0mh3kPL3oIz94AoC8KovY3s7Ng/DM+OkiGC06uEIaxcKYSdDYl9f+Y8Vl41AuKm6IZ1gBY2Fbyh3+RV40KarSDg5ARIQO1sOaQH5edEPmzS0LmGWnr5P2KwGDvxN2hBu+teVYBM6l/tjNItAmRibQK5o/S3R+ZVS83op5RtDVC3hXTgneYPcpZ20f0F3ETOTQaTeedH4KINOt3qEdwsWlo7tlKjKaCkadggZ7RwyrMhBfy9oMj+kT/VAj3hqtrX8AIf7BrNQxTDBvSR8PST/qu9bdrWBJXTErGn0dB4CNdBD2wckenWTZHTj01uHOEoCsL2iUCpG9/7B0Y84o8SsN+BycbFy3TTSYO7tn4EGTX8VEKkKpivJh33C9dNi8fUEu9UwooJK0j+S9XPTt6l1ccgC/I8BLVE+hMFfNnwE0QhMBjw66yOJitH16g1OOvE7KckPLekrpa7rhe04uAIwhdowLs9GtSPT9S8mHM6/YNxlpYxdwSI7QllQs7eVsHEx4EBZ6/Vw96pbYLy0=
