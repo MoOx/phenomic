@@ -99,7 +99,6 @@
     "expect-jsx": "^2.2.1",
     "flow-bin": "^0.22.1",
     "flow-interfaces": "^0.5.0",
-    "gh-pages": "^0.10.0",
     "js-beautify": "^1.5.10",
     "jsdom": "^8.1.0",
     "lnfs": "^3.0.0",
