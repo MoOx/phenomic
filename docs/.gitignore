@@ -4,5 +4,4 @@ node_modules
 
 # phenomic build
 dist
-*.bundle.js
 temp
