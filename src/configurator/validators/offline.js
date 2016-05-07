@@ -35,8 +35,8 @@ export default (
     ))
   }
 
-  // Disable offline for development
-  if (config.dev) {
+  // Disable offline for development if user defined offline config
+  if (config.dev && config.offline) {
     config.offline = false
     log(yellow("Offline support is disabled in development mode"))
     return
