@@ -179,7 +179,7 @@
     "predocs-start": "babel-node scripts/docs.js",
     "docs-start": "cd docs && npm start",
     "predocs-deploy": "cd docs && npm run build",
-    "docs-deploy": "./docs/scripts/deploy.sh",
+    "docs-deploy": "cd docs && ./scripts/deploy.sh",
     "preboilerplate-start": "npm -s run transpile && babel-node scripts/boilerplate.js",
     "boilerplate-start": "cd boilerplate && npm start",
     "preall-tests": "npm run lint",
