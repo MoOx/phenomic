@@ -3,43 +3,72 @@ title: Automatic deployment on GitHub Pages
 ---
 
 **Be sure that you use the ``phenomic.CNAME`` option in your
-``package.json`. See [Configuration](./configuration/)**
+[configuration](./configuration/)**
 
 You will have multiple possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
+
 You can use your own method, using something like
-- [gh-pages](https://www.npmjs.com/package/gh-pages)
+- a very simple script (see below)
 - [buildbranch](https://www.npmjs.com/package/buildbranch)
 - [git-directory-deploy](https://github.com/X1011/git-directory-deploy)
+- [gh-pages](https://www.npmjs.com/package/gh-pages)
 
 ---
 
-The following instructions show you how to do it with `gh-pages`,
+The following instructions show you how to do it by force pushing your build to
+the ``gh-pages`` branch,
 but it should not be very different from other solutions.
 
-This package works on Travis-CI.
+## Why force pushing?
 
-### Get the dependency
+Why do you want to keep track of the builded website when you can just rebuild
+it any time?  
+**Keep in mind that the branch can become huge since builded website is mainly
+single line HTML and JSON file (diff is expensive).**  
+By just keeping a single builded version, you avoid your repo to unnecessarily grow in size.
 
-```console
-$ npm i -D gh-pages
+## Create the script
+
+The script below will get a ``GIT_DEPLOY_REPO`` repo to deploy (or by default
+the ``repository`` url of your ``package.json``).
+
+You can paste it under ``./scripts/deploy.sh``.
+
+### OS X / Linux
+
+```bash
+#!/usr/bin/env bash
+GIT_DEPLOY_REPO=${GIT_DEPLOY_REPO:-$(node -e 'process.stdout.write(require("./package.json").repository)')}
+
+cd dist && \
+$(npm bin)/rimraf .git
+git init && \
+git add . && \
+git commit -m "Deploy to GitHub Pages" && \
+git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
 ```
 
-To learn a thing or two, try
+_If you want to use this script for a ``*.github.io`` repo, please adjust the
+last line argument to ``src:master`` (if you source branch is `src`) in order
+to deploy your source branch to ``master`` (which is the ``gh-pages`` branch for
+github.io repos)._
 
-```console
-$ ./node_modules/.bin/gh-pages --help
-```
+### Windows
+
+@todo (should not be hard to adapt the shell script above into a bat script,
+please make a PR if you do it).
 
 ### Add a command to deploy
 
 In your `package.json`, add the following items under the `scripts` section:
 
-```json
+```js
 {
   "scripts": {
+    // ...
     "predeploy": "npm run build",
-    "deploy": "gh-pages"
+    "deploy": "./scripts/deploy.sh"
   }
 }
 ```
@@ -103,11 +132,9 @@ $ npm i -g travis-encrypt
 $ travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
-## Create a script
+## Adjust the deploy script
 
-Here is an example of a small script that will use gh-pages.
-You can place it in ``./scripts/deploy.sh``.
-Please read and adjust it carefully.
+__You need to add a git user email and name:__
 
 ```sh
 #!/usr/bin/env bash
@@ -115,32 +142,36 @@ Please read and adjust it carefully.
 if [ "$TRAVIS" = "true" ]
 then
   # git need this, on Travis-CI nobody is defined
-  git config --global user.email "gh-pages@localhost"
-  git config --global user.name "npm gh-pages"
+  git config --global user.name \"Travis CI\" && \
+  git config --global user.email \"travis@travis-ci.org\" && \
 fi
 
-./node_modules/.bin/gh-pages \
-  # ADJUST YOUR REMOTE HERE
-  --repo https://$GITHUB_TOKEN@github.com/{YOU/YOUR_REPO}.git \
-  # TO HIDE YOUR $GITHUB_TOKEN!
-  # this is really important
-  --silent \
-  # base directory for all source files
-  --dist dist
-  
+cd dist && \
+$(npm bin)/rimraf .git
+git init && \
+git add . && \
+git commit -m "Deploy to GitHub Pages" && \
+git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
 ```
 
-##### Add a `test` script in your `package.json` `scripts` section
+##### Ensure that the build is done on the CI
 
-```json
+If not already made, add a `test` script in your `package.json` `scripts`
+section.
+
+```js
 {
   "scripts": {
     "test": "npm run build",
+    // ...
+    "predeploy": "npm run build",
+    "deploy": "./scripts/deploy.sh"
   }
 }
 ```
 
 Now, commit and push to master, wait a couple of minutes and it should be good.
 
-**If you plan to rely on Travis only, you can probably remove the `predeploy` and
-`deploy` scripts that we defined earlier.**
+_If you plan to rely on Travis only, you can remove the `predeploy` and
+`deploy` scripts that we defined earlier._
+Or you can keep it, just in case.
