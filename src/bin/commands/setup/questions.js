@@ -7,21 +7,16 @@ export const defaultTestAnswers = {
   CNAME: false,
 }
 
-export const validateUrl = value => {
-  if (validUrl.isWebUri(value)) {
-    return true
-  }
-  return "Please provide a valid url"
-}
+const packageJsonNameRE = /^[a-zA-Z0-9\-]+$/
+const twitterRE = /^[a-zA-Z0-9\-_]+$/
 
 const questions = [
   {
     type: "input",
     name: "name",
     message: "Name of your project",
-    validate: value => {
-      const pass = /^[a-zA-Z0-9\-]+$/.test(value)
-      if (pass) {
+    validate: (value) => {
+      if (packageJsonNameRE.test(value)) {
         return true
       }
       return "Only letters, numbers and dashes are allowed."
@@ -31,21 +26,30 @@ const questions = [
     type: "input",
     name: "homepage",
     message: "Homepage url for your website",
-    validate: validateUrl,
+    validate: (value) => {
+      if (validUrl.isWebUri(value)) {
+        return true
+      }
+      return "Please provide a valid url"
+    },
   },
   {
     type: "input",
     name: "repository",
     message: "Your repository url for this project (optional)",
-    validate: validateUrl,
+    validate: (value) => {
+      if (value === "" || validUrl.isWebUri(value)) {
+        return true
+      }
+      return "Please provide a valid url for repository"
+    },
   },
   {
     type: "input",
     name: "twitter",
     message: "Your project's twitter account (optional)",
     validate: value => {
-      const pass = /^[a-zA-Z0-9\-_]+$/.test(value)
-      if (pass) {
+      if (value === "" || twitterRE.test(value)) {
         return true
       }
       return "Only letters, numbers, dashes & underscores are allowed."

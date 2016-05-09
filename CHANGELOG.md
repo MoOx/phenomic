@@ -1,3 +1,5 @@
+- Fixed: twitter and repo url in setup accept empty values
+  ([#445](https://github.com/MoOx/phenomic/issues/445))
 - Fixed: Should not show "Offline support is disabled in development mode"
   when offline isn't enabled
   ([#448](https://github.com/MoOx/phenomic/issues/448))
