@@ -1,3 +1,4 @@
+- Added: setup now show examples for values to enter.
 - Fixed: twitter and repo url in setup accept empty values
   ([#445](https://github.com/MoOx/phenomic/issues/445))
 - Fixed: Should not show "Offline support is disabled in development mode"

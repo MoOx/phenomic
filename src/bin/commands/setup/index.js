@@ -15,6 +15,8 @@ export default async function setup(argv) {
   const cwd = process.cwd()
   const testMode = argv.test
 
+  console.log("Note: All values can be adjusted later.")
+
   try {
     const answers = testMode ? defaultTestAnswers : await prompt(questions)
     const { name, homepage, twitter, repository, ...phenomic } = answers

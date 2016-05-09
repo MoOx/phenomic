@@ -14,7 +14,7 @@ const questions = [
   {
     type: "input",
     name: "name",
-    message: "Name of your project",
+    message: "Dashed name of your project (eg: my-project)",
     validate: (value) => {
       if (packageJsonNameRE.test(value)) {
         return true
@@ -25,7 +25,7 @@ const questions = [
   {
     type: "input",
     name: "homepage",
-    message: "Homepage url for your website",
+    message: "Website url (eg: http://abc.xyz/)",
     validate: (value) => {
       if (validUrl.isWebUri(value)) {
         return true
@@ -36,7 +36,8 @@ const questions = [
   {
     type: "input",
     name: "repository",
-    message: "Your repository url for this project (optional)",
+    message: "Repository url" +
+      " (eg: https://github.com/MoOx/phenomic.git, optional)",
     validate: (value) => {
       if (value === "" || validUrl.isWebUri(value)) {
         return true
@@ -47,7 +48,7 @@ const questions = [
   {
     type: "input",
     name: "twitter",
-    message: "Your project's twitter account (optional)",
+    message: "Twitter nickname (eg: MoOx, optional)",
     validate: value => {
       if (value === "" || twitterRE.test(value)) {
         return true
@@ -58,7 +59,7 @@ const questions = [
   {
     type: "confirm",
     name: "CNAME",
-    message: "Should phenomic generate a CNAME file ?",
+    message: "Do you want a CNAME file (eg: for GitHub Pages)?",
     default: false,
   },
 ]
