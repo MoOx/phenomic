@@ -1,3 +1,5 @@
+# 0.12.1 - 2016-05-09
+
 - Added: setup now show examples for values to enter.
 - Fixed: twitter and repo url in setup accept empty values
   ([#445](https://github.com/MoOx/phenomic/issues/445))
