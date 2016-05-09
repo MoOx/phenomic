@@ -3,7 +3,9 @@ title: How to setup Phenomic
 ---
 
 Phenomic require at least
-[Node.js@^4.2.0](http://nodejs.org/) / [npm@^3.0.0](http://npmjs.com/).
+**[Node.js@^4.2.0](http://nodejs.org/) / [npm@^3.0.0](http://npmjs.com/)**.  
+We recommend you to use [nvm](https://github.com/creationix/nvm) to manage
+different versions of node.
 
 **A minimal boilerplate is required, in order to provide you some
 flexibility.**
@@ -53,14 +55,20 @@ Anyway, Phenomic will probably not work installed globally._
 $ mkdir node_modules
 ```
 
-_This command is to be sure that phenomic will be installed in the current
-folder._
+*This command is to be sure that phenomic will be installed in the current
+folder, otherwise, npm might try to install it in a parent folder until it
+finds a ``node_modules`` or a ``package.json``, up to your HOME folder.*
 
 #### Install from npm
 
 ```console
 $ npm install phenomic
 ```
+
+* ``--save[-dev]`` is useless because there is no ``package.json`` yet.
+  This will be be handled by the setup command below.
+* You can ignore error about missing ``package.json`` and warnings about
+  missing peer dependencies.
 
 #### Install from git
 
@@ -73,12 +81,16 @@ $ npm install https://github.com/MoOx/phenomic.git
 
 ### Setup boilerplate
 
+**Notice:** This step will create (and overwrite) any existing ``package.json``.
+
 ```console
 $ ./node_modules/.bin/phenomic setup
 ```
 
-After you answer some questions, your boilerplate is ready.
-_Note that it will create (and overwrite) any existing ``package.json``._
+**⚠️ If you got errors here, please double check that you have required version of
+Node and NPM specified at the top of this page.**
+
+After you answer some questions, your boilerplate is ready.  
 
 _Tip:_ You can open `package.json` and adjust some values to fit your needs.
 
