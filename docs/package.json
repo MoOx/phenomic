@@ -62,8 +62,8 @@
     "remark-html": "^3.0.0",
     "remark-slug": "^4.1.0",
     "style-loader": "^0.12.3",
-    "stylelint": "^5.4.0",
-    "stylelint-config-standard": "^5.0.0",
+    "stylelint": "^6.0.0",
+    "stylelint-config-standard": "^7.0.0",
     "webpack": "^1.12.1",
     "whatwg-fetch": "^0.11.0"
   },

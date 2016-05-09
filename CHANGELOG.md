@@ -5,6 +5,11 @@
   when offline isn't enabled
   ([#448](https://github.com/MoOx/phenomic/issues/448))
 
+## Boilerplate
+
+- Updated: ``stylelint`` has been updated to ``^6.0.0``
+- Updated: ``stylelint-config-standard`` has been updated to ``^7.0.0``
+
 # 0.12.0 - 2016-05-05
 
 ## tl;dr;

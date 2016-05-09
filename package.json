@@ -114,8 +114,8 @@
     "react-router": "^2.2.2",
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
-    "stylelint": "^5.4.0",
-    "stylelint-config-standard": "^5.0.0",
+    "stylelint": "^6.0.0",
+    "stylelint-config-standard": "^7.0.0",
     "suppose": "^0.5.2"
   },
   "peerDependencies": {
@@ -157,8 +157,8 @@
     "react-svg-inline": "^1.1.0",
     "react-topbar-progress-indicator": "^1.0.0",
     "style-loader": "^0.12.3",
-    "stylelint": "^5.4.0",
-    "stylelint-config-standard": "^5.0.0"
+    "stylelint": "^6.0.0",
+    "stylelint-config-standard": "^7.0.0"
   },
   "scripts": {
     "postinstall": "node npm/postinstall.js",
