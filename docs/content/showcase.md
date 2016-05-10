@@ -11,9 +11,14 @@ list:
 - name: PostCSS
   url: http://postcss.org/
   source: https://github.com/postcss/postcss.org
+- name: cssnano
+  url: http://cssnano.co/
+  source: https://github.com/ben-eb/cssnano/tree/master/docs
 - name: Stylelint
   url: http://stylelint.io/
   source: https://github.com/stylelint/stylelint.io
+- name: Bluejay Wireless
+  url: https://www.bluejaywireless.com/
 - name: Khoa Nguyen's Blog
   url: https://khoanguyen.me
   source: https://github.com/thangngoc89/blog
@@ -26,9 +31,4 @@ list:
 - name: Learn C++ (Vietnamese)
   url: https://khoanguyen.me/dnh-cpp/
   source: https://github.com/thangngoc89/dnh-cpp/
-- name: Bluejay Wireless
-  url: https://www.bluejaywireless.com/
-- name: cssnano
-  url: http://cssnano.co/
-  source: https://github.com/ben-eb/cssnano/tree/master/docs
 ---
