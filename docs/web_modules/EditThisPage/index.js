@@ -7,7 +7,7 @@ const EditThisPage = (props) => {
     <a
       href={
         repository.replace(/\.git$/, "") +
-        "/edit/next/"+
+        "/edit/master/"+
         "docs/content/" + // phenomic docs specificity
         props.filename
       }
