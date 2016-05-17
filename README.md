@@ -1,4 +1,4 @@
-# [![Phenomic](https://rawgit.com/MoOx/phenomic/next/logo/phenomic-text-color.svg)](https://phenomic.io)
+# [![Phenomic](https://rawgit.com/MoOx/phenomic/master/logo/phenomic-text-color.svg)](https://phenomic.io)
 
 [![Unix Build status](https://img.shields.io/travis/MoOx/phenomic/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/phenomic)
 [![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/phenomic/branch/master)
