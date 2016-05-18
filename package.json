@@ -93,7 +93,7 @@
     "eslint-config-i-am-meticulous": "^4.1.1",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-flow-vars": "^0.3.0",
-    "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-react": "^5.1.1",
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
