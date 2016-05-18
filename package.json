@@ -55,7 +55,7 @@
     "lodash.template": "^4.2.2",
     "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
-    "opn": "^3.0.2",
+    "opn": "^4.0.2",
     "pify": "^2.3.0",
     "portfinder": "^1.0.2",
     "redbox-react": "^1.2.2",
