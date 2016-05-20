@@ -11,6 +11,20 @@ test("should join 2 uri parts", (t) => (
   )
 ))
 
+test("should join 2 uri parts with a slash", (t) => (
+  t.is(
+    joinUri("some", "/thing"),
+    "some/thing"
+  )
+))
+
+test("should join 2 uri parts with slashes", (t) => (
+  t.is(
+    joinUri("some/", "/thing"),
+    "some/thing"
+  )
+))
+
 test("should join multiple uri parts", (t) => (
   t.is(
     joinUri("some", "thing", "else"),

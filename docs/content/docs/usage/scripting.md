@@ -12,10 +12,6 @@ and ecosystem.
 Be sure to check
 [how to tackle the React ecosystem](https://github.com/petehunt/react-howto).
 
-## Routing
-
-@todo
-
 ## Constants
 
 Several constants are exposed (injected) in your JavaScript code in
@@ -28,3 +24,74 @@ Several constants are exposed (injected) in your JavaScript code in
 - ``process.env.PHENOMIC_VERSION``: Phenomic version
 - ``process.env.PHENOMIC_HOMEPAGE``: Phenomic homepage url
 - ``process.env.PHENOMIC_REPOSITORY``: Phenomic repository url
+
+## Available modules
+
+@todo document all public modules
+
+### Components
+
+#### ``PageContainer``
+
+Component to define and declares all pages layouts.
+
+```js
+import PageContainer from "phenomic/lib/PageContainer"
+
+// @todo show usage
+```
+
+[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
+
+#### ``BodyContainer``
+
+This component should be used to wrap pages ``body``.
+
+```js
+import { BodyContainer } from "phenomic"
+
+// ...
+// in this example, Page is used as a layout
+// and declared in a PageContainer usage
+class Page extends Component {
+
+  // ...
+
+  render() {
+    const { props } = this
+    const { body } = props
+    // ...
+    return (
+      <div>
+        /* ... */
+        <BodyContainer>{ body }</BodyContainer>
+        /* === <BodyContainer>{ this.props.body }</BodyContainer> *
+        /* ... */
+      </div>
+    )
+  }
+```
+
+[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
+
+### Utilities
+
+### ``joinUri``
+
+Simple utility to join uri parts. Ensure that there is no missing or duplicate
+slashes.
+
+```js
+import { joinUri } from "phenomic"
+
+joinUri("some", "thing") // "some/thing"
+joinUri("some", "/thing") // "some/thing"
+joinUri("some/", "/thing") // "some/thing"
+joinUri("some", "thing", "else"), // "some/thing/else"
+```
+
+## Routing
+
+@todo
+
+[Check how to declare routes in the default boilerplate](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)

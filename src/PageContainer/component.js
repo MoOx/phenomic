@@ -135,7 +135,14 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     if (this._content) {
       const layoutDOMElement = findDOMNode(this._content)
       if (layoutDOMElement) {
-        catchLinks(layoutDOMElement, (href) => {
+        let bodyContainers =
+          Array.prototype.slice.call(
+            layoutDOMElement.querySelectorAll(".phenomic-BodyContainer")
+          )
+        if (!bodyContainers.length) {
+          bodyContainers = [ layoutDOMElement ]
+        }
+        catchLinks(bodyContainers, (href) => {
           const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
           if (!find(this.context.collection, pageUrl)) {
             return false

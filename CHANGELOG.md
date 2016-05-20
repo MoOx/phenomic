@@ -1,3 +1,62 @@
+- Added: ``BodyContainer`` component.  
+  This component is now recommended to used wrap pages `body`, in replacement of
+  previous usage of ``dangerouslySetInnerHTML``.  
+  _Previous method still works but have
+  [a known issue](https://github.com/MoOx/phenomic/issues/469)._  
+  To use this component, you can simply replace in your layouts the following
+  code
+
+  ```js
+  {
+    body &&
+    <div
+      dangerouslySetInnerHTML={ { __html: html } }
+    />
+  }
+  ```
+
+  By the following code
+
+  ```js
+  <BodyContainer>{ body }</BodyContainer>
+  ```
+
+  Note that you will need to import ``BodyContainer`` like this
+
+  ```js
+  import { BodyContainer } from "phenomic"
+  ```
+
+  Example of full diff
+
+  ```diff
+  import Helmet from "react-helmet"
+  import invariant from "invariant"
+  -import { joinUri } from "phenomic"
+  +import { BodyContainer, joinUri } from "phenomic"
+
+  class Page extends Component {
+
+  //...
+
+          {
+            head.title &&
+            <h1>{ head.title }</h1>
+          }
+          { header }
+  -        {
+  -          body &&
+  -          <div
+  -            dangerouslySetInnerHTML={ { __html: html } }
+  -          />
+  -        }
+  +        <BodyContainer>{ body }</BodyContainer>
+          { props.children }
+          { footer }
+  ```
+
+  ([#469](https://github.com/MoOx/phenomic/issues/469))
+
 # 0.12.1 - 2016-05-09
 
 - Added: setup now show examples for values to enter.

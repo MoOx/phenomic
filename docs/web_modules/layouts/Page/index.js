@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
-import { joinUri } from "phenomic"
+import { joinUri, BodyContainer } from "phenomic"
 
 import EditThisPage from "../../EditThisPage"
 
@@ -88,12 +88,7 @@ export default class Page extends Component {
               }
           </div>
         }
-        {
-          body &&
-          <div
-            dangerouslySetInnerHTML={ { __html: body } }
-          />
-        }
+        <BodyContainer>{ body }</BodyContainer>
         { this.props.children }
         { PageActions }
       </div>

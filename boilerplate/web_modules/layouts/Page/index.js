@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
-import { joinUri } from "phenomic"
+import { BodyContainer, joinUri } from "phenomic"
 
 class Page extends Component {
   render() {
@@ -54,12 +54,7 @@ class Page extends Component {
           <h1>{ head.title }</h1>
         }
         { header }
-        {
-          body &&
-          <div
-            dangerouslySetInnerHTML={ { __html: body } }
-          />
-        }
+        <BodyContainer>{ body }</BodyContainer>
         { props.children }
         { footer }
       </div>
