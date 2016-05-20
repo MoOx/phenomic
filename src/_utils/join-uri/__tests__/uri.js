@@ -49,13 +49,6 @@ test("should join query param", (t) => (
   )
 ))
 
-test("should join multiple query params", (t) => (
-  t.is(
-    joinUri("https://some.site/", "?first=1", "?second=2"),
-    "https://some.site/?first=1&second=2"
-  )
-))
-
 test("should join relative URI parts", (t) => (
   t.is(
     joinUri("some", "thing"),
