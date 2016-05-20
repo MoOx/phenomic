@@ -1,3 +1,5 @@
+# 0.12.2 - 2016-05-20
+
 - Added: ``BodyContainer`` component.  
   This component is now recommended to used wrap pages `body`, in replacement of
   previous usage of ``dangerouslySetInnerHTML``.  
