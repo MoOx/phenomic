@@ -1,12 +1,15 @@
-import { join, basename, dirname } from "path"
+import { join, basename } from "path"
 import { BannerPlugin } from "webpack"
-
 import commonWebpackConfig from "./config.common.js"
-
+import { sync as mkdir } from "mkdirp"
 export const chunkNameNode = "phenomic.node"
 
 export default (config) => {
   const webpackConfig = commonWebpackConfig(config)
+
+  const outputPath = join(config.cwd, "temp")
+  mkdir(outputPath)
+
   return {
     ...webpackConfig,
 
@@ -17,10 +20,7 @@ export default (config) => {
 
     output: {
       ...webpackConfig.output,
-      path: join(
-        config.cwd,
-        dirname(config.scriptNode)
-      ),
+      path: outputPath,
       libraryTarget: "commonjs2",
       filename: basename(config.scriptNode, ".js") + ".bundle.js",
     },
