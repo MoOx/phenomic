@@ -16,7 +16,7 @@ import githubSvg from "./github.svg"
 
 const blue = Color("#006DF4")
 const green = Color("#0FE358")
-const totalLink = 7
+const totalLink = 7 + 1 // + 1 to avoid the real green, too light
 
 class Header extends Component {
 
@@ -126,7 +126,7 @@ class Header extends Component {
               </a>
               <a
                 style={ {
-                  color: blue.rgbString(),
+                  color: green.clone().mix(blue, (7-1) / totalLink).rgbString(),
                 } }
                 className={ styles.link }
                 href="https://twitter.com/Phenomic_app"
