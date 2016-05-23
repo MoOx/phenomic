@@ -21,9 +21,11 @@
   font-size: 1.6rem;
   font-weight: bold;
   text-decoration: none;
+  color: #08b09b;
 }
 
 .itemLinkSource {
   font-size: 0.75rem;
   text-decoration: none;
+  color: #006df4;
 }

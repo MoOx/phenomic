@@ -1,0 +1,51 @@
+.container {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  color: #fff;
+  text-shadow: 0 1px 4px color(#000 a(0.8));
+
+  box-shadow: 0 0 10px color(#000 a(0.2)) inset;
+}
+
+.big {
+  background:
+    linear-gradient(
+      179deg,
+      color(#000 a(0.6)),
+      transparent 10rem
+    ),
+    linear-gradient(
+      -1deg,
+      color(#000 a(0.3)),
+      transparent 10rem
+    ),
+    linear-gradient(
+      160deg,
+      color(#006bf6 a(0.8)),
+      color(#10e951 a(0.8))
+    ),
+    url("./backgrounds/grass-sun.jpg") 50% 30% / cover;
+}
+
+.small {
+  background:
+    linear-gradient(
+      179deg,
+      color(#000 a(0.6)),
+      transparent 10rem
+    ),
+    linear-gradient(
+      -1deg,
+      color(#000 a(0.3)),
+      transparent 10rem
+    ),
+    linear-gradient(
+      160deg,
+      color(#006bf6 a(0.8)),
+      color(#10e951 a(0.8))
+    ),
+    url("./backgrounds/grass.jpg") 50% 50% / cover;
+}

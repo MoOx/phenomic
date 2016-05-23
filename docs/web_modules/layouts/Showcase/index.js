@@ -40,7 +40,7 @@ const Showcase = (props) => {
                       className={ styles.itemLinkSource }
                       href={ item.source }
                     >
-                      { "(source)" }
+                      { "(Source)" }
                     </a>
                   }
                 </li>

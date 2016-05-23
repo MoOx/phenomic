@@ -1,85 +1,56 @@
-/* reset from https://github.com/cssrecipes/reset/blob/master/lib/button.css */
-.button {
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-
-  background: transparent;
-
-  /* inherit font & color from ancestor */
-  color: inherit;
-  font: inherit;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
-}
-
-/* Remove excess padding and border in Firefox 4+ */
-.button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
 :root {
-  --button-border-radius: 3px;
-  --button-border-width: 2px;
+  --button-light-color-1: #fff;
+  --button-light-color-2: #eef5f8;
+  --button-light-color-3: #dfedf2;
+
+  --button-vivid-color-1: #006bf6;
+  --button-vivid-color-2: #00aaa5;
+  --button-vivid-color-3: #10e951;
 }
 
 .button {
-  cursor: pointer;
+  display: inline-flex;
   padding: 0 1rem;
   line-height: 2.5rem;
   min-width: 3rem;
 
+  font-weight: 100;
   text-align: center;
 
-  font-weight: 100;
+  border-radius: 3px;
+  background-size: 3px 100%, 100% 3px, 3px 100%, 100% 3px;
+  background-position: 0 0, 0 0, 100% 0, 100% 100%;
+  background-repeat: no-repeat;
+
+  text-shadow: none;
+}
+
+.light {
   color: #fff;
-  background: linear-gradient(160deg, #006bf6, #10e951);
+  background-image:
+    linear-gradient(to bottom, var(--button-light-color-1), var(--button-light-color-2)),
+    linear-gradient(to right, var(--button-light-color-1), var(--button-light-color-2)),
+    linear-gradient(to bottom, var(--button-light-color-2), var(--button-light-color-3)),
+    linear-gradient(to right, var(--button-light-color-2), var(--button-light-color-3));
 
   &:hover {
     color: #08b09b;
-    background: #fff;
+    background: linear-gradient(to bottom, var(--button-light-color-1), var(--button-light-color-3));
   }
+}
 
-  /*
-    border-image does not allow border-radius...
-  border: 2px solid;
-  border-image: linear-gradient(160deg, #006bf6, #10e951) 1 1;
-  */
+.vivid {
+  color: #08b09b;
+  background-image:
+    linear-gradient(to bottom, var(--button-vivid-color-1), var(--button-vivid-color-2)),
+    linear-gradient(to right, var(--button-vivid-color-1), var(--button-vivid-color-2)),
+    linear-gradient(to bottom, var(--button-vivid-color-2), var(--button-vivid-color-3)),
+    linear-gradient(to right, var(--button-vivid-color-2), var(--button-vivid-color-3));
 
-  /*
-    gradient "border-image" clone
-    pseudo placed below the button itself
-  */
-  position: relative; /* pseudo element is absolutely relative to its parent */
-  &::before {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: calc(-1 * var(--button-border-width));
-    bottom: calc(-1 * var(--button-border-width));
-    left: calc(-1 * var(--button-border-width));
-    right: calc(-1 * var(--button-border-width));
-
-    background: linear-gradient(160deg, #006bf6, #10e951);
-    border-radius: var(--button-border-radius);
+  &:hover {
+    color: #fff;
+    background: linear-gradient(160deg, var(--button-vivid-color-1), var(--button-vivid-color-3));
   }
-
-  /*
-    We cannot use the same radius value because it's not what you
-    expect. We need to use the radius - the border witdth
-  */
-  border-radius: calc(var(--button-border-radius) - var(--button-border-width));
 }
 
 .huge {

@@ -4,6 +4,9 @@ import invariant from "invariant"
 import { joinUri, BodyContainer } from "phenomic"
 
 import EditThisPage from "../../EditThisPage"
+import Banner from "../../Banner"
+import Content from "../../Content"
+// import GradientLine from "../../GradientLine"
 
 import styles from "./index.css"
 
@@ -69,28 +72,41 @@ export default class Page extends Component {
         />
         {
           head.title &&
-          <h1>{ head.title }</h1>
+          <Banner>
+            <h1 className={ styles.title }>{ head.title }</h1>
+            {
+              head.subtitle &&
+              <h2 className={ styles.subtitle }>{ head.subtitle }</h2>
+            }
+          </Banner>
         }
-        {
-          // to avoid "weird" visual result, we put actions at the top only
-          // if page has a title, other wise (eg: homepage) it can be a little
-          // weird
-          head.title &&
-          PageActions
-        }
-        {
-          head.incomplete &&
-          <div className={ styles.callout + " " + styles.calloutWarning }>
-            <strong className={ styles.calloutTitle }>{ "Incomplete" }</strong>
+        {/* <GradientLine height={ 1 } /> */}
+        <Content>
+          {
+            // to avoid "weird" visual result, we put actions at the top only
+            // if page has a title, other wise (eg: homepage) it can be a little
+            // weird
+            head.title &&
+            PageActions
+          }
+          {
+            head.incomplete &&
+            <div className={ styles.callout + " " + styles.calloutWarning }>
+              <strong className={ styles.calloutTitle }>
+                { "Incomplete" }
+              </strong>
               {
                 "This documentation is still a work in progress and might " +
                 "be incomplete."
               }
+            </div>
+          }
+          <div className={ styles.content }>
+            <BodyContainer>{ body }</BodyContainer>
           </div>
-        }
-        <BodyContainer>{ body }</BodyContainer>
-        { this.props.children }
-        { PageActions }
+          { this.props.children }
+          { PageActions }
+        </Content>
       </div>
     )
   }

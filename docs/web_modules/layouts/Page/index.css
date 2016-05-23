@@ -27,3 +27,30 @@
   justify-content: flex-end;
   font-size: 0.75rem;
 }
+
+.pageActions,
+.content {
+  & a {
+    display: inline-block;
+    color: #08b09b;
+
+    &:hover {
+      color: #fff;
+      background: #08b09b;
+      box-shadow: 0 0 0 2px #08b09b;
+      border-radius: 0.5px;
+    }
+  }
+}
+
+.content {
+  color: #243a53;
+
+  & img {
+    max-width: 100%;
+  }
+
+  & a > img {
+    display: block;
+  }
+}

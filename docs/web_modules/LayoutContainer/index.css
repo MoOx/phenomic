@@ -1,4 +1,9 @@
 /* GLOBAL STYLES, OMG ! */
+html {
+  min-height: 100%;
+  background: color(#deecf1 a(0.4));
+}
+
 body {
   margin: 0;
 
@@ -31,7 +36,6 @@ h1,
 h2,
 h3 {
   font-weight: 200;
-  text-shadow: color(#fefefe a(0.6)) 0 0 5px;
 }
 
 @custom-selector :--headings h1, h2, h3, h4, h5, h6;
@@ -84,32 +88,4 @@ code {
 /* local styles */
 .layout {
   /* placeholder */
-}
-
-.content {
-  max-width: 60rem;
-  margin: auto;
-  padding: 1rem 0.75rem;
-
-  color: #243a53;
-
-  & a {
-    display: inline-block;
-    color: #08b09b;
-
-    &:hover {
-      color: #fff;
-      background: #08b09b;
-      box-shadow: 0 0 0 2px #08b09b;
-      border-radius: 0.5px;
-    }
-  }
-
-  & img {
-    max-width: 100%;
-  }
-
-  & a > img {
-    display: block;
-  }
 }
