@@ -15,12 +15,12 @@
     linear-gradient(
       179deg,
       color(#000 a(0.6)),
-      transparent 10rem
+      transparent 20%
     ),
     linear-gradient(
       -1deg,
       color(#000 a(0.3)),
-      transparent 10rem
+      transparent 20%
     ),
     linear-gradient(
       160deg,
@@ -33,14 +33,14 @@
 .small {
   background:
     linear-gradient(
-      179deg,
-      color(#000 a(0.6)),
-      transparent 10rem
+      179.5deg,
+      color(#000 a(0.3)),
+      transparent 20%
     ),
     linear-gradient(
-      -1deg,
+      -0.5deg,
       color(#000 a(0.3)),
-      transparent 10rem
+      transparent 20%
     ),
     linear-gradient(
       160deg,
@@ -48,4 +48,24 @@
       color(#10e951 a(0.8))
     ),
     url("./backgrounds/grass.jpg") 50% 50% / cover;
+}
+
+.tiny {
+  background:
+    linear-gradient(
+      179.5deg,
+      color(#000 a(0.3)),
+      transparent 20%
+    ),
+    linear-gradient(
+      -0.5deg,
+      color(#000 a(0.3)),
+      transparent 20%
+    ),
+    linear-gradient(
+      160deg,
+      color(#006bf6 a(0.8)),
+      color(#10e951 a(0.8))
+    ),
+    url("./backgrounds/molecules.jpg") 50% 50% / cover;
 }

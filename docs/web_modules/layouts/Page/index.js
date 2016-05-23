@@ -72,7 +72,7 @@ export default class Page extends Component {
         />
         {
           head.title &&
-          <Banner>
+          <Banner small>
             <h1 className={ styles.title }>{ head.title }</h1>
             {
               head.subtitle &&

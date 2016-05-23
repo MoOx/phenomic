@@ -11,6 +11,8 @@ class Banner extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
     big: PropTypes.boolean,
+    small: PropTypes.boolean,
+    tiny: PropTypes.boolean,
   };
 
   state = {
@@ -27,14 +29,15 @@ class Banner extends Component {
           className={ cx({
             [styles.container]: true,
             [styles.big]: props.big,
-            [styles.small]: !props.big,
+            [styles.small]: props.small,
+            [styles.tiny]: props.tiny,
           }) }
         >
           <Content>
             { children }
           </Content>
         </div>
-        <GradientLine />
+        <GradientLine height={ 1 } />
       </div>
     )
   }

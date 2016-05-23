@@ -19,7 +19,7 @@ export default class PageLoading extends Component {
     return (
       <div>
         <TopBarProgressIndicator />
-        <Banner>
+        <Banner small>
           <h1>{ " " }</h1>
         </Banner>
         <div className={ styles.loader }>
