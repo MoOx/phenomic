@@ -4,7 +4,7 @@ import cx from "classnames"
 import styles from "./index.css"
 
 const Button = (props) => (
-  <div
+  <span
     role="button"
     { ...props }
     className={ cx({
@@ -16,7 +16,7 @@ const Button = (props) => (
     }) }
   >
     { props.children }
-  </div>
+  </span>
 )
 
 Button.propTypes = {
