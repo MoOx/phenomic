@@ -11,23 +11,21 @@
 .header :global .SVGInline-svg { vertical-align: middle; }
 
 .nav {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  @media (width >= 60rem) {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 
 .logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  width: 12rem;
-  margin-right: 2rem;
+  text-align: center;
 }
 
 .logoLink {
+  max-width: 12rem;
   display: inline-flex;
 }
 
@@ -36,6 +34,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .link {
@@ -60,13 +60,21 @@
 }
 
 .version {
-  position: absolute;
-  top: 6rem;
-  right: 1rem;
-  padding: 1rem;
-
-  color: #fff;
-  opacity: 0.5;
   font-size: 0.8rem;
   text-decoration: none;
+  color: #08b09b;
+
+  display: inline-flex;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  @media (width >= 60rem) {
+    top: 5rem;
+    padding: 1rem;
+
+    color: #fff;
+    opacity: 0.5;
+  }
 }

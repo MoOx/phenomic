@@ -1,6 +1,7 @@
 .footer {
   margin-top: 2rem;
   text-align: center;
+  line-height: 3rem;
 }
 
 .link {
@@ -15,4 +16,10 @@
 .separator {
   padding: 1rem;
   color: color(#fff a(0.4));
+
+  @media (width < 60rem) {
+    display: block;
+    height: 1px;
+    opacity: 0;
+  }
 }
