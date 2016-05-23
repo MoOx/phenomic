@@ -27,6 +27,9 @@ export default class Layout extends Component {
     return (
       <GoogleAnalyticsTracker params={ this.props.params }>
         <Helmet
+          link={ [
+            { "rel": "icon", "href": "/assets/favicon.png" },
+          ] }
           meta={ [
             {
               name: "generator", content: `${
