@@ -6,9 +6,9 @@
 [![Version](https://img.shields.io/npm/v/phenomic.svg)](https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md)
 [![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/phenomic)
 
-## (Formerly Statinamic)
+> Modern website generator based on the React and Webpack ecosystem.
 
-> Modern static website generator to create dynamic websites using React components.
+**(Formerly Statinamic)**
 
 ---
 

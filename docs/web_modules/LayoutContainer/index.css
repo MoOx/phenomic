@@ -24,7 +24,7 @@ hr {
   margin: 2rem 0;
   height: 1px;
   border: 0;
-  background-image: linear-gradient(to right, color(#000 a(0)), color(#000 a(0.6)), color(#000 a(0)));
+  background-image: linear-gradient(to right, color(#000 a(0)), color(#000 a(0.25)), color(#000 a(0)));
 }
 
 h1,

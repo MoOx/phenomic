@@ -1,17 +1,16 @@
 ---
-metaTitle: "Phenomic, a static website generator for creating dynamic websites"
+metaTitle: "Phenomic, a modern website generator based on the React and Webpack ecosystem"
 title: ""
 layout: Homepage
 ---
-
-> Modern static website generator for creating dynamic websites using React
-components.
 
 **Note that _Phenomic_ is under active development**, so do not hesitate to:
 
 - Ask questions on [the support chat](https://gitter.im/MoOx/phenomic),
 - [Open an issue](https://github.com/MoOx/phenomic/issues/new)
-  when you find a bug (or think you have one).
+  when you think you find a bug or want to discuss about features or enhancements.
+
+---
 
 ## Easy to use
 
@@ -36,7 +35,9 @@ a user browses your website, **they can get the same UX as an app by grabbing
 the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
-<center style="font-weight: bold"><a href="showcase/">Showcase</a></center>
+<center style="font-weight: bold"><a href="showcase/">
+  Take a look to websites using Phenomic
+</a></center>
 
 ## Setup a website in a flash
 

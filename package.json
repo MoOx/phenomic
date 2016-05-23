@@ -1,7 +1,7 @@
 {
   "name": "phenomic",
   "version": "0.12.2",
-  "description": "Modern static website generator to create dynamic websites using React components.",
+  "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",
     "ssg",
