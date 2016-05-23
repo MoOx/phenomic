@@ -25,7 +25,7 @@ export default class Footer extends Component {
             frameBorder="0"
             scrolling="0"
             style={ {
-              width: "145px",
+              width: "135px",
               height: "30px",
               verticalAlign: "middle",
             } }

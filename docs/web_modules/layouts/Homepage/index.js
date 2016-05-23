@@ -63,6 +63,21 @@ export default class Homepage extends Component {
               { " Phenomic provides a dynamic UX similar to apps. " }
               { " Try to navigate in this website to see it by yourself. " }
             </p>
+            <br />
+            <iframe
+              allowTransparency="true"
+              frameBorder="0"
+              scrolling="0"
+              style={ {
+                width: "135px",
+                height: "30px",
+                verticalAlign: "middle",
+              } }
+              src={
+                "https://ghbtns.com/github-btn.html?" +
+                "user=MoOx&repo=phenomic&type=star&count=true&size=large"
+              }
+            ></iframe>
           </div>
         </Banner>
         <Page { ...this.props} >
