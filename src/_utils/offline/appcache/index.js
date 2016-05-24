@@ -3,7 +3,7 @@ import globby from "../globby"
 import { join } from "path"
 import { writeFile } from "fs-promise"
 import template from "./template"
-import joinUri from "../../join-uri"
+import pathToUri from "../../path-to-uri"
 
 const writeAppcache = function(
   distPath: string,
@@ -11,10 +11,10 @@ const writeAppcache = function(
   pattern: Array<string>
 ): Promise {
   const destination = join(distPath, "manifest.appcache")
-  const fallback = joinUri("/", baseUrl, "/")
+  const fallback = pathToUri("/", baseUrl, "/")
 
   return globby(pattern, distPath)
-    .then((files) => files.map((file) => joinUri("/", baseUrl, file)))
+    .then((files) => files.map((file) => pathToUri("/", baseUrl, file)))
     .then((files) => {
       writeFile(destination, template(files, fallback))
     })

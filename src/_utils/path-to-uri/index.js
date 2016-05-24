@@ -1,7 +1,7 @@
 // @flow
 import { join, sep } from "path"
 
-const joinUri = function(...args: Array<string>): string {
+const pathToUri = function(...args: Array<string>): string {
   return sep === "/"
   // unix
   ? join(...args)
@@ -9,4 +9,4 @@ const joinUri = function(...args: Array<string>): string {
   : join(...args).replace(/\\/g, "/")
 }
 
-export default joinUri
+export default pathToUri

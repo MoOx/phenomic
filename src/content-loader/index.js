@@ -3,7 +3,7 @@ import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
 import colors from "chalk"
 
-import joinUri from "../_utils/join-uri"
+import pathToUri from "../_utils/path-to-uri"
 import urlify from "../_utils/urlify"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
@@ -69,9 +69,9 @@ module.exports = function(input) {
 
   const metadata = {
     __filename: relativePath,
-    __url: joinUri("/", url),
-    __resourceUrl: joinUri("/", resourceUrl),
-    __dataUrl: joinUri("/", dataUrl),
+    __url: pathToUri("/", url),
+    __resourceUrl: pathToUri("/", resourceUrl),
+    __dataUrl: pathToUri("/", dataUrl),
   }
   let textData = {
     head: {
@@ -137,5 +137,5 @@ module.exports = function(input) {
     }, 100)
   }
 
-  return "module.exports = " + JSON.stringify(joinUri("/", dataUrl))
+  return "module.exports = " + JSON.stringify(pathToUri("/", dataUrl))
 }

@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
-import { joinUri, BodyContainer } from "phenomic"
+import { BodyContainer } from "phenomic"
+import joinurl from "join-url"
 
 import EditThisPage from "../../EditThisPage"
 import Banner from "../../Banner"
@@ -48,7 +49,7 @@ export default class Page extends Component {
       { property: "og:title", content: metaTitle },
       {
         property: "og:url",
-        content: joinUri(process.env.PHENOMIC_USER_URL, __url),
+        content: joinurl(process.env.PHENOMIC_USER_URL, __url),
       },
       { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },

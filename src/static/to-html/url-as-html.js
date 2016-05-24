@@ -7,7 +7,7 @@ import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
 import htmlMetas from "../../_utils/html-metas"
-import joinUri from "../../_utils/join-uri"
+import pathToUri from "../../_utils/path-to-uri"
 import Html from "./Html"
 import PhenomicContextProvider from "../../ContextProvider"
 import serialize from "../../_utils/serialize"
@@ -126,7 +126,7 @@ export default function(
             lang: "en",
             ...head.htmlAttributes.toComponent(),
             ...offline && offlineConfig.appcache && {
-              manifest: joinUri(baseUrl.pathname, "manifest.appcache"),
+              manifest: pathToUri(baseUrl.pathname, "manifest.appcache"),
             },
           }
 
@@ -139,7 +139,7 @@ export default function(
           const scriptTags = jsFiles.map((fileName) =>
             <script
               key={ fileName }
-              src={ `${ joinUri(baseUrl.pathname, fileName) }` }
+              src={ `${ pathToUri(baseUrl.pathname, fileName) }` }
             />
           )
 

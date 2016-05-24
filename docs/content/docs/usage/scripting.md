@@ -74,22 +74,6 @@ class Page extends Component {
 
 [Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
 
-### Utilities
-
-### ``joinUri``
-
-Simple utility to join uri parts. Ensure that there is no missing or duplicate
-slashes.
-
-```js
-import { joinUri } from "phenomic"
-
-joinUri("some", "thing") // "some/thing"
-joinUri("some", "/thing") // "some/thing"
-joinUri("some/", "/thing") // "some/thing"
-joinUri("some", "thing", "else"), // "some/thing/else"
-```
-
 ## Routing
 
 @todo
