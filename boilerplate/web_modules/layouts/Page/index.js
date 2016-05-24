@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 import invariant from "invariant"
-import { BodyContainer, joinUri } from "phenomic"
+import { BodyContainer } from "phenomic"
+import urljoin from "url-join"
 
 class Page extends Component {
   render() {
@@ -32,7 +33,7 @@ class Page extends Component {
       { property: "og:title", content: metaTitle },
       {
         property: "og:url",
-        content: joinUri(process.env.PHENOMIC_USER_URL, __url),
+        content: urljoin(process.env.PHENOMIC_USER_URL, __url),
       },
       { property: "og:description", content: head.description },
       { name: "twitter:card", content: "summary" },

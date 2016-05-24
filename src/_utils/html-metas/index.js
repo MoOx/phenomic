@@ -1,5 +1,5 @@
 // @flow
-import joinUri from "../join-uri"
+import pathToUri from "../path-to-uri"
 
 export const defaultMetas = [
   "<meta charset=\"utf-8\" />",
@@ -14,7 +14,7 @@ export default function(
 
   if (css && Array.isArray(css)) {
     css.forEach(fileName => {
-      const path = joinUri(baseUrl.pathname, fileName)
+      const path = pathToUri(baseUrl.pathname, fileName)
       metas.push(
         `<link rel="stylesheet" href="${path}" />`
       )
