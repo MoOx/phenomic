@@ -1,5 +1,5 @@
 // @flow
-import { join, path } from "path"
+import { join, sep } from "path"
 
 const pathToUri = function(...args: Array<string>): string {
   return sep === "/"
