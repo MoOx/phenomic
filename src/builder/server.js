@@ -14,7 +14,7 @@ import minifyCollection from "../content-loader/minify"
 import serialize from "../_utils/serialize"
 
 import collection from "../content-loader/cache.js"
-import joinUri from "../_utils/join-uri"
+import pathToUri from "../_utils/path-to-uri"
 
 const log = debug("phenomic:builder:server")
 
@@ -142,7 +142,7 @@ export default (config) => {
     ${
       entries.map((fileName) =>
         `<script src="${
-          joinUri(config.baseUrl.pathname, fileName)
+          pathToUri(config.baseUrl.pathname, fileName)
         }"></script>`
       )
     }

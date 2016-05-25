@@ -2,7 +2,7 @@
 import { writeFile } from "fs-promise"
 import { join } from "path"
 import globby from "../globby"
-import joinUri from "../../join-uri"
+import pathToUri from "../../path-to-uri"
 import compiler from "./compile-template"
 
 const writeSwRegister = function(
@@ -26,7 +26,7 @@ const writeSw = function(
   pattern: Array<string>
 ): Promise {
   return globby(pattern, distPath)
-  .then((files) => files.map((filename) => joinUri(scope, "/", filename)))
+  .then((files) => files.map((filename) => pathToUri(scope, "/", filename)))
   .then((files) => (
     compiler(
       join(__dirname, "sw.template.js"),
@@ -47,7 +47,7 @@ export default function(
   baseUrl: string,
   pattern: Array<string>
 ): Promise {
-  const scope = joinUri("/", baseUrl, "/")
+  const scope = pathToUri("/", baseUrl, "/")
   return Promise.all([
     writeSwRegister(scope, distPath),
     writeSw(scope, distPath, pattern),

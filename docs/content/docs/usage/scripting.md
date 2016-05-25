@@ -88,7 +88,9 @@ joinUri("some", "thing") // "some/thing"
 joinUri("some", "/thing") // "some/thing"
 joinUri("some/", "/thing") // "some/thing"
 joinUri("some", "thing", "else"), // "some/thing/else"
+joinUri("https://this/", "/one/", "/thing/"), // "https://this/one/thing/"
 ```
+
 
 ## Routing
 
