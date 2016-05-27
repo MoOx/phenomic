@@ -1,9 +1,10 @@
 // @flow
+
 export default function enhanceCollection(
-  collection: PhenomicCollection,
+  collection: PhenomicMinifiedCollection,
   options: Object,
   console: Object = console
-): PhenomicCollection {
+): PhenomicMinifiedCollection {
   options = {
     ...options,
   }
@@ -36,10 +37,10 @@ export default function enhanceCollection(
 }
 
 export function filter(
-  collection: PhenomicCollection,
+  collection: PhenomicMinifiedCollection,
   filters: any,
   console: Object = console
-): PhenomicCollection {
+): PhenomicMinifiedCollection {
   return collection.reduce((acc, item) => {
     let include = true
     for (const filter of filters) {
@@ -104,9 +105,9 @@ export function filter(
 }
 
 export function sort(
-  collection: PhenomicCollection,
+  collection: PhenomicMinifiedCollection,
   sort: Function | string = "date"
-):PhenomicCollection {
+):PhenomicMinifiedCollection {
   collection = [ ...collection ]
 
   if (typeof sort === "function") {
@@ -129,23 +130,23 @@ export function sort(
 }
 
 export function reverse(
-  collection: PhenomicCollection
-): PhenomicCollection {
+  collection: PhenomicMinifiedCollection
+): PhenomicMinifiedCollection {
   collection = [ ...collection ]
   collection.reverse()
   return collection
 }
 
 export function limit(
-  collection: PhenomicCollection,
+  collection: PhenomicMinifiedCollection,
   limit: number
-): PhenomicCollection {
+): PhenomicMinifiedCollection {
   return collection.slice(0, limit)
 }
 
 export function addSiblingReferences(
-  collection: PhenomicCollection
-): PhenomicCollection {
+  collection: PhenomicMinifiedCollection
+): PhenomicMinifiedCollection {
   const last = collection.length - 1
   // TODO: Use commented code when flow can understand it
   // return collection.map((item, i) => ({

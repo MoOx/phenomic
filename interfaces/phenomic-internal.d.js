@@ -6,7 +6,18 @@ type PromiseAction = {
   promise: Promise,
 }
 
-type PhenomicCollection = Array<Object>
+type PhenomicCollectionItem = {
+  head: Object,
+  body: string,
+  __filename: string,
+  __url: string,
+  __resourceUrl: string,
+  __dataUrl: string,
+}
+
+type PhenomicCollection = Array<PhenomicCollectionItem>
+
+type PhenomicMinifiedCollection = Array<Object>
 
 type PhenomicAssetsConfig = {
   route: string,
