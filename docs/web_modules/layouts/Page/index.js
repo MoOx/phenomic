@@ -6,7 +6,6 @@ import { joinUri, BodyContainer } from "phenomic"
 import EditThisPage from "../../EditThisPage"
 import Banner from "../../Banner"
 import Content from "../../Content"
-// import GradientLine from "../../GradientLine"
 
 import styles from "./index.css"
 
@@ -80,7 +79,6 @@ export default class Page extends Component {
             }
           </Banner>
         }
-        {/* <GradientLine height={ 1 } /> */}
         <Content>
           {
             // to avoid "weird" visual result, we put actions at the top only
