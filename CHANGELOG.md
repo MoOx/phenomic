@@ -1,3 +1,5 @@
+# 0.12.3 - 2016-05-27
+
 - Fixed: public `joinUri` function now correctly join uri with protocol
   [#500](https://github.com/MoOx/phenomic/pull/500)
 
