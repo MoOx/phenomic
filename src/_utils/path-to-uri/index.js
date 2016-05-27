@@ -1,10 +1,12 @@
 // @flow
-import { posix } from "path"
+import { join } from "path"
 
+/**
+ * Normalize path into uri
+ * Join, replace multiple / or \ to single /
+ */
 const pathToUri = function(...args: Array<string>): string {
-  return posix.normalize(
-           posix.join(...args).replace(/\\/g, "/")
-         )
+  return join(...args).replace(/(\/|\\)+/g, "/")
 }
 
 export default pathToUri
