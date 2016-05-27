@@ -10,9 +10,9 @@ class Banner extends Component {
 
   static propTypes = {
     children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-    big: PropTypes.boolean,
-    small: PropTypes.boolean,
-    tiny: PropTypes.boolean,
+    big: PropTypes.bool,
+    small: PropTypes.bool,
+    tiny: PropTypes.bool,
   };
 
   state = {
