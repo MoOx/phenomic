@@ -1,3 +1,6 @@
+- Fixed: public `joinUri` function now correctly join uri with protocol
+  [#500](https://github.com/MoOx/phenomic/pull/500)
+
 # 0.12.2 - 2016-05-20
 
 - Added: ``BodyContainer`` component.  
