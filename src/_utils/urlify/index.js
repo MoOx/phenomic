@@ -1,5 +1,5 @@
 // @flow
-import joinUri from "../join-uri"
+import pathToUri from "../path-to-uri"
 
 export const fileExtensionRE = /\.html?$/
 
@@ -26,7 +26,7 @@ export default function urlify(
   if (!hasExtension) {
     if (full) {
       // url without extension => folder => index.html
-      url = joinUri(url, "index.html")
+      url = pathToUri(url, "index.html")
     }
     else {
       // url without extension => folder

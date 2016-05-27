@@ -1,6 +1,6 @@
 /* @flow */
 import jsonFetch from "simple-json-fetch"
-import joinUri from "../../_utils/join-uri"
+import pathToUri from "../../_utils/path-to-uri"
 
 export const NOOP = "phenomic/pages/NOOP"
 export const GET = "phenomic/pages/GET"
@@ -91,7 +91,7 @@ export function get(page: string, url: string): PromiseAction {
       ERROR,
     ],
     page,
-    promise: jsonFetch(joinUri(
+    promise: jsonFetch(pathToUri(
       process.env.PHENOMIC_USER_PATHNAME,
       url
     )),
@@ -106,7 +106,7 @@ export function refresh(page: string, url: string): PromiseAction {
       ERROR,
     ],
     page,
-    promise: jsonFetch(joinUri(
+    promise: jsonFetch(pathToUri(
       process.env.PHENOMIC_USER_PATHNAME,
       url
     )),
