@@ -101,7 +101,7 @@
     "flow-bin": "^0.25.0",
     "flow-interfaces": "^0.5.0",
     "js-beautify": "^1.5.10",
-    "jsdom": "^8.1.0",
+    "jsdom": "^9.2.0",
     "lnfs": "^3.0.0",
     "mock-fs": "^3.8.0",
     "npm-run-all": "^2.1.1",
