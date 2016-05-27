@@ -57,7 +57,7 @@ export default class Homepage extends Component {
             </Link>
             <p style={ { marginTop: "3rem", fontSize: "0.8rem" } }>
               { "* All pages are available as HTML (works with no JavaScript)" }
-              { " but user can get a enhanced navigation (when JavaScript is" }
+              { " but user can get an enhanced navigation (when JavaScript is" }
               { " on)." }
               <br />
               { " Phenomic provides a dynamic UX similar to apps. " }
