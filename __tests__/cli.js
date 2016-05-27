@@ -7,7 +7,7 @@ const target = join(__dirname, "..", "test-boilerplate")
 const execOpts = { cwd: target }
 
 const phenomic = "node ./node_modules/.bin/phenomic"
-const timing = process.env.CI ? 10000 : 1500
+const timing = process.env.CI ? 10000 : 5000
 
 test.cb("should throw if a CLI flag is NOT recognized", (t) => {
   const child = exec(
