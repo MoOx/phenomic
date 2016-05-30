@@ -1,3 +1,9 @@
+# 0.12.4 - 2016-05-27
+
+- Fixed: regression with path-to-uri introduced in 0.12.3
+  (``path.posix is undefined``)
+  [#503](https://github.com/MoOx/phenomic/pull/503)
+
 # 0.12.3 - 2016-05-27
 
 - Fixed: public `joinUri` function now correctly join uri with protocol
