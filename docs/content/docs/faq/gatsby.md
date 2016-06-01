@@ -11,11 +11,9 @@ it was very hard to contribute._
 
 Here are some points we want to highlight :
 
-- Phenomic is covered by a lot of **automated unit, integration and functionals
-  tests**, to avoid bugs and regressions.
-- Phenomic can be used for website/app with a lot of pages/screen: by default
-  **pages data are loaded on demand** and can offer an **offline experience via
-  Service Worker**.
+- Phenomic will load **pages data on demand only** so it can be used for
+  website/app with a lot of pages/screen.
+- Phenomic can offer an **offline experience via Service Worker**.
 - Phenomic tries to have a minimal public API, like React and is made to be
   flexible to fit your needs and preferences.
   For example:
@@ -37,6 +35,14 @@ Here are some points we want to highlight :
   dependencies**.
   You will never have to wait to use latest React version if it's compatible
   with your code and Phenomic requirements (eg: React 0.14 or 15.0, you decide).
+- Phenomic does not have any "optional" dependencies as a real dependency.
+  For example Gatsby have in it's dependencies LESS, Sass and PostCSS (yeah
+  maybe that's too much).
+  For example, Phenomic will just install PostCSS (since it's required in the
+  default boilerplate), but you can remove it (since it will be added in your
+  package.json) and replace with any dependency you want (or none).
+- Phenomic is covered by a lot of **automated unit, integration and functionals
+  tests**, to avoid bugs and regressions.
 
 Phenomic is under heavy development.
 [Check out contributors and activity graphs](https://github.com/MoOx/phenomic/graphs/contributors)
