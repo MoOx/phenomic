@@ -3,6 +3,7 @@ import slug from "remark-slug"
 import autoLinkHeadings from "remark-autolink-headings"
 import highlight from "remark-highlight.js"
 import html from "remark-html"
+import gemojiToEmoji from "remark-gemoji-to-emoji"
 
 export default (text) => (
   remark
@@ -22,6 +23,9 @@ export default (text) => (
 
     // https://github.com/ben-eb/remark-highlight.js
     .use(highlight)
+
+    // https://github.com/jackycute/remark-gemoji-to-emoji
+    .use(gemojiToEmoji)
 
     // render
     .process(text, {
