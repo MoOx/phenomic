@@ -127,7 +127,6 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "invariant": "^2.1.1",
-    "history": "^2.0.0",
     "react": "^0.14.0 || ^15.0.0-rc.1",
     "react-dom": "^0.14.0 || ^15.0.0-rc.1",
     "react-helmet": "^3.0.0",
