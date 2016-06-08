@@ -5,6 +5,12 @@
 - Fixed: files should not be created anymore near your phenomic.node script
   ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
 
+## Boilerplate
+
+- Added: (boilerplate) ``*.global.css`` can be just normal CSS (not CSS Modules)
+  ([#443](https://github.com/MoOx/phenomic/issues/443) and
+  [#95](https://github.com/MoOx/phenomic/issues/95) - @MoOx)
+
 # 0.12.4 - 2016-05-27
 
 - Fixed: regression with path-to-uri introduced in 0.12.3

@@ -4,6 +4,7 @@ import Helmet from "react-helmet"
 import Header from "../Header"
 import Footer from "../Footer"
 
+import "./index.global.css"
 import styles from "./index.css"
 
 export default class Layout extends Component {

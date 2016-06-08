@@ -5,8 +5,9 @@ import Header from "../Header"
 import Footer from "../Footer"
 import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker"
 
+import "./index.global.css"
+import "./hightlightjs.global.css"
 import styles from "./index.css"
-import "./hightlightjs.css"
 
 export default class Layout extends Component {
 
