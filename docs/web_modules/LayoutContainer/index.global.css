@@ -57,12 +57,17 @@ hr {
 }
 
 blockquote {
-  text-align: center;
-  opacity: 0.7;
-  margin: 3rem 0 4rem;
+  margin: 1.5rem 0;
+  opacity: 0.8;
+  border-left: 4px solid color(#000 a(0.2));
+  padding-left: 1rem;
 
-  font-size: 1.5rem;
-  font-weight: 200;
+  & > :first-child {
+    padding-top: 0.25rem;
+  }
+  & > :last-child {
+    padding-bottom: 0.25rem;
+  }
 }
 
 pre {

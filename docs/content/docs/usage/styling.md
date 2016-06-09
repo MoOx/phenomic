@@ -1,6 +1,5 @@
 ---
 title: How to style your app/website in Phenomic
-incomplete: true
 ---
 
 ## Syntax and Architecture
@@ -16,10 +15,10 @@ with
 [cssnext](#cssnext)
 so you have a built-in modular CSS pre-processor.
 
-> Note that it's very easy to add another pre-processor like Sass or LESS.
+> It's very easy to add another pre-processor like Sass or LESS.
 > You can look directly in the default ``webpack.config.js`` and look for the
-> css section. A commented part is waiting for you ;).
-> That said we don't recommend this solution.
+> CSS section. A commented part is waiting for you with lot's of comments so
+> you can adjust to your need.
 
 The future-proof syntax / Local CSS is the recommended solution that play nice
 with React.
@@ -49,6 +48,8 @@ This ensure that classnames are local to your components and unique.
 If you need some global CSS variables in your modules,
 [you can add some by tweaking cssnext configuration](http://cssnext.io/usage/#features)
 in the ``postcss`` section of the webpack configuration.
+
+---
 
 ### PostCSS
 

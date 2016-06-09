@@ -100,7 +100,8 @@ export const makeConfig = (config = {}) => {
         // },
         // ! \\ if you want to use Sass or LESS, you can add sass-loader or
         // less-loader after postcss-loader (or replacing it).
-        // You will also need to
+        // ! \\ You will also need to adjust the file extension
+        // and to run the following command
         //
         // Sass: `npm install --save-dev node-sass sass-loader`
         // https://github.com/jtangelder/sass-loader
