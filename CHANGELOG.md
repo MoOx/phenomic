@@ -10,6 +10,8 @@
 - Added: (boilerplate) ``*.global.css`` can be just normal CSS (not CSS Modules)
   ([#443](https://github.com/MoOx/phenomic/issues/443) and
   [#95](https://github.com/MoOx/phenomic/issues/95) - @MoOx)
+- Added: (boilerplate) add a default meta viewport tag
+  (@MoOx)
 
 # 0.12.4 - 2016-05-27
 
