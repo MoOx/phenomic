@@ -7,6 +7,12 @@
 
 ## Boilerplate
 
+- Changed: (boilerplate) loader for CSS is only applied to local
+  ``web_modules``.
+  If you want to consume CSS from ``node_modules`` you will need to define your
+  own section and adjust the scope accordingly (depending on wether it's global
+  CSS or CSS Modules...)
+  ([#516](https://github.com/MoOx/phenomic/issues/516) - @MoOx)
 - Added: (boilerplate) ``*.global.css`` can be just normal CSS (not CSS Modules)
   ([#443](https://github.com/MoOx/phenomic/issues/443) and
   [#95](https://github.com/MoOx/phenomic/issues/95) - @MoOx)

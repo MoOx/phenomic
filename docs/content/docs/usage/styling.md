@@ -24,6 +24,12 @@ so you have a built-in modular CSS pre-processor.
 The future-proof syntax / Local CSS is the recommended solution that play nice
 with React.
 
+**Not that the default CSS loaders only apply to ``web_modules`` folder.
+If you want to consume CSS from ``node_modules``, you should adjust the
+webpack configuration (a commented piece of code should be waiting for you).**
+
+---
+
 ### Global CSS
 
 All files that ends with ``.global.css`` will be considered as normal CSS.

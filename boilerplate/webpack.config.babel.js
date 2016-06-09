@@ -60,6 +60,8 @@ export const makeConfig = (config = {}) => {
         // *.css => CSS Modules
         {
           test: /\.css$/,
+          exclude: /\.global\.css$/,
+          include: path.resolve(__dirname, "web_modules"),
           loader: ExtractTextPlugin.extract(
             "style-loader",
             [ `css-loader?modules&localIdentName=${
@@ -70,11 +72,11 @@ export const makeConfig = (config = {}) => {
               "postcss-loader",
             ].join("!"),
           ),
-          exclude: /\.global\.css$/,
         },
         // *.global.css => global (normal) css
         {
           test: /\.global\.css$/,
+          include: path.resolve(__dirname, "web_modules"),
           loader: ExtractTextPlugin.extract(
             "style-loader",
             [ "css-loader", "postcss-loader" ].join("!"),
@@ -83,8 +85,14 @@ export const makeConfig = (config = {}) => {
         // ! \\
         // If you want global CSS only, just remove the 2 sections above
         // and use the following one
+        // ! \\ If you want global CSS for node_modules only, just uncomment
+        // this section and the `include` part
         // {
         //   test: /\.css$/,
+        //   // depending on your need, you might need to scope node_modules
+        //   // for global CSS if you want to keep CSS Modules by default
+        //   // for your own CSS. If so, uncomment the line below
+        //   // include: path.resolve(__dirname, "node_modules"),
         //   loader: ExtractTextPlugin.extract(
         //     "style-loader",
         //     [ "css-loader", "postcss-loader" ].join("!"),
