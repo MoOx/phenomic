@@ -1,3 +1,22 @@
+# 0.13.0 - 2016-06-07
+
+## tl;dr;
+
+**No breaking changes!**
+
+- You can just remove stuff from your ``.gitignore`` file since now static
+  builded files are hidden
+  - ``scripts/_``
+  - ``*.bundle.js``
+- If you want global (normal) CSS (no CSS Modules), you can just update your
+  ``webpack.config.js`` (if not done already) to add support for
+  global CSS via ``*.global.css`` files.  
+  See [the corresponding changes](https://github.com/MoOx/phenomic/blob/91fc2875233b8f2f695fc385f1d09aa1d73d534c/boilerplate/webpack.config.babel.js#L56-L110).
+  Note that the scope has be restricted to ``web_modules``.
+  Feel free to adjust to your need.
+
+## Details
+
 - Changed: node (static) bundle (``phenomic.node.bundle.js``) is now hidden
   (in ``node_modules/.cache/phenomic``,
   thanks to [find-cache-dir](https://www.npmjs.com/package/find-cache-dir))
@@ -5,7 +24,7 @@
 - Fixed: files should not be created anymore near your phenomic.node script
   ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
 
-## Boilerplate
+### Boilerplate
 
 - Changed: (boilerplate) loader for CSS is only applied to local
   ``web_modules``.
