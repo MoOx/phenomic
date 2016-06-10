@@ -4,6 +4,7 @@ import Helmet from "react-helmet"
 import Header from "../Header"
 import Footer from "../Footer"
 import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker"
+import AppCacheBanner from "../AppCacheBanner"
 
 import "./index.global.css"
 import "./hightlightjs.global.css"
@@ -53,6 +54,7 @@ export default class Layout extends Component {
         <style>{ "@-ms-viewport { width: device-width; }" }</style>
 
         <div className={ styles.layout }>
+          <AppCacheBanner />
           <Header />
           <div className={ styles.content }>
             { this.props.children }
