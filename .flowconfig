@@ -5,10 +5,6 @@
 .*/lib/.*
 .*/coverage/.*
 .*/.nyc_output/.*
-.*/__tests__/.*
-
-[include]
-./node_modules/
 
 [libs]
 ./node_modules/flow-interfaces/interfaces/
