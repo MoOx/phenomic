@@ -1,3 +1,10 @@
+## HEAD
+
+### Boilerplate
+
+- Added: ``PageLoading`` now use "Loading..." has a title
+  (@MoOx)
+
 # 0.13.0 - 2016-06-07
 
 ## tl;dr;
