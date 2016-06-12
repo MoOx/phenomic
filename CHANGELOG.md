@@ -1,3 +1,7 @@
+- Fixed: Security exception when accessing "/" via a
+  ``react-router`` ``<Link to="/"">`` is now avoided.
+  ([#521](https://github.com/MoOx/phenomic/issues/521) - @MoOx)
+
 # 0.14.1 - 2016-06-12
 
 - Fixed: explicit update of ``react-router@^2.3.0`` peer dependency
