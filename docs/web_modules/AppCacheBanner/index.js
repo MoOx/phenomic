@@ -70,12 +70,10 @@ export default class AppCacheBanner extends Component {
   };
 
   handleRefresh = () => {
-    try {
-      window.applicationCache.swapCache()
-    }
-    catch (e) {
-      window.location.reload()
-    }
+    // this call is useless since it's applied only for new downloads
+    // (so will not update the current view)
+    // window.applicationCache.swapCache()
+    window.location.reload()
   };
 
   render() {
