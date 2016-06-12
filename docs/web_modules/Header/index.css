@@ -1,5 +1,5 @@
-/* stylelint-disable block-no-empty */
 .header {
+  position: relative;
   background:
     linear-gradient(
       #fefefe,
