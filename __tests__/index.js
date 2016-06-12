@@ -80,6 +80,7 @@ test("should have html files", (t) => {
   t.truthy(includes(
     "loading/index.html",
     [
+      ">Loading...",
       "window.__INITIAL_STATE__ = {\"pages\":{\"/loading/\"",
     ]
   ))

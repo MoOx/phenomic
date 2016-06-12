@@ -11,10 +11,8 @@ import devServer from "./server"
 import collection from "../content-loader/cache"
 
 import webpackConfigBrowser from "./webpack/config.browser.js"
-import webpackConfigNode, { chunkNameNode } from "./webpack/config.node.js"
+import webpackConfigNode from "./webpack/config.node.js"
 import dynamicRequire from "./dynamic-require.js"
-
-import cleanup from "./cleanup.js"
 
 export default function(config: Object): void {
   const log = debug("phenomic:builder")
@@ -52,12 +50,7 @@ export default function(config: Object): void {
 
       const assetsFiles = sortAssets(stats.toJson().assetsByChunkName)
 
-      webpack(config.webpackConfigNode, log, (staticStats) => {
-        cleanup(
-          config.webpackConfigNode.output.path,
-          config.webpackConfigNode.output.filename,
-          staticStats.toJson().assetsByChunkName[chunkNameNode]
-        )
+      webpack(config.webpackConfigNode, log, () => {
         log(color.green("✓ Static build: static build completed"))
         dynamicRequire(join(
           config.webpackConfigNode.output.path,

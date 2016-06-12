@@ -2,8 +2,9 @@
 // App
 import React from "react"
 import ReactDOM from "react-dom"
-import { Router, useRouterHistory } from "react-router"
+import { Router, useRouterHistory, applyRouterMiddleware } from "react-router"
 import createBrowserHistory from "history/lib/createBrowserHistory"
+import useScroll from "react-router-scroll"
 import { Provider as ReduxContextProvider } from "react-redux"
 
 import PhenomicContextProvider from "../ContextProvider"
@@ -11,7 +12,9 @@ import PhenomicContextProvider from "../ContextProvider"
 export const browserHistory =
   typeof window !== "undefined" // just for node testing
   ? useRouterHistory(createBrowserHistory)({
-    basename: process.env.PHENOMIC_USER_PATHNAME,
+    // basename don't like having a trailing slash
+    // https://github.com/reactjs/react-router/issues/3184
+    basename: process.env.PHENOMIC_USER_PATHNAME.replace(/\/$/, ""),
   })
   : null
 
@@ -35,7 +38,11 @@ export default function phenomic({
       metadata={ metadata }
     >
       <ReduxContextProvider store={ store }>
-        <Router history={ browserHistory } routes={ routes } />
+        <Router
+          history={ browserHistory }
+          routes={ routes }
+          render={ applyRouterMiddleware(useScroll()) }
+        />
       </ReduxContextProvider>
     </PhenomicContextProvider>,
     document.getElementById("phenomic")

@@ -17,6 +17,9 @@ export const makeConfig = (config = {}) => {
     module: {
       noParse: /\.min\.js/,
       loaders: [
+
+        // *.md => consumed via phenomic special webpack loader
+        // allow to generate collection and rss feed.
         {
           // phenomic requirement
           test: /\.md$/,
@@ -25,10 +28,15 @@ export const makeConfig = (config = {}) => {
           // so you can use functions (and not just JSON) due to a restriction
           // of webpack that serialize/deserialize loader `query` option.
         },
+
+        // *.json => like in node, return json
+        // (not handled by webpack by default)
         {
           test: /\.json$/,
           loader: "json-loader",
         },
+
+        // *.js => babel + eslint
         {
           test: /\.js$/,
           loaders: [
@@ -44,28 +52,72 @@ export const makeConfig = (config = {}) => {
             path.resolve(__dirname, "web_modules"),
           ],
         },
+
+        // ! \\
+        // by default *.css files are considered as CSS Modules
+        // And *.global.css are considered as global (normal) CSS
+
+        // *.css => CSS Modules
         {
           test: /\.css$/,
+          exclude: /\.global\.css$/,
+          include: path.resolve(__dirname, "web_modules"),
           loader: ExtractTextPlugin.extract(
             "style-loader",
-            "css-loader" + (
-              "?modules"+
-              "&localIdentName=" +
-              (
-                process.env.NODE_ENV === "production"
+            [ `css-loader?modules&localIdentName=${
+                config.production
                 ? "[hash:base64:5]"
                 : "[path][name]--[local]--[hash:base64:5]"
-              ).toString()
-            ) + "!" +
-            "postcss-loader",
+              }`,
+              "postcss-loader",
+            ].join("!"),
           ),
         },
+        // *.global.css => global (normal) css
+        {
+          test: /\.global\.css$/,
+          include: path.resolve(__dirname, "web_modules"),
+          loader: ExtractTextPlugin.extract(
+            "style-loader",
+            [ "css-loader", "postcss-loader" ].join("!"),
+          ),
+        },
+        // ! \\
+        // If you want global CSS only, just remove the 2 sections above
+        // and use the following one
+        // ! \\ If you want global CSS for node_modules only, just uncomment
+        // this section and the `include` part
+        // {
+        //   test: /\.css$/,
+        //   // depending on your need, you might need to scope node_modules
+        //   // for global CSS if you want to keep CSS Modules by default
+        //   // for your own CSS. If so, uncomment the line below
+        //   // include: path.resolve(__dirname, "node_modules"),
+        //   loader: ExtractTextPlugin.extract(
+        //     "style-loader",
+        //     [ "css-loader", "postcss-loader" ].join("!"),
+        //   ),
+        // },
+        // ! \\ if you want to use Sass or LESS, you can add sass-loader or
+        // less-loader after postcss-loader (or replacing it).
+        // ! \\ You will also need to adjust the file extension
+        // and to run the following command
+        //
+        // Sass: `npm install --save-dev node-sass sass-loader`
+        // https://github.com/jtangelder/sass-loader
+        //
+        // LESS: npm install --save-dev less less-loader
+        // https://github.com/webpack/less-loader
+
+        // copy assets and return generated path in js
         {
           test: /\.(html|ico|jpe?g|png|gif)$/,
           loader: "file-loader" +
             "?name=[path][name].[ext]&context=" +
             path.join(__dirname, config.source),
         },
+
+        // svg as raw string to be inlined
         {
           test: /\.svg$/,
           loader: "raw-loader",

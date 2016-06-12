@@ -4,6 +4,7 @@ import Helmet from "react-helmet"
 import Header from "../Header"
 import Footer from "../Footer"
 
+import "./index.global.css"
 import styles from "./index.css"
 
 export default class Layout extends Component {
@@ -36,6 +37,15 @@ export default class Layout extends Component {
             { src: "https://cdn.polyfill.io/v2/polyfill.min.js" },
           ] }
         />
+
+        { /* meta viewport safari/chrome/edge */ }
+        <Helmet
+          meta={ [ {
+            name: "viewport", content: "width=device-width, initial-scale=1",
+          } ] }
+        />
+        <style>{ "@-ms-viewport { width: device-width; }" }</style>
+
         <Header />
         <div className={ styles.content }>
           { this.props.children }

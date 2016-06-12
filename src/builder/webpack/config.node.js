@@ -1,11 +1,14 @@
-import { join, basename, dirname } from "path"
+// @flow
+import { join, basename } from "path"
 import { BannerPlugin } from "webpack"
+import findCacheDir from "find-cache-dir"
 
 import commonWebpackConfig from "./config.common.js"
 
-export const chunkNameNode = "phenomic.node"
+const chunkNameNode = "phenomic.node"
+const cacheDir = findCacheDir({ name: "phenomic" })
 
-export default (config) => {
+export default (config: Object): Object => {
   const webpackConfig = commonWebpackConfig(config)
   return {
     ...webpackConfig,
@@ -17,10 +20,7 @@ export default (config) => {
 
     output: {
       ...webpackConfig.output,
-      path: join(
-        config.cwd,
-        dirname(config.scriptNode)
-      ),
+      path: cacheDir,
       libraryTarget: "commonjs2",
       filename: basename(config.scriptNode, ".js") + ".bundle.js",
     },

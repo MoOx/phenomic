@@ -50,18 +50,23 @@ export const makeConfig = (config = {}) => {
         },
         {
           test: /\.css$/,
+          exclude: /\.global\.css$/,
           loader: ExtractTextPlugin.extract(
             "style-loader",
-            "css-loader" + (
-              "?modules"+
-              "&localIdentName=" +
-              (
-                process.env.NODE_ENV === "production"
+            [ `css-loader?modules&localIdentName=${
+                config.production
                 ? "[hash:base64:5]"
                 : "[path][name]--[local]--[hash:base64:5]"
-              ).toString()
-            ) + "!" +
-            "postcss-loader",
+              }`,
+              "postcss-loader",
+            ].join("!"),
+          ),
+        },
+        {
+          test: /\.global\.css$/,
+          loader: ExtractTextPlugin.extract(
+            "style-loader",
+            [ "css-loader", "postcss-loader" ].join("!"),
           ),
         },
         {

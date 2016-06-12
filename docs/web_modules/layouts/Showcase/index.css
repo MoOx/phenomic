@@ -6,11 +6,7 @@
 }
 
 .item {
-  flex-grow: 1;
-  flex-shrink: 0;
-
-  width: 50%;
-  min-width: 20rem;
+  flex: 1 1 20rem;
 
   box-sizing: border-box;
   padding: 1rem;

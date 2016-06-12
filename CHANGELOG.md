@@ -1,3 +1,77 @@
+# 0.14.2 - 2016-06-12
+
+- Fixed: Security exception when accessing "/" via a
+  (``react-router``) ``<Link to="/"">`` is now avoided.
+  ([#521](https://github.com/MoOx/phenomic/issues/521) - @MoOx)
+
+# 0.14.1 - 2016-06-12
+
+- Fixed: explicit update of ``react-router@^2.3.0`` peer dependency
+  (@MoOx)
+
+# 0.14.0 - 2016-06-12
+
+Finally, the navigation has now a proper scroll behavior
+
+- new page: scroll to top
+- back button: scroll position restored
+
+**For those which implemented a fix for this scrolling issue:
+you can just remove your workaround !**
+
+_You will need at least ``react-router@^2.3.0``._
+
+## Details
+
+- Fixed: navigation now offers a proper scroll behavior.
+  Not more weird page updates.
+  ([#285](https://github.com/MoOx/phenomic/issues/285) - @MoOx)
+
+### Boilerplate
+
+- Added: ``PageLoading`` now use "Loading..." has a ``<title>``
+  (@MoOx)
+
+# 0.13.0 - 2016-06-07
+
+## tl;dr;
+
+**No breaking changes!**
+
+- You can just remove stuff from your ``.gitignore`` file since now static
+  builded files are hidden
+  - ``scripts/_``
+  - ``*.bundle.js``
+- If you want global (normal) CSS (no CSS Modules), you can just update your
+  ``webpack.config.js`` (if not done already) to add support for
+  global CSS via ``*.global.css`` files.  
+  See [the corresponding changes](https://github.com/MoOx/phenomic/blob/91fc2875233b8f2f695fc385f1d09aa1d73d534c/boilerplate/webpack.config.babel.js#L56-L110).
+  Note that the scope has be restricted to ``web_modules``.
+  Feel free to adjust to your need.
+
+## Details
+
+- Changed: node (static) bundle (``phenomic.node.bundle.js``) is now hidden
+  (in ``node_modules/.cache/phenomic``,
+  thanks to [find-cache-dir](https://www.npmjs.com/package/find-cache-dir))
+  ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
+- Fixed: files should not be created anymore near your phenomic.node script
+  ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
+
+### Boilerplate
+
+- Changed: (boilerplate) loader for CSS is only applied to local
+  ``web_modules``.
+  If you want to consume CSS from ``node_modules`` you will need to define your
+  own section and adjust the scope accordingly (depending on wether it's global
+  CSS or CSS Modules...)
+  ([#516](https://github.com/MoOx/phenomic/issues/516) - @MoOx)
+- Added: (boilerplate) ``*.global.css`` can be just normal CSS (not CSS Modules)
+  ([#443](https://github.com/MoOx/phenomic/issues/443) and
+  [#95](https://github.com/MoOx/phenomic/issues/95) - @MoOx)
+- Added: (boilerplate) add a default meta viewport tag
+  (@MoOx)
+
 # 0.12.4 - 2016-05-27
 
 - Fixed: regression with path-to-uri introduced in 0.12.3
