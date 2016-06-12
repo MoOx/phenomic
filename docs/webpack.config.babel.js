@@ -50,6 +50,7 @@ export const makeConfig = (config = {}) => {
         },
         {
           test: /\.css$/,
+          exclude: /\.global\.css$/,
           loader: ExtractTextPlugin.extract(
             "style-loader",
             [ `css-loader?modules&localIdentName=${
@@ -60,7 +61,6 @@ export const makeConfig = (config = {}) => {
               "postcss-loader",
             ].join("!"),
           ),
-          exclude: /\.global\.css$/,
         },
         {
           test: /\.global\.css$/,
