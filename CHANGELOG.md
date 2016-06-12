@@ -1,3 +1,5 @@
+# 0.14.2 - 2016-06-12
+
 - Fixed: Security exception when accessing "/" via a
   ``react-router`` ``<Link to="/"">`` is now avoided.
   ([#521](https://github.com/MoOx/phenomic/issues/521) - @MoOx)
