@@ -1,8 +1,22 @@
-## HEAD
+# 0.14.0 - 2016-06-12
+
+Finally, the navigation has now a proper scroll behavior
+
+- new page: scroll to top
+- back button: scroll position restored
+
+**For those which implemented a fix for this scrolling issue:
+you can just remove your workaround !**
+
+## Details
+
+- Fixed: navigation now offers a proper scroll behavior.
+  Not more weird page updates.
+  ([#285](https://github.com/MoOx/phenomic/issues/285) - @MoOx)
 
 ### Boilerplate
 
-- Added: ``PageLoading`` now use "Loading..." has a title
+- Added: ``PageLoading`` now use "Loading..." has a ``<title>``
   (@MoOx)
 
 # 0.13.0 - 2016-06-07
