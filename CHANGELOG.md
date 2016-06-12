@@ -1,5 +1,9 @@
 ## HEAD
 
+- Fixed: navigation now offers a proper scroll behavior.
+  Not more weird page updates.
+  ([#285](https://github.com/MoOx/phenomic/issues/285) - @MoOx)
+
 ### Boilerplate
 
 - Added: ``PageLoading`` now use "Loading..." has a title
