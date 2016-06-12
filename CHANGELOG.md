@@ -1,3 +1,6 @@
+- Fixed: explicit update of ``react-router@^2.3.0`` peer dependency
+  (@MoOx)
+
 # 0.14.0 - 2016-06-12
 
 Finally, the navigation has now a proper scroll behavior
@@ -7,6 +10,8 @@ Finally, the navigation has now a proper scroll behavior
 
 **For those which implemented a fix for this scrolling issue:
 you can just remove your workaround !**
+
+_You will need at least ``react-router@^2.3.0``._
 
 ## Details
 
