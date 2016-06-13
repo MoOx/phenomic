@@ -31,48 +31,49 @@ export default class AppCacheBanner extends Component {
   componentDidMount() {
     if (typeof window !== "undefined" && window.applicationCache) {
       window.applicationCache.addEventListener(
-        "downloading", this.appcacheDownloading, false
+        "error", this.handleError, false
       )
       window.applicationCache.addEventListener(
-        "error", this.appcacheError, false
+        "downloading", this.handleDownloading, false
       )
       window.applicationCache.addEventListener(
-        "updateready", this.appcacheUpdateReady, false
+        "cached", this.handleDismiss, false
+      )
+      window.applicationCache.addEventListener(
+        "updateready", this.handleUpdateReady, false
       )
       // obsolete cache is when manifest is gone
       // which require an update as well
       window.applicationCache.addEventListener(
-        "obsolete", this.appcacheUpdateReady, false
+        "obsolete", this.handleUpdateReady, false
       )
     }
   }
 
-  appcacheDownloading = () => {
-    this.setState({ event: "downloading" })
-  };
-
-  appcacheError = () => {
+  handleError = () => {
     // trigger a UI error only if the download fails
     if (this.state.event === "downloading") {
       this.setState({ event: "error" })
     }
   };
 
-  appcacheUpdateReady = () => {
+  handleDismiss = () => {
+    this.setState({ event: undefined })
+  };
+
+  handleDownloading = () => {
+    this.setState({ event: "downloading" })
+  };
+
+  handleUpdateReady = () => {
     this.setState({ event: "updateready" })
   };
 
   handleRefresh = () => {
-    try {
-      window.applicationCache.swapCache()
-    }
-    catch (e) {
-      window.location.reload()
-    }
-  };
-
-  handleDismiss = () => {
-    this.setState({ event: undefined })
+    // this call is useless since it's applied only for new downloads
+    // (so will not update the current view)
+    // window.applicationCache.swapCache()
+    window.location.reload()
   };
 
   render() {
@@ -91,10 +92,18 @@ export default class AppCacheBanner extends Component {
           >
             <div className={ styles.message }>
               <div className={ styles.spinner } />
-              { "Updating website cache..." }
+              { "Caching website data..." }
+            </div>
+            <div className={ styles.action }>
+              <div
+                role="button"
+                className={ styles.button }
+                onClick={ this.handleDismiss }
+              >
+                { "╳" }
+              </div>
             </div>
           </div>
-
         }
         {
           state.event === "updateready" &&
