@@ -64,7 +64,7 @@
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",
     "remark-highlight.js": "^3.0.0",
-    "remark-html": "^3.0.0",
+    "remark-html": "^4.0.0",
     "remark-slug": "^4.1.0",
     "rimraf": "^2.4.2",
     "rss": "^1.2.0",
