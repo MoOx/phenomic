@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Html = (props: Props) => (
-  <html {...props.htmlProps}>
+  <html { ...props.htmlProps }>
     <head
       dangerouslySetInnerHTML={ {
         __html: props.head,

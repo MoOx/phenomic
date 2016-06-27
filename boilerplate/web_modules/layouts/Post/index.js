@@ -14,7 +14,7 @@ class Post extends Component {
 
     return (
       <Page
-        { ...props}
+        { ...props }
         header={
           <header>
           {

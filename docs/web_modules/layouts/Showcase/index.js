@@ -15,7 +15,7 @@ const Showcase = (props) => {
 
   return (
     <div style={ { textAlign: "center" } }>
-      <Page { ...props}>
+      <Page { ...props }>
         <ul
           className={ styles.list }
         >

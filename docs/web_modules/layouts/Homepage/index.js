@@ -80,7 +80,7 @@ export default class Homepage extends Component {
             ></iframe>
           </div>
         </Banner>
-        <Page { ...this.props} >
+        <Page { ...this.props } >
           <p
             style={ {
               display: "block",
