@@ -38,7 +38,7 @@ export default {
     type: "boolean",
     description: (
       "flag to generate a .nojekyll file, to avoid Jekyll automatic step on" +
-      "GitHub Pages",
+      "GitHub Pages"
     ),
     default: true,
   },
