@@ -117,7 +117,7 @@
     "react-router": "^2.3.0",
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
-    "stylelint": "^6.0.0",
+    "stylelint": "^6.4.1",
     "stylelint-config-standard": "^7.0.0",
     "suppose": "^0.5.2"
   },
