@@ -1,4 +1,5 @@
 // @flow
+
 import { join, basename } from "path"
 import { BannerPlugin } from "webpack"
 import findCacheDir from "find-cache-dir"
@@ -8,7 +9,7 @@ import commonWebpackConfig from "./config.common.js"
 const chunkNameNode = "phenomic.node"
 const cacheDir = findCacheDir({ name: "phenomic" })
 
-export default (config: Object): Object => {
+export default (config: PhenomicConfig): WebpackConfig => {
   const webpackConfig = commonWebpackConfig(config)
   return {
     ...webpackConfig,

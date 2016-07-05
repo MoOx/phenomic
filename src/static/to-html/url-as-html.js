@@ -130,13 +130,7 @@ export default function(
             },
           }
 
-          const jsFiles = assetsFiles.js
-          if (offline && offlineConfig.serviceWorker) {
-            // We will add baseUrl later for all files in jsFiles
-            jsFiles.push("sw-register.js")
-          }
-
-          const scriptTags = jsFiles.map((fileName) =>
+          const scriptTags = assetsFiles.js.map((fileName) =>
             <script
               key={ fileName }
               src={ `${ pathToUri(baseUrl.pathname, fileName) }` }

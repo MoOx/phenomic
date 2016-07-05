@@ -1,10 +1,8 @@
 import "whatwg-fetch"
-
+import phenomicClient from "phenomic/lib/client"
 import metadata from "../web_modules/app/metadata"
 import routes from "../web_modules/app/routes"
 import store from "../web_modules/app/store"
-
-import phenomicClient from "phenomic/lib/client"
 
 phenomicClient({
   metadata,

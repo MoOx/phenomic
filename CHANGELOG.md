@@ -1,3 +1,53 @@
+# HEAD
+
+- Removed: ``appcache`` option has now completely being removed in favor of
+  ``offline`` (after being deprecated in 0.11.0). See new API below.
+- Changed: Offline option has been completely rewritten.
+  Service Worker now uses a network first approach.
+  This is to prevent having an outdated collection that will lead to request
+  outdated entries urls that might not exist anymore (and that have not been
+  cached yet, see [#451](https://github.com/MoOx/phenomic/issues/451)).
+  This is for the better.
+  By the way, we now rely on
+  [offline-plugin](https://github.com/NekR/offline-plugin)
+  to generate Service Worker and Appcache files.
+  The part that registers the Service Worker is now included in the client
+  bundle.
+  **Note that for a better caching, the default boilerplate now use ``[hash]``
+  in the filenames loaded via ``file-loader``.**
+  We encourage you to do the same by using a parameter like
+  ``loader: "file-loader?name=[path][name].[hash].[ext] // ...``.
+  Offline API is now much more flexible and clear to setup thanks to the new
+  ``cachePatterns``.
+  Here is an example of the new ``offline`` option:
+
+  ```js
+  {
+    serviceWorker: true,
+    appcache: {
+      // fallback for SW, will cache onInstall and afterInstall pattern.
+      // onDemand cannot be cache with appcache.
+      onInstall: true,
+      afterInstall: true,
+    },
+    cachePatterns: {
+      onInstall: [ "/", "phenomic.*" ], // cache App Shell on SW install
+
+      afterInstall: [ "**", ":assets:" ], // cache all content
+
+      onDemand: [ ], // since everything is cached by default (if offline: true)
+      // you don't need to cache anything on demand.
+      // but this option offers you a lot of flexibility, see documentation
+      // for more examples
+
+      excludes: [ "**/.*", "**/*.map", "**/*.html" ], // excludes useless files
+    },
+  }
+  ```
+
+  Using ``offline: true`` will use the configuration above. To know more about
+  this option and all the possibility you have, please read the documentation.
+  ([#485](https://github.com/MoOx/phenomic/issues/485) - @MoOx)
 - Changed: ``remark`` has been updated to ``^5.0.0``.
   This is a breaking change and since (for now) remark
   [is still a dependency](https://github.com/MoOx/phenomic/issues/251),

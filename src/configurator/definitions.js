@@ -21,10 +21,6 @@ export default {
     description: "path to static assets (images, media etc)",
     default: "assets",
   },
-  "appcache": {
-    // deprecated
-    description: "DEPRECATED: enable appcache support",
-  },
   "offline": {
     // types: boolean, object
     description: "flag to enable offline usage via appcache and service worker",

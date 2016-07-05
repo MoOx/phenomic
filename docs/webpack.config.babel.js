@@ -72,7 +72,7 @@ export const makeConfig = (config = {}) => {
         {
           test: /\.(html|ico|jpe?g|png|gif)$/,
           loader: "file-loader" +
-            "?name=[path][name].[ext]&context=" +
+            "?name=[path][name].[hash].[ext]&context=" +
             path.join(__dirname, config.source),
         },
         {
@@ -114,6 +114,7 @@ export const makeConfig = (config = {}) => {
 
     plugins: [
       new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+
       ...config.production && [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(
