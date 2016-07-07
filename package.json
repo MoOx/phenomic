@@ -63,6 +63,7 @@
     "redbox-react": "^1.2.2",
     "remark": "^4.1.1",
     "remark-autolink-headings": "^3.0.0",
+    "remark-gemoji-to-emoji": "^1.0.0",
     "remark-highlight.js": "^3.0.0",
     "remark-html": "^3.0.0",
     "remark-slug": "^4.1.0",
