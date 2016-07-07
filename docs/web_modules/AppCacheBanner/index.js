@@ -92,7 +92,7 @@ export default class AppCacheBanner extends Component {
           >
             <div className={ styles.message }>
               <div className={ styles.spinner } />
-              { "Caching website data..." }
+              { "Caching website for offline usage..." }
             </div>
             <div className={ styles.action }>
               <div
