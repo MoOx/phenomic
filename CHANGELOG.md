@@ -1,3 +1,10 @@
+- Changed: default port is now ``3333``.
+  This is to prevent weird behavior if you use ``offline`` option.
+  Since ``3000`` is pretty common, not using it will avoid having your website
+  Service Worker to be used for others projects.
+  That said we advise you to choose your own port if you use ``offline`` option.
+  (@MoOx)
+
 # 0.14.2 - 2016-06-12
 
 - Fixed: Security exception when accessing "/" via a

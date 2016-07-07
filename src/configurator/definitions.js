@@ -50,7 +50,7 @@ export default {
   "devPort": {
     type: "number",
     description: "port used during development",
-    default: 3000,
+    default: 3333,
   },
   "verbose": {
     type: "boolean",
