@@ -117,3 +117,6 @@ code {
     opacity: 1;
   }
 }
+
+.SVGInline { display: inline-flex; }
+.SVGInline-svg { vertical-align: middle; }

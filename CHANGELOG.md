@@ -24,6 +24,14 @@
     ],
   ```
 
+  (@MoOx)
+
+- Changed: ``stylelint`` has been updated to ``^6.8.0``
+  (@MoOx)
+- Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
+  (@MoOx)
+
+
 # 0.14.2 - 2016-06-12
 
 - Fixed: Security exception when accessing "/" via a
