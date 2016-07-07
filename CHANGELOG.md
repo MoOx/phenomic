@@ -5,6 +5,25 @@
   That said we advise you to choose your own port if you use ``offline`` option.
   (@MoOx)
 
+## Boilerplate
+
+- Changed: ``postcss-browser-reporter`` is now disabled in production.
+  Just in case you still have some PostCSS messages not handled yet.
+  Here is the change you can do in your PostCSS config section in your
+  ``webpack.config`` to do the same on your existing project:
+
+  ```diff
+    postcss: () => [
+      require("stylelint")(),
+      require("postcss-cssnext")({ browsers: "last 2 versions" }),
+  -    require("postcss-browser-reporter")(),
+      require("postcss-reporter")(),
+  +    ...config.production ? [
+  +      require("postcss-browser-reporter")(),
+  +    ] : [],
+    ],
+  ```
+
 # 0.14.2 - 2016-06-12
 
 - Fixed: Security exception when accessing "/" via a
@@ -34,7 +53,7 @@ _You will need at least ``react-router@^2.3.0``._
   Not more weird page updates.
   ([#285](https://github.com/MoOx/phenomic/issues/285) - @MoOx)
 
-### Boilerplate
+## Boilerplate
 
 - Added: ``PageLoading`` now use "Loading..." has a ``<title>``
   (@MoOx)
@@ -65,7 +84,7 @@ _You will need at least ``react-router@^2.3.0``._
 - Fixed: files should not be created anymore near your phenomic.node script
   ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
 
-### Boilerplate
+## Boilerplate
 
 - Changed: (boilerplate) loader for CSS is only applied to local
   ``web_modules``.
