@@ -7,9 +7,6 @@
     );
 }
 
-.header :global .SVGInline { display: inline-flex; }
-.header :global .SVGInline-svg { vertical-align: middle; }
-
 .nav {
   @media (width >= 60rem) {
     display: flex;

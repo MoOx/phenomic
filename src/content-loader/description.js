@@ -26,7 +26,10 @@ export default function description(mdObject, opts = {}) {
     return mdObject
   }
 
-  let description = remark.use(stripMd).process(mdObject.rawBody)
+  let description = remark()
+    .use(stripMd)
+    .process(mdObject.rawBody)
+    .toString()
 
   description = prune(description, opts.pruneLength, opts.pruneString)
 

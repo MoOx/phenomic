@@ -1,3 +1,41 @@
+- Changed: ``remark`` has been updated to ``^5.0.0``.
+  This is a breaking change and since (for now) remark
+  [is still a dependency](https://github.com/MoOx/phenomic/issues/251),
+  you should be careful when upgrading if you are using a custom render method
+  based on remark.
+  Some plugins have also been updated to work with remark 5.x
+  - ``remark-highlight.js`` has been updated to ``^3.1.1``
+  - ``remark-html`` has been updated to ``^5.0.0``
+- Changed: default port is now ``3333``.
+  This is to prevent weird behavior if you use ``offline`` option.
+  Since ``3000`` is pretty common, not using it will avoid having your website
+  Service Worker to be used for others projects.
+  That said we advise you to choose your own port if you use ``offline`` option.
+  (@MoOx)
+
+## Boilerplate
+
+- Changed: ``postcss-browser-reporter`` is now disabled in production.
+  Just in case you still have some PostCSS messages not handled yet.
+  Here is the change you can do in your PostCSS config section in your
+  ``webpack.config`` to do the same on your existing project:
+  ```diff
+    postcss: () => [
+      require("stylelint")(),
+      require("postcss-cssnext")({ browsers: "last 2 versions" }),
+  -    require("postcss-browser-reporter")(),
+      require("postcss-reporter")(),
+  +    ...config.production ? [
+  +      require("postcss-browser-reporter")(),
+  +    ] : [],
+    ],
+  ```
+  (@MoOx)
+- Changed: ``stylelint`` has been updated to ``^6.8.0``
+  (@MoOx)
+- Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
+  (@MoOx)
+
 # 0.14.2 - 2016-06-12
 
 - Fixed: Security exception when accessing "/" via a
@@ -27,7 +65,7 @@ _You will need at least ``react-router@^2.3.0``._
   Not more weird page updates.
   ([#285](https://github.com/MoOx/phenomic/issues/285) - @MoOx)
 
-### Boilerplate
+## Boilerplate
 
 - Added: ``PageLoading`` now use "Loading..." has a ``<title>``
   (@MoOx)
@@ -58,7 +96,7 @@ _You will need at least ``react-router@^2.3.0``._
 - Fixed: files should not be created anymore near your phenomic.node script
   ([#439](https://github.com/MoOx/phenomic/issues/439) - @MoOx)
 
-### Boilerplate
+## Boilerplate
 
 - Changed: (boilerplate) loader for CSS is only applied to local
   ``web_modules``.

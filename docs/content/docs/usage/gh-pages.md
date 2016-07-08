@@ -49,10 +49,10 @@ git commit -m "Deploy to GitHub Pages" && \
 git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
 ```
 
-_If you want to use this script for a ``*.github.io`` repo, please adjust the
+⚠️ **If you want to use this script for a ``*.github.io`` repo, please adjust the
 last line argument to ``src:master`` (if you source branch is `src`) in order
 to deploy your source branch to ``master`` (which is the ``gh-pages`` branch for
-github.io repos)._
+github.io repos).**
 
 ### Windows
 
