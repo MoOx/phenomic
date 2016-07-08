@@ -5,7 +5,7 @@ import highlight from "remark-highlight.js"
 import html from "remark-html"
 
 export default (text) => (
-  remark
+  remark()
     // https://github.com/wooorm/remark-slug
     .use(slug)
 
@@ -27,4 +27,5 @@ export default (text) => (
     .process(text, {
       commonmark: true,
     })
+    .toString()
 )

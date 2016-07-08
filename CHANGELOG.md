@@ -1,3 +1,11 @@
+- Changed: ``remark`` has been updated to ``^5.0.0``.
+  This is a breaking change and since (for now) remark
+  [is still a dependency](https://github.com/MoOx/phenomic/issues/251),
+  you should be careful when upgrading if you are using a custom render method
+  based on remark.
+  Some plugins have also been updated to work with remark 5.x
+  - ``remark-highlight.js`` has been updated to ``^3.1.1``
+  - ``remark-html`` has been updated to ``^5.0.0``
 - Changed: default port is now ``3333``.
   This is to prevent weird behavior if you use ``offline`` option.
   Since ``3000`` is pretty common, not using it will avoid having your website
@@ -11,7 +19,6 @@
   Just in case you still have some PostCSS messages not handled yet.
   Here is the change you can do in your PostCSS config section in your
   ``webpack.config`` to do the same on your existing project:
-
   ```diff
     postcss: () => [
       require("stylelint")(),
@@ -23,14 +30,11 @@
   +    ] : [],
     ],
   ```
-
   (@MoOx)
-
 - Changed: ``stylelint`` has been updated to ``^6.8.0``
   (@MoOx)
 - Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
   (@MoOx)
-
 
 # 0.14.2 - 2016-06-12
 
