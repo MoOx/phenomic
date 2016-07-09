@@ -35,6 +35,8 @@
   (@MoOx)
 - Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
   (@MoOx)
+- Changed: Clarify date format used in frontmatter
+  (@thangngoc89)
 
 # 0.14.2 - 2016-06-12
 
