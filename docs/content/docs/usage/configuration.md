@@ -74,8 +74,9 @@ Here is a commented ``package.json`` with only the interesting parts
     // use `true` to enable
     "CNAME": false,
 
-    // .nojekyll file to avoid GitHub wasting time to run his default engine
-    //   (and at the same time, allow filename prefixed by an `_`)
+    // .nojekyll file to avoid GitHub Pages wasting time to run its default engine
+    // (and also allow filename prefixed with a `_`)
+    // see: https://github.com/blog/572-bypassing-jekyll-on-github-pages
     "nojekyll": true,
 
     // host for development
