@@ -35,6 +35,8 @@
   (@MoOx)
 - Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
   (@MoOx)
+- Changed: making date structure obvious in examples posts frontmatter.
+  ([#559](https://github.com/MoOx/phenomic/issues/559) - @MoOx)
 
 # 0.14.2 - 2016-06-12
 
