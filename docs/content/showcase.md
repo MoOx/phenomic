@@ -32,6 +32,6 @@ list:
   url: https://khoanguyen.me/dnh-cpp/
   source: https://github.com/thangngoc89/dnh-cpp/
 - name: ReactClass
-  url: https://reactclass.com
+  url: http://reactclass.com
   source: https://github.com/DavidWells/react-class/
 ---
