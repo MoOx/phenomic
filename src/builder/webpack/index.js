@@ -1,4 +1,5 @@
 // @flow
+
 import webpack from "webpack"
 import color from "chalk"
 

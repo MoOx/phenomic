@@ -1,3 +1,5 @@
+// @flow
+
 import { DefinePlugin } from "webpack"
 import url from "url"
 import pkg from "../../../package.json"
@@ -6,8 +8,8 @@ export const chunkNameBrowser = "phenomic.browser"
 
 const wrap = JSON.stringify
 
-export default (config) => {
-  const { webpackConfig } = config
+export default (config: PhenomicConfig): WebpackConfig => {
+  const { webpackConfig = {} } = config
 
   return {
     ...webpackConfig,

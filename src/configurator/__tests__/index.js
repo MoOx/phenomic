@@ -39,8 +39,6 @@ test("should return a default configuration", (t) => {
       path: "/",
       href: "http://0.0.0.0:3333/",
     },
-    // deprecated
-    appcache: undefined,
   }
 
   t.deepEqual(

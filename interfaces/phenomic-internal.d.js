@@ -25,10 +25,22 @@ type PhenomicAssetsConfig = {
 }
 
 type PhenomicOfflineConfig = {
-  appcache: boolean,
   serviceWorker: boolean,
-  pattern: Array<string>,
+  appcache: {
+    onInstall?: boolean,
+    afterInstall?: boolean,
+    onDemand?: boolean,
+  },
+  cachePatterns: {
+    onInstall?: Array<string>,
+    afterInstall?: Array<string>,
+    onDemand?: Array<string>,
+    excludes?: Array<string>,
+  },
 }
+
+// @todo enhance this type
+type WebpackConfig = Object
 
 // Configs generated from configurator
 type PhenomicConfig = {
@@ -36,7 +48,7 @@ type PhenomicConfig = {
   source: string,
   destination: string,
   assets: PhenomicAssetsConfig, // no string type
-  offline: boolean,
+  offline: boolean | PhenomicOfflineConfig,
   offlineConfig: PhenomicOfflineConfig,
   CNAME: boolean,
   nojekyll: boolean,
@@ -48,4 +60,24 @@ type PhenomicConfig = {
   server: boolean,
   open: boolean,
   baseUrl: Object,
+  scriptNode: string,
+  scriptBrowser: string,
+  webpackConfig?: WebpackConfig,
+  webpackConfigBrowser?: WebpackConfig,
+  webpackConfigNode?: WebpackConfig,
+}
+
+type Url = {
+  href: string,
+  protocol?: string,
+  slashes?: boolean,
+  host?: string,
+  auth?: string,
+  hostname?: string,
+  port?: string,
+  pathname?: string,
+  search?: string,
+  path?: string,
+  query?: Object,
+  hash?: string,
 }

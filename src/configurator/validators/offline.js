@@ -1,102 +1,160 @@
 // @flow
+
 import { yellow } from "chalk"
 const log: Function = require("debug")("phenomic:configurator:offline")
 
 import { parse } from "url"
 
-const defaultPattern: Array<string> = [ "**", "!**/*.html", "index.html" ]
-const defaultOfflineConfig = {
-  appcache: true,
+export const defaultOfflineConfig: PhenomicOfflineConfig = {
   serviceWorker: true,
-  pattern: defaultPattern,
+  appcache: {
+    onInstall: true,
+    afterInstall: true,
+    // onDemand: false, // cannot be done
+  },
+  cachePatterns: {
+    onInstall: [ "/", "phenomic.*" ],
+    afterInstall: [ "**", ":assets:" ],
+    onDemand: [ ],
+    excludes: [ "**/.*", "**/*.map", "**/*.html" ],
+  },
 }
 
 export default (
   { pkg, config, errors }:
   { pkg: Object, config: PhenomicConfig, errors: Array<string> }
 ) => {
-  // Deprecated
-  if (config.appcache) {
-    if (typeof config.offline !== "undefined") {
-      errors.push(
-        "phenomic.appcache option was replaced by phenomic.offline option. " +
-        " You can't define both of them at the same time."
-      )
-    }
-    config.offline = true
-
-    log(yellow(
-      "DEPRECATED: phenomic.appcache option was deprecated " +
-      "and will be removed soon. We assumed you want to " +
-      "enable offline support, so we used default offline globby pattern " +
-      "with AppCache and ServiceWorker. " +
-      "Your custom globby pattern was ignore. Please refer the docs to " +
-      "update the configuration accordingly"
-    ))
-  }
-
-  // Disable offline for development if user defined offline config
-  if (config.dev && config.offline) {
-    config.offline = false
-    log(yellow("Offline support is disabled in development mode"))
-    return
-  }
 
   if (!config.offline) {
     config.offline = false
     return
   }
 
-  // If config.offline = true ==> set offlineConfig to defaultOfflineConfig
-  if (typeof config.offline === "boolean") {
+  if (config.offline === true) {
     config.offlineConfig = defaultOfflineConfig
   }
-  else if (typeof config.offline === "object") {
-    // Merge config with default config
-    config.offlineConfig =  {
-      ...defaultOfflineConfig,
-      ...config.offline,
-    }
+  else if (typeof config.offline !== "object") {
+    const keys = Object.keys(defaultOfflineConfig)
+    errors.push(
+      `Your provided an '${ typeof config.offline }'` +
+      "for 'phenomic.offline'." +
+      "This option accepts a boolean or an object" +
+      `with ${ keys.length } keys: ` + keys.join(", ")
+    )
+
+    return
+  }
+  else {
+    const userOfflineConfig: PhenomicOfflineConfig = config.offline
+
     // Validate nested config.offline
-    if (typeof config.offlineConfig.appcache !== "boolean") {
-      errors.push(
-        `You provided an '${ typeof config.offlineConfig.appcache }' ` +
-        "for 'phenomic.offline.appcache' option. " +
-        "This option accepts a boolean value."
-      )
+    if (typeof userOfflineConfig.appcache !== "boolean") {
+      const possibleKeys = Object.keys(defaultOfflineConfig.appcache)
+      let error = false
+      if (typeof userOfflineConfig.appcache !== "object") {
+        error = (
+          "You provided an incorrect type"+
+          ` ('${ typeof userOfflineConfig.appcache }') ` +
+          "for 'phenomic.offline.appcache' option. "
+        )
+      }
+      else {
+        const unknownKeys = Object.keys(userOfflineConfig.appcache).filter(
+          (key) => (
+            !(possibleKeys.indexOf(key) > -1) ||
+            typeof userOfflineConfig.appcache[key] !== "boolean"
+          )
+        )
+        if (unknownKeys.length) {
+          error = (
+            "You provided some key(s)" +
+            "for 'phenomic.offline.appcache' option that are not recognized " +
+            `(${ unknownKeys.join(", ") }). `
+          )
+        }
+      }
+      if (error) {
+        errors.push(
+          error +
+          "This option accepts a boolean value or an object " +
+          " { [key]: boolean } with the following keys: " +
+          possibleKeys.join(", ")
+        )
+      }
     }
-    if (typeof config.offlineConfig.serviceWorker !== "boolean") {
+    if (typeof userOfflineConfig.serviceWorker !== "boolean") {
       errors.push(
-        `You provided an '${ typeof config.offlineConfig.serviceWorker }' ` +
+        "You provided an incorrect type"+
+        ` ('${ typeof userOfflineConfig.serviceWorker }') ` +
         "for 'phenomic.offline.serviceWorker' option. " +
         "This option accepts a boolean value."
       )
     }
-    /*
-     * Validate pattern
-     */
-    if (typeof config.offlineConfig.pattern === "string") {
-      config.offlineConfig.pattern = [ config.offlineConfig.pattern ]
-    }
-    else if (!Array.isArray(config.offlineConfig.pattern)) {
-      errors.push(
-        `You provided an '${ typeof config.offlineConfig.pattern }' ` +
-        "for 'phenomic.offline.pattern' option. " +
-        "This option accepts a string or an array."
+
+    // Validate patterns
+    const cachePatternsKeys = Object.keys(defaultOfflineConfig.cachePatterns)
+    let error
+    if (typeof userOfflineConfig.cachePatterns !== "object") {
+      error = (
+        "You provided an incorrect type"+
+        ` ('${ typeof userOfflineConfig.cachePatterns }') ` +
+        "for 'phenomic.offline.cachePatterns' option. "
       )
     }
-  }
-  else {
-    errors.push(
-      `Your provided an '${ typeof config.offline }'` +
-      "for 'phenomic.offline'. This option accepts a boolean or an object" +
-      "with 3 keys: `appcache`, `serviceWorker` and `pattern`"
-    )
+    else {
+      const incorrectKeys = Object.keys(userOfflineConfig.cachePatterns)
+      .filter(
+        (key) => (
+          !(cachePatternsKeys.indexOf(key) > -1) ||
+          !Array.isArray(userOfflineConfig.cachePatterns[key])
+        )
+      )
+      if (incorrectKeys.length) {
+        error = (
+          "You provided some key(s) " +
+          "for 'phenomic.offline.cachePatterns' option " +
+          "that are not recognized or with incorrect types " +
+          `(${ incorrectKeys.join(", ") }). ` +
+          ""
+        )
+      }
+    }
+    if (error) {
+      errors.push(
+        error +
+        "This option accepts a object with " +
+        `with ${ cachePatternsKeys.length } keys: ` +
+        cachePatternsKeys.join(", ") + " " +
+        "that accept array of glob patterns."
+      )
+    }
+
+    // Merge config with default config
+    config.offlineConfig = {
+      ...defaultOfflineConfig,
+      ...userOfflineConfig,
+      appcache: (
+        userOfflineConfig.appcache === true
+        ? defaultOfflineConfig.appcache
+        : (
+          typeof userOfflineConfig.appcache === "object"
+          ? {
+            ...defaultOfflineConfig.appcache,
+            ...userOfflineConfig.appcache,
+          }
+          : defaultOfflineConfig.appcache
+        )
+      ),
+      cachePatterns: {
+        ...defaultOfflineConfig.cachePatterns,
+        ...userOfflineConfig.cachePatterns,
+      },
+    }
   }
 
   if (
     pkg.homepage &&
-    parse(pkg.homepage).protocol === "http:" &&
+    parse(pkg.homepage).protocol !== "https:" &&
     config.offlineConfig.serviceWorker
   ) {
     console.warn(yellow(
@@ -104,5 +162,12 @@ export default (
       "You are currently using HTTP, so ServiceWorker will be ignored by " +
       "browsers."
     ))
+  }
+
+  // Disable offline for development if user defined offline config
+  if (config.dev && config.offlineConfig.appcache) {
+    config.offlineConfig.appcache = {}
+    log(yellow("AppCache is disabled in development mode"))
+    return
   }
 }
