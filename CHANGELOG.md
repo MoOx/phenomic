@@ -1,5 +1,20 @@
 # HEAD
 
+# 0.15.0 - 2016-07-13
+
+## tl;dr;
+
+- ``offline`` option has been rewritten. If you were using `offline: true`, you
+  don't need to change anything, you will just have few bug fixes and a change
+  to "network" first approach.
+  Otherwise, please check details below and/or the online documentation.
+  We hope you will enjoy this nice API!
+- default port is now 3333 in development
+- remark has been updated to 5.x version
+- boilerplate got some updates, mainly for stylelint
+
+## Details
+
 - Removed: ``appcache`` option has now completely being removed in favor of
   ``offline`` (after being deprecated in 0.11.0). See new API below.
 - Changed: Offline option has been completely rewritten.
