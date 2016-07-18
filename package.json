@@ -115,7 +115,7 @@
     "react-dom": "^15.0.0-rc.1",
     "react-helmet": "^3.0.0",
     "react-redux": "^4.0.0",
-    "react-router": "^2.3.0",
+    "react-router": "^2.6.0",
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
     "stylelint": "^6.8.0",
