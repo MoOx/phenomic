@@ -1,5 +1,10 @@
 # HEAD
 
+## Boilerplate
+
+- Changed: (boilerplate) LayoutContainer now import global CSS first
+  ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
+
 # 0.15.0 - 2016-07-13
 
 ## tl;dr;
