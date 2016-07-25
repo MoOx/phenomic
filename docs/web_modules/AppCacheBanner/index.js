@@ -43,7 +43,7 @@ export default class AppCacheBanner extends Component {
         "updateready", this.handleUpdateReady, false
       )
       // obsolete cache is when manifest is gone
-      // which require an update as well
+      // which requires an update as well
       window.applicationCache.addEventListener(
         "obsolete", this.handleUpdateReady, false
       )

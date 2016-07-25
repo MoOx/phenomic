@@ -10,11 +10,11 @@ You can write your files using any text based language like
 [Txt2tags](https://en.wikipedia.org/wiki/Txt2tags) or
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX).
 
-Default boilerplate provide a markdown engine but you can use anything you want.
-See [Configuration](../configuration/) to know how to specify your own engine.
+Default boilerplate provides a markdown engine but you can use anything you want.
+See [Configuration](../configuration/) to specify your own engine.
 
-One common thing that text files will require is a front matter that should
-contains some meta informations about the content.
+One common thing that text files will require is front matter that
+contains some metadata about the content.
 
 ## Front matter
 
@@ -45,16 +45,16 @@ Page content...
 
 For the ``title``, note that you can additionally use a ``metaTitle`` field to
 specify a alternative ``<title>``.
-This allow you to have a use a ``title`` (``<h1>``?) for the page ``<body>``,
+This allows you to use a ``title`` (``<h1>``?) for the page ``<body>``,
 and ``metaTitle`` for the meta ``<title>`` of the page ``<head>``.
 
-**For `layout`, please read [Layouts](../layouts/) documentation.**
+**For `layout`, please read the [Layouts](../layouts/) documentation.**
 
 ### Front matter format
 
-Currently **front matters can be written using YAML, JSON, TOML** (we rely on
-[gray-matter](https://www.npmjs.com/package/gray-matter) that supports all this
-format out of the box).
+Currently **front matter can be written using YAML, JSON or TOML** (we rely on
+[gray-matter](https://www.npmjs.com/package/gray-matter) that supports all of these
+formats out of the box).
 
 You can change the language of your front matter by specifying it after the
 first front matter delimiter (eg: ``---``).
@@ -80,4 +80,4 @@ Here you **can** use some _markdown_.
 The default engine supports Markdown, but you can use whatever your want.
 _You will need an engine that can transform text to html._
 
-See [Configuration](../configuration/) to know how to specify your own engine.
+See [Configuration](../configuration/) to specify your own engine.

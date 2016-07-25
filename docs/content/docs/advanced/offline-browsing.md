@@ -9,13 +9,13 @@ Guess what, **Phenomic supports offline browsing out of the box.**
 It's very easy to offer an offline experience to your users.
 You just have to turn a flag on.
 
-There are currently two different technologies to enable offline experience.
+There are currently two different technologies to enable offline browsing.
 
 ## AppCache
 
-Appcache is the oldest way to offer offline supports but it's a bit brutal since
+AppCache is the oldest way to offer offline supports but it's a bit brutal since
 you can only choose what to save when the website opens.
-All modern browsers support Appcache, including IE 10.
+All modern browsers support AppCache, including IE 10.
 
 - [Learn about AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/)
 - [AppCache browser support from caniuse](http://caniuse.com/#search=appcache)

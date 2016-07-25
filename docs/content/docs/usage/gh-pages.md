@@ -8,7 +8,7 @@ title: Automatic deployment on GitHub Pages
 You will have multiple possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
 
-You can use your own method, using something like
+You can define your own method by using something like
 - a very simple script (see below)
 - [buildbranch](https://www.npmjs.com/package/buildbranch)
 - [git-directory-deploy](https://github.com/X1011/git-directory-deploy)

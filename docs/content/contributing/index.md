@@ -24,26 +24,25 @@ Then you can edit files in the `docs` folder.
 
 ## Work on the core
 
-- Every core files are in `src/`
+- All core files are in `src/`
 - Unit tests are located relative to modules (`src/**/__tests__`).
 - Integration tests are located at the root of the project (`__tests__/*`).
 
-_After every modification, please run the entire test suit by using
+_After every modification, please run the entire test suite by using
 `$ npm test`._
 
-Note that the full test suit can take a few minutes, as it run unit tests and
+Note that the full test suite can take a few minutes, as it runs unit tests and
 integration tests (with several builds, including docs and a new project from
 the default boilerplate).
 
-When you are working on a specific component, to work faster, you can keep your
-focus on what you are interested on.
+To speed things up, you can limit tests to the specific component you are working on.
 
 ### Example with PageContainer
 
 If you want to work on ``PageContainer``, look in ``src/PageContainer``.
 Tests will be in ``src/PageContainer/__tests__/*``.
 
-To run test for ``PageContainer`` component:
+To run tests for the ``PageContainer`` component:
 
 ```console
 $ ava src/PageContainer/__tests__/*

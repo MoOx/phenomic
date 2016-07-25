@@ -2,7 +2,7 @@
 title: How to use configure Phenomic
 ---
 
-You have multiple things you can tweak to adjust Phenomic behavior to your
+You have multiple things you can tweak to adjust the behavior of Phenomic to your
 needs.
 
 - [Phenomic configuration](#phenomic) for built-in features
@@ -37,7 +37,7 @@ Here is a commented ``package.json`` with only the interesting parts
   // ** it's a required field to adjust url for production build **
   "homepage": "http://YOUR.HOSTNAME/your-base-url-if-needed/",
 
-  // here is the script part, which the ones related to Phenomic
+  // here is the script part, with the ones related to Phenomic
   // you can add more like linting and stuff like that :)
   "scripts": {
     "start": "phenomic start",
@@ -46,7 +46,7 @@ Here is a commented ``package.json`` with only the interesting parts
   // Note that you can provide some flags but for now they are not documented
   // (start and build should be enough)
   //
-  // Here are some default environnement variable set by "phenomic" bin
+  // Here are some default environment variables set by "phenomic" bin
   // DEBUG=phenomic:*
   //  (to get some visual feedback during development and build)
 
@@ -140,7 +140,7 @@ is crucial (in the default boilerplate, it's the first loader) :
   using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/content-loader/default-renderer.js))
 - it allows you to generate some RSS feeds
 
-There is two ways to send option to the ``content-loader``:
+There are two ways to send options to the ``content-loader``:
 
 - use webpack loader ``query`` option (_not recommended_, see below)
 - use a ``phenomic.contentLoader`` section in webpack configuration.
@@ -222,7 +222,7 @@ export const makeConfig = (config = {}) => {
 manager available for React that allows you to manage all of your definitions
 and changes to your documents head with support for
 _document title, meta, link, script, and base tags._
-It's like ``react-document-title`` but on steroid.
+It's like ``react-document-title`` but on steroids.
 
 The default boilerplate uses ``react-helmet`` in several places
 (look for ``<Helmet`` usage).
