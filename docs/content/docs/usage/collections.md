@@ -3,7 +3,7 @@ title: How to use Collections in Phenomic
 incomplete: true
 ---
 
-By default, Phenomic provides 2 things to help you work with collections:
+By default, Phenomic provides two things to help you work with collections:
 
 - it creates a file that contains all page metadata in a unique collection,
 - it provides a helper that helps you filter/sort/limit the collection.

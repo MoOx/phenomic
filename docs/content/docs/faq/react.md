@@ -2,7 +2,7 @@
 title: Phenomic FAQ about React
 ---
 
-## I have a React warning about invalid checksum, what is wrong with my code?
+## I have a React warning about an invalid checksum, what is wrong with my code?
 
 You might see something like
 
@@ -13,13 +13,13 @@ Warning: React attempted to reuse markup in a container but the checksum was inv
 ```
 
 The message is pretty clear. You have to examine your code and check carefully
-what can be rendered differently. Feel free to ask for help on the support chat.
+what can be rendered differently. Feel free to ask for help on [gitter](https://gitter.im/MoOx/phenomic).
 
 Here are some common cases for this warning:
 
 ### Date and time
 
-Due to the different timezone between the build server and your visitors, generated
+Due to the timezone differences between the build server and your visitors, generated
 date and time can be different. To fix this, ensure that the timezone is
 correctly set.
 
@@ -32,7 +32,7 @@ Example with `moment.js`
 
 ### Navigation links with active class
 
-With phenomic, a user can request a page with or without the trailing `index.html`.
+With Phenomic, a user can request a page with or without the trailing `index.html`.
 If you are using `react-router` `<Link />` component with the `activeClassName` property,
 React will warn with the above message. We provided a `<LinkWrapper />` component to
 cover this case.
@@ -46,8 +46,8 @@ cover this case.
 
 - Take the rendered html (viewsource is your friend)
 - In your developer tools, copy the HTML from the `<html` node
-  (something like right click > "Copy Outer HTML" should exists)
-- Beautify both result with the same tool
+  (something like right click > "Copy Outer HTML" should exist)
+- Beautify both results with the same tool
   (eg: [atom-beautifier](https://atom.io/packages/atom-beautifier))
 - Make a diff (if you are a GUI guy, use
   [diffchecker](https://www.diffchecker.com/)).

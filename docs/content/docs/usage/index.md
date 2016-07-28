@@ -13,6 +13,6 @@ incomplete: true
 - [Automatic deployment on GitHub Pages (gh-pages)](gh-pages/)
 - [Advanced Usage and tips](../advanced/)
 
-This website is made using phenomic, so you can also check out
+This website is made using Phenomic. You can check out
 [the source code of this documentation](https://github.com/MoOx/phenomic/tree/master/docs)
 as an example.
