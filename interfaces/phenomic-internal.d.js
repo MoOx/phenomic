@@ -3,7 +3,7 @@
 type PromiseAction = {
   types: Array<string>,
   page: string,
-  promise: Promise,
+  promise: Promise<any>,
 }
 
 type PhenomicCollectionItem = {
@@ -81,3 +81,15 @@ type Url = {
   query?: Object,
   hash?: string,
 }
+
+type PhenomicContentLoaderOptions = {}
+
+type PhenomicContentLoaderPluginInput = {
+  frontMatter: GrayMatterResult,
+  result: PhenomicCollectionItem,
+  options: PhenomicContentLoaderOptions,
+}
+
+type PhenomicContentLoaderPlugin = (
+  obj: PhenomicContentLoaderPluginInput
+) => PhenomicCollectionItem

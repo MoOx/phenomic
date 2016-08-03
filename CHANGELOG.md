@@ -1,5 +1,78 @@
 # HEAD
 
+- Removed: `renderer` option from `content-loader`.
+  See the new `plugins` option below for more information.
+  If you want to do the same effect, you can use the following plugins
+  ```js
+  import { contentLoader, contentLoaderPlugins } from "phenomic"
+
+  // ...
+    phenomic: {
+      contentLoader: {
+        // ...
+        plugins: [
+          contentLoaderPlugins.addBodyPropertyFromContent,
+          contentLoaderPlugins.addHeadPropertyFromConfig,
+          contentLoaderPlugins.addHeadPropertyFromContent,
+          contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
+          // contentLoaderPlugins.transformMdBodyPropertyToHtml,
+          // the commented plugin above is the default renderer
+          // here is an example that can be used like the old renderer
+          // method
+          ({ result }) => {
+            // the difference here, is you need to return the entire new
+            // (modified) result. the `body` part is what your are looking     
+            // // for
+            return {
+              ...result,
+              body: doYourThing(result.body),
+            }
+          }
+          }
+        ]
+      }
+    }
+
+  ```
+- Removed: `raw` and `rawBody` properties from page data.
+  If you want those back, there are plugins ready for you:
+  ```js
+  import { contentLoader, contentLoaderPlugins } from "phenomic"
+
+  // ...then in the webpack config
+
+    phenomic: {
+      contentLoader: {
+        plugins: [
+          ...contentLoaderDefaultPlugins,
+          contentLoaderPlugins.addRawPropertyFromContent,
+          contentLoaderPlugins.addRawBodyPropertyFromContent,
+        ]
+      }
+    }
+  ```
+  See the new `plugins` option below for more information.
+  ([#547](https://github.com/MoOx/phenomic/issues/547) - @MoOx)
+- Added: `plugins` option for the webpack `content-loader`.
+  This option allow more flexibility on how to handle and transform
+  input passed to `content-loader`.
+  By default, almost the same behavior as before is executed via the following plugins:
+
+  ```js
+    plugins: [
+      contentLoaderPlugins.addBodyPropertyFromContent,
+      contentLoaderPlugins.addHeadPropertyFromConfig,
+      contentLoaderPlugins.addHeadPropertyFromContent,
+      contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
+      contentLoaderPlugins.transformMdBodyPropertyToHtml,
+    ]
+  ```
+  See the configuration section in the documentation to know more how to customize this.
+  If you want just add more plugins for specific behavior (and so keep
+  the default plugins), you can spread `contentLoaderDefaultPlugins` that
+  can be imported from `"phenomic"` package (see example in previous note about `raw` and `rawBody`).
+  ([#260](https://github.com/MoOx/phenomic/issues/260) - @MoOx)
+
 ## Boilerplate
 
 - Changed: (boilerplate) LayoutContainer now import global CSS first

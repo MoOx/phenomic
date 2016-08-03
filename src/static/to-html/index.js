@@ -1,4 +1,5 @@
 // @flow
+
 import fs from "fs-promise"
 import path from "path"
 
@@ -90,7 +91,7 @@ export function writeAllHTMLFiles(
     offlineConfig: PhenomicOfflineConfig,
   },
   testing?: boolean
-): Promise {
+): Promise<Array<void>> {
   // create all html files
   return Promise.all(
     urls.map((url) => {
@@ -119,7 +120,8 @@ export function writeAllHTMLFiles(
   )
 }
 
-export default function(options: Object, testing?: boolean): Promise {
+export default
+function(options: Object, testing?: boolean): Promise<Array<void>> {
   return writeAllHTMLFiles({
     ...options,
     setPageData,

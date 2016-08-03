@@ -137,7 +137,8 @@ is crucial (in the default boilerplate, it's the first loader) :
 
 - it allows you to control what text engine to use
   (default to Markdown using [remark](http://remark.js.org/)
-  using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/content-loader/default-renderer.js))
+  using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/content-loader-plugins/transform-md-body-property-to-html/index.js))
+  and will generate JSON files, that will be consumed for the front-end,
 - it allows you to generate some RSS feeds
 
 There are two ways to send options to the ``content-loader``:
@@ -182,10 +183,31 @@ export const makeConfig = (config = {}) => {
         // the context where to read .md to
         context: path.join(__dirname, config.source),
 
-        renderer: (text) => {
-          // here you can use whatever engine you want,
-          // you just need to return some HTML
-          return html
+        // below are the default values,
+        //
+        plugins: [
+          contentLoaderPlugins.addBodyPropertyFromContent,
+          contentLoaderPlugins.addHeadPropertyFromConfig,
+          contentLoaderPlugins.addHeadPropertyFromContent,
+          contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
+          contentLoaderPlugins.transformMdBodyPropertyToHtml,
+          // here you can add/replace any function you want
+          // for examples, see
+          //  https://github.com/MoOx/phenomic/blob/master/src/content-loader-plugins/
+          // eg: if you need the raw file content in your pages,
+          // you can add the following plugin that will add a `raw` property
+          // contentLoaderPlugins.addRawPropertyFromContent,
+          // if you want raw body (text content without the front-matter)
+          // you can add the following plugin that will add a `rawBody` property
+          // contentLoaderPlugins.addRawBodyPropertyFromContent,
+        ]
+
+        // default values for `head`
+        // this value can be defined and used by the plugin
+        // addHeadPropertyFromConfig
+        defaultHead: {
+          layout: "Post",
+          comments: true,
         }
 
         // RSS global options

@@ -1,71 +1,53 @@
+// @flow
+
 import path from "path"
 import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
-import colors from "chalk"
+// import colors from "chalk"
 
 import pathToUri from "../_utils/path-to-uri"
 import urlify from "../_utils/urlify"
 import enhanceCollection from "../enhance-collection"
 import feed from "./feed"
 import cache from "./cache"
-import description from "./description"
-import validator from "./validator"
 
 let timeout
 
-let deprecatedWarning = false
+module.exports = function(input: string) {
+  const webpackInstance: WebpackInstance = this
 
-module.exports = function(input) {
-  // deprecated
-  if (
-    !deprecatedWarning &&
-    this.options && this.options.phenomic && this.options.phenomic.loader
-  ) {
-    console.warn(colors.yellow(
-      "You are defining Phenomic `content-loader` configuration under the "+
-      "`phenomic.loader` section. \nPlease use ``contentLoader`` section " +
-      "instead of `loader` (that will be ignored in the future)."
-    ))
-    deprecatedWarning = true
+  const options = {
+    ...(
+      webpackInstance.options.phenomic &&
+      webpackInstance.options.phenomic.contentLoader
+    ) || {},
+    ...loaderUtils.parseQuery(webpackInstance.query),
   }
-  const query = {
-    ...(this.options.phenomic && this.options.phenomic.loader) || {},
-    ...(this.options.phenomic && this.options.phenomic.contentLoader) || {},
-    ...loaderUtils.parseQuery(this.query),
-  }
+  const context = options.context || webpackInstance.options.context
+  const plugins = options.plugins || require("./default-plugins.js").default
 
-  try {
-    validator(query)
-  }
-  catch (err) {
-    this.emitError(err)
-  }
+  const relativePath = path.relative(context, webpackInstance.resourcePath)
 
-  const context = query.context || this.options.context
-  const renderer = query.renderer || require("./default-renderer").default
+  const frontMatter = frontMatterParser(input)
+  const pluginsResult = plugins.reduce((result, plugin) => {
+    return plugin({
+      frontMatter,
+      result,
+      options,
+    })
+  }, {})
 
-  const defaultHead = query.defaultHead
-  const parsed = frontMatterParser(input)
-
-  // poor workaround to normalize date as string
-  // blocked by
-  // https://github.com/MoOx/phenomic/issues/397
-  const head = JSON.parse(JSON.stringify(parsed))
-
-  const relativePath = path.relative(context, this.resourcePath)
   const tmpUrl = urlify(
-    head.data.route
+    pluginsResult.head && pluginsResult.head.route
       // custom route
-      ? head.data.route
+      ? pluginsResult.head.route
       // default route
       : relativePath
   )
-
   const url = urlify(tmpUrl)
   const resourceUrl = urlify(tmpUrl, true)
-
-  const hash = loaderUtils.getHashDigest(input)
-  const dataUrl = resourceUrl + "." + hash + ".json"
+  const contentHash = loaderUtils.getHashDigest(input)
+  const dataUrl = resourceUrl + "." + contentHash + ".json"
 
   const metadata = {
     __filename: relativePath,
@@ -73,25 +55,13 @@ module.exports = function(input) {
     __resourceUrl: pathToUri("/", resourceUrl),
     __dataUrl: pathToUri("/", dataUrl),
   }
-  let textData = {
-    head: {
-      ...defaultHead,
-      ...head.data,
-    },
-    body: renderer(head.content),
-    rawBody: head.content,
-    raw: head.orig,
+
+  const result = {
+    ...pluginsResult,
     ...metadata,
   }
 
-  textData = description(textData, query.description)
-
-  if (!this.emitFile) {
-    throw new Error("emitFile is required from module system")
-  }
-
-  // emit file
-  this.emitFile(dataUrl, JSON.stringify(textData))
+  webpackInstance.emitFile(dataUrl, JSON.stringify(result))
 
   // update collection
   // replace or add depending on the cache state
@@ -102,10 +72,10 @@ module.exports = function(input) {
     }
   })
   if (previousIndex) {
-    cache[previousIndex] = textData
+    cache[previousIndex] = result
   }
   else {
-    cache.push(textData)
+    cache.push(result)
   }
 
   if (timeout) {
@@ -114,11 +84,11 @@ module.exports = function(input) {
   else {
     setTimeout(() => {
       // emit updated feeds
-      const feeds = query.feeds || []
-      const feedsOptions = query.feedsOptions || {}
+      const feeds = options.feeds || []
+      const feedsOptions = options.feedsOptions || {}
       Object.keys(feeds).forEach((name) => {
         const { feedOptions, collectionOptions } = feeds[name]
-        this.emitFile(name, feed({
+        webpackInstance.emitFile(name, feed({
           feedOptions: {
             ...feedsOptions,
             ...feedOptions,

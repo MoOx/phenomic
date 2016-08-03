@@ -7,10 +7,10 @@ const defaultOpts = {
   pruneString: "…",
 }
 
-export default function description(mdObject, opts = {}) {
+function description(text, opts = {}) {
   opts = { ...defaultOpts, ...opts }
 
-  if (opts.pruneLength < 10) {
+  if (opts.pruneLength === 0) {
     console.warn(
       "You defined 'description.pruneLength' of content-loader " +
       "with an zero value. This does not make sense, " +
@@ -20,34 +20,37 @@ export default function description(mdObject, opts = {}) {
     opts.pruneLength = defaultOpts.pruneLength
   }
 
-  // Don't touch mdObject if there is a
-  // description field in frontmatter
-  if (mdObject.head.description) {
-    return mdObject
-  }
-
-  let description = remark()
-    .use(stripMd)
-    .process(mdObject.rawBody)
-    .toString()
-
-  description = prune(description, opts.pruneLength, opts.pruneString)
-
-  if (description && description.length > 0) {
-    description = description
+  return prune(
+    remark()
+      .use(stripMd)
+      .process(text)
+      .toString()
       .replace(/\n+/g, "\n") // Replace multiple new lines with one
       .replace(/\n/g, " ") // Avoid useless new lines
       .trim()
-  }
-  else {
-    description = null
-  }
+    ,
+    opts.pruneLength,
+    opts.pruneString
+  )
+}
 
+// @flow
+
+export default (
+  {
+    result,
+    frontMatter,
+    options,
+  }: PhenomicContentLoaderPluginInput
+): PhenomicCollectionItem => {
+  if (result.head && result.head.description) {
+    return result
+  }
   return {
-    ...mdObject,
+    ...result,
     head: {
-      ...mdObject.head,
-      description,
+      ...result.head,
+      description: description(frontMatter.content, options),
     },
   }
 }
