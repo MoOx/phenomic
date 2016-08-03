@@ -1,6 +1,7 @@
 import path from "path"
 
 import webpack from "webpack"
+import { contentLoader } from "phenomic"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 import pkg from "./package.json"
@@ -23,7 +24,7 @@ export const makeConfig = (config = {}) => {
         {
           // phenomic requirement
           test: /\.md$/,
-          loader: "phenomic/lib/content-loader",
+          loader: contentLoader,
           // config is in phenomic.contentLoader section below
           // so you can use functions (and not just JSON) due to a restriction
           // of webpack that serialize/deserialize loader `query` option.

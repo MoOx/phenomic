@@ -157,6 +157,7 @@ Here is a commented part of a webpack configuration that use all options
 //...
 
 import pkg from "./package.json"
+import { contentLoader, contentLoaderPlugins } from "phenomic"
 
 export const makeConfig = (config = {}) => {
   return {
@@ -165,7 +166,7 @@ export const makeConfig = (config = {}) => {
       loaders: [
         {
           test: /\.md$/,
-          loader: "phenomic/lib/content-loader",
+          loader: contentLoader,
 
           // you can also define options here, but functions will be silently
           // ignored because how webpack works

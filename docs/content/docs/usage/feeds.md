@@ -14,7 +14,7 @@ Here is a commented part of the webpack configuration that will help:
    loaders: [
      { // phenomic requirement
        test: /\.md$/,
-       loader: "phenomic/lib/content-loader",
+       loader: contentLoader,
        query: {
          context: path.join(config.cwd, config.source),
 

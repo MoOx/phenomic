@@ -72,11 +72,19 @@
   the default plugins), you can spread `contentLoaderDefaultPlugins` that
   can be imported from `"phenomic"` package (see example in previous note about `raw` and `rawBody`).
   ([#260](https://github.com/MoOx/phenomic/issues/260) - @MoOx)
+- Added: ``"phenomic"`` package now exposes new values
+  - ``contentLoader`` (ex "phenomic/lib/content-loader")
+  - ``contentLoaderDefaultPlugins`` (default plugins, handy if you want to add more and still rely on the default ones).
+  - ``contentLoaderPlugins``, the list of all available plugins
+
 
 ## Boilerplate
 
 - Changed: (boilerplate) LayoutContainer now import global CSS first
   ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
+- Changed: (boilerplate) `content-loader` reference is now in a variable
+  that can be imported (`import { contentLoader } from "phenomic"`)
+  (@MoOx)
 
 # 0.15.0 - 2016-07-13
 
