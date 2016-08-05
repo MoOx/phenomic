@@ -1,81 +1,90 @@
 # HEAD
 
-- Removed: `renderer` option from `content-loader`.
+- Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
+  ``import { phenomicLoader } from "phenomic"``.
+  You can use ``loader`` variable in webpack configuration to reference
+  Phenomic loader. This change allows us more flexibility for the location of
+  the code.
+  (@MoOx)
+- Changed: loader will now read loader configuration directly from ``phenomic``
+  section, not in `phenomic.loader` or `phenomic.contentLoader`
+- Removed: `renderer` option from `content-loader` (now `phenomicLoader`).
   See the new `plugins` option below for more information.
   If you want to do the same effect, you can use the following plugins
   ```js
-  import { contentLoader, contentLoaderPlugins } from "phenomic"
+  import { phenomicLoader, phenomicLoaderPlugins } from "phenomic"
 
   // ...
     phenomic: {
-      contentLoader: {
-        // ...
-        plugins: [
-          contentLoaderPlugins.addBodyPropertyFromContent,
-          contentLoaderPlugins.addHeadPropertyFromConfig,
-          contentLoaderPlugins.addHeadPropertyFromContent,
-          contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
-          // contentLoaderPlugins.transformMdBodyPropertyToHtml,
-          // the commented plugin above is the default renderer
-          // here is an example that can be used like the old renderer
-          // method
-          ({ result }) => {
-            // the difference here, is you need to return the entire new
-            // (modified) result. the `body` part is what your are looking     
-            // // for
-            return {
-              ...result,
-              body: doYourThing(result.body),
-            }
+      // ...
+      plugins: [
+        phenomicLoaderPlugins.initHeadPropertyFromConfig
+        phenomicLoaderPlugins.initHeadPropertyFromContent
+        phenomicLoaderPlugins.initBodyPropertyFromContent
+        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent
+        // phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml
+        // the commented plugin above is the default renderer
+        // here is an example that can be used like the old renderer
+        // method
+        ({ result }) => {
+          // the difference here, is you need to return the entire new
+          // (modified) result.
+          // The `body` part is what your are looking for
+          return {
+            ...result,
+            body: doYourThing(result.body),
           }
-          }
-        ]
-      }
+        }
+      ]
     }
-
   ```
 - Removed: `raw` and `rawBody` properties from page data.
   If you want those back, there are plugins ready for you:
   ```js
-  import { contentLoader, contentLoaderPlugins } from "phenomic"
+  import {
+    phenomicLoader,
+    phenomicLoaderPlugins,
+    phenomicLoaderPresets,
+  } from "phenomic"
 
   // ...then in the webpack config
 
     phenomic: {
-      contentLoader: {
-        plugins: [
-          ...contentLoaderDefaultPlugins,
-          contentLoaderPlugins.addRawPropertyFromContent,
-          contentLoaderPlugins.addRawBodyPropertyFromContent,
-        ]
-      }
+      plugins: [
+        ...loaderPresets.default,
+        ...loaderPresets.markdown,
+        phenomicLoaderPlugins.initRawPropertyFromContent,
+        phenomicLoaderPlugins.initRawBodyPropertyFromContent,
+      ]
     }
   ```
   See the new `plugins` option below for more information.
   ([#547](https://github.com/MoOx/phenomic/issues/547) - @MoOx)
-- Added: `plugins` option for the webpack `content-loader`.
+- Added: `plugins` option for the phenomic loader.
   This option allow more flexibility on how to handle and transform
-  input passed to `content-loader`.
+  input passed to it.
   By default, almost the same behavior as before is executed via the following plugins:
 
   ```js
     plugins: [
-      contentLoaderPlugins.addBodyPropertyFromContent,
-      contentLoaderPlugins.addHeadPropertyFromConfig,
-      contentLoaderPlugins.addHeadPropertyFromContent,
-      contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
-      contentLoaderPlugins.transformMdBodyPropertyToHtml,
+      phenomicLoaderPlugins.initHeadPropertyFromConfig,
+      phenomicLoaderPlugins.initHeadPropertyFromContent,
+      phenomicLoaderPlugins.initBodyPropertyFromContent,
+      phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent,
+      phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml,
     ]
   ```
   See the configuration section in the documentation to know more how to customize this.
   If you want just add more plugins for specific behavior (and so keep
-  the default plugins), you can spread `contentLoaderDefaultPlugins` that
-  can be imported from `"phenomic"` package (see example in previous note about `raw` and `rawBody`).
+  the default plugins), you can spread some plugins/presets.
+  (see documentation for more informations).
   ([#260](https://github.com/MoOx/phenomic/issues/260) - @MoOx)
 - Added: ``"phenomic"`` package now exposes new values
-  - ``contentLoader`` (ex "phenomic/lib/content-loader")
-  - ``contentLoaderDefaultPlugins`` (default plugins, handy if you want to add more and still rely on the default ones).
-  - ``contentLoaderPlugins``, the list of all available plugins
+  - ``phenomicLoader`` (ex "phenomic/lib/content-loader")
+  - ``phenomicLoaderPlugins``, the list of all available plugins
+  - ``phenomicLoaderPresets``, that contains ``default`` and ``markdown`` presets
+  (see documentation for more informations).
+  (@MoOx)
 
 
 ## Boilerplate
@@ -83,7 +92,7 @@
 - Changed: (boilerplate) LayoutContainer now import global CSS first
   ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
 - Changed: (boilerplate) `content-loader` reference is now in a variable
-  that can be imported (`import { contentLoader } from "phenomic"`)
+  that can be imported (`import { phenomicLoader } from "phenomic"`)
   (@MoOx)
 
 # 0.15.0 - 2016-07-13

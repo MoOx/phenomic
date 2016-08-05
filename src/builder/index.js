@@ -8,7 +8,7 @@ import webpack from "./webpack"
 import sortAssets from "./webpack/sortAssets"
 import devServer from "./server"
 
-import collection from "../content-loader/cache"
+import collection from "../phenomic-loader/cache"
 
 import webpackConfigBrowser from "./webpack/config.browser.js"
 import webpackConfigNode from "./webpack/config.node.js"

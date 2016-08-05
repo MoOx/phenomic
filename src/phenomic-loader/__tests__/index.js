@@ -5,7 +5,7 @@ import { sync as rimraf } from "rimraf"
 const outputPath = __dirname + "/output/"
 rimraf(outputPath)
 
-test.cb("content-loader", (t) => {
+test.cb("phenomic loader", (t) => {
   webpack(
     {
       module: {
@@ -91,7 +91,7 @@ test.cb("content-loader", (t) => {
   )
 })
 
-test.cb("content-loader can be used with plugins", (t) => {
+test.cb("phenomic loader can be used with plugins", (t) => {
   webpack(
     {
       module: {
@@ -104,13 +104,11 @@ test.cb("content-loader can be used with plugins", (t) => {
         ],
       },
       phenomic: {
-        contentLoader: {
-          plugins: [
-            () => {
-              return { test: "dumb" }
-            },
-          ],
-        },
+        plugins: [
+          () => {
+            return { test: "dumb" }
+          },
+        ],
       },
       resolve: { extensions: [ "" ] },
       entry: __dirname + "/fixtures/script.js",

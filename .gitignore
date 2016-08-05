@@ -13,7 +13,7 @@ coverage
 lib
 
 # some tests output some files
-src/content-loader/__tests__/output/
+src/phenomic-loader/__tests__/output/
 
 # tests results
 **/__tests__/_output*

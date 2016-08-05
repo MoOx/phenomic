@@ -1,6 +1,8 @@
+// @flow
+
 import remark from "remark"
 import stripMd from "strip-markdown"
-import { prune }  from "underscore.string"
+import prune from "./prune"
 
 const defaultOpts = {
   pruneLength: 140,
@@ -12,7 +14,7 @@ function description(text, opts = {}) {
 
   if (opts.pruneLength === 0) {
     console.warn(
-      "You defined 'description.pruneLength' of content-loader " +
+      "You defined 'description.pruneLength' of phenomic loader " +
       "with an zero value. This does not make sense, " +
       `so the default value ${ defaultOpts.pruneLength } has been used.`
     )
@@ -34,14 +36,12 @@ function description(text, opts = {}) {
   )
 }
 
-// @flow
-
 export default (
   {
     result,
     frontMatter,
     options,
-  }: PhenomicContentLoaderPluginInput
+  }: PhenomicLoaderPluginInput
 ): PhenomicCollectionItem => {
   if (result.head && result.head.description) {
     return result
@@ -54,3 +54,4 @@ export default (
     },
   }
 }
+

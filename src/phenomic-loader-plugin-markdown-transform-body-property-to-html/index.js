@@ -1,3 +1,5 @@
+// @flow
+
 import remark from "remark"
 import slug from "remark-slug"
 import autoLinkHeadings from "remark-autolink-headings"
@@ -33,10 +35,11 @@ function mdify(text) {
 export default (
   {
     result,
-  }: PhenomicContentLoaderPluginInput
+  }: PhenomicLoaderPluginInput
 ): PhenomicCollectionItem => {
   return {
     ...result,
     body: mdify(result.body),
   }
 }
+

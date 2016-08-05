@@ -129,7 +129,7 @@ _Be sure to check out the [webpack documentation](http://webpack.github.io/docs/
 Keep in mind that Phenomic will add some pieces to the final webpack
 configuration to fit its requirements.
 
-### ``content-loader``
+### ``loader``
 
 One particular piece of the webpack configuration is important for Phenomic.
 The section that defines a loader for ``.md`` files (or any other text format)
@@ -137,18 +137,18 @@ is crucial (in the default boilerplate, it's the first loader) :
 
 - it allows you to control what text engine to use
   (default to Markdown using [remark](http://remark.js.org/)
-  using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/content-loader-plugins/transform-md-body-property-to-html/index.js))
+  using a solid [default](https://github.com/MoOx/phenomic/blob/master/src/phenomic-loader-plugin-markdown-transform-body-property-to-html/index.js))
   and will generate JSON files, that will be consumed for the front-end,
 - it allows you to generate some RSS feeds
 
-There are two ways to send options to the ``content-loader``:
+There are two ways to send options to the ``loader``:
 
 - use webpack loader ``query`` option (_not recommended_, see below)
-- use a ``phenomic.contentLoader`` section in webpack configuration.
+- use a ``phenomic`` section in webpack configuration.
 
 **The last method is recommended because ``query`` cannot contains (and ignores
 without warnings) things that are not JSON (eg: functions).**
-And to use a custom renderer, you might need to use a function.
+And to use plugins (eg: custom renderer), you might need to use a function.
 
 
 Here is a commented part of a webpack configuration that use all options
@@ -157,7 +157,7 @@ Here is a commented part of a webpack configuration that use all options
 //...
 
 import pkg from "./package.json"
-import { contentLoader, contentLoaderPlugins } from "phenomic"
+import { phenomicLoader, phenomicLoaderPlugins } from "phenomic"
 
 export const makeConfig = (config = {}) => {
   return {
@@ -166,7 +166,7 @@ export const makeConfig = (config = {}) => {
       loaders: [
         {
           test: /\.md$/,
-          loader: contentLoader,
+          loader: phenomicLoader,
 
           // you can also define options here, but functions will be silently
           // ignored because how webpack works
@@ -179,56 +179,53 @@ export const makeConfig = (config = {}) => {
     },
 
     phenomic: {
-      contentLoader: {
+      // the context where to read .md to
+      context: path.join(__dirname, config.source),
 
-        // the context where to read .md to
-        context: path.join(__dirname, config.source),
+      // below are the default values,
+      //
+      plugins: [
+        phenomicLoaderPlugins.initHeadPropertyFromConfig,
+        phenomicLoaderPlugins.initHeadPropertyFromContent,
+        phenomicLoaderPlugins.initBodyPropertyFromContent,
+        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent,
+        phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml,
+        // here you can add/replace any function you want
+        // for examples, see
+        // https://github.com/MoOx/phenomic/blob/master/src/
+        // eg: if you need the raw file content in your pages,
+        // you can add the following plugin that will add a `raw` property
+        // phenomicLoaderPlugins.addRawProperty,
+        // if you want raw body (text content without the front-matter)
+        // you can add the following plugin that will add a `rawBody` property
+        // phenomicLoaderPlugins.addRawBodyProperty,
+      ]
 
-        // below are the default values,
-        //
-        plugins: [
-          contentLoaderPlugins.addBodyPropertyFromContent,
-          contentLoaderPlugins.addHeadPropertyFromConfig,
-          contentLoaderPlugins.addHeadPropertyFromContent,
-          contentLoaderPlugins.addHeadDescriptionPropertyFromMdContent,
-          contentLoaderPlugins.transformMdBodyPropertyToHtml,
-          // here you can add/replace any function you want
-          // for examples, see
-          //  https://github.com/MoOx/phenomic/blob/master/src/content-loader-plugins/
-          // eg: if you need the raw file content in your pages,
-          // you can add the following plugin that will add a `raw` property
-          // contentLoaderPlugins.addRawPropertyFromContent,
-          // if you want raw body (text content without the front-matter)
-          // you can add the following plugin that will add a `rawBody` property
-          // contentLoaderPlugins.addRawBodyPropertyFromContent,
-        ]
+      // default values for `head`
+      // this value can be defined and used by the plugin
+      // initHeadPropertyFromConfig
+      defaultHead: {
+        layout: "Post",
+        comments: true,
+      }
 
-        // default values for `head`
-        // this value can be defined and used by the plugin
-        // addHeadPropertyFromConfig
-        defaultHead: {
-          layout: "Post",
-          comments: true,
-        }
+      // RSS global options
+      feedsOptions: {
+        title: pkg.name,
+        site_url: pkg.homepage,
+      },
 
-        // RSS global options
-        feedsOptions: {
-          title: pkg.name,
-          site_url: pkg.homepage,
-        },
-
-        feeds: {
-          // RSS
-          "feed.xml": {
-            collectionOptions: {
-              // here, you can filter using
-              // phenomic/lib/enhance-collection API
-              // see /docs/usage/collections/
-              filter: { layout: "Post" },
-              sort: "date",
-              reverse: true,
-              limit: 20,
-            },
+      feeds: {
+        // RSS
+        "feed.xml": {
+          collectionOptions: {
+            // here, you can filter using
+            // phenomic/lib/enhance-collection API
+            // see /docs/usage/collections/
+            filter: { layout: "Post" },
+            sort: "date",
+            reverse: true,
+            limit: 20,
           },
         },
       },

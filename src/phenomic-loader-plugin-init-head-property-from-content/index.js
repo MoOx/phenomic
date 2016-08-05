@@ -4,7 +4,7 @@ export default (
   {
     result,
     frontMatter,
-  }: PhenomicContentLoaderPluginInput
+  }: PhenomicLoaderPluginInput
 ): PhenomicCollectionItem => {
   return {
     ...result,
@@ -18,3 +18,4 @@ export default (
     },
   }
 }
+

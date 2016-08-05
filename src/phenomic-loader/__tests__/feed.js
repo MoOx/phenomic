@@ -2,7 +2,7 @@ import test from "ava"
 
 import feed from "../feed"
 
-test("phenomic/lib/content-loader feed helper", (t) => {
+test("phenomic loader feed helper", (t) => {
 
   const feedXML = feed({
     feedOptions: {

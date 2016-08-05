@@ -4,10 +4,11 @@ export default (
   {
     result,
     frontMatter,
-  }: PhenomicContentLoaderPluginInput
+  }: PhenomicLoaderPluginInput
 ): PhenomicCollectionItem => {
   return {
     ...result,
-    raw: frontMatter.orig,
+    body: frontMatter.content,
   }
 }
+
