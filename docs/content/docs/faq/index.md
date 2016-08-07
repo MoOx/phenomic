@@ -8,4 +8,4 @@ title: Phenomic FAQ
 
 ## [I have a weird warning "[BABEL] Note: The code generator has deoptimised the styling of ..."](babel/)
 
-## [I have a React warning about invalid checksum, what is wrong with my code?](react/)
+## [I have a React warning about an invalid checksum, what is wrong with my code?](react/)

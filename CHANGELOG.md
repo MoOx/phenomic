@@ -1,3 +1,68 @@
+# HEAD
+
+# 0.15.0 - 2016-07-13
+
+## tl;dr;
+
+- ``offline`` option has been rewritten. If you were using `offline: true`, you
+  don't need to change anything, you will just have few bug fixes and a change
+  to "network" first approach.
+  Otherwise, please check details below and/or the online documentation.
+  We hope you will enjoy this nice API!
+- default port is now 3333 in development
+- remark has been updated to 5.x version
+- boilerplate got some updates, mainly for stylelint
+
+## Details
+
+- Removed: ``appcache`` option has now completely being removed in favor of
+  ``offline`` (after being deprecated in 0.11.0). See new API below.
+- Changed: Offline option has been completely rewritten.
+  Service Worker now uses a network first approach.
+  This is to prevent having an outdated collection that will lead to request
+  outdated entries urls that might not exist anymore (and that have not been
+  cached yet, see [#451](https://github.com/MoOx/phenomic/issues/451)).
+  This is for the better.
+  By the way, we now rely on
+  [offline-plugin](https://github.com/NekR/offline-plugin)
+  to generate Service Worker and Appcache files.
+  The part that registers the Service Worker is now included in the client
+  bundle.
+  **Note that for a better caching, the default boilerplate now use ``[hash]``
+  in the filenames loaded via ``file-loader``.**
+  We encourage you to do the same by using a parameter like
+  ``loader: "file-loader?name=[path][name].[hash].[ext] // ...``.
+  Offline API is now much more flexible and clear to setup thanks to the new
+  ``cachePatterns``.
+  Here is an example of the new ``offline`` option:
+
+  ```js
+  {
+    serviceWorker: true,
+    appcache: {
+      // fallback for SW, will cache onInstall and afterInstall pattern.
+      // onDemand cannot be cache with appcache.
+      onInstall: true,
+      afterInstall: true,
+    },
+    cachePatterns: {
+      onInstall: [ "/", "phenomic.*" ], // cache App Shell on SW install
+
+      afterInstall: [ "**", ":assets:" ], // cache all content
+
+      onDemand: [ ], // since everything is cached by default (if offline: true)
+      // you don't need to cache anything on demand.
+      // but this option offers you a lot of flexibility, see documentation
+      // for more examples
+
+      excludes: [ "**/.*", "**/*.map", "**/*.html" ], // excludes useless files
+    },
+  }
+  ```
+
+  Using ``offline: true`` will use the configuration above. To know more about
+  this option and all the possibility you have, please read the documentation.
+  ([#485](https://github.com/MoOx/phenomic/issues/485) - @MoOx)
 - Changed: ``remark`` has been updated to ``^5.0.0``.
   This is a breaking change and since (for now) remark
   [is still a dependency](https://github.com/MoOx/phenomic/issues/251),
@@ -35,6 +100,8 @@
   (@MoOx)
 - Changed: ``stylelint-config-standard`` has been updated to ``^10.0.0``
   (@MoOx)
+- Changed: making date structure obvious in examples posts frontmatter.
+  ([#559](https://github.com/MoOx/phenomic/issues/559) - @MoOx)
 
 # 0.14.2 - 2016-06-12
 

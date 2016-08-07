@@ -33,7 +33,7 @@ Several constants are exposed (injected) in your JavaScript code in
 
 #### ``PageContainer``
 
-Component to define and declares all pages layouts.
+Component to define and declare all pages layouts.
 
 ```js
 import PageContainer from "phenomic/lib/PageContainer"

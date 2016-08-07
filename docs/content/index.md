@@ -8,7 +8,7 @@ layout: Homepage
 
 - Ask questions on [the support chat](https://gitter.im/MoOx/phenomic),
 - [Open an issue](https://github.com/MoOx/phenomic/issues/new)
-  when you think you find a bug or want to discuss about features or enhancements.
+  when you think you found a bug or want to discuss about features or enhancements.
 
 ---
 

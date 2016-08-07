@@ -27,7 +27,7 @@ create your own pages from plain React components; Phenomic is just a helper.
     (eg: webpack loaders to add your favorite css preprocessor)
   * run the dev server (`(babel-)node build --server --dev`)
   * build the static version for production (`(babel-)node build --static --production`)
-  
+
 Optionally, you can:
 
 * write or reuse [React components](http://react-components.com/)

@@ -1,6 +1,7 @@
 import test from "ava"
 
 import config, { testConfig } from ".."
+import { defaultOfflineConfig } from "../validators/offline.js"
 
 test("should default to false for 'offline' option", (t) => {
   t.is(
@@ -12,11 +13,7 @@ test("should default to false for 'offline' option", (t) => {
 test("should provide default offlineConfig when 'offline' = true", (t) => {
   t.deepEqual(
     testConfig({ offline: true }).offlineConfig,
-    {
-      serviceWorker: true,
-      appcache: true,
-      pattern: [ "**", "!**/*.html", "index.html" ],
-    }
+    defaultOfflineConfig
   )
 })
 
@@ -37,7 +34,8 @@ test("should warn if serviceWorker is true with http", (t) => {
   global.console.warn = warn
 })
 
-test("should ONLY accept boolean for 'appcache' and 'serviceWorker'", (t) => {
+test("should not accept invalid types for 'appcache' and 'serviceWorker'",
+(t) => {
   t.throws(() => {
     testConfig({
       offline: {
@@ -46,96 +44,116 @@ test("should ONLY accept boolean for 'appcache' and 'serviceWorker'", (t) => {
       },
     })
   },
-  (error) => error.message.includes(
-    "- You provided an 'string' for 'phenomic.offline.appcache' " +
-    "option. This option accepts a boolean value.\n" +
-    "- You provided an 'number' for " +
-    "'phenomic.offline.serviceWorker' option. " +
-    "This option accepts a boolean value."
+  (error) => (
+    error.message.includes(
+      "- You provided an incorrect type ('string') " +
+      "for 'phenomic.offline.appcache' option."
+    ) &&
+    error.message.includes(
+      "- You provided an incorrect type ('number') " +
+      "for 'phenomic.offline.serviceWorker' option."
+    )
   ))
 })
 
-test("should accept string for 'pattern' option", (t) => {
-  t.deepEqual(
-    testConfig({
-      offline: {
-        pattern: "foo",
-      },
-    }).offlineConfig.pattern,
-    [ "foo" ]
-  )
-})
-
-test("should accept array for 'pattern' option", (t) => {
-  t.deepEqual(
-    testConfig({
-      offline: {
-        pattern: [ "foo", "bar" ],
-      },
-    }).offlineConfig.pattern,
-    [ "foo", "bar" ]
-  )
-})
-
-test("should NOT accept boolean, null, undefined for 'pattern' option", (t) => {
+test("should not accept invalid types or missing key",
+(t) => {
   t.throws(() => {
     testConfig({
       offline: {
-        pattern: false,
+        appcache: {
+          test: "wat",
+        },
       },
     })
   },
-  (error) => error.message.includes(
-    "You provided an 'boolean' for 'phenomic.offline.pattern'"
-  ))
-  t.throws(() => {
-    testConfig({
-      offline: {
-        pattern: null,
-      },
-    })
-  },
-  (error) => error.message.includes(
-    "You provided an 'object' for 'phenomic.offline.pattern'"
-  ))
-  t.throws(() => {
-    testConfig({
-      offline: {
-        pattern: undefined,
-      },
-    })
-  },
-  (error) => error.message.includes(
-    "You provided an 'undefined' for 'phenomic.offline.pattern'"
-  ))
-  t.throws(() => {
-    testConfig({
-      offline: {
-        pattern: undefined,
-      },
-    })
-  },
-  (error) => error.message.includes(
-    "You provided an 'undefined' for 'phenomic.offline.pattern'"
+  (error) => (
+    error.message.includes(
+      "You provided some key(s)for 'phenomic.offline.appcache' "+
+      "option that are not recognized (test)"
+    ) &&
+    error.message.includes(
+      "- You provided an incorrect type ('undefined') "+
+      "for 'phenomic.offline.serviceWorker' option."
+    ) &&
+    error.message.includes(
+      "- You provided an incorrect type ('undefined') "+
+      "for 'phenomic.offline.cachePatterns' option."
+    )
   ))
 })
 
-// belows are deprecated
-test("should fallback to config.offline = true when set appcache", (t) => {
-  t.true(testConfig({ appcache: true }).offline)
-  t.true(testConfig({ appcache: "foo" }).offline)
-  t.true(testConfig({ appcache: [ "foo" ] }).offline)
-})
-
-test("should throw when define both appcache and offline option", (t) => {
+test("should not accept string for 'cachePatterns' option", (t) => {
   t.throws(() => {
     testConfig({
-      appcache: true,
-      offline: true,
+      offline: {
+        appcache: true,
+        serviceWorker: true,
+        cachePatterns: "foo",
+      },
     })
   },
-  (error) => error.message.includes(
-    "phenomic.appcache option was replaced by phenomic.offline option. " +
-    " You can't define both of them at the same time."
+  (error) => (
+    error.message.includes(
+      "- You provided an incorrect type ('string') "+
+      "for 'phenomic.offline.cachePatterns' option."
+    )
   ))
+})
+
+test("should not accept any keys for the patterns option", (t) => {
+  t.throws(() => {
+    testConfig({
+      offline: {
+        appcache: true,
+        serviceWorker: true,
+        cachePatterns: {
+          lol: "wat",
+        },
+      },
+    })
+  },
+  (error) => (
+    error.message.includes(
+      "- You provided some key(s) for 'phenomic.offline.cachePatterns' " +
+      "option that are not recognized or with incorrect types (lol). " +
+      "This option accepts a object with with 4 keys: "+
+      "onInstall, afterInstall, onDemand, excludes " +
+      "that accept array of glob patterns."
+    )
+  ))
+})
+
+test("should not accept any keys for the patterns option", (t) => {
+  t.throws(() => {
+    testConfig({
+      offline: {
+        appcache: true,
+        serviceWorker: true,
+        cachePatterns: {
+          onInstall: "wat",
+        },
+      },
+    })
+  },
+  (error) => (
+    error.message.includes(
+      "- You provided some key(s) for 'phenomic.offline.cachePatterns' " +
+      "option that are not recognized or with incorrect types (onInstall). "
+    )
+  ))
+})
+
+test("should accept correct patterns option", (t) => {
+  t.notThrows(() => {
+    testConfig({
+      offline: {
+        appcache: true,
+        serviceWorker: true,
+        cachePatterns: {
+          onInstall: [ "wat" ],
+        },
+      },
+    })
+  })
 })

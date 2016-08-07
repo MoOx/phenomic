@@ -1,6 +1,6 @@
 {
   "name": "phenomic",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",
@@ -49,13 +49,14 @@
     "find-cache-dir": "^0.1.1",
     "fs-extra": "^0.26.4",
     "fs-promise": "^0.3.1",
-    "globby": "^5.0.0",
+    "globby": "^6.0.0",
     "gray-matter": "^2.0.0",
     "inquirer": "^1.0.0",
     "loader-utils": "^0.2.11",
     "lodash.template": "^4.2.2",
     "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
+    "offline-plugin": "^3.4.1",
     "opn": "^4.0.2",
     "pify": "^2.3.0",
     "portfinder": "^1.0.2",
@@ -81,7 +82,7 @@
     "yargs": "^4.3.1"
   },
   "devDependencies": {
-    "ava": "^0.15.1",
+    "ava": "^0.16.0",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-eslint": "^6.0.0-beta.0",
@@ -174,7 +175,8 @@
     "lint:css": "stylelint \"+(boilerplate|docs)/web_modules/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "ava",
-    "integration-tests": "ava __tests__/*.js",
+    "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
+    "integration-tests": "ava __tests__/index.js && ava __tests__/cli.js",
     "pretest-boilerplate": "npm run transpile",
     "test-boilerplate": "babel-node scripts/test-boilerplate.js",
     "posttest-boilerplate": "npm run integration-tests",

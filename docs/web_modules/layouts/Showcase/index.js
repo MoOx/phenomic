@@ -50,7 +50,7 @@ const Showcase = (props) => {
         </ul>
         <p style={ { marginTop: "4rem" } }>
           {
-            "To add your own, you just need to "
+            "To add your own you just need to "
           }
           <EditThisPage filename={ props.__filename } />
         </p>

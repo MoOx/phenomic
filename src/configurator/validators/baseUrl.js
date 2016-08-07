@@ -1,5 +1,6 @@
 // @flow
-import { parse, format } from "url"
+import { parse } from "url"
+import normalizeBaseUrl from "../../_utils/normalize-base-url/index.js"
 
 export default function(
   { pkg, config }: { pkg: Object, config: PhenomicConfig }
@@ -14,18 +15,7 @@ export default function(
       pathname: prodBaseUrl.path ? prodBaseUrl.path : "/",
     }
 
-  // ensure trailing slash
-  if (
-    config.baseUrl.pathname &&
-    !config.baseUrl.pathname.endsWith("/")
-  ) {
-    config.baseUrl.pathname = config.baseUrl.pathname + "/"
-  }
-
-  // update config.baseUrl.href since pathname has been updated
-  // the usage of the spread operator is to avoid having the "magic" Object
-  // returned by node (eg: make assertions difficult)
-  config.baseUrl = { ... parse(format(config.baseUrl)) }
+  config.baseUrl = normalizeBaseUrl(config.baseUrl)
 
   // Set basename to process.env for universal usage
   process.env.PHENOMIC_USER_PATHNAME = config.baseUrl.pathname
