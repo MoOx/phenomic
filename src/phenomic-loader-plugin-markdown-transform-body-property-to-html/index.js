@@ -1,11 +1,13 @@
+// @flow
+
 import remark from "remark"
 import slug from "remark-slug"
 import autoLinkHeadings from "remark-autolink-headings"
 import highlight from "remark-highlight.js"
 import html from "remark-html"
 
-export default (text) => (
-  remark()
+function mdify(text) {
+  return remark()
     // https://github.com/wooorm/remark-slug
     .use(slug)
 
@@ -28,4 +30,16 @@ export default (text) => (
       commonmark: true,
     })
     .toString()
-)
+}
+
+export default (
+  {
+    result,
+  }: PhenomicLoaderPluginInput
+): PhenomicCollectionItem => {
+  return {
+    ...result,
+    body: mdify(result.body),
+  }
+}
+

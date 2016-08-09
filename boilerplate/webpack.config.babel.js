@@ -2,6 +2,7 @@ import path from "path"
 
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
+import { phenomicLoader } from "phenomic"
 
 import pkg from "./package.json"
 
@@ -17,14 +18,13 @@ export const makeConfig = (config = {}) => {
     module: {
       noParse: /\.min\.js/,
       loaders: [
-
         // *.md => consumed via phenomic special webpack loader
         // allow to generate collection and rss feed.
         {
           // phenomic requirement
           test: /\.md$/,
-          loader: "phenomic/lib/content-loader",
-          // config is in phenomic.contentLoader section below
+          loader: phenomicLoader,
+          // config is in `phenomic` section later in the file
           // so you can use functions (and not just JSON) due to a restriction
           // of webpack that serialize/deserialize loader `query` option.
         },
@@ -126,21 +126,20 @@ export const makeConfig = (config = {}) => {
     },
 
     phenomic: {
-      contentLoader: {
-        context: path.join(__dirname, config.source),
-        // renderer: (text) => html
-        feedsOptions: {
-          title: pkg.name,
-          site_url: pkg.homepage,
-        },
-        feeds: {
-          "feed.xml": {
-            collectionOptions: {
-              filter: { layout: "Post" },
-              sort: "date",
-              reverse: true,
-              limit: 20,
-            },
+      context: path.join(__dirname, config.source),
+      // plugins: [ ...phenomicLoaderPresets.markdown ]
+      // see https://phenomic.io/docs/usage/plugins/
+      feedsOptions: {
+        title: pkg.name,
+        site_url: pkg.homepage,
+      },
+      feeds: {
+        "feed.xml": {
+          collectionOptions: {
+            filter: { layout: "Post" },
+            sort: "date",
+            reverse: true,
+            limit: 20,
           },
         },
       },

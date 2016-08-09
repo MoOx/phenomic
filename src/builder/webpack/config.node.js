@@ -36,7 +36,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ],
 
       // we need this to be the same between the entire node runtime
-      "phenomic/lib/content-loader/cache",
+      "phenomic/lib/phenomic-loader/cache",
     ],
 
     // sourcemaps

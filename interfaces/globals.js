@@ -1,5 +1,3 @@
-declare function cwd(): string;
-
 declare var process: {
   env: {
     NODE_ENV? : "production",
@@ -10,11 +8,26 @@ declare var process: {
     PHENOMIC_HOMEPAGE: string,
     PHENOMIC_REPOSITORY: string,
   },
-  cwd: cwd,
+  cwd: () => string,
   agrv: Array<string>,
 }
 
 declare var window: {
   __COLLECTION__: PhenomicCollection,
   location: Object,
+}
+
+export type Url = {
+  href: string,
+  protocol?: string,
+  slashes?: boolean,
+  host?: string,
+  auth?: string,
+  hostname?: string,
+  port?: string,
+  pathname?: string,
+  search?: string,
+  path?: string,
+  query?: Object,
+  hash?: string,
 }

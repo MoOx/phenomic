@@ -14,7 +14,7 @@ layout: Homepage
 
 ## Easy to use
 
-Write your content in [Markdown](https://en.wikipedia.org/wiki/Markdown) files.
+Write your content in [Markdown](https://en.wikipedia.org/wiki/Markdown) files (or any other text format) or directly in React.
 Implement your design with JavaScript files, using [React](http://facebook.github.io/react/).
 
 **No template language to learn. Just JavaScript** (and JSX if you like it).

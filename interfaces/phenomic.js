@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-
-type PromiseAction = {
+export type PromiseAction = {
   types: Array<string>,
   page: string,
-  promise: Promise,
+  promise: Promise<any>,
 }
 
-type PhenomicCollectionItem = {
+export type PhenomicCollectionItem = {
   head: Object,
   body: string,
   __filename: string,
@@ -15,16 +13,16 @@ type PhenomicCollectionItem = {
   __dataUrl: string,
 }
 
-type PhenomicCollection = Array<PhenomicCollectionItem>
+export type PhenomicCollection = Array<PhenomicCollectionItem>
 
-type PhenomicMinifiedCollection = Array<Object>
+export type PhenomicMinifiedCollection = Array<Object>
 
-type PhenomicAssetsConfig = {
+export type PhenomicAssetsConfig = {
   route: string,
   path: string,
 }
 
-type PhenomicOfflineConfig = {
+export type PhenomicOfflineConfig = {
   serviceWorker: boolean,
   appcache: {
     onInstall?: boolean,
@@ -39,11 +37,8 @@ type PhenomicOfflineConfig = {
   },
 }
 
-// @todo enhance this type
-type WebpackConfig = Object
-
 // Configs generated from configurator
-type PhenomicConfig = {
+export type PhenomicConfig = {
   cwd: string,
   source: string,
   destination: string,
@@ -67,17 +62,14 @@ type PhenomicConfig = {
   webpackConfigNode?: WebpackConfig,
 }
 
-type Url = {
-  href: string,
-  protocol?: string,
-  slashes?: boolean,
-  host?: string,
-  auth?: string,
-  hostname?: string,
-  port?: string,
-  pathname?: string,
-  search?: string,
-  path?: string,
-  query?: Object,
-  hash?: string,
+export type PhenomicLoaderOptions = {}
+
+export type PhenomicLoaderPluginInput = {
+  frontMatter: GrayMatterResult,
+  result: PhenomicCollectionItem,
+  options: PhenomicLoaderOptions,
 }
+
+export type PhenomicLoaderPlugin = (
+  obj: PhenomicLoaderPluginInput
+) => PhenomicCollectionItem
