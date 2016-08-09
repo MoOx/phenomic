@@ -66,22 +66,27 @@ blockquote {
 
 pre {
   margin: 1rem 0;
-  padding: 1rem;
 
   font-size: 1rem;
   line-height: 1.5rem;
-  font-weight: 400;
-
-  border: 1px solid #ddd;
-  border-radius: 0.3em;
-  background: color(#fafafa a(0.6));
 
   overflow: auto;
   max-width: calc(100vw - 4rem);
 }
 
 code {
+  padding: 0 .25rem;
+
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+  background: color(#fafafa a(0.6));
+
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+pre > code {
+  display: block;
+  padding: 1rem;
 }
 
 /*
