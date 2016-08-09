@@ -11,7 +11,6 @@ const EditThisPage = (props) => {
         "docs/content/" + // phenomic docs specificity
         props.filename
       }
-      style={ { color: "#08b09b" } }
     >
       { "Edit this page" }
     </a>
