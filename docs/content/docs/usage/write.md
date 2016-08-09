@@ -6,7 +6,7 @@ incomplete: true
 You can write your files using any text based language like
 [Markdown](https://en.wikipedia.org/wiki/Markdown),
 [AsciiDoc](https://en.wikipedia.org/wiki/AsciiDoc),
-[Textile](https://en.wikipedia.org/wiki/Textile_(markup_language)).
+[Textile](https://en.wikipedia.org/wiki/Textile_(markup_language)),
 [Txt2tags](https://en.wikipedia.org/wiki/Txt2tags) or
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX).
 
@@ -15,6 +15,9 @@ See [Configuration](../configuration/) to specify your own engine.
 
 One common thing that text files will require is front matter that
 contains some metadata about the content.
+
+If you need specific need, check out the [plugins](../plugins/) section of
+the documentation.
 
 ## Front matter
 

@@ -10,6 +10,28 @@ consumed by the ``phenomicLoader``.
 A plugin is just a function that accepts some parameters and that must return
 a modified collection item that will be added to the collection.
 
+The idea is to work on this kind of object:
+
+```js
+{
+  // front-matter data
+  head: {
+    title: "Phenomic Is Using React, You'll Never Guess What Happened Next!",
+    date: "2016-12-31",
+    clickbait: true,
+  },
+  // content of the file below the front-matter
+  body: "React means the website is not static, but dynamic! Blah blah [...]",
+}
+```
+
+Plugin might be used to transform the content depending on its format(
+[Markdown](https://en.wikipedia.org/wiki/Markdown),
+[AsciiDoc](https://en.wikipedia.org/wiki/AsciiDoc),
+[Textile](https://en.wikipedia.org/wiki/Textile_(markup_language)).
+[Txt2tags](https://en.wikipedia.org/wiki/Txt2tags)
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX).)
+
 See the last section to know how to write a plugin (spoiler: it's easy).
 
 ## Existing Plugins
@@ -22,7 +44,7 @@ import { phenomicLoaderPlugins } from "phenomic"
 phenomicLoaderPlugins.[camelCasedNameOfThePlugin]
 // eg: phenomic-loader-plugin-init-body-property-from-content
 // will be accessible under
-// phenomicLoaderPlugins.initHeadPropertyFromConfig
+// phenomicLoaderPlugins.initBodyPropertyFromContent
 ```
 
 *This might change if phenomic is split into multiple packages.*
@@ -73,7 +95,7 @@ This plugin initializes a ``description`` property in the ``head``, based on the
 content accessible below the front-matter.
 This plugin assumes your content is markdown and will try to strip the markdown
 in order to offer raw text, handy for meta description, content preview etc.
-By default will strip to 140 characters (but it cut into the middle of a word).
+By default will strip to 140 characters (but it won't cut into the middle of a word).
 You can pass options to ``phenomic`` section in webpack configuration.
 
 ```
@@ -124,7 +146,7 @@ Phenomic provides the following presets:
 - ``phenomic-loader-plugin-init-head-property-from-content``
 - ``phenomic-loader-plugin-init-body-property-from-content``
 
-This preset is kind of the phenomic default requirement.
+🛠 This preset is kind of the phenomic default requirement.
 Use it if you want to use classic files with a front-matter and any text format.
 **Feel free to take a look to markdown preset to implement your own engine!**
 
@@ -134,7 +156,7 @@ Use it if you want to use classic files with a front-matter and any text format.
 - ``phenomic-loader-plugin-markdown-init-head.description-property-from-content``
 - ``phenomic-loader-plugin-markdown-transform-body-property-to-html``
 
-This preset is the one used by default in Phenomic. It allows you to consume
+❤️ This preset is the one used by default in Phenomic. It allows you to consume
 common markdown files that have a front-matter out of the box.
 
 ## Consuming plugins
