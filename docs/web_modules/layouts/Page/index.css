@@ -1,3 +1,8 @@
+.title,
+.subtitle {
+  font-weight: 400;
+}
+
 .callout {
   display: flex;
   flex-direction: column;
