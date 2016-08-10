@@ -35,7 +35,7 @@ the ``repository`` url of your ``package.json``).
 
 You can paste it under ``./scripts/deploy.sh``.
 
-### OS X / Linux
+### macOS / Linux
 
 ```bash
 #!/usr/bin/env bash

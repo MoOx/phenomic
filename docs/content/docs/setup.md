@@ -8,15 +8,14 @@ We recommend you to use [nvm](https://github.com/creationix/nvm) to manage
 different versions of node.
 
 **A minimal boilerplate is required, in order to provide you some
-flexibility.**
+flexibility.** But don't worry, a command will set it up for you.
 
 ## One command setup
 
-_Note: we recommend you to read the [detailed setup](#detailed-setup)
-if you are new to Phenomic._
+🚀 With those instructions, you should have a new clean project, that will
+magically open itself in your browser!
 
-
-### OS X / Linux
+### macOS / Linux
 
 ```console
 $ DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
@@ -29,6 +28,15 @@ npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 > SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
 npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 ```
+
+If you have questions on "why is the setup command so long", you will find
+answer below 😉.
+
+🚀 **When you get the hello world, it's time to take a look to our
+[Getting Started](getting-started/) page and to [start hacking!](../usage/).**
+
+
+---
 
 ## Detailed setup
 
@@ -127,4 +135,7 @@ configuration and run the development mode.
 Now just wait for your browser to show up (yes this development mode should open
 your development server in your favorite browser).
 
-When you get the hello world, you will be able to [start hacking!](../usage/)
+---
+
+🚀 **When you get the hello world, it's time to take a look to our
+[Getting Started](getting-started/) page and to [start hacking!](../usage/).**

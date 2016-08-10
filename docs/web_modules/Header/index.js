@@ -21,6 +21,7 @@ const totalLink = 7 + 1 // + 1 to avoid the real green, too light
 class Header extends Component {
 
   render() {
+    let i = 1
     return (
       <header className={ styles.header }>
         <Content>
@@ -51,7 +52,8 @@ class Header extends Component {
             <div className={ styles.internal }>
             <Link
               style={ {
-                color: green.clone().mix(blue, (1-1) / totalLink).rgbString(),
+                color:
+                  green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               } }
               className={ styles.link }
               activeClassName={ styles.linkActive }
@@ -61,7 +63,19 @@ class Header extends Component {
             </Link>
             <Link
               style={ {
-                color: green.clone().mix(blue, (2-1) / totalLink).rgbString(),
+                color:
+                  green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
+              } }
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/docs/getting-started/"
+            >
+              { "Getting Started" }
+            </Link>
+            <Link
+              style={ {
+                color:
+                  green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               } }
               className={ styles.link }
               activeClassName={ styles.linkActive }
@@ -71,7 +85,8 @@ class Header extends Component {
             </Link>
             <Link
               style={ {
-                color: green.clone().mix(blue, (3-1) / totalLink).rgbString(),
+                color:
+                  green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               } }
               className={ styles.link }
               activeClassName={ styles.linkActive }
@@ -81,7 +96,8 @@ class Header extends Component {
             </Link>
             <Link
               style={ {
-                color: green.clone().mix(blue, (4-1) / totalLink).rgbString(),
+                color:
+                  green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               } }
               className={ styles.link }
               activeClassName={ styles.linkActive }
@@ -93,7 +109,8 @@ class Header extends Component {
             <div className={ styles.internal }>
               <a
                 style={ {
-                  color: green.clone().mix(blue, (5-1) / totalLink).rgbString(),
+                  color:
+                    green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
                 } }
                 className={ styles.link }
                 href={ "https://gitter.im/MoOx/phenomic" }
@@ -109,7 +126,8 @@ class Header extends Component {
               </a>
               <a
                 style={ {
-                  color: green.clone().mix(blue, (6-1) / totalLink).rgbString(),
+                  color:
+                    green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
                 } }
                 className={ styles.link }
                 href="https://github.com/MoOx/phenomic"
@@ -126,7 +144,8 @@ class Header extends Component {
               </a>
               <a
                 style={ {
-                  color: green.clone().mix(blue, (7-1) / totalLink).rgbString(),
+                  color:
+                    green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
                 } }
                 className={ styles.link }
                 href="https://twitter.com/Phenomic_app"
