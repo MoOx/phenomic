@@ -103,7 +103,7 @@ class Header extends Component {
               activeClassName={ styles.linkActive }
               to="/showcase/"
             >
-              { " Showcase" }
+              <strong>{ "Showcase" }</strong>
             </Link>
             </div>
             <div className={ styles.internal }>

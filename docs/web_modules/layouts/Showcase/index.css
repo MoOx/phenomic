@@ -6,6 +6,7 @@
 }
 
 .item {
+  position: relative;
   flex: 1 1 20rem;
 
   box-sizing: border-box;
@@ -14,6 +15,7 @@
 }
 
 .itemLink {
+  display: block;
   font-size: 1.6rem;
   font-weight: bold;
   text-decoration: none;
@@ -24,4 +26,31 @@
   font-size: 0.75rem;
   text-decoration: none;
   color: #006df4;
+}
+
+.itemScreenshotLarge {
+  max-width: 100%;
+  border: 1px solid color(#000 a(0.1));
+  border-radius: 4px;
+}
+
+.itemScreenshotSmall {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 20%;
+  border: 1px solid color(#000 a(0.1));
+  border-radius: 4px;
+}
+
+.addYourOwn {
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.editPage {
+  color: #08b09b;
 }

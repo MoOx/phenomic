@@ -23,6 +23,7 @@ docs/**/*.mov
 docs/**/*.pxm
 docs/node_modules
 docs/dist
+docs/content/assets/showcases/*
 
 # boilerplate files to work on it
 boilerplate/package.json

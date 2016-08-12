@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react"
 import invariant from "invariant"
 
+import urlToSlug from "../../url-to-slug"
+
 import Page from "../Page"
 import EditThisPage from "../../EditThisPage"
 
@@ -13,9 +15,23 @@ const Showcase = (props) => {
     "Showcase page need a list"
   )
 
+  const addYourOwn = (
+    <p className={ styles.addYourOwn }>
+      <EditThisPage
+        className={ styles.editPage }
+        filename={ props.__filename }
+      >
+        {
+          "Add your own website to this page!"
+        }
+      </EditThisPage>
+    </p>
+  )
+
   return (
     <div style={ { textAlign: "center" } }>
       <Page { ...props }>
+        { addYourOwn }
         <ul
           className={ styles.list }
         >
@@ -34,6 +50,25 @@ const Showcase = (props) => {
                     { item.name }
                   </a>
                   <br />
+                  <a
+                    href={ item.url }
+                  >
+                    <img
+                      className={ styles.itemScreenshotLarge }
+                      src={
+                          "/assets/showcases/" +
+                          urlToSlug(item.url) + "-large.jpg"
+                      }
+                    />
+                    <img
+                      className={ styles.itemScreenshotSmall }
+                      src={
+                          "/assets/showcases/" +
+                          urlToSlug(item.url) + "-small.jpg"
+                      }
+                    />
+                  </a>
+                  <br />
                   {
                     item.source &&
                     <a
@@ -48,12 +83,7 @@ const Showcase = (props) => {
             })
           }
         </ul>
-        <p style={ { marginTop: "4rem" } }>
-          {
-            "To add your own you just need to "
-          }
-          <EditThisPage filename={ props.__filename } />
-        </p>
+        { addYourOwn }
       </Page>
     </div>
   )
