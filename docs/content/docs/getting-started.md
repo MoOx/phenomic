@@ -40,7 +40,7 @@ but you can use
 
 The body is the part below the 3 dashes ``---``.  
 By default [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) is supported but
-[you can easily add whatever format you want](](../usage/plugins/)).
+[you can easily add whatever format you want](../usage/plugins/).
 
 If you are new to Markdown, you might want to check those links:
 
