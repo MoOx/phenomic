@@ -28,6 +28,22 @@
   color: #006df4;
 }
 
+.itemTags {
+  display: block;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.itemTag {
+  display: inline-block;
+  font-size: 0.75rem;
+  margin: 0.25rem;
+  padding: 0.10rem 0.5rem;
+  color: #08b09b;
+  background: #fff;
+  border-radius: 3px;
+}
+
 .itemScreenshotLarge {
   max-width: 100%;
   border: 1px solid color(#000 a(0.1));

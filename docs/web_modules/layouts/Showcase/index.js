@@ -49,6 +49,19 @@ const Showcase = (props) => {
                   >
                     { item.name }
                   </a>
+                  <ul className={ styles.itemTags }>
+                    {
+                      item.tags &&
+                      item.tags.map((tag) => (
+                        <li
+                          key={ tag }
+                          className={ styles.itemTag }
+                        >
+                          { tag }
+                        </li>
+                      ))
+                    }
+                  </ul>
                   <br />
                   <a
                     href={ item.url }
