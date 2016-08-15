@@ -5,6 +5,7 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 import { phenomicLoader } from "phenomic"
 
 import pkg from "./package.json"
+import cssVariables from './cssVariables';
 
 // note that this webpack file is exporting a "makeConfig" function
 // which is used for phenomic to build dynamic configuration based on your needs
@@ -147,7 +148,14 @@ export const makeConfig = (config = {}) => {
 
     postcss: () => [
       require("stylelint")(),
-      require("postcss-cssnext")({ browsers: "last 2 versions" }),
+      require("postcss-cssnext")({
+        browsers: "last 2 versions",
+        features: {
+          customProperties: {
+            variables: require('./cssVariables')
+          }
+        }
+      }),
       require("postcss-reporter")(),
       ...config.production ? [
         require("postcss-browser-reporter")(),
