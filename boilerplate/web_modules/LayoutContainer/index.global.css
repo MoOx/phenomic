@@ -27,7 +27,7 @@ body {
  */
 html {
   min-height: 100%;
-  background: color(#deecf1 a(0.4));
+  background: color(var(--grey) a(0.4)); /* from /cssVariables.css */
 }
 
 body {
@@ -74,5 +74,5 @@ body {
 
 /* minimal styling, prefer removing this and use local styles */
 a {
-  color: #0e63e3;
+  color: var(--green); /* from /cssVariables.css */
 }
