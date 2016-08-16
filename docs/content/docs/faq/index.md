@@ -8,6 +8,8 @@ title: Phenomic FAQ
 
 ## [How to add global variables with cssnext?](css-variables/)
 
+## [How to add LESS support?](less/)
+
 ## [I have a weird warning "[BABEL] Note: The code generator has deoptimised the styling of ..."](babel/)
 
 ## [I have a React warning about an invalid checksum, what is wrong with my code?](react/)
