@@ -9,10 +9,7 @@ import transformBodyPropertyToHtml
   from "../phenomic-loader-plugin-markdown-transform-body-property-to-html"
 
 export default [
-  // $FlowFixMe Missing annotation wtf?
   ...defaultPlugins,
-  // $FlowFixMe Missing annotation wtf?
   initHeadDescriptionPropertyFromContent,
-  // $FlowFixMe Missing annotation wtf?
   transformBodyPropertyToHtml,
 ]

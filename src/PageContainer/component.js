@@ -78,14 +78,14 @@ function adjustCurrentUrl(location: Object, item: Object, props: Props): void {
 
 function getLayout(
   layout: string, props: Props
-): ReactClass | void {
+): ReactClass<any> | void {
   if (props.layouts && props.layouts[layout]) {
     return props.layouts[layout]
   }
 }
 
 class PageContainer extends Component<DefaultProps, Props, void> {
-  _content: Element;
+  _content: HTMLElement;
 
   propTypes: Props;
 
@@ -198,7 +198,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     }
   }
 
-  saveContentRef: Function = (ref: Element): void => {
+  saveContentRef: Function = (ref: HTMLElement): void => {
     this._content = ref
   };
 

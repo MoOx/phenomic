@@ -12,7 +12,7 @@ export function Link(
     children: any,
   },
   { router }: { router: Object }
-): React$Element {
+): React$Element<any> {
   return (
     <RouterLink
       { ...props }
