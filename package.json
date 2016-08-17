@@ -64,7 +64,7 @@
     "redbox-react": "^1.2.2",
     "remark": "^5.0.0",
     "remark-autolink-headings": "^3.0.0",
-    "remark-highlight.js": "^3.1.1",
+    "remark-highlight.js": "^4.0.0",
     "remark-html": "^5.0.0",
     "remark-slug": "^4.1.0",
     "rimraf": "^2.4.2",
