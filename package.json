@@ -108,7 +108,7 @@
     "lnfs": "^3.0.0",
     "mock-fs": "^3.9.0",
     "nightmare": "^2.6.1",
-    "npm-run-all": "^2.1.1",
+    "npm-run-all": "^3.0.0",
     "npmpub": "^3.0.0",
     "nyc": "^6.4.3",
     "png-jpg": "0.0.2",
