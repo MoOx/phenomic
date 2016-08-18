@@ -87,7 +87,30 @@
   - ``phenomicLoaderPresets``, that contains ``default`` and ``markdown`` presets
   (see documentation for more informations).
   (@MoOx)
+- Added: More routes can be pre-rendered! Previously, only files consumed
+  via ``phenomic-loader`` (former ``content-loader``) where generated as HTML.
+  Now your routes are consumed and pre-rendered when possible!
+  **This is super convenient to define pages that will list content by tags,
+  categories, authors etc!**
+  Here is a simple example to add pages for each tags by editing
+  ``web_modules/app/routes.js`` (if you still use default location):
 
+  ```js
+  export default (
+    <Route component={ LayoutContainer }>
+      <Route path="tag/:tag" component={ ContainerThatWillListPostByTag } />
+      <Route path="*" component={ PageContainer } />
+    </Route>
+  )
+  ```
+
+  Obviously, you will need to define ``ContainerThatWillListPostByTag``
+  (and find a better name for it).
+  Here is an example on a website that implemented this:
+  → [Example of implementation of some tags and authors pages](https://github.com/putaindecode/putaindecode.io/commit/092a040).
+  Please check out "Routing" section in the docs for more details.
+  **Good news: pagination is on the roadmap!**
+  (@MoOx)
 
 ## Boilerplate
 

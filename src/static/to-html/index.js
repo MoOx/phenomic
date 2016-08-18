@@ -6,7 +6,8 @@ import path from "path"
 import debug from "debug"
 
 import urlAsHtml from "./url-as-html"
-
+import routesToUrls from "../routes-to-urls"
+import urlify from "../../_utils/urlify"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -62,7 +63,6 @@ export function writeHTMLFile(
 
 export function writeAllHTMLFiles(
   {
-    urls,
     baseUrl,
     destination,
     assetsFiles,
@@ -76,7 +76,6 @@ export function writeAllHTMLFiles(
     offline,
     offlineConfig,
   }: {
-    urls: Array<string>,
     baseUrl: Object,
     destination: string,
     assetsFiles: Object,
@@ -92,13 +91,15 @@ export function writeAllHTMLFiles(
   },
   testing?: boolean
 ): Promise<Array<void>> {
+  const urls = routesToUrls(routes, collection)
+
   // create all html files
   return Promise.all(
     urls.map((url) => {
       const item = collection.find((item) => item.__url === url)
       const filename = item
         ? path.join(destination, item.__resourceUrl)
-        : path.join(destination, url)
+        : path.join(destination, urlify(url, true))
 
       setPageData(url, collection, store)
       return (

@@ -59,7 +59,6 @@ export default function(config: Object): void {
           ...config,
           collection,
           assetsFiles,
-          urls: collection.map((item) => item.__url),
         })
         .then(() => {
           if (config.server) {
