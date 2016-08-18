@@ -60,7 +60,7 @@
     "opn": "^4.0.2",
     "pify": "^2.3.0",
     "portfinder": "^1.0.2",
-    "react-router-scroll": "^0.2.0",
+    "react-router-scroll": "^0.3.1",
     "redbox-react": "^1.2.2",
     "remark": "^5.0.0",
     "remark-autolink-headings": "^3.0.0",
