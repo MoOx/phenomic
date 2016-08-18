@@ -109,7 +109,7 @@
     "nightmare": "^2.6.1",
     "npm-run-all": "^3.0.0",
     "npmpub": "^3.0.0",
-    "nyc": "^6.4.3",
+    "nyc": "^8.1.0",
     "png-jpg": "0.0.2",
     "react": "^15.0.0-rc.1",
     "react-addons-test-utils": "^15.0.0-rc.1",
