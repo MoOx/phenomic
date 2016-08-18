@@ -2,7 +2,7 @@
 
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
-  You can use ``loader`` variable in webpack configuration to reference
+  You can use ``phenomicLoader`` variable in webpack configuration to reference
   Phenomic loader. This change allows us more flexibility for the location of
   the code.
   (@MoOx)
@@ -18,10 +18,12 @@
     phenomic: {
       // ...
       plugins: [
+        // this 3 default plugin can be replaced by the a preset. More info below
         phenomicLoaderPlugins.initHeadPropertyFromConfig
         phenomicLoaderPlugins.initHeadPropertyFromContent
         phenomicLoaderPlugins.initBodyPropertyFromContent
-        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent
+
+        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent // optional, now you can replace this if you don't use markdown!
         // phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml
         // the commented plugin above is the default renderer
         // here is an example that can be used like the old renderer
@@ -51,8 +53,8 @@
 
     phenomic: {
       plugins: [
-        ...loaderPresets.default,
-        ...loaderPresets.markdown,
+        ...phenomicLoaderPresets.default,
+        ...phenomicLoaderPresets.markdown,
         phenomicLoaderPlugins.initRawPropertyFromContent,
         phenomicLoaderPlugins.initRawBodyPropertyFromContent,
       ]
@@ -94,8 +96,8 @@
   (@MoOx)
 - Changed: (boilerplate) LayoutContainer now import global CSS first
   ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
-- Changed: (boilerplate) `content-loader` reference is now in a variable
-  that can be imported (`import { phenomicLoader } from "phenomic"`)
+- Changed: (boilerplate) ``content-loader`` reference is now in a variable
+  that can be imported (``import { phenomicLoader } from "phenomic"``)
   (@MoOx)
 
 # 0.15.0 - 2016-07-13
