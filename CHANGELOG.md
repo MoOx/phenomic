@@ -89,6 +89,9 @@
 
 ## Boilerplate
 
+- Fixed: (boilerplate) ``postcss-browser-reporter`` was added on production
+  only when it should have been the opposite!
+  (@MoOx)
 - Changed: (boilerplate) LayoutContainer now import global CSS first
   ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
 - Changed: (boilerplate) `content-loader` reference is now in a variable
