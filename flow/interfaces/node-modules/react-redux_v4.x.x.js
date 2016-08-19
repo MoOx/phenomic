@@ -64,7 +64,7 @@ type ConnectDefault = <D, P, S, C: React$Component<D, P, S>, Dispatch: Function>
 type ConnectDefaultStateless = () =>
   <P>(component: (props: P) => any) => Class<React$Component<void, $Diff<P, {dispatch: Function}>, void>>;
 
-declare module 'react-redux' {
+declare module "react-redux" {
   declare var exports: {
     connect: ConnectAll
       & ConnectAllStateless

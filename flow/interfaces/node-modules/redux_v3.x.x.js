@@ -1,7 +1,7 @@
 // flow-typed signature: 3b60d0484a561f2e7c43ac2a5eb28d87
 // flow-typed version: f622abbe3e/redux_v3.x.x/flow_>=v0.23.x
 
-declare module 'redux' {
+declare module "redux" {
   declare type State = any;
   declare type Action = Object;
   declare type AsyncAction = any;
