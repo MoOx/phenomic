@@ -1,4 +1,5 @@
 import test from "ava"
+import { join } from "path"
 
 import beautifyHTML from "../../../_utils/beautify-html"
 
@@ -8,11 +9,11 @@ import store from "./fixtures/store.js"
 import toHTML, { writeAllHTMLFiles } from "../index"
 
 const expectedHTML = {
-  "destination/index.html":
+  [join("destination", "index.html")]:
     require("./results/destination/index.html").default,
-  "destination/test-url/index.html":
+  [join("destination", "test-url", "index.html")]:
     require("./results/destination/test-url/index.html").default,
-  "destination/test/index.html":
+  [join("destination", "test", "index.html")]:
     require("./results/destination/test/index.html").default,
 }
 
