@@ -86,12 +86,14 @@
     "babel-core": "^6.3.26",
     "babel-eslint": "^6.0.0-beta.0",
     "babel-plugin-flow-react-proptypes": "^0.7.1",
+    "babel-plugin-istanbul": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "cmd-shim": "^2.0.2",
     "coveralls": "^2.11.8",
+    "cross-env": "^2.0.0",
     "eslint": "^2.0.0",
     "eslint-config-i-am-meticulous": "^4.1.1",
     "eslint-loader": "^1.3.0",
@@ -189,7 +191,7 @@
     "preboilerplate-start": "npm -s run transpile && babel-node scripts/boilerplate.js",
     "boilerplate-start": "cd boilerplate && npm start",
     "preall-tests": "npm run lint",
-    "all-tests": "npm run tests && npm run test-boilerplate && npm run docs",
+    "all-tests": "cross-env NODE_ENV=test npm run tests && npm run test-boilerplate && npm run docs",
     "test": "npm run all-tests",
     "test-with-coverage": "nyc npm run all-tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -203,7 +205,9 @@
     ],
     "include": [
       "src/**"
-    ]
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "babel": {
     "presets": [
@@ -213,7 +217,14 @@
     ],
     "plugins": [
       "babel-plugin-flow-react-proptypes"
-    ]
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
   },
   "eslintConfig": {
     "root": true,
