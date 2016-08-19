@@ -24,7 +24,7 @@ export default function phenomic({
   store,
 }: {
   metadata: Object,
-  routes: React$Element,
+  routes: React$Element<any>,
   store: Object,
 }): void {
   const collection =

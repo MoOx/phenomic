@@ -7,7 +7,6 @@
 .*/.nyc_output/.*
 
 [libs]
-./node_modules/flow-interfaces/interfaces/
 ./interfaces/
 
 [options]

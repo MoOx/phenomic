@@ -1,3 +1,3 @@
 declare module "redbox-react" {
-  declare var exports: ReactClass;
+  declare var exports: ReactClass<any>;
 }

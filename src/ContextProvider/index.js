@@ -27,7 +27,7 @@ export default class PhenomicContext extends Component {
     }
   }
 
-  render(): React$Element {
+  render(): React$Element<any> {
     return Children.only(this.props.children)
   }
 }
