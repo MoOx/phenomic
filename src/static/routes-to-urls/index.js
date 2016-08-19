@@ -147,9 +147,9 @@ const hydrateRoutesUrls = (routesUrls, collection, console) => {
 }
 
 export default (
-  routes: React$Element,
+  routes: React$Element<any>,
   collection: PhenomicCollection,
-  console: console = defaultConsole,
+  console: typeof console = defaultConsole,
 ): Array<string>  => {
 
   const flattenedRoutes = createRoutes(routes)
