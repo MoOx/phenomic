@@ -1,17 +1,26 @@
-import path from "path"
 import test from "ava"
+import { join } from "path"
 
 import beautifyHTML from "../../../_utils/beautify-html"
-import htmlMetas from "../../../_utils/html-metas"
 
 import collection from "./fixtures/collection.js"
 import store from "./fixtures/store.js"
 
 import toHTML, { writeAllHTMLFiles } from "../index"
 
+const expectedHTML = {
+  [join("destination", "index.html")]:
+    require("./results/destination/index.html").default,
+  [join("destination", "test-url", "index.html")]:
+    require("./results/destination/test-url/index.html").default,
+  [join("destination", "test", "index.html")]:
+    require("./results/destination/test/index.html").default,
+}
+
 test("don't break if there is nothing to transform", async (t) => {
   toHTML({
-    urls: [],
+    routes: require("./fixtures/routes-splat.js").default,
+    collection: [],
   })
   .then((files) => {
     t.is(files.length, 0)
@@ -22,12 +31,9 @@ test("don't break if there is nothing to transform", async (t) => {
 })
 
 test("writeAllHTMLFiles", (t) => {
-  t.plan(4)
+  t.plan(3)
 
   return writeAllHTMLFiles({
-    urls: [
-      "/test-url",
-    ],
     routes: require("./fixtures/routes.js").default,
     collection,
     store,
@@ -38,51 +44,18 @@ test("writeAllHTMLFiles", (t) => {
     destination: "destination",
     baseUrl: { pathname: "/" },
     ghPages: true,
-    setPageData: (url, /* , collection, store */) => {
-      t.is(url, "/test-url")
-    },
+    setPageData: () => {},
     writeHTMLFile: (filename, html) => {
-      const expectedHTML = (
-      `<!doctype html>
-<html lang="en">
+      if (!expectedHTML[filename]) {
+        throw new Error(filename + " is missing in expectedHTML results")
+      }
 
-<head>
-  ${ htmlMetas({
-    baseUrl: { pathname: "/" },
-    css: [ "test.css" ] }).join("\n  ") }
-  <title data-react-helmet="true"></title>
-</head>
-
-<body>
-  <div id="phenomic">
-    <p>TestContainer</p>
-  </div>
-  <script>
-    window.__COLLECTION__ = [{
-      "__url": "/",
-      "__resourceUrl": "/index.html"
-    }, {
-      "__url": "/test-url",
-      "__resourceUrl": "/test-url/index.html"
-    }];
-    window.__INITIAL_STATE__ = {
-      "pages": {}
-    }
-  </script>
-  <script src="/test.js"></script>
-</body>
-
-</html>`
-      )
-      t.is(filename, path.join("destination", "test-url", "index.html"))
-      t.is(
+      t.deepEqual(
         beautifyHTML(html),
-        expectedHTML
+        expectedHTML[filename](),
       )
     },
-    forgetPageData: (url) => {
-      t.is(url, "/test-url")
-    },
+    forgetPageData: () => {},
   }, true)
   .catch((error) => {
     t.fail(error)

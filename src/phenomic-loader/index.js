@@ -3,7 +3,7 @@
 import path from "path"
 import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
-// import colors from "chalk"
+import colors from "chalk"
 
 import pathToUri from "../_utils/path-to-uri"
 import urlify from "../_utils/urlify"
@@ -15,6 +15,21 @@ let timeout
 
 module.exports = function(input: string) {
   const webpackInstance: WebpackInstance = this
+
+  // deprecated
+  if (
+    webpackInstance.options.phenomic &&
+    (
+      webpackInstance.options.phenomic.loader ||
+      webpackInstance.options.phenomic.contentLoader
+    )
+  ) {
+    console.log("⚠️ " + colors.red(
+      "Phenomic loader should now be defined directly under `phenomic` key, " +
+      "not `phenomic.loader` or `phenomic.contentLoader` in your webpack " +
+      "configuration."
+    ))
+  }
 
   const options = {
     ...webpackInstance.options.phenomic,

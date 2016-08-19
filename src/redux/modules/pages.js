@@ -113,7 +113,7 @@ export function refresh(page: string, url: string): PromiseAction {
   }
 }
 
-export function setNotFound(page: string): Action {
+export function setNotFound(page: string): Object {
   return {
     type: ERROR,
     page,

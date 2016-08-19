@@ -2,7 +2,7 @@
 
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
-  You can use ``loader`` variable in webpack configuration to reference
+  You can use ``phenomicLoader`` variable in webpack configuration to reference
   Phenomic loader. This change allows us more flexibility for the location of
   the code.
   (@MoOx)
@@ -18,10 +18,12 @@
     phenomic: {
       // ...
       plugins: [
+        // this 3 default plugin can be replaced by the a preset. More info below
         phenomicLoaderPlugins.initHeadPropertyFromConfig
         phenomicLoaderPlugins.initHeadPropertyFromContent
         phenomicLoaderPlugins.initBodyPropertyFromContent
-        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent
+
+        phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent // optional, now you can replace this if you don't use markdown!
         // phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml
         // the commented plugin above is the default renderer
         // here is an example that can be used like the old renderer
@@ -51,8 +53,8 @@
 
     phenomic: {
       plugins: [
-        ...loaderPresets.default,
-        ...loaderPresets.markdown,
+        ...phenomicLoaderPresets.default,
+        ...phenomicLoaderPresets.markdown,
         phenomicLoaderPlugins.initRawPropertyFromContent,
         phenomicLoaderPlugins.initRawBodyPropertyFromContent,
       ]
@@ -85,14 +87,40 @@
   - ``phenomicLoaderPresets``, that contains ``default`` and ``markdown`` presets
   (see documentation for more informations).
   (@MoOx)
+- Added: More routes can be pre-rendered! Previously, only files consumed
+  via ``phenomic-loader`` (former ``content-loader``) where generated as HTML.
+  Now your routes are consumed and pre-rendered when possible!
+  **This is super convenient to define pages that will list content by tags,
+  categories, authors etc!**
+  Here is a simple example to add pages for each tags by editing
+  ``web_modules/app/routes.js`` (if you still use default location):
 
+  ```js
+  export default (
+    <Route component={ LayoutContainer }>
+      <Route path="tag/:tag" component={ ContainerThatWillListPostByTag } />
+      <Route path="*" component={ PageContainer } />
+    </Route>
+  )
+  ```
+
+  Obviously, you will need to define ``ContainerThatWillListPostByTag``
+  (and find a better name for it).
+  Here is an example on a website that implemented this:
+  → [Example of implementation of some tags and authors pages](https://github.com/putaindecode/putaindecode.io/commit/092a040).
+  Please check out "Routing" section in the docs for more details.
+  **Good news: pagination is on the roadmap!**
+  (@MoOx)
 
 ## Boilerplate
 
+- Fixed: (boilerplate) ``postcss-browser-reporter`` was added on production
+  only when it should have been the opposite!
+  (@MoOx)
 - Changed: (boilerplate) LayoutContainer now import global CSS first
   ([#571](https://github.com/MoOx/phenomic/pull/571) - @AdamQuadmon)
-- Changed: (boilerplate) `content-loader` reference is now in a variable
-  that can be imported (`import { phenomicLoader } from "phenomic"`)
+- Changed: (boilerplate) ``content-loader`` reference is now in a variable
+  that can be imported (``import { phenomicLoader } from "phenomic"``)
   (@MoOx)
 
 # 0.15.0 - 2016-07-13
@@ -441,7 +469,7 @@ boilerplate:
   for more information.
   Except new features, no real breaking changes (except that ``react-helmet``
   don‘t includes some (may be) required polyfills by default).
-  You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
+  You can upgrade by doing ``npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
 - Changed: ``PHENOMIC_PATHNAME`` is now ``PHENOMIC_USER_PATHNAME``.
   But no need to update that in your configuration as it's injected
@@ -528,14 +556,14 @@ boilerplate:
   - statinamic (in .css).
   To be sure, run the following commands.
 
-  ```console
-  $ npm remove --save-dev statinamic
-  $ npm install --save-dev phenomic@^0.10.2
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  ```sh
+  npm remove --save-dev statinamic
+  npm install --save-dev phenomic@^0.10.2
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|statinamic|phenomic|g' {} \;
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|STATINAMIC|PHENOMIC|g' {} \;
   ```
 
@@ -574,19 +602,19 @@ boilerplate:
 
   _EDIT: the commands below are not enough, see release **0.10.2**._
 
-  ```console
-  $ npm remove --save-dev statinamic
-  $ npm install --save-dev phenomic
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  ```sh
+  npm remove --save-dev statinamic
+  npm install --save-dev phenomic
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|statinamic|phenomic|g' {} \;
   ```
 
   If you want to double check what files will be changed, just run
 
-  ```console
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
+  ```sh
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
   ```
 
   _This will look for S|statinamic occurence and will replace it by P|phenomic in

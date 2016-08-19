@@ -3,12 +3,12 @@
 import React, { Component } from "react"
 
 type Props = {
-  children: React$Element
+  children: React$Element<any>
 }
 
 class BodyContainer extends Component<void, Props, void> {
 
-  render(): React$Element {
+  render(): React$Element<any> {
     const { props }: { props: Props } = this
 
     return (

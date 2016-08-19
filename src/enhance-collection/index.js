@@ -1,9 +1,11 @@
 // @flow
 
+const defaultConsole = console
+
 export default function enhanceCollection(
   collection: PhenomicMinifiedCollection,
   options: Object,
-  console: Object = console
+  console: Object = defaultConsole
 ): PhenomicMinifiedCollection {
   options = {
     ...options,
@@ -39,7 +41,7 @@ export default function enhanceCollection(
 export function filter(
   collection: PhenomicMinifiedCollection,
   filters: any,
-  console: Object = console
+  console: Object = defaultConsole
 ): PhenomicMinifiedCollection {
   return collection.reduce((acc, item) => {
     let include = true

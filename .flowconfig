@@ -7,8 +7,7 @@
 .*/.nyc_output/.*
 
 [libs]
-./node_modules/flow-interfaces/interfaces/
-./interfaces/
+./flow/interfaces/
 
 [options]
 esproposal.class_instance_fields=enable

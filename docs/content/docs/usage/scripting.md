@@ -70,6 +70,7 @@ class Page extends Component {
       </div>
     )
   }
+}
 ```
 
 [Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
@@ -90,10 +91,3 @@ joinUri("some/", "/thing") // "some/thing"
 joinUri("some", "thing", "else"), // "some/thing/else"
 joinUri("https://this/", "/one/", "/thing/"), // "https://this/one/thing/"
 ```
-
-
-## Routing
-
-@todo
-
-[Check how to declare routes in the default boilerplate](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
