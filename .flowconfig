@@ -8,7 +8,6 @@
 
 [libs]
 ./interfaces/
-./flow-typed/
 
 [options]
 esproposal.class_instance_fields=enable
