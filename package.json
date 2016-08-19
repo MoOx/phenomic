@@ -193,7 +193,7 @@
     "preall-tests": "npm run lint",
     "all-tests": "cross-env NODE_ENV=test npm run tests && npm run test-boilerplate && npm run docs",
     "test": "npm run all-tests",
-    "test-with-coverage": "nyc npm run all-tests",
+    "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "release": "npmpub",
     "postrelease": "npm -s run docs-deploy"
