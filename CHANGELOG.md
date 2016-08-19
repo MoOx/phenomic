@@ -469,7 +469,7 @@ boilerplate:
   for more information.
   Except new features, no real breaking changes (except that ``react-helmet``
   don‘t includes some (may be) required polyfills by default).
-  You can upgrade by doing ``$ npm install react-helmet@^3.0.0 --save``
+  You can upgrade by doing ``npm install react-helmet@^3.0.0 --save``
   ([#348](https://github.com/MoOx/phenomic/pull/348))
 - Changed: ``PHENOMIC_PATHNAME`` is now ``PHENOMIC_USER_PATHNAME``.
   But no need to update that in your configuration as it's injected
@@ -557,13 +557,13 @@ boilerplate:
   To be sure, run the following commands.
 
   ```sh
-  $ npm remove --save-dev statinamic
-  $ npm install --save-dev phenomic@^0.10.2
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  npm remove --save-dev statinamic
+  npm install --save-dev phenomic@^0.10.2
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|statinamic|phenomic|g' {} \;
-  $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|STATINAMIC|PHENOMIC|g' {} \;
   ```
 
@@ -603,18 +603,18 @@ boilerplate:
   _EDIT: the commands below are not enough, see release **0.10.2**._
 
   ```sh
-  $ npm remove --save-dev statinamic
-  $ npm install --save-dev phenomic
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  npm remove --save-dev statinamic
+  npm install --save-dev phenomic
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|Statinamic|Phenomic|g' {} \;
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
     -exec sed -i '' 's|statinamic|phenomic|g' {} \;
   ```
 
   If you want to double check what files will be changed, just run
 
   ```sh
-  $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
+  find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
   ```
 
   _This will look for S|statinamic occurence and will replace it by P|phenomic in

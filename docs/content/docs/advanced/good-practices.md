@@ -55,7 +55,7 @@ If you switch to one of these configurations, you might get some linting errors.
 To fix this, simply use the following command:
 
 ```sh
-$ ./node_modules/.bin/eslint --fix .
+./node_modules/.bin/eslint --fix .
 ```
 
 This will fix all the errors that ESLint or its plugins can handle.

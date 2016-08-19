@@ -76,7 +76,7 @@ In your `package.json`, add the following items under the `scripts` section:
 Now run:
 
 ```sh
-$ npm run deploy
+npm run deploy
 ```
 
 It should be good!
@@ -128,8 +128,8 @@ With only `repo` or `public_repo` scopes.
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
 ```sh
-$ npm i -g travis-encrypt
-$ travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
+npm i -g travis-encrypt
+travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
 ## Adjust the deploy script

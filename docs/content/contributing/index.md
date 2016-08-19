@@ -7,7 +7,7 @@ title: How to contribute to Phenomic
 To work on the boilerplate, run the following:
 
 ```sh
-$ npm run boilerplate-start
+npm run boilerplate-start
 ```
 
 Then you can edit files in the `boilerplate` folder.
@@ -17,7 +17,7 @@ Then you can edit files in the `boilerplate` folder.
 To work on the docs, run the following:
 
 ```sh
-$ npm run docs-start
+npm run docs-start
 ```
 
 Then you can edit files in the `docs` folder.
@@ -29,7 +29,7 @@ Then you can edit files in the `docs` folder.
 - Integration tests are located at the root of the project (`__tests__/*`).
 
 _After every modification, please run the entire test suite by using
-`$ npm test`._
+`npm test`._
 
 Note that the full test suite can take a few minutes, as it runs unit tests and
 integration tests (with several builds, including docs and a new project from
@@ -45,10 +45,10 @@ Tests will be in ``src/PageContainer/__tests__/*``.
 To run tests for the ``PageContainer`` component:
 
 ```sh
-$ ava src/PageContainer/__tests__/*
+ava src/PageContainer/__tests__/*
 ```
 
-When you think you are done with your update, remember to run `$ npm test`.
+When you think you are done with your update, remember to run `npm test`.
 Anyway, CI will warn us if something goes wrong.
 
 ---

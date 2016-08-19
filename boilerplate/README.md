@@ -3,17 +3,17 @@
 ## Install dependencies
 
 ```sh
-$ npm install
+npm install
 ```
 
 ## Run development server
 
 ```sh
-$ npm start
+npm start
 ```
 
 ## Build for production
 
 ```sh
-$ npm run build
+npm run build
 ```
