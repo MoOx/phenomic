@@ -37,7 +37,7 @@ You can paste it under ``./scripts/deploy.sh``.
 
 ### macOS / Linux
 
-```bash
+```sh
 #!/usr/bin/env bash
 GIT_DEPLOY_REPO=${GIT_DEPLOY_REPO:-$(node -e 'process.stdout.write(require("./package.json").repository)')}
 
@@ -75,7 +75,7 @@ In your `package.json`, add the following items under the `scripts` section:
 
 Now run:
 
-```console
+```sh
 $ npm run deploy
 ```
 
@@ -127,7 +127,7 @@ With only `repo` or `public_repo` scopes.
 
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
-```console
+```sh
 $ npm i -g travis-encrypt
 $ travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```

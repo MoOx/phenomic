@@ -17,14 +17,14 @@ magically open itself in your browser!
 
 ### macOS / Linux
 
-```console
+```sh
 $ DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
 npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 ```
 
 ### Windows
 
-```console
+```sh
 > SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
 npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 ```
@@ -44,7 +44,7 @@ answer below 😉.
 
 That's an easy step.
 
-```console
+```sh
 $ DIR=your-website-folder
 $ mkdir $DIR && cd $DIR
 ```
@@ -59,7 +59,7 @@ _By installing it locally, you ensure that several projects can rely on
 different versions of Phenomic.
 Anyway, Phenomic will probably not work installed globally._
 
-```console
+```sh
 $ mkdir node_modules
 ```
 
@@ -69,7 +69,7 @@ finds a ``node_modules`` or a ``package.json``, up to your HOME folder.*
 
 #### Install from npm
 
-```console
+```sh
 $ npm install phenomic
 ```
 
@@ -82,7 +82,7 @@ $ npm install phenomic
 
 To install from git, you will need to get some deps to transpile sources
 
-```console
+```sh
 $ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1 babel-plugin-flow-react-proptypes
 $ npm install https://github.com/MoOx/phenomic.git
 ```
@@ -91,7 +91,7 @@ $ npm install https://github.com/MoOx/phenomic.git
 
 **Notice:** This step will create (and overwrite) any existing ``package.json``.
 
-```console
+```sh
 $ ./node_modules/.bin/phenomic setup
 ```
 
@@ -109,7 +109,7 @@ the configuration options._
 
 When you are done the setup, it's time to get all dependencies.
 
-```console
+```sh
 $ npm install
 ```
 
@@ -121,7 +121,7 @@ Now it's time to...
 
 ### Start the engine
 
-```console
+```sh
 $ npm start
 ```
 

@@ -556,7 +556,7 @@ boilerplate:
   - statinamic (in .css).
   To be sure, run the following commands.
 
-  ```console
+  ```sh
   $ npm remove --save-dev statinamic
   $ npm install --save-dev phenomic@^0.10.2
   $ find . -type f \( -iname \*.css -o -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
@@ -602,7 +602,7 @@ boilerplate:
 
   _EDIT: the commands below are not enough, see release **0.10.2**._
 
-  ```console
+  ```sh
   $ npm remove --save-dev statinamic
   $ npm install --save-dev phenomic
   $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \) \
@@ -613,7 +613,7 @@ boilerplate:
 
   If you want to double check what files will be changed, just run
 
-  ```console
+  ```sh
   $ find . -type f \( -iname \*.js -o -iname \*.json \) -not \( -path './.git/*' -o -path './node_modules/*' \)
   ```
 

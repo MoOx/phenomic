@@ -6,7 +6,7 @@ title: How to contribute to Phenomic
 
 To work on the boilerplate, run the following:
 
-```console
+```sh
 $ npm run boilerplate-start
 ```
 
@@ -16,7 +16,7 @@ Then you can edit files in the `boilerplate` folder.
 
 To work on the docs, run the following:
 
-```console
+```sh
 $ npm run docs-start
 ```
 
@@ -44,7 +44,7 @@ Tests will be in ``src/PageContainer/__tests__/*``.
 
 To run tests for the ``PageContainer`` component:
 
-```console
+```sh
 $ ava src/PageContainer/__tests__/*
 ```
 
