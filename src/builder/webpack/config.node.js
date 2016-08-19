@@ -1,16 +1,18 @@
 // @flow
 
 import { join, basename } from "path"
-import { BannerPlugin } from "webpack"
+import { BannerPlugin, optimize } from "webpack"
 import findCacheDir from "find-cache-dir"
 
 import commonWebpackConfig from "./config.common.js"
 
+const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
 const cacheDir = findCacheDir({ name: "phenomic" })
 
 export default (config: PhenomicConfig): WebpackConfig => {
   const webpackConfig = commonWebpackConfig(config)
+
   return {
     ...webpackConfig,
 
@@ -42,7 +44,10 @@ export default (config: PhenomicConfig): WebpackConfig => {
     // sourcemaps
     devtool: "#eval-source-map",
     plugins: [
-      ...webpackConfig.plugins || [],
+      // Remove UglifyJSPlugin from plugin stack
+      ...webpackConfig.plugins.filter(
+        (plugin) => !(plugin instanceof UglifyJsPlugin)
+      ) || [],
       new BannerPlugin(
         "require('source-map-support').install();",
         { raw: true, entryOnly: false }
