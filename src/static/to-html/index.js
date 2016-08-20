@@ -3,8 +3,6 @@
 import fs from "fs-promise"
 import path from "path"
 
-import debug from "debug"
-
 import urlAsHtml from "./url-as-html"
 import routesToUrls from "../routes-to-urls"
 import urlify from "../../_utils/urlify"
@@ -17,18 +15,13 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
-const log = debug("phenomic:static:to-html")
-
 export function setPageData(
   url: string,
   collection: PhenomicCollection,
   store: Object
 ): void {
   const json = collection.find((item) => item.__url === url)
-  if (!json) {
-    log(`No json in for url '${ url }'.`)
-  }
-  else {
+  if (json) {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
@@ -42,8 +35,7 @@ export function forgetPageData(
   url: string,
   store: Object
 ): void {
-  // forget page data to avoid having all pages data in all
-  // pages
+  // forget page data to avoid having all pages data in all pages
   store.dispatch({
     type: pagesActions.FORGET,
     page: url,
