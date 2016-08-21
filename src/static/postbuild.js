@@ -10,7 +10,7 @@ export default function(
   config: PhenomicConfig,
   files: Array<any>,
   log: Function
-): Promise {
+): Promise<any> {
   log(green(`✓ Static html files: ${ files.length } files written.`))
 
   const promises = []

@@ -16,7 +16,7 @@ export default class Page extends Component {
     __filename: PropTypes.string.isRequired,
     __url: PropTypes.string.isRequired,
     head: PropTypes.object.isRequired,
-    body: PropTypes.string.isRequired,
+    body: PropTypes.string,
   };
 
   static contextTypes = {
@@ -99,9 +99,12 @@ export default class Page extends Component {
               }
             </div>
           }
-          <div className={ styles.content }>
-            <BodyContainer>{ body }</BodyContainer>
-          </div>
+          {
+            body &&
+            <div className={ styles.content }>
+              <BodyContainer>{ body }</BodyContainer>
+            </div>
+          }
           { this.props.children }
           { PageActions }
         </Content>

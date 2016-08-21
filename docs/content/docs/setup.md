@@ -17,15 +17,15 @@ magically open itself in your browser!
 
 ### macOS / Linux
 
-```console
-$ DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
+```sh
+DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
 npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 ```
 
 ### Windows
 
-```console
-> SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
+```cmd
+SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
 npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
 ```
 
@@ -44,9 +44,9 @@ answer below 😉.
 
 That's an easy step.
 
-```console
-$ DIR=your-website-folder
-$ mkdir $DIR && cd $DIR
+```sh
+DIR=your-website-folder
+mkdir $DIR && cd $DIR
 ```
 
 ### Get Phenomic
@@ -59,8 +59,8 @@ _By installing it locally, you ensure that several projects can rely on
 different versions of Phenomic.
 Anyway, Phenomic will probably not work installed globally._
 
-```console
-$ mkdir node_modules
+```sh
+mkdir node_modules
 ```
 
 *This command is to be sure that phenomic will be installed in the current
@@ -69,8 +69,8 @@ finds a ``node_modules`` or a ``package.json``, up to your HOME folder.*
 
 #### Install from npm
 
-```console
-$ npm install phenomic
+```sh
+npm install phenomic
 ```
 
 * ``--save[-dev]`` is useless because there is no ``package.json`` yet.
@@ -82,17 +82,17 @@ $ npm install phenomic
 
 To install from git, you will need to get some deps to transpile sources
 
-```console
-$ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1 babel-plugin-flow-react-proptypes
-$ npm install https://github.com/MoOx/phenomic.git
+```sh
+npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1 babel-plugin-flow-react-proptypes
+npm install https://github.com/MoOx/phenomic.git
 ```
 
 ### Setup boilerplate
 
 **Notice:** This step will create (and overwrite) any existing ``package.json``.
 
-```console
-$ ./node_modules/.bin/phenomic setup
+```sh
+./node_modules/.bin/phenomic setup
 ```
 
 **⚠️ If you got errors here, please double check that you have required version of
@@ -109,8 +109,8 @@ the configuration options._
 
 When you are done the setup, it's time to get all dependencies.
 
-```console
-$ npm install
+```sh
+npm install
 ```
 
 npm will install some peer dependencies for you; by doing this we ensure that
@@ -121,8 +121,8 @@ Now it's time to...
 
 ### Start the engine
 
-```console
-$ npm start
+```sh
+npm start
 ```
 
 It's that simple.

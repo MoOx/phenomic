@@ -8,7 +8,8 @@ import Page from "../layouts/Page"
 import PageError from "../layouts/PageError"
 import PageLoading from "../layouts/PageLoading"
 import Homepage from "../layouts/Homepage"
-import Showcase from "../layouts/Showcase"
+
+import Showcase from "../Showcase"
 
 class PageContainer extends Component {
   render() {
@@ -21,7 +22,6 @@ class PageContainer extends Component {
           PageError,
           PageLoading,
           Homepage,
-          Showcase,
         } }
       />
     )
@@ -30,6 +30,8 @@ class PageContainer extends Component {
 
 export default (
   <Route component={ LayoutContainer }>
+    <Route path="showcase" component={ Showcase } />
+    <Route path="showcase/tag/:showcaseTag" component={ Showcase } />
     <Route path="*" component={ PageContainer } />
   </Route>
 )

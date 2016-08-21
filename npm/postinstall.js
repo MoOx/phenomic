@@ -55,11 +55,11 @@ stat("lib", function(error, stats1) {
       "Do you have to required dependencies to install from git?\n" +
       "Be sure to have installed run this before:" +
       "\n\n" +
-      `$ npm install babel-cli ${ pkg.babel.presets }` +
+      `npm install babel-cli ${ pkg.babel.presets }` +
       "\n\n" +
       "Then rebuild phenomic by running: " +
       "\n\n" +
-      "$ npm rebuild phenomic" +
+      "npm rebuild phenomic" +
       "\n\n"
     )
 

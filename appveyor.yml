@@ -17,7 +17,7 @@ cache:
 #   - docs/node_modules -> package.json
 
 install:
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version x64
   - npm set progress=false
   - npm prune
   - npm install

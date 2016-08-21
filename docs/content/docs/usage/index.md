@@ -8,6 +8,7 @@ incomplete: true
 - [Layouts](layouts/)
 - [Styling](styling/)
 - [Collections](collections/)
+- [Routing](routing/)
 - [Scripting](scripting/)
 - [RSS Feeds](feeds/)
 - [Automatic deployment on GitHub Pages (gh-pages)](gh-pages/)

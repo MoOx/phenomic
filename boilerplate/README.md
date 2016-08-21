@@ -2,18 +2,18 @@
 
 ## Install dependencies
 
-```console
-$ npm install
+```sh
+npm install
 ```
 
 ## Run development server
 
-```console
-$ npm start
+```sh
+npm start
 ```
 
 ## Build for production
 
-```console
-$ npm run build
+```sh
+npm run build
 ```

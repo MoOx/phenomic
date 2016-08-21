@@ -3,10 +3,9 @@
 import fs from "fs-promise"
 import path from "path"
 
-import debug from "debug"
-
 import urlAsHtml from "./url-as-html"
-
+import routesToUrls from "../routes-to-urls"
+import urlify from "../../_utils/urlify"
 import * as pagesActions from "../../redux/modules/pages"
 
 if (pagesActions.SET === undefined) {
@@ -16,18 +15,13 @@ if (pagesActions.FORGET === undefined) {
   throw new Error("pages FORGET action is undefined")
 }
 
-const log = debug("phenomic:static:to-html")
-
 export function setPageData(
   url: string,
   collection: PhenomicCollection,
   store: Object
 ): void {
   const json = collection.find((item) => item.__url === url)
-  if (!json) {
-    log(`No json in for url '${ url }'.`)
-  }
-  else {
+  if (json) {
     // prepare page data
     store.dispatch({
       type: pagesActions.SET,
@@ -41,8 +35,7 @@ export function forgetPageData(
   url: string,
   store: Object
 ): void {
-  // forget page data to avoid having all pages data in all
-  // pages
+  // forget page data to avoid having all pages data in all pages
   store.dispatch({
     type: pagesActions.FORGET,
     page: url,
@@ -62,7 +55,6 @@ export function writeHTMLFile(
 
 export function writeAllHTMLFiles(
   {
-    urls,
     baseUrl,
     destination,
     assetsFiles,
@@ -76,7 +68,6 @@ export function writeAllHTMLFiles(
     offline,
     offlineConfig,
   }: {
-    urls: Array<string>,
     baseUrl: Object,
     destination: string,
     assetsFiles: Object,
@@ -92,13 +83,15 @@ export function writeAllHTMLFiles(
   },
   testing?: boolean
 ): Promise<Array<void>> {
+  const urls = routesToUrls(routes, collection)
+
   // create all html files
   return Promise.all(
     urls.map((url) => {
       const item = collection.find((item) => item.__url === url)
       const filename = item
         ? path.join(destination, item.__resourceUrl)
-        : path.join(destination, url)
+        : path.join(destination, urlify(url, true))
 
       setPageData(url, collection, store)
       return (
