@@ -1,7 +1,43 @@
 # HEAD
 
-- Changed: update to ``remark-autolink-headings@^4.0.0``.
+# 0.16.0 - 2016-08-23
+
+## tl;dr
+
+- 🔨 Breaking change: ``"phenomic/lib/content-loader"`` should now be replaced
+  by a value imported from ``"phenomic"``
+  (``import { phenomicLoader } from "phenomic"``).
+  Following this, phenomic loader configuration should be directly in
+  phenomic section, not ``phenomic.loader`` or ``phenomic.contentLoader``.
+- 🎉 **New feature: dynamic pages! You now have the ability to generate
+  pages for all metadata used in your text files.**
+  This can be used to generate pages for tags, categories, authors etc.
+  *(Pagination is not handled yet, but will be in a near future).*
+- 🎉 **New feature: phenomic loader now supports plugins.**
+  Lots of flexibility has been added with this feature,
+  unlocking a lot of possibilities!
+
+🚀 Examples of update and changes:
+
+- [Example of update from Phenomic 0.15 to 0.16](https://github.com/putaindecode/putaindecode.io/commit/aa1b037)
+- [Example of implementation of some tags and authors pages](https://github.com/putaindecode/putaindecode.io/commit/092a040)
+
+ℹ️ Some works has been done on the [documentation](https://phenomic.io/):
+
+- ☺️ A new [Getting started](https://phenomic.io/docs/getting-started/) has been
+  crafted. Please tell us what you think about it!
+- 🤗 We also have updated the [Showcase](https://phenomic.io/showcase/) page where
+you can filter projects by tags.
+- ❤️ [Do not hesitate to submit your website/app made with Phenomic!](https://phenomic.io/showcase/submit/)
+
+## Details
+
+- Changed: default markdown renderer updated to
+  ``remark-autolink-headings@^4.0.0``.
   This might fix issue with missing links for headings.
+- Changed: default markdown renderer updated to
+  ``remark-highlight.js@^4.0.0``
+  This might fix issue with broken highlighted code.
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
   You can use ``phenomicLoader`` variable in webpack configuration to reference
@@ -209,17 +245,19 @@
   Just in case you still have some PostCSS messages not handled yet.
   Here is the change you can do in your PostCSS config section in your
   ``webpack.config`` to do the same on your existing project:
+
   ```diff
     postcss: () => [
       require("stylelint")(),
       require("postcss-cssnext")({ browsers: "last 2 versions" }),
   -    require("postcss-browser-reporter")(),
       require("postcss-reporter")(),
-  +    ...config.production ? [
+  +    ...!config.production ? [
   +      require("postcss-browser-reporter")(),
   +    ] : [],
     ],
   ```
+
   (@MoOx)
 - Changed: ``stylelint`` has been updated to ``^6.8.0``
   (@MoOx)
@@ -820,7 +858,7 @@ Before 0.10,
           )
           // ...
         }
-      )
+      }
       ```
 
 - Changed: Remove redux devtools and `process.env.CLIENT` environment variables.

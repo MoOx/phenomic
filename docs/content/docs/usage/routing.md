@@ -1,5 +1,5 @@
 ---
-title: Leveraging Phenomic routing capabilities
+title: Generate dynamic pages by leveraging Phenomic routing capabilities
 ---
 
 Phenomic uses [react-router](https://github.com/reactjs/react-router).
@@ -8,7 +8,7 @@ By default Phenomic uses a single wildcard route
 in order to render files consumed by Phenomic.
 
 But by exploiting ``react-router`` capabilities, we do more cool things like
-generating pages for each metadata Phenomic can find in your files.
+generating dynamic pages for each metadata Phenomic can find in your files.
 
 A classic example will be to generate one page per `tag` find in your files.
 Let's say you have in your files metadata a ``tags`` field like in this example
