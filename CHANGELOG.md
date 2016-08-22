@@ -1,5 +1,7 @@
 # HEAD
 
+- Changed: update to ``remark-autolink-headings@^4.0.0``.
+  This might fix issue with missing links for headings.
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
   You can use ``phenomicLoader`` variable in webpack configuration to reference

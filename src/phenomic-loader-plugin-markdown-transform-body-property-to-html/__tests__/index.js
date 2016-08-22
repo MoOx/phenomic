@@ -10,7 +10,9 @@ test("should add raw property from content", (t) => {
       },
     }),
     {
-      body: `<h1 id="raw"><a href="#raw"></a>raw</h1>\n`,
+      body:
+        "<h1 id=\"raw\"><a href=\"#raw\" class=\"phenomic-HeadingAnchor\">#" +
+        "</a>raw</h1>\n",
     }
   )
 })

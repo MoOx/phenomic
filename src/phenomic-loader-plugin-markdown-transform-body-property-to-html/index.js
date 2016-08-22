@@ -13,10 +13,13 @@ function mdify(text) {
 
     // https://github.com/ben-eb/remark-autolink-headings
     .use(autoLinkHeadings, {
-      attributes: {
-        class: "phenomic-HeadingAnchor",
+      content: {
+        type: "text",
+        value: "#",
       },
-      template: "#",
+      linkProperties: {
+        className: "phenomic-HeadingAnchor",
+      },
     })
 
     // https://github.com/wooorm/remark-html
@@ -42,4 +45,3 @@ export default (
     body: mdify(result.body),
   }
 }
-
