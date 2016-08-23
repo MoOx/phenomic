@@ -10,7 +10,7 @@ const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
 const cacheDir = findCacheDir({ name: "phenomic" })
 
-const defautlExternals = [
+const defaultExternals = [
   // we could consider node_modules as externals deps
   // and so use something like
   // /^[A-Za-z0-9-_]/
@@ -41,7 +41,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
 
     // externals for package/relative name
     externals: [
-      ...webpackConfig.externals || defautlExternals,
+      ...webpackConfig.externals || defaultExternals,
 
       // we need this to be the same between the entire node runtime
       "phenomic/lib/phenomic-loader/cache",
