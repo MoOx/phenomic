@@ -1,5 +1,7 @@
 # HEAD
 
+# 0.16.1 - 2016-08-23
+
 - Fixed: ``Uncaught TypeError: (0 , _reactRouterScroll2.default) is not a function``
   We now
   [only import ``useScroll``](https://github.com/taion/react-router-scroll#minimizing-bundle-size)
