@@ -3,6 +3,9 @@
 - Fixed: error during static build have an accurate stack trace.
   Source map support have been fixed
   ([#644](https://github.com/MoOx/phenomic/issues/644) - @MoOx)
+- Fixed: plugins presets were doing nothing
+  ([#655](https://github.com/MoOx/phenomic/issues/655) - @MoOx)
+
 # 0.16.1 - 2016-08-23
 
 - Fixed: ``Uncaught TypeError: (0 , _reactRouterScroll2.default) is not a function``
