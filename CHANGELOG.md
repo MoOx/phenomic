@@ -6,6 +6,13 @@
   from react-router-scroll (as we only use this).
   ``react-router-scroll@0.3.1`` was exporting a default value, ``0.3.2`` is not.
   ([#627](https://github.com/MoOx/phenomic/issues/652) - @MoOx)
+- Fixed: ``SyntaxError: Unexpected token`` when importing CSS from
+  ``node_modules``.
+  Previously, ``node_modules/*`` where skipped in webpack static build,
+  to improve performance (via webpack ``externals`` option).
+  The problem is that is going to cause some issue for most people that will
+  require stuff from ``node_modules`` like CSS, SVG or other non-JS files.
+  ([#639](https://github.com/MoOx/phenomic/issues/639) - @MoOx)
 - Added: better webpack build notifications.
   We replaced
   [`webpack-error-notifications`](https://github.com/vsolovyov/webpack-error-notification)
@@ -50,9 +57,11 @@ you can filter projects by tags.
 - Changed: default markdown renderer updated to
   ``remark-autolink-headings@^4.0.0``.
   This might fix issue with missing links for headings.
+  (@MoOx)
 - Changed: default markdown renderer updated to
   ``remark-highlight.js@^4.0.0``
   This might fix issue with broken highlighted code.
+  (@MoOx)
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
   You can use ``phenomicLoader`` variable in webpack configuration to reference
@@ -61,6 +70,7 @@ you can filter projects by tags.
   (@MoOx)
 - Changed: loader will now read loader configuration directly from ``phenomic``
   section, not in `phenomic.loader` or `phenomic.contentLoader`
+  (@MoOx)
 - Removed: `renderer` option from `content-loader` (now `phenomicLoader`).
   See the new `plugins` option below for more information.
   If you want to do the same effect, you can use the following plugins
@@ -93,6 +103,7 @@ you can filter projects by tags.
       ]
     }
   ```
+  (@MoOx)
 - Removed: `raw` and `rawBody` properties from page data.
   If you want those back, there are plugins ready for you:
   ```js

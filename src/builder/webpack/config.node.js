@@ -10,6 +10,15 @@ const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
 const cacheDir = findCacheDir({ name: "phenomic" })
 
+const defautlExternals = [
+  // we could consider node_modules as externals deps
+  // and so use something like
+  // /^[A-Za-z0-9-_]/
+  // to not bundle all deps in the static build (for perf)
+  // the problem is that if people rely on node_modules for stuff
+  // like css, this breaks their build.
+]
+
 export default (config: PhenomicConfig): WebpackConfig => {
   const webpackConfig = commonWebpackConfig(config)
 
@@ -32,10 +41,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
 
     // externals for package/relative name
     externals: [
-      ...webpackConfig.externals || [
-        // node modules
-        /^[a-z0-9-_]/,
-      ],
+      ...webpackConfig.externals || defautlExternals,
 
       // we need this to be the same between the entire node runtime
       "phenomic/lib/phenomic-loader/cache",
