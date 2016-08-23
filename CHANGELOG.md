@@ -1,5 +1,11 @@
 # HEAD
 
+- Fixed: ``Uncaught TypeError: (0 , _reactRouterScroll2.default) is not a function``
+  We now
+  [only import ``useScroll``](https://github.com/taion/react-router-scroll#minimizing-bundle-size)
+  from react-router-scroll (as we only use this).
+  ``react-router-scroll@0.3.1`` was exporting a default value, ``0.3.2`` is not.
+  ([#627](https://github.com/MoOx/phenomic/issues/652) - @MoOx)
 - Added: better webpack build notifications.
   We replaced
   [`webpack-error-notifications`](https://github.com/vsolovyov/webpack-error-notification)
