@@ -1,5 +1,7 @@
 # HEAD
 
+# 0.16.2 - 2016-08-23
+
 - Fixed: error during static build have an accurate stack trace.
   Source map support have been fixed
   ([#644](https://github.com/MoOx/phenomic/issues/644) - @MoOx)
