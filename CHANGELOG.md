@@ -1,5 +1,14 @@
 # HEAD
 
+- Added: better webpack build notifications.
+  We replaced
+  [`webpack-error-notifications`](https://github.com/vsolovyov/webpack-error-notification)
+  by
+  [`webpack-notifier`(https://www.npmjs.com/package/webpack-notifier)
+  (which add compat for Windows).
+  _You don't have to do anything as it's embedded in Phenomic dev server._
+  ([#527](https://github.com/MoOx/phenomic/issues/527) - @MoOx)
+
 # 0.16.0 - 2016-08-23
 
 ## tl;dr

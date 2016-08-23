@@ -4,7 +4,7 @@ import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
 import historyFallbackMiddleware from "connect-history-api-fallback"
-import WebpackErrorNotificationPlugin from "webpack-error-notification"
+import WebpackNotifierPlugin from "webpack-notifier"
 
 import opn from "opn"
 import debug from "debug"
@@ -67,7 +67,7 @@ export default (config) => {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new WebpackErrorNotificationPlugin(),
+        new WebpackNotifierPlugin(),
       ],
       eslint: {
         ...webpackConfig.eslint,
