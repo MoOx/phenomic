@@ -48,7 +48,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
     ],
 
     // sourcemaps
-    devtool: "#eval-source-map",
+    devtool: "#inline-source-map",
     plugins: [
       // Remove UglifyJSPlugin from plugin stack
       ...webpackConfig.plugins.filter(
