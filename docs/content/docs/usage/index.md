@@ -8,6 +8,7 @@ incomplete: true
 - [Layouts](layouts/)
 - [Styling](styling/)
 - [Collections](collections/)
+- [Plugins](plugins/)
 - [Routing](routing/)
 - [Scripting](scripting/)
 - [RSS Feeds](feeds/)
