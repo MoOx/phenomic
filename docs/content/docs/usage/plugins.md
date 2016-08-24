@@ -111,8 +111,8 @@ You can pass options to ``phenomic`` section in webpack configuration.
 
 This plugin will transform the ``body`` property into html.
 This plugin will assumes your content is markdown and will use
-[``remark``]() with
-[some plugins]() for the transformation.
+[``remark``](http://remark.js.org/) with
+[some plugins](https://github.com/MoOx/phenomic/blob/master/src/phenomic-loader-plugin-markdown-transform-body-property-to-html/index.js) for the transformation.
 
 *For now accessible via ``phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml``.*
 
