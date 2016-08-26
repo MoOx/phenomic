@@ -74,7 +74,7 @@
     "strip-markdown": "^0.3.1",
     "url-join": "^1.1.0",
     "valid-url": "^1.0.9",
-    "webpack": "^1.11.0",
+    "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.0.0",
     "webpack-notifier": "^1.4.0",
