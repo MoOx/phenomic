@@ -51,7 +51,7 @@
     "fs-promise": "^0.3.1",
     "globby": "^6.0.0",
     "gray-matter": "^2.0.0",
-    "inquirer": "^1.0.0",
+    "inquirer": "^1.1.2",
     "loader-utils": "^0.2.11",
     "lodash.template": "^4.2.2",
     "lru-memoize": "^1.0.0",
