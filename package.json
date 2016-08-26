@@ -102,7 +102,7 @@
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
-    "flow-bin": "^0.30.0",
+    "flow-bin": "^0.31.1",
     "image-optim": "^3.0.0",
     "js-beautify": "^1.5.10",
     "jsdom": "^9.2.0",
