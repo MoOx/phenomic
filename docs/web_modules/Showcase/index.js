@@ -102,7 +102,7 @@ const Showcase = (props, context) => {
                           className={ styles.itemTag }
                         >
                           <Link
-                            to={ "/showcase/tag/" + tag }
+                            to={ `/showcase/tag/${ tag }/` }
                             className={ styles.itemTagLink }
                           >
                             { tag }

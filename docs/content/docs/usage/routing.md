@@ -73,3 +73,66 @@ Some examples (metadata key -> route key):
 Here is an example on a website that [implemented some tags and authors pages](https://github.com/putaindecode/putaindecode.io/commit/092a040)
 
 ⚠️ _Pagination is not supported yet, but it's on Phenomic roadmap._
+
+# Handling Redirection
+
+Phenomic static build does not yet handle react-router redirects so if you are making `onEnter` redirection call make sure to wrap with `typeof window !== 'undefined'` check
+
+```js
+// Won't build
+import React from 'react'
+import { Route } from 'react-router'
+import Index from './Index'
+import Layouts from './layouts'
+import Login from './components/Login'
+import AuthService from './utils/AuthService'
+
+const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
+const requireAuth = (nextState, replace) => {
+    console.log(auth)
+    if (!auth.loggedIn()) {
+      replace({ pathname: '/login' }) // Does redirect and will break static build
+    }
+  }
+}
+
+export default (
+  <Route component={Index} auth={auth}>
+    <Route path='/protected' component={Login} onEnter={requireAuth} auth={auth} />
+    <Route path='*' component={Layouts} />
+  </Route>
+)
+
+```
+
+Fix and wrap onEnter with `typeof window !== 'undefined'`
+
+```
+// Will build. Yay!
+import React from 'react'
+import { Route } from 'react-router'
+import Index from './Index'
+import Layouts from './layouts'
+import Login from './components/Login'
+import AuthService from './utils/AuthService'
+
+const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
+const isClient = typeof window !== 'undefined'
+let requireAuth = null // set to null for static build only
+
+if (isClient) {
+ requireAuth = (nextState, replace) => {
+    console.log(auth)
+    if (!auth.loggedIn()) {
+      replace({ pathname: '/login' }) 
+    }
+  }
+}
+
+export default (
+  <Route component={Index} auth={auth}>
+    <Route path='/protected' component={Login} onEnter={requireAuth} auth={auth} />
+    <Route path='*' component={Layouts} />
+  </Route>
+)
+```
