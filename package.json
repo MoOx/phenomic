@@ -120,7 +120,7 @@
     "redux": "^3.0.0",
     "sinon": "^1.17.3",
     "stylelint": "^6.8.0",
-    "stylelint-config-standard": "^10.0.0",
+    "stylelint-config-standard": "^11.0.0",
     "suppose": "^0.6.1"
   },
   "peerDependencies": {
