@@ -1,5 +1,77 @@
 # HEAD
 
+# 0.16.2 - 2016-08-23
+
+- Fixed: error during static build have an accurate stack trace.
+  Source map support have been fixed
+  ([#644](https://github.com/MoOx/phenomic/issues/644) - @MoOx)
+- Fixed: plugins presets were doing nothing
+  ([#655](https://github.com/MoOx/phenomic/issues/655) - @MoOx)
+
+# 0.16.1 - 2016-08-23
+
+- Fixed: ``Uncaught TypeError: (0 , _reactRouterScroll2.default) is not a function``
+  We now
+  [only import ``useScroll``](https://github.com/taion/react-router-scroll#minimizing-bundle-size)
+  from react-router-scroll (as we only use this).
+  ``react-router-scroll@0.3.1`` was exporting a default value, ``0.3.2`` is not.
+  ([#627](https://github.com/MoOx/phenomic/issues/652) - @MoOx)
+- Fixed: ``SyntaxError: Unexpected token`` when importing CSS from
+  ``node_modules``.
+  Previously, ``node_modules/*`` where skipped in webpack static build,
+  to improve performance (via webpack ``externals`` option).
+  The problem is that is going to cause some issue for most people that will
+  require stuff from ``node_modules`` like CSS, SVG or other non-JS files.
+  ([#639](https://github.com/MoOx/phenomic/issues/639) - @MoOx)
+- Added: better webpack build notifications.
+  We replaced
+  [`webpack-error-notifications`](https://github.com/vsolovyov/webpack-error-notification)
+  by
+  [`webpack-notifier`(https://www.npmjs.com/package/webpack-notifier)
+  (which add compat for Windows).
+  _You don't have to do anything as it's embedded in Phenomic dev server._
+  ([#527](https://github.com/MoOx/phenomic/issues/527) - @MoOx)
+
+# 0.16.0 - 2016-08-23
+
+## tl;dr
+
+- 🔨 Breaking change: ``"phenomic/lib/content-loader"`` should now be replaced
+  by a value imported from ``"phenomic"``
+  (``import { phenomicLoader } from "phenomic"``).
+  Following this, phenomic loader configuration should be directly in
+  phenomic section, not ``phenomic.loader`` or ``phenomic.contentLoader``.
+- 🎉 **New feature: dynamic pages! You now have the ability to generate
+  pages for all metadata used in your text files.**
+  This can be used to generate pages for tags, categories, authors etc.
+  *(Pagination is not handled yet, but will be in a near future).*
+- 🎉 **New feature: phenomic loader now supports plugins.**
+  Lots of flexibility has been added with this feature,
+  unlocking a lot of possibilities!
+
+🚀 Examples of update and changes:
+
+- [Example of update from Phenomic 0.15 to 0.16](https://github.com/putaindecode/putaindecode.io/commit/aa1b037)
+- [Example of implementation of some tags and authors pages](https://github.com/putaindecode/putaindecode.io/commit/092a040)
+
+ℹ️ Some works has been done on the [documentation](https://phenomic.io/):
+
+- ☺️ A new [Getting started](https://phenomic.io/docs/getting-started/) has been
+  crafted. Please tell us what you think about it!
+- 🤗 We also have updated the [Showcase](https://phenomic.io/showcase/) page where
+you can filter projects by tags.
+- ❤️ [Do not hesitate to submit your website/app made with Phenomic!](https://phenomic.io/showcase/submit/)
+
+## Details
+
+- Changed: default markdown renderer updated to
+  ``remark-autolink-headings@^4.0.0``.
+  This might fix issue with missing links for headings.
+  (@MoOx)
+- Changed: default markdown renderer updated to
+  ``remark-highlight.js@^4.0.0``
+  This might fix issue with broken highlighted code.
+  (@MoOx)
 - Changed: ``phenomic/lib/content-loader`` reference is deprecated in favor of
   ``import { phenomicLoader } from "phenomic"``.
   You can use ``phenomicLoader`` variable in webpack configuration to reference
@@ -8,6 +80,7 @@
   (@MoOx)
 - Changed: loader will now read loader configuration directly from ``phenomic``
   section, not in `phenomic.loader` or `phenomic.contentLoader`
+  (@MoOx)
 - Removed: `renderer` option from `content-loader` (now `phenomicLoader`).
   See the new `plugins` option below for more information.
   If you want to do the same effect, you can use the following plugins
@@ -40,6 +113,7 @@
       ]
     }
   ```
+  (@MoOx)
 - Removed: `raw` and `rawBody` properties from page data.
   If you want those back, there are plugins ready for you:
   ```js
@@ -207,17 +281,19 @@
   Just in case you still have some PostCSS messages not handled yet.
   Here is the change you can do in your PostCSS config section in your
   ``webpack.config`` to do the same on your existing project:
+
   ```diff
     postcss: () => [
       require("stylelint")(),
       require("postcss-cssnext")({ browsers: "last 2 versions" }),
   -    require("postcss-browser-reporter")(),
       require("postcss-reporter")(),
-  +    ...config.production ? [
+  +    ...!config.production ? [
   +      require("postcss-browser-reporter")(),
   +    ] : [],
     ],
   ```
+
   (@MoOx)
 - Changed: ``stylelint`` has been updated to ``^6.8.0``
   (@MoOx)
@@ -818,7 +894,7 @@ Before 0.10,
           )
           // ...
         }
-      )
+      }
       ```
 
 - Changed: Remove redux devtools and `process.env.CLIENT` environment variables.

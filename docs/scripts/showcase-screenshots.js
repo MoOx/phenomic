@@ -1,21 +1,37 @@
 import { resolve, join } from "path"
 import fs from "fs"
+
+import mkdirp from "mkdirp"
 import findCacheDir from "find-cache-dir"
 const cacheDir = findCacheDir({ name: "phenomic", create: true })
 
+const showcaseDir = join(__dirname, "..", "content", "showcase", "entry")
+
 import grayMatter from "gray-matter"
-const showcasesFile = fs.readFileSync(
-  __dirname + "/../content/showcase.md",
-  { encoding: "utf-8" }
-)
-const showcases = grayMatter(showcasesFile)
-const list = showcases.data.list
-// .slice(0,2) // for tests
+const showcasesFile = fs.readdirSync(showcaseDir)
+
+const listTmp = []
+showcasesFile.forEach((file) => {
+  const showcaseFile = fs.readFileSync(
+    join(showcaseDir, file),
+    { encoding: "utf-8" }
+  )
+  const showcase = grayMatter(showcaseFile)
+
+  listTmp.push(showcase.data)
+})
+
+// console.log(listTmp)
+const list = listTmp
+  // .slice(0,2) // for tests
 
 import urlToSlug from "../web_modules/url-to-slug"
 
 import Nightmare from "nightmare"
-const screenshotsLocation = resolve(__dirname, "../content/assets/showcases/")
+const screenshotsLocation = resolve(
+  __dirname, "..", "content", "assets", "showcases"
+)
+mkdirp.sync(screenshotsLocation)
 const screenshots = list.reduce((screenshots, { url }) => {
   const filename = urlToSlug(url)
   return [

@@ -22,6 +22,6 @@ export const phenomicLoaderPlugins = {
 }
 
 export const phenomicLoaderPresets = {
-  default: require("./phenomic-loader-preset-default"),
-  markdown: require("./phenomic-loader-preset-markdown"),
+  default: require("./phenomic-loader-preset-default").default,
+  markdown: require("./phenomic-loader-preset-markdown").default,
 }

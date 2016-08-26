@@ -138,4 +138,4 @@ your development server in your favorite browser).
 ---
 
 🚀 **When you get the hello world, it's time to take a look to our
-[Getting Started](getting-started/) page and to [start hacking!](../usage/).**
+[Getting Started](../getting-started/) page and to [start hacking!](../usage/).**
