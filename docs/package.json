@@ -15,9 +15,7 @@
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"web_modules/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
-    "prestart": "npm -s run showcase-screenshots",
     "start": "phenomic start",
-    "prebuild": "npm -s run showcase-screenshots",
     "build": "phenomic build",
     "pretest": "npm run lint",
     "test": "npm run build"
