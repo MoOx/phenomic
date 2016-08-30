@@ -15,6 +15,7 @@ type Props = {
     splat: string,
   },
   layouts: Object,
+  className: string,
   defaultLayout: string,
   getPage: Function,
   setPageNotFound: Function,
@@ -234,7 +235,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const Layout = getLayout(page.type, props) || LayoutFallback
 
     return (
-      <div>
+      <div className={props.className}>
         {
           !page.error && page.loading && PageLoading &&
           <PageLoading />
