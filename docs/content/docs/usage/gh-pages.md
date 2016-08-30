@@ -33,9 +33,9 @@ By just keeping a single builded version, you avoid your repo to unnecessarily g
 The script below will get a ``GIT_DEPLOY_REPO`` repo to deploy (or by default
 the ``repository`` url of your ``package.json``).
 
-You can paste it under ``./scripts/deploy.sh``.
-
 ### macOS / Linux
+
+You can paste it under ``./scripts/deploy.sh``.
 
 ```sh
 #!/usr/bin/env bash
@@ -46,18 +46,46 @@ $(npm bin)/rimraf .git
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
-git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
+git push --force "${GIT_DEPLOY_REPO}" gh-pages
+
+# ! #
+# IF YOU USE A USERNAME.GITHUB.IO ROOT DOMAIN, PLEASE READ THE WARNING BELOW
+# ! #
 ```
 
-⚠️ **If you want to use this script for a ``*.github.io`` repo, please adjust the
-last line argument to ``src:master`` (if you source branch is `src`) in order
-to deploy your source branch to ``master`` (which is the ``gh-pages`` branch for
-github.io repos).**
+⚠️ Be sure to add correct permissions to the file
+
+```console
+chmod +x ./scripts/deploy.sh
+```
 
 ### Windows
 
 @todo (should not be hard to adapt the shell script above into a bat script,
 please make a PR if you do it).
+
+---
+
+### ⚠️ WARNING for ``*.github.io`` domain
+
+Normal repositories on GitHub consider (by default) that GitHub Pages will be
+on a [``gh-pages`` branch](](https://help.github.com/articles/user-organization-and-project-pages/)).  
+**But for ``*.github.io`` domain, it's the _master_ branch.**
+
+So if you want to use this script for a ``*.github.io`` repo, you will need to
+adjust the last line argument to ``master`` (in place of ``gh-pages``).
+
+Your branch with your website sources has to be something like `src`
+(**anything but ``master``**) in order to deploy your source branch to
+``master``.
+
+So last line should be
+
+```sh
+git push --force "${GIT_DEPLOY_REPO}" master
+```
+
+---
 
 ### Add a command to deploy
 
@@ -113,7 +141,7 @@ deploy:
 
   # only run on one version of node (v5 here)
   on:
-    branch: master
+    branch: master # ⚠️ OR SRC IF YOU USE USERNAME.GITHUB.IO
     node: '5'
 ```
 
@@ -152,7 +180,7 @@ $(npm bin)/rimraf .git && \
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
-git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
+git push --force "${GIT_DEPLOY_REPO}" gh-pages
 ```
 
 ##### Ensure that the build is done on the CI
