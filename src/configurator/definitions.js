@@ -78,4 +78,9 @@ export default {
     description: "flag to automatically open development server",
     default: true,
   },
+  "cache": {
+    type: "boolean",
+    description: "flag to cache webpack build with hard-source-webpack-plugin",
+    default: true,
+  },
 }
