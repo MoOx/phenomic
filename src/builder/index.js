@@ -35,7 +35,12 @@ export default function(config: Object): void {
   config.webpackConfigNode = webpackConfigNode(config)
 
   const destination = join(config.cwd, config.destination)
-  fs.emptyDirSync(destination)
+  
+  if (config.production) {
+    // If production build, clear /dist folder
+    fs.emptyDirSync(destination)
+  }
+
 
   if (config.static) {
     // Copy static assets to build folder
