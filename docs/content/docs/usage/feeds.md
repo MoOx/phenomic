@@ -5,7 +5,7 @@ incomplete: true
 
 The ``phenomicLoader`` allows you to generate RSS feeds very easily.
 
-The default boilerplate already handles a default RSS feed that will grab the
+The phenomic-theme-base already handles a default RSS feed that will grab the
 last 20 posts.
 
 Here is a commented part of the webpack configuration that will help:

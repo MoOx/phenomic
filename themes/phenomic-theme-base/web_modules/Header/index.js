@@ -7,7 +7,7 @@ import twitterSvg from "../icons/iconmonstr-twitter-1.svg"
 import gitHubSvg from "../icons/iconmonstr-github-1.svg"
 
 export default class Header extends Component {
-  
+
   static contextTypes = {
     metadata: PropTypes.object.isRequired,
   };

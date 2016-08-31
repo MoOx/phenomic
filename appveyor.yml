@@ -12,7 +12,7 @@ matrix:
 
 cache:
   - node_modules -> package.json
-#   - test-boilerplate/node_modules -> package.json
+#   - test-phenomic-theme-base/node_modules -> package.json
 #   - docs/node_modules -> package.json
 
 install:

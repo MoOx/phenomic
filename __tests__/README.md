@@ -6,4 +6,4 @@ This folder is for integration tests only.
 
 See `src/**/__tests__/*.js` for unit tests.
 
-Tests here need to be run with a valid `test-boilerplate` folder.
+Tests here need to be run with a valid `test-phenomic-theme-base` folder.

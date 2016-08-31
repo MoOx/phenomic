@@ -25,10 +25,10 @@ docs/node_modules
 docs/dist
 docs/content/assets/showcases/*
 
-# boilerplate files to work on it
-boilerplate/package.json
-boilerplate/dist
-test-boilerplate
+# phenomic-theme-base files to work on it
+phenomic-theme-base/package.json
+phenomic-theme-base/dist
+test-phenomic-theme-base
 
 # logo
 logo/*.png

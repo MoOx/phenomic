@@ -4,7 +4,7 @@ title: How to style your app/website in Phenomic
 
 ## Syntax and Architecture
 
-The default boilerplate allows you to write, by default, stylesheets with two
+The phenomic-theme-base allows you to write, by default, stylesheets with two
 different approaches:
 Global (normal) CSS and/or
 [CSS modules](#css-modules).

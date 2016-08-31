@@ -1,5 +1,5 @@
 ---
-title: Phenomic default boilerplate
+title: Phenomic base theme
 layout: Homepage
 ---
 

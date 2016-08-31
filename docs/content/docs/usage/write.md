@@ -10,7 +10,7 @@ You can write your files using any text based language like
 [Txt2tags](https://en.wikipedia.org/wiki/Txt2tags) or
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX).
 
-Default boilerplate provides a markdown engine but you can use anything you want.
+phenomic-theme-base provides a markdown engine but you can use anything you want.
 See [Configuration](../configuration/) to specify your own engine.
 
 One common thing that text files will require is front matter that

@@ -8,20 +8,22 @@ if (process.env.CI) {
   process.exit(0)
 }
 
-const boilerplateDir = join(__dirname, "../boilerplate")
+const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
 
-stat(join(boilerplateDir, ".npmignore"), function(err) {
+stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
   if (err) {
-    console.log("No .npmignore in boilerplate to rename")
+    console.log("No .npmignore in phenomic-theme-base to rename")
     return true
   }
 
   fs.move(
-    join(boilerplateDir, ".npmignore"),
-    join(boilerplateDir, ".gitignore"),
+    join(phenomicThemeBaseDir, ".npmignore"),
+    join(phenomicThemeBaseDir, ".gitignore"),
     function(err) {
       if (err) {
-        throw new Error("Cannot rename .npmignore to .gitignore in boilerplate")
+        throw new Error(
+          "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
+        )
       }
     }
   )

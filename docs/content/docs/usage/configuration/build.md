@@ -15,7 +15,7 @@ configuration to fit its requirements, but changes should not affect you.
 
 One particular piece of the webpack configuration is important for Phenomic.
 The section that defines the loader for ``.md`` files (or whatever you use)
-is crucial (in the default boilerplate, it's the first loader) :
+is crucial (in the phenomic-theme-base, it's the first loader) :
 
 - it allows you to control what text engine to use
   (default to Markdown using [remark](http://remark.js.org/)

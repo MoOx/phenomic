@@ -11,6 +11,8 @@ import {
   optionalPeerDependencies as opPeerDeps,
 } from "../../../../package.json"
 
+const themePath = join(__dirname, "../../../../themes/phenomic-theme-base")
+
 export default async function setup(argv) {
   const cwd = process.cwd()
   const testMode = argv.test
@@ -42,9 +44,8 @@ export default async function setup(argv) {
     await fs.writeJson(join(cwd, "package.json"), pkg)
     console.log(color.green("Generated package.json file"))
 
-    const boilerplatePath = join(__dirname, "../../../../boilerplate")
-    await fs.copy(boilerplatePath, cwd)
-    console.log(color.green("Copied boilerplate"))
+    await fs.copy(themePath, cwd)
+    console.log(color.green("Copied theme"))
 
     console.log(
       color.green("Setup done. Now run \"npm install\" to get started")

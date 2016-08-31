@@ -41,7 +41,7 @@ import PageContainer from "phenomic/lib/PageContainer"
 // @todo show usage
 ```
 
-[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
 
 #### ``BodyContainer``
 
@@ -73,7 +73,7 @@ class Page extends Component {
 }
 ```
 
-[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/themes/phenomic-theme-base/web_modules/layouts/Page/index.js)
 
 ### Utilities
 

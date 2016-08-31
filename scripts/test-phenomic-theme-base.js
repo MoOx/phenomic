@@ -1,15 +1,15 @@
 import { remove as rm } from "fs-promise"
 import testFolder, { exec } from "./utils/test-folder.js"
 
-const target = "test-boilerplate"
+const target = "test-phenomic-theme-base"
 testFolder(
   target,
   {
-    // test-boilerplate cleanup
+    // test-phenomic-theme-base cleanup
     cleanup: async () => Promise.all([
-      rm("boilerplate/node_modules"),
-      rm("boilerplate/package.json"),
-      rm("test-boilerplate/!(node_modules)"),
+      rm("phenomic-theme-base/node_modules"),
+      rm("phenomic-theme-base/package.json"),
+      rm("test-phenomic-theme-base/!(node_modules)"),
     ]),
 
     init: async () => {
