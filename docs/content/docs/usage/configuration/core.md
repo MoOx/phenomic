@@ -83,7 +83,10 @@ Here is a commented ``package.json`` with only the interesting parts
 
     // generate offline requirements (service worker / appcache)
     // See docs/advanced/offline-browsing for more information
-    "offline": true
+    "offline": false,
+
+    // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
+    "webpackHardCache": false
   },
 
   // That's because es5 is not enough
