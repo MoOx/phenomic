@@ -80,7 +80,8 @@ export default {
   },
   "webpackHardCache": {
     type: "boolean",
-    description: "flag to cache webpack build with hard-source-webpack-plugin",
-    default: true,
+    // eslint-disable-next-line max-len
+    description: "(experimental) flag to cache webpack build with hard-source-webpack-plugin",
+    default: false,
   },
 }
