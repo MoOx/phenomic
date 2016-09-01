@@ -5,6 +5,7 @@
 // because
 // https://github.com/facebook/flow/issues/1674
 
+export { default as PageContainer } from "./components/PageContainer"
 export { default as BodyContainer } from "./components/BodyContainer"
 export { default as joinUri } from "url-join"
 

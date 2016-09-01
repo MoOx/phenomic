@@ -33,7 +33,7 @@ to use those to define new routes via ``react-router``.
 ⚠️ _For now, Phenomic can handle strings and numbers values,
 as well as Array of strings and numbers._
 
-You can for example adjust ``web_modules/app/routes.js``
+You can for example adjust ``src/routes.js``
 (default location of the file containing routes)
 to add routes to list files related to your tags:
 
@@ -41,7 +41,7 @@ to add routes to list files related to your tags:
 // ...
 
 export default (
-  <Route component={ LayoutContainer }>
+  <Route component={ AppContainer }>
     <Route path="tag/:tag" component={ ContainerThatWillListPostByTag } />
     <Route path="*" component={ PageContainer } />
   </Route>
@@ -124,7 +124,7 @@ if (isClient) {
  requireAuth = (nextState, replace) => {
     console.log(auth)
     if (!auth.loggedIn()) {
-      replace({ pathname: '/login' }) 
+      replace({ pathname: '/login' })
     }
   }
 }

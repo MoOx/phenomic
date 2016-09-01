@@ -7,7 +7,7 @@ Phenomic require at least
 We recommend you to use [nvm](https://github.com/creationix/nvm) to manage
 different versions of node.
 
-**A minimal boilerplate is required, in order to provide you some
+**A minimal phenomic-theme-base is required, in order to provide you some
 flexibility.** But don't worry, a command will set it up for you.
 
 ## One command setup
@@ -51,7 +51,7 @@ mkdir $DIR && cd $DIR
 
 ### Get Phenomic
 
-You will need to install Phenomic first, to generate the required boilerplate.
+You will need to install Phenomic first, to generate the required phenomic-theme-base.
 You can install Phenomic from npm to get latest stable version, or install
 it from git to get latest bleeding edge updates.
 
@@ -87,7 +87,7 @@ npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-
 npm install https://github.com/MoOx/phenomic.git
 ```
 
-### Setup boilerplate
+### Setup phenomic-theme-base
 
 **Notice:** This step will create (and overwrite) any existing ``package.json``.
 
@@ -98,7 +98,7 @@ npm install https://github.com/MoOx/phenomic.git
 **⚠️ If you got errors here, please double check that you have required version of
 Node and NPM specified at the top of this page.**
 
-After you answer some questions, your boilerplate is ready.  
+After you answer some questions, your project is ready.
 
 _Tip:_ You can open `package.json` and adjust some values to fit your needs.
 

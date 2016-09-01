@@ -4,14 +4,14 @@ title: Good practices
 
 ## Linting
 
-Our boilerplate comes with best-in-class tools for linting both JavaScript
+Our phenomic-theme-base comes with best-in-class tools for linting both JavaScript
 and CSS. Linting your code is a good practice because it reduces the probability
 of errors and helps to enforce code consistency.
 
 ## JavaScript Linting
 
 [ESLint](http://eslint.org/) is a must have JavaScript linter; the default
-boilerplate provides you with a nice [standard set of rules](https://github.com/MoOx/eslint-config-i-am-meticulous)
+phenomic-theme-base provides you with a nice [standard set of rules](https://github.com/MoOx/eslint-config-i-am-meticulous)
 for ES2015+ & React.
 
 That being said, you might want less rules (or semicolons).
@@ -63,5 +63,5 @@ This will fix all the errors that ESLint or its plugins can handle.
 ## CSS Linting
 
 [stylelint](http://stylelint.io/) is a must have CSS linter; the default
-boilerplate provides you with a nice [standard set of rules](https://github.com/stylelint/stylelint-config-standard)
+phenomic-theme-base provides you with a nice [standard set of rules](https://github.com/stylelint/stylelint-config-standard)
 for modern CSS development.

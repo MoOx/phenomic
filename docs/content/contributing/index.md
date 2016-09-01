@@ -2,15 +2,15 @@
 title: How to contribute to Phenomic
 ---
 
-## Update the boilerplate
+## Update the phenomic-theme-base
 
-To work on the boilerplate, run the following:
+To work on the phenomic-theme-base, run the following:
 
 ```sh
-npm run boilerplate-start
+npm run phenomic-theme-base-start
 ```
 
-Then you can edit files in the `boilerplate` folder.
+Then you can edit files in the `phenomic-theme-base` folder.
 
 ## Update the docs
 
@@ -33,7 +33,7 @@ _After every modification, please run the entire test suite by using
 
 Note that the full test suite can take a few minutes, as it runs unit tests and
 integration tests (with several builds, including docs and a new project from
-the default boilerplate).
+the phenomic-theme-base).
 
 To speed things up, you can limit tests to the specific component you are working on.
 

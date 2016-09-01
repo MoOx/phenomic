@@ -1,11 +1,33 @@
 # HEAD
 
+- Removed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
+  single string is passed as a child.
+  (@MoOx)
 - Removed: ``PageContainer`` does not wrap its child into a ``<div>``
   ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
   based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
 - Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
   You can enable this **experimental** feature by add
   ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
+- Changed: ``phenomic/lib/PageContainer`` has been relocated.
+  To prevent issue in the future, is now accessible by doing
+  ``import { PageContainer } from "phenomic"``.
+  If you want to import it with a different name, you can do it this way:
+  ```js
+  import { PageContainer as PhenomicPageContainer } from "phenomic"
+  ```
+  ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
+
+## Boilerplate
+
+- Changed: new default tree structure.
+  We encourage you to update to a similar structure if you were using the previous one.
+  Main changes:
+
+  - ``web_modules/layouts`` => ``src/layouts``
+  - ``web_modules/{Components}`` => ``src/components/*``
+  - ``web_modules/app/*`` => ``src/*``
+  - ``web_modules/LayoutContainer`` => ``src/AppContainer.js``
 
 # 0.16.2 - 2016-08-23
 

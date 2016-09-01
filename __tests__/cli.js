@@ -3,7 +3,7 @@ import { join } from "path"
 
 import { exec } from "child_process"
 
-const target = join(__dirname, "..", "test-boilerplate")
+const target = join(__dirname, "..", "test-phenomic-theme-base")
 const execOpts = { cwd: target }
 
 const phenomic = "node ./node_modules/.bin/phenomic"

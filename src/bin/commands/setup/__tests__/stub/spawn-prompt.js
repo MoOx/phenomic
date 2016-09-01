@@ -1,7 +1,7 @@
 require("babel-register")
 const inquirer = require("inquirer")
 // For testing purpose only
-// Spawn a new process with inquirer auto acive
+// Spawn a new process with inquirer auto active
 // Receive "Done" message indicate that test is passed
 const questions = {
   type: "input",

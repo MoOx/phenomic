@@ -7,7 +7,7 @@ const template = {
   "repository": undefined,
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
-    "lint:css": "stylelint \"web_modules/**/*.css\"",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "start": "phenomic start",
     "build": "phenomic build",

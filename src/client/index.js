@@ -7,7 +7,7 @@ import createBrowserHistory from "history/lib/createBrowserHistory"
 import useScroll from "react-router-scroll/lib/useScroll"
 import { Provider as ReduxContextProvider } from "react-redux"
 
-import PhenomicContextProvider from "../ContextProvider"
+import PhenomicContextProvider from "../components/ContextProvider"
 
 export const browserHistory =
   typeof window !== "undefined" // just for node testing
