@@ -18,11 +18,11 @@ export default (config: PhenomicConfig): WebpackConfig => {
 
   return {
     ...webpackConfig,
-    ...config.cache && hardSourceRecordsPath(cacheDir),
+    ...config.webpackHardCache && hardSourceRecordsPath(cacheDir),
     plugins: [
       ...webpackConfig.plugins,
       ...offlinePlugin(config),
-      ...config.cache && hardSourcePlugin(cacheDir, config),
+      ...config.webpackHardCache && hardSourcePlugin(cacheDir, config),
     ],
 
     entry: {
