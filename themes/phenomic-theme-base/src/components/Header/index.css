@@ -13,8 +13,8 @@
   justify-content: space-between;
 
   max-width: calc(60rem + (var(--nav-item-padding) * 2));
-  margin: 0 auto 1rem;
-  padding: 0 1rem;
+  margin: 0 auto;
+  padding: 0;
   line-height: 3rem;
 }
 
@@ -38,6 +38,7 @@
   fill: currentColor;
   opacity: 0.5;
   margin-right: 0.5rem;
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
 }

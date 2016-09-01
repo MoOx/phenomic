@@ -34,7 +34,7 @@ export default class Header extends Component {
                 href={ `https://twitter.com/${pkg.twitter}` }
                 className={ styles.link }
               >
-                <Svg svg={ twitterSvg } />
+                <Svg svg={ twitterSvg } cleanup />
                   { "Twitter" }
               </a>
             }
@@ -43,7 +43,7 @@ export default class Header extends Component {
                 href={ pkg.repository }
                 className={ styles.link }
               >
-                <Svg svg={ gitHubSvg } />
+                <Svg svg={ gitHubSvg } cleanup />
                 { "GitHub" }
               </a>
             }

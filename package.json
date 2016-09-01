@@ -172,7 +172,7 @@
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
     "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm docs/scripts docs/src docs/web_modules themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src themes/phenomic-theme-base/web_modules",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm docs/scripts docs/web_modules themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",

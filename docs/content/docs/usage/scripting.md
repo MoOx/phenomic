@@ -73,7 +73,7 @@ class Page extends Component {
 }
 ```
 
-[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/themes/phenomic-theme-base/web_modules/layouts/Page/index.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/themes/phenomic-theme-base/src/layouts/Page/index.js)
 
 ### Utilities
 

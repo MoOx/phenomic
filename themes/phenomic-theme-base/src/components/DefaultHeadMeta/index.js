@@ -1,18 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 
-// Import global CSS before other components and their styles
-import "./index.global.css"
-import styles from "./index.css"
-
-import Header from "../Header"
-import Footer from "../Footer"
-
-export default class Layout extends Component {
-
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-  };
+export default class DefaultHeadMeta extends Component {
 
   static contextTypes = {
     metadata: PropTypes.object.isRequired,
@@ -23,10 +12,12 @@ export default class Layout extends Component {
       pkg,
     } = this.context.metadata
 
+    /* eslint-disable react/jsx-key */
     return (
-      <div className={ styles.layout }>
+      <div hidden>
         <Helmet
           meta={ [
+            // Please keep this generator tag, that can help to make stats
             {
               name: "generator", content: `${
               process.env.PHENOMIC_NAME } ${ process.env.PHENOMIC_VERSION }`,
@@ -46,12 +37,6 @@ export default class Layout extends Component {
           } ] }
         />
         <style>{ "@-ms-viewport { width: device-width; }" }</style>
-
-        <Header />
-        <div className={ styles.content }>
-          { this.props.children }
-        </div>
-        <Footer />
       </div>
     )
   }

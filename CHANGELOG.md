@@ -7,6 +7,17 @@
   You can enable this **experimental** feature by add
   ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
 
+## Boilerplate
+
+- Changed: new default tree structure.
+  We encourage you to update to a similar structure if you were using the previous one.
+  Main changes:
+
+  - ``web_modules/layouts`` => ``src/layouts``
+  - ``web_modules/{Components}`` => ``src/components/*``
+  - ``web_modules/app/*`` => ``src/*``
+  - ``web_modules/LayoutContainer`` => ``src/AppContainer.js``
+
 # 0.16.2 - 2016-08-23
 
 - Fixed: error during static build have an accurate stack trace.

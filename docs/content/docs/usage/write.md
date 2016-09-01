@@ -30,7 +30,7 @@ Here is a review of the important fields you can use.
 title: "Page title"
 
 # layout default = "Page"
-layout: "MyComponent" # name referenced in `web_modules/layouts/index.js`
+layout: "MyComponent" # name referenced in `src/routes.js`
 
 # route default = normalized path of the markdown file
 # eg: content/some/thing.md => /some/thing/(index.html)

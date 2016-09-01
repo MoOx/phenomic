@@ -7,8 +7,8 @@ testFolder(
   {
     // test-phenomic-theme-base cleanup
     cleanup: async () => Promise.all([
-      rm("phenomic-theme-base/node_modules"),
-      rm("phenomic-theme-base/package.json"),
+      rm("themes/phenomic-theme-base/node_modules"),
+      rm("themes/phenomic-theme-base/package.json"),
       rm("test-phenomic-theme-base/!(node_modules)"),
     ]),
 
