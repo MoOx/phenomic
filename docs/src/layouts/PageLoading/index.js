@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Helmet from "react-helmet"
 import TopBarProgressIndicator from "react-topbar-progress-indicator"
 
-import Banner from "../../Banner"
+import Banner from "../../components/Banner"
 
 import styles from "./index.css"
 

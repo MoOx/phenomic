@@ -66,12 +66,11 @@ blockquote {
 
 pre {
   margin: 1rem 0;
+  max-width: calc(100vw - 2rem);
+  overflow: auto;
 
   font-size: 1rem;
   line-height: 1.5rem;
-
-  overflow: auto;
-  max-width: calc(100vw - 4rem);
 }
 
 code {

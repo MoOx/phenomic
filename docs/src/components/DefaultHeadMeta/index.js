@@ -1,21 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import Helmet from "react-helmet"
 
-import Header from "../Header"
-import Footer from "../Footer"
-import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker"
-import AppCacheBanner from "../AppCacheBanner"
-
-import "./index.global.css"
-import "./hightlightjs.global.css"
-import styles from "./index.css"
-
-export default class Layout extends Component {
-
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-    params: PropTypes.object,
-  };
+export default class DefaultHeadMeta extends Component {
 
   static contextTypes = {
     metadata: PropTypes.object.isRequired,
@@ -26,8 +12,9 @@ export default class Layout extends Component {
       pkg,
     } = this.context.metadata
 
+    /* eslint-disable react/jsx-key */
     return (
-      <GoogleAnalyticsTracker params={ this.props.params }>
+      <div hidden>
         <Helmet
           link={ [
             { "rel": "icon", "href": "/assets/favicon.png" },
@@ -52,16 +39,7 @@ export default class Layout extends Component {
           } ] }
         />
         <style>{ "@-ms-viewport { width: device-width; }" }</style>
-
-        <div className={ styles.layout }>
-          <AppCacheBanner />
-          <Header />
-          <div className={ styles.content }>
-            { this.props.children }
-          </div>
-          <Footer />
-        </div>
-      </GoogleAnalyticsTracker>
+      </div>
     )
   }
 }

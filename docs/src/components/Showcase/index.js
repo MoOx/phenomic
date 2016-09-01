@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from "react"
 import { Link } from "phenomic/lib/Link"
 import enhanceCollection from "phenomic/lib/enhance-collection"
 
-import urlToSlug from "../url-to-slug"
+import urlToSlug from "../../utils/url-to-slug"
 
-import Page from "../layouts/Page"
+import Page from "../../layouts/Page"
 
 import styles from "./index.css"
 
@@ -60,7 +60,7 @@ class Showcase extends Component {
           head={ {
             title: "See who's using Phenomic",
           } }
-          __filename={ "../web_modules/Showcase/index.js" }
+          __filename={ "../layouts/Showcase/index.js" }
           __url={ "/showcase/" }
         >
           { addYourOwn }

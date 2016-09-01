@@ -41,7 +41,7 @@ import PageContainer from "phenomic/lib/PageContainer"
 // @todo show usage
 ```
 
-[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/docs/src/routes.js)
 
 #### ``BodyContainer``
 

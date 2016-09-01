@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import cx from "classnames"
 
-import Content from "../Content"
+import ContentWrapper from "../ContentWrapper"
 import GradientLine from "../GradientLine"
 
 import styles from "./index.css"
@@ -33,9 +33,9 @@ class Banner extends Component {
             [styles.tiny]: props.tiny,
           }) }
         >
-          <Content>
+          <ContentWrapper>
             { children }
-          </Content>
+          </ContentWrapper>
         </div>
         <GradientLine height={ 1 } />
       </div>

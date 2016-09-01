@@ -6,9 +6,9 @@ import Link from "phenomic/lib/Link"
 // import phenomicLogoSvg from "../../../../logo/phenomic-logo-white.svg"
 import phenomicLogo from "../../../../logo/phenomic-logo-white.png"
 
-import Button from "../../Button"
-import Banner from "../../Banner"
-// import Content from "../../Content"
+import Button from "../../components/Button"
+import Banner from "../../components/Banner"
+// import Content from "../../components/Content"
 
 import Page from "../Page"
 

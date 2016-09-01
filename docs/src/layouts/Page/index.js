@@ -3,9 +3,9 @@ import Helmet from "react-helmet"
 import invariant from "invariant"
 import { joinUri, BodyContainer } from "phenomic"
 
-import EditThisPage from "../../EditThisPage"
-import Banner from "../../Banner"
-import Content from "../../Content"
+import EditThisPage from "../../components/EditThisPage"
+import Banner from "../../components/Banner"
+import ContentWrapper from "../../components/ContentWrapper"
 
 import styles from "./index.css"
 
@@ -64,7 +64,7 @@ export default class Page extends Component {
     )
 
     return (
-      <div>
+      <div className={ styles.page }>
         <Helmet
           title={ metaTitle }
           meta={ meta }
@@ -79,7 +79,7 @@ export default class Page extends Component {
             }
           </Banner>
         }
-        <Content>
+        <ContentWrapper>
           {
             // to avoid "weird" visual result, we put actions at the top only
             // if page has a title, other wise (eg: homepage) it can be a little
@@ -107,7 +107,7 @@ export default class Page extends Component {
           }
           { this.props.children }
           { PageActions }
-        </Content>
+        </ContentWrapper>
       </div>
     )
   }

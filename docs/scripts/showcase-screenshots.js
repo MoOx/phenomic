@@ -25,7 +25,7 @@ showcasesFile.forEach((file) => {
 const list = listTmp
   // .slice(0,2) // for tests
 
-import urlToSlug from "../web_modules/url-to-slug"
+import urlToSlug from "../src/utils/url-to-slug"
 
 import Nightmare from "nightmare"
 const screenshotsLocation = resolve(

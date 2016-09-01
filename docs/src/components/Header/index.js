@@ -3,13 +3,13 @@ import Link from "phenomic/lib/Link"
 
 import Color from "color"
 
-import Content from "../Content"
+import ContentWrapper from "../ContentWrapper"
 import GradientLine from "../GradientLine"
 
 import styles from "./index.css"
-import npmPkg from "../../../package.json"
+import npmPkg from "../../../../package.json"
 import Svg from "react-svg-inline"
-import phenomicLogoSvg from "../../../logo/phenomic.svg"
+import phenomicLogoSvg from "../../../../logo/phenomic.svg"
 import chatSvg from "./chat.svg"
 import twitterSvg from "./twitter.svg"
 import githubSvg from "./github.svg"
@@ -24,7 +24,7 @@ class Header extends Component {
     let i = 1
     return (
       <header className={ styles.header }>
-        <Content>
+        <ContentWrapper>
           <nav className={ styles.nav }>
             <div
               className={ styles.logo }
@@ -162,7 +162,7 @@ class Header extends Component {
               </a>
             </div>
           </nav>
-        </Content>
+        </ContentWrapper>
         <GradientLine height={ 1 } />
       </header>
     )
