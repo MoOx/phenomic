@@ -9,7 +9,7 @@ export const getCacheDir = (config: PhenomicConfig): string => {
   const hasher = new ObjectHash()
   const hash = hasher.hash(config)
 
-  const cacheDir = findCacheDir({ name: "phenomic-hard-source-wp/" + hash })
+  const cacheDir = findCacheDir({ name: "phenomic/hard-source-wp/" + hash })
 
   return cacheDir
 }
