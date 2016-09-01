@@ -8,7 +8,7 @@ import commonWebpackConfig from "./config.common.js"
 
 const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
-const cacheDir = findCacheDir({ name: "phenomic" })
+const cacheDir = findCacheDir({ name: "phenomic/webpack-node-build" })
 
 const defaultExternals = [
   // we could consider node_modules as externals deps
