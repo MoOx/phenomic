@@ -1,5 +1,8 @@
 # HEAD
 
+- Removed: ``PageContainer`` does not wrap its child into a ``<div>``
+  ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx, based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
+
 # 0.16.2 - 2016-08-23
 
 - Fixed: error during static build have an accurate stack trace.

@@ -34,9 +34,7 @@ test("should render a Page if page is ok", () => {
     },
   )
   expect(renderer.getRenderOutput()).toEqualJSX(
-    <div>
-      <Page ref={ function noRefCheck() {} } />
-    </div>
+    <Page ref={ function noRefCheck() {} } />
   )
 })
 
@@ -92,13 +90,11 @@ available`, () => {
   )
 
   expect(renderer.getRenderOutput()).toEqualJSX(
-    <div>
-      <div style={ { "text-align": "center" } }>
-        <h1>
-          { "Test" }
-        </h1>
-        <p />
-      </div>
+    <div style={ { "text-align": "center" } }>
+      <h1>
+        { "Test" }
+      </h1>
+      <p />
     </div>
   )
 })
@@ -123,9 +119,7 @@ test("should render a PageError if page is not ok and PageError is available",
   )
 
   expect(renderer.getRenderOutput()).toEqualJSX(
-    <div>
-      <PageError error="Test" />
-    </div>
+    <PageError error="Test" />
   )
 })
 
@@ -149,8 +143,6 @@ test("should render a another page layout if defaultLayout is used", () => {
   )
 
   expect(renderer.getRenderOutput()).toEqualJSX(
-    <div>
-      <AnotherPage ref={ function noRefCheck() {} } />
-    </div>
+    <AnotherPage ref={ function noRefCheck() {} } />
   )
 })
