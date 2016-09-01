@@ -33,7 +33,7 @@ If you have questions on "why is the setup command so long", you will find
 answer below 😉.
 
 🚀 **When you get the hello world, it's time to take a look to our
-[Getting Started](getting-started/) page and to [start hacking!](../usage/).**
+[Getting Started](../getting-started/) page and to [start hacking!](../usage/).**
 
 
 ---
