@@ -1,5 +1,8 @@
 # HEAD
 
+- Removed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
+  single string is passed as a child.
+  (@MoOx)
 - Removed: ``PageContainer`` does not wrap its child into a ``<div>``
   ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
   based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
@@ -13,6 +16,7 @@
   ```js
   import { PageContainer as PhenomicPageContainer } from "phenomic"
   ```
+  ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
 
 ## Boilerplate
 
