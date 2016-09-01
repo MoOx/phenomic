@@ -21,7 +21,7 @@ test("should return a default configuration", (t) => {
     offline : false,
     verbose: false,
     open: true,
-    cache: true,
+    webpackHardCache: true,
     dev: false,
     production: false,
     static: false,
