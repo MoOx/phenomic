@@ -78,6 +78,8 @@ export default function(config: Object): void {
     devServer(config)
   }
   else {
-    throw new Error("You need to specify --static or --server")
+    console.error(color.red(
+      "phenomic: CLI needs --static or --server"
+    ))
   }
 }

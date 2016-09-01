@@ -6,9 +6,6 @@
 - Removed: ``PageContainer`` does not wrap its child into a ``<div>``
   ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
   based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
-- Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
-  You can enable this **experimental** feature by add
-  ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
 - Changed: ``phenomic/lib/PageContainer`` has been relocated.
   To prevent issue in the future, is now accessible by doing
   ``import { PageContainer } from "phenomic"``.
@@ -17,6 +14,11 @@
   import { PageContainer as PhenomicPageContainer } from "phenomic"
   ```
   ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
+- Changed: error messages for bad configuration are now more readable
+  ([#672](https://github.com/MoOx/phenomic/issues/672) - @MoOx)
+- Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
+  You can enable this **experimental** feature by add
+  ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
 
 ## Boilerplate
 

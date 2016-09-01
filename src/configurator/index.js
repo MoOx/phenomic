@@ -3,6 +3,8 @@ import definitions from "./definitions.js"
 import minimalValidator from "./minimal-validator.js"
 import * as validators from "./validators.js"
 
+import colors from "chalk"
+
 export default function config({ argv = [], pkg = {} } = {}) {
   const userJSConfig = pkg.phenomic || {}
 
@@ -39,12 +41,23 @@ export default function config({ argv = [], pkg = {} } = {}) {
   })
 
   if (errors.length > 0) {
-    throw new Error(
-      "Your config is invalid. Please fix the errors: \n- " +
-      errors.join("\n- ") +
+    const errorMessage = (
+      "\n⚠️ " + "phenomic: " +
+      colors.yellow("your config is invalid. Please fix the errors:") +
       "\n\n" +
-      "See 'Configuration' section in documentation."
+      colors.red("- " + errors.join("\n- ")) +
+      "\n\n" +
+      colors.yellow("See 'Configuration' section in documentation.") +
+      " " +
+      "https://phenomic.io/docs/usage/configuration/"
     )
+    if (process.env.NODE_ENV === "test") {
+      throw new Error(errorMessage)
+    }
+    else {
+      console.error(errorMessage)
+      process.exit(1)
+    }
   }
 
   return config
