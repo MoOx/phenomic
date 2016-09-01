@@ -11,7 +11,7 @@ By default, Phenomic offers you the following layouts:
 - [`PageError`](#pageerror)
 - [`PageLoading`](#pageloading)
 
-If you use the `phenomic/lib/PageContainer`, you will need those components in
+If you use the ``PageContainer``, you will need those components in
 your `layouts` definition (by default, declared in `app/routes.js`).
 
 To use your custom layout, add the `layout` option to the `YAML` frontmatter of

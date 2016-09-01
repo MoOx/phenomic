@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from "react"
 import { findDOMNode } from "react-dom"
 
-import urlify from "../_utils/urlify"
+import urlify from "../../_utils/urlify"
 
 type DefaultProps = {
   defaultLayout: string,
@@ -37,8 +37,8 @@ let catchLinks
 let browserHistory
 
 if (isClient()) {
-  catchLinks = require("../_utils/catch-links").default
-  browserHistory = require("../client").browserHistory
+  catchLinks = require("../../_utils/catch-links").default
+  browserHistory = require("../../client").browserHistory
 }
 
 function find(

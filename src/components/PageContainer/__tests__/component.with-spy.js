@@ -5,8 +5,8 @@ import sinon from "sinon"
 import React, { createElement as jsx } from "react"
 import { createRenderer } from "react-addons-test-utils"
 
-import cleanNodeCache from "../../_utils/clean-node-cache"
-import dom from "../../_utils/jsdom"
+import cleanNodeCache from "../../../_utils/clean-node-cache"
+import dom from "../../../_utils/jsdom"
 
 // fixtures
 /* eslint-disable react/no-multi-comp */

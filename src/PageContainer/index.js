@@ -1,16 +1,10 @@
-import { connect } from "react-redux"
-import * as pageActions from "../redux/modules/pages"
+// deprecated
+import PageContainer from "../components/PageContainer"
+import colors from "chalk"
 
-import PageContainer from "./component"
+console.log("⚠️ " + colors.yellow(
+  "'phenomic/lib/PageContainer' reference is deprecated.\n" +
+  "Please use `import { PageContainer } from \"phenomic\" instead`."
+))
 
-export default connect(
-  ({ pages }) => {
-    return { pages }
-  },
-  (dispatch) => {
-    return {
-      getPage: (...args) => dispatch(pageActions.get(...args)),
-      setPageNotFound: (...args) => dispatch(pageActions.setNotFound(...args)),
-    }
-  },
-)(PageContainer)
+export default PageContainer

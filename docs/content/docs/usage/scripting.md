@@ -36,7 +36,7 @@ Several constants are exposed (injected) in your JavaScript code in
 Component to define and declare all pages layouts.
 
 ```js
-import PageContainer from "phenomic/lib/PageContainer"
+``import { PageContainer } from "phenomic"``
 
 // @todo show usage
 ```
