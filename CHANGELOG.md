@@ -1,7 +1,11 @@
 # HEAD
 
 - Removed: ``PageContainer`` does not wrap its child into a ``<div>``
-  ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx, based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
+  ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
+  based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
+- Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
+  You can enable this **experimental** feature by add
+  ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
 
 # 0.16.2 - 2016-08-23
 

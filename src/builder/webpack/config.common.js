@@ -7,7 +7,7 @@ import {
   getCacheDir,
   hardSourceRecordsPath,
   hardSourcePlugin,
-} from "../../_utils/hard-source-webpack-plugin"
+} from "../../_utils/webpackHardCache/webpack.js"
 
 export const chunkNameBrowser = "phenomic.browser"
 
