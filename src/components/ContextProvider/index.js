@@ -1,5 +1,5 @@
 // @flow
-/* eslint-disable react/sort-comp */
+
 import { Component, PropTypes, Children } from "react"
 
 export default class PhenomicContext extends Component {

@@ -9,7 +9,7 @@ import Helmet from "react-helmet"
 import htmlMetas from "../../_utils/html-metas"
 import pathToUri from "../../_utils/path-to-uri"
 import Html from "./Html"
-import PhenomicContextProvider from "../../ContextProvider"
+import PhenomicContextProvider from "../../components/ContextProvider"
 import serialize from "../../_utils/serialize"
 
 import minifyCollection from "../../phenomic-loader/minify"
