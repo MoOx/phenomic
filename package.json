@@ -175,7 +175,6 @@
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm docs/scripts docs/src docs/web_modules themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src themes/phenomic-theme-base/web_modules",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
-    "lint:css": "stylelint \"+(themes|docs)/web_modules/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "ava",
     "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
