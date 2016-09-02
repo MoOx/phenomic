@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
 const path = require("path")
+const checkEngine = require("./check-engine")
+
+// Check for node and npm version
+// If it doesn't sastify the requirements
+// The process will exits immediately
+checkEngine()
 
 if (!process.env.DEBUG) {
   process.env.DEBUG = "phenomic:*"
