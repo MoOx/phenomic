@@ -190,7 +190,7 @@
     "prephenomic-theme-base-start": "npm -s run transpile && babel-node scripts/phenomic-theme-base.js",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
     "preall-tests": "npm run lint",
-    "all-tests": "cross-env NODE_ENV=test npm run tests && npm run test-phenomic-theme-base && npm run docs",
+    "all-tests": "cross-env TESTING=1 npm run tests && npm run test-phenomic-theme-base && npm run docs",
     "test": "npm run all-tests",
     "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

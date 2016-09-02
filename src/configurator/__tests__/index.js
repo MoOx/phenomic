@@ -65,6 +65,7 @@ test("should allow to override some default values", (t) => {
 })
 
 test("should warn if config is invalid", (t) => {
+  process.env.TESTING = "1"
   t.throws(
     () => configurator({
       pkg: {
@@ -78,6 +79,7 @@ test("should warn if config is invalid", (t) => {
 })
 
 test("should warn if config is invalid when '--production' is used", (t) => {
+  process.env.TESTING = "1"
   t.throws(
     () => {
       configurator({

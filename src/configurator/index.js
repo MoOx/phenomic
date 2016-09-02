@@ -51,7 +51,7 @@ export default function config({ argv = [], pkg = {} } = {}) {
       " " +
       "https://phenomic.io/docs/usage/configuration/"
     )
-    if (process.env.NODE_ENV === "test") {
+    if (process.env.TESTING) {
       throw new Error(errorMessage)
     }
     else {
