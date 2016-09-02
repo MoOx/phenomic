@@ -1,6 +1,6 @@
 const semver = require("semver")
 const pkg = require("../../package.json")
-const { execSync } = require("child_process")
+const execSync = require("child_process").execSync
 const colors = require("chalk")
 
 module.exports = function() {
@@ -11,10 +11,10 @@ module.exports = function() {
   try {
     const stdout = execSync(npm + " --version")
     const npmVersion = stdout.toString().trim()
-    if (
-      !semver.satisfies(nodeVersion, requirements.node) &&
-      !semver.satisfies(npmVersion, requirements.npm)
-    ) {
+    if (!(
+      semver.satisfies(nodeVersion, requirements.node) &&
+      semver.satisfies(npmVersion, requirements.npm)
+    )) {
       const errorMessage = colors.yellow(
         "\n⚠️ " + "Phenomic requires at least " +
         "node@" + requirements.node + " and npm@" + requirements.npm +
