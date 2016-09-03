@@ -2,6 +2,8 @@ import test from "ava"
 import checkEngine from "../check-engine"
 
 test("should not throw when sastifies", (t) => {
+  process.env.FAKE_NODE_VERSION = "6.0.0"
+  process.env.FAKE_NPM_VERSION = "3.0.0"
   t.notThrows(checkEngine)
 })
 
