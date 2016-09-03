@@ -1,16 +1,16 @@
-const semver = require("semver")
-const pkg = require("../../package.json")
-const execSync = require("child_process").execSync
-const colors = require("chalk")
+import semver from "semver"
+import pkg from "../../package.json"
+import { execSync } from "child_process"
+import colors from "chalk"
 
-module.exports = function() {
+export default function() {
   const requirements = pkg.engines
-  const nodeVersion = process.version
+  const nodeVersion = process.env.FAKE_NODE_VERSION || process.version
   const npm = /^win/.test(process.platform) ? "npm.cmd" : "npm"
 
   try {
     const stdout = execSync(npm + " --version")
-    const npmVersion = stdout.toString().trim()
+    const npmVersion = process.env.FAKE_NPM_VERSION || stdout.toString().trim()
     if (!(
       semver.satisfies(nodeVersion, requirements.node) &&
       semver.satisfies(npmVersion, requirements.npm)

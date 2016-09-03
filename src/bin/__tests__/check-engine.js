@@ -5,5 +5,30 @@ test("should not throw when sastifies", (t) => {
   t.notThrows(checkEngine)
 })
 
-// process.version is READONLY
-test.todo("should throw when sastifies")
+test("should throw", (t) => {
+  process.env.FAKE_NODE_VERSION = "3.0.0"
+  process.env.FAKE_NPM_VERSION = "2.0.0"
+  t.throws(
+    checkEngine,
+    (error) => error.message.includes("node version is 3.0.0"),
+    "when node version doesn't sastify"
+  )
+  process.env.FAKE_NODE_VERSION = "4.2.0"
+  process.env.FAKE_NPM_VERSION = "2.0.0"
+  t.throws(
+    checkEngine,
+    (error) => error.message.includes("npm version is 2.0.0"),
+    "when npm version doesn't sastify"
+  )
+
+  process.env.FAKE_NODE_VERSION = "3.0.0"
+  process.env.FAKE_NPM_VERSION = "2.0.0"
+  t.throws(
+    checkEngine,
+    (error) => (
+      error.message.includes("node version is 3.0.0") &&
+      error.message.includes("npm version is 2.0.0")
+    ),
+    "when both node and npm version doesn't sastify"
+  )
+})
