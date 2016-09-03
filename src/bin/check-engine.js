@@ -3,7 +3,7 @@ import pkg from "../../package.json"
 import { execSync } from "child_process"
 import colors from "chalk"
 
-export default function() {
+module.exports = function() {
   const requirements = pkg.engines
   const nodeVersion = process.env.FAKE_NODE_VERSION || process.version
   const npm = /^win/.test(process.platform) ? "npm.cmd" : "npm"
