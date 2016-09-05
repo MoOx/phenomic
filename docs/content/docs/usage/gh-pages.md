@@ -3,7 +3,7 @@ title: Automatic deployment on GitHub Pages
 ---
 
 **Be sure that you use the ``phenomic.CNAME`` option in your
-[configuration](./configuration/)**
+[configuration](../configuration/)**
 
 You will have multiple possibilities to deploy your `dist` folder on the
 `gh-pages` branch.
