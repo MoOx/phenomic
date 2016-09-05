@@ -46,7 +46,7 @@ $(npm bin)/rimraf .git
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
-git push --force "${GIT_DEPLOY_REPO}" gh-pages
+git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
 
 # ! #
 # IF YOU USE A USERNAME.GITHUB.IO ROOT DOMAIN, PLEASE READ THE WARNING BELOW
@@ -180,7 +180,7 @@ $(npm bin)/rimraf .git && \
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
-git push --force "${GIT_DEPLOY_REPO}" gh-pages
+git push --force "${GIT_DEPLOY_REPO}" master:gh-pages
 ```
 
 ##### Ensure that the build is done on the CI
