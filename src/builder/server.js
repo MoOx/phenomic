@@ -132,7 +132,6 @@ export default (config) => {
   <head><meta charset="utf8" /></head>
   <body>
     <div id="phenomic">
-      ...
     </div>
     <script>
     window.__COLLECTION__ = ${
