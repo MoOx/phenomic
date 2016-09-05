@@ -34,7 +34,7 @@ module.exports = function() {
       throw new Error(errorMessage)
     }
 
-    console.log(errorMessage)
-    process.exit(0)
+    console.error(errorMessage)
+    process.exit(1)
   }
 }
