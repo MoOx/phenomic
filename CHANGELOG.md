@@ -26,6 +26,8 @@
 - Added: Error message in the browser if app start fail at start during
   development
   ([#679](https://github.com/MoOx/phenomic/issues/679]) - @MoOx)
+- Added: proper message if Node and npm version are not satisfying requirements
+  ([#709](https://github.com/MoOx/phenomic/pull/709) - @thangngoc89)
 
 ## Boilerplate
 
