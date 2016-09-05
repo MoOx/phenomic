@@ -2,7 +2,7 @@
 title: Automatic deployment on GitHub Pages
 ---
 
-**Be sure that you use the ``phenomic.CNAME`` option in your
+**If you want to deploy to a custom domain, be sure to use the ``phenomic.CNAME`` option in your
 [configuration](../configuration/)**
 
 You will have multiple possibilities to deploy your `dist` folder on the
