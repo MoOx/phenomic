@@ -16,6 +16,10 @@
   ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
 - Changed: error messages for bad configuration are now more readable
   ([#672](https://github.com/MoOx/phenomic/issues/672) - @MoOx)
+- Fixed: front matter ``route`` can use ``/`` to define the homepage
+  ([#721](https://github.com/MoOx/phenomic/pull/721) - @thangngoc89)
+  single string is passed as a child.
+  (@MoOx)
 - Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
   You can enable this **experimental** feature by add
   ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
