@@ -54,8 +54,6 @@
     "hard-source-webpack-plugin": "0.0.28",
     "inquirer": "^1.0.0",
     "loader-utils": "^0.2.11",
-    "lodash.template": "^4.2.2",
-    "lru-memoize": "^1.0.0",
     "mkdirp": "^0.5.1",
     "node-object-hash": "^1.0.2",
     "offline-plugin": "^3.4.1",
