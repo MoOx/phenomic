@@ -126,13 +126,26 @@ export default (config) => {
     router.get("/index.html", (req, res) => {
       const collectionMin = minifyCollection(collection)
       res.setHeader("Content-Type", "text/html")
+      /* eslint-disable max-len */
       res.end(
   `<!doctype html>
   <html>
   <head><meta charset="utf8" /></head>
   <body>
     <div id="phenomic">
-      ...
+      <div
+        id="phenomic-DevLoader"
+        style="color: red; font: caption; text-align: center; line-height: 100vh; font-size: 2rem;"
+      >
+        <script>
+        window.onerror = function(e) {
+          var devLoader = document.querySelector("#phenomic-DevLoader")
+          if (devLoader) { devLoader.innerHTML = e.toString() }
+          // only need to use this code once
+          window.onerror = null
+        }
+        </script>
+      </div>
     </div>
     <script>
     window.__COLLECTION__ = ${
@@ -148,6 +161,7 @@ export default (config) => {
     }
   </body>
   </html>`
+      /* eslint-enable max-len */
       )
     })
   }
