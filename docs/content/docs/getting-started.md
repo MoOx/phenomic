@@ -96,6 +96,7 @@ If you need to start with React you might want to check the following resources:
 - [Official React Tutorial](https://facebook.github.io/react/docs/tutorial.html)
 - [React Fundamentals on EggHead.io](https://egghead.io/courses/react-fundamentals)
 - [reactforbeginners.com](https://reactforbeginners.com/)
+- [Build your first real world React.js application](http://academy.plot.ly/#react)
 
 You might also take a look to
 [react-howto](https://github.com/petehunt/react-howto) to understand what you might need to learn and what you don't.
