@@ -52,13 +52,15 @@ module.exports = function(input: string) {
     })
   }, {})
 
-  const tmpUrl = urlify(
+  let tmpUrl = urlify(
     pluginsResult.head && pluginsResult.head.route
       // custom route
       ? pluginsResult.head.route
       // default route
       : relativePath
   )
+  tmpUrl = (tmpUrl.substring(0, 1) === "/") ? tmpUrl.slice(1) : tmpUrl
+
   const url = urlify(tmpUrl)
   const resourceUrl = urlify(tmpUrl, true)
   const contentHash = loaderUtils.getHashDigest(input)

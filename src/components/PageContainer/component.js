@@ -27,7 +27,10 @@ type Context = {
 
 // react-router does not return leading and trailing slashes
 // so we need to normalize according to collection data
-const splatToUrl = (string) => ("/" + urlify(string))
+const splatToUrl = (string) => {
+  const url = "/" + urlify(string)
+  return (url === "//") ? "/" : url
+}
 
 const isDevelopment = (): boolean => process.env.NODE_ENV !== "production"
 const isClient = (): boolean => typeof window !== "undefined"

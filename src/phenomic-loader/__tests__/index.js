@@ -86,6 +86,17 @@ test.cb("phenomic loader", (t) => {
         "should create a proper json for custom route with an extension"
       )
 
+      const customRouteRootIndex = stats.compilation.assets[
+        //    fixtures/custom-route-root-index.md
+        // -> fixtures/index.html
+        "index.html" +
+        ".8817d2a1fab9dfb9b4b52cd6ee7529ab.json"
+      ]
+      t.truthy(
+        customRouteRootIndex && customRouteRootIndex._value,
+        "should create a proper json for custom route with an extension"
+      )
+
       t.end()
     }
   )
@@ -140,7 +151,7 @@ test.cb("phenomic loader can be used with plugins", (t) => {
           "dumb"
         )
       })
-      t.plan(2+4) // 2, err, warn, 4 => array
+      t.plan(2+5) // 2, err, warn, 5   => array
       t.end()
     }
   )
