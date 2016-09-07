@@ -4,7 +4,7 @@ export default (
 ): PhenomicCollection => {
   if (!Array.isArray(collection)) {
     throw new Error(
-      `minify except a valid collection instead of ${ typeof collection }`
+      `minify expect a valid collection instead of ${ typeof collection }`
     )
   }
 
