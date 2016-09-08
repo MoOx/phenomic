@@ -29,7 +29,6 @@
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.13.0",
     "classnames": "^2.2.3",
@@ -62,6 +61,7 @@
     "react-svg-inline": "^1.1.0",
     "react-topbar-progress-indicator": "^1.0.0",
     "redux": "^3.0.0",
+    "react-hot-loader": "^3.0.0-beta",
     "style-loader": "^0.12.3",
     "stylelint": "^6.8.0",
     "stylelint-config-standard": "^10.0.0",
@@ -93,8 +93,10 @@
             }
           ],
           "babel-preset-stage-1",
-          "babel-preset-react",
-          "babel-preset-react-hmre"
+          "babel-preset-react"
+        ],
+        "plugins": [
+          "react-hot-loader/babel"
         ]
       },
       "webpack-production": {

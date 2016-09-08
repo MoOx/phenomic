@@ -1,4 +1,7 @@
+import "react-hot-loader/patch"
+
 import "whatwg-fetch"
+
 import phenomicClient from "phenomic/lib/client"
 import metadata from "../src/metadata.js"
 import routes from "../src/routes.js"
@@ -20,5 +23,17 @@ if (module.hot) {
     mdContext = require.context("../content", true, /\.md$/)
     const requireUpdate = mdHotUpdater(mdContext, window.__COLLECTION__, store)
     mdContext.keys().forEach(requireUpdate)
+  })
+
+  module.hot.accept([
+    "../src/metadata.js",
+    "../src/routes.js",
+    "../src/store.js",
+  ], () => {
+    phenomicClient({
+      metadata,
+      routes,
+      store,
+    })
   })
 }
