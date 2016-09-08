@@ -41,7 +41,9 @@ const template = {
           ],
           "babel-preset-stage-1",
           "babel-preset-react",
-          "babel-preset-react-hmre",
+        ],
+        "plugins": [
+          "react-hot-loader/babel",
         ],
       },
       "webpack-production": {
