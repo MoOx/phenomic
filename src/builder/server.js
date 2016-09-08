@@ -43,30 +43,26 @@ export default (config) => {
 
     const devConfig = {
       ...webpackConfig,
-      // debug: true,
-      // watch: true,
-      // colors: true,
       entry: {
         // add devEntries
-        ...Object.keys(webpackConfig.entry)
-          .reduce((acc, key) => {
-            // some entries do not need extra stuff
-            acc[key] = [
-              ...devEntries,
-              ...Array.isArray(webpackConfig.entry[key])
-                ? webpackConfig.entry[key]
-                : [ webpackConfig.entry[key] ],
-            ]
-            return acc
-          },
-          {}
-        ),
+        ...Object.keys(webpackConfig.entry).reduce((acc, key) => ({
+          ...acc,
+          [key]: [
+            ...devEntries,
+            ...Array.isArray(webpackConfig.entry[key])
+              ? webpackConfig.entry[key]
+              : [ webpackConfig.entry[key] ],
+          ],
+        }), {}),
       },
       plugins: [
         ...(webpackConfig.plugins || []),
+
+        // for hot-middleware
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
+
         new WebpackNotifierPlugin(),
       ],
       eslint: {
@@ -75,16 +71,13 @@ export default (config) => {
       },
     }
 
-    // webpack requirements
+    // webpack dev + hot middlewares
     const webpackCompiler = webpack(devConfig)
-
     server.use(webpackDevMiddleware(webpackCompiler, {
       publicPath: webpackConfig.output.publicPath,
       noInfo: !config.verbose,
       ...devConfig.devServer,
     }))
-
-    // HMR
     server.use(webpackHotMiddleware(webpackCompiler))
 
     let entries = []
