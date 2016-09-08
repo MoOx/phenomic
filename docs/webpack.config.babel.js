@@ -43,10 +43,6 @@ export const makeConfig = (config = {}) => {
           include: [
             path.resolve(__dirname, "scripts"),
             path.resolve(__dirname, "src"),
-
-            // BECAUSE DOCS USE NON TRANSPILED CODE
-            path.resolve(__dirname, "..", "src"),
-            // FOR DOCS ONLY, SINCE DOCS USE NON TRANSPILED PHENOMIC SOURCES
           ],
         },
         {

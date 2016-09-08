@@ -17,6 +17,7 @@
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "start": "phenomic start",
+    "restart": "cd ../ && npm -s run transpile && cd docs && phenomic start",
     "build": "phenomic build",
     "pretest": "npm run lint",
     "test": "npm run build"
