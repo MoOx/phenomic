@@ -39,17 +39,13 @@ export const makeConfig = (config = {}) => {
         // *.js => babel + eslint
         {
           test: /\.js$/,
-          loaders: [
-            `babel-loader${
-              config.dev
-              ? "?cacheDirectory=true&presets[]=babel-preset-react-hmre"
-              : "?cacheDirectory=true"
-            }`,
-            "eslint-loader?fix",
-          ],
           include: [
             path.resolve(__dirname, "scripts"),
             path.resolve(__dirname, "src"),
+          ],
+          loaders: [
+            "babel-loader?cacheDirectory=true",
+            "eslint-loader?fix",
           ],
         },
 
