@@ -37,6 +37,9 @@ export default function(config: Object): void {
   const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
+  process.env.BABEL_ENV = "webpack-" + (process.env.NODE_ENV || "development")
+  console.log(process.env.NODE_ENV, process.env.BABEL_ENV)
+
   if (config.static) {
     // Copy static assets to build folder
     if (config.assets) {

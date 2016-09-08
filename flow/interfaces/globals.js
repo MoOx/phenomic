@@ -1,6 +1,7 @@
 declare var process: {
   env: {
-    NODE_ENV? : "production",
+    BABEL_ENV?: string,
+    NODE_ENV?: string,
     PHENOMIC_USER_URL: string,
     PHENOMIC_USER_PATHNAME: string,
     PHENOMIC_NAME: string,

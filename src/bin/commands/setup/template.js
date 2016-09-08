@@ -16,15 +16,44 @@ const template = {
   },
   "phenomic": {/* placeholder */},
   "babel": {
-    "presets": [
-      "babel-preset-react",
-      "babel-preset-es2015",
-      "babel-preset-stage-1",
-    ],
     "env": {
+      "development": {
+        "presets": [
+          "babel-preset-es2015",
+          "babel-preset-stage-1",
+          "babel-preset-react",
+        ],
+      },
       "production": {
         "presets": [
+          "babel-preset-es2015",
+          "babel-preset-stage-1",
+          "babel-preset-react",
+        ],
+      },
+      "webpack-development": {
+        "presets": [
+          [
+            "babel-preset-es2015",
+            {
+              "modules": false,
+            },
+          ],
+          "babel-preset-stage-1",
+          "babel-preset-react",
+        ],
+      },
+      "webpack-production": {
+        "presets": [
           "babel-preset-react-optimize",
+          [
+            "babel-preset-es2015",
+            {
+              "modules": false,
+            },
+          ],
+          "babel-preset-stage-1",
+          "babel-preset-react",
         ],
       },
     },

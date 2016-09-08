@@ -62,25 +62,26 @@ export const makeConfig = (config = {}) => {
           test: /\.css$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ `css-loader?modules&localIdentName=${
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [
+              `css-loader?modules&localIdentName=${
                 config.production
                 ? "[hash:base64:5]"
                 : "[path][name]--[local]--[hash:base64:5]"
               }`,
               "postcss-loader",
-            ].join("!"),
-          ),
+            ],
+          }),
         },
         // *.global.css => global (normal) css
         {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ "css-loader", "postcss-loader" ].join("!"),
-          ),
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [ "css-loader", "postcss-loader" ],
+          }),
         },
         // ! \\
         // If you want global CSS only, just remove the 2 sections above
@@ -155,9 +156,15 @@ export const makeConfig = (config = {}) => {
     ],
 
     plugins: [
-      new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+      new ExtractTextPlugin({
+        filename: "[name].[hash].css",
+        disable: config.dev,
+      }),
+
       ...config.production && [
-        new webpack.optimize.DedupePlugin(),
+        // DedupePlugin does not work correctly with Webpack 2, yet ;)
+        // https://github.com/webpack/webpack/issues/2644
+        // new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(
           { compress: { warnings: false } }
         ),

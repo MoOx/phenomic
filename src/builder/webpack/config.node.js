@@ -54,10 +54,11 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ...webpackConfig.plugins.filter(
         (plugin) => !(plugin instanceof UglifyJsPlugin)
       ) || [],
-      new BannerPlugin(
-        "require('source-map-support').install();",
-        { raw: true, entryOnly: false }
-      ),
+      new BannerPlugin({
+        banner: "require('source-map-support').install();",
+        raw: true,
+        entryOnly: false,
+      }),
     ],
   }
 }
