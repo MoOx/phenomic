@@ -32,41 +32,38 @@ export const makeConfig = (config = {}) => {
         },
         {
           test: /\.js$/,
-          loaders: [
-            `babel-loader${
-              config.dev
-              ? "?cacheDirectory=true&presets[]=babel-preset-react-hmre"
-              : "?cacheDirectory=true"
-            }`,
-            "eslint-loader?fix",
-          ],
           include: [
             path.resolve(__dirname, "scripts"),
             path.resolve(__dirname, "src"),
+          ],
+          loaders: [
+            "babel-loader?cacheDirectory=true",
+            "eslint-loader?fix",
           ],
         },
         {
           test: /\.css$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ `css-loader?modules&localIdentName=${
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [
+              `css-loader?modules&localIdentName=${
                 config.production
                 ? "[hash:base64:5]"
                 : "[path][name]--[local]--[hash:base64:5]"
               }`,
               "postcss-loader",
-            ].join("!"),
-          ),
+            ],
+          }),
         },
         {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ "css-loader", "postcss-loader" ].join("!"),
-          ),
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [ "css-loader", "postcss-loader" ],
+          }),
         },
         {
           test: /\.(html|ico|jpe?g|png|gif)$/,
@@ -111,10 +108,15 @@ export const makeConfig = (config = {}) => {
     ],
 
     plugins: [
-      new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+      new ExtractTextPlugin({
+        filename: "[name].[hash].css",
+        disable: config.dev,
+      }),
 
       ...config.production && [
-        new webpack.optimize.DedupePlugin(),
+        // DedupePlugin does not work correctly with Webpack 2, yet ;)
+        // https://github.com/webpack/webpack/issues/2644
+        // new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(
           { compress: { warnings: false } }
         ),
