@@ -124,7 +124,7 @@ export const makeConfig = (config = {}) => {
 
     phenomic: {
       context: path.join(__dirname, config.source),
-      // plugins: [ ...phenomicLoaderPresets.markdown ]
+      // plugins: [ ...require("phenomic/lib/loader-preset-markdown").default ]
       // see https://phenomic.io/docs/usage/plugins/
       feedsOptions: {
         title: pkg.name,

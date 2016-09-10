@@ -3,7 +3,6 @@
 import path from "path"
 import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
-import colors from "chalk"
 
 import pathToUri from "../_utils/path-to-uri"
 import urlify from "../_utils/urlify"
@@ -23,7 +22,7 @@ module.exports = function(input: string) {
   const context = options.context || webpackInstance.options.context
   const plugins = (
     options.plugins ||
-    require("../phenomic-loader-preset-markdown").default
+    require("../loader-preset-markdown").default
   )
 
   const relativePath = path.relative(context, webpackInstance.resourcePath)
