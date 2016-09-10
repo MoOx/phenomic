@@ -16,21 +16,6 @@ let timeout
 module.exports = function(input: string) {
   const webpackInstance: WebpackInstance = this
 
-  // deprecated
-  if (
-    webpackInstance.options.phenomic &&
-    (
-      webpackInstance.options.phenomic.loader ||
-      webpackInstance.options.phenomic.contentLoader
-    )
-  ) {
-    console.log("⚠️ " + colors.red(
-      "Phenomic loader should now be defined directly under `phenomic` key, " +
-      "not `phenomic.loader` or `phenomic.contentLoader` in your webpack " +
-      "configuration."
-    ))
-  }
-
   const options = {
     ...webpackInstance.options.phenomic,
     ...loaderUtils.parseQuery(webpackInstance.query),
