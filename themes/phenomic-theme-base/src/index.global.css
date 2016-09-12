@@ -63,7 +63,6 @@ body {
   width: var(--phenomic-HeadingAnchor-width);
   line-height: var(--phenomic-HeadingAnchor-width);
   text-decoration: none;
-
   opacity: 0.1;
   transition: opacity 0.2s;
 

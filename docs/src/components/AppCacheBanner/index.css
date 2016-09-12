@@ -1,6 +1,6 @@
 .banner {
   position: fixed;
-  position: sticky;
+  position: sticky; /* stylelint-disable-line */
   top: 0;
   left: 0;
   right: 0;
@@ -18,7 +18,6 @@
   border-radius: 100%;
   animation: PhenomicDocsAppCacheBannerRotation 0.6s infinite linear 0.25s;
   opacity: 0;
-
   margin-right: 0.6rem;
 }
 
@@ -27,6 +26,7 @@
     opacity: 1;
     transform: rotate(0deg);
   }
+
   to {
     opacity: 1;
     transform: rotate(359deg);
@@ -39,11 +39,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-
   font-size: 0.75rem;
   padding: 0.4rem 0.6rem;
   line-height: 1.4rem;
-
   background: #1cae69;
   color: #fff;
 }
@@ -63,6 +61,5 @@
   border-radius: 3px;
   padding: 0 0.3rem;
   margin-left: 0.6rem;
-
   cursor: pointer;
 }

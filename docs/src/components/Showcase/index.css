@@ -8,7 +8,6 @@
 .item {
   position: relative;
   flex: 1 1 20rem;
-
   box-sizing: border-box;
   padding: 1rem;
   margin: 2rem 0;

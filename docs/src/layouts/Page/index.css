@@ -6,13 +6,10 @@
 .callout {
   display: flex;
   flex-direction: column;
-
   font-size: 0.875rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
-
   background: color(#fff a(0.2));
-
   border: 1px solid color(#000 a(0.1));
   border-left-width: 0.2rem;
   border-radius: 3px;
