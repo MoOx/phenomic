@@ -8,11 +8,11 @@ import webpack from "./webpack"
 import sortAssets from "./webpack/sortAssets"
 import devServer from "./server"
 
-import collection from "../phenomic-loader/cache"
-
 import webpackConfigBrowser from "./webpack/config.browser.js"
 import webpackConfigNode from "./webpack/config.node.js"
 import dynamicRequire from "./dynamic-require.js"
+
+import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 
 export default function(config: Object): void {
   const log = debug("phenomic:builder")
@@ -37,6 +37,8 @@ export default function(config: Object): void {
   const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
+  process.env.BABEL_ENV = "webpack-" + (process.env.NODE_ENV || "development")
+
   if (config.static) {
     // Copy static assets to build folder
     if (config.assets) {
@@ -57,7 +59,7 @@ export default function(config: Object): void {
           config.webpackConfigNode.output.filename
         ))({
           ...config,
-          collection,
+          collection: PhenomicLoaderWebpackPlugin.collection,
           assetsFiles,
         })
         .then(() => {

@@ -17,7 +17,7 @@ export function exec(cmd, opts) {
 
 export default async function test(
   target,
-  { cleanup = noop, init = noop, lib = "lib", test = true }
+  { cleanup = noop, init = noop, lib = "lib", test = true } = {}
 ) {
   try {
     const targetModules = `${ target }/node_modules`

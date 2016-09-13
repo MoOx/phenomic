@@ -3,6 +3,8 @@ import path from "path"
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 import { phenomicLoader } from "phenomic"
+import PhenomicLoaderFeedWebpackPlugin
+  from "phenomic/lib/loader-feed-webpack-plugin"
 
 import pkg from "./package.json"
 
@@ -39,17 +41,13 @@ export const makeConfig = (config = {}) => {
         // *.js => babel + eslint
         {
           test: /\.js$/,
-          loaders: [
-            `babel-loader${
-              config.dev
-              ? "?cacheDirectory=true&presets[]=babel-preset-react-hmre"
-              : "?cacheDirectory=true"
-            }`,
-            "eslint-loader?fix",
-          ],
           include: [
             path.resolve(__dirname, "scripts"),
             path.resolve(__dirname, "src"),
+          ],
+          loaders: [
+            "babel-loader?cacheDirectory=true",
+            "eslint-loader?fix",
           ],
         },
 
@@ -62,25 +60,26 @@ export const makeConfig = (config = {}) => {
           test: /\.css$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ `css-loader?modules&localIdentName=${
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [
+              `css-loader?modules&localIdentName=${
                 config.production
                 ? "[hash:base64:5]"
                 : "[path][name]--[local]--[hash:base64:5]"
               }`,
               "postcss-loader",
-            ].join("!"),
-          ),
+            ],
+          }),
         },
         // *.global.css => global (normal) css
         {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract(
-            "style-loader",
-            [ "css-loader", "postcss-loader" ].join("!"),
-          ),
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style-loader",
+            loader: [ "css-loader", "postcss-loader" ],
+          }),
         },
         // ! \\
         // If you want global CSS only, just remove the 2 sections above
@@ -127,22 +126,8 @@ export const makeConfig = (config = {}) => {
 
     phenomic: {
       context: path.join(__dirname, config.source),
-      // plugins: [ ...phenomicLoaderPresets.markdown ]
+      // plugins: [ ...require("phenomic/lib/loader-preset-markdown").default ]
       // see https://phenomic.io/docs/usage/plugins/
-      feedsOptions: {
-        title: pkg.name,
-        site_url: pkg.homepage,
-      },
-      feeds: {
-        "feed.xml": {
-          collectionOptions: {
-            filter: { layout: "Post" },
-            sort: "date",
-            reverse: true,
-            limit: 20,
-          },
-        },
-      },
     },
 
     postcss: () => [
@@ -155,9 +140,34 @@ export const makeConfig = (config = {}) => {
     ],
 
     plugins: [
-      new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+      new PhenomicLoaderFeedWebpackPlugin({
+        // here you define generic metadata for your feed
+        feedsOptions: {
+          title: pkg.name,
+          site_url: pkg.homepage,
+        },
+        feeds: {
+          // here we define one feed, but you can generate multiple, based
+          // on different filters
+          "feed.xml": {
+            collectionOptions: {
+              filter: { layout: "Post" },
+              sort: "date",
+              reverse: true,
+              limit: 20,
+            },
+          },
+        },
+      }),
+      new ExtractTextPlugin({
+        filename: "[name].[hash].css",
+        disable: config.dev,
+      }),
+
       ...config.production && [
-        new webpack.optimize.DedupePlugin(),
+        // DedupePlugin does not work correctly with Webpack 2, yet ;)
+        // https://github.com/webpack/webpack/issues/2644
+        // new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(
           { compress: { warnings: false } }
         ),

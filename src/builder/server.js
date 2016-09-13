@@ -10,10 +10,9 @@ import opn from "opn"
 import debug from "debug"
 import portFinder from "portfinder"
 
-import minifyCollection from "../phenomic-loader/minify"
+import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
+import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"
-
-import collection from "../phenomic-loader/cache.js"
 import pathToUri from "../_utils/path-to-uri"
 
 const log = debug("phenomic:builder:server")
@@ -43,30 +42,26 @@ export default (config) => {
 
     const devConfig = {
       ...webpackConfig,
-      // debug: true,
-      // watch: true,
-      // colors: true,
       entry: {
         // add devEntries
-        ...Object.keys(webpackConfig.entry)
-          .reduce((acc, key) => {
-            // some entries do not need extra stuff
-            acc[key] = [
-              ...devEntries,
-              ...Array.isArray(webpackConfig.entry[key])
-                ? webpackConfig.entry[key]
-                : [ webpackConfig.entry[key] ],
-            ]
-            return acc
-          },
-          {}
-        ),
+        ...Object.keys(webpackConfig.entry).reduce((acc, key) => ({
+          ...acc,
+          [key]: [
+            ...devEntries,
+            ...Array.isArray(webpackConfig.entry[key])
+              ? webpackConfig.entry[key]
+              : [ webpackConfig.entry[key] ],
+          ],
+        }), {}),
       },
       plugins: [
         ...(webpackConfig.plugins || []),
-        new webpack.optimize.OccurenceOrderPlugin(),
+
+        // for hot-middleware
+        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
+
         new WebpackNotifierPlugin(),
       ],
       eslint: {
@@ -75,16 +70,13 @@ export default (config) => {
       },
     }
 
-    // webpack requirements
+    // webpack dev + hot middlewares
     const webpackCompiler = webpack(devConfig)
-
     server.use(webpackDevMiddleware(webpackCompiler, {
       publicPath: webpackConfig.output.publicPath,
       noInfo: !config.verbose,
       ...devConfig.devServer,
     }))
-
-    // HMR
     server.use(webpackHotMiddleware(webpackCompiler))
 
     let entries = []
@@ -124,7 +116,9 @@ export default (config) => {
 
     // hardcoded entry point
     router.get("/index.html", (req, res) => {
-      const collectionMin = minifyCollection(collection)
+      const collectionMin = minifyCollection(
+        PhenomicLoaderWebpackPlugin.collection
+      )
       res.setHeader("Content-Type", "text/html")
       /* eslint-disable max-len */
       res.end(

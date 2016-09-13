@@ -43,8 +43,9 @@ export default (config: PhenomicConfig): WebpackConfig => {
     externals: [
       ...webpackConfig.externals || defaultExternals,
 
-      // we need this to be the same between the entire node runtime
-      "phenomic/lib/phenomic-loader/cache",
+      // keep the loader plugin cache in memory
+      "phenomic/lib/loader/index",
+      "phenomic/lib/loader/plugin",
     ],
 
     // sourcemaps
@@ -54,10 +55,11 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ...webpackConfig.plugins.filter(
         (plugin) => !(plugin instanceof UglifyJsPlugin)
       ) || [],
-      new BannerPlugin(
-        "require('source-map-support').install();",
-        { raw: true, entryOnly: false }
-      ),
+      new BannerPlugin({
+        banner: "require('source-map-support').install();",
+        raw: true,
+        entryOnly: false,
+      }),
     ],
   }
 }

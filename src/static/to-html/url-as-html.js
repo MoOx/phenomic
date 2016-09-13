@@ -12,7 +12,7 @@ import Html from "./Html"
 import PhenomicContextProvider from "../../components/ContextProvider"
 import serialize from "../../_utils/serialize"
 
-import minifyCollection from "../../phenomic-loader/minify"
+import minifyCollection from "../../loader/minify"
 
 export default function(
   url: string,

@@ -12,9 +12,6 @@ coverage
 # build
 lib
 
-# some tests output some files
-src/phenomic-loader/__tests__/output/
-
 # tests results
 **/__tests__/_output*
 
