@@ -3,6 +3,8 @@ import path from "path"
 import webpack from "webpack"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
 import { phenomicLoader } from "phenomic"
+import PhenomicLoaderFeedWebpackPlugin
+  from "phenomic/lib/loader-feed-webpack-plugin"
 
 import pkg from "./package.json"
 
@@ -126,20 +128,6 @@ export const makeConfig = (config = {}) => {
       context: path.join(__dirname, config.source),
       // plugins: [ ...require("phenomic/lib/loader-preset-markdown").default ]
       // see https://phenomic.io/docs/usage/plugins/
-      feedsOptions: {
-        title: pkg.name,
-        site_url: pkg.homepage,
-      },
-      feeds: {
-        "feed.xml": {
-          collectionOptions: {
-            filter: { layout: "Post" },
-            sort: "date",
-            reverse: true,
-            limit: 20,
-          },
-        },
-      },
     },
 
     postcss: () => [
@@ -152,6 +140,25 @@ export const makeConfig = (config = {}) => {
     ],
 
     plugins: [
+      new PhenomicLoaderFeedWebpackPlugin({
+        // here you define generic metadata for your feed
+        feedsOptions: {
+          title: pkg.name,
+          site_url: pkg.homepage,
+        },
+        feeds: {
+          // here we define one feed, but you can generate multiple, based
+          // on different filters
+          "feed.xml": {
+            collectionOptions: {
+              filter: { layout: "Post" },
+              sort: "date",
+              reverse: true,
+              limit: 20,
+            },
+          },
+        },
+      }),
       new ExtractTextPlugin({
         filename: "[name].[hash].css",
         disable: config.dev,

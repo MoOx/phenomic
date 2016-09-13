@@ -10,10 +10,9 @@ import opn from "opn"
 import debug from "debug"
 import portFinder from "portfinder"
 
+import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"
-
-import collection from "../loader/cache.js"
 import pathToUri from "../_utils/path-to-uri"
 
 const log = debug("phenomic:builder:server")
@@ -117,7 +116,9 @@ export default (config) => {
 
     // hardcoded entry point
     router.get("/index.html", (req, res) => {
-      const collectionMin = minifyCollection(collection)
+      const collectionMin = minifyCollection(
+        PhenomicLoaderWebpackPlugin.collection
+      )
       res.setHeader("Content-Type", "text/html")
       /* eslint-disable max-len */
       res.end(

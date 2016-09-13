@@ -2,7 +2,9 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
-const outputPath = __dirname + "/output/"
+import PhenomicLoaderWebpackPlugin from "../plugin.js"
+
+const outputPath = __dirname + "/_output/"
 rimraf(outputPath)
 
 test.cb("phenomic loader", (t) => {
@@ -17,6 +19,9 @@ test.cb("phenomic loader", (t) => {
           },
         ],
       },
+      plugins: [
+        new PhenomicLoaderWebpackPlugin(),
+      ],
       entry: __dirname + "/fixtures/script.js",
       resolve: { extensions: [ "" ] },
       output: {
@@ -114,6 +119,9 @@ test.cb("phenomic loader can be used with plugins", (t) => {
           },
         ],
       },
+      plugins: [
+        new PhenomicLoaderWebpackPlugin(),
+      ],
       phenomic: {
         plugins: [
           () => {
@@ -146,10 +154,13 @@ test.cb("phenomic loader can be used with plugins", (t) => {
       Object.keys(stats.compilation.assets)
       .filter((key) => key.endsWith(".json"))
       .forEach((key) => {
-        t.is(
-          JSON.parse(stats.compilation.assets[key]._value).test,
-          "dumb"
-        )
+        const result = JSON.parse(stats.compilation.assets[key]._value)
+        if (result.test) {
+          t.is(
+            result.test,
+            "dumb"
+          )
+        }
       })
       t.plan(2+5) // 2, err, warn, 5   => array
       t.end()

@@ -43,8 +43,9 @@ export default (config: PhenomicConfig): WebpackConfig => {
     externals: [
       ...webpackConfig.externals || defaultExternals,
 
-      // we need this to be the same between the entire node runtime
-      "phenomic/lib/loader/cache",
+      // keep the loader plugin cache in memory
+      "phenomic/lib/loader/index",
+      "phenomic/lib/loader/plugin",
     ],
 
     // sourcemaps

@@ -1,19 +1,20 @@
 // @flow
 
+import fs from "fs"
 import path from "path"
 import loaderUtils from "loader-utils"
 import frontMatterParser from "gray-matter"
 
 import pathToUri from "../_utils/path-to-uri"
 import urlify from "../_utils/urlify"
-import enhanceCollection from "../enhance-collection"
-import feed from "./feed"
-import cache from "./cache"
 
-let timeout
+// Use the path of the loader directory to avoid conflicts on the loaderContext
+const NS = fs.realpathSync(__dirname)
 
-module.exports = function(input: string) {
+const loader = function(input: string) {
   const webpackInstance: WebpackInstance = this
+
+  loader.getCollection = () => this[NS]
 
   const options = {
     ...webpackInstance.options.phenomic,
@@ -64,49 +65,18 @@ module.exports = function(input: string) {
 
   webpackInstance.emitFile(dataUrl, JSON.stringify(result))
 
-  // update collection
-  // replace or add depending on the cache state
-  let previousIndex
-  cache.forEach((md, index) => {
-    if (md.__filename === relativePath) {
-      previousIndex = index
-    }
-  })
-  if (previousIndex) {
-    cache[previousIndex] = result
+  if (typeof webpackInstance[NS] !== "function") {
+    throw new Error(
+      "You are using phenomic loader without the corresponding plugin. " +
+      "This plugin should be added automatically by Phenomic, so if you are " +
+      "facing this issue, you are probably playing with the fire. " +
+      "To get more information, you can reach us on our community chat. " +
+      "https://phenomic.io/"
+    )
   }
-  else {
-    cache.push(result)
-  }
-
-  if (timeout) {
-    clearTimeout(timeout)
-  }
-  else {
-    setTimeout(() => {
-      // emit updated feeds
-      const feeds = options.feeds || []
-      const feedsOptions = options.feedsOptions || {}
-      Object.keys(feeds).forEach((name) => {
-        const { feedOptions, collectionOptions } = feeds[name]
-        webpackInstance.emitFile(name, feed({
-          feedOptions: {
-            ...feedsOptions,
-            ...feedOptions,
-          },
-          destination: name,
-          collection: enhanceCollection(
-            cache.map((item) => ({
-              ...item.head,
-              description: item.body,
-              __url: item.__url,
-            })),
-            collectionOptions
-          ),
-        }))
-      })
-    }, 100)
-  }
+  webpackInstance[NS](result)
 
   return "module.exports = " + JSON.stringify(pathToUri("/", dataUrl))
 }
+
+module.exports = loader

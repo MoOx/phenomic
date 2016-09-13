@@ -90,27 +90,6 @@ export const makeConfig = (config = {}) => {
         layout: "Post",
         comments: true,
       }
-
-      // RSS global options
-      feedsOptions: {
-        title: pkg.name,
-        site_url: pkg.homepage,
-      },
-
-      feeds: {
-        // RSS
-        "feed.xml": {
-          collectionOptions: {
-            // here, you can filter using
-            // phenomic/lib/enhance-collection API
-            // see /docs/usage/collections/
-            filter: { layout: "Post" },
-            sort: "date",
-            reverse: true,
-            limit: 20,
-          },
-        },
-      },
     },
     // ...
   }
