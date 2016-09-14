@@ -82,7 +82,7 @@ export function writeAllHTMLFiles(
     offlineConfig: PhenomicOfflineConfig,
   },
   testing?: boolean
-): Promise<Array<void>> {
+): Promise<Array<string>> {
   const urls = routesToUrls(routes, collection)
 
   // create all html files
@@ -107,14 +107,16 @@ export function writeAllHTMLFiles(
           offlineConfig,
         }, testing)
         .then((html) => writeHTMLFile(filename, html))
-        .then(() => forgetPageData(url, store))
+        .then((filename) => {
+          forgetPageData(url, store)
+          return filename
+        })
       )
     })
   )
 }
 
-export default
-function(options: Object, testing?: boolean): Promise<Array<void>> {
+export default (options: Object, testing?: boolean): Promise<Array<string>> => {
   return writeAllHTMLFiles({
     ...options,
     setPageData,

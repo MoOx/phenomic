@@ -16,9 +16,11 @@
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
+    "rebuild-phenomic": "cd ../ && npm -s run transpile",
     "start": "phenomic start",
-    "restart": "cd ../ && npm -s run transpile && cd docs && phenomic start",
+    "restart": "npm -s run rebuild-phenomic && phenomic start",
     "build": "phenomic build",
+    "rebuild": "npm -s run rebuild-phenomic && phenomic build",
     "pretest": "npm run lint",
     "test": "npm run build"
   },

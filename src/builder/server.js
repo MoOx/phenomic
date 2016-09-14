@@ -7,7 +7,7 @@ import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackNotifierPlugin from "webpack-notifier"
 
 import opn from "opn"
-import debug from "debug"
+import log from "../_utils/log"
 import portFinder from "portfinder"
 
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
@@ -15,7 +15,7 @@ import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"
 import pathToUri from "../_utils/path-to-uri"
 
-const log = debug("phenomic:builder:server")
+import { handleInvalid, handleDone } from "./webpack/log-formatter.js"
 
 export default (config) => {
   const { webpackConfigBrowser: webpackConfig } = config
@@ -72,18 +72,21 @@ export default (config) => {
 
     // webpack dev + hot middlewares
     const webpackCompiler = webpack(devConfig)
+
     server.use(webpackDevMiddleware(webpackCompiler, {
       publicPath: webpackConfig.output.publicPath,
+      // skip compilation logs if !verbose
       noInfo: !config.verbose,
+      quiet: !config.verbose,
       ...devConfig.devServer,
     }))
-    server.use(webpackHotMiddleware(webpackCompiler))
+    server.use(webpackHotMiddleware(webpackCompiler, {
+      // skip hot middleware logs if !verbose
+      log: config.verbose ? undefined : () => {},
+    }))
 
     let entries = []
     webpackCompiler.plugin("done", function(stats) {
-      log("Webpack compilation done")
-
-      // reset entries
       entries = []
       const namedChunks = stats.compilation.namedChunks
       Object.keys(namedChunks).forEach((chunkName) => {
@@ -95,6 +98,13 @@ export default (config) => {
         ]
       })
     })
+
+    // if !verbose, use our custom minimal output
+    if (!config.verbose) {
+      handleInvalid() // start "Updating"
+      webpackCompiler.plugin("invalid", handleInvalid)
+      webpackCompiler.plugin("done", handleDone)
+    }
 
     // user static assets
     if (config.assets) {
@@ -178,7 +188,7 @@ export default (config) => {
         throw err
       }
       const href = `http://${ devHost }:${ port }${ config.baseUrl.pathname }`
-      log(`Dev server started on ${ href }`)
+      log(`Development server listening on ${ href }`)
       if (config.open) {
         opn(href.replace(devHost, "localhost"))
       }

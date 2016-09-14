@@ -1,17 +1,19 @@
 // @flow
 
 import { join } from "path"
-import { green } from "chalk"
 import fs from "fs"
 import pify from "pify"
+import colors from "chalk"
+
+import log, { plainLog, totalElapsedTime } from "../_utils/log"
+
 const { writeFile } = pify(fs)
 
 export default function(
   config: PhenomicConfig,
-  files: Array<any>,
-  log: Function
+  files: Array<any>
 ): Promise<any> {
-  log(green(`✓ Static html files: ${ files.length } files written.`))
+  log(`${ files.length } files written`, "info")
 
   const promises = []
 
@@ -21,7 +23,7 @@ export default function(
         join(config.cwd, config.destination, "CNAME"),
         config.baseUrl.hostname,
       )
-      .then(() => log(green(`✓ CNAME is ${ config.baseUrl.hostname }.`)))
+      .then(() => log(`CNAME created with '${ config.baseUrl.hostname }'`))
     )
   }
 
@@ -31,10 +33,15 @@ export default function(
         join(config.cwd, config.destination, ".nojekyll"),
         "",
       )
-      .then(() => log(green("✓ .nojekyll created.")))
+      .then(() => log(".nojekyll created"))
     )
   }
 
-  return Promise.all(promises)
-    .then(() => log(green("✓ Build successful.")))
+  return (
+    Promise.all(promises)
+    .then(() => plainLog(
+      colors.green("Build successful") +
+      totalElapsedTime()
+    ))
+  )
 }
