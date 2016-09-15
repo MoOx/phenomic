@@ -1,4 +1,3 @@
-import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
@@ -13,8 +12,8 @@ import PhenomicLoaderFeedWebpackPlugin from "../index.js"
 const outputPath = __dirname + "/_output/"
 rimraf(outputPath)
 
-test.cb("loader feed webpack plugin", (t) => {
-  webpack(
+it("Feed webpack plugin", () => {
+  return new Promise((resolve, reject) => webpack(
     {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
@@ -54,15 +53,27 @@ test.cb("loader feed webpack plugin", (t) => {
     },
     function(err, stats) {
       if (err) {
-        throw err
+        reject(err)
       }
-
-      t.falsy(stats.hasErrors(), "doesn't give any error")
+      resolve(stats)
+    })
+  )
+  .then(
+    (stats) => {
+      // doesn't give any error
+      expect(
+        stats.hasErrors()
+      )
+      .toBeFalsy()
       if (stats.hasErrors()) {
         console.error(stats.compilation.errors)
       }
 
-      t.falsy(stats.hasWarnings(), "doesn't give any warning")
+      // doesn't give any warning
+      expect(
+        stats.hasWarnings()
+      )
+      .toBeFalsy()
       if (stats.hasWarnings()) {
         console.log(stats.compilation.warnings)
       }
@@ -71,30 +82,36 @@ test.cb("loader feed webpack plugin", (t) => {
       if (!feed) {
         console.log(stats.compilation.assets)
       }
-      t.truthy(
+
+      // should create a xml for the feed
+      expect(
         feed && feed._value,
-        "should create a xml for the feed"
       )
+      .toBeTruthy()
 
-      t.truthy(
+      // should contain a filtred entry (link)
+      expect(
         feed._value.includes("<link>/fixtures/two"),
-        "should contain a filtred entry (link)"
       )
-      t.truthy(
+      .toBeTruthy()
+
+      // should contain a filtred entry (title)
+      expect(
         feed._value.includes("<title><![CDATA[Two"),
-        "should contain a filtred entry (title)"
       )
-      t.truthy(
+      .toBeTruthy()
+
+      // should contain a filtred entry (body)
+      expect(
         feed._value.includes("<description><![CDATA[<p>2 3 4"),
-        "should contain a filtred entry (body)"
       )
+      .toBeTruthy()
 
-      t.falsy(
+      // should not contain an excluded entry
+      expect(
         feed._value.includes("<link>/fixtures/one"),
-        "should not contain an excluded entry"
       )
-
-      t.end()
+      .toBeFalsy()
     }
   )
 })

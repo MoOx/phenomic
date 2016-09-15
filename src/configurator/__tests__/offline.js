@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 
 import config, { testConfig } from ".."
 
@@ -18,12 +18,10 @@ test("should provide default offlineConfig when 'offline' = true", (t) => {
   )
 })
 
-test("should warn if serviceWorker is true with http", (t) => {
-  t.plan(1)
+it("should warn if serviceWorker is true with http", () => {
   const warn = global.console.warn
-  global.console.warn = (message) => {
-    t.truthy(message.indexOf("ServiceWorker will be ignored") > -1)
-  }
+  global.console.warn = jest.fn()
+
   config({
     pkg: {
       homepage: "http://te.st/",
@@ -32,6 +30,9 @@ test("should warn if serviceWorker is true with http", (t) => {
       },
     },
   })
+
+  const logMessage = global.console.warn.mock.calls[0][0]
+  expect(logMessage).toMatch(/ServiceWorker will be ignored/)
   global.console.warn = warn
 })
 

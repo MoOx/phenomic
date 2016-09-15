@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 
 // files added to report accurate coverage
 // we need to explode those files into function and just call functions

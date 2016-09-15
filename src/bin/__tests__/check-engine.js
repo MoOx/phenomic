@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 
 // module.exports is used
 // eslint-disable-next-line import/default

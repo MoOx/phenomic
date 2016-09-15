@@ -1,0 +1,7 @@
+{
+  "testRegex": "__tests__/.*\\.js$",
+  "setupTestFrameworkScriptFile": "<rootDir>/scripts/jest-framework-setup.js",
+  "testPathDirs": [
+    "__tests__"
+  ]
+}

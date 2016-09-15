@@ -85,7 +85,6 @@
     "yargs": "^4.3.1"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
@@ -107,13 +106,14 @@
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
     "flow-bin": "^0.32.0",
+    "jest": "^15.1.1",
+    "jest-ava-api": "^0.1.0",
     "js-beautify": "^1.5.10",
     "jsdom": "^9.2.0",
     "lnfs": "^3.0.0",
     "mock-fs": "^3.9.0",
     "npm-run-all": "^3.0.0",
     "npmpub": "^3.0.0",
-    "nyc": "^8.1.0",
     "react": "^15.0.0-rc.1",
     "react-addons-test-utils": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
@@ -121,7 +121,6 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
     "redux": "^3.0.0",
-    "sinon": "^1.17.3",
     "stylelint": "^7.2.0",
     "stylelint-config-standard": "^13.0.0",
     "suppose": "^0.6.1",
@@ -153,9 +152,9 @@
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "ava",
+    "tests": "cross-env TESTING=1 jest",
     "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
-    "integration-tests": "ava __tests__/index.js && ava __tests__/cli.js",
+    "integration-tests": "jest --config __tests__/jest-config.json",
     "phenomic-theme-base": "babel-node scripts/phenomic-theme-base.js",
     "phenomic-theme-base-linting": "eslint --config package.json --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "prephenomic-theme-base-start": "npm run transpile && npm run phenomic-theme-base",
@@ -177,23 +176,13 @@
     "predocs-deploy": "cd docs && npm run showcase-screenshots && npm run build",
     "docs-deploy": "cd docs && ./scripts/deploy.sh",
     "preall-tests": "npm run transpile && npm run lint",
-    "all-tests": "cross-env TESTING=1 npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base && npm run test-docs",
+    "all-tests": "cross-env TESTING=1 npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base",
     "test": "npm run all-tests",
+    "posttest": "npm run test-docs",
     "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "coveralls",
     "release": "npmpub",
     "postrelease": "npm run docs-deploy"
-  },
-  "nyc": {
-    "exclude": [
-      "**/__tests__/**",
-      "**.template.js"
-    ],
-    "include": [
-      "src/**"
-    ],
-    "sourceMap": false,
-    "instrument": false
   },
   "babel": {
     "presets": [
@@ -203,14 +192,7 @@
     ],
     "plugins": [
       "babel-plugin-flow-react-proptypes"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "babel-plugin-istanbul"
-        ]
-      }
-    }
+    ]
   },
   "eslintConfig": {
     "root": true,
@@ -218,6 +200,9 @@
     "extends": [
       "eslint-config-i-am-meticulous/react-flow"
     ],
+    "env": {
+      "jest": true
+    },
     "rules": {
       "import/max-dependencies": [
         2,
@@ -234,15 +219,20 @@
   "stylelint": {
     "extends": "stylelint-config-standard"
   },
-  "ava": {
-    "files": [
-      "src/**/__tests__/*.js"
+  "jest": {
+    "preprocessorIgnorePatterns": [
+      "node_modules"
     ],
-    "failFast": true,
-    "verbose": true,
-    "require": [
-      "babel-register"
+    "testPathIgnorePatterns": [
+      "/fixtures/",
+      "/results/",
+      "/stub/",
+      "/_output/"
     ],
-    "babel": "inherit"
+    "testPathDirs": [
+      "src"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/scripts/jest-framework-setup.js",
+    "testEnvironment": "node"
   }
 }

@@ -1,7 +1,6 @@
 import fs from "fs"
 import { join } from "path"
 
-import test from "ava"
 import pify from "pify"
 import mockFs from "mock-fs"
 
@@ -19,35 +18,46 @@ const baseConfig = {
 
 const noop = () => {}
 
-test.before(() => {
+beforeEach(() => {
   mockFs({
-    [process.cwd() + "/output"]: {},
+    [__dirname + "/output"]: {},
   })
 })
 
-test.after(() => {
+afterEach(() => {
   mockFs.restore()
 })
 
-test("post build nojekyll", async (t) => {
+it("post build nojekyll", async () => {
   const config = {
     ...baseConfig,
     nojekyll: true,
   }
 
-  await postBuild(config, [], noop)
-  const file = await readFile(join(config.destination, ".nojekyll"), readOpts)
-
-  t.is(file, "")
+  try {
+    await postBuild(config, [], noop)
+    const file = await readFile(join(
+      config.cwd,
+      config.destination,
+      ".nojekyll"
+    ), readOpts)
+    expect(file).toBe("")
+  }
+  catch (err) {
+    console.log(err)
+  }
 })
-
-test("post build CNAME", async (t) => {
+it("post build CNAME", async () => {
   const config = {
     ...baseConfig,
     CNAME: true,
   }
 
   await postBuild(config, [], noop)
-  const file = await readFile(join(config.destination, "CNAME"), readOpts)
-  t.is(file, config.baseUrl.hostname)
+  const file = await readFile(join(
+    config.cwd,
+    config.destination,
+    "CNAME"
+  ), readOpts)
+  expect(file).toBe(config.baseUrl.hostname)
 })

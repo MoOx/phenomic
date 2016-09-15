@@ -1,3 +1,5 @@
+import { join } from "path"
+
 import colors from "chalk"
 
 import yargs from "./yargs.js"
@@ -29,6 +31,9 @@ export default function config({ argv = [], pkg = {} } = {}) {
   const config = {
     ...defaultAndCLIconfig,
     ...userJSConfig,
+    ...process.env.TESTING && {
+      cwd: join(__dirname, "__tests__"),
+    },
   }
 
   // validation/adjustement for each options

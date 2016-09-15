@@ -1,6 +1,6 @@
 import { join } from "path"
 
-import test from "ava"
+import test from "jest-ava-api"
 
 import { testConfig } from ".."
 
@@ -20,7 +20,7 @@ test("should accept string", (t) => {
   t.deepEqual(
     config.assets,
     {
-      path: join(process.cwd(), config.source, "AsSeT"),
+      path: join(__dirname, config.source, "AsSeT"),
       route:"AsSeT",
     }
   )
@@ -31,7 +31,7 @@ test("should accept true", (t) => {
   t.deepEqual(
     config.assets,
     {
-      path: join(process.cwd(), config.source, "assets"),
+      path: join(__dirname, config.source, "assets"),
       route:"assets",
     }
   )
