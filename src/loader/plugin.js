@@ -23,8 +23,8 @@ PhenomicLoaderWebpackPlugin.prototype.apply = function(compiler) {
 
     compilation.plugin("additional-assets", (callback) => {
       const results = compilation.modules
-        .map((module) => module.meta[NS])
-        .filter((result) => result !== undefined)
+        .map((module) => module && module.meta && module.meta[NS])
+        .filter((result) => result && typeof result === "object")
 
       PhenomicLoaderWebpackPlugin.collection = results
       // const collection = JSON.stringify(results, null, 2)

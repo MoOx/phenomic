@@ -1,7 +1,7 @@
 // @flow
 
 import { yellow } from "chalk"
-const log: Function = require("debug")("phenomic:configurator:offline")
+import log from "../../_utils/log"
 
 import { parse } from "url"
 
@@ -167,7 +167,7 @@ export default (
   // Disable offline for development if user defined offline config
   if (config.dev && config.offlineConfig.appcache) {
     config.offlineConfig.appcache = {}
-    log(yellow("AppCache is disabled in development mode"))
+    log("AppCache is disabled in development mode", "warning")
     return
   }
 }

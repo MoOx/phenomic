@@ -1,6 +1,6 @@
 import test from "ava"
 
-import postBuild from "../postbuild"
+import postBuild from "../post-build.js"
 import { join } from "path"
 import pify from "pify"
 import mockFs from "mock-fs"

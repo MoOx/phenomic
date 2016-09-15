@@ -1,12 +1,14 @@
 // @flow
 import { join } from "path"
 import fs from "fs-extra"
-import color from "chalk"
-import debug from "debug"
+import colors from "chalk"
+
+import log from "../_utils/log"
 
 import webpack from "./webpack"
-import sortAssets from "./webpack/sortAssets"
-import devServer from "./server"
+import sortAssets from "./webpack/sortAssets.js"
+import devServer from "./server.js"
+import postBuild from "./post-build.js"
 
 import webpackConfigBrowser from "./webpack/config.browser.js"
 import webpackConfigNode from "./webpack/config.node.js"
@@ -15,7 +17,7 @@ import dynamicRequire from "./dynamic-require.js"
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 
 export default function(config: Object): void {
-  const log = debug("phenomic:builder")
+  log("Phenomic is starting", "info")
   // log(JSON.stringify(config, null, 2))
 
   const makeWebpackConfig = dynamicRequire(
@@ -37,50 +39,60 @@ export default function(config: Object): void {
   const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
-  process.env.BABEL_ENV = "webpack-" + (process.env.NODE_ENV || "development")
+  const env = process.env.NODE_ENV || "development"
+  process.env.BABEL_ENV = "webpack-" + env
 
   if (config.static) {
     // Copy static assets to build folder
     if (config.assets) {
-      const copyDest = join(destination, config.assets.route)
-      fs.copySync(config.assets.path, copyDest)
-      log(color.green("✓ Static build: assets copy completed"))
+      log("Copying assets", () => {
+        const copyDest = join(destination, config.assets.route)
+        fs.copySync(config.assets.path, copyDest)
+      })
     }
 
-    webpack(config.webpackConfigBrowser, log, (stats) => {
-      log(color.green("✓ Static build: client build completed"))
-
-      const assetsFiles = sortAssets(stats.toJson().assetsByChunkName)
-
-      webpack(config.webpackConfigNode, log, () => {
-        log(color.green("✓ Static build: static build completed"))
-        dynamicRequire(join(
-          config.webpackConfigNode.output.path,
-          config.webpackConfigNode.output.filename
-        ))({
-          ...config,
-          collection: PhenomicLoaderWebpackPlugin.collection,
-          assetsFiles,
-        })
-        .then(() => {
-          if (config.server) {
-            devServer(config)
-          }
-        })
-        .catch((error) => {
-          log(color.red("✗ Faild to start static server"))
-          setTimeout(() => {
-            throw error
-          }, 1)
-        })
+    const webpackPromise = (webpackConfig): Promise<any> => (
+      new Promise((resolve: Function, reject: Function) => {
+        try {
+          webpack(webpackConfig, log, resolve)
+        }
+        catch (e) {
+          reject(e)
+        }
       })
+    )
+
+    log("Building client files", webpackPromise(config.webpackConfigBrowser))
+    .then((clientBundleStats) => (
+      log("Preparing static build", webpackPromise(config.webpackConfigNode))
+      .then(() => clientBundleStats)
+    ))
+    .then((clientBundleStats) => log("Building static files", () => (
+      dynamicRequire(join(
+        config.webpackConfigNode.output.path,
+        config.webpackConfigNode.output.filename
+      ))({
+        ...config,
+        collection: PhenomicLoaderWebpackPlugin.collection,
+        assetsFiles: sortAssets(
+          clientBundleStats.toJson().assetsByChunkName
+        ),
+      })
+    )))
+    .then((files) => postBuild(config, files))
+    .then(() => config.server && devServer(config))
+    .catch((err) => {
+      log(colors.red("Build failed"), "error")
+      setTimeout(() => {
+        throw err
+      }, 1)
     })
   }
   else if (config.server) {
     devServer(config)
   }
   else {
-    console.error(color.red(
+    console.error(colors.red(
       "phenomic: CLI needs --static or --server"
     ))
   }
