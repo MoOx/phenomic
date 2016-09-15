@@ -59,6 +59,7 @@ blockquote {
   & > :first-child {
     padding-top: 0.25rem;
   }
+
   & > :last-child {
     padding-bottom: 0.25rem;
   }
@@ -68,18 +69,15 @@ pre {
   margin: 1rem 0;
   max-width: calc(100vw - 2rem);
   overflow: auto;
-
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
 code {
   padding: 0 0.25rem;
-
   border: 1px solid #ddd;
   border-radius: 0.3em;
   background: color(#fafafa a(0.6));
-
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
@@ -113,7 +111,6 @@ pre > code {
   width: var(--phenomic-HeadingAnchor-width);
   line-height: var(--phenomic-HeadingAnchor-width);
   text-decoration: none;
-
   opacity: 0.1;
   transition: opacity 0.2s;
 
