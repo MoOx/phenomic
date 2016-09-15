@@ -11,6 +11,7 @@ declare var process: {
   },
   cwd: () => string,
   agrv: Array<string>,
+  stdout: Object,
 }
 
 declare var window: {
