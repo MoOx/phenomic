@@ -1,12 +1,7 @@
-import test from "ava"
 import React, { createElement as jsx } from "react"
 import { createRenderer } from "react-addons-test-utils"
-import expect from "expect"
-import expectJSX from "expect-jsx"
 
 import PageContainer from "../component"
-
-expect.extend(expectJSX)
 
 // fixtures
 /* eslint-disable react/no-multi-comp */
@@ -15,7 +10,7 @@ const Page = () => <div className="Page" />
 const PageError = () => <div className="PageError" />
 const AnotherPage = () => <div className="AnotherPage" />
 
-test("should render a Page if page is ok", () => {
+it("should render a Page if page is ok", () => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -32,27 +27,26 @@ test("should render a Page if page is ok", () => {
       collection: [],
     },
   )
-  expect(renderer.getRenderOutput()).toEqualJSX(<Page />)
+  expect(renderer.getRenderOutput()).toMatchSnapshot()
 })
 
-test.cb("should try to get a page if no page in cache", (t) => {
+it("should try to get a page if no page in cache", () => {
   const renderer = createRenderer()
+  const getPage = jest.fn()
+  const setPageNotFound = jest.fn()
+
   renderer.render(
     jsx(
       PageContainer,
       {
         params: { splat: "" },
         pages: { },
-        getPage: (pageUrl, dataUrl) => {
-          t.is(pageUrl, "/")
-          t.is(dataUrl, "/j.son")
-          t.end()
-        },
-        setPageNotFound: () => {
-          t.fail()
-          t.end()
-        },
+        getPage,
+        setPageNotFound,
         layouts: { Page },
+        logger: {
+          info: () => {},
+        },
       }
     ),
     {
@@ -65,9 +59,11 @@ test.cb("should try to get a page if no page in cache", (t) => {
     },
   )
   renderer.getRenderOutput()
+  expect(getPage).toBeCalledWith("/", "/j.son")
+  expect(setPageNotFound).not.toBeCalled()
 })
 
-test(`should render a visible error if page is not ok and no PageError
+it(`should render a visible error if page is not ok and no PageError
 available`, () => {
   const renderer = createRenderer()
   renderer.render(
@@ -86,17 +82,10 @@ available`, () => {
     },
   )
 
-  expect(renderer.getRenderOutput()).toEqualJSX(
-    <div style={{ "text-align": "center" }}>
-      <h1>
-        { "Test" }
-      </h1>
-      <p />
-    </div>
-  )
+  expect(renderer.getRenderOutput()).toMatchSnapshot()
 })
 
-test("should render a PageError if page is not ok and PageError is available",
+it("should render PageError if page not found and PageError is available",
 () => {
   const renderer = createRenderer()
   renderer.render(
@@ -115,12 +104,10 @@ test("should render a PageError if page is not ok and PageError is available",
     },
   )
 
-  expect(renderer.getRenderOutput()).toEqualJSX(
-    <PageError error="Test" />
-  )
+  expect(renderer.getRenderOutput()).toMatchSnapshot()
 })
 
-test("should render a another page layout if defaultLayout is used", () => {
+it("should render a another page layout if defaultLayout is used", () => {
   const renderer = createRenderer()
   renderer.render(
     jsx(
@@ -139,5 +126,5 @@ test("should render a another page layout if defaultLayout is used", () => {
     },
   )
 
-  expect(renderer.getRenderOutput()).toEqualJSX(<AnotherPage />)
+  expect(renderer.getRenderOutput()).toMatchSnapshot()
 })

@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 import colors from "chalk"
 
 import { elapsedTime, setTime } from "../index.js"

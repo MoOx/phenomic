@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"

@@ -129,7 +129,7 @@ const createUrlsFromParamsReplacementInUrl = (url, params, console) => {
     ))
   }
 
-  // @todo improve te algorithm to avoid duplicates,
+  // @todo improve the algorithm to avoid duplicates,
   // we will probably get better perfs
 
   return arrayUnique(urls.sort())

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import test from "ava"
+import test from "jest-ava-api"
 
 import plugin from ".."
 

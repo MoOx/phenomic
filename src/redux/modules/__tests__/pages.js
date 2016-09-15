@@ -1,4 +1,4 @@
-import test from "ava"
+import test from "jest-ava-api"
 
 // eslint-disable-next-line import/no-namespace
 import reducer, * as module from "../pages"
@@ -6,7 +6,7 @@ import reducer, * as module from "../pages"
 process.env.PHENOMIC_USER_PATHNAME = "/"
 
 test("should have action to handle get", async (t) => {
-  t.plan(3)
+  // t.plan(3)
 
   global.fetch = (url) => {
     t.is(url, "/url")
@@ -25,7 +25,7 @@ test("should have action to handle get", async (t) => {
 })
 
 test("should have action to handle refresh", async (t) => {
-  t.plan(3)
+  // t.plan(3)
 
   global.fetch = (url) => {
     t.is(url, "/url")

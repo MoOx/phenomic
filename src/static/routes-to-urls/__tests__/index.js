@@ -1,6 +1,4 @@
 // @ flow
-
-import test from "ava"
 import React from "react"
 import { Route } from "react-router"
 
@@ -61,11 +59,14 @@ const routes = (
   </Route>
 )
 
-test("routes to urls", (t) => {
+it("generate a list of routes based on tags", () => {
+  jest.resetModules()
+
   const urls = routesToUrls(routes, collection)
 
-  t.deepEqual(
-    urls,
+  expect(
+    urls
+  ).toEqual(
     [
       "/author/Jack",
       "/author/James",
@@ -92,13 +93,14 @@ const routesNoMatches = (
   </Route>
 )
 
-test("routes to urls without matches", (t) => {
-  t.plan(1)
-  routesToUrls(routesNoMatches, collection, {
-    log: (message) => {
-      t.truthy(message.includes(
-        "It looks like some parameters can't be mapped to create routes:  :lol"
-      ))
-    },
-  })
+it("log message if there is no matches", () => {
+  jest.resetModules()
+
+  const log = jest.fn()
+  routesToUrls(routesNoMatches, collection, { log })
+
+  expect(log).toBeCalled()
+  expect(log.mock.calls[0][0]).toContain(
+    "It looks like some parameters can't be mapped to create routes:  :lol"
+  )
 })

@@ -1,30 +1,29 @@
 import fs from "fs"
+import { join } from "path"
 
-import test from "ava"
 import suppose from "suppose"
 
 // This test created to test inquirer public API
-test.cb("test inquirer interface", (t) => {
+it("should works with inquirer API", () => new Promise((resolve, reject) => {
   suppose(
     "node",
-    [ "./stub/spawn-prompt.js" ],
-    { debug: fs.createWriteStream("debug.txt") }
+    [ join(__dirname, "./fixtures/spawn-prompt.js") ],
+    { debug: fs.createWriteStream(join(__dirname, "debug.txt")) }
   )
   .when(/In 1 word describe phenomic/, "Awesome\n")
   .on("error", function(error) {
-    console.error(error)
-    t.fail()
-    t.end()
+    reject(error)
   })
   .end(function(code) {
     if (code !== 0) {
-      console.error("Script exited with code: " + code)
-      t.fail()
-      t.end()
+      reject(code)
     }
     else {
-      t.pass()
-      t.end()
+      resolve(1)
     }
   })
 })
+.then(
+  (result) => expect(result).toBe(1),
+  (error) => expect(error).toBe(undefined)
+))

@@ -1,4 +1,3 @@
-import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
@@ -10,8 +9,8 @@ import PhenomicLoaderWebpackPlugin from "../plugin.js"
 const outputPath = __dirname + "/_output/"
 rimraf(outputPath)
 
-test.cb("phenomic loader", (t) => {
-  webpack(
+it("should compile markdown files", () => {
+  return new Promise((resolve, reject) => webpack(
     {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
@@ -30,6 +29,7 @@ test.cb("phenomic loader", (t) => {
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
+      context: __dirname,
       entry: __dirname + "/fixtures/script.js",
       output: {
         path: outputPath + "/routes",
@@ -38,15 +38,18 @@ test.cb("phenomic loader", (t) => {
     },
     function(err, stats) {
       if (err) {
-        throw err
+        reject(err)
       }
-
-      t.falsy(stats.hasErrors(), "doesn't give any error")
+      resolve(stats)
+    }
+  ))
+  .then(
+    (stats) => {
+      expect(stats.hasErrors()).toBeFalsy()
       if (stats.hasErrors()) {
         console.error(stats.compilation.errors)
       }
-
-      t.falsy(stats.hasWarnings(), "doesn't give any warning")
+      expect(stats.hasWarnings()).toBeFalsy()
       if (stats.hasWarnings()) {
         console.log(stats.compilation.warnings)
       }
@@ -60,10 +63,7 @@ test.cb("phenomic loader", (t) => {
       if (!defaultRoute) {
         console.log(stats.compilation.assets)
       }
-      t.truthy(
-        defaultRoute && defaultRoute._value,
-        "should create a json for an given md"
-      )
+      expect(defaultRoute && defaultRoute._value).toBeTruthy()
 
       const customRoute = stats.compilation.assets[
         //    fixtures/custom-route.md
@@ -71,10 +71,8 @@ test.cb("phenomic loader", (t) => {
         "route-custom.html"+
         ".46aa87f4e34aa065935bd6ddd87b9f3c.json"
       ]
-      t.truthy(
-        customRoute && customRoute._value,
-        "should create a proper json for custom route with an extension"
-      )
+      // should create a proper json for custom route with an extension
+      expect(customRoute && customRoute._value).toBeTruthy()
 
       const customRouteWithoutExtension = stats.compilation.assets[
         //    fixtures/custom-route-folder
@@ -82,10 +80,10 @@ test.cb("phenomic loader", (t) => {
         "route-custom-folder/index.html" +
         ".90c288b307f5401be686452389c9c8e6.json"
       ]
-      t.truthy(
-        customRouteWithoutExtension && customRouteWithoutExtension._value,
-        "should create a proper json for custom route with an extension"
-      )
+      // should create a proper json for custom route with an extension
+      expect(
+        customRouteWithoutExtension && customRouteWithoutExtension._value
+      ).toBeTruthy()
 
       const customRouteWithoutSlash = stats.compilation.assets[
         //    fixtures/custom-route-folder-trailing-slash
@@ -93,10 +91,11 @@ test.cb("phenomic loader", (t) => {
         "route-custom-folder-trailing-slash/index.html" +
         ".855f0b74436493523652693003d3f9d1.json"
       ]
-      t.truthy(
-        customRouteWithoutSlash && customRouteWithoutSlash._value,
-        "should create a proper json for custom route with an extension"
-      )
+
+      "should create a proper json for custom route with an extension"
+      expect(
+        customRouteWithoutSlash && customRouteWithoutSlash._value
+      ).toBeTruthy()
 
       const customRouteRootIndex = stats.compilation.assets[
         //    fixtures/custom-route-root-index.md
@@ -104,18 +103,15 @@ test.cb("phenomic loader", (t) => {
         "index.html" +
         ".8817d2a1fab9dfb9b4b52cd6ee7529ab.json"
       ]
-      t.truthy(
-        customRouteRootIndex && customRouteRootIndex._value,
-        "should create a proper json for custom route with an extension"
-      )
-
-      t.end()
-    }
+      // should create a proper json for custom route with an extension
+      expect(customRouteRootIndex && customRouteRootIndex._value).toBeTruthy()
+    },
+    (err) => expect(err).toBe(undefined)
   )
 })
 
-test.cb("phenomic loader can be used with plugins", (t) => {
-  webpack(
+it("can be used with plugins", () => {
+  return new Promise((resolve, reject) => webpack(
     {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
@@ -168,15 +164,22 @@ test.cb("phenomic loader can be used with plugins", (t) => {
     },
     function(err, stats) {
       if (err) {
-        throw err
+        reject(err)
       }
 
-      t.falsy(stats.hasErrors(), "doesn't give any error")
+      resolve(stats)
+    })
+  )
+  .then(
+    (stats) => {
+      // doesn't give any error
+      expect(stats.hasErrors()).toBeFalsy()
       if (stats.hasErrors()) {
         console.error(stats.compilation.errors)
       }
 
-      t.falsy(stats.hasWarnings(), "doesn't give any warning")
+      // doesn't give any warning
+      expect(stats.hasWarnings()).toBeFalsy()
       if (stats.hasWarnings()) {
         console.log(stats.compilation.warnings)
       }
@@ -186,14 +189,12 @@ test.cb("phenomic loader can be used with plugins", (t) => {
       .forEach((key) => {
         const result = JSON.parse(stats.compilation.assets[key]._value)
         if (result.test) {
-          t.is(
-            result.test,
-            "dumb"
-          )
+          expect(result.test).toBe("dumb")
         }
       })
-      t.plan(2+5) // 2, err, warn, 5   => array
-      t.end()
-    }
+      // t.plan(2+5) // 2, err, warn, 5   => array
+      // t.end()
+    },
+    (err) => expect(err).toBe(undefined)
   )
 })
