@@ -8,12 +8,23 @@
 
 > Modern website generator based on the React and Webpack ecosystem.
 
-**(Formerly Statinamic)**
-
 ---
 
-**[Check out the website](https://phenomic.io) for online documentation**,  
-(or [`phenomic/docs/content`](docs/content) for (raw) markdown documentation).
+- [What is Phenomic?](https://phenomic.io/)
+- [How to setup Phenomic?](https://phenomic.io/docs/setup/)
+- [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
+- [Usage documentation](https://phenomic.io/docs/usage/)
+- [FAQ](https://phenomic.io/docs/usage/)
+
+
+- [Who is using Phenomic?](https://phenomic.io/showcase/)
+- [I am using Phenomic and I like it!](https://phenomic.io/showcase/submit/)
+
+
+- [Community support chat](https://gitter.im/MoOx/phenomic)
+- [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
+
+For offline documentation, please check [`phenomic/docs/content`](docs/content).
 
 ---
 
