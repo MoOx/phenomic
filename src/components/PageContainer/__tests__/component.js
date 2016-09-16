@@ -33,9 +33,7 @@ test("should render a Page if page is ok", () => {
       collection: [],
     },
   )
-  expect(renderer.getRenderOutput()).toEqualJSX(
-    <Page ref={ function noRefCheck() {} } />
-  )
+  expect(renderer.getRenderOutput()).toEqualJSX(<Page />)
 })
 
 test.cb("should try to get a page if no page in cache", (t) => {
@@ -142,7 +140,5 @@ test("should render a another page layout if defaultLayout is used", () => {
     },
   )
 
-  expect(renderer.getRenderOutput()).toEqualJSX(
-    <AnotherPage ref={ function noRefCheck() {} } />
-  )
+  expect(renderer.getRenderOutput()).toEqualJSX(<AnotherPage />)
 })

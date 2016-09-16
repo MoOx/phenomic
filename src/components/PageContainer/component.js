@@ -135,27 +135,26 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       return
     }
 
-    if (this._content) {
-      const layoutDOMElement = findDOMNode(this._content)
-      if (layoutDOMElement) {
-        let bodyContainers =
-          Array.prototype.slice.call(
-            layoutDOMElement.querySelectorAll(".phenomic-BodyContainer")
-          )
-        if (!bodyContainers.length) {
-          bodyContainers = [ layoutDOMElement ]
-        }
-        catchLinks(bodyContainers, (href) => {
-          const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
-          if (!find(this.context.collection, pageUrl)) {
-            return false
-          }
-          if (browserHistory) {
-            browserHistory.push(pageUrl)
-          }
-          return true
-        })
+    const layoutDOMElement = findDOMNode(this)
+
+    if (layoutDOMElement) {
+      let bodyContainers =
+        Array.prototype.slice.call(
+          layoutDOMElement.querySelectorAll(".phenomic-BodyContainer")
+        )
+      if (!bodyContainers.length) {
+        bodyContainers = [ layoutDOMElement ]
       }
+      catchLinks(bodyContainers, (href) => {
+        const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
+        if (!find(this.context.collection, pageUrl)) {
+          return false
+        }
+        if (browserHistory) {
+          browserHistory.push(pageUrl)
+        }
+        return true
+      })
     }
   }
 
@@ -200,10 +199,6 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
     }
   }
-
-  saveContentRef: Function = (ref: HTMLElement): void => {
-    this._content = ref
-  };
 
   render() {
     const { props } = this
@@ -252,7 +247,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         return <PageLoading />
       }
       else if (Layout) {
-        return <Layout ref={ this.saveContentRef } { ...page } />
+        return <Layout { ...page } />
       }
     }
 
