@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react"
+import React, { PropTypes } from "react"
 
 import "./index.global.css"
 
@@ -8,22 +8,19 @@ import Header from "./components/Header"
 import Content from "./components/Content"
 import Footer from "./components/Footer"
 
-export default class AppContainer extends Component {
+const AppContainer = (props) => (
+  <Container>
+    <DefaultHeadMeta />
+    <Header />
+    <Content>
+      { props.children }
+    </Content>
+    <Footer />
+  </Container>
+)
 
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-  };
-
-  render() {
-    return (
-      <Container>
-        <DefaultHeadMeta />
-        <Header />
-        <Content>
-          { this.props.children }
-        </Content>
-        <Footer />
-      </Container>
-    )
-  }
+AppContainer.propTypes = {
+  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
 }
+
+export default AppContainer

@@ -1,33 +1,26 @@
-import React, { Component, PropTypes } from "react"
+import React, { PropTypes } from "react"
 
 import Page from "../Page"
 
-class Post extends Component {
-
+const Post = (props) => {
   // it's up to you to choose what to do with this layout ;)
+  const pageDate = props.head.date ? new Date(props.head.date) : null
 
-  render() {
-    const { props } = this
-    const { head } = props
-
-    const pageDate = head.date ? new Date(head.date) : null
-
-    return (
-      <Page
-        { ...props }
-        header={
-          <header>
-          {
-            pageDate &&
-            <time key={ pageDate.toISOString() }>
-              { pageDate.toDateString() }
-            </time>
-          }
-          </header>
+  return (
+    <Page
+      { ...props }
+      header={
+        <header>
+        {
+          pageDate &&
+          <time key={ pageDate.toISOString() }>
+            { pageDate.toDateString() }
+          </time>
         }
-      />
-    )
-  }
+        </header>
+      }
+    />
+  )
 }
 
 Post.propTypes = {

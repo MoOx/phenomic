@@ -1,18 +1,15 @@
-import React, { Component, PropTypes } from "react"
+import React, { PropTypes } from "react"
 
 import styles from "./index.css"
 
-export default class Content extends Component {
+const Content = (props) => (
+  <div className={ styles.content }>
+    { props.children }
+  </div>
+)
 
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-  };
-
-  render() {
-    return (
-      <div className={ styles.content }>
-        { this.props.children }
-      </div>
-    )
-  }
+Content.propTypes = {
+  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
 }
+
+export default Content

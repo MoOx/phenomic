@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react"
+import React, { PropTypes } from "react"
 
 import "./index.global.css"
 import "./hightlightjs.global.css"
@@ -11,26 +11,23 @@ import Header from "./components/Header"
 import Content from "./components/Content"
 import Footer from "./components/Footer"
 
-export default class AppContainer extends Component {
+const AppContainer = (props) => (
+  <GoogleAnalyticsTracker params={ props.params }>
+    <Container>
+      <DefaultHeadMeta />
+      <AppCacheBanner />
+      <Header />
+      <Content>
+        { props.children }
+      </Content>
+      <Footer />
+    </Container>
+  </GoogleAnalyticsTracker>
+)
 
-  static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
-    params: PropTypes.object,
-  };
-
-  render() {
-    return (
-      <GoogleAnalyticsTracker params={ this.props.params }>
-        <Container>
-          <DefaultHeadMeta />
-          <AppCacheBanner />
-          <Header />
-          <Content>
-            { this.props.children }
-          </Content>
-          <Footer />
-        </Container>
-      </GoogleAnalyticsTracker>
-    )
-  }
+AppContainer.propTypes = {
+  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  params: PropTypes.object,
 }
+
+export default AppContainer
