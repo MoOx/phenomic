@@ -14,9 +14,7 @@ const betterMsg = (msg: string): string => (
   .replace(/Error: Cannot resolve 'file' or 'directory'/, "")
 
   // loader path for css
-  .replace("./~/css-loader!", "")
-  .replace("./~/postcss-loader!", "")
-  .replace("./~/sass-loader!", "")
+  .replace(/.\/~\/(css|postcss|sass|less|stylus)-loader(.*)!/g, "")
 )
 
 export function handleInvalid() {
