@@ -47,7 +47,7 @@ export const makeConfig = (config = {}) => {
           ],
           loaders: [
             "babel-loader?cacheDirectory=true",
-            "eslint-loader?fix",
+            "eslint-loader",
           ],
         },
 
