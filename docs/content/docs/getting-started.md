@@ -80,7 +80,14 @@ My super **content** !
 Then your content will be accessible at
 [http://localhost:3333/my-super-page.html](http://localhost:3333/my-super-page.html)
 
-Now it's time to adjust the page layout.
+---
+
+⚠️ **If you need more complex page,
+[you can directly rely on a React component and specify your route in the app router](../usage/routing/)**.
+
+---
+
+Assuming you are happy with your new page, let's adjust the page layout.
 
 ## How can I adjust templates/layouts?
 
@@ -95,7 +102,7 @@ If you need to start with React you might want to check the following resources:
 - [Official "Getting started" with React](https://facebook.github.io/react/docs/getting-started.html)
 - [Official React Tutorial](https://facebook.github.io/react/docs/tutorial.html)
 - [React Fundamentals on EggHead.io](https://egghead.io/courses/react-fundamentals)
-- [reactforbeginners.com](https://reactforbeginners.com/)
+- [reactforbeginners.com](https://ReactForBeginners.com/friend/MOOX)
 - [Build your first real world React.js application](http://academy.plot.ly/#react)
 
 You might also take a look to
@@ -105,7 +112,8 @@ Also learning ES6/ES2015+ is recommended.
 It's the latest version of JavaScript. Here are some links:
 
 - ["Learn ES2015" on Babel documentation](https://babeljs.io/docs/learn-es2015/)
-- [es6.io](http://es6.io/)
+- [es6.io](https://ES6.io/friend/MOOX)
+- [Posts about ES6/2015 on _Putain de Code !_](http://putaindecode.io/en/articles/js/es2015/)
 
 ## Back to the layout. How can I change my page layout?
 
@@ -174,7 +182,65 @@ new layout to avoid repetition! Those are just components!
 
 ## Any tips to help me build my layouts?
 
-Sure! Keep in mind that those are just React components.
+We are going to implement a simple feature so you can tweak your website.
+
+Besides being able to add an image in the markdown itself, it's possible to
+add one in the post metadata to use it later in your layouts.
+
+```md
+---
+title: My super new page
+route: my-super-url.html
+layout: MySuperLayout
+featuredImage: someImageUrl.png # ← Add your image here
+---
+
+My super **content** !
+```
+
+---
+
+⚠️ It is possible to add any information in the front-matter, and you might be
+able to do almost anything you can think of, even images gallery!
+
+---
+
+The front-matter data are send like page body in your React components.
+This allow you to manipulate it normally using JavaScript.
+
+Supposing you want to use your ``featuredImage`` in a list of pages or posts (``PagesList`` in the default theme)
+you will have to change your ``PagePreview`` to make use of that since ``PagesList`` just render a series of ``PagePreview`` components.
+
+Changing the ``PagePreview`` component will change how the "latest posts" are rendered on your homepage.
+
+```js
+const PagePreview = ({ __url, title, date , featuredImage }) => {
+  return (
+    <div>
+      <img src={ featuredImage } />
+      // ...
+    </div>
+  )
+}
+PagePreview.propTypes = {
+  __url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string,
+  featuredImage: PropTypes.string
+}
+
+```
+
+Notice how the ``featuredImage`` was added to the ``propTypes`` (for validation), and a parameter ``featuredImage`` was added on the arguments list (the [destructured](http://putaindecode.io/en/articles/js/es2015/destructuring/) ``props``).
+
+This simple way is a good example on how to can access any metadata that you can
+add in your front-matter. With that in mind, you now know how to manipulate
+and display custom data in React component render functions.
+
+## What can I reuse to build my website quickly?
+
+Keep in mind that React components are like Lego blocks.
+
 Here are some interesting tools or libraries you should know about:
 
 - [html-to-react-components](https://github.com/roman01la/html-to-react-components), a tool to build React components from HTML code,
@@ -185,11 +251,77 @@ Here are some interesting tools or libraries you should know about:
 
 _Feel free to edit this page to add more resources._
 
-## What is the best way to add my CSS?
+## What is the best way to edit my styles?
 
-We have a
+Here is a short explanation on what you can do by default.
+
+- `src/**/*.css` files can be imported in React Component since they are
+  loaded via [CSS modules](https://github.com/css-modules/css-modules).
+  This basically means you can't have conflict with class names.
+- `src/**/*.global.css` files are normal global CSS files, handy to define rules
+  for html/body and for third party code (eg: a code highlight theme).
+
+By default files are processed via
+[PostCSS](https://github.com/postcss/postcss) with [cssnext](http://cssnext.io/)
+but you can adjust `webpack.config.babel.js` file to support anything you want.
+
+---
+
+⚠️ We have a
 [dedicated section for styling components](../usage/styling/),
 why don't you take a look?
+
+---
+
+### How to add variables for my CSS when using PostCSS/cssnext/CSS Modules?
+
+If you want to share some variables in your CSS or CSS modules,
+you can rely on cssnext support of CSS custom properties to do so
+([limited to :root](https://github.com/postcss/postcss-custom-properties#readme)):
+
+The more effcient way to have global variables is to some values in cssnext configuration `customProperties.variables` entry in `webpack.config.babel.js` :
+
+```js
+require("postcss-cssnext")({
+  browsers: "last 2 versions",
+  features: {
+    customProperties: {
+      variables: {
+        successColor: 'green',
+        errorColor: 'red'
+      }
+      // not that instead of an object, you can add here a js files
+      // variables: require("./variables.js")
+      // where you do
+      // modules.export = { key: "value" }
+    }
+  }
+})
+```
+
+Now simply use the variable in your CSS :
+
+```css
+.buttonSuccess {
+  color: var(--successColor);
+}
+```
+
+### How to add Sass or LESS support?
+
+If you really want to add Sass or LESS for you styles you can replace in your
+`webpack.config.babel.js` `postcss-loader` by `sass-loader` or `less-loader`:
+
+- Install dependencies
+  - `npm install --save-dev node-sass sass-loader`
+  - or `npm install --save-dev less less-loader`
+- Adjust `webpack.config.babel.js` configuration for .css
+  - duplicate css section and replace `.css` by `.sass` (or `.less`)
+  - or directly replace `.css` by `.sass` (or `.less`).
+
+---
+
+💬 [If you have more questions, be sure to ask on our community chat!](https://gitter.im/MoOx/phenomic)
 
 ---
 
@@ -197,5 +329,3 @@ why don't you take a look?
 
 **Take a look to the [rest of the documentation](../usage/) where you will
 find more details on everything about Phenomic and how to use it**.
-
-💬 [And if you have more questions, be sure to ask on our community chat!](https://gitter.im/MoOx/phenomic)
