@@ -17,7 +17,6 @@ import dynamicRequire from "./dynamic-require.js"
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 
 export default function(config: Object): void {
-  log("Phenomic is starting", "info")
   // log(JSON.stringify(config, null, 2))
 
   const makeWebpackConfig = dynamicRequire(

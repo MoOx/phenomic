@@ -6,8 +6,10 @@ import setup from "./commands/setup/index.js"
 import builder from "../builder/index.js"
 import yargs from "../configurator/yargs.js"
 import configurator from "../configurator/index.js"
+import log from "../_utils/log"
 
 const runner = () => {
+  log("Phenomic is starting", "info")
   const cwd = process.cwd()
   const pkg = require(join(cwd, "package.json"))
   const config = configurator({ argv: process.argv, pkg })
