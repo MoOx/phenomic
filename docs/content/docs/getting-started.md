@@ -7,6 +7,8 @@ title: Getting started with Phenomic
 When everything is ready and the hello world is in front of you,
 you may want to add some content and work on the website/app look 'n feel.
 
+## Table of Contents
+
 Let's start with some content.
 
 ## How to add a new page in Phenomic?
