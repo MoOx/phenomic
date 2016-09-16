@@ -10,6 +10,8 @@ let spinner = makeSpinner()
 // remove noize from messages
 const betterMsg = (msg: string): string => (
   msg
+  .replace(process.cwd(), ".")
+
   // Webpack "Module not found" noize
   .replace(/Error: Cannot resolve 'file' or 'directory'/, "")
 
