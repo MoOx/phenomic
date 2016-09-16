@@ -93,7 +93,7 @@ Here is a commented ``package.json`` with only the interesting parts
   "babel": {
     "presets": [
       "babel-preset-react",
-      "babel-preset-es2015",
+      "babel-preset-latest",
       "babel-preset-stage-1"
     ],
   },
