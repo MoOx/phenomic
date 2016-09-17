@@ -36,60 +36,45 @@ See the last section to know how to write a plugin (spoiler: it's easy).
 
 ## Existing Plugins
 
-For now, plugins are accessible in ``phenomicLoaderPlugins`` in ``phenomic``.
+For now, plugins are accessible in ``phenomic/lib/loader-plugin-*``.
 
 ```js
-import { phenomicLoaderPlugins } from "phenomic"
-
-phenomicLoaderPlugins.[camelCasedNameOfThePlugin]
-// eg: phenomic-loader-plugin-init-body-property-from-content
-// will be accessible under
-// phenomicLoaderPlugins.initBodyPropertyFromContent
+import initHeadPropertyFromConfig from "phenomic/lib/loader-plugin-init-head-property-from-config"
 ```
 
 *This might change if phenomic is split into multiple packages.*
 See [#598](https://github.com/MoOx/phenomic/issues/598) for more informations.
 
-### ``phenomic-loader-plugin-init-body-property-from-content``
+### ``phenomic/lib/loader-plugin-init-body-property-from-content``
 
 This plugin initializes the ``body`` property from data retrieved in the file.
 It takes the content of the input that is below the front-matter.
 
-*For now accessible via ``phenomicLoaderPlugins.initBodyPropertyFromContent``.*
-
-### ``phenomic-loader-plugin-init-head-property-from-config``
+### ``phenomic/lib/loader-plugin-init-head-property-from-config``
 
 This plugin initializes in the ``head`` property from ``defaultConfig`` in the
 webpack ``phenomic`` configuration section.
 It won't override existing key/values in the ``head`` if there is any.
 
-*For now accessible via ``phenomicLoaderPlugins.initHeadPropertyFromConfig``.*
-
-### ``phenomic-loader-plugin-init-head-property-from-content``
+### ``phenomic/lib/loader-plugin-init-head-property-from-content``
 
 This plugin initializes in the ``head`` property from data retrieved in the file.
 It takes the front-matter of the input and map it as key => value.
 
-*For now accessible via ``phenomicLoaderPlugins.initHeadPropertyFromContent``.*
-
-### ``phenomic-loader-plugin-init-raw-property-from-content``
+### ``phenomic/lib/loader-plugin-init-raw-property-from-content``
 
 This plugin initializes in a ``raw`` property.
 This property contains the entire file as raw data.
 Useful if you front-end need to handle the content of the file.
 
-*For now accessible via ``phenomicLoaderPlugins.initRawPropertyFromContent``.*
-
-### ``phenomic-loader-plugin-init-rawBody-property-from-content``
+### ``phenomic/lib/loader-plugin-init-rawBody-property-from-content``
 
 This plugin initializes in a ``rawBody`` property.
 This property contains the content of the file that is below the front-matter,
 as raw data.
 Useful if you front-end need to handle the content of the file.
 
-*For now accessible via ``phenomicLoaderPlugins.initRawBodyPropertyFromContent``.*
-
-### ``phenomic-loader-plugin-markdown-init-head.description-property-from-content``
+### ``phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content``
 
 This plugin initializes a ``description`` property in the ``head``, based on the
 content accessible below the front-matter.
@@ -105,16 +90,12 @@ You can pass options to ``phenomic`` section in webpack configuration.
 }
 ```
 
-*For now accessible via ``phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent``.*
-
-### ``phenomic-loader-plugin-markdown-transform-body-property-to-html``
+### ``phenomic/lib/loader-plugin-markdown-transform-body-property-to-html``
 
 This plugin will transform the ``body`` property into html.
 This plugin will assumes your content is markdown and will use
 [``remark``](http://remark.js.org/) with
-[some plugins](https://github.com/MoOx/phenomic/blob/master/src/phenomic-loader-plugin-markdown-transform-body-property-to-html/index.js) for the transformation.
-
-*For now accessible via ``phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml``.*
+[some plugins](https://github.com/MoOx/phenomic/blob/master/src/phenomic/lib/loader-plugin-markdown-transform-body-property-to-html/index.js) for the transformation.
 
 
 ## Presets
@@ -140,21 +121,21 @@ notation is more verbose, especially if you have multiple plugins.
 
 Phenomic provides the following presets:
 
-### ``phenomic-loader-preset-default``
+### ``phenomic/lib/loader-preset-default``
 
-- ``phenomic-loader-plugin-init-head-property-from-config``
-- ``phenomic-loader-plugin-init-head-property-from-content``
-- ``phenomic-loader-plugin-init-body-property-from-content``
+- ``phenomic/lib/loader-plugin-init-head-property-from-config``
+- ``phenomic/lib/loader-plugin-init-head-property-from-content``
+- ``phenomic/lib/loader-plugin-init-body-property-from-content``
 
 🛠 This preset is kind of the phenomic default requirement.
 Use it if you want to use classic files with a front-matter and any text format.
 **Feel free to take a look to markdown preset to implement your own engine!**
 
-### ``phenomic-loader-preset-markdown``
+### ``phenomic/lib/loader-preset-markdown``
 
-- ``phenomic-loader-preset-default``
-- ``phenomic-loader-plugin-markdown-init-head.description-property-from-content``
-- ``phenomic-loader-plugin-markdown-transform-body-property-to-html``
+- ``phenomic/lib/loader-preset-default``
+- ``phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content``
+- ``phenomic/lib/loader-plugin-markdown-transform-body-property-to-html``
 
 ❤️ This preset is the one used by default in Phenomic. It allows you to consume
 common markdown files that have a front-matter out of the box.
@@ -167,9 +148,7 @@ You can use some plugins, but not the one that will transform the markdown as
 HTML.
 
 ```js
-import { phenomicLoader, phenomicLoaderPresets } from "phenomic"
-// or if you want to use some each plugins manually
-// import { phenomicLoader, phenomicLoaderPlugins } from "phenomic"
+import { phenomicLoader } from "phenomic"
 
 // ...
 
@@ -183,18 +162,18 @@ import { phenomicLoader, phenomicLoaderPresets } from "phenomic"
 
           plugins: [
             // here are the unopininated default plugins
-            ...phenomicLoaderPresets.default,
+            ...require("phenomic/lib/loader-preset-default").default,
 
             // Instead of specifing via the preset, you can cherry pick some,
-            // phenomicLoaderPlugins.initHeadPropertyFromConfig,
-            // phenomicLoaderPlugins.initHeadPropertyFromContent,
-            // phenomicLoaderPlugins.initBodyPropertyFromContent,
+            // require("phenomic/lib/loader-plugin-init-head-property-from-config").default,
+            // require("phenomic/lib/loader-plugin-init-head-property-from-content").default,
+            // require("phenomic/lib/loader-plugin-init-body-property-from-content").default,
 
-            // ...phenomicLoaderPresets.markdown
+            // ...require("phenomic/lib/loader-preset-markdown").default
             // The commented preset above is part of the default renderer.
             // You can also cherry pick on plugin or the other
-            // phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent,
-            // phenomicLoaderPlugins.transformMdBodyPropertyToHtml,
+            // require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default,
+            // require("phenomic/lib/loader-plugin-transform-md-body-property-to-html").default,
 
             // here is an example of another transformation
             ({ result }) => {
@@ -210,10 +189,13 @@ import { phenomicLoader, phenomicLoaderPresets } from "phenomic"
                 // https://github.com/MoOx/phenomic/blob/master/src/
               }
             }
-          ]
-       },
-     },
-  ...
+          ],
+        },
+      },
+
+      // ...
+    ]
+  }
 ```
 
 ## Writing plugins

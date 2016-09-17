@@ -1,5 +1,45 @@
 # HEAD
 
+- Removed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
+  single string is passed as a child.
+  (@MoOx)
+- Removed: ``PageContainer`` does not wrap its child into a ``<div>``
+  ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
+  based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
+- Changed: ``phenomic/lib/PageContainer`` has been relocated.
+  To prevent issue in the future, is now accessible by doing
+  ``import { PageContainer } from "phenomic"``.
+  If you want to import it with a different name, you can do it this way:
+  ```js
+  import { PageContainer as PhenomicPageContainer } from "phenomic"
+  ```
+  ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
+- Changed: error messages for bad configuration are now more readable
+  ([#672](https://github.com/MoOx/phenomic/issues/672) - @MoOx)
+- Fixed: front matter ``route`` can use ``/`` to define the homepage
+  ([#721](https://github.com/MoOx/phenomic/pull/721) - @thangngoc89)
+  single string is passed as a child.
+  (@MoOx)
+- Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
+  You can enable this **experimental** feature by add
+  ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
+- Added: Error message in the browser if app start fail at start during
+  development
+  ([#679](https://github.com/MoOx/phenomic/issues/679]) - @MoOx)
+- Added: proper message if Node and npm version are not satisfying requirements
+  ([#709](https://github.com/MoOx/phenomic/pull/709) - @thangngoc89)
+
+## Boilerplate
+
+- Changed: new default tree structure.
+  We encourage you to update to a similar structure if you were using the previous one.
+  Main changes:
+
+  - ``web_modules/layouts`` => ``src/layouts``
+  - ``web_modules/{Components}`` => ``src/components/*``
+  - ``web_modules/app/*`` => ``src/*``
+  - ``web_modules/LayoutContainer`` => ``src/AppContainer.js``
+
 # 0.16.2 - 2016-08-23
 
 - Fixed: error during static build have an accurate stack trace.

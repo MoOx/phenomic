@@ -36,12 +36,12 @@ Several constants are exposed (injected) in your JavaScript code in
 Component to define and declare all pages layouts.
 
 ```js
-import PageContainer from "phenomic/lib/PageContainer"
+``import { PageContainer } from "phenomic"``
 
 // @todo show usage
 ```
 
-[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/docs/web_modules/app/routes.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/docs/src/routes.js)
 
 #### ``BodyContainer``
 
@@ -73,7 +73,7 @@ class Page extends Component {
 }
 ```
 
-[Check the usage in the default boilerplate.](https://github.com/MoOx/phenomic/blob/master/boilerplate/web_modules/layouts/Page/index.js)
+[Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/themes/phenomic-theme-base/src/layouts/Page/index.js)
 
 ### Utilities
 

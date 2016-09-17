@@ -8,7 +8,7 @@ import commonWebpackConfig from "./config.common.js"
 
 const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
-const cacheDir = findCacheDir({ name: "phenomic" })
+const cacheDir = findCacheDir({ name: "phenomic/webpack-node-build" })
 
 const defaultExternals = [
   // we could consider node_modules as externals deps
@@ -43,8 +43,9 @@ export default (config: PhenomicConfig): WebpackConfig => {
     externals: [
       ...webpackConfig.externals || defaultExternals,
 
-      // we need this to be the same between the entire node runtime
-      "phenomic/lib/phenomic-loader/cache",
+      // keep the loader plugin cache in memory
+      "phenomic/lib/loader/index",
+      "phenomic/lib/loader/plugin",
     ],
 
     // sourcemaps
@@ -54,10 +55,11 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ...webpackConfig.plugins.filter(
         (plugin) => !(plugin instanceof UglifyJsPlugin)
       ) || [],
-      new BannerPlugin(
-        "require('source-map-support').install();",
-        { raw: true, entryOnly: false }
-      ),
+      new BannerPlugin({
+        banner: "require('source-map-support').install();",
+        raw: true,
+        entryOnly: false,
+      }),
     ],
   }
 }

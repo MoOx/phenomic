@@ -1,7 +1,7 @@
 [ignore]
 .*/node_modules/.*
 .*/docs/node_modules/.*
-.*/test-boilerplate/.*
+.*/test-phenomic-theme-base/.*
 .*/lib/.*
 .*/coverage/.*
 .*/.nyc_output/.*

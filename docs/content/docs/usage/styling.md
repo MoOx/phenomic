@@ -4,7 +4,7 @@ title: How to style your app/website in Phenomic
 
 ## Syntax and Architecture
 
-The default boilerplate allows you to write, by default, stylesheets with two
+The phenomic-theme-base allows you to write, by default, stylesheets with two
 different approaches:
 Global (normal) CSS and/or
 [CSS modules](#css-modules).
@@ -23,7 +23,7 @@ so you have a built-in modular CSS pre-processor.
 The future-proof syntax / Local CSS is the recommended solution that plays nice
 with React.
 
-**Not that the default CSS loaders only apply to ``web_modules`` folder.
+**Not that the default CSS loaders only apply to ``src`` folder.
 If you want to consume CSS from ``node_modules``, you should adjust the
 webpack configuration (a commented piece of code should be waiting for you).**
 

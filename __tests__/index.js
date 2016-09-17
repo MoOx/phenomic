@@ -5,7 +5,7 @@ import { join } from "path"
 
 import globby from "globby"
 
-const testFolder = "../test-boilerplate/dist"
+const testFolder = "../test-phenomic-theme-base/dist"
 const files = globby.sync("**/*", {
   cwd: testFolder,
   nodir: true,
@@ -72,7 +72,7 @@ test("should have html files", (t) => {
   t.truthy(includes(
     "index.html",
     [
-      ">Phenomic default boilerplate",
+      ">Phenomic base theme",
       "window.__INITIAL_STATE__ = {\"pages\":{\"/\"",
     ]
   ))

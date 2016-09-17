@@ -1,5 +1,5 @@
-// All these weird steps for this 'simple' test-boilerplate has been made to
-// boost CI testing, tune with care if you dare to
+// All these weird steps for this 'simple' test-phenomic-theme-base has been
+// made to boost CI testing, tune with care if you dare to
 
 import pify from "pify"
 import { remove as rm } from "fs-promise"
@@ -17,7 +17,7 @@ export function exec(cmd, opts) {
 
 export default async function test(
   target,
-  { cleanup = noop, init = noop, lib = "lib", test = true }
+  { cleanup = noop, init = noop, lib = "lib", test = true } = {}
 ) {
   try {
     const targetModules = `${ target }/node_modules`

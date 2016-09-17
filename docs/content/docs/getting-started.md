@@ -96,6 +96,7 @@ If you need to start with React you might want to check the following resources:
 - [Official React Tutorial](https://facebook.github.io/react/docs/tutorial.html)
 - [React Fundamentals on EggHead.io](https://egghead.io/courses/react-fundamentals)
 - [reactforbeginners.com](https://reactforbeginners.com/)
+- [Build your first real world React.js application](http://academy.plot.ly/#react)
 
 You might also take a look to
 [react-howto](https://github.com/petehunt/react-howto) to understand what you might need to learn and what you don't.
@@ -110,16 +111,16 @@ It's the latest version of JavaScript. Here are some links:
 
 Easy. There 2 parts you can adjust that are referenced in the app routes:
 
-### ``src/web_modules/LayoutContainer``
+### ``src/AppContainer.js``
 
 It's the global website wrapper.
 It contains the header, the content and the footer of your website/app.
 
-### ``src/web_modules/layouts/*``
+### ``src/layouts/*``
 
 Here is the place where you should find and add all page layouts.
 The page we just created use the default page layout, which is (by default)
-``Page`` so we will need to adjust ``src/web_modules/layouts/Page``.
+``Page`` so we will need to adjust ``src/layouts/Page``.
 
 **Layouts are just React components**, so you should be able to do anything
 you want!

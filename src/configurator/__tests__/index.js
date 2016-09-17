@@ -21,6 +21,7 @@ test("should return a default configuration", (t) => {
     offline : false,
     verbose: false,
     open: true,
+    webpackHardCache: false,
     dev: false,
     production: false,
     static: false,
@@ -64,6 +65,7 @@ test("should allow to override some default values", (t) => {
 })
 
 test("should warn if config is invalid", (t) => {
+  process.env.TESTING = "1"
   t.throws(
     () => configurator({
       pkg: {
@@ -77,6 +79,7 @@ test("should warn if config is invalid", (t) => {
 })
 
 test("should warn if config is invalid when '--production' is used", (t) => {
+  process.env.TESTING = "1"
   t.throws(
     () => {
       configurator({

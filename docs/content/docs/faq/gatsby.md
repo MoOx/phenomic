@@ -39,7 +39,7 @@ Here are some points we want to highlight :
   For example, Gatsby has in it's dependencies LESS, Sass and PostCSS (yeah
   maybe that's too much).
   By default, Phenomic will just install PostCSS (since it's required in the
-  default boilerplate), but you can remove it (since it will be added in your
+  phenomic-theme-base), but you can remove it (since it will be added in your
   package.json) and replace with any dependency you want (or none).
 - Phenomic is covered by a lot of **automated unit, integration and functional
   tests** to avoid bugs and regressions.

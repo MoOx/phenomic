@@ -7,16 +7,15 @@ import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackNotifierPlugin from "webpack-notifier"
 
 import opn from "opn"
-import debug from "debug"
+import log from "../_utils/log"
 import portFinder from "portfinder"
 
-import minifyCollection from "../phenomic-loader/minify"
+import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
+import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"
-
-import collection from "../phenomic-loader/cache.js"
 import pathToUri from "../_utils/path-to-uri"
 
-const log = debug("phenomic:builder:server")
+import { handleInvalid, handleDone } from "./webpack/log-formatter.js"
 
 export default (config) => {
   const { webpackConfigBrowser: webpackConfig } = config
@@ -43,30 +42,26 @@ export default (config) => {
 
     const devConfig = {
       ...webpackConfig,
-      // debug: true,
-      // watch: true,
-      // colors: true,
       entry: {
         // add devEntries
-        ...Object.keys(webpackConfig.entry)
-          .reduce((acc, key) => {
-            // some entries do not need extra stuff
-            acc[key] = [
-              ...devEntries,
-              ...Array.isArray(webpackConfig.entry[key])
-                ? webpackConfig.entry[key]
-                : [ webpackConfig.entry[key] ],
-            ]
-            return acc
-          },
-          {}
-        ),
+        ...Object.keys(webpackConfig.entry).reduce((acc, key) => ({
+          ...acc,
+          [key]: [
+            ...devEntries,
+            ...Array.isArray(webpackConfig.entry[key])
+              ? webpackConfig.entry[key]
+              : [ webpackConfig.entry[key] ],
+          ],
+        }), {}),
       },
       plugins: [
         ...(webpackConfig.plugins || []),
-        new webpack.optimize.OccurenceOrderPlugin(),
+
+        // for hot-middleware
+        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
+
         new WebpackNotifierPlugin(),
       ],
       eslint: {
@@ -75,23 +70,23 @@ export default (config) => {
       },
     }
 
-    // webpack requirements
+    // webpack dev + hot middlewares
     const webpackCompiler = webpack(devConfig)
 
     server.use(webpackDevMiddleware(webpackCompiler, {
       publicPath: webpackConfig.output.publicPath,
+      // skip compilation logs if !verbose
       noInfo: !config.verbose,
+      quiet: !config.verbose,
       ...devConfig.devServer,
     }))
-
-    // HMR
-    server.use(webpackHotMiddleware(webpackCompiler))
+    server.use(webpackHotMiddleware(webpackCompiler, {
+      // skip hot middleware logs if !verbose
+      log: config.verbose ? undefined : () => {},
+    }))
 
     let entries = []
     webpackCompiler.plugin("done", function(stats) {
-      log("Webpack compilation done")
-
-      // reset entries
       entries = []
       const namedChunks = stats.compilation.namedChunks
       Object.keys(namedChunks).forEach((chunkName) => {
@@ -103,6 +98,13 @@ export default (config) => {
         ]
       })
     })
+
+    // if !verbose, use our custom minimal output
+    if (!config.verbose) {
+      handleInvalid() // start "Updating"
+      webpackCompiler.plugin("invalid", handleInvalid)
+      webpackCompiler.plugin("done", handleDone)
+    }
 
     // user static assets
     if (config.assets) {
@@ -124,15 +126,30 @@ export default (config) => {
 
     // hardcoded entry point
     router.get("/index.html", (req, res) => {
-      const collectionMin = minifyCollection(collection)
+      const collectionMin = minifyCollection(
+        PhenomicLoaderWebpackPlugin.collection
+      )
       res.setHeader("Content-Type", "text/html")
+      /* eslint-disable max-len */
       res.end(
   `<!doctype html>
   <html>
   <head><meta charset="utf8" /></head>
   <body>
     <div id="phenomic">
-      ...
+      <div
+        id="phenomic-DevLoader"
+        style="color: red; font: caption; text-align: center; line-height: 100vh; font-size: 2rem;"
+      >
+        <script>
+        window.onerror = function(e) {
+          var devLoader = document.querySelector("#phenomic-DevLoader")
+          if (devLoader) { devLoader.innerHTML = e.toString() }
+          // only need to use this code once
+          window.onerror = null
+        }
+        </script>
+      </div>
     </div>
     <script>
     window.__COLLECTION__ = ${
@@ -148,6 +165,7 @@ export default (config) => {
     }
   </body>
   </html>`
+      /* eslint-enable max-len */
       )
     })
   }
@@ -170,7 +188,7 @@ export default (config) => {
         throw err
       }
       const href = `http://${ devHost }:${ port }${ config.baseUrl.pathname }`
-      log(`Dev server started on ${ href }`)
+      log(`Development server listening on ${ href }`)
       if (config.open) {
         opn(href.replace(devHost, "localhost"))
       }

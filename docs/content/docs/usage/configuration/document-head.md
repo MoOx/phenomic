@@ -15,7 +15,7 @@ and changes to your documents head with support for
 _document title, meta, link, script, and base tags._
 It's like ``react-document-title`` but on steroids.
 
-The default boilerplate uses ``react-helmet`` in several places
+The phenomic-theme-base uses ``react-helmet`` in several places
 (look for ``<Helmet`` usage).
 
 **To know more about how to use ``react-helmet``, please read

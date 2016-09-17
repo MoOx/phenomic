@@ -13,7 +13,7 @@ matrix:
 cache:
   directories:
     - node_modules
-    - test-boilerplate/node_modules
+    - test-phenomic-theme-base/node_modules
     - docs/node_modules
 
 before_install:

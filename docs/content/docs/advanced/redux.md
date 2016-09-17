@@ -7,7 +7,7 @@ incomplete: true
 
 Here is an example of a store that will allow you to add
 your own reducers, _with hot loading support_. It is based on the
-default boilerplate.
+phenomic-theme-base.
 
 ```js
 import { combineReducers } from "redux"
