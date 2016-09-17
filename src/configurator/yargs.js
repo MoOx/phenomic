@@ -6,8 +6,8 @@ import definitions from "./definitions.js"
 
 yargs
   .version(() => version)
+  .usage("Usage: phenomic <command> [options]")
   .help()
-  .showHelpOnFail()
   .epilogue(
     "For more information about the configuration, " +
     "https://phenomic.io/"
@@ -35,9 +35,9 @@ Object.keys(definitions).forEach((optName) => {
 
   // made by hand for now, we might revisit option this later
   // if (validators[optName]) {
-  //   yargs.check(() => {
-  //
-  //   })
+    // yargs.check((...args) => {
+    //
+    // })
   // }
 })
 

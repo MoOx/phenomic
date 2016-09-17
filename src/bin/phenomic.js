@@ -66,4 +66,24 @@ yargs.command(
   runner
 )
 
-yargs.parse(process.argv)
+const argv = yargs.argv
+
+checkCommands(yargs, argv, 1)
+
+function checkCommands(yargs, argv, numRequired) {
+  if (argv._.length < numRequired) {
+    yargs
+      .showHelp()
+  }
+  else {
+    const currentCommand = argv._[0]
+
+    if ([ "start", "build", "setup" ].indexOf(currentCommand) < 0) {
+      console.log(`Unknown command "${ currentCommand }"`)
+      console.log()
+      yargs.showHelp()
+    }
+  }
+}
+
+// yargs.parse(process.argv)
