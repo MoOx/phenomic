@@ -21,7 +21,8 @@ before_install:
   - NPM_VERSION=$(npm --version)
   - 'if [ "${NPM_VERSION:0:2}" = "2." ]; then npm i -g npm@latest; fi'
   # faster npm install
-  - npm set progress=false
+  - npm set progress false
+  - npm set loglevel error
   # remove useless/non listed deps
   - npm prune
 
