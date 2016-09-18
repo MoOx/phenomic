@@ -10,13 +10,13 @@ let spinner = makeSpinner()
 // remove noize from messages
 const betterMsg = (msg: string): string => (
   msg
+  .replace(process.cwd(), ".")
+
   // Webpack "Module not found" noize
   .replace(/Error: Cannot resolve 'file' or 'directory'/, "")
 
   // loader path for css
-  .replace("./~/css-loader!", "")
-  .replace("./~/postcss-loader!", "")
-  .replace("./~/sass-loader!", "")
+  .replace(/.\/~\/(css|postcss|sass|less|stylus)-loader(.*)!/g, "")
 )
 
 export function handleInvalid() {

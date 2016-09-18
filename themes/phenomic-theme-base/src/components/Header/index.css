@@ -3,8 +3,8 @@
 }
 
 .header {
-  color: #eee;
-  background: #111;
+  color: var(--mainColorContrasted);
+  background: var(--mainColor);
 }
 
 .nav {

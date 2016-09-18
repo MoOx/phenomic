@@ -19,14 +19,14 @@ const template = {
     "env": {
       "development": {
         "presets": [
-          "babel-preset-es2015",
+          "babel-preset-latest",
           "babel-preset-stage-1",
           "babel-preset-react",
         ],
       },
       "production": {
         "presets": [
-          "babel-preset-es2015",
+          "babel-preset-latest",
           "babel-preset-stage-1",
           "babel-preset-react",
         ],
@@ -34,7 +34,7 @@ const template = {
       "webpack-development": {
         "presets": [
           [
-            "babel-preset-es2015",
+            "babel-preset-latest",
             {
               "modules": false,
             },
@@ -50,7 +50,7 @@ const template = {
         "presets": [
           "babel-preset-react-optimize",
           [
-            "babel-preset-es2015",
+            "babel-preset-latest",
             {
               "modules": false,
             },

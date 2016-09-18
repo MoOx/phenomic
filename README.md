@@ -6,14 +6,30 @@
 [![Version](https://img.shields.io/npm/v/phenomic.svg)](https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md)
 [![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/phenomic)
 
-> Modern website generator based on the React and Webpack ecosystem.
+[![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-3D76C2.svg)](https://github.com/MoOx/phenomic)
+[![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-6C488A.svg)](https://gitlab.com/MoOx/phenomic)
+[![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-1F5081.svg)](https://bitbucket.org/MoOx/phenomic)
 
-**(Formerly Statinamic)**
+
+> Modern website generator based on the React and Webpack ecosystem.
 
 ---
 
-**[Check out the website](https://phenomic.io) for online documentation**,  
-(or [`phenomic/docs/content`](docs/content) for (raw) markdown documentation).
+- [What is Phenomic?](https://phenomic.io/)
+- [How to setup Phenomic?](https://phenomic.io/docs/setup/)
+- [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
+- [Usage documentation](https://phenomic.io/docs/usage/)
+- [FAQ](https://phenomic.io/docs/usage/)
+
+
+- [Who is using Phenomic?](https://phenomic.io/showcase/)
+- [I am using Phenomic and I like it!](https://phenomic.io/showcase/submit/)
+
+
+- [Community support chat](https://gitter.im/MoOx/phenomic)
+- [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
+
+For offline documentation, please check [`phenomic/docs/content`](docs/content).
 
 ---
 

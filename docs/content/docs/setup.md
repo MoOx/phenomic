@@ -83,7 +83,7 @@ npm install phenomic
 To install from git, you will need to get some deps to transpile sources
 
 ```sh
-npm install babel-cli babel-preset-react babel-preset-es2015 babel-preset-stage-1 babel-plugin-flow-react-proptypes
+npm install babel-cli babel-preset-react babel-preset-latest babel-preset-stage-1 babel-plugin-flow-react-proptypes
 npm install https://github.com/MoOx/phenomic.git
 ```
 

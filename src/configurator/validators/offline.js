@@ -1,6 +1,6 @@
 // @flow
 
-import { yellow } from "chalk"
+import { yellow, gray } from "chalk"
 import log from "../../_utils/log"
 
 import { parse } from "url"
@@ -165,9 +165,15 @@ export default (
   }
 
   // Disable offline for development if user defined offline config
-  if (config.dev && config.offlineConfig.appcache) {
+  if (config.dev && config.offline) {
     config.offlineConfig.appcache = {}
-    log("AppCache is disabled in development mode", "warning")
+    log(
+      gray(
+      "Offline support disabled during development " +
+      "(to avoid some false positives)"
+      ),
+      "warning"
+    )
     return
   }
 }

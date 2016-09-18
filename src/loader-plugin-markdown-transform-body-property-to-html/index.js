@@ -4,6 +4,7 @@ import remark from "remark"
 import slug from "remark-slug"
 import autoLinkHeadings from "remark-autolink-headings"
 import highlight from "remark-highlight.js"
+import toc from "remark-toc"
 import html from "remark-html"
 
 function mdify(text) {
@@ -27,6 +28,9 @@ function mdify(text) {
 
     // https://github.com/ben-eb/remark-highlight.js
     .use(highlight)
+
+    // https://github.com/wooorm/remark-toc
+    .use(toc)
 
     // render
     .process(text, {
