@@ -1,8 +1,11 @@
 // @flow
+import memoize from "lru-memoize"
 
 const defaultConsole = console
 
-export default function enhanceCollection(
+export default memoize(100)(enhanceCollection)
+
+function enhanceCollection(
   collection: PhenomicMinifiedCollection,
   options: Object,
   console: Object = defaultConsole
