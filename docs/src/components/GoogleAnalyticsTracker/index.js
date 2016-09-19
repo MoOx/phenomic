@@ -9,7 +9,7 @@ const isClient = typeof window !== "undefined"
 export default class GoogleAnalyticsTracker extends Component {
 
   static propTypes = {
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    children: PropTypes.node,
     params: PropTypes.object.isRequired,
   };
 
