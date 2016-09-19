@@ -12,7 +12,7 @@ export default class PhenomicContext extends Component {
   static propTypes = {
     collection: PropTypes.array,
     metadata: PropTypes.object,
-    children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+    children: PropTypes.node,
   };
 
   static childContextTypes = {
