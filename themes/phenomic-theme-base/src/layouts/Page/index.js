@@ -60,7 +60,7 @@ const Page = (
 }
 
 Page.propTypes = {
-  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  children: PropTypes.node,
   __filename: PropTypes.string.isRequired,
   __url: PropTypes.string.isRequired,
   head: PropTypes.object.isRequired,

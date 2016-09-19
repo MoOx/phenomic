@@ -21,7 +21,7 @@ const AppContainer = (props) => (
 )
 
 AppContainer.propTypes = {
-  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  children: PropTypes.node,
 }
 
 export default AppContainer
