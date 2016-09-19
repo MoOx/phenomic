@@ -1,5 +1,6 @@
 import "babel-polyfill"
 import { join } from "path"
+import colors from "chalk"
 
 import setup from "./commands/setup/index.js"
 
@@ -66,24 +67,29 @@ yargs.command(
   runner
 )
 
-const argv = yargs.argv
-
-checkCommands(yargs, argv, 1)
-
-function checkCommands(yargs, argv, numRequired) {
-  if (argv._.length < numRequired) {
-    yargs
-      .showHelp()
+yargs.check((argv) => {
+  // requires at least 1 argument
+  // show help when type `$ phenomic`
+  // argv._ = [
+  //   nodePath,
+  //   pathToPhenomicScript,
+  //   input argvs
+  // ]
+  if (argv._.length < 3) {
+    throw new Error(
+      colors.bgRed(colors.white("ERROR")) +
+      colors.red(" You must specify command for Phenomic CLI")
+    )
   }
-  else {
-    const currentCommand = argv._[0]
 
-    if ([ "start", "build", "setup" ].indexOf(currentCommand) < 0) {
-      console.log(`Unknown command "${ currentCommand }"`)
-      console.log()
-      yargs.showHelp()
-    }
+  // Unknown command
+  const currentCommand = argv._[2]
+  if ([ "start", "build", "setup" ].indexOf(currentCommand) < 0) {
+    throw new Error(
+      colors.bgRed(colors.white("ERROR")) +
+      colors.red(` Unknown command "${ currentCommand }"`)
+    )
   }
-}
+})
 
-// yargs.parse(process.argv)
+yargs.parse(process.argv)
