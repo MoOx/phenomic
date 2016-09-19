@@ -166,7 +166,12 @@ export default (
 
   // Disable offline for development if user defined offline config
   if (config.dev && config.offline) {
-    config.offlineConfig.appcache = {}
+    config.offline = false
+    config.offlineConfig = {
+      serviceWorker: false,
+      appcache: {},
+      cachePatterns: {},
+    }
     log(
       gray(
       "Offline support disabled during development " +
