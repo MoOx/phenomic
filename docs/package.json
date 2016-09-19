@@ -9,7 +9,7 @@
   "phenomic": {
     "CNAME": true,
     "offline": true,
-    "webpackHardCache": true
+    "cache": true
   },
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",

@@ -86,7 +86,7 @@ Here is a commented ``package.json`` with only the interesting parts
     "offline": false,
 
     // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
-    "webpackHardCache": false
+    "cache": false
   },
 
   // That's because es5 is not enough

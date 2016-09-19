@@ -78,7 +78,7 @@ export default {
     description: "flag to automatically open development server",
     default: true,
   },
-  "webpackHardCache": {
+  "cache": {
     type: "boolean",
     description: "flag to enable hard cache for webpack " +
       "(hard-source-webpack-plugin)",
