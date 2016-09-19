@@ -60,6 +60,7 @@ export type PhenomicConfig = {
   webpackConfig?: WebpackConfig,
   webpackConfigBrowser?: WebpackConfig,
   webpackConfigNode?: WebpackConfig,
+  webpackHardCache?: boolean,
 }
 
 export type PhenomicLoaderOptions = {}
