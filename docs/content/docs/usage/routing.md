@@ -10,6 +10,29 @@ in order to render files consumed by Phenomic.
 But by exploiting ``react-router`` capabilities, we do more cool things like
 generating dynamic pages for each metadata Phenomic can find in your files.
 
+## Add a React component as a page
+
+You can edit ``src/routes.js`` (default location of the file containing routes)
+to add a route to reference your component:
+
+```js
+
+import HomePage from "./pages/Homepage"
+
+// ...
+
+export default (
+  <Route component={ AppContainer }>
+    <Route path="/" component={ HomePage } />
+    <Route path="*" component={ PageContainer } />
+  </Route>
+)
+```
+
+This example is pretty simple, but hopefully, you can do more complex things!
+
+## Uses React-router routes parameters to create dynamic pages
+
 A classic example will be to generate one page per `tag` find in your files.
 Let's say you have in your files metadata a ``tags`` field like in this example
 

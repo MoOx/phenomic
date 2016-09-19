@@ -41,6 +41,7 @@ export default function(
     Promise.all(promises)
     .then(() => plainLog(
       colors.green("Build successful") +
+      " " +
       totalElapsedTime()
     ))
   )

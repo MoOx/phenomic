@@ -8,7 +8,7 @@ import commonWebpackConfig from "./config.common.js"
 
 const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"
-const cacheDir = findCacheDir({ name: "phenomic/webpack-node-build" })
+export const cacheDir = findCacheDir({ name: "phenomic/webpack-node-build" })
 
 const defaultExternals = [
   // we could consider node_modules as externals deps
@@ -49,14 +49,14 @@ export default (config: PhenomicConfig): WebpackConfig => {
     ],
 
     // sourcemaps
-    devtool: "#inline-source-map",
+    devtool: "#source-map",
     plugins: [
       // Remove UglifyJSPlugin from plugin stack
       ...webpackConfig.plugins.filter(
         (plugin) => !(plugin instanceof UglifyJsPlugin)
       ) || [],
       new BannerPlugin({
-        banner: "require('source-map-support').install();",
+        banner: "require('source-map-support/register');",
         raw: true,
         entryOnly: false,
       }),
