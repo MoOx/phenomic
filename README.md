@@ -19,7 +19,7 @@
 - [How to setup Phenomic?](https://phenomic.io/docs/setup/)
 - [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
 - [Usage documentation](https://phenomic.io/docs/usage/)
-- [FAQ](https://phenomic.io/docs/usage/)
+- [FAQ](https://phenomic.io/docs/faq/)
 
 
 - [Who is using Phenomic?](https://phenomic.io/showcase/)
