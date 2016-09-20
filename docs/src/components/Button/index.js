@@ -3,24 +3,19 @@ import cx from "classnames"
 
 import styles from "./index.css"
 
-const Button = (props) => {
-  const { className, light, vivid, huge, ...otherProps } = props
-  return (
-    <span
-      role="button"
-      { ...otherProps }
-      className={ cx({
-        [className]: true,
-        [styles.button]: true,
-        [styles.light]: light,
-        [styles.vivid]: vivid,
-        [styles.huge]: huge,
-      }) }
-    >
-      { props.children }
-    </span>
-  )
-}
+const Button = ({ className, light, vivid, huge, ...otherProps }) => (
+  <span
+    role="button"
+    { ...otherProps }
+    className={ cx({
+      [className]: true,
+      [styles.button]: true,
+      [styles.light]: light,
+      [styles.vivid]: vivid,
+      [styles.huge]: huge,
+    }) }
+  />
+)
 
 Button.propTypes = {
   children: PropTypes.node,

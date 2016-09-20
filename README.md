@@ -15,27 +15,37 @@
 
 ---
 
-- [What is Phenomic?](https://phenomic.io/)
-- [How to setup Phenomic?](https://phenomic.io/docs/setup/)
-- [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
-- [Usage documentation](https://phenomic.io/docs/usage/)
-- [FAQ](https://phenomic.io/docs/faq/)
+### ❓ [What is Phenomic?](https://phenomic.io/)
 
+### 🚀 [How to setup Phenomic?](https://phenomic.io/docs/setup/)
 
-- [Who is using Phenomic?](https://phenomic.io/showcase/)
-- [I am using Phenomic and I like it!](https://phenomic.io/showcase/submit/)
+### 🤔 [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
 
+### 🛠 [Usage documentation](https://phenomic.io/docs/usage/)
 
-- [Community support chat](https://gitter.im/MoOx/phenomic)
-- [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
+### ⁉️ [FAQ](https://phenomic.io/docs/faq/)
 
-For offline documentation, please check [`phenomic/docs/content`](docs/content).
+---
+
+### 👀 [Who is using Phenomic?](https://phenomic.io/showcase/)
+
+### 😍 [I am using Phenomic and I like it!](https://phenomic.io/showcase/submit/)
+
+---
+
+### 💬 [Community support chat](https://gitter.im/MoOx/phenomic)
+
+### 🚨 [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
+
+---
+
+🍭 For offline documentation, please check [`phenomic/docs/content`](docs/content).
 
 ---
 
 ## CONTRIBUTING
 
-* ⇄ Pull requests and ★ Stars are always welcome.
+* ⇄ Pull/Merge requests and ★ Stars are always welcome.
 * For bugs and feature requests, please [create an issue](https://github.com/MoOx/phenomic/issues/new).
 * Pull requests must be accompanied by passing automated tests (`npm test`).
 

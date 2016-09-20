@@ -22,7 +22,7 @@
   (@MoOx)
 - Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
   You can enable this **experimental** feature by add
-  ``"webpackHardCache": true`` in your ``package.json`` ``phenomic`` section.
+  ``"cache": true`` in your ``package.json`` ``phenomic`` section.
 - Added: Error message in the browser if app start fail at start during
   development
   ([#679](https://github.com/MoOx/phenomic/issues/679]) - @MoOx)

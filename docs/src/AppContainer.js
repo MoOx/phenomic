@@ -26,7 +26,7 @@ const AppContainer = (props) => (
 )
 
 AppContainer.propTypes = {
-  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  children: PropTypes.node,
   params: PropTypes.object,
 }
 

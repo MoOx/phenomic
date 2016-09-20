@@ -7,7 +7,7 @@ import {
   getCacheDir,
   hardSourceRecordsPath,
   hardSourcePlugin,
-} from "../../_utils/webpackHardCache/webpack.js"
+} from "../../_utils/cache/webpack.js"
 
 export const chunkNameBrowser = "phenomic.browser"
 
@@ -20,10 +20,10 @@ export default (config: PhenomicConfig): WebpackConfig => {
 
   return {
     ...webpackConfig,
-    ...config.webpackHardCache && hardSourceRecordsPath(cacheDir),
+    ...config.cache && hardSourceRecordsPath(cacheDir),
     plugins: [
       ...webpackConfig.plugins,
-      ...config.webpackHardCache && hardSourcePlugin(cacheDir, config),
+      ...config.cache && hardSourcePlugin(cacheDir, config),
 
       new DefinePlugin({ "process.env": {
         NODE_ENV: wrap(

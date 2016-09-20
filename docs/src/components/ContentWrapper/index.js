@@ -9,7 +9,7 @@ const Content = (props) => (
 )
 
 Content.propTypes = {
-  children: PropTypes.oneOfType([ PropTypes.array, PropTypes.object ]),
+  children: PropTypes.node,
 }
 
 export default Content
