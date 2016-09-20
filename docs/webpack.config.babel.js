@@ -87,7 +87,7 @@ export const makeConfig = (config = {}) => {
     },
 
     postcss: () => [
-      require("stylelint")(),
+      // require("stylelint")(),
       require("postcss-cssnext")({ browsers: "last 2 versions" }),
       require("postcss-reporter")(),
       ...!config.production ? [
