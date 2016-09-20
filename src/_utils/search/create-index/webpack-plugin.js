@@ -3,7 +3,7 @@ import { RawSource } from "webpack-sources"
 import PhenomicLoaderWebpackPlugin from "../../../loader/plugin.js"
 import createIndex from "./index"
 
-function CreateSearchIndexWebpackPlugin(options: Object) {
+function CreateSearchIndexWebpackPlugin(options?: Object) {
   this.options = options
 }
 

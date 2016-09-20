@@ -1,5 +1,8 @@
 // @flow
-import type { paragraphsWithClosestHeading } from "./find-closest-heading"
+import type {
+  paragraphsWithClosestHeading,
+  paragraphWithClosestHeading,
+} from "./find-closest-heading"
 import type { headingsList, heading } from "./headings-list"
 
 type headingCompact = {
@@ -24,14 +27,16 @@ export default function makeHierarchy(
   headingsList: headingsList,
   paragraphs: paragraphsWithClosestHeading
 ): hierarchy {
-  return paragraphs = paragraphs.map((p) => {
+  return paragraphs = paragraphs.map((p: paragraphWithClosestHeading) => {
     if (typeof p.closestHeading === "undefined") {
       return p
     }
 
     const closestHeading = headingsList.find((heading) => {
       return (
+        // $FlowFixMe undefined is defined above
         heading.content === p.closestHeading.content &&
+        // $FlowFixMe undefined is defined above
         heading.heading === p.closestHeading.heading
       )
     })

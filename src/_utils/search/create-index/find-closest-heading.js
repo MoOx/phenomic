@@ -1,7 +1,7 @@
 // @flow
-type paragraphWithClosestHeading = {
+export type paragraphWithClosestHeading = {
   content: string,
-  closestHeading: {
+  closestHeading?: {
     heading: number,
     content: string,
   },
