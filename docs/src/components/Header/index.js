@@ -5,6 +5,7 @@ import Svg from "react-svg-inline"
 
 import ContentWrapper from "../ContentWrapper"
 import GradientLine from "../GradientLine"
+import DocSearch from "../DocSearch"
 import npmPkg from "../../../../package.json"
 import phenomicLogoSvg from "../../../../logo/phenomic.svg"
 
@@ -102,6 +103,9 @@ const Header = () => {
             >
               <strong>{ "Showcase" }</strong>
             </Link>
+          </div>
+          <div className={ styles.internal }>
+            <DocSearch />
           </div>
           <div className={ styles.internal }>
             <a
