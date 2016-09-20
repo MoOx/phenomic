@@ -7,9 +7,9 @@ const modulesPath = path.join(process.cwd(), "node_modules")
 require("babel-register")({
   ignore: function(filename) {
     if (filename.startsWith(modulesPath)) {
-      return false
+      return true
     }
-    return true
+    return false
   },
 })
 
