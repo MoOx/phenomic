@@ -1,0 +1,21 @@
+[
+  {
+    "h2": "1.1",
+    "h1": "1",
+    "content": "paragraph 1.1 - 1<span>foo</span>"
+  },
+  {
+    "h2": "1.1",
+    "h1": "1",
+    "content": "paragraph 1.1 - 2<span>foo</span>"
+  },
+  {
+    "h6": "1.1.2.1.1.1",
+    "h5": "1.1.2.1.1",
+    "h4": "1.1.2.1",
+    "h3": "1.1.2",
+    "h2": "1.1",
+    "h1": "1",
+    "content": "paragraph 1.1.2.1.1.1 - 1<span>bar</span>"
+  }
+]

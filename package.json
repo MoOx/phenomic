@@ -93,6 +93,7 @@
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.13.0",
+    "cheerio": "^0.22.0",
     "cmd-shim": "^2.0.2",
     "coveralls": "^2.11.8",
     "cross-env": "^2.0.0",

@@ -1,0 +1,23 @@
+[
+  {
+    "content": "paragraph 1.1 - 1<span>foo</span>",
+    "closestHeading": {
+      "heading": 2,
+      "content": "1.1"
+    }
+  },
+  {
+    "content": "paragraph 1.1 - 2<span>foo</span>",
+    "closestHeading": {
+      "heading": 2,
+      "content": "1.1"
+    }
+  },
+  {
+    "content": "paragraph 1.1.2.1.1.1 - 1<span>bar</span>",
+    "closestHeading": {
+      "heading": 6,
+      "content": "1.1.2.1.1.1"
+    }
+  }
+]
