@@ -7,8 +7,10 @@ import initHeadPropertyFromContent
 import initBodyPropertyFromContent
   from "../loader-plugin-init-body-property-from-content"
 
-export default [
+const def: Array<mixed> = [
   initHeadPropertyFromConfig,
   initHeadPropertyFromContent,
   initBodyPropertyFromContent,
 ]
+
+export default def

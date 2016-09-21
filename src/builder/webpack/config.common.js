@@ -39,7 +39,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
     ],
   }
 
-  if (config.webpackHardCache) {
+  if (config.cache) {
     return {
       ...defaultConfig,
       ...hardSourceRecordsPath(cacheDir),
