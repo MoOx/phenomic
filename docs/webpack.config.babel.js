@@ -22,7 +22,6 @@ export default (config = {}) => {
     ...config.dev && {
       devtool: "#cheap-module-eval-source-map",
     },
-    context: __dirname,
     module: {
       noParse: /\.min\.js/,
       rules: [
