@@ -19,7 +19,7 @@ import PhenomicLoaderFeedWebpackPlugin
 // ...
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.md$/,
         loader: phenomicLoader,

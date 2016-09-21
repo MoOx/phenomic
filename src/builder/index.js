@@ -19,13 +19,22 @@ import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 export default function(config: Object): void {
   // log(JSON.stringify(config, null, 2))
 
-  const makeWebpackConfig = dynamicRequire(
+  const makeWebpackConfigModule = dynamicRequire(
     join(config.cwd, config["webpack-config"])
-  ).makeConfig
+  )
+  const makeWebpackConfig =
+    typeof makeWebpackConfigModule.default === "function"
+    ? makeWebpackConfigModule.default
+    // : makeWebpackConfigModule
+    // @todo remove block below and uncomment line above
+    : typeof makeWebpackConfigModule === "function"
+    ? makeWebpackConfigModule
+    // deprecated
+    : makeWebpackConfigModule.makeConfig
 
   if (typeof makeWebpackConfig !== "function") {
     throw new Error(
-      "Your webpack config must expose a 'makeConfig' function. " +
+      "Your webpack config must export a function. " +
       "This function will be called with a single argument " +
       "(Phenomic configuration object) and must return a valid webpack config."
     )

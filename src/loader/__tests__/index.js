@@ -11,7 +11,7 @@ test.cb("phenomic loader", (t) => {
   webpack(
     {
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.md$/,
             loader: __dirname + "/../index.js",
@@ -23,7 +23,6 @@ test.cb("phenomic loader", (t) => {
         new PhenomicLoaderWebpackPlugin(),
       ],
       entry: __dirname + "/fixtures/script.js",
-      resolve: { extensions: [ "" ] },
       output: {
         path: outputPath + "/routes",
         filename: "routes.js",
@@ -111,25 +110,24 @@ test.cb("phenomic loader can be used with plugins", (t) => {
   webpack(
     {
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.md$/,
             loader: __dirname + "/../index.js",
             exclude: /node_modules/,
+            query: {
+              plugins: [
+                () => {
+                  return { test: "dumb" }
+                },
+              ],
+            },
           },
         ],
       },
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
-      phenomic: {
-        plugins: [
-          () => {
-            return { test: "dumb" }
-          },
-        ],
-      },
-      resolve: { extensions: [ "" ] },
       entry: __dirname + "/fixtures/script.js",
       output: {
         path: outputPath + "/plugins",

@@ -12,7 +12,7 @@ test.cb("loader feed webpack plugin", (t) => {
   webpack(
     {
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.md$/,
             loader: __dirname + "/../../loader/index.js",
@@ -21,7 +21,6 @@ test.cb("loader feed webpack plugin", (t) => {
         ],
       },
       entry: __dirname + "/fixtures/script.js",
-      resolve: { extensions: [ "" ] },
       output: {
         path: outputPath + "/routes",
         filename: "routes.js",
