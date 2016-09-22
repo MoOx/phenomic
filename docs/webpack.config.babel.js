@@ -9,14 +9,14 @@ import PhenomicLoaderFeedWebpackPlugin
 import pkg from "./package.json"
 
 export default (config = {}) => {
-  const postcssPlugins = () => ([
+  const postcssPlugins = () => [
     require("stylelint")(),
     require("postcss-cssnext")({ browsers: "last 2 versions" }),
     require("postcss-reporter")(),
     ...!config.production ? [
       require("postcss-browser-reporter")(),
     ] : [],
-  ])
+  ]
 
   return {
     ...config.dev && {
@@ -114,7 +114,7 @@ export default (config = {}) => {
 
     plugins: [
       // You should be able to remove the block below when the following
-      // issue has been correclty handled (and postcss-loader supports
+      // issue has been correctly handled (and postcss-loader supports
       // "plugins" option directly in query, see postcss-loader usage above)
       // https://github.com/postcss/postcss-loader/issues/99
       new webpack.LoaderOptionsPlugin({
