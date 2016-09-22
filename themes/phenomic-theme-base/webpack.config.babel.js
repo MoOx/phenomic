@@ -8,8 +8,8 @@ import PhenomicLoaderFeedWebpackPlugin
 
 import pkg from "./package.json"
 
-export default(config = {}) => {
-  const postcssPlugins = [
+export default (config = {}) => {
+  const postcssPlugins = () => [
     require("stylelint")(),
     require("postcss-cssnext")({
       browsers: "last 2 versions",
@@ -98,7 +98,7 @@ export default(config = {}) => {
                 // query for postcss can't be used right now
                 // https://github.com/postcss/postcss-loader/issues/99
                 // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
-                query: { plugins: postcssPlugins },
+                // query: { plugins: postcssPlugins },
               },
             ],
           }),
@@ -116,7 +116,7 @@ export default(config = {}) => {
                 // query for postcss can't be used right now
                 // https://github.com/postcss/postcss-loader/issues/99
                 // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
-                query: { plugins: postcssPlugins },
+                // query: { plugins: postcssPlugins },
               },
             ],
           }),
