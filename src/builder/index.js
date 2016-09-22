@@ -32,6 +32,17 @@ export default function(config: Object): void {
     // deprecated
     : makeWebpackConfigModule.makeConfig
 
+  if (makeWebpackConfigModule.makeConfig) {
+    log(
+      "Your webpack config should now directly export a function.\n" +
+      "No need to export a makeConfig() function anymore as webpack@2 " +
+      "natively support a function. " +
+      "(makeConfig() is currently deprecated and support will be remove in a " +
+      "futur release). ",
+      "warning"
+    )
+  }
+
   if (typeof makeWebpackConfig !== "function") {
     throw new Error(
       "Your webpack config must export a function. " +
