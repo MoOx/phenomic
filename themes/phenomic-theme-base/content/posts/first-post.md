@@ -6,7 +6,7 @@ layout: Post
 
 This is the first post!
 
-Code works is highlighted by default.
+Code is highlighted by default.
 
 ```js
 const StatelessComponent = (props) => {
