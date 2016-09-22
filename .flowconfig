@@ -5,6 +5,7 @@
 .*/lib/.*
 .*/coverage/.*
 .*/.nyc_output/.*
+.*/__tests__/_output/.*
 
 [libs]
 ./flow/interfaces/

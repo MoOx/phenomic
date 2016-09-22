@@ -10,21 +10,22 @@ import store from "../src/store.js"
 import phenomicClient from "phenomic/lib/client"
 phenomicClient({ metadata, routes, store })
 
-// md files processed via phenomic-loader to JSON && generate collection
-const mdContext = require.context("../content", true, /\.md$/)
+// md files processed via phenomic-loader to JSON & generate collection
+let mdContext = require.context("../content", true, /\.md$/)
 mdContext.keys().forEach(mdContext)
 
 // hot loading
 if (module.hot) {
 
   // hot load md
-  const mdHotUpdater = require("phenomic/lib/client/hot-md").default
   module.hot.accept(mdContext.id, () => {
-    // mdContext = require.context("../content", true, /\.md$/)
+    mdContext = require.context("../content", true, /\.md$/)
+    const mdHotUpdater = require("phenomic/lib/client/hot-md").default
     const requireUpdate = mdHotUpdater(mdContext, window.__COLLECTION__, store)
     mdContext.keys().forEach(requireUpdate)
   })
 
+  // hot load app
   module.hot.accept(
     [ "../src/metadata.js", "../src/routes.js", "../src/store.js" ],
     () => phenomicClient({ metadata, routes, store })

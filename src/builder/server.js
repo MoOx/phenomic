@@ -64,10 +64,6 @@ export default (config) => {
 
         new WebpackNotifierPlugin(),
       ],
-      eslint: {
-        ...webpackConfig.eslint,
-        emitWarning: true,
-      },
     }
 
     // webpack dev + hot middlewares

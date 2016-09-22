@@ -8,25 +8,34 @@ import PhenomicLoaderFeedWebpackPlugin
 
 import pkg from "./package.json"
 
-// note that this webpack file is exporting a "makeConfig" function
-// which is used for phenomic to build dynamic configuration based on your needs
-// see the end of the file if you want to export a default config
-// (eg: if you share your config for phenomic and other stuff)
-export const makeConfig = (config = {}) => {
+export default (config = {}) => {
+  const postcssPlugins = () => [
+    require("stylelint")(),
+    require("postcss-cssnext")({ browsers: "last 2 versions" }),
+    require("postcss-reporter")(),
+    ...!config.production ? [
+      require("postcss-browser-reporter")(),
+    ] : [],
+  ]
+
   return {
     ...config.dev && {
       devtool: "#cheap-module-eval-source-map",
     },
     module: {
       noParse: /\.min\.js/,
-      loaders: [
+      rules: [
         {
           // phenomic requirement
           test: /\.md$/,
           loader: phenomicLoader,
-          // config is in phenomic.phenomicLoader section below
-          // so you can use functions (and not just JSON) due to a restriction
-          // of webpack that serialize/deserialize loader `query` option.
+          query: {
+            context: path.join(__dirname, config.source),
+            // plugins: [
+            //   ...require("phenomic/lib/loader-preset-markdown").default
+            // ]
+            // see https://phenomic.io/docs/usage/plugins/
+          },
         },
         {
           test: /\.json$/,
@@ -50,12 +59,24 @@ export const makeConfig = (config = {}) => {
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style-loader",
             loader: [
-              `css-loader?modules&localIdentName=${
-                config.production
-                ? "[hash:base64:5]"
-                : "[path][name]--[local]--[hash:base64:5]"
-              }`,
-              "postcss-loader",
+              {
+                loader: "css-loader",
+                query: {
+                  modules: true,
+                  localIdentName: (
+                    config.production
+                    ? "[hash:base64:5]"
+                    : "[path][name]--[local]--[hash:base64:5]"
+                  ),
+                },
+              },
+              {
+                loader: "postcss-loader",
+                // query for postcss can't be used right now
+                // https://github.com/postcss/postcss-loader/issues/99
+                // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
+                // query: { plugins: postcssPlugins },
+              },
             ],
           }),
         },
@@ -64,14 +85,25 @@ export const makeConfig = (config = {}) => {
           include: path.resolve(__dirname, "src"),
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style-loader",
-            loader: [ "css-loader", "postcss-loader" ],
+            loader: [
+              "css-loader",
+              {
+                loader: "postcss-loader",
+                // query for postcss can't be used right now
+                // https://github.com/postcss/postcss-loader/issues/99
+                // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
+                // query: { plugins: postcssPlugins },
+              },
+            ],
           }),
         },
         {
           test: /\.(html|ico|jpe?g|png|gif)$/,
-          loader: "file-loader" +
-            "?name=[path][name].[hash].[ext]&context=" +
-            path.join(__dirname, config.source),
+          loader: "file-loader",
+          query: {
+            name: "[path][name].[hash].[ext]",
+            context: path.join(__dirname, config.source),
+          },
         },
         {
           test: /\.svg$/,
@@ -80,22 +112,23 @@ export const makeConfig = (config = {}) => {
       ],
     },
 
-    phenomic: {
-      context: path.join(__dirname, config.source),
-      // plugins: [ ...require("phenomic/lib/loader-preset-markdown").default ]
-      // see https://phenomic.io/docs/usage/plugins/
-    },
-
-    postcss: () => [
-      require("stylelint")(),
-      require("postcss-cssnext")({ browsers: "last 2 versions" }),
-      require("postcss-reporter")(),
-      ...!config.production ? [
-        require("postcss-browser-reporter")(),
-      ] : [],
-    ],
-
     plugins: [
+      // You should be able to remove the block below when the following
+      // issue has been correctly handled (and postcss-loader supports
+      // "plugins" option directly in query, see postcss-loader usage above)
+      // https://github.com/postcss/postcss-loader/issues/99
+      new webpack.LoaderOptionsPlugin({
+        test: /\.css$/,
+        options: {
+          postcss: postcssPlugins,
+          // required to avoid issue css-loader?modules
+          // this is normally the default value, but when we use
+          // LoaderOptionsPlugin, we must specify it again, otherwise,
+          // context is missing (and css modules names can be broken)!
+          context: __dirname,
+        },
+      }),
+
       new PhenomicLoaderFeedWebpackPlugin({
         // here you define generic metadata for your feed
         feedsOptions: {
@@ -137,13 +170,6 @@ export const makeConfig = (config = {}) => {
       filename: "[name].[hash].js",
     },
 
-    resolve: {
-      extensions: [ ".js", ".json", "" ],
-      root: [ path.join(__dirname, "node_modules") ],
-    },
-    resolveLoader: { root: [ path.join(__dirname, "node_modules") ] },
+    resolve: { extensions: [ ".js", ".json" ] },
   }
 }
-
-// you might want to export a default config for another usage ?
-// export default makeConfig()

@@ -153,7 +153,7 @@ import { phenomicLoader } from "phenomic"
 // ...
 
   module: {
-   loaders: [
+   rules: [
      {
        test: /\.md$/,
        loader: phenomicLoader,

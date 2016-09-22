@@ -19,7 +19,7 @@ const runner = () => {
 const startAndBuildOptions = {
   "webpack-config": {
     type: "string",
-    describe: "Webpack config (must expose a 'makeConfig' function)",
+    describe: "Webpack config (must export a function)",
     default: "webpack.config.babel.js",
   },
   "script-browser": {

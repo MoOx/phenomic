@@ -24,14 +24,7 @@ is crucial (in the phenomic-theme-base, it's the first loader) :
 - it handles the generation of the collection data,
 - it allows you to generate some RSS feeds.
 
-There are two ways to send options to ``phenomicLoader``:
-
-- use webpack loader ``query`` option (_not recommended_, see below)
-- use a ``phenomic`` section in webpack configuration.
-
-**The last method is recommended because ``query`` cannot contains (and ignores
-without warnings) things that are not JSON (eg: functions).**
-And to use plugins (eg: custom renderer), you might need to use a function.
+You can send options to the loader by using webpack loader ``query`` option
 
 Here is a commented part of a webpack configuration that use all options
 
@@ -41,57 +34,51 @@ Here is a commented part of a webpack configuration that use all options
 import pkg from "./package.json"
 import { phenomicLoader } from "phenomic"
 
-export const makeConfig = (config = {}) => {
+export default (config = {}) => {
   return {
     // ...
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.md$/,
           loader: phenomicLoader,
+          query: {
+            // the context where to read .md to
+            context: path.join(__dirname, config.source),
 
-          // you can also define options here, but functions will be silently
-          // ignored because how webpack works
-          // query: {
-          //   ...
-          // }
+            // below are the default values,
+            // you don't need those by default
+            plugins: [
+              require("phenomic/lib/loader-plugin-init-head-property-from-config").default,
+              require("phenomic/lib/loader-plugin-init-head-property-from-content").default,
+              require("phenomic/lib/loader-plugin-init-body-property-from-content").default,
+              require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default,
+              require("phenomic/lib/loader-plugin-markdown-transform-body-property-to-html").default,
+              // here you can add/replace any function you want
+              // for examples, see
+              // https://github.com/MoOx/phenomic/blob/master/src/
+              // eg: if you need the raw file content in your pages,
+              // you can add the following plugin that will add a `raw` property
+              // require("phenomic/lib/loader-plugin-init-raw-property-from-content").default,
+              // if you want raw body (text content without the front-matter)
+              // you can add the following plugin that will add a `rawBody` property
+              // require("phenomic/lib/loader-plugin-init-rawBody-property-from-content").default,
+            ]
+
+            // default values for `head`
+            // this value can be defined and used by the plugin
+            // "phenomic/lib/loader-plugin-init-head-property-from-config"
+            defaultHead: {
+              layout: "Post",
+              comments: true,
+            }
+          }
         },
+
         // ...
+
       ],
     },
-
-    phenomic: {
-      // the context where to read .md to
-      context: path.join(__dirname, config.source),
-
-      // below are the default values,
-      // you don't need those by default
-      plugins: [
-        require("phenomic/lib/loader-plugin-init-head-property-from-config").default,
-        require("phenomic/lib/loader-plugin-init-head-property-from-content").default,
-        require("phenomic/lib/loader-plugin-init-body-property-from-content").default,
-        require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default,
-        require("phenomic/lib/loader-plugin-markdown-transform-body-property-to-html").default,
-        // here you can add/replace any function you want
-        // for examples, see
-        // https://github.com/MoOx/phenomic/blob/master/src/
-        // eg: if you need the raw file content in your pages,
-        // you can add the following plugin that will add a `raw` property
-        // require("phenomic/lib/loader-plugin-init-raw-property-from-content").default,
-        // if you want raw body (text content without the front-matter)
-        // you can add the following plugin that will add a `rawBody` property
-        // require("phenomic/lib/loader-plugin-init-rawBody-property-from-content").default,
-      ]
-
-      // default values for `head`
-      // this value can be defined and used by the plugin
-      // "phenomic/lib/loader-plugin-init-head-property-from-config"
-      defaultHead: {
-        layout: "Post",
-        comments: true,
-      }
-    },
-    // ...
   }
 }
 ```

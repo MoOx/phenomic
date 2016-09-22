@@ -10,7 +10,7 @@ import store from "../src/store.js"
 import phenomicClient from "phenomic/lib/client"
 phenomicClient({ metadata, routes, store })
 
-// md files processed via phenomic-loader to JSON && generate collection
+// md files processed via phenomic-loader to JSON & generate collection
 let mdContext = require.context("../content", true, /\.md$/)
 mdContext.keys().forEach(mdContext)
 
@@ -25,6 +25,7 @@ if (module.hot) {
     mdContext.keys().forEach(requireUpdate)
   })
 
+  // hot load app
   module.hot.accept(
     [ "../src/metadata.js", "../src/routes.js", "../src/store.js" ],
     () => phenomicClient({ metadata, routes, store })
