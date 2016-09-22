@@ -66,7 +66,7 @@ const Homepage = (props) => (
           frameBorder="0"
           scrolling="0"
           style={ {
-            width: "135px",
+            width: "155px",
             height: "30px",
             verticalAlign: "middle",
           } }
