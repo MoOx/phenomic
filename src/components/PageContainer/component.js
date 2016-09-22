@@ -47,10 +47,10 @@ if (isClient()) {
 function find(
   collection: PhenomicCollection,
   pageUrl: string
-): Object {
+): ?PhenomicCollectionItem {
   return collection.find((item) => (
     item.__url === pageUrl ||
-    item.__url === pageUrl + "/"||
+    item.__url === pageUrl + "/" ||
     item.__resourceUrl === pageUrl
   ))
 }
