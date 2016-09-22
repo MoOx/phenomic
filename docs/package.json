@@ -8,8 +8,7 @@
   "repository": "https://github.com/MoOx/phenomic.git",
   "phenomic": {
     "CNAME": true,
-    "offline": true,
-    "cache": true
+    "offline": true
   },
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
