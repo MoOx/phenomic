@@ -18,10 +18,12 @@ export default (config: PhenomicConfig): WebpackConfig => {
   const cacheDir = getCacheDir(config)
   const { webpackConfig = {} } = config
 
-  const defaultConfig = {
+  return {
     ...webpackConfig,
+    ...config.cache ? hardSourceRecordsPath(cacheDir) : {},
     plugins: [
       ...webpackConfig.plugins,
+      config.cache ? hardSourcePlugin(cacheDir, config) : {},
       new DefinePlugin({ "process.env": {
         NODE_ENV: wrap(
           config.production
@@ -38,17 +40,4 @@ export default (config: PhenomicConfig): WebpackConfig => {
       } }),
     ],
   }
-
-  if (config.cache) {
-    return {
-      ...defaultConfig,
-      ...hardSourceRecordsPath(cacheDir),
-      plugins: [
-        ...defaultConfig.plugins,
-        hardSourcePlugin(cacheDir, config),
-      ],
-    }
-  }
-
-  return defaultConfig
 }
