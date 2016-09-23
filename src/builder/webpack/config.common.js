@@ -3,6 +3,8 @@
 import { DefinePlugin } from "webpack"
 import url from "url"
 import pkg from "../../../package.json"
+import editWebpackLoaderConfig from "../../_utils/edit-webpack-loader-config"
+import findCacheDir from "find-cache-dir"
 import {
   getCacheDir,
   hardSourceRecordsPath,
@@ -18,7 +20,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
   const cacheDir = getCacheDir(config)
   const { webpackConfig = {} } = config
 
-  return {
+  let finalConfig = {
     ...webpackConfig,
     ...config.cache ? hardSourceRecordsPath(cacheDir) : {},
     plugins: [
@@ -40,4 +42,18 @@ export default (config: PhenomicConfig): WebpackConfig => {
       } }),
     ],
   }
+
+  // Adjust babel-loader cacheDirectory configuration
+  // To avoid a bunch of .json.gz files generated in process.cwd()
+  // When running as root user
+  // See https://github.com/MoOx/phenomic/issues/545
+  finalConfig = editWebpackLoaderConfig(
+    finalConfig,
+    "babel-loader",
+    {
+      cacheDirectory: findCacheDir({ name: "phenomic/babel-loader" }),
+    }
+  )
+
+  return finalConfig
 }
