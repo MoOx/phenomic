@@ -23,7 +23,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
     ...config.cache ? hardSourceRecordsPath(cacheDir) : {},
     plugins: [
       ...webpackConfig.plugins,
-      config.cache ? hardSourcePlugin(cacheDir, config) : {},
+      ...config.cache ? [ hardSourcePlugin(cacheDir, config) ] : [],
       new DefinePlugin({ "process.env": {
         NODE_ENV: wrap(
           config.production
