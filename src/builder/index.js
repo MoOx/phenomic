@@ -83,10 +83,21 @@ export default function(config: Object): void {
     )
 
     log("Building client files", webpackPromise(config.webpackConfigBrowser))
-    .then((clientBundleStats) => (
-      log("Preparing static build", webpackPromise(config.webpackConfigNode))
-      .then(() => clientBundleStats)
-    ))
+    .then((clientBundleStats) => {
+      // Sometimes, webpack does not throw an error, but send it in the
+      // callback... PRETTY WEIRD RIGHT?
+      // https://github.com/webpack/webpack/issues/2217#issuecomment-249364851
+      if (clientBundleStats instanceof Error) {
+        throw clientBundleStats
+      }
+      return (
+        log(
+          "Preparing static build",
+          webpackPromise(config.webpackConfigNode)
+        )
+        .then(() => clientBundleStats)
+      )
+    })
     .then((clientBundleStats) => log("Building static files", () => (
       dynamicRequire(join(
         config.webpackConfigNode.output.path,
