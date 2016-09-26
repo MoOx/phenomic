@@ -1,18 +1,25 @@
 // @flow
 
 import os from "os"
+import path from "path"
 
 import colors from "chalk"
+
+const cwd = (
+  path.sep === "\\"
+  ? process.cwd()
+  : process.cwd().replace(path.sep, path.sep+path.sep)
+)
 
 import { cacheDir } from "../../builder/webpack/config.node.js"
 
 const cleanStaticBuildPathRE = new RegExp(cacheDir + "\/(webpack:\/)?", "g")
-const cwdRE = new RegExp(process.cwd(), "g")
+const cwdRE = new RegExp(cwd, "g")
 const homeRE = new RegExp(os.homedir(), "g")
 const truncatedStack = "[ truncated stack ]"
 
 export default (error: Error) => {
-  console.log("process.cwd", process.cwd())
+  console.log("process.cwd", cwd)
   error.message = "\n\n" + colors.red(error.message) + "\n"
 
   error.stack = error.stack
