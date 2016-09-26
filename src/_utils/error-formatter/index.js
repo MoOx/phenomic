@@ -7,8 +7,8 @@ import colors from "chalk"
 
 const cwd = (
   path.sep === "\\"
-  ? process.cwd()
-  : process.cwd().replace(path.sep, path.sep+path.sep)
+  ? process.cwd().replace(path.sep, path.sep+path.sep)
+  : process.cwd()
 )
 
 import { cacheDir } from "../../builder/webpack/config.node.js"
