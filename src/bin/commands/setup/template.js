@@ -36,7 +36,9 @@ const template = {
           [
             "babel-preset-latest",
             {
-              "modules": false,
+              "es2015": {
+                "modules": false,
+              },
             },
           ],
           "babel-preset-stage-1",
@@ -52,7 +54,9 @@ const template = {
           [
             "babel-preset-latest",
             {
-              "modules": false,
+              "es2015": {
+                "modules": false,
+              },
             },
           ],
           "babel-preset-stage-1",

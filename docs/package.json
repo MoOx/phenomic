@@ -90,7 +90,9 @@
           [
             "babel-preset-latest",
             {
-              "modules": false
+              "es2015": {
+                "modules": false
+              }
             }
           ],
           "babel-preset-stage-1",
@@ -106,7 +108,9 @@
           [
             "babel-preset-latest",
             {
-              "modules": false
+              "es2015": {
+                "modules": false
+              }
             }
           ],
           "babel-preset-stage-1",
