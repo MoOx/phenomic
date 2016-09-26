@@ -12,6 +12,7 @@ const homeRE = new RegExp(os.homedir(), "g")
 const truncatedStack = "[ truncated stack ]"
 
 export default (error: Error) => {
+  console.log("process.cwd", process.cwd())
   error.message = "\n\n" + colors.red(error.message) + "\n"
 
   error.stack = error.stack
