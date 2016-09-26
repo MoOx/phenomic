@@ -6,6 +6,11 @@ import { phenomicLoader } from "phenomic"
 import PhenomicLoaderFeedWebpackPlugin
   from "phenomic/lib/loader-feed-webpack-plugin"
 
+/**
+ * WARNING: this config is super ultra cool as it support both webpack 1 & 2
+ */
+import webpackVersion from "phenomic/lib/_utils/webpack-version"
+
 import pkg from "./package.json"
 
 export default (config = {}) => {
@@ -24,18 +29,24 @@ export default (config = {}) => {
     },
     module: {
       noParse: /\.min\.js/,
-      rules: [
+      [webpackVersion() === 1 ? "loaders" : "rules"]: [
         {
           // phenomic requirement
           test: /\.md$/,
           loader: phenomicLoader,
-          query: {
-            context: path.join(__dirname, config.source),
-            // plugins: [
-            //   ...require("phenomic/lib/loader-preset-markdown").default
-            // ]
-            // see https://phenomic.io/docs/usage/plugins/
-          },
+          ...(
+            webpackVersion() === 1
+            ? { /* see below in global section */ }
+            : {
+              query: {
+                context: path.join(__dirname, config.source),
+                // plugins: [
+                //   ...require("phenomic/lib/loader-preset-markdown").default
+                // ]
+                // see https://phenomic.io/docs/usage/plugins/
+              },
+            }
+          ),
         },
         {
           test: /\.json$/,
@@ -48,54 +59,85 @@ export default (config = {}) => {
             path.resolve(__dirname, "src"),
           ],
           loaders: [
-            "babel-loader?cacheDirectory=true",
-            "eslint-loader?fix",
+            // cacheDirectory could be used in production
+            // but since we switch between webpack 1 & 2 (and babel config)
+            // this is causing issues
+            "babel-loader", // ?cacheDirectory,
+            "eslint-loader?fix" + (config.dev ? "&emitWarning" : ""),
           ],
         },
         {
           test: /\.css$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: [
-              {
-                loader: "css-loader",
-                query: {
-                  modules: true,
-                  localIdentName: (
-                    config.production
-                    ? "[hash:base64:5]"
-                    : "[path][name]--[local]--[hash:base64:5]"
-                  ),
-                },
-              },
-              {
-                loader: "postcss-loader",
-                // query for postcss can't be used right now
-                // https://github.com/postcss/postcss-loader/issues/99
-                // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
-                // query: { plugins: postcssPlugins },
-              },
-            ],
-          }),
+          loader: (
+            webpackVersion() === 1
+            ? (
+              ExtractTextPlugin.extract(
+                "style-loader",
+                [ `css-loader?modules&localIdentName=${
+                  config.production
+                  ? "[hash:base64:5]"
+                  : "[path][name]--[local]--[hash:base64:5]"
+                  }`,
+                  "postcss-loader",
+                ].join("!"),
+              )
+            )
+            : (
+              ExtractTextPlugin.extract({
+                fallbackLoader: "style-loader",
+                loader: [
+                  {
+                    loader: "css-loader",
+                    query: {
+                      modules: true,
+                      localIdentName: (
+                          config.production
+                          ? "[hash:base64:5]"
+                          : "[path][name]--[local]--[hash:base64:5]"
+                        ),
+                    },
+                  },
+                  {
+                    loader: "postcss-loader",
+                    // query for postcss can't be used right now
+                    // https://github.com/postcss/postcss-loader/issues/99
+                    // meanwhile, see webpack.LoaderOptionsPlugin in "plugins"
+                    // query: { plugins: postcssPlugins },
+                  },
+                ],
+              })
+            )
+          ),
         },
         {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: [
-              "css-loader",
-              {
-                loader: "postcss-loader",
-                // query for postcss can't be used right now
-                // https://github.com/postcss/postcss-loader/issues/99
-                // meanwhile, see webpack.LoaderOptionsPlugin in plugins list
-                // query: { plugins: postcssPlugins },
-              },
-            ],
-          }),
+          loader: (
+            webpackVersion() === 1
+            ? (
+              ExtractTextPlugin.extract(
+                "style-loader",
+                [ "css-loader", "postcss-loader" ].join("!"),
+              )
+            )
+            : (
+              ExtractTextPlugin.extract({
+                fallbackLoader: "style-loader",
+                loader: [
+                  "css-loader",
+                  {
+                    loader: "postcss-loader",
+                    // query for postcss can't be used right now
+                    // https://github.com/postcss/postcss-loader/issues/99
+                    // meanwhile, see webpack.LoaderOptionsPlugin in "plugins"
+                    // query: { plugins: postcssPlugins },
+                  },
+                ],
+              })
+            )
+          ),
         },
         {
           test: /\.(html|ico|jpe?g|png|gif)$/,
@@ -112,22 +154,43 @@ export default (config = {}) => {
       ],
     },
 
-    plugins: [
-      // You should be able to remove the block below when the following
-      // issue has been correctly handled (and postcss-loader supports
-      // "plugins" option directly in query, see postcss-loader usage above)
-      // https://github.com/postcss/postcss-loader/issues/99
-      new webpack.LoaderOptionsPlugin({
-        test: /\.css$/,
-        options: {
-          postcss: postcssPlugins,
-          // required to avoid issue css-loader?modules
-          // this is normally the default value, but when we use
-          // LoaderOptionsPlugin, we must specify it again, otherwise,
-          // context is missing (and css modules names can be broken)!
-          context: __dirname,
+    ...(
+      webpackVersion() === 1
+      ? {
+        postcss: postcssPlugins,
+        phenomic: {
+          context: path.join(__dirname, config.source),
+          // plugins: [
+          //   ...require("phenomic/lib/loader-preset-markdown").default
+          // ]
+          // see https://phenomic.io/docs/usage/plugins/
         },
-      }),
+      }
+      : {}
+    ),
+
+    plugins: [
+      ...(
+        webpackVersion() === 1
+        ? []
+        : [
+          // You should be able to remove the block below when the following
+          // issue has been correctly handled (and postcss-loader supports
+          // "plugins" option directly in query, see postcss-loader usage above)
+          // https://github.com/postcss/postcss-loader/issues/99
+          new webpack.LoaderOptionsPlugin({
+            test: /\.css$/,
+            options: {
+              postcss: postcssPlugins,
+              // required to avoid issue css-loader?modules
+              // this is normally the default value, but when we use
+              // LoaderOptionsPlugin, we must specify it again, otherwise,
+              // context is missing (and css modules names can be broken)!
+              context: __dirname,
+            },
+          }),
+        ]
+      ),
 
       new PhenomicLoaderFeedWebpackPlugin({
         // here you define generic metadata for your feed
@@ -149,15 +212,28 @@ export default (config = {}) => {
         },
       }),
 
-      new ExtractTextPlugin({
-        filename: "[name].[hash].css",
-        disable: config.dev,
-      }),
+      ...(
+        webpackVersion() === 1
+        ? [
+          new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+        ]
+        : [
+          new ExtractTextPlugin({
+            filename: "[name].[hash].css",
+            disable: config.dev,
+          }),
+        ]
+      ),
 
       ...config.production && [
         // DedupePlugin does not work correctly with Webpack 2, yet ;)
         // https://github.com/webpack/webpack/issues/2644
-        // new webpack.optimize.DedupePlugin(),
+        ...(
+          webpackVersion() === 1
+          ? [ new webpack.optimize.DedupePlugin() ]
+          : []
+        ),
+
         new webpack.optimize.UglifyJsPlugin(
           { compress: { warnings: false } }
         ),
@@ -170,6 +246,18 @@ export default (config = {}) => {
       filename: "[name].[hash].js",
     },
 
-    resolve: { extensions: [ ".js", ".json" ] },
+    ...(
+      webpackVersion() === 1
+      ? {
+        resolve: {
+          extensions: [ ".js", ".json", "" ],
+          root: [ path.join(__dirname, "node_modules") ],
+        },
+        resolveLoader: { root: [ path.join(__dirname, "node_modules") ] },
+      }
+      : {
+        resolve: { extensions: [ ".js", ".json" ] },
+      }
+    ),
   }
 }

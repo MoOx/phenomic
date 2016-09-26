@@ -2,6 +2,8 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
+import webpackVersion from "../../_utils/webpack-version"
+
 import PhenomicLoaderWebpackPlugin from "../../loader/plugin.js"
 import PhenomicLoaderFeedWebpackPlugin from "../index.js"
 
@@ -12,7 +14,7 @@ test.cb("loader feed webpack plugin", (t) => {
   webpack(
     {
       module: {
-        rules: [
+        [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
             test: /\.md$/,
             loader: __dirname + "/../../loader/index.js",
@@ -21,6 +23,11 @@ test.cb("loader feed webpack plugin", (t) => {
         ],
       },
       entry: __dirname + "/fixtures/script.js",
+      ...(
+        webpackVersion() === 1
+        ? { resolve: { extensions: [ "" ] } }
+        : {}
+      ),
       output: {
         path: outputPath + "/routes",
         filename: "routes.js",

@@ -5,6 +5,7 @@ import colors from "chalk"
 
 import log from "../_utils/log"
 import errorFormatter from "../_utils/error-formatter"
+import webpackVersion from "../_utils/webpack-version"
 
 import webpack from "./webpack"
 import sortAssets from "./webpack/sortAssets.js"
@@ -33,7 +34,7 @@ export default function(config: Object): void {
     // deprecated
     : makeWebpackConfigModule.makeConfig
 
-  if (makeWebpackConfigModule.makeConfig) {
+  if (webpackVersion() === 2 && makeWebpackConfigModule.makeConfig) {
     log(
       "Your webpack config should now directly export a function.\n" +
       "No need to export a makeConfig() function anymore as webpack@2 " +
@@ -59,8 +60,10 @@ export default function(config: Object): void {
   const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
-  const env = process.env.NODE_ENV || "development"
-  process.env.BABEL_ENV = "webpack-" + env
+  if (webpackVersion() === 2) {
+    const env = process.env.NODE_ENV || "development"
+    process.env.BABEL_ENV = "webpack-" + env
+  }
 
   if (config.static) {
     // Copy static assets to build folder
