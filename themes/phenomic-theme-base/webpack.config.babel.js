@@ -34,7 +34,12 @@ export default (config = {}) => {
     },
     module: {
       noParse: /\.min\.js/,
+      // webpack 1
+      loaders: [
+      // webpack 2
+      /*
       rules: [
+      */
         // *.md => consumed via phenomic special webpack loader
         // allow to generate collection and rss feed.
         {
@@ -65,8 +70,8 @@ export default (config = {}) => {
             path.resolve(__dirname, "src"),
           ],
           loaders: [
-            "babel-loader?cacheDirectory=true",
-            "eslint-loader",
+            "babel-loader?cacheDirectory",
+            "eslint-loader" + (config.dev ? "?emitWarning" : ""),
           ],
         },
 
@@ -79,6 +84,19 @@ export default (config = {}) => {
           test: /\.css$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
+          // webpack 1
+          loader: ExtractTextPlugin.extract(
+            "style-loader",
+            [ `css-loader?modules&localIdentName=${
+              config.production
+              ? "[hash:base64:5]"
+              : "[path][name]--[local]--[hash:base64:5]"
+              }`,
+              "postcss-loader",
+            ].join("!"),
+          ),
+          // webpack 2
+          /*
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style-loader",
             loader: [
@@ -102,11 +120,19 @@ export default (config = {}) => {
               },
             ],
           }),
+          */
         },
         // *.global.css => global (normal) css
         {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
+          // webpack 1
+          loader: ExtractTextPlugin.extract(
+            "style-loader",
+            [ "css-loader", "postcss-loader" ].join("!"),
+          ),
+          // webpack 2
+          /*
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style-loader",
             loader: [
@@ -120,6 +146,7 @@ export default (config = {}) => {
               },
             ],
           }),
+          */
         },
         // ! \\
         // If you want global CSS only, just remove the 2 sections above
@@ -171,7 +198,12 @@ export default (config = {}) => {
       ],
     },
 
+    // webpack 1
+    postcss: postcssPlugins,
+
     plugins: [
+      // webpack 2
+      /*
       // You should be able to remove the block below when the following
       // issue has been correctly handled (and postcss-loader supports
       // "plugins" option directly in query, see postcss-loader usage above)
@@ -187,6 +219,7 @@ export default (config = {}) => {
           context: __dirname,
         },
       }),
+      */
 
       new PhenomicLoaderFeedWebpackPlugin({
         // here you define generic metadata for your feed
@@ -207,15 +240,22 @@ export default (config = {}) => {
           },
         },
       }),
+
+      // webpack 1
+      new ExtractTextPlugin("[name].[hash].css", { disable: config.dev }),
+      // webpack 2
+      /*
       new ExtractTextPlugin({
         filename: "[name].[hash].css",
         disable: config.dev,
       }),
+      */
 
       ...config.production && [
+        // webpack 2
         // DedupePlugin does not work correctly with Webpack 2, yet ;)
         // https://github.com/webpack/webpack/issues/2644
-        // new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(
           { compress: { warnings: false } }
         ),
@@ -228,6 +268,15 @@ export default (config = {}) => {
       filename: "[name].[hash].js",
     },
 
+    // webpack 1
+    resolve: {
+      extensions: [ ".js", ".json", "" ],
+      root: [ path.join(__dirname, "node_modules") ],
+    },
+    resolveLoader: { root: [ path.join(__dirname, "node_modules") ] },
+    // webpack 2
+    /*
     resolve: { extensions: [ ".js", ".json" ] },
+    */
   }
 }

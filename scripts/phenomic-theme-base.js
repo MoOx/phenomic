@@ -5,8 +5,6 @@ const target = "themes/phenomic-theme-base"
 testFolder(
   target,
   {
-    test: false,
-
     // phenomic-theme-base cleanup
     cleanup: async () => Promise.all([
       await lnfs(

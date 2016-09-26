@@ -19,7 +19,10 @@ import PhenomicLoaderFeedWebpackPlugin
 // ...
 
   module: {
-    rules: [
+    // webpack 1
+    loaders: [
+    // webpack 2
+    // rules: [
       {
         test: /\.md$/,
         loader: phenomicLoader,

@@ -2,6 +2,8 @@ import test from "ava"
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
+import webpackVersion from "../../_utils/webpack-version"
+
 import PhenomicLoaderWebpackPlugin from "../plugin.js"
 
 const outputPath = __dirname + "/_output/"
@@ -11,7 +13,7 @@ test.cb("phenomic loader", (t) => {
   webpack(
     {
       module: {
-        rules: [
+        [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
             test: /\.md$/,
             loader: __dirname + "/../index.js",
@@ -19,6 +21,11 @@ test.cb("phenomic loader", (t) => {
           },
         ],
       },
+      ...(
+        webpackVersion() === 1
+        ? { resolve: { extensions: [ "" ] } }
+        : {}
+      ),
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
@@ -110,24 +117,48 @@ test.cb("phenomic loader can be used with plugins", (t) => {
   webpack(
     {
       module: {
-        rules: [
+        [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
             test: /\.md$/,
             loader: __dirname + "/../index.js",
             exclude: /node_modules/,
-            query: {
-              plugins: [
-                () => {
-                  return { test: "dumb" }
+            ...(
+              webpackVersion() === 1
+              ? { }
+              : {
+                query: {
+                  plugins: [
+                    () => {
+                      return { test: "dumb" }
+                    },
+                  ],
                 },
-              ],
-            },
+              }
+            ),
           },
         ],
       },
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
+      ...(
+        webpackVersion() === 1
+        ? {
+          phenomic: {
+            plugins: [
+              () => {
+                return { test: "dumb" }
+              },
+            ],
+          },
+        }
+        : {}
+      ),
+      ...(
+        webpackVersion() === 1
+        ? { resolve: { extensions: [ "" ] } }
+        : {}
+      ),
       entry: __dirname + "/fixtures/script.js",
       output: {
         path: outputPath + "/plugins",

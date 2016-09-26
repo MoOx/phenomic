@@ -15,6 +15,7 @@ const template = {
     "test": "npm run build",
   },
   "phenomic": {/* placeholder */},
+  "#babel": "webpack-(development|production) are useful for webpack 2, otherwise use development|production",
   "babel": {
     "env": {
       "development": {
@@ -23,9 +24,13 @@ const template = {
           "babel-preset-stage-1",
           "babel-preset-react",
         ],
+        "plugins": [
+          "react-hot-loader/babel",
+        ],
       },
       "production": {
         "presets": [
+          "babel-preset-react-optimize",
           "babel-preset-latest",
           "babel-preset-stage-1",
           "babel-preset-react",
