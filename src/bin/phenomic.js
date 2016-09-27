@@ -3,7 +3,6 @@ import { join } from "path"
 
 import setup from "./commands/setup/index.js"
 
-import builder from "../builder/index.js"
 import yargs from "../configurator/yargs.js"
 import configurator from "../configurator/index.js"
 import log from "../_utils/log"
@@ -13,6 +12,11 @@ const runner = () => {
   const cwd = process.cwd()
   const pkg = require(join(cwd, "package.json"))
   const config = configurator({ argv: process.argv, pkg })
+
+  // lazyload builder to avoid issue when webpack is no installed yet
+  // @todo move runner() out of this file so setup can work without
+  // lazyloading via "require()"
+  const builder = require("../builder/index.js").default
   builder(config)
 }
 
