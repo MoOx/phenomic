@@ -7,7 +7,7 @@ import colors from "chalk"
 
 const cwd = (
   path.sep === "\\"
-  ? process.cwd().replace(path.sep, path.sep+path.sep)
+  ? process.cwd().replace(/\\/g, "\\\\")
   : process.cwd()
 )
 
