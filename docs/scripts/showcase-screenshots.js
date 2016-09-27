@@ -3,7 +3,10 @@ import fs from "fs"
 
 import mkdirp from "mkdirp"
 import findCacheDir from "find-cache-dir"
-const cacheDir = findCacheDir({ name: "phenomic", create: true })
+const cacheDir = findCacheDir({
+  name: join("phenomic", "screenshots"),
+  create: true,
+})
 
 const showcaseDir = join(__dirname, "..", "content", "showcase", "entry")
 
@@ -53,24 +56,23 @@ const screenshots = list.reduce((screenshots, { url }) => {
   ]
 }, [])
 
-const nightmare = Nightmare()
+const nightmare = Nightmare({
+  waitTimeout: 30000,
+  gotoTimeout: 30000,
+  loadTimeout: 30000,
+})
 let prevUrl
 screenshots.forEach(({ url, tmpLocation, width, height }) => {
   try {
     fs.readFileSync(tmpLocation)
   }
   catch (e) {
-    console.log("Screenshots for ", url, width, height, tmpLocation)
+    console.log("☐ Missing screenshots for", url, width, height)
     if (url !== prevUrl) {
-      nightmare
-        .goto(url)
-        .wait(8000)
-    }
-    else {
-      nightmare
-      .wait(200) // wait for some logo animations & stuff (eg putaindecode.io)
+      nightmare.goto(url)
     }
     nightmare
+      .wait(2000) // wait for some logo animations & stuff (eg putaindecode.io)
       .viewport(width, height)
       .screenshot(tmpLocation)
   }
@@ -82,8 +84,8 @@ import optimizer from "image-optim"
 nightmare
   .end()
   .then(() => {
-    console.log("✅ Showcase screenshots ready.")
-    console.log("✅ Showcase optimizing screenshots...")
+    console.log("ℹ️ Showcase screenshots saved")
+    console.log("ℹ️ Optimizing screenshots...")
     screenshots.forEach(({ tmpLocation, location }) => {
       try {
         fs.readFileSync(location)
@@ -103,4 +105,6 @@ nightmare
         )
       }
     })
+    console.log("✅ Showcase screenshots ready.")
   })
+  .catch((e) => console.error(e))
