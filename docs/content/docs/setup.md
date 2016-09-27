@@ -8,29 +8,48 @@ We recommend you to use [nvm](https://github.com/creationix/nvm) to manage
 different versions of node.
 
 **A minimal phenomic-theme-base is required, in order to provide you some
-flexibility.** But don't worry, a command will set it up for you.
+flexibility.** A command will set it up for you.
 
-## One command setup
+## Install in a minute
 
 🚀 With those instructions, you should have a new clean project, that will
 magically open itself in your browser!
 
 ### macOS / Linux
 
+First thing to do is to create a folder with a `node_modules` so we can install
+Phenomic locally.
+
 ```sh
-DIR=your-website-folder && mkdir $DIR && cd $DIR && mkdir node_modules && \
-npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
+DIR=your-website-folder
+mkdir $DIR && cd $DIR && mkdir node_modules
+```
+
+Now we will be at the right place so we can grab Phenomic & launch the setup.
+Right after that, we will grab required dependencies & you are good to go!
+
+```sh
+npm install phenomic && ./node_modules/.bin/phenomic setup
+npm install && npm start
 ```
 
 ### Windows
 
+First thing to do is to create a folder with a `node_modules` so we can install
+Phenomic locally.
+
 ```cmd
-SET DIR=your-website-folder && mkdir %DIR% && cd %DIR% && mkdir node_modules && ^
-npm i phenomic && ./node_modules/.bin/phenomic setup && npm i && npm start
+SET DIR=your-website-folder
+mkdir %DIR% && cd %DIR% && mkdir node_modules
 ```
 
-If you have questions on "why is the setup command so long", you will find
-answer below 😉.
+Now we will be at the right place so we can grab Phenomic & launch the setup.
+Right after that, we will grab required dependencies & you are good to go!
+
+```cmd
+npm install phenomic && ./node_modules/.bin/phenomic setup
+npm install && npm start
+```
 
 🚀 **When you get the hello world, it's time to take a look to our
 [Getting Started](../getting-started/) page and to [start hacking!](../usage/).**
@@ -38,7 +57,7 @@ answer below 😉.
 
 ---
 
-## Detailed setup
+## Detailed explanation
 
 ### Create a new folder
 
