@@ -1,3 +1,8 @@
+# 0.17.1 - 2016-09-26
+
+- Fixed: ``Cannot find module 'source-map-support/register'``
+  (@MoOx)
+
 # 0.17.0 - 2016-09-26
 
 🎉 **This release make us closer to 1.0.**

@@ -1,6 +1,6 @@
 {
   "name": "phenomic",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",
@@ -190,7 +190,7 @@
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
     "test-docs": "npm run docs && cd docs && npm test && cd .. && npm run docs-webpack-2-test",
     "#posttest-docs": "install back webpack 1",
-    "posttest-docs": "npm install",
+    "posttest-docs": "npm install && cd docs && npm install",
     "predocs-start": "npm run docs",
     "docs-start": "cd docs && npm start",
     "predocs-deploy": "cd docs && npm run build && npm run showcase-screenshots",
