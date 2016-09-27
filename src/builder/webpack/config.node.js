@@ -20,6 +20,10 @@ const defaultExternals = [
   // like css, this breaks their build.
 ]
 
+const sourceMapSupport = require.resolve("source-map-support/register")
+// require split to avoid babel-register trying to parse that...
+const requireSourceMapSupport = "requi" + "re('" + sourceMapSupport + "');"
+
 export default (config: PhenomicConfig): WebpackConfig => {
   const webpackConfig = commonWebpackConfig(config)
 
@@ -59,12 +63,12 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ...(
         webpackVersion() === 2
         ? [ new BannerPlugin({
-          banner: "require('source-map-support/register');",
+          banner: requireSourceMapSupport,
           raw: true,
           entryOnly: false,
         }) ]
         : [ new BannerPlugin(
-          "require('source-map-support/register');",
+          requireSourceMapSupport,
           { raw: true, entryOnly: false }
         ) ]
       ),
