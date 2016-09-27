@@ -1,11 +1,74 @@
-# HEAD
+# 0.17.0 - 2016-09-26
 
-- Removed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
-  single string is passed as a child.
-  (@MoOx)
+🎉 **This release make us closer to 1.0.**
+
+Noticeable changes are:
+
+- 🚀 **New experimental ``"cache"`` option to boost performance**.
+  Development startup time drastically reduced
+  (from 15s to 2s on average for the default theme).
+  To try this feature, just add ``"cache": true`` in your phenomic config
+  (in ``package.json``).
+- 🍭 Added support for ``webpack@2`` (we still support webpack 1).
+  See details below for more explanations &
+  [webpack 2 migration notes](http://webpack.js.org/how-to/upgrade-from-webpack-1/).
+  New base theme already have commented instructions for future migrations 😘.
+- 🔥 ``react-hot-loader@3`` is used (still in beta, but already battle tested).
+  **You can now enjoy hot loading on React stateless components!**
+  By the way, we changed the default theme to use stateless components.
+- ✨ New projects are setup with a new, more clear file tree,
+  see below for details.
+- 📖 Documentation has been improved a little
+  ("Getting Started" now have more answers to commons questions like
+  "how to add Sass?").
+- 👀 We improved CLI output to be more concise & make errors easier to spot
+
+![phenomic-0 17 0](https://cloud.githubusercontent.com/assets/157534/18852617/87756f22-8441-11e6-843a-fe825541436c.jpg)
+
+❓ [To know what is coming next, check out our public ROADMAP.](https://github.com/MoOx/phenomic/projects/2)
+
+And do not hesitate to give feedbacks, it's important for the community ❤️.
+
+## What's exactly in 0.17.0?
+
+### Breaking changes
+
+- Removed: ``phenomicLoaderPlugins`` & ``phenomicLoaderPresets`` from "phenomic"
+  To avoid shipping unnecessary code into the client bundle (regression
+  from 0.16.0), we removed plugins & presets from “phenomic” import.
+  Please directly use ``require(“phenomic/lib/loader-*``, by replacing
+  camelCase by dashedCase.
+
+  - ``phenomicLoaderPlugins.initBodyPropertyFromContent`` ->
+  ``require("phenomic/lib/loader-plugin-init-body-property-from-content").default``
+  - ``phenomicLoaderPlugins.initHeadPropertyFromConfig`` ->
+  ``require("phenomic/lib/loader-plugin-init-head-property-from-config").default``
+  - ``phenomicLoaderPlugins.initHeadPropertyFromContent`` ->
+  ``require("phenomic/lib/loader-plugin-init-head-property-from-content").default``
+  - ``phenomicLoaderPlugins.initRawPropertyFromContent`` ->
+  ``require("phenomic/lib/loader-plugin-init-raw-property-from-content").default``
+  - ``phenomicLoaderPlugins.initRawBodyPropertyFromContent`` ->
+  ``require("phenomic/lib/loader-plugin-init-rawBody-property-from-content").default``
+  - ``phenomicLoaderPlugins.markdownInitHeadDescriptionPropertyFromContent`` ->
+  ``require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default``
+  - ``phenomicLoaderPlugins.markdownTransformBodyPropertyToHtml`` ->
+  ``require("phenomic/lib/loader-plugin-markdown-transform-body-property-to-html").default``
+  - ``phenomicLoaderPresets.default`` -> ``require("phenomic/lib/loader-preset-default").default``
+  - ``phenomicLoaderPresets.markdown`` -> ``require("phenomic/lib/loader-preset-markdown").default``
+
+  ([08bd04f](https://github.com/MoOx/phenomic/commit/08bd04feb2254891caf809e383fca0f6608670c1) - @MoOx)
 - Removed: ``PageContainer`` does not wrap its child into a ``<div>``
   ([#691](https://github.com/MoOx/phenomic/pull/691) - @MoOx,
   based on @DavidWells [idea](https://github.com/MoOx/phenomic/pull/690))
+- Removed: Service Worker is disabled during development (like AppCache)
+  ([#689](https://github.com/MoOx/phenomic/issues/689) /
+  [755a3c2](https://github.com/MoOx/phenomic/commit/755a3c2537dd94401af061572845c4165dee4322) - @MoOx)
+- Changed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
+  single string is passed as a child.
+  (@MoOx)
+
+### Minor changes
+
 - Changed: ``phenomic/lib/PageContainer`` has been relocated.
   To prevent issue in the future, is now accessible by doing
   ``import { PageContainer } from "phenomic"``.
@@ -13,24 +76,63 @@
   ```js
   import { PageContainer as PhenomicPageContainer } from "phenomic"
   ```
-  ([ref #433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
+  ([#433](https://github.com/MoOx/phenomic/issues/433) - @MoOx)
 - Changed: error messages for bad configuration are now more readable
   ([#672](https://github.com/MoOx/phenomic/issues/672) - @MoOx)
-- Fixed: front matter ``route`` can use ``/`` to define the homepage
-  ([#721](https://github.com/MoOx/phenomic/pull/721) - @thangngoc89)
-  single string is passed as a child.
-  (@MoOx)
-- Added: 🚀 Hard source Webpack plugin to improve performance by more than 300%
-  You can enable this **experimental** feature by add
+- Changed: improved CLI output for phenomic commands/dev server
+  ( [f382b20](https://github.com/MoOx/phenomic/commit/f382b2087c4ad0a61a2bb1a5b2c58a110ab0f1b5)
+  / [5255b03](https://github.com/MoOx/phenomic/commit/5255b030a70e88b385a20c8d1bffd549b06d977f)
+  - @MoOx)
+- Added: 🚀 Cache option to improve performance by more than 300%
+  You can enable this **experimental** feature by adding
   ``"cache": true`` in your ``package.json`` ``phenomic`` section.
+  **If you encounter weird issues, try disabling ``babel-loader``
+  ``cacheDirectory`` (and tell us about it!)**
 - Added: Error message in the browser if app start fail at start during
   development
   ([#679](https://github.com/MoOx/phenomic/issues/679]) - @MoOx)
 - Added: proper message if Node and npm version are not satisfying requirements
   ([#709](https://github.com/MoOx/phenomic/pull/709) - @thangngoc89)
+- Added: [``remark-toc``][https://www.npmjs.com/package/remark-toc]
+  in default markdown transformation.
+  You can now use ``## Table of Contents`` (or ``## toc``) to get a
+  generated table of contents.
+  ([569d512](https://github.com/MoOx/phenomic/commit/569d51295f0c3e7338dd2c91478507eb4287bad8) - @MoOx)
+- Added: cache ``enhanceCollection`` usage to boost performance for large
+  websites
+  ([#762](https://github.com/MoOx/phenomic/pull/762) - @thangngoc89)
+- Added: ``webpack@2`` support.
+  To upgrade, you work will basically be upgrading your webpack configuration
+  after upgrading webpack version to `^2.1.0-beta.23`
+  (and some plugins, see below).
+  [See webpack 2 migration notes](http://webpack.js.org/how-to/upgrade-from-webpack-1/).
+  Basically you will have to:
+  - Change for webpack ``ExtractTextPlugin`` (more explicit API)
+  - Upgrade of the babel configuration since webpack natively understand
+    ES2015 ``import``: add new sections in your ``babel.env`` configuration.
+    webpack 2 understand natively ``import``statements so it’s
+    unnecessary to
+    transform those (and it will allow webpack 2 enable tree shaking):
+    ``webpack-develompment`` & ``webpack-production``.
+  - webpack ``DedupePlugin`` must be disabled for now as it's not fully
+    compatible yet
+  - Your `webpack.config` file can directly export a function
+    (instead of exporting a `makeConfig` function)
+    as it's now natively supported by webpack 2.
+  - All loaders options must be passed by loader ``query`` options or by using
+    webpack or via webpack.LoaderPlugin
+  ([#421](https://github.com/MoOx/phenomic/issues/421) - @MoOx)
 
-## Boilerplate
+### Fixes
 
+- Fixed: front matter ``route`` can use ``/`` to define the homepage
+  ([#721](https://github.com/MoOx/phenomic/pull/721) - @thangngoc89)
+
+## What's new in 0.17.0 base theme?
+
+- Removed: ``eslint`` "fix" option has been removed from ``eslint-loader``
+  usage according to the feedback of the community.
+  ([#752](https://github.com/MoOx/phenomic/pull/752) - @ben-eb)
 - Changed: new default tree structure.
   We encourage you to update to a similar structure if you were using the previous one.
   Main changes:
@@ -39,6 +141,30 @@
   - ``web_modules/{Components}`` => ``src/components/*``
   - ``web_modules/app/*`` => ``src/*``
   - ``web_modules/LayoutContainer`` => ``src/AppContainer.js``
+
+  ([#698](https://github.com/MoOx/phenomic/pull/698) - @MoOx)
+
+- Changed: we replaced ``babel-preset-react-hmre`` by ``react-hot-loader@3``
+  You can now enjoy hot loading on React stateless components!
+  [See how to do the same for you current project in this commit](https://github.com/MoOx/phenomic/commit/5aea575d40f79cc0f4fb5d9d3374235f690431d4).
+  ([#737](https://github.com/MoOx/phenomic/pull/737) - @MoOx)
+- Changed: all components without state are now real
+  [stateless components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)
+  ([#747](https://github.com/MoOx/phenomic/pull/747) - @thangngoc89)
+- Changed: ``babel-preset-latest`` is now used in place of
+  ``babel-preset-es2015``.
+  This preset cover all stable ES specifications that will land in future
+  versions (currently it covers some ES2017 features).
+  ([#661](https://github.com/MoOx/phenomic/issues/661) - @MoOx)
+- Changed: update stylelint to ^7.2.0 & stylelint-config-standard to ^13.0.0
+  ([7c3c843](https://github.com/MoOx/phenomic/commit/7c3c8432c364f95f28f34bdb4548e0bb2d840425) - @ben-eb)
+- Added: a default highlight.js theme has been
+  ([#702](https://github.com/MoOx/phenomic/pull/702) - @MoOx)
+- Added: some default global CSS custom properties (variables) have been added
+  into the webpack configuration file
+  ([#617](https://github.com/MoOx/phenomic/pull/617) - @MoOx)
+
+
 
 # 0.16.2 - 2016-08-23
 
