@@ -1,3 +1,8 @@
+# 0.17.2 - 2016-09-26
+
+- Fixed: ``Cannot find module 'webpack'`` during setup
+  (@MoOx)
+
 # 0.17.1 - 2016-09-26
 
 - Fixed: ``Cannot find module 'source-map-support/register'``
