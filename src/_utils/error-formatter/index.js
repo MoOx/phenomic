@@ -1,13 +1,20 @@
 // @flow
 
 import os from "os"
+import path from "path"
 
 import colors from "chalk"
+
+const cwd = (
+  path.sep === "\\"
+  ? process.cwd().replace(/\\/g, "\\\\")
+  : process.cwd()
+)
 
 import { cacheDir } from "../../builder/webpack/config.node.js"
 
 const cleanStaticBuildPathRE = new RegExp(cacheDir + "\/(webpack:\/)?", "g")
-const cwdRE = new RegExp(process.cwd(), "g")
+const cwdRE = new RegExp(cwd, "g")
 const homeRE = new RegExp(os.homedir(), "g")
 const truncatedStack = "[ truncated stack ]"
 
