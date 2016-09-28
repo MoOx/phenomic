@@ -69,7 +69,9 @@ screenshots.forEach(({ url, tmpLocation, width, height }) => {
   catch (e) {
     console.log("☐ Missing screenshots for", url, width, height)
     if (url !== prevUrl) {
-      nightmare.goto(url)
+      nightmare
+        .goto(url)
+        .wait(8000) // eg: huge backgrounds are slow to get :)
     }
     nightmare
       .wait(2000) // wait for some logo animations & stuff (eg putaindecode.io)
