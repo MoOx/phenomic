@@ -190,7 +190,7 @@
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
     "test-docs": "npm run docs && cd docs && npm test && cd .. && npm run docs-webpack-2-test",
     "#posttest-docs": "install back webpack 1",
-    "posttest-docs": "npm install && cd docs && npm install",
+    "posttest-docs": "npm install && npm run docs",
     "predocs-start": "npm run docs",
     "docs-start": "cd docs && npm start",
     "predocs-deploy": "cd docs && npm run build && npm run showcase-screenshots",
