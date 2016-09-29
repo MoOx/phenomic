@@ -15,7 +15,9 @@ export default function(
   if (config.assets) {
 
     // normalize simple string options
-    if (typeof config.assets === "function") {
+    if (
+      [ "boolean", "string", "object" ].indexOf(typeof config.assets) < 0
+    ) {
       errors.push(
         "You provided an function for 'assets' option." +
         "This option accept a boolean value, a string, or an object."
@@ -28,6 +30,7 @@ export default function(
           typeof config.assets.route !== "string"
         )
     ) {
+      const configAssets: PhenomicAssetsConfig = config.assets
       errors.push(
         "You provided an object for 'assets' option." +
         "You need to provide 2 keys: " +
@@ -35,8 +38,8 @@ export default function(
         "and 'route' (string, path of your assets folder in the destination)." +
         "\n" +
         "You provided the following keys: " +
-        Object.keys(config.assets).map(
-          (k) => `'${ k }' (${ typeof config.assets[k] })`
+        Object.keys(configAssets).map(
+          (k) => `'${ k }' (${ typeof configAssets[k] })`
         ).toString()
       )
     }
@@ -55,10 +58,11 @@ export default function(
         }
       }
 
+      const configAssets: PhenomicAssetsConfig = config.assets
       // adjust path and validate
       config.assets = {
-        path: join(config.cwd, config.source, config.assets.path),
-        route: config.assets.route,
+        path: join(config.cwd, config.source, configAssets.path),
+        route: configAssets.route,
       }
 
       // Test folder
