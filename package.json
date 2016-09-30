@@ -181,7 +181,6 @@
     "tests": "ava",
     "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
     "integration-tests": "ava __tests__/index.js && ava __tests__/cli.js",
-    "pretest-phenomic-theme-base": "npm run transpile",
     "test-phenomic-theme-base": "babel-node scripts/test-phenomic-theme-base.js && cd test-phenomic-theme-base && npm test",
     "posttest-phenomic-theme-base": "npm run integration-tests",
     "docs": "babel-node scripts/docs.js",
