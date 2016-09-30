@@ -19,7 +19,7 @@ export default function(
       [ "boolean", "string", "object" ].indexOf(typeof config.assets) < 0
     ) {
       errors.push(
-        "You provided an function for 'assets' option." +
+        `You provided a ${ typeof config.assets } for 'assets' option.` +
         "This option accept a boolean value, a string, or an object."
       )
     }
