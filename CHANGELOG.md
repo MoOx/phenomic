@@ -1,3 +1,10 @@
+# 0.17.4 - 2016-09-30
+
+- Fixed: windows support for 0.17.x
+  ([#799](https://github.com/MoOx/phenomic/issues/799) - @MoOx)
+- Fixed: assets=false does not break when offline is on
+  ([#794](https://github.com/MoOx/phenomic/pull/794) - @thangngoc89)
+
 # 0.17.3 - 2016-09-30
 
 - Fixed: keep query string parameters in URL
