@@ -160,12 +160,12 @@ export default (config = {}) => {
         //   // for your own CSS. If so, uncomment the line below
         //   // include: path.resolve(__dirname, "node_modules"),
         //   loader: ExtractTextPlugin.extract({
-        //     "fallbackLoader": "style-loader",
-        //     "loader": [
+        //     fallbackLoader: "style-loader",
+        //     loader: [
         //       "css-loader",
         //       {
-        //         "loader": "postcss-loader",
-        //         "query": { "plugins": postcssPlugins },
+        //         loader: "postcss-loader",
+        //         query: { "plugins": postcssPlugins },
         //       },
         //     ]
         //   }),
