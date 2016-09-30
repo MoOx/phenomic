@@ -1,3 +1,8 @@
+# 0.17.3 - 2016-09-30
+
+- Fixed: keep query string parameters in URL
+  ([#798](https://github.com/MoOx/phenomic/pull/798) - @DavidWells )
+
 # 0.17.2 - 2016-09-26
 
 - Fixed: ``Cannot find module 'webpack'`` during setup
