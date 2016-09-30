@@ -21,8 +21,10 @@ const defaultExternals = [
 ]
 
 const sourceMapSupport = require.resolve("source-map-support/register")
-// require split to avoid babel-register trying to parse that...
-const requireSourceMapSupport = "requi" + "re('" + sourceMapSupport + "');"
+  // windows support
+  .replace(/\\/g, "/")
+
+const requireSourceMapSupport = "require('" + sourceMapSupport + "');"
 
 export default (config: PhenomicConfig): WebpackConfig => {
   const webpackConfig = commonWebpackConfig(config)
