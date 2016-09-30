@@ -181,6 +181,44 @@ test("should redirect if url doesn't match needed", (t) => {
   )
 })
 
+test("should redirect and keep url parameters", (t) => {
+  const spy = sinon.spy()
+  console.info = spy
+
+  process.env.PHENOMIC_USER_PATHNAME = "/"
+  dom("http://localhost/foo?test=yes")
+
+  const PageContainer = require("../component").default
+  const renderer = createRenderer()
+  renderer.render(
+    jsx(
+      PageContainer,
+      {
+        params: { splat: "foo/" },
+        pages: { "/foo/": {} },
+        getPage: noop,
+        setPageNotFound: noop,
+        layouts: { Page },
+      }
+    ),
+    {
+      collection: [ {
+        __url: "/foo/",
+      } ],
+    },
+  )
+  t.true(
+    spy.calledWithMatch(
+      // replacing by '/foo?test=yes' to '/foo/?test=yes'
+      /replacing by \'\/foo\?test=yes\' to \'\/foo\/\?test=yes\'/
+    )
+  )
+  t.is(
+    window.location.href,
+    "http://localhost/foo/?test=yes"
+  )
+})
+
 test("should NOT redirect if url contains hash", (t) => {
   process.env.PHENOMIC_USER_PATHNAME = "/"
   dom("http://localhost/foo/#some-hash")
