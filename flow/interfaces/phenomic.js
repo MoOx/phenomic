@@ -42,7 +42,7 @@ export type PhenomicConfig = {
   cwd: string,
   source: string,
   destination: string,
-  assets: PhenomicAssetsConfig, // no string type
+  assets: boolean | PhenomicAssetsConfig, // no string type
   offline: boolean | PhenomicOfflineConfig,
   offlineConfig: PhenomicOfflineConfig,
   CNAME: boolean,

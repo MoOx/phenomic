@@ -11,12 +11,17 @@ export const offlinePlugin = (config: PhenomicConfig): Array<Object> => {
   if (!config.offline) {
     return []
   }
+  let assets = []
 
-  const assets = globSync([ "**/*" ], {
-    cwd: config.assets.path,
-    nodir: true,
-  })
-  .map((asset) => joinUri(config.assets.route, asset))
+  if (typeof config.assets === "object") {
+    const configAssets: PhenomicAssetsConfig = config.assets
+
+    assets = globSync([ "**/*" ], {
+      cwd: configAssets.path,
+      nodir: true,
+    })
+    .map((asset) => joinUri(configAssets.route, asset))
+  }
 
   function preparePatterns(patterns: ?Array<string>) {
     if (!patterns) {
