@@ -64,17 +64,16 @@ function getBase(location: Object): string {
 
 function adjustCurrentUrl(location: Object, item: Object, props: Props): void {
   // adjust url (eg: missing trailing slash)
-  const currentExactPageUrl = location.href
-    .replace(getBase(location), "/")
-    .replace(location.hash, "")
+  const currentExactPageUrl = location.href.replace(getBase(location), "/")
+  const itemURL = item.__url + location.search + location.hash
 
-  if (currentExactPageUrl !== item.__url) {
+  if (currentExactPageUrl !== itemURL) {
     props.logger.info(
       "phenomic: PageContainer: " +
-      `replacing by '${ currentExactPageUrl }' to '${ item.__url }'`
+      `replacing by '${ currentExactPageUrl }' to '${ itemURL }'`
     )
     if (browserHistory) {
-      browserHistory.replace(item.__url)
+      browserHistory.replace(itemURL)
     }
   }
 }
