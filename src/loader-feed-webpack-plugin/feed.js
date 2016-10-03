@@ -1,3 +1,5 @@
+// @todo @ flow
+
 import RSS from "rss"
 import url from "url"
 

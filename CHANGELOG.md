@@ -1,3 +1,6 @@
+- Fixed: ``PhenomicLoaderFeedWebpackPlugin`` was filtering an altered collection
+  which can lead to empty RSS feeds.
+  (@MoOx)
 - Added: an error is thrown is you still have an option in your phenomic loader
   config for the RSS feed.  
   We didn't mention this change in 0.17.0, sorry about that.  

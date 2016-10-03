@@ -1,6 +1,5 @@
 ---
 title: How to use generate feeds in Phenomic
-incomplete: true
 ---
 
 The ``phenomicLoader`` allows you to generate RSS feeds very easily.
@@ -45,6 +44,11 @@ import PhenomicLoaderFeedWebpackPlugin
         // here we define one feed, but you can generate multiple, based
         // on different filters
         "feed.xml": {
+
+          // here you can define options for the feed
+          title: pkg.name + ": Latest Posts",
+
+          // this special key allows to filter the collection
           collectionOptions: {
             filter: { layout: "Post" },
             sort: "date",
