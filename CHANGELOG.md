@@ -1,3 +1,5 @@
+# 0.17.5 - 2016-10-03
+
 - Fixed: ``PhenomicLoaderFeedWebpackPlugin`` was filtering an altered collection
   which can lead to empty RSS feeds.
   (@MoOx)
