@@ -1,3 +1,10 @@
+- Added: an error is thrown is you still have an option in your phenomic loader
+  config for the RSS feed.  
+  We didn't mention this change in 0.17.0, sorry about that.  
+  Don't worry, migration is really easy, you just have to move a piece of code.  
+  See [this commit for a feed migration example](https://github.com/putaindecode/putaindecode.io/commit/a738432093eb75148542c7cfcca9a584ecbfa57c)
+  (@MoOx)
+
 # 0.17.4 - 2016-09-30
 
 - Fixed: windows support for 0.17.x
@@ -87,6 +94,11 @@ And do not hesitate to give feedbacks, it's important for the community ❤️.
   [755a3c2](https://github.com/MoOx/phenomic/commit/755a3c2537dd94401af061572845c4165dee4322) - @MoOx)
 - Changed: ``BodyContainer`` now avoid wrapping content in a ``<div>`` if a
   single string is passed as a child.
+  (@MoOx)
+- Changed: RSS feed must be generated using the new
+  ``PhenomicLoaderFeedWebpackPlugin``.  
+  The loader does not handle RSS feed generation anymore.  
+  See [this commit for a feed migration example](https://github.com/putaindecode/putaindecode.io/commit/a738432093eb75148542c7cfcca9a584ecbfa57c)
   (@MoOx)
 
 ### Minor changes

@@ -20,6 +20,18 @@ const loader = function(input: string) {
     ...webpackInstance.options.phenomic,
     ...loaderUtils.parseQuery(webpackInstance.query),
   }
+
+  // removed
+  if (options.feeds) {
+    throw new Error(
+      "Phenomic loader `feed` option has been changed since 0.17.0. " +
+      "The changelog was not mentionning this breaking change. " +
+      "Sorry about that. " +
+      "Please visit https://phenomic.io/docs/usage/feeds/ to know how to " +
+      "migrate (spoiler: it's easy). "
+    )
+  }
+
   const context = options.context || webpackInstance.options.context
   const plugins = (
     options.plugins ||
