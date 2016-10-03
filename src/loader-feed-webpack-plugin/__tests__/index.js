@@ -40,7 +40,11 @@ test.cb("loader feed webpack plugin", (t) => {
             site_url: "site_url",
           },
           feeds: {
-            "feed.xml": {},
+            "feed.xml": {
+              collectionOptions: {
+                filter: { layout: "Post" },
+              },
+            },
           },
         }),
       ],
@@ -67,6 +71,14 @@ test.cb("loader feed webpack plugin", (t) => {
       t.truthy(
         feed && feed._value,
         "should create a xml for the feed"
+      )
+      t.truthy(
+        feed._value.includes("<link>/fixtures/two"),
+        "should contain a filtred entry"
+      )
+      t.falsy(
+        feed._value.includes("<link>/fixtures/one"),
+        "should not contain an excluded entry"
       )
 
       t.end()

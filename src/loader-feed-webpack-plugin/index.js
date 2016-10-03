@@ -29,13 +29,13 @@ PhenomicLoaderFeedWebpackPlugin.prototype.apply = function(compiler) {
         compilation.assets[name] = new RawSource(feed({
           feedOptions: { ...feedsOptions, ...feedOptions },
           destination: name,
-          collection: enhanceCollection(
-            collection.map((item) => ({
+          collection: (
+            enhanceCollection(collection, collectionOptions)
+            .map((item) => ({
               ...item.head,
               description: item.body,
               __url: item.__url,
-            })),
-            collectionOptions
+            }))
           ),
         }))
       })
