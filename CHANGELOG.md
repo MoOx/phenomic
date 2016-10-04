@@ -1,3 +1,5 @@
+# 0.17.6 - 2016-10-04
+
 - Fixed: RSS feed made using ``PhenomicLoaderFeedWebpackPlugin`` have all
   metadata, not just the link
   (@MoOx)
