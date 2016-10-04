@@ -72,10 +72,20 @@ test.cb("loader feed webpack plugin", (t) => {
         feed && feed._value,
         "should create a xml for the feed"
       )
+
       t.truthy(
         feed._value.includes("<link>/fixtures/two"),
-        "should contain a filtred entry"
+        "should contain a filtred entry (link)"
       )
+      t.truthy(
+        feed._value.includes("<title><![CDATA[Two"),
+        "should contain a filtred entry (title)"
+      )
+      t.truthy(
+        feed._value.includes("<description><![CDATA[<p>2 3 4"),
+        "should contain a filtred entry (body)"
+      )
+
       t.falsy(
         feed._value.includes("<link>/fixtures/one"),
         "should not contain an excluded entry"

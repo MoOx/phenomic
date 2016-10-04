@@ -1,3 +1,7 @@
+- Fixed: RSS feed made using ``PhenomicLoaderFeedWebpackPlugin`` have all
+  metadata, not just the link
+  (@MoOx)
+
 # 0.17.5 - 2016-10-03
 
 - Fixed: ``PhenomicLoaderFeedWebpackPlugin`` was filtering an altered collection

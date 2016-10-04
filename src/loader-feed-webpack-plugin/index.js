@@ -31,11 +31,16 @@ PhenomicLoaderFeedWebpackPlugin.prototype.apply = function(compiler) {
           destination: name,
           collection: (
             enhanceCollection(collection, collectionOptions)
-            .map((item) => ({
-              ...item.head,
-              description: item.body,
-              __url: item.__url,
-            }))
+            .map((item) => {
+              const fullItem = PhenomicLoaderWebpackPlugin.collection.find(
+                (fullItem) => item.__url === fullItem.__url
+              )
+              return {
+                ...item,
+                // null should not happen, but flow ask for secure code :)
+                description: fullItem ? fullItem.body : null,
+              }
+            })
           ),
         }))
       })
