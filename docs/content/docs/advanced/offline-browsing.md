@@ -88,20 +88,9 @@ They will be defined with their default values.
 
 Enable/Disable Service Worker separately
 
-#### `appcache: boolean = true | { [key]: boolean}`
+#### `appcache: boolean = true`
 
-Enable/Disable AppCache separately. You can also provide an object to choose
-what to cache from the ``cachePatterns`` (see below).
-Here is the default value:
-
-```js
-appcache: {
-  // By default, this only cache the onInstall + afterInstall patterns
-  onInstall: true,
-  afterInstall: true,
-  // onDemand: cannot be emulated (so cached) with appcache
-},
-```
+Enable/Disable AppCache separately.
 
 #### `cachePatterns: { [key]: Array<string> }`:
 
@@ -137,8 +126,8 @@ in ``dist`` folder.
 
 Checkout [globby documentation for more information](https://www.npmjs.com/package/globby)
 
-When you will build your website and you may notice some new files in ``dist``
-folder such as ``manifest.appcache``, ``sw.js``
+When you will build your website and you may notice some new files and folder
+in ``dist`` folder such as ``appcache``, ``sw.js``
 (depending on the options you provided).
 
 ⚠️ **Note**: AppCache support will not be enabled in development mode to

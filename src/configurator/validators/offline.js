@@ -7,11 +7,7 @@ import { parse } from "url"
 
 export const defaultOfflineConfig: PhenomicOfflineConfig = {
   serviceWorker: true,
-  appcache: {
-    onInstall: true,
-    afterInstall: true,
-    // onDemand: false, // cannot be done
-  },
+  appcache: true,
   cachePatterns: {
     onInstall: [ "/", "phenomic.*" ],
     afterInstall: [ "**", ":assets:" ],
@@ -19,6 +15,8 @@ export const defaultOfflineConfig: PhenomicOfflineConfig = {
     excludes: [ "**/.*", "**/*.map", "**/*.html" ],
   },
 }
+
+const knownKeys = Object.keys(defaultOfflineConfig)
 
 export default (
   { pkg, config, errors }:
@@ -47,46 +45,32 @@ export default (
   else {
     const userOfflineConfig: PhenomicOfflineConfig = config.offline
 
-    // Validate nested config.offline
-    if (typeof userOfflineConfig.appcache !== "boolean") {
-      const possibleKeys = Object.keys(defaultOfflineConfig.appcache)
-      let error = false
-      if (typeof userOfflineConfig.appcache !== "object") {
-        error = (
-          "You provided an incorrect type"+
-          ` ('${ typeof userOfflineConfig.appcache }') ` +
-          "for 'phenomic.offline.appcache' option. "
-        )
-      }
-      else {
-        const unknownKeys = Object.keys(userOfflineConfig.appcache).filter(
-          (key) => (
-            !(possibleKeys.indexOf(key) > -1) ||
-            typeof userOfflineConfig.appcache[key] !== "boolean"
-          )
-        )
-        if (unknownKeys.length) {
-          error = (
-            "You provided some key(s)" +
-            "for 'phenomic.offline.appcache' option that are not recognized " +
-            `(${ unknownKeys.join(", ") }). `
-          )
-        }
-      }
-      if (error) {
-        errors.push(
-          error +
-          "This option accepts a boolean value or an object " +
-          " { [key]: boolean } with the following keys: " +
-          possibleKeys.join(", ")
-        )
-      }
+    const allKeys = Object.keys(userOfflineConfig)
+    const incorrectKeys = allKeys.filter((key) => knownKeys.indexOf(key) === -1)
+    if (incorrectKeys.length) {
+      errors.push(
+        "You provided some key(s) " +
+        "for 'phenomic.offline' option " +
+        "that are not recognized " +
+        `(${ incorrectKeys.join(", ") }). ` +
+        ""
+      )
     }
+
     if (typeof userOfflineConfig.serviceWorker !== "boolean") {
       errors.push(
         "You provided an incorrect type"+
         ` ('${ typeof userOfflineConfig.serviceWorker }') ` +
         "for 'phenomic.offline.serviceWorker' option. " +
+        "This option accepts a boolean value."
+      )
+    }
+
+    if (typeof userOfflineConfig.appcache !== "boolean") {
+      errors.push(
+        "You provided an incorrect type"+
+        ` ('${ typeof userOfflineConfig.appcache }') ` +
+        "for 'phenomic.offline.appcache' option. " +
         "This option accepts a boolean value."
       )
     }
@@ -133,18 +117,6 @@ export default (
     config.offlineConfig = {
       ...defaultOfflineConfig,
       ...userOfflineConfig,
-      appcache: (
-        userOfflineConfig.appcache === true
-        ? defaultOfflineConfig.appcache
-        : (
-          typeof userOfflineConfig.appcache === "object"
-          ? {
-            ...defaultOfflineConfig.appcache,
-            ...userOfflineConfig.appcache,
-          }
-          : defaultOfflineConfig.appcache
-        )
-      ),
       cachePatterns: {
         ...defaultOfflineConfig.cachePatterns,
         ...userOfflineConfig.cachePatterns,
@@ -169,7 +141,7 @@ export default (
     config.offline = false
     config.offlineConfig = {
       serviceWorker: false,
-      appcache: {},
+      appcache: false,
       cachePatterns: {},
     }
     log(

@@ -24,11 +24,7 @@ export type PhenomicAssetsConfig = {
 
 export type PhenomicOfflineConfig = {
   serviceWorker: boolean,
-  appcache: {
-    onInstall?: boolean,
-    afterInstall?: boolean,
-    onDemand?: boolean,
-  },
+  appcache: boolean,
   cachePatterns: {
     onInstall?: Array<string>,
     afterInstall?: Array<string>,
