@@ -77,16 +77,7 @@ export const offlinePlugin = (config: PhenomicConfig): Array<Object> => {
 
       // Appcache Fallback for browser that does not support Service Worker
       // (eg: Safari, IE, Edge...)
-      Appcache: {
-        // Appcache does not offer the ability to cache resources with
-        // multiple conditions, so you must explicitely choose section
-        // defined above that will be downloaded during appcache
-        // install/update
-        caches: [
-          ...config.offlineConfig.appcache.onInstall ? [ "main" ] : [],
-          ...config.offlineConfig.appcache.afterInstall? [ "additional" ] : [],
-          // ...config.offlineConfig.appcache.onDemand ? [ "optional" ] : [],
-        ],
+      AppCache: {
         FALLBACK: {
           "/": "/index.html",
         },
@@ -94,8 +85,6 @@ export const offlinePlugin = (config: PhenomicConfig): Array<Object> => {
 
       // For more options, check out the documentation
       // https://www.npmjs.com/package/offline-plugin
-      // You can also tweak the runtime part in
-      // `scripts/phenomic.browser.js`
     }),
   ]
 }

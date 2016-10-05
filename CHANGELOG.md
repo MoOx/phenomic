@@ -1,3 +1,7 @@
+- Fixed: ``offline.appcache`` option was supporting a bunch of options that
+  were completely ignored.
+  This might looks like a breaking change, but we prefer to warn you that you
+  are using things that don't do anything.
 - Added: new ``force-offline`` option, to force offline mode during development
 # 0.17.6 - 2016-10-04
 

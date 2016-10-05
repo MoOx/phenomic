@@ -61,15 +61,13 @@ test("should not accept invalid types or missing key",
   t.throws(() => {
     testConfig({
       offline: {
-        appcache: {
-          test: "wat",
-        },
+        test: "wat",
       },
     })
   },
   (error) => (
     error.message.includes(
-      "You provided some key(s)for 'phenomic.offline.appcache' "+
+      "You provided some key(s) for 'phenomic.offline' "+
       "option that are not recognized (test)"
     ) &&
     error.message.includes(
