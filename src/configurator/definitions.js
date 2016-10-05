@@ -25,6 +25,11 @@ export default {
     // types: boolean, object
     description: "flag to enable offline usage via appcache and service worker",
   },
+  "force-offline": {
+    type: "boolean",
+    description: "flag to force offline mode (for development)",
+    default: false,
+  },
   "CNAME": {
     type: "boolean",
     description: "flag to enable automatic generation of a CNAME file",

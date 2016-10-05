@@ -1,3 +1,4 @@
+- Added: new ``force-offline`` option, to force offline mode during development
 # 0.17.6 - 2016-10-04
 
 - Fixed: RSS feed made using ``PhenomicLoaderFeedWebpackPlugin`` have all

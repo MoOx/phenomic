@@ -85,6 +85,11 @@ Here is a commented ``package.json`` with only the interesting parts
     // See docs/advanced/offline-browsing for more information
     "offline": false,
 
+    // force offline mode during development, for testing
+    "force-offline": false,
+    // best thing is to use this value in the CLI
+    // $ npm start -- --force-offline
+
     // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
     "cache": false
   },
