@@ -165,7 +165,7 @@ export default (
   }
 
   // Disable offline for development if user defined offline config
-  if (config.dev && config.offline) {
+  if (config.dev && config.offline && !config.forceOffline) {
     config.offline = false
     config.offlineConfig = {
       serviceWorker: false,
