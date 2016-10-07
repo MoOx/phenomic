@@ -83,7 +83,7 @@ test("baseUrl with offline support", async (t) => {
 
   const expectedHTML = (
 `<!doctype html>
-<html lang="en" manifest="/phenomic/manifest.appcache">
+<html lang="en">
 
 <head>
   ${ htmlMetas({ baseUrl: { pathname: "/phenomic" } }).join("\n  ") }

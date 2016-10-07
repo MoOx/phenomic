@@ -5,6 +5,8 @@ title: How to offer offline browsing experience with Phenomic
 _What if users that already visit your website once can access it when they are
 offline, without a internet connection?_
 
+## Table of Contents
+
 Guess what, **Phenomic supports offline browsing out of the box.**
 It's very easy to offer an offline experience to your users.
 You just have to turn a flag on.
@@ -47,8 +49,8 @@ requested content on demand.
 ### Network first, cache as fallback
 
 ⚠️ To always offer up to date and fresh content, we choose to use a
-"network first" approach. Cache will only be used as fallback (eg: no internet
-access).
+"network first" approach.
+Cache will only be used as fallback (eg: no internet access).
 
 ## How to enable offline support for Phenomic?
 
@@ -157,7 +159,7 @@ Here are some useful patterns that should covers most use cases
 
 This is the default behavior, just use ``"offline": true,``.
 
-## Only cache stuff on demand
+#### Only cache stuff on demand
 
 ```js
 cachePatterns: {

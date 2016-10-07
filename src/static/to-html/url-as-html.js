@@ -1,7 +1,7 @@
 // @flow
+
 import React from "react"
 import ReactDOMserver from "react-dom/server"
-
 import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
@@ -125,9 +125,6 @@ export default function(
           const htmlProps = {
             lang: "en",
             ...head.htmlAttributes.toComponent(),
-            ...offline && offlineConfig.appcache && {
-              manifest: pathToUri(baseUrl.pathname, "manifest.appcache"),
-            },
           }
 
           const scriptTags = assetsFiles.js.map((fileName) =>

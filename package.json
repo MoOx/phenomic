@@ -57,7 +57,7 @@
     "mkdirp": "^0.5.1",
     "multili": "^1.0.1",
     "node-object-hash": "^1.0.2",
-    "offline-plugin": "^3.4.1",
+    "offline-plugin": "https://github.com/MoOx/offline-plugin#phenomic",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "pify": "^2.3.0",
