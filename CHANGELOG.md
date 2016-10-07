@@ -1,7 +1,13 @@
 - Fixed: ``offline.appcache`` option was supporting a bunch of options that
   were completely ignored.
+  We removed this useless options.
   This might looks like a breaking change, but we prefer to warn you that you
   are using things that don't do anything.
+- Fixed: ``offline`` option has been fixed to provide a network first approach
+  like documentation is saying.
+  (It was "cache first" since 0.15.0). If that's the behavior you want to keep,
+  please open an issue so we can discuss about that. We think cache-first does
+  not provide a good UX when it comes to update the content.
 - Added: new ``force-offline`` option, to force offline mode during development
 # 0.17.6 - 2016-10-04
 
