@@ -109,12 +109,12 @@ npm run deploy
 
 It should be good!
 
-#### Automatically with Travis-CI
+### Automatically with Travis-CI
 
 Here is one quick and easy way to setup automatic deployment on each commit
 pushed to master that should take a couple of minutes to setup:
 
-##### Enable Travis-CI for your repository
+#### Enable Travis-CI for your repository
 
 - https://travis-ci.org/profile
 
@@ -145,7 +145,7 @@ deploy:
     node: '5'
 ```
 
-##### Generate a new token
+##### Generate a GitHub token
 
 - https://github.com/settings/tokens/new
 
@@ -160,7 +160,21 @@ npm i -g travis-encrypt
 travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
-## Adjust the deploy script
+Below the ``secure`` row added, you need to add a line to specify the repo with
+the token:
+
+```yml
+# ...
+
+env:
+  global:
+    - secure: >-
+        vmBZf.....FYI=
+    # UPDATE YOU/YOUR_REPO IN THE URL BELOW
+    - GIT_DEPLOY_REPO=https://$GITHUB_TOKEN@github.com/YOU/YOUR_REPO.git
+```
+
+##### Adjust the deploy script
 
 __You need to add a git user email and name:__
 
