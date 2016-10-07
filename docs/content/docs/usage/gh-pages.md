@@ -160,6 +160,10 @@ npm i -g travis-encrypt
 travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
+⚠️ **Be sure to save your ``.travis.yml`` before running the command
+above since ``travis-encrypt`` will require the file to inject the encrypted key**
+
+
 Below the ``secure`` row added, you need to add a line to specify the repo with
 the token:
 
