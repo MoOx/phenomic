@@ -1,3 +1,7 @@
+- Fixed: Service worker file was imported relatively, which only works at the
+  root
+  (@Moox)
+
 # 0.17.7 - 2016-10-08
 
 - Fixed: ``offline.appcache`` option was supporting a bunch of options that
