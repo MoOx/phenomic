@@ -1,6 +1,6 @@
 ---
 title: Agrista
-url: http://www.agrista.com
+url: http://www.agrista.com/
 source: https://github.com/agrista/website
 tags:
   - business
