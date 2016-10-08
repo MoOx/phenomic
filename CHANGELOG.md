@@ -1,3 +1,5 @@
+# 0.17.8 - 2016-10-08
+
 - Fixed: Service worker file was imported relatively, which only works at the
   root
   (@Moox)
