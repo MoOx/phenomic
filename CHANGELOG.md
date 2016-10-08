@@ -3,12 +3,20 @@
   We removed this useless options.
   This might looks like a breaking change, but we prefer to warn you that you
   are using things that don't do anything.
+  (@MoOx)
 - Fixed: ``offline`` option has been fixed to provide a network first approach
   like documentation is saying.
   (It was "cache first" since 0.15.0). If that's the behavior you want to keep,
   please open an issue so we can discuss about that. We think cache-first does
   not provide a good UX when it comes to update the content.
-- Added: new ``force-offline`` option, to force offline mode during development
+  (@MoOx)
+- Fixed: direct access to url (from the address bar) containing a dot in
+  development
+  (@MoOx)
+- Added: new ``force-offline`` option, to force offline mode during   
+  development
+  (@MoOx)
+
 # 0.17.6 - 2016-10-04
 
 - Fixed: RSS feed made using ``PhenomicLoaderFeedWebpackPlugin`` have all
