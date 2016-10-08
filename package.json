@@ -1,6 +1,6 @@
 {
   "name": "phenomic",
-  "version": "0.17.6",
+  "version": "0.17.7",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",

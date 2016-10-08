@@ -1,3 +1,5 @@
+# 0.17.7 - 2016-10-08
+
 - Fixed: ``offline.appcache`` option was supporting a bunch of options that
   were completely ignored.
   We removed this useless options.
@@ -13,7 +15,7 @@
 - Fixed: direct access to url (from the address bar) containing a dot in
   development
   (@MoOx)
-- Added: new ``force-offline`` option, to force offline mode during   
+- Added: new ``force-offline`` option, to force offline mode during
   development
   (@MoOx)
 
