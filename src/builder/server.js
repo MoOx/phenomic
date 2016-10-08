@@ -120,7 +120,10 @@ export default (config) => {
     server.use(config.baseUrl.pathname, router)
 
     // fallback to index for unknow pages?
-    router.use(historyFallbackMiddleware())
+    router.use(historyFallbackMiddleware({
+      // https://github.com/MoOx/phenomic/issues/808
+      disableDotRule: true,
+    }))
 
     // webpack static ressources
     router.get("*", express.static(webpackConfig.output.path))
