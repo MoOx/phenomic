@@ -192,7 +192,7 @@
     "posttest-docs": "npm install && npm run docs",
     "predocs-start": "npm run docs",
     "docs-start": "cd docs && npm start",
-    "predocs-deploy": "cd docs && npm run build && npm run showcase-screenshots",
+    "predocs-deploy": "cd docs && npm run showcase-screenshots && npm run build",
     "docs-deploy": "cd docs && ./scripts/deploy.sh",
     "prephenomic-theme-base-start": "npm run transpile && babel-node scripts/phenomic-theme-base.js",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
