@@ -187,7 +187,7 @@
     "docs-webpack-2": "npm i webpack@^2.1.0-beta.25 && babel-node scripts/docs.js && cd docs && npm i extract-text-webpack-plugin@^2.0.0-beta.4",
     "docs-webpack-2-start": "npm run docs-webpack-2 && npm start",
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
-    "test-docs": "npm run docs && cd docs && npm test && cd .. && npm run docs-webpack-2-test",
+    "test-docs": "npm run docs && cd docs && npm test",
     "#posttest-docs": "install back webpack 1",
     "posttest-docs": "npm install && npm run docs",
     "predocs-start": "npm run docs",

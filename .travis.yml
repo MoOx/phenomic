@@ -25,6 +25,8 @@ before_install:
   # remove useless/non listed deps
   - npm prune
 
-script: npm run test-with-coverage
+script:
+  - npm run test-with-coverage
+  - npm run docs-webpack-2-test
 
 after_success: npm run coverage
