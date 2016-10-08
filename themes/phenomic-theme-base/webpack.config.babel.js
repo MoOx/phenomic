@@ -191,7 +191,7 @@ export default (config = {}) => {
         },
         */
         // ! \\ if you want to use Sass or LESS, you can add sass-loader or
-        // less-loader after postcss-loader (or replacing it).
+        // less-loader before (for CSS linting to keep working) postcss-loader (or replacing it).
         // ! \\ You will also need to adjust the file extension
         // and to run the following command
         //
