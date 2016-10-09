@@ -24,13 +24,14 @@ For the content of the file, you must use the following format:
 title: My super title
 url: http://url-of-the-website/app
 source: https://github.com/url/of-the-source-(optional-if-relevant)
-tags:
+showcaseTags:
   - docs
   - community
   - open-source
   - event
   - blog
   - learning
+  - business
   - multi-languages
   - # Choose what you need! Ask on the chat if you are not sure :)
 ---
