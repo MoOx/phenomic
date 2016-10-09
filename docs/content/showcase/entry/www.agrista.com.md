@@ -2,9 +2,8 @@
 title: Agrista
 url: https://www.agrista.com/
 source: https://github.com/agrista/website
-tags:
+showcaseTags:
   - business
-  - marketing
   - docs
   - blog
 ---
