@@ -4,14 +4,11 @@ import color from "chalk"
 import fs from "fs-promise"
 import { prompt } from  "inquirer"
 
-import {
-  version as phenomicVersion,
-  peerDependencies as peerDeps,
-  optionalPeerDependencies as opPeerDeps,
-} from "../../../../package.json"
+import { version as phenomicVersion } from "../../../../package.json"
+import template from "../../../../themes/phenomic-theme-base/package.json"
+import { plainLog as log } from "../../../_utils/log"
 
 import questions, { defaultTestAnswers } from "./questions"
-import template from "./template"
 
 const themePath = join(__dirname, "../../../../themes/phenomic-theme-base")
 
@@ -19,15 +16,14 @@ export default async function setup(argv) {
   const cwd = process.cwd()
   const testMode = argv.test
 
-  console.log("Note: All values can be adjusted later.")
+  log("Note: All values can be adjusted later.")
 
   try {
     const answers = testMode ? defaultTestAnswers : await prompt(questions)
     const { name, homepage, twitter, repository, ...phenomic } = answers
 
     const devDependencies = {
-      ...peerDeps,
-      ...opPeerDeps,
+      ...template.devDependencies,
       ...!testMode && {
         phenomic: `^${ phenomicVersion }`,
       },
@@ -44,14 +40,12 @@ export default async function setup(argv) {
     }
 
     await fs.writeJson(join(cwd, "package.json"), pkg)
-    console.log(color.green("Generated package.json file"))
+    log("`package.json` generated")
 
     await fs.copy(themePath, cwd)
-    console.log(color.green("Copied theme"))
+    log("Base theme installed")
 
-    console.log(
-      color.green("Setup done. Now run \"npm install\" to get started")
-    )
+    log("Project ready. Now run `npm install` to finish the setup!", "success")
   }
   catch (err) {
     console.error(color.red(err))

@@ -5,7 +5,6 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 import { phenomicLoader } from "phenomic"
 import PhenomicLoaderFeedWebpackPlugin
   from "phenomic/lib/loader-feed-webpack-plugin"
-
 /**
  * WARNING: this config is super ultra cool as it support both webpack 1 & 2
  */
