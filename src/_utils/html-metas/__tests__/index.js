@@ -1,6 +1,6 @@
-import test from "ava"
-
 import url from "url"
+
+import test from "ava"
 
 import htmlMetas, { defaultMetas } from "../"
 

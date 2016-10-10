@@ -1,22 +1,23 @@
 // @flow
 import { join } from "path"
+
 import fs from "fs-extra"
 import colors from "chalk"
 
 import log from "../_utils/log"
 import errorFormatter from "../_utils/error-formatter"
 import webpackVersion from "../_utils/webpack-version"
+// module.exports is used
+// eslint-disable-next-line import/default
+import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 
 import webpack from "./webpack"
 import sortAssets from "./webpack/sortAssets.js"
 import devServer from "./server.js"
 import postBuild from "./post-build.js"
-
 import webpackConfigBrowser from "./webpack/config.browser.js"
 import webpackConfigNode from "./webpack/config.node.js"
 import dynamicRequire from "./dynamic-require.js"
-
-import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 
 export default function(config: Object): void {
   // log(JSON.stringify(config, null, 2))

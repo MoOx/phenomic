@@ -1,8 +1,7 @@
-import test from "ava"
-
 import { readFileSync } from "fs"
 import { join } from "path"
 
+import test from "ava"
 import globby from "globby"
 
 const testFolder = "../test-phenomic-theme-base/dist"

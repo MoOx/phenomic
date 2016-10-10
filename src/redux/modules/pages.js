@@ -1,5 +1,6 @@
 /* @flow */
 import jsonFetch from "simple-json-fetch"
+
 import pathToUri from "../../_utils/path-to-uri"
 
 export const NOOP = "phenomic/pages/NOOP"

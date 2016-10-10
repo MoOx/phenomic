@@ -1,15 +1,17 @@
-import color from "chalk"
 import { join } from "path"
-import fs from "fs-promise"
 
+import color from "chalk"
+import fs from "fs-promise"
 import { prompt } from  "inquirer"
-import questions, { defaultTestAnswers } from "./questions"
-import template from "./template"
+
 import {
   version as phenomicVersion,
   peerDependencies as peerDeps,
   optionalPeerDependencies as opPeerDeps,
 } from "../../../../package.json"
+
+import questions, { defaultTestAnswers } from "./questions"
+import template from "./template"
 
 const themePath = join(__dirname, "../../../../themes/phenomic-theme-base")
 

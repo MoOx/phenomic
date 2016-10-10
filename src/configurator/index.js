@@ -1,9 +1,10 @@
+import colors from "chalk"
+
 import yargs from "./yargs.js"
 import definitions from "./definitions.js"
 import minimalValidator from "./minimal-validator.js"
+// eslint-disable-next-line import/no-namespace
 import * as validators from "./validators.js"
-
-import colors from "chalk"
 
 export default function config({ argv = [], pkg = {} } = {}) {
   const userJSConfig = pkg.phenomic || {}
@@ -32,6 +33,7 @@ export default function config({ argv = [], pkg = {} } = {}) {
 
   // validation/adjustement for each options
   Object.keys(validators).forEach((key) => {
+    // eslint-disable-next-line import/namespace
     validators[key]({
       pkg,
       config,

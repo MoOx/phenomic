@@ -1,6 +1,7 @@
 import yargs from "yargs"
 
 import { version } from "../../package.json"
+
 import definitions from "./definitions.js"
 // import * as validators from "./validators.js"
 

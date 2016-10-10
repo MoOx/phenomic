@@ -1,10 +1,12 @@
-import test from "ava"
-
-import postBuild from "../post-build.js"
+import fs from "fs"
 import { join } from "path"
+
+import test from "ava"
 import pify from "pify"
 import mockFs from "mock-fs"
-import fs from "fs"
+
+import postBuild from "../post-build.js"
+
 const { readFile } = pify(fs)
 
 const readOpts = { encoding: "utf8" }

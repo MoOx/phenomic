@@ -1,7 +1,9 @@
 // @flow
 
-import { DefinePlugin } from "webpack"
 import url from "url"
+
+import { DefinePlugin } from "webpack"
+
 import pkg from "../../../package.json"
 import hardSourcePlugin from "../../_utils/cache/webpack.js"
 

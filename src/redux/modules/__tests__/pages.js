@@ -1,7 +1,7 @@
 import test from "ava"
 
-import * as module from "../pages"
-import reducer from "../pages"
+// eslint-disable-next-line import/no-namespace
+import reducer, * as module from "../pages"
 
 process.env.PHENOMIC_USER_PATHNAME = "/"
 

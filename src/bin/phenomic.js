@@ -1,11 +1,11 @@
 import "babel-polyfill"
 import { join } from "path"
 
-import setup from "./commands/setup/index.js"
-
 import yargs from "../configurator/yargs.js"
 import configurator from "../configurator/index.js"
 import log from "../_utils/log"
+
+import setup from "./commands/setup/index.js"
 
 const runner = () => {
   log("Phenomic is starting", "info")

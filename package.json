@@ -81,6 +81,7 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-notifier": "^1.4.0",
+    "webpack-sources": "^0.1.2",
     "yargs": "^4.3.1"
   },
   "devDependencies": {
@@ -106,7 +107,6 @@
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
     "flow-bin": "^0.32.0",
-    "image-optim": "^3.0.0",
     "js-beautify": "^1.5.10",
     "jsdom": "^9.2.0",
     "lnfs": "^3.0.0",
@@ -147,7 +147,7 @@
   "optionalPeerDependencies": {
     "babel-eslint": "^7.0.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "babel-plugin-transform-react-jsx-self": "^6.11.0" ,
+    "babel-plugin-transform-react-jsx-self": "^6.11.0",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.13.0",
@@ -241,21 +241,12 @@
       "eslint-config-i-am-meticulous/react-flow"
     ],
     "rules": {
-      "import/order": "off",
-      "import/newline-after-import": "off",
-      "import/imports-first": "off",
-      "import/no-mutable-exports": "off",
-      "import/max-dependencies": "off",
-      "import/default": "off",
-      "import/no-namespace": "off",
-      "import/namespace": "off",
-      "react/jsx-indent": "off",
-      "import/no-named-as-default": "off",
-      "import/no-extraneous-dependencies": "off",
-      "import/no-duplicates": "off",
-      "react/no-children-prop": "off",
-      "react/jsx-no-target-blank": "off",
-      "import/no-unresolved": "off"
+      "import/max-dependencies": [
+        2,
+        {
+          "max": 20
+        }
+      ]
     }
   },
   "stylelint": {

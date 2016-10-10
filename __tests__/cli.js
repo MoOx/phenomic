@@ -1,7 +1,7 @@
-import test from "ava"
 import { join } from "path"
-
 import { exec } from "child_process"
+
+import test from "ava"
 
 const target = join(__dirname, "..", "test-phenomic-theme-base")
 const execOpts = { cwd: target }

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-namespace
 import * as pageActions from "../redux/modules/pages"
 
 export default (mdContext, collection, store) => (file) => {

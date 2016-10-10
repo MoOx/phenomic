@@ -1,5 +1,4 @@
 import test from "ava"
-
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"

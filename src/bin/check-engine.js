@@ -1,7 +1,9 @@
-import semver from "semver"
-import pkg from "../../package.json"
 import { execSync } from "child_process"
+
+import semver from "semver"
 import colors from "chalk"
+
+import pkg from "../../package.json"
 
 module.exports = function() {
   const requirements = pkg.engines

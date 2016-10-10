@@ -5,11 +5,9 @@ import Link from "phenomic/lib/Link"
 // import Svg from "react-svg-inline"
 // import phenomicLogoSvg from "../../../../logo/phenomic-logo-white.svg"
 import phenomicLogo from "../../../../logo/phenomic-logo-white.png"
-
 import Button from "../../components/Button"
 import Banner from "../../components/Banner"
 // import Content from "../../components/Content"
-
 import Page from "../Page"
 
 import styles from "./index.css"
@@ -29,7 +27,7 @@ const Homepage = (props) => (
         <h1 className={ styles.title }>
           { "Phenomic is a modern " }
           <strong className={ styles.bold }>
-          { "website generator " }
+            { "website generator " }
           </strong>
           <br />
           { "based on the React and Webpack ecosystem." }

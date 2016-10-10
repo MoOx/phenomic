@@ -1,10 +1,11 @@
 import test from "ava"
 import React, { createElement } from "react"
 import { createRenderer } from "react-addons-test-utils"
-import Link from "../"
-
 import expect from "expect"
 import expectJSX from "expect-jsx"
+
+// eslint-disable-next-line import/no-named-as-default
+import Link from "../"
 
 expect.extend(expectJSX)
 

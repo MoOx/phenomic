@@ -1,12 +1,15 @@
 // @flow
 
-import fs from "fs-promise"
 import path from "path"
 
-import urlAsHtml from "./url-as-html"
+import fs from "fs-promise"
+
 import routesToUrls from "../routes-to-urls"
 import urlify from "../../_utils/urlify"
+// eslint-disable-next-line import/no-namespace
 import * as pagesActions from "../../redux/modules/pages"
+
+import urlAsHtml from "./url-as-html"
 
 if (pagesActions.SET === undefined) {
   throw new Error("pages SET action is undefined")

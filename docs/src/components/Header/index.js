@@ -1,15 +1,14 @@
 import React from "react"
 import Link from "phenomic/lib/Link"
-
 import Color from "color"
+import Svg from "react-svg-inline"
 
 import ContentWrapper from "../ContentWrapper"
 import GradientLine from "../GradientLine"
+import npmPkg from "../../../../package.json"
+import phenomicLogoSvg from "../../../../logo/phenomic.svg"
 
 import styles from "./index.css"
-import npmPkg from "../../../../package.json"
-import Svg from "react-svg-inline"
-import phenomicLogoSvg from "../../../../logo/phenomic.svg"
 import chatSvg from "./chat.svg"
 import twitterSvg from "./twitter.svg"
 import githubSvg from "./github.svg"
@@ -48,61 +47,61 @@ const Header = () => {
             </a>
           </div>
           <div className={ styles.internal }>
-          <Link
-            style={{
-              color:
+            <Link
+              style={{
+                color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            }}
-            className={ styles.link }
-            activeClassName={ styles.linkActive }
-            to="/docs/setup/"
-          >
-            { "Setup" }
-          </Link>
-          <Link
-            style={{
-              color:
+              }}
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/docs/setup/"
+            >
+              { "Setup" }
+            </Link>
+            <Link
+              style={{
+                color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            }}
-            className={ styles.link }
-            activeClassName={ styles.linkActive }
-            to="/docs/getting-started/"
-          >
-            { "Getting Started" }
-          </Link>
-          <Link
-            style={{
-              color:
+              }}
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/docs/getting-started/"
+            >
+              { "Getting Started" }
+            </Link>
+            <Link
+              style={{
+                color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            }}
-            className={ styles.link }
-            activeClassName={ styles.linkActive }
-            to="/docs/usage/"
-          >
-            { "Usage" }
-          </Link>
-          <Link
-            style={{
-              color:
+              }}
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/docs/usage/"
+            >
+              { "Usage" }
+            </Link>
+            <Link
+              style={{
+                color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            }}
-            className={ styles.link }
-            activeClassName={ styles.linkActive }
-            to="/docs/faq/"
-          >
-            { "FAQ" }
-          </Link>
-          <Link
-            style={{
-              color:
+              }}
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/docs/faq/"
+            >
+              { "FAQ" }
+            </Link>
+            <Link
+              style={{
+                color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            }}
-            className={ styles.link }
-            activeClassName={ styles.linkActive }
-            to="/showcase/"
-          >
-            <strong>{ "Showcase" }</strong>
-          </Link>
+              }}
+              className={ styles.link }
+              activeClassName={ styles.linkActive }
+              to="/showcase/"
+            >
+              <strong>{ "Showcase" }</strong>
+            </Link>
           </div>
           <div className={ styles.internal }>
             <a
@@ -130,6 +129,7 @@ const Header = () => {
               className={ styles.link }
               href="https://github.com/MoOx/phenomic"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Svg
                 className={ styles.linkIcon }
@@ -148,6 +148,7 @@ const Header = () => {
               className={ styles.link }
               href="https://twitter.com/Phenomic_app"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Svg
                 className={ styles.linkIcon }

@@ -3,6 +3,13 @@ import fs from "fs"
 
 import mkdirp from "mkdirp"
 import findCacheDir from "find-cache-dir"
+import grayMatter from "gray-matter"
+import Nightmare from "nightmare"
+import pngToJpg from "png-jpg"
+import optimizer from "image-optim"
+
+import urlToSlug from "../src/utils/url-to-slug"
+
 const cacheDir = findCacheDir({
   name: join("phenomic", "screenshots"),
   create: true,
@@ -10,7 +17,6 @@ const cacheDir = findCacheDir({
 
 const showcaseDir = join(__dirname, "..", "content", "showcase", "entry")
 
-import grayMatter from "gray-matter"
 const showcasesFile = fs.readdirSync(showcaseDir)
 
 const listTmp = []
@@ -28,9 +34,6 @@ showcasesFile.forEach((file) => {
 const list = listTmp
   // .slice(0,2) // for tests
 
-import urlToSlug from "../src/utils/url-to-slug"
-
-import Nightmare from "nightmare"
 const screenshotsLocation = resolve(
   __dirname, "..", "content", "assets", "showcases"
 )
@@ -79,9 +82,6 @@ screenshots.forEach(({ url, tmpLocation, width, height }) => {
       .screenshot(tmpLocation)
   }
 })
-
-import pngToJpg from "png-jpg"
-import optimizer from "image-optim"
 
 nightmare
   .end()

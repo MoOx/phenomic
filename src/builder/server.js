@@ -1,15 +1,17 @@
 import { join } from "path"
+
 import express, { Router } from "express"
 import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
 import historyFallbackMiddleware from "connect-history-api-fallback"
 import WebpackNotifierPlugin from "webpack-notifier"
-
-import opn from "opn"
-import log from "../_utils/log"
 import portFinder from "portfinder"
+import opn from "opn"
 
+import log from "../_utils/log"
+// module.exports is used
+// eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"

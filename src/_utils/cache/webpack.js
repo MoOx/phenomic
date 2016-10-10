@@ -1,6 +1,7 @@
 // @flow
 
 import { join } from "path"
+
 import HardSourceWebpackPlugin from "hard-source-webpack-plugin"
 import ObjectHash from "node-object-hash"
 import findCacheDir from "find-cache-dir"

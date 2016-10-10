@@ -1,6 +1,7 @@
 // @flow
 
 import { resolve } from "path"
+
 import { sync as globSync } from "globby"
 import OfflinePlugin from "offline-plugin"
 import joinUri from "url-join"

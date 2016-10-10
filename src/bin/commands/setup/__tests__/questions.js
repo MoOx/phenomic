@@ -1,4 +1,5 @@
 import test from "ava"
+
 import questions from "../questions"
 
 const getQuestion = (name) => questions.find((q) => q.name === name)
