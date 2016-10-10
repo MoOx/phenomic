@@ -35,7 +35,7 @@ test("should render <a> tag", () => {
     <a
       className="foo"
       onClick={ function noRefCheck() {} }
-      style={ { } }
+      style={{ }}
     >
       <span />
     </a>
@@ -65,7 +65,7 @@ test("should allow passing props to <a> tag", () => {
       className="foo"
       foo="bar"
       onClick={ function noRefCheck() {} }
-      style={ { } }
+      style={{ }}
     >
       <span />
     </a>
@@ -96,7 +96,7 @@ test("should have activeClassName when url matched", () => {
       className="foo bar"
       foo="bar"
       onClick={ function noRefCheck() {} }
-      style={ { } }
+      style={{ }}
     >
       <span />
     </a>
@@ -127,7 +127,7 @@ test("should have activeClassName when url matched with index.html", () => {
       className="foo bar"
       foo="bar"
       onClick={ function noRefCheck() {} }
-      style={ { } }
+      style={{ }}
     >
       <span />
     </a>
@@ -157,7 +157,7 @@ test("should not have undefined when no activeClassName props", () => {
       className="foo"
       foo="bar"
       onClick={ function noRefCheck() {} }
-      style={ { } }
+      style={{ }}
     >
       <span />
     </a>

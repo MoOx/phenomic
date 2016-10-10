@@ -88,7 +88,7 @@ available`, () => {
   )
 
   expect(renderer.getRenderOutput()).toEqualJSX(
-    <div style={ { "text-align": "center" } }>
+    <div style={{ "text-align": "center" }}>
       <h1>
         { "Test" }
       </h1>

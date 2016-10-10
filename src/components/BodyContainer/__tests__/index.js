@@ -19,7 +19,7 @@ test("should wrap html", () => {
   expect(renderer.getRenderOutput()).toEqualJSX(
     <div
       className="phenomic-BodyContainer"
-      dangerouslySetInnerHTML={ { __html: html } }
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   )
 })
@@ -39,13 +39,13 @@ test("should wrap html and children", () => {
       <div
         key={ 1 }
         className="phenomic-BodyContainer"
-        dangerouslySetInnerHTML={ { __html: html } }
+        dangerouslySetInnerHTML={{ __html: html }}
       />
       <Noop />
       <div
         key={ 2 }
         className="phenomic-BodyContainer"
-        dangerouslySetInnerHTML={ { __html: html } }
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
   )
@@ -60,7 +60,7 @@ test("should accept props", () => {
   expect(renderer.getRenderOutput()).toEqualJSX(
     <div
       className="test"
-      dangerouslySetInnerHTML={ { __html: html } }
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   )
 })
@@ -76,7 +76,7 @@ test("should accept props for wrapper", () => {
       <div
         key={ 1 }
         className="phenomic-BodyContainer"
-        dangerouslySetInnerHTML={ { __html: html } }
+        dangerouslySetInnerHTML={{ __html: html }}
       />
       <Noop />
     </div>

@@ -12,21 +12,21 @@ type Props = {
 const Html = (props: Props) => (
   <html { ...props.htmlProps }>
     <head
-      dangerouslySetInnerHTML={ {
+      dangerouslySetInnerHTML={{
         __html: props.head,
-      } }
+      }}
     />
     <body>
       <div
         id="phenomic"
-        dangerouslySetInnerHTML={ {
+        dangerouslySetInnerHTML={{
           __html: props.body,
-        } }
+        }}
       />
       <script
-        dangerouslySetInnerHTML={ {
+        dangerouslySetInnerHTML={{
           __html: props.script,
-        } }
+        }}
       />
       { props.children }
     </body>
