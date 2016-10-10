@@ -23,7 +23,6 @@ docs/dist
 docs/content/assets/showcases/*
 
 # phenomic-theme-base files to work on it
-themes/phenomic-theme-base/package.json
 themes/phenomic-theme-base/dist
 test-phenomic-theme-base
 

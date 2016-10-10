@@ -1,3 +1,7 @@
+// ⚠️
+// not too much es2015 as this is delivered/run via npm as is
+// ⚠️
+
 const stat = require("fs").stat
 const spawn = require("child_process").spawn
 const join = require("path").join
@@ -5,13 +9,36 @@ const join = require("path").join
 const fs = require("fs-extra")
 
 const pkg = require("../package.json")
+
 // no need for th is step on CI
 if (process.env.CI) {
   process.exit(0)
 }
 
-const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
+const spawnOpts = {
+  stdio: "inherit",
+  cwd: join(__dirname, "../"),
+}
 
+stat("__tests__", function(error, stats) {
+  if (!error && stats.isDirectory()) {
+    console.log("Tweaking and installing dependencies for docs & themes")
+
+    spawn("babel-node", [ "scripts/docs.js" ], spawnOpts)
+    .on("error", (err) => {
+      console.error("Failed to prepare docs")
+      console.error(err)
+    })
+
+    spawn("babel-node", [ "scripts/phenomic-theme-base.js" ], spawnOpts)
+    .on("error", (err) => {
+      console.error("Failed to prepare docs")
+      console.error(err)
+    })
+  }
+})
+
+const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
 stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
   if (err) {
     console.log("No .npmignore in phenomic-theme-base to rename")
@@ -31,8 +58,8 @@ stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
   )
 })
 
-stat("lib", function(error, stats1) {
-  if (!error && stats1.isDirectory()) {
+stat("lib", function(error, stats) {
+  if (!error && stats.isDirectory()) {
     return true
   }
 
@@ -45,11 +72,6 @@ stat("lib", function(error, stats1) {
     // "This may take a moment." +
     "\n"
   )
-
-  const spawnOpts = {
-    stdio: "inherit",
-    cwd: join(__dirname, "../"),
-  }
 
   const fail  = (err) => {
     console.error(
