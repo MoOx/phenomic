@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router"
 
 import Banner from "../Banner"
+
 import styles from "./index.css"
 
 const Footer = () => (

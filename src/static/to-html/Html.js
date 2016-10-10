@@ -6,7 +6,7 @@ type Props = {
   head: string,
   body: string,
   script: string,
-  children: any,
+  children?: any,
 }
 
 const Html = (props: Props) => (

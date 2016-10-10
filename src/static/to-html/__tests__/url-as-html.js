@@ -1,10 +1,9 @@
-import test from "ava"
-
 import url from "url"
+
+import test from "ava"
 
 import beautifyHTML from "../../../_utils/beautify-html"
 import htmlMetas from "../../../_utils/html-metas"
-
 import urlAsHtml from "../url-as-html"
 
 import collection from "./fixtures/collection.js"

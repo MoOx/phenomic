@@ -1,6 +1,7 @@
+import fs from "fs"
+
 import test from "ava"
 import suppose from "suppose"
-import fs from "fs"
 
 // This test created to test inquirer public API
 test.cb("test inquirer interface", (t) => {

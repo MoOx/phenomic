@@ -1,6 +1,7 @@
+import { join } from "path"
+
 import test from "ava"
 
-import { join } from "path"
 import { testConfig } from ".."
 
 test("should throws when for an invalid folder", (t) => {

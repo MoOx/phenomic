@@ -3,7 +3,6 @@ import { Link } from "phenomic/lib/Link"
 import enhanceCollection from "phenomic/lib/enhance-collection"
 
 import urlToSlug from "../../utils/url-to-slug"
-
 import Page from "../../layouts/Page"
 
 import styles from "./index.css"

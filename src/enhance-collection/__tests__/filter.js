@@ -1,4 +1,5 @@
 import test from "ava"
+
 import enhanceCollection from ".."
 
 const collec = [

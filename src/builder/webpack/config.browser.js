@@ -1,9 +1,13 @@
 // @flow
 
 import { join } from "path"
-import commonWebpackConfig from "./config.common.js"
+
 import { offlinePlugin, offlineEntry } from "../../_utils/offline/webpack.js"
+// module.exports is used
+// eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../../loader/plugin.js"
+
+import commonWebpackConfig from "./config.common.js"
 
 const chunkNameBrowser = "phenomic.browser"
 

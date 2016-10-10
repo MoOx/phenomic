@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react"
-
 import ga from "react-google-analytics"
+
 const GoogleAnalyticsInitiailizer = ga.Initializer
 
 const isProduction = process.env.NODE_ENV === "production"

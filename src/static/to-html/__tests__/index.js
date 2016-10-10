@@ -1,12 +1,12 @@
-import test from "ava"
 import { join } from "path"
 
+import test from "ava"
+
 import beautifyHTML from "../../../_utils/beautify-html"
+import toHTML, { writeAllHTMLFiles } from "../index"
 
 import collection from "./fixtures/collection.js"
 import store from "./fixtures/store.js"
-
-import toHTML, { writeAllHTMLFiles } from "../index"
 
 const expectedHTML = {
   [join("destination", "index.html")]:

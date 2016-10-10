@@ -1,13 +1,12 @@
 import test from "ava"
-
 import React from "react"
 import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"
 import expectJSX from "expect-jsx"
 
-expect.extend(expectJSX)
-
 import Html from "../Html"
+
+expect.extend(expectJSX)
 
 const head = "head"
 const body = "body"

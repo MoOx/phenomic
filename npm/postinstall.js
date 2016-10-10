@@ -1,8 +1,10 @@
 const stat = require("fs").stat
 const spawn = require("child_process").spawn
 const join = require("path").join
-const pkg = require("../package.json")
+
 const fs = require("fs-extra")
+
+const pkg = require("../package.json")
 // no need for th is step on CI
 if (process.env.CI) {
   process.exit(0)

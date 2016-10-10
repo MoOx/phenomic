@@ -8,11 +8,11 @@ import Helmet from "react-helmet"
 
 import htmlMetas from "../../_utils/html-metas"
 import pathToUri from "../../_utils/path-to-uri"
-import Html from "./Html"
 import PhenomicContextProvider from "../../components/ContextProvider"
 import serialize from "../../_utils/serialize"
-
 import minifyCollection from "../../loader/minify"
+
+import Html from "./Html"
 
 export default function(
   url: string,
@@ -142,13 +142,16 @@ export default function(
             // render html document as simple html
             "<!doctype html>" +
             ReactDOMserver.renderToStaticMarkup(
-              React.createElement(Html, {
-                htmlProps,
-                head: headTags,
-                body,
-                script,
-                children: scriptTags,
-              })
+              React.createElement(
+                Html,
+                {
+                  htmlProps,
+                  head: headTags,
+                  body,
+                  script,
+                },
+                scriptTags
+              )
             )
           )
         }

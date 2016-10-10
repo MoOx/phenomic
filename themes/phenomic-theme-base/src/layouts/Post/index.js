@@ -11,7 +11,7 @@ const Post = (props) => {
       { ...props }
       header={
         <header>
-        {
+          {
           pageDate &&
           <time key={ pageDate.toISOString() }>
             { pageDate.toDateString() }

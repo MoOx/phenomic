@@ -37,7 +37,7 @@ class BodyContainer extends Component<void, Props, void> {
 
     return (
       <div { ...otherProps }>
-      {
+        {
         React.Children.map(children, (child: any, i) => {
           if (typeof child === "string") {
             return (

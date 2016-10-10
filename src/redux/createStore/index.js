@@ -1,5 +1,6 @@
 // @flow
 import { createStore, applyMiddleware, compose } from "redux"
+
 import promiseMiddleware from "../middlewares/promise"
 
 export default function(

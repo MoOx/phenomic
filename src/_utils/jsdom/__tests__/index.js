@@ -1,4 +1,5 @@
 import test from "ava"
+
 import dom from "../"
 
 dom("http://localhost/")

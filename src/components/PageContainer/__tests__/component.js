@@ -1,13 +1,12 @@
 import test from "ava"
-
 import React, { createElement as jsx } from "react"
 import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"
 import expectJSX from "expect-jsx"
 
-expect.extend(expectJSX)
-
 import PageContainer from "../component"
+
+expect.extend(expectJSX)
 
 // fixtures
 /* eslint-disable react/no-multi-comp */

@@ -1,6 +1,7 @@
+import url from "url"
+
 import test from "ava"
 
-import url from "url"
 import normalizeBaseUrl from "../index.js"
 
 test("should normalize base url with a trailing slash", (t) => {

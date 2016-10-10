@@ -1,4 +1,7 @@
 import test from "ava"
+
+// module.exports is used
+// eslint-disable-next-line import/default
 import checkEngine from "../check-engine"
 
 test("should not throw when sastifies", (t) => {

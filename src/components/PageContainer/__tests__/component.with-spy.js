@@ -1,7 +1,7 @@
-import test from "ava"
 import { join } from "path"
-import sinon from "sinon"
 
+import test from "ava"
+import sinon from "sinon"
 import React, { createElement as jsx } from "react"
 import { createRenderer } from "react-addons-test-utils"
 

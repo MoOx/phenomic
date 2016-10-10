@@ -1,4 +1,5 @@
 import { remove as rm } from "fs-promise"
+
 import testFolder, { exec } from "./utils/test-folder.js"
 
 const target = "test-phenomic-theme-base"

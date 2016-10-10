@@ -1,11 +1,14 @@
 // @flow
 
 import { RawSource } from "webpack-sources"
-import enhanceCollection from "../enhance-collection"
-import feed from "./feed"
-import minify from "../loader/minify.js"
 
+import enhanceCollection from "../enhance-collection"
+import minify from "../loader/minify.js"
+// module.exports is used
+// eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
+
+import feed from "./feed"
 
 function PhenomicLoaderFeedWebpackPlugin(options: Object) {
   this.options = options

@@ -2,6 +2,7 @@
 
 import remark from "remark"
 import stripMd from "strip-markdown"
+
 import prune from "./prune"
 
 const defaultOpts = {
@@ -54,4 +55,3 @@ export default (
     },
   }
 }
-

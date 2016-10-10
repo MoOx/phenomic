@@ -5,13 +5,13 @@ import path from "path"
 
 import colors from "chalk"
 
+import { cacheDir } from "../../builder/webpack/config.node.js"
+
 const cwd = (
   path.sep === "\\"
   ? process.cwd().replace(/\\/g, "\\\\")
   : process.cwd()
 )
-
-import { cacheDir } from "../../builder/webpack/config.node.js"
 
 const cleanStaticBuildPathRE = new RegExp(cacheDir + "\/(webpack:\/)?", "g")
 const cwdRE = new RegExp(cwd, "g")

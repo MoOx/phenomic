@@ -1,11 +1,13 @@
 import fs from "fs"
 // import { relative as relativePath, join } from "path"
 import { join } from "path"
+
 import { sync as rimraf } from "rimraf"
 import { sync as mkdirp } from "mkdirp"
 import test from "ava"
 
 import cleanNodeCache from "../index.js"
+
 const fileNotToClean = join(
   __dirname, "..", "..", "..", "..", "node_modules", "ava", "index.js"
 )

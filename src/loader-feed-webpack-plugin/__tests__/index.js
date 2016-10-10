@@ -3,8 +3,11 @@ import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
 import webpackVersion from "../../_utils/webpack-version"
-
+// module.exports is used
+// eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../../loader/plugin.js"
+// module.exports is used
+// eslint-disable-next-line import/default
 import PhenomicLoaderFeedWebpackPlugin from "../index.js"
 
 const outputPath = __dirname + "/_output/"

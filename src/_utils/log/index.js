@@ -8,6 +8,7 @@ const symbolOrSuccess = (symbol?: string): string => {
   return logSymbols[symbol ? symbol : "success"]
 }
 
+// eslint-disable-next-line import/no-mutable-exports
 export let start: Date = new Date()
 let lastTime: Date = new Date()
 

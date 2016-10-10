@@ -1,6 +1,7 @@
+import { join } from "path"
+
 import test from "ava"
 
-import { join } from "path"
 import configurator from ".."
 
 test("should return a default configuration", (t) => {

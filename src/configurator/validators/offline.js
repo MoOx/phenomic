@@ -1,9 +1,10 @@
 // @flow
 
-import { yellow, gray } from "chalk"
-import log from "../../_utils/log"
-
 import { parse } from "url"
+
+import { yellow, gray } from "chalk"
+
+import log from "../../_utils/log"
 
 export const defaultOfflineConfig: PhenomicOfflineConfig = {
   serviceWorker: true,

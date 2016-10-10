@@ -1,4 +1,5 @@
 import test from "ava"
+
 import sortAssets from "../sortAssets"
 
 test("sortAssets", (t) => {

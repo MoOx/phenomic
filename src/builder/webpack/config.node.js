@@ -1,11 +1,13 @@
 // @flow
 
 import { join, basename } from "path"
+
 import { BannerPlugin, optimize } from "webpack"
 import findCacheDir from "find-cache-dir"
 
-import commonWebpackConfig from "./config.common.js"
 import webpackVersion from "../../_utils/webpack-version"
+
+import commonWebpackConfig from "./config.common.js"
 
 const { UglifyJsPlugin } = optimize
 const chunkNameNode = "phenomic.node"

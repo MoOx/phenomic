@@ -1,6 +1,7 @@
 import test from "ava"
 
 import config, { testConfig } from ".."
+
 import { defaultOfflineConfig } from "../validators/offline.js"
 
 test("should default to false for 'offline' option", (t) => {
