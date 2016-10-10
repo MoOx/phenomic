@@ -73,24 +73,21 @@ const template = {
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "eslint-config-i-am-meticulous/react",
+      "eslint:recommended",
+      "plugin:react/recommended",
     ],
-    "rules": {
-      "import/order": "off",
-      "import/newline-after-import": "off",
-      "import/imports-first": "off",
-      "import/no-mutable-exports": "off",
-      "import/max-dependencies": "off",
-      "import/default": "off",
-      "import/no-namespace": "off",
-      "import/namespace": "off",
-      "react/jsx-indent": "off",
-      "import/no-named-as-default": "off",
-      "import/no-extraneous-dependencies": "off",
-      "import/no-duplicates": "off",
-      "react/no-children-prop": "off",
-      "react/jsx-no-target-blank": "off",
-      "import/no-unresolved": "off",
+    "env": {
+      "browser": true,
+      "node": true,
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "generators": true,
+        "experimentalObjectRestSpread": true,
+      },
     },
   },
   "stylelint": {
