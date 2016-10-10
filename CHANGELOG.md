@@ -1,5 +1,14 @@
+# HEAD
+
+## Details
+
+### Base theme
+
 - Changed: base theme now provides a less strict eslint config
   (only eslint + eslint-plugin-react recommended rules)
+  (@MoOx)
+- Changed: update babel-eslint to ^7.0.0
+  (@MoOx)
 
 # 0.17.8 - 2016-10-08
 

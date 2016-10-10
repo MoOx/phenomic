@@ -87,7 +87,7 @@
     "ava": "^0.16.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.0.0",
     "babel-plugin-flow-react-proptypes": "^0.10.1",
     "babel-plugin-istanbul": "^2.0.0",
     "babel-preset-latest": "^6.14.0",
@@ -145,7 +145,7 @@
     "whatwg-fetch": "^0.11.0"
   },
   "optionalPeerDependencies": {
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.0.0",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.13.0",
