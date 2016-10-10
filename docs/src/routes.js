@@ -13,12 +13,12 @@ import Showcase from "./components/Showcase"
 const DocsPageContainer = (props) => (
   <PhenomicPageContainer
     { ...props }
-    layouts={ {
+    layouts={{
       Page,
       PageError,
       PageLoading,
       Homepage,
-    } }
+    }}
   />
 )
 

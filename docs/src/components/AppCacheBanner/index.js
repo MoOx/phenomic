@@ -85,10 +85,10 @@ export default class AppCacheBanner extends Component {
           state.event === "downloading" &&
           <div
             className={ styles.content }
-            style={ {
+            style={{
               backgroundColor: props.backgroundColor,
               color: props.color,
-            } }
+            }}
           >
             <div className={ styles.message }>
               <div className={ styles.spinner } />
@@ -109,10 +109,10 @@ export default class AppCacheBanner extends Component {
           state.event === "updateready" &&
           <div
             className={ styles.content }
-            style={ {
+            style={{
               backgroundColor: props.backgroundColor,
               color: props.color,
-            } }
+            }}
           >
             <div className={ styles.message }>
               { "Website cache has been updated." }
@@ -139,10 +139,10 @@ export default class AppCacheBanner extends Component {
           state.event === "error" &&
           <div
             className={ styles.content }
-            style={ {
+            style={{
               backgroundColor: props.backgroundColorError,
               color: props.color,
-            } }
+            }}
           >
             <div className={ styles.message }>
               { "An error occured during the website update. " }

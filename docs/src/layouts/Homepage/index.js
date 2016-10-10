@@ -17,7 +17,7 @@ import styles from "./index.css"
 const Homepage = (props) => (
   <div>
     <Banner big>
-      <div style={ { textAlign: "center" } }>
+      <div style={{ textAlign: "center" }}>
         <img
           src={ phenomicLogo }
         />
@@ -41,18 +41,18 @@ const Homepage = (props) => (
         </h2>
         <Link
           to={ "/docs/setup/" }
-          style={ {
+          style={{
             display: "inline-flex",
             textDecoration: "none",
             boxShadow: "none",
             background: "none",
-          } }
+          }}
         >
           <Button huge light>
             { "Try it now" }
           </Button>
         </Link>
-        <p style={ { marginTop: "3rem", fontSize: "0.8rem" } }>
+        <p style={{ marginTop: "3rem", fontSize: "0.8rem" }}>
           { "* All pages are available as HTML (works with no JavaScript)" }
           { " but user can get an enhanced navigation (when JavaScript is" }
           { " on)." }
@@ -65,35 +65,35 @@ const Homepage = (props) => (
           allowTransparency="true"
           frameBorder="0"
           scrolling="0"
-          style={ {
+          style={{
             width: "155px",
             height: "30px",
             verticalAlign: "middle",
-          } }
+          }}
           src={
             "https://ghbtns.com/github-btn.html?" +
             "user=MoOx&repo=phenomic&type=star&count=true&size=large"
           }
-        ></iframe>
+        />
       </div>
     </Banner>
     <Page { ...props } >
       <p
-        style={ {
+        style={{
           display: "block",
           textAlign: "center",
           margin: "2rem 0",
           boxShadow: "none",
           background: "none !important",
-        } }
+        }}
       >
         <Link
           to={ "/docs/setup/" }
-          style={ {
+          style={{
             display: "inline-flex",
             textDecoration: "none",
             boxShadow: "none",
-          } }
+          }}
         >
           <Button huge vivid>
             { "Try it now" }

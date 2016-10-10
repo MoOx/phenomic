@@ -49,10 +49,10 @@ const Header = () => {
           </div>
           <div className={ styles.internal }>
           <Link
-            style={ {
+            style={{
               color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            } }
+            }}
             className={ styles.link }
             activeClassName={ styles.linkActive }
             to="/docs/setup/"
@@ -60,10 +60,10 @@ const Header = () => {
             { "Setup" }
           </Link>
           <Link
-            style={ {
+            style={{
               color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            } }
+            }}
             className={ styles.link }
             activeClassName={ styles.linkActive }
             to="/docs/getting-started/"
@@ -71,10 +71,10 @@ const Header = () => {
             { "Getting Started" }
           </Link>
           <Link
-            style={ {
+            style={{
               color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            } }
+            }}
             className={ styles.link }
             activeClassName={ styles.linkActive }
             to="/docs/usage/"
@@ -82,10 +82,10 @@ const Header = () => {
             { "Usage" }
           </Link>
           <Link
-            style={ {
+            style={{
               color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            } }
+            }}
             className={ styles.link }
             activeClassName={ styles.linkActive }
             to="/docs/faq/"
@@ -93,10 +93,10 @@ const Header = () => {
             { "FAQ" }
           </Link>
           <Link
-            style={ {
+            style={{
               color:
                 green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-            } }
+            }}
             className={ styles.link }
             activeClassName={ styles.linkActive }
             to="/showcase/"
@@ -106,10 +106,10 @@ const Header = () => {
           </div>
           <div className={ styles.internal }>
             <a
-              style={ {
+              style={{
                 color:
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-              } }
+              }}
               className={ styles.link }
               href={ "https://gitter.im/MoOx/phenomic" }
             >
@@ -123,10 +123,10 @@ const Header = () => {
               { "Chat" }
             </a>
             <a
-              style={ {
+              style={{
                 color:
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-              } }
+              }}
               className={ styles.link }
               href="https://github.com/MoOx/phenomic"
               target="_blank"
@@ -141,10 +141,10 @@ const Header = () => {
               { "GitHub" }
             </a>
             <a
-              style={ {
+              style={{
                 color:
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
-              } }
+              }}
               className={ styles.link }
               href="https://twitter.com/Phenomic_app"
               target="_blank"
