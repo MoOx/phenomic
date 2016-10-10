@@ -53,11 +53,11 @@ const Showcase = (props, context) => {
   )
 
   return (
-    <div style={ { textAlign: "center" } }>
+    <div style={{ textAlign: "center" }}>
       <Page
-        head={ {
+        head={{
           title: "See who's using Phenomic",
-        } }
+        }}
         __filename={ "../layouts/Showcase/index.js" }
         __url={ "/showcase/" }
       >

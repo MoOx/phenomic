@@ -9,9 +9,9 @@ const GradientLine = (props) => (
       [styles.normal]: !props.reverse,
       [styles.reverse]: props.reverse,
     }) }
-    style={ {
+    style={{
       height: props.height + "px",
-    } }
+    }}
   />
 )
 

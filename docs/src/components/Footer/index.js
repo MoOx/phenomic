@@ -21,30 +21,30 @@ const Footer = () => (
         allowTransparency="true"
         frameBorder="0"
         scrolling="0"
-        style={ {
+        style={{
           width: "155px",
           height: "30px",
           verticalAlign: "middle",
-        } }
+        }}
         src={
           "https://ghbtns.com/github-btn.html?" +
           "user=MoOx&repo=phenomic&type=star&count=true&size=large"
         }
-      ></iframe>
+      />
       <iframe
         allowTransparency="true"
         frameBorder="0"
         scrolling="no"
-        style={ {
+        style={{
           width: "275px",
           height: "30px",
           verticalAlign: "middle",
-        } }
+        }}
         src={
           "https://platform.twitter.com/widgets/follow_button.html?" +
           "screen_name=Phenomic_app&count=horizontal&size=l"
         }
-      ></iframe>
+      />
       <span className={ styles.separator }>{ " | " }</span>
       { "Pages: " }
       <Link

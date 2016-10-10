@@ -24,7 +24,7 @@ const PageLoading = () => (
       <h1>{ " " }</h1>
     </Banner>
     <div className={ styles.loader }>
-      <div className={ styles.spinner }></div>
+      <div className={ styles.spinner } />
     </div>
   </div>
 )
