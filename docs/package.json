@@ -29,6 +29,8 @@
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-transform-react-jsx-source": "^6.9.0",
+    "babel-plugin-transform-react-jsx-self": "^6.11.0" ,
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-optimize": "^1.0.1",
@@ -81,6 +83,8 @@
           "babel-preset-react"
         ],
         "plugins": [
+          "babel-plugin-transform-react-jsx-source",
+          "babel-plugin-transform-react-jsx-self",
           "react-hot-loader/babel"
         ]
       },
@@ -106,6 +110,8 @@
           "babel-preset-react"
         ],
         "plugins": [
+          "babel-plugin-transform-react-jsx-source",
+          "babel-plugin-transform-react-jsx-self",
           "react-hot-loader/babel"
         ]
       },

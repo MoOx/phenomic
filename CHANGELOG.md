@@ -5,10 +5,12 @@
 ### Base theme
 
 - Changed: base theme now provides a less strict eslint config
-  (only eslint + eslint-plugin-react recommended rules)
+  (only ``eslint`` + ``eslint-plugin-react`` recommended rules)
   (@MoOx)
-- Changed: update babel-eslint to ^7.0.0
+- Changed: update ``babel-eslint`` to ^7.0.0
   (@MoOx)
+- Added: ``babel-plugin-transform-react-jsx-source`` and
+  ``babel-plugin-transform-react-jsx-self`` for easier React debugging
 
 # 0.17.8 - 2016-10-08
 

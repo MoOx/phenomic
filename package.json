@@ -146,6 +146,8 @@
   },
   "optionalPeerDependencies": {
     "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-react-jsx-source": "^6.9.0",
+    "babel-plugin-transform-react-jsx-self": "^6.11.0" ,
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.13.0",

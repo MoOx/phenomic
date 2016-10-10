@@ -25,6 +25,8 @@ const template = {
           "babel-preset-react",
         ],
         "plugins": [
+          "babel-plugin-transform-react-jsx-source",
+          "babel-plugin-transform-react-jsx-self",
           "react-hot-loader/babel",
         ],
       },
@@ -50,6 +52,8 @@ const template = {
           "babel-preset-react",
         ],
         "plugins": [
+          "babel-plugin-transform-react-jsx-source",
+          "babel-plugin-transform-react-jsx-self",
           "react-hot-loader/babel",
         ],
       },
