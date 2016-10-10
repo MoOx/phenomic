@@ -233,7 +233,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     if (page.error) {
       if (!PageError) {
         return (
-          <div style={ { "text-align": "center" } }>
+          <div style={{ "text-align": "center" }}>
             <h1>{ page.error }</h1>
             <p>{ page.errorText }</p>
           </div>

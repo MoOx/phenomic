@@ -36,13 +36,13 @@ test("should render Html componnent", () => {
     <html
       lang="en"
     >
-      <head dangerouslySetInnerHTML={ { __html: head } } />
+      <head dangerouslySetInnerHTML={{ __html: head }} />
       <body>
         <div
-          dangerouslySetInnerHTML={ { __html: body } }
+          dangerouslySetInnerHTML={{ __html: body }}
           id="phenomic"
         />
-        <script dangerouslySetInnerHTML={ { __html: script } } />
+        <script dangerouslySetInnerHTML={{ __html: script }} />
         <p>{ "foo" }</p>
       </body>
     </html>

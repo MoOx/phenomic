@@ -29,7 +29,7 @@ class BodyContainer extends Component<void, Props, void> {
       return (
         <div
           className="phenomic-BodyContainer"
-          dangerouslySetInnerHTML={ { __html: child } }
+          dangerouslySetInnerHTML={{ __html: child }}
           { ...otherProps }
         />
       )
@@ -44,7 +44,7 @@ class BodyContainer extends Component<void, Props, void> {
               <div
                 key={ i }
                 className="phenomic-BodyContainer"
-                dangerouslySetInnerHTML={ { __html: child } }
+                dangerouslySetInnerHTML={{ __html: child }}
               />
             )
           }

@@ -13,13 +13,13 @@ import Post from "./layouts/Post"
 const PageContainer = (props) => (
   <PhenomicPageContainer
     { ...props }
-    layouts={ {
+    layouts={{
       Page,
       PageError,
       PageLoading,
       Homepage,
       Post,
-    } }
+    }}
   />
 )
 

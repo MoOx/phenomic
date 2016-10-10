@@ -8,7 +8,7 @@ export const defaultMetas = [
 ]
 
 export default function(
-  { baseUrl, css}: {baseUrl: {pathname: string}, css: Array<string> } = {}
+  { baseUrl, css }: {baseUrl: {pathname: string}, css: Array<string> } = {}
 ): Array<string> {
   const metas = [ ...defaultMetas ]
 
