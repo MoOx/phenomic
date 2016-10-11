@@ -5,6 +5,7 @@
 [![Code Coverage](https://img.shields.io/coveralls/MoOx/phenomic/master.svg)](https://coveralls.io/github/MoOx/phenomic)
 [![Version](https://img.shields.io/npm/v/phenomic.svg)](https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md)
 [![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/phenomic)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Phenomic_app.svg?style=social)](https://twitter.com/Phenomic_app)
 
 [![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-3D76C2.svg)](https://github.com/MoOx/phenomic)
 [![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-6C488A.svg)](https://gitlab.com/MoOx/phenomic)
