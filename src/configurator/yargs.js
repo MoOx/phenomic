@@ -6,7 +6,8 @@ import definitions from "./definitions.js"
 
 yargs
   .version(() => version)
-  .help()
+  .usage("Usage: phenomic <command> [options]")
+  // .hep()
   .showHelpOnFail()
   .epilogue(
     "For more information about the configuration, " +
@@ -32,13 +33,6 @@ Object.keys(definitions).forEach((optName) => {
   if (option.description) {
     yargs.describe(optName, option.description)
   }
-
-  // made by hand for now, we might revisit option this later
-  // if (validators[optName]) {
-  //   yargs.check(() => {
-  //
-  //   })
-  // }
 })
 
 export default yargs
