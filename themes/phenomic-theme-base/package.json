@@ -118,7 +118,6 @@
     "invariant": "^2.1.1",
     "json-loader": "^0.5.2",
     "npm-run-all": "^1.7.0",
-    "phenomic": "*",
     "postcss-browser-reporter": "^0.4.0",
     "postcss-cssnext": "^2.4.0",
     "postcss-loader": "^0.13.0",
