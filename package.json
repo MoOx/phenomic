@@ -145,7 +145,7 @@
     "whatwg-fetch": "^0.11.0"
   },
   "scripts": {
-    "postinstall": "node npm/postinstall.js",
+    "postinstall": "node npm/postinstall.js && npm run transpile && npm run docs && npm run phenomic-theme-base",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
     "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
