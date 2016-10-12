@@ -16,11 +16,11 @@ Here is a commented ``package.json`` with only the interesting parts
 
 ```js
 {
-  // tell npm that there are a lot of fields that you don't need
-  // and prevent publishing this folder as a npm package
+  // tell yarn that there are a lot of fields that you don't need
+  // and prevent publishing this folder as a yarn package
   "private": true,
 
-  // npm needs a 'dashed-name' (optional?)
+  // yarn needs a 'dashed-name' (optional?)
   "name": "YOUR-NAME-that-might-be-used-in-some-title-tags",
 
   // phenomic uses the default package.json homepage
@@ -88,7 +88,7 @@ Here is a commented ``package.json`` with only the interesting parts
     // force offline mode during development, for testing
     "force-offline": false,
     // best thing is to use this value in the CLI
-    // $ npm start -- --force-offline
+    // $ yarn start -- --force-offline
 
     // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
     "cache": false

@@ -326,8 +326,8 @@ If you really want to add Sass or LESS for you styles you can replace in your
 `webpack.config.babel.js` `postcss-loader` by `sass-loader` or `less-loader`:
 
 - Install dependencies
-  - `npm install --save-dev node-sass sass-loader`
-  - or `npm install --save-dev less less-loader`
+  - `yarn install node-sass sass-loader`
+  - or `yarn install less less-loader`
 - Adjust `webpack.config.babel.js` configuration for .css
   - duplicate css section and replace `.css` by `.sass` (or `.less`)
   - or directly replace `.css` by `.sass` (or `.less`).

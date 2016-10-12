@@ -10,9 +10,9 @@ You will have multiple possibilities to deploy your `dist` folder on the
 
 You can define your own method by using something like
 - a very simple script (see below)
-- [buildbranch](https://www.npmjs.com/package/buildbranch)
+- [buildbranch](https://www.yarnjs.com/package/buildbranch)
 - [git-directory-deploy](https://github.com/X1011/git-directory-deploy)
-- [gh-pages](https://www.npmjs.com/package/gh-pages)
+- [gh-pages](https://www.yarnjs.com/package/gh-pages)
 
 ---
 
@@ -42,7 +42,7 @@ You can paste it under ``./scripts/deploy.sh``.
 GIT_DEPLOY_REPO=${GIT_DEPLOY_REPO:-$(node -e 'process.stdout.write(require("./package.json").repository)')}
 
 cd dist && \
-$(npm bin)/rimraf .git
+$(yarn bin)/rimraf .git
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
@@ -95,7 +95,7 @@ In your `package.json`, add the following items under the `scripts` section:
 {
   "scripts": {
     // ...
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "./scripts/deploy.sh"
   }
 }
@@ -104,7 +104,7 @@ In your `package.json`, add the following items under the `scripts` section:
 Now run:
 
 ```sh
-npm run deploy
+yarn run deploy
 ```
 
 It should be good!
@@ -128,11 +128,11 @@ node_js:
   - '5'
   - '4'
 
-# (by default, Travis will run "npm test" script when the language is node_js)
+# (by default, Travis will run "yarn test" script when the language is node_js)
 
-# deploy is run after "npm test"
+# deploy is run after "yarn test"
 deploy:
-  # keep the build we just made with "npm test" (dist/)
+  # keep the build we just made with "yarn test" (dist/)
   skip_cleanup: true
 
   # define the script to use for deployment
@@ -156,7 +156,7 @@ With only `repo` or `public_repo` scopes.
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
 ```sh
-npm i -g travis-encrypt
+yarn i -g travis-encrypt
 travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
@@ -209,9 +209,9 @@ section.
 ```js
 {
   "scripts": {
-    "test": "npm run build",
+    "test": "yarn run build",
     // ...
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "./scripts/deploy.sh"
   }
 }
