@@ -100,11 +100,25 @@ In your `package.json`, add the following items under the `scripts` section:
   }
 }
 ```
+_or if using `yarn`_
+```js
+{
+  "scripts": {
+    // ...
+    "predeploy": "yarn run build",
+    "deploy": "./scripts/deploy.sh"
+  }
+}
+```
 
 Now run:
 
 ```sh
 npm run deploy
+```
+_or if using `yarn`_
+```sh
+yarn run deploy
 ```
 
 It should be good!
@@ -128,11 +142,11 @@ node_js:
   - '5'
   - '4'
 
-# (by default, Travis will run "npm test" script when the language is node_js)
+# (by default, Travis will run "yarn test" script when the language is node_js)
 
-# deploy is run after "npm test"
+# deploy is run after "yarn test"
 deploy:
-  # keep the build we just made with "npm test" (dist/)
+  # keep the build we just made with "yarn test" (dist/)
   skip_cleanup: true
 
   # define the script to use for deployment
@@ -156,7 +170,7 @@ With only `repo` or `public_repo` scopes.
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
 ```sh
-npm i -g travis-encrypt
+yarn i -g travis-encrypt
 travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
@@ -209,9 +223,9 @@ section.
 ```js
 {
   "scripts": {
-    "test": "npm run build",
+    "test": "yarn run build",
     // ...
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "./scripts/deploy.sh"
   }
 }

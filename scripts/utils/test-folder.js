@@ -41,11 +41,15 @@ export default async function test(
 
     await init()
 
-    log("npm installing...")
 
-    // install
-    await exec("npm prune", { cwd: target })
-    await exec("npm install", { cwd: target })
+    try {
+      log("yarn installing...")
+      await exec("yarn install", { cwd: target })
+    } catch (err) {
+      log("npm installing...")
+      await exec("npm prune", { cwd: target })
+      await exec("npm install", { cwd: target })
+    }
 
     // we don't use a link on phenomic directly, otherwise
     // phenomic/node_modules contains too many dependencies (dev deps) and the

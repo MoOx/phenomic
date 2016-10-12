@@ -9,24 +9,28 @@ node_js:
 matrix:
   fast_finish: true
 
+before_install:
+  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn
+
 # cache node modules
 cache:
   directories:
+    - $HOME/.npm
+    - $HOME/.yarn-cache
     - node_modules
     - docs/node_modules
     - themes/phenomic-theme-base/node_modules
     - test-setup/node_modules
 
-before_install:
-  # ensure npm @ 3 is installed (check only first number of npm)
-  - NPM_VERSION=$(npm --version)
-  - 'if [ "${NPM_VERSION:0:2}" = "2." ]; then npm i -g npm@latest; fi'
-  # faster npm install
-  - npm set progress=false
-  # remove useless/non listed deps
-  - npm prune
+install:
+  - yarn install
 
 script:
-  - npm run test && npm run docs-webpack-2-test && npm run docs-webpack-2-reset
+  - yarn run test
+  - yarn run docs-webpack-2-test
+  - yarn run docs-webpack-2-reset
 
-after_success: npm run coverage
+after_success: yarn run coverage
