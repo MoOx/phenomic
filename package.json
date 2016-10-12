@@ -220,9 +220,11 @@
         {
           "max": 20
         }
-      ]
+      ],
+      "import/no-extraneous-dependencies": 0
     }
   },
+  "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
   "stylelint": {
     "extends": "stylelint-config-standard"
   },

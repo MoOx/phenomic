@@ -54,7 +54,6 @@
     "mkdirp": "^0.5.1",
     "nightmare": "^2.6.1",
     "npm-run-all": "^1.7.0",
-    "phenomic": "*",
     "png-jpg": "0.0.2",
     "postcss-browser-reporter": "^0.4.0",
     "postcss-cssnext": "^2.4.0",
@@ -140,8 +139,12 @@
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react"
-    ]
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": 0
+    }
   },
+  "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
