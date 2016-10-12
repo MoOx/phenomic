@@ -102,7 +102,7 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-flow-vars": "^0.5.0",
     "eslint-plugin-import": "^2.0.0",
-    "eslint-plugin-react": "^6.3.0",
+    "eslint-plugin-react": "^6.4.0",
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
