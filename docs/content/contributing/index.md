@@ -7,6 +7,10 @@ title: How to contribute to Phenomic
 To work on the phenomic-theme-base, run the following:
 
 ```sh
+npm run phenomic-theme-base-start
+```
+_or with `yarn`_
+```sh
 yarn run phenomic-theme-base-start
 ```
 
@@ -15,7 +19,10 @@ Then you can edit files in the `phenomic-theme-base` folder.
 ## Update the docs
 
 To work on the docs, run the following:
-
+```sh
+npm run docs-start
+```
+_or with `yarn`_
 ```sh
 yarn run docs-start
 ```
@@ -29,6 +36,8 @@ Then you can edit files in the `docs` folder.
 - Integration tests are located at the root of the project (`__tests__/*`).
 
 _After every modification, please run the entire test suite by using
+`npm test`._
+_or with `yarn`_
 `yarn test`._
 
 Note that the full test suite can take a few minutes, as it runs unit tests and

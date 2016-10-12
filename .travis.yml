@@ -12,21 +12,22 @@ matrix:
 # cache node modules
 cache:
   directories:
+    - $HOME/.npm
+    - $HOME/.yarn-cache
     - node_modules
     - phenomic-theme-base/node_modules
     - test-phenomic-theme-base/node_modules
     - docs/node_modules
 
 before_install:
-  # ensure npm @ 3 is installed (check only first number of npm)
-  - NPM_VERSION=$(npm --version)
-  - 'if [ "${NPM_VERSION:0:2}" = "2." ]; then npm i -g npm@latest; fi'
-  # faster npm install
-  - npm set progress=false
-  # remove useless/non listed deps
-  - npm prune
+  - time npm i -g yarn --cache-min 999999999
+
+install:
+  - time yarn
 
 script:
-  - npm run test && npm run docs-webpack-2-test && npm run docs-webpack-2-reset
+  - yarn run test
+  - yarn run docs-webpack-2-test
+  - yarn run docs-webpack-2-reset
 
-after_success: npm run coverage
+after_success: yarn run coverage

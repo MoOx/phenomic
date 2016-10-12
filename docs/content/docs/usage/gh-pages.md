@@ -10,9 +10,9 @@ You will have multiple possibilities to deploy your `dist` folder on the
 
 You can define your own method by using something like
 - a very simple script (see below)
-- [buildbranch](https://www.yarnjs.com/package/buildbranch)
+- [buildbranch](https://www.npmjs.com/package/buildbranch)
 - [git-directory-deploy](https://github.com/X1011/git-directory-deploy)
-- [gh-pages](https://www.yarnjs.com/package/gh-pages)
+- [gh-pages](https://www.npmjs.com/package/gh-pages)
 
 ---
 
@@ -42,7 +42,7 @@ You can paste it under ``./scripts/deploy.sh``.
 GIT_DEPLOY_REPO=${GIT_DEPLOY_REPO:-$(node -e 'process.stdout.write(require("./package.json").repository)')}
 
 cd dist && \
-$(yarn bin)/rimraf .git
+$(npm bin)/rimraf .git
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
@@ -95,6 +95,16 @@ In your `package.json`, add the following items under the `scripts` section:
 {
   "scripts": {
     // ...
+    "predeploy": "npm run build",
+    "deploy": "./scripts/deploy.sh"
+  }
+}
+```
+_or if using `yarn`_
+```js
+{
+  "scripts": {
+    // ...
     "predeploy": "yarn run build",
     "deploy": "./scripts/deploy.sh"
   }
@@ -103,6 +113,10 @@ In your `package.json`, add the following items under the `scripts` section:
 
 Now run:
 
+```sh
+npm run deploy
+```
+_or if using `yarn`_
 ```sh
 yarn run deploy
 ```
