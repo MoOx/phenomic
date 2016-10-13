@@ -13,7 +13,8 @@ of errors and helps to enforce code consistency.
 
 [ESLint](http://eslint.org/) is a must have JavaScript linter.
 The base theme provides you with a standard set of rules for ES2015+ & React
-(via eslint and eslint-plugin-react recommended config).
+(via eslint and eslint-plugin-react recommended config).  
+You can look at it by [reading the extended file](https://github.com/MoOx/phenomic/blob/master/src/eslint-config-recommended/index.js)
 
 ### Alternative config
 
