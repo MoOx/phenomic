@@ -5,7 +5,8 @@
 ### Base theme
 
 - Changed: base theme now provides a less strict eslint config
-  (only ``eslint`` + ``eslint-plugin-react`` recommended rules)
+  (only ``eslint`` + ``eslint-plugin-react`` recommended rules via a
+  [preset](https://github.com/MoOx/phenomic/blob/0.17.9/src/eslint-config-recommended/index.js) - might be moved in it's own package in the future)
   (@MoOx)
 - Changed: update ``babel-eslint`` to ^7.0.0
   (@MoOx)
