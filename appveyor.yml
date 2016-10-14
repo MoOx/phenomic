@@ -12,8 +12,9 @@ matrix:
 
 cache:
   - node_modules -> package.json
-#   - test-phenomic-theme-base/node_modules -> package.json
-#   - docs/node_modules -> package.json
+  # - phenomic-theme-base/node_modules -> package.json
+  # - test-phenomic-theme-base/node_modules -> package.json
+  # - docs/node_modules -> package.json
 
 install:
   - ps: Install-Product node $env:nodejs_version x64

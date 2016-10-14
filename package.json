@@ -145,11 +145,11 @@
     "whatwg-fetch": "^0.11.0"
   },
   "scripts": {
-    "postinstall": "node npm/postinstall.js && npm run transpile && npm run docs && npm run phenomic-theme-base",
+    "postinstall": "node npm/postinstall.js && npm run transpile",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
     "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src __tests__ scripts npm docs/scripts docs/src themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src scripts npm __tests__",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
@@ -157,15 +157,19 @@
     "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
     "integration-tests": "ava __tests__/index.js && ava __tests__/cli.js",
     "phenomic-theme-base": "babel-node scripts/phenomic-theme-base.js",
+    "phenomic-theme-base-linting": "eslint --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "prephenomic-theme-base-start": "npm run transpile && npm run phenomic-theme-base",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
-    "test-phenomic-theme-base": "babel-node scripts/test-phenomic-theme-base.js && cd test-phenomic-theme-base && npm test",
+    "pretest-phenomic-theme-base": "babel-node scripts/test-phenomic-theme-base.js",
+    "test-phenomic-theme-base": "cd test-phenomic-theme-base && npm test",
     "posttest-phenomic-theme-base": "npm run integration-tests",
     "docs": "babel-node scripts/docs.js",
+    "docs-linting": "eslint --ignore-path .gitignore --fix docs/scripts docs/src",
     "docs-webpack-2": "npm i webpack@^2.1.0-beta.25 && babel-node scripts/docs.js && cd docs && npm i extract-text-webpack-plugin@^2.0.0-beta.4",
     "docs-webpack-2-start": "npm run docs-webpack-2 && npm start",
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
-    "test-docs": "npm run docs && cd docs && npm test",
+    "pretest-docs": "npm run docs && npm run docs-linting",
+    "test-docs": "cd docs && npm test",
     "#posttest-docs": "install back webpack 1",
     "posttest-docs": "npm install && npm run docs",
     "predocs-start": "npm run docs",
@@ -173,7 +177,7 @@
     "predocs-deploy": "cd docs && npm run showcase-screenshots && npm run build",
     "docs-deploy": "cd docs && ./scripts/deploy.sh",
     "preall-tests": "npm run lint",
-    "all-tests": "cross-env TESTING=1 npm run tests && npm run test-phenomic-theme-base && npm run test-docs",
+    "all-tests": "cross-env TESTING=1 npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base && npm run test-docs",
     "test": "npm run all-tests",
     "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -221,10 +225,12 @@
           "max": 20
         }
       ],
-      "import/no-extraneous-dependencies": 0
+      "import/no-extraneous-dependencies": 0,
+      "import/no-unresolved": 0
     }
   },
   "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
+  "#eslintConfig/rules/import/no-unresolved": "deps in docs & theme are installed after the lint step",
   "stylelint": {
     "extends": "stylelint-config-standard"
   },

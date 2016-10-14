@@ -13,6 +13,7 @@ matrix:
 cache:
   directories:
     - node_modules
+    - phenomic-theme-base/node_modules
     - test-phenomic-theme-base/node_modules
     - docs/node_modules
 

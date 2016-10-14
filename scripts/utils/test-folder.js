@@ -7,6 +7,8 @@ import lnfs from "lnfs"
 import execCmd from "exec-cmd"
 import nodeCmdShim from "cmd-shim"
 
+import { plainLog as log } from "../../src/_utils/log"
+
 const cmdShim = pify(nodeCmdShim)
 
 const noop = () => {}
@@ -25,7 +27,7 @@ export default async function test(
   try {
     const targetModules = `${ target }/node_modules`
 
-    cleanup()
+    await cleanup()
 
     await Promise.all([
       // node_modules link to avoid duplicate package related issues
@@ -38,6 +40,8 @@ export default async function test(
     ])
 
     await init()
+
+    log("npm installing...")
 
     // install
     await exec("npm prune", { cwd: target })
