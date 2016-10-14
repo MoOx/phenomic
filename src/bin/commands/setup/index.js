@@ -2,6 +2,7 @@ import { join } from "path"
 
 import color from "chalk"
 import fs from "fs-promise"
+import globby from "globby"
 import { prompt } from  "inquirer"
 
 import { version as phenomicVersion } from "../../../../package.json"
@@ -42,7 +43,15 @@ export default async function setup(argv) {
     await fs.writeJson(join(cwd, "package.json"), pkg)
     log("`package.json` generated")
 
-    await fs.copy(themePath, cwd)
+    // node_modules is excluded because can be present during tests
+    // (but will never be in public package)
+    const files = globby.sync(
+      [ "*", "!node_modules" ],
+      { dot: true, cwd: themePath }
+    )
+    await Promise.all(files.map((file) => fs.copy(
+      join(themePath, file), join(cwd, file)
+    )))
     log("Base theme installed")
 
     log("Project ready. Now run `npm install` to finish the setup!", "success")
