@@ -15,7 +15,7 @@ test.cb("phenomic loader", (t) => {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
-            test: /\.md$/,
+            test: /\.(md|markdown)$/,
             loader: __dirname + "/../index.js",
             exclude: /node_modules/,
           },
@@ -119,7 +119,7 @@ test.cb("phenomic loader can be used with plugins", (t) => {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
-            test: /\.md$/,
+            test: /\.(md|markdown)$/,
             loader: __dirname + "/../index.js",
             exclude: /node_modules/,
             ...(

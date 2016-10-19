@@ -1,1 +1,1 @@
-require.context(".", true, /\.md$/)
+require.context(".", true, /\.(md|markdown)$/)

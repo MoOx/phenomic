@@ -51,6 +51,46 @@ test(
 )
 
 test(
+  "should transform */index.markdown path to a simple url",
+  (t) => t.is(
+    urlify("something/index.markdown"),
+    "something/"
+  )
+)
+
+test(
+  "should transform *\\index.markdown path to a simple url (windows compat)",
+  (t) => t.is(
+    urlify("something\\index.markdown"),
+    "something/"
+  )
+)
+
+test(
+  "should transform md path to a simple url",
+  (t) => t.is(
+    urlify("something-else.markdown"),
+    "something-else/"
+  )
+)
+
+test(
+  "should transform index.markdown path to a empty url",
+  (t) => t.is(
+    urlify("index.markdown"),
+    ""
+  )
+)
+
+test(
+  "should transform index.markdown path to a empty url (with root)",
+  (t) => t.is(
+    urlify("/index.markdown"),
+    "/"
+  )
+)
+
+test(
   "should handle windows backslash",
   (t) => t.is(
     urlify("some\\thing\\else\\"),
