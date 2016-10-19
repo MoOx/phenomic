@@ -31,7 +31,7 @@ export default (config = {}) => {
       [webpackVersion() === 1 ? "loaders" : "rules"]: [
         {
           // phenomic requirement
-          test: /\.md$/,
+          test: /\.(md|markdown)$/,
           loader: phenomicLoader,
           ...(
             webpackVersion() === 1

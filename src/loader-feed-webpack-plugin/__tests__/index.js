@@ -19,7 +19,7 @@ test.cb("loader feed webpack plugin", (t) => {
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {
-            test: /\.md$/,
+            test: /\.(md|markdown)$/,
             loader: __dirname + "/../../loader/index.js",
             exclude: /node_modules/,
           },

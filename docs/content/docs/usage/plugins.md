@@ -158,7 +158,7 @@ import { phenomicLoader } from "phenomic"
    // webpack 2
    // rules: [
      {
-       test: /\.md$/,
+       test: /\.(md|markdown)$/,
        loader: phenomicLoader,
        query: {
           context: path.join(config.cwd, config.source),

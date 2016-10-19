@@ -11,7 +11,7 @@ import store from "../src/store.js"
 phenomicClient({ metadata, routes, store })
 
 // md files processed via phenomic-loader to JSON & generate collection
-let mdContext = require.context("../content", true, /\.md$/)
+let mdContext = require.context("../content", true, /\.(md|markdown)$/)
 mdContext.keys().forEach(mdContext)
 
 // hot loading
@@ -19,7 +19,7 @@ if (module.hot) {
 
   // hot load md
   module.hot.accept(mdContext.id, () => {
-    mdContext = require.context("../content", true, /\.md$/)
+    mdContext = require.context("../content", true, /\.(md|markdown)$/)
     const mdHotUpdater = require("phenomic/lib/client/hot-md").default
     const requireUpdate = mdHotUpdater(mdContext, window.__COLLECTION__, store)
     mdContext.keys().forEach(requireUpdate)

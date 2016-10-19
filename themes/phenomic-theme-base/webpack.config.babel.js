@@ -44,7 +44,7 @@ export default (config = {}) => {
         // allow to generate collection and rss feed.
         {
           // phenomic requirement
-          test: /\.md$/,
+          test: /\.(md|markdown)$/,
           loader: phenomicLoader,
           query: {
             context: path.join(__dirname, config.source),

@@ -49,7 +49,7 @@ export const makeConfig = (config = {}) => {
     module: {
       loaders: [
         {
-          test: /\.md$/,
+          test: /\.(md|markdown)$/,
           loader: phenomicLoader,
 
           // you can also define options here, but functions will be silently
