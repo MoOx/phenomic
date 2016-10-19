@@ -24,14 +24,14 @@ Then add into it some content:
 title: My super new page
 ---
 
-My super **content** !
+My super **content**!
 ```
 
 This file is composed of two sections:
 
 ### The front-matter
 
-The first part (between the 3 dashes ``---``) contains page metadata.  
+The first part (between the 3 dashes ``---``) contains page metadata.
 You can store anything you want.
 It's by default a
 [YAML section](https://en.wikipedia.org/wiki/YAML#Sample_document),
@@ -40,7 +40,7 @@ but you can use
 
 ### The body
 
-The body is the part below the 3 dashes ``---``.  
+The body is the part below the 3 dashes ``---``.
 By default [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) is supported but
 [you can easily add whatever format you want](../usage/plugins/).
 
@@ -73,14 +73,14 @@ No problem, you can still add a ``route`` field in the front-matter like this:
 ```md
 ---
 title: My super new page
-route: my-super-url.html
+route: my-super-url
 ---
 
-My super **content** !
+My super **content**!
 ```
 
 Then your content will be accessible at
-[http://localhost:3333/my-super-page.html](http://localhost:3333/my-super-page.html)
+[http://localhost:3333/my-super-url/](http://localhost:3333/my-super-url/)
 
 ---
 
@@ -140,16 +140,16 @@ you want!
 We will need to create a new component and references it in some places.
 
 First you need to tell Phenomic that you added a layout.
-So you need to register your layout in ``src/app/routes.js`` in the ``PhenomicPageContainer`` usage.
+So you need to register your layout in ``src/routes.js`` in the ``PhenomicPageContainer`` usage.
 
-```js
-import Page from "../layouts/Page"
-import PageError from "../layouts/PageError"
-import PageLoading from "../layouts/PageLoading"
-import Homepage from "../layouts/Homepage"
-import Post from "../layouts/Post"
+```javascript
+import Page from "./layouts/Page"
+import PageError from "./layouts/PageError"
+import PageLoading from "./layouts/PageLoading"
+import Homepage from "./layouts/Homepage"
+import Post from "./layouts/Post"
 // ↓ Add your layout here
-import MySuperLayout from "../layouts/MySuperLayout"
+import MySuperLayout from "./layouts/MySuperLayout"
 
       // ...
 
@@ -175,7 +175,7 @@ route: my-super-url.html
 layout: MySuperLayout # ← Add your layout here
 ---
 
-My super **content** !
+My super **content**!
 ```
 
 For the content of the layout, you can take an existing layout and adjust it
@@ -197,17 +197,18 @@ layout: MySuperLayout
 featuredImage: someImageUrl.png # ← Add your image here
 ---
 
-My super **content** !
+My super **content**!
 ```
 
 ---
 
 ⚠️ It is possible to add any information in the front-matter, and you might be
-able to do almost anything you can think of, even images gallery!
+able to do almost anything you can think of, even add an images gallery!
 
 ---
 
-The front-matter data are send like page body in your React components.
+The front-matter data is sent with `props` in your React components, and is
+available under `props.head`.
 This allow you to manipulate it normally using JavaScript.
 
 Supposing you want to use your ``featuredImage`` in a list of pages or posts (``PagesList`` in the default theme)
@@ -215,7 +216,16 @@ you will have to change your ``PagePreview`` to make use of that since ``PagesLi
 
 Changing the ``PagePreview`` component will change how the "latest posts" are rendered on your homepage.
 
-```js
+---
+
+⚠️ The `Homepage` layout filters the latest posts by `Post` layout. If you don't
+see your new page in this list, either change your new page to have the `Post`
+layout, or edit the homepage collections filter to include your custom layout
+by checking out the [How to use Collections](https://phenomic.io/docs/usage/collections/) page.
+
+---
+
+```javascript
 const PagePreview = ({ __url, title, date , featuredImage }) => {
   return (
     <div>
@@ -281,9 +291,10 @@ If you want to share some variables in your CSS or CSS modules,
 you can rely on cssnext support of CSS custom properties to do so
 ([limited to :root](https://github.com/postcss/postcss-custom-properties#readme)):
 
-The more effcient way to have global variables is to some values in cssnext configuration `customProperties.variables` entry in `webpack.config.babel.js` :
+The more effcient way to have global variables is add to some values in cssnext
+configuration `customProperties.variables` entry in `webpack.config.babel.js` :
 
-```js
+```javascript
 require("postcss-cssnext")({
   browsers: "last 2 versions",
   features: {
