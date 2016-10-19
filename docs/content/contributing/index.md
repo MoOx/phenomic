@@ -57,7 +57,7 @@ To run tests for the ``PageContainer`` component:
 ava src/PageContainer/__tests__/*
 ```
 
-When you think you are done with your update, remember to run `yarn test`.
+When you think you are done with your update, remember to run either `npm test` or `yarn test`.
 Anyway, CI will warn us if something goes wrong.
 
 ---

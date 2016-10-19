@@ -30,7 +30,7 @@ Right after that, we will grab required dependencies & you are good to go!
 
 ```sh
 npm install phenomic && ./node_modules/.bin/phenomic setup
-npm install && yarn start
+npm install && npm start
 ```
 _or with `yarn`_
 
