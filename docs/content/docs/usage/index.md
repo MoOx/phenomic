@@ -13,6 +13,8 @@ incomplete: true
 - [Scripting](scripting/)
 - [RSS Feeds](feeds/)
 - [Automatic deployment on GitHub Pages (gh-pages)](gh-pages/)
+- [Automatic deployment on Netlify Pages (gh-pages)](netlify-pages/)
+- [CMS with Netlify CMS (netlify-cms)](netlify-cms/)
 - [Advanced Usage and tips](../advanced/)
 
 This website is made using Phenomic. You can check out
