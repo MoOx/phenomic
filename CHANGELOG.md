@@ -2,6 +2,8 @@
 
 ## Details
 
+- Fixed: some errors related to ``cache`` options by upgrading a dependency
+  (@MoOx)
 - Added: support for ``.markdown`` extension files.
   This allows to use [SiteLeaf](https://www.siteleaf.com/) as a CMS
   ([#829](https://github.com/MoOx/phenomic/pull/829) - @xuopled)
