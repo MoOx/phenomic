@@ -44,14 +44,14 @@ const screenshots = list.reduce((screenshots, { url }) => {
     ...screenshots,
     {
       url,
-      tmpLocation: join(cacheDir, "screenshot-" + filename + "-large.png"),
+      tmpLocation: join(cacheDir, filename + "-large.png"),
       location: join(screenshotsLocation, filename + "-large.jpg"),
       width: 1366,
       height: 768,
     },
     {
       url,
-      tmpLocation: join(cacheDir, "screenshot-" + filename + "-small.png"),
+      tmpLocation: join(cacheDir, filename + "-small.png"),
       location: join(screenshotsLocation, filename + "-small.jpg"),
       width: 360,
       height: 640,
@@ -74,7 +74,7 @@ screenshots.forEach(({ url, tmpLocation, width, height }) => {
     if (url !== prevUrl) {
       nightmare
         .goto(url)
-        .wait(8000) // eg: huge backgrounds are slow to get :)
+        .wait(10000) // eg: huge backgrounds are slow to get :)
     }
     nightmare
       .wait(2000) // wait for some logo animations & stuff (eg putaindecode.io)
@@ -86,27 +86,22 @@ screenshots.forEach(({ url, tmpLocation, width, height }) => {
 nightmare
   .end()
   .then(() => {
-    console.log("ℹ️ Showcase screenshots saved")
-    console.log("ℹ️ Optimizing screenshots...")
+    console.log("✅ Showcase screenshots cached")
     screenshots.forEach(({ tmpLocation, location }) => {
-      try {
-        fs.readFileSync(location)
-      }
-      catch (e) {
-        pngToJpg(
-          {
-            input: tmpLocation,
-            output: location,
-            options: { quality: 90 },
-          },
-          () => {
-            optimizer.optimize(location)
-              // .then(() => console.log(location, "optimized"))
-              .catch((err) => console.log("Failed to optimize image", err))
-          }
-        )
-      }
+      pngToJpg(
+        {
+          input: tmpLocation,
+          output: location,
+          options: { quality: 90 },
+        },
+        () => {
+          optimizer.optimize(location)
+            // .then(() => console.log(location, "optimized"))
+            .catch((err) => console.log("Failed to optimize image", err))
+        }
+      )
     })
-    console.log("✅ Showcase screenshots ready.")
+    console.log("ℹ️ Optimizing screenshots...")
+    // console.log("✅ Showcase screenshots ready.")
   })
   .catch((e) => console.error(e))
