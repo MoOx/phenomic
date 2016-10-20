@@ -2,13 +2,19 @@
 title: Use Netlify CMS to manage your content of a Phenomic project
 ---
 
-Once you configured [automatic deployment on Netlify Pages](netlify-pages/), you may want to add the CMS feature to Phenomic ?
-You are lucky, [Netlify](https://www.netlify.com/) is working on [netlify-cms](https://github.com/netlify/netlify-cms).
+Once you configured [automatic deployment with Netlify](../../deploy/netlify/),
+you may want to get a CMS to manage Phenomic content.
 
-⚠️ Netlify-cms is in active development and there is not a stable version for now
+You are lucky, [Netlify](https://www.netlify.com/) is working on [netlify-cms](https://github.com/netlify/netlify-cms).
 
 _Netlify CMS_ is a Content Management System for static site generators,
 so we can use it with Phenomic.
+
+---
+
+⚠️ Netlify-cms is in active development and there is not a stable version for now
+
+---
 
 Let's see how to configure it
 
@@ -91,20 +97,21 @@ Now, we have to tell to `Webpack` to copy our `/admin` folder :
 ```
 
 At this step, you can push modifications to your repository,
-wait until your project is deployed on `Netlify pages`,
+wait until your project is deployed on Netlify,
 and you will be able to access to administration panel with this path : `{YOUR_NETLIFY_PROJECT}.netlify.com/admin`
 
 ## Netlify configuration
 
 One more step. We need to specify an authentification provider on `Netlify`.
 
-- Go in your account `Github` settings and create a new developer application.
-The only important field is `Authorization callback URL`. Make sure to set `https://api.netlify.com/auth/done`.
+- Go on your `Github` settings and create a new developer application.
+The only important field is `Authorization callback URL`.
+**Make sure to set `https://api.netlify.com/auth/done`**.
 
 - Go to the `Access` tab on your `Netlify` administration and configure your
-`Github` provider with the `Client ID` and `Client Secret` generated on the
-previous step
+Github provider with the `Client ID` and `Client Secret` generated on the
+previous step.
 
 You are done. You can now access to your admin panel via your `Github` account.
 
-_Note: It's possible to use Bitbucket as a provider_
+_Note: It's also possible to use Bitbucket as a provider._
