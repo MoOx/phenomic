@@ -21,7 +21,11 @@ const Showcase = (props, context) => {
     sort: (a, b) => (
       (!a.curated && b.curated) ||
       // more tags first
-      a.showcaseTags.length < b.showcaseTags.length ||
+      (
+        !a.curated &&
+        !b.curated &&
+        a.showcaseTags.length < b.showcaseTags.length
+      ) ||
       // blog last
       a.showcaseTags.indexOf("blog") > -1
     ),
