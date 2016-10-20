@@ -2,6 +2,10 @@
 
 ## Details
 
+- Added: support for ``.markdown`` extension files.
+  This allows to use [SiteLeaf](https://www.siteleaf.com/) as a CMS
+  ([#829](https://github.com/MoOx/phenomic/pull/829) - @xuopled)
+
 ### Base theme
 
 - Changed: base theme now provides a less strict eslint config
