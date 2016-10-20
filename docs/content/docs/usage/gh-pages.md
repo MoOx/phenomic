@@ -1,5 +1,5 @@
 ---
-title: Automatic deployment on GitHub Pages
+title: Automatic deployment of your Phenomic project with GitHub Pages
 ---
 
 **If you want to deploy to a custom domain, be sure to use the ``phenomic.CNAME`` option in your
