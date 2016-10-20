@@ -1,8 +1,18 @@
 # HEAD
 
+# 0.17.9 - 2016-10-20
+
+In short:
+- Some errors related to ``cache`` option have been fixed.
+- Base theme now provides a less strict eslint config.
+- Documentation has been updated and now includes new sections
+  to use [Netlify](https://www.netlify.com/) (for deploy & as a CMS)
+- We added some new websites to the
+  [showcase](https://phenomic.io/showcase/)
+
 ## Details
 
-- Fixed: some errors related to ``cache`` options by upgrading a dependency
+- Fixed: some errors related to ``cache`` option by upgrading a dependency
   (@MoOx)
 - Added: support for ``.markdown`` extension files.
   This allows to use [SiteLeaf](https://www.siteleaf.com/) as a CMS
