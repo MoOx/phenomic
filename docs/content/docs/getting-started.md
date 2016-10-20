@@ -31,7 +31,7 @@ This file is composed of two sections:
 
 ### The front-matter
 
-The first part (between the 3 dashes ``---``) contains page metadata.
+The first part (between the 3 dashes ``---``) contains page metadata.  
 You can store anything you want.
 It's by default a
 [YAML section](https://en.wikipedia.org/wiki/YAML#Sample_document),
@@ -40,7 +40,7 @@ but you can use
 
 ### The body
 
-The body is the part below the 3 dashes ``---``.
+The body is the part below the 3 dashes ``---``.  
 By default [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) is supported but
 [you can easily add whatever format you want](../usage/plugins/).
 
@@ -73,7 +73,7 @@ No problem, you can still add a ``route`` field in the front-matter like this:
 ```md
 ---
 title: My super new page
-route: my-super-url
+route: my-super-url.html
 ---
 
 My super **content**!
@@ -142,7 +142,7 @@ We will need to create a new component and references it in some places.
 First you need to tell Phenomic that you added a layout.
 So you need to register your layout in ``src/routes.js`` in the ``PhenomicPageContainer`` usage.
 
-```javascript
+```js
 import Page from "./layouts/Page"
 import PageError from "./layouts/PageError"
 import PageLoading from "./layouts/PageLoading"
@@ -207,9 +207,9 @@ able to do almost anything you can think of, even add an images gallery!
 
 ---
 
-The front-matter data is sent with `props` in your React components, and is
+The front-matter data are sent as `props` in your layouts, and is
 available under `props.head`.
-This allow you to manipulate it normally using JavaScript.
+This allows you to manipulate it normally using JavaScript.
 
 Supposing you want to use your ``featuredImage`` in a list of pages or posts (``PagesList`` in the default theme)
 you will have to change your ``PagePreview`` to make use of that since ``PagesList`` just render a series of ``PagePreview`` components.
@@ -225,7 +225,7 @@ by checking out the [How to use Collections](https://phenomic.io/docs/usage/coll
 
 ---
 
-```javascript
+```js
 const PagePreview = ({ __url, title, date , featuredImage }) => {
   return (
     <div>
@@ -294,7 +294,7 @@ you can rely on cssnext support of CSS custom properties to do so
 The more effcient way to have global variables is add to some values in cssnext
 configuration `customProperties.variables` entry in `webpack.config.babel.js` :
 
-```javascript
+```js
 require("postcss-cssnext")({
   browsers: "last 2 versions",
   features: {
