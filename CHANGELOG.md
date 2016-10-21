@@ -1,5 +1,8 @@
 # HEAD
 
+- Fixed: npm `postinstall` step
+  ([#833](https://github.com/MoOx/phenomic/issues/833) - @MoOx)
+
 # 0.17.9 - 2016-10-20
 
 In short:

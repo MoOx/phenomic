@@ -145,7 +145,7 @@
     "whatwg-fetch": "^0.11.0"
   },
   "scripts": {
-    "postinstall": "node npm/postinstall.js && npm run transpile",
+    "postinstall": "node npm/postinstall.js",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
     "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
@@ -176,7 +176,7 @@
     "docs-start": "cd docs && npm start",
     "predocs-deploy": "cd docs && npm run showcase-screenshots && npm run build",
     "docs-deploy": "cd docs && ./scripts/deploy.sh",
-    "preall-tests": "npm run lint",
+    "preall-tests": "npm run transpile && npm run lint",
     "all-tests": "cross-env TESTING=1 npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base && npm run test-docs",
     "test": "npm run all-tests",
     "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
