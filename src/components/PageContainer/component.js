@@ -82,7 +82,15 @@ function getLayout(
   layout: string, props: Props
 ): ReactClass<any> | void {
   if (props.layouts && props.layouts[layout]) {
-    return props.layouts[layout]
+    console.log(`props.layouts ${layout}`, props.layouts)
+    const checkForStatic = props.layouts[layout].loadingState
+    if(checkForStatic) {
+      console.log(`layout ${layout} has loading state`)
+    }
+    return {
+      hasStaticLoadingStateSet: props.layouts[layout].loadingState,
+      layout: props.layouts[layout]
+    }
   }
 }
 
@@ -174,15 +182,13 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     if (!page) {
       if (item) {
         props.getPage(item.__url, item.__dataUrl)
-      }
-      else {
+      } else {
         props.logger.error(
           `phenomic: PageContainer: ${ pageUrl } is a page not found.`
         )
         props.setPageNotFound(pageUrl)
       }
-    }
-    else {
+    } else {
       if (page.error) {
         return
       }
@@ -203,8 +209,22 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const { props } = this
 
     const pageUrl = splatToUrl(props.params.splat)
+    console.log('pageUrl', pageUrl)
     const page = props.pages[pageUrl]
-
+    let actualPage
+    let actualPageType
+    if (typeof window !== 'undefined') {
+      // use window collection instead of page props
+      actualPage = window.__COLLECTION__.filter(function(pg, i) {
+        return pageUrl === pg.__url
+      })
+      actualPageType = actualPage[0].layout
+      console.log('actualPage', actualPage)
+      console.log('actualPageType', actualPageType)
+      console.log('pagepagepagepage', page)
+    } else {
+      actualPageType = page.type
+    }
     if (!page) {
       if (isDevelopmentClient()) {
         props.logger.info(`phenomic: PageContainer: '${ pageUrl }' no data`)
@@ -215,21 +235,25 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       props.logger.info(`phenomic: PageContainer: '${ pageUrl }'`, page)
     }
 
-    if (
-      typeof page !== "object" ||
-      page.toString() !== "[object Object]"
-    ) {
+    if (typeof page !== "object" || page.toString() !== "[object Object]") {
       props.logger.info(
         `phenomic: PageContainer: page ${ pageUrl } should be an object`
       )
       return null
     }
-
-    const PageLoading = getLayout("PageLoading", props)
-    const PageError = getLayout("PageError", props)
-    const LayoutFallback = getLayout(props.defaultLayout, props)
-    const Layout = getLayout(page.type, props) || LayoutFallback
-
+    const PageLoadingData = getLayout("PageLoading", props)
+    const PageLoading = PageLoadingData.layout
+    const PageErrorData = getLayout("PageError", props)
+    const PageError = PageErrorData.layout
+    const LayoutFallbackData = getLayout(props.defaultLayout, props)
+    const LayoutFallback = LayoutFallbackData.layout
+    const LayoutData = getLayout(actualPageType, props)
+    const Layout = (LayoutData && LayoutData.layout) ? LayoutData.layout : LayoutFallback
+    console.log('Layout', Layout)
+    console.log('current known page.type', page.type)
+    console.log('current known props', props)
+    console.log('LayoutData.hasStaticLoadingStateSet', LayoutData)
+    // page.loading = true
     if (page.error) {
       if (!PageError) {
         return (
@@ -240,12 +264,19 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         )
       }
       return <PageError { ...page } />
-    }
-    else {
-      if (page.loading && PageLoading) {
+    } else {
+      if(page.loading && LayoutData && LayoutData.hasStaticLoadingStateSet) {
+        console.log('show custom loading')
+        console.log('%c show custom loading ', 'font-size: 22px; color: blue');
+        // if loading and requested component has phenomicLoading prop
+        return <Layout phenomicLoading={true} />
+      } else if (page.loading && PageLoading) {
+        console.log('show normal loader')
+        console.log('%c show NORMAL loading ', 'font-size: 22px; color: red');
+        // use default loading page
         return <PageLoading />
-      }
-      else if (Layout) {
+      } else if (Layout) {
+        // load normal page with data
         return <Layout { ...page } />
       }
     }
