@@ -203,7 +203,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const pageUrl = splatToUrl(props.params.splat)
     // page url from redux store
     const page = props.pages[pageUrl]
-    let pageType = (page) ? page.type : null
+    let pageType = (page) ? page.type : ''
     // SSR window check
     if (typeof window !== 'undefined') {
       // use window collection instead of page props
@@ -232,7 +232,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const PageError = getLayout("PageError", props)
     const LayoutFallback = getLayout(props.defaultLayout, props)
     const Layout = getLayout(pageType, props) || LayoutFallback
-
+    const LayoutName = Layout && Layout.name || props.defaultLayout || ''
     /* set to true to debug loading states */
     // page.loading = true
 
@@ -249,13 +249,13 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     } else {
       if(page.loading && Layout && Layout.loadingState) {
         props.logger.info(
-          `phenomic: <${Layout.name}> component has static loadingState set. Show custom loading during data fetch [LINK TO DOCS]`
+          `phenomic: <${LayoutName}> component has static loadingState set. Show custom loading during data fetch [LINK TO DOCS]`
         )
         // if loading and requested component has phenomicLoading prop
         return <Layout phenomicLoading={true} />
       } else if (page.loading && PageLoading) {
         props.logger.info(
-          `phenomic: <${Layout.name}> component has no static loadingState set. Show default loader [LINK TO DOCS]`
+          `phenomic: <${LayoutName}> component has no static loadingState set. Show default loader [LINK TO DOCS]`
         )
         // use default loading page
         return <PageLoading />
