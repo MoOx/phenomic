@@ -1,5 +1,7 @@
 # HEAD
 
+# 0.17.11 - 2016-10-22
+
 - Fixed: package.json is correctly populated during setup
   ([#835](https://github.com/MoOx/phenomic/issues/835) - @MoOx)
 
