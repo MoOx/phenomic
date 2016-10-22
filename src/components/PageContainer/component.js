@@ -201,10 +201,22 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
   render() {
     const { props } = this
+    const { collection } = this.context
 
     const pageUrl = splatToUrl(props.params.splat)
+    // page url from redux store
     const page = props.pages[pageUrl]
-
+    let pageType = (page) ? page.type : ""
+    let loadingData
+    // SSR window check
+    if (typeof window !== "undefined" && collection) {
+      // use window collection instead of page props
+      const pageFromCollection = collection.filter((pageData) => {
+        return pageUrl === pageData.__url
+      })
+      loadingData = pageFromCollection[0]
+      pageType = loadingData && loadingData.layout
+    }
     if (!page) {
       if (isDevelopmentClient()) {
         props.logger.info(`phenomic: PageContainer: '${ pageUrl }' no data`)
@@ -215,20 +227,19 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       props.logger.info(`phenomic: PageContainer: '${ pageUrl }'`, page)
     }
 
-    if (
-      typeof page !== "object" ||
-      page.toString() !== "[object Object]"
-    ) {
+    if (typeof page !== "object" || page.toString() !== "[object Object]") {
       props.logger.info(
         `phenomic: PageContainer: page ${ pageUrl } should be an object`
       )
       return null
     }
-
     const PageLoading = getLayout("PageLoading", props)
     const PageError = getLayout("PageError", props)
     const LayoutFallback = getLayout(props.defaultLayout, props)
-    const Layout = getLayout(page.type, props) || LayoutFallback
+    const Layout = getLayout(pageType, props) || LayoutFallback
+    const LayoutName = Layout && Layout.name || props.defaultLayout || ""
+    /* set to true to debug loading states */
+    // page.loading = true
 
     if (page.error) {
       if (!PageError) {
@@ -242,10 +253,24 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       return <PageError { ...page } />
     }
     else {
-      if (page.loading && PageLoading) {
+      if (page.loading && Layout && Layout.hasLoadingState) {
+        props.logger.info(
+          `phenomic: <${LayoutName}> component has static hasLoadingState set.
+          Show custom loading during data fetch [LINK TO DOCS]`
+        )
+        // use normal layout and set isLoading prop to true
+        return <Layout loadingData={ loadingData } isLoading />
+      }
+      else if (page.loading && PageLoading) {
+        props.logger.info(
+          `phenomic: <${LayoutName}> component has no static hasLoadingState set
+          . Show default loader during data fetch [LINK TO DOCS]`
+        )
+        // use default loading page
         return <PageLoading />
       }
       else if (Layout) {
+        // load normal page with data
         return <Layout { ...page } />
       }
     }
