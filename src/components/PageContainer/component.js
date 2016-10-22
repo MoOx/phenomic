@@ -82,15 +82,7 @@ function getLayout(
   layout: string, props: Props
 ): ReactClass<any> | void {
   if (props.layouts && props.layouts[layout]) {
-    console.log(`props.layouts ${layout}`, props.layouts)
-    const checkForStatic = props.layouts[layout].loadingState
-    if(checkForStatic) {
-      console.log(`layout ${layout} has loading state`)
-    }
-    return {
-      hasStaticLoadingStateSet: props.layouts[layout].loadingState,
-      layout: props.layouts[layout]
-    }
+    return props.layouts[layout]
   }
 }
 
@@ -209,21 +201,16 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const { props } = this
 
     const pageUrl = splatToUrl(props.params.splat)
-    console.log('pageUrl', pageUrl)
+    // page url from redux store
     const page = props.pages[pageUrl]
-    let actualPage
-    let actualPageType
+    let pageType = (page) ? page.type : null
+    // SSR window check
     if (typeof window !== 'undefined') {
       // use window collection instead of page props
-      actualPage = window.__COLLECTION__.filter(function(pg, i) {
-        return pageUrl === pg.__url
+      const pageFromCollection = window.__COLLECTION__.filter(function(pageData, i) {
+        return pageUrl === pageData.__url
       })
-      actualPageType = actualPage[0].layout
-      console.log('actualPage', actualPage)
-      console.log('actualPageType', actualPageType)
-      console.log('pagepagepagepage', page)
-    } else {
-      actualPageType = page.type
+      pageType = pageFromCollection[0].layout
     }
     if (!page) {
       if (isDevelopmentClient()) {
@@ -241,19 +228,14 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       )
       return null
     }
-    const PageLoadingData = getLayout("PageLoading", props)
-    const PageLoading = PageLoadingData.layout
-    const PageErrorData = getLayout("PageError", props)
-    const PageError = PageErrorData.layout
-    const LayoutFallbackData = getLayout(props.defaultLayout, props)
-    const LayoutFallback = LayoutFallbackData.layout
-    const LayoutData = getLayout(actualPageType, props)
-    const Layout = (LayoutData && LayoutData.layout) ? LayoutData.layout : LayoutFallback
-    console.log('Layout', Layout)
-    console.log('current known page.type', page.type)
-    console.log('current known props', props)
-    console.log('LayoutData.hasStaticLoadingStateSet', LayoutData)
+    const PageLoading = getLayout("PageLoading", props)
+    const PageError = getLayout("PageError", props)
+    const LayoutFallback = getLayout(props.defaultLayout, props)
+    const Layout = getLayout(pageType, props) || LayoutFallback
+
+    /* set to true to debug loading states */
     // page.loading = true
+
     if (page.error) {
       if (!PageError) {
         return (
@@ -265,14 +247,16 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       return <PageError { ...page } />
     } else {
-      if(page.loading && LayoutData && LayoutData.hasStaticLoadingStateSet) {
-        console.log('show custom loading')
-        console.log('%c show custom loading ', 'font-size: 22px; color: blue');
+      if(page.loading && Layout && Layout.loadingState) {
+        props.logger.info(
+          `phenomic: <${Layout.name}> component has static loadingState set. Show custom loading during data fetch [LINK TO DOCS]`
+        )
         // if loading and requested component has phenomicLoading prop
         return <Layout phenomicLoading={true} />
       } else if (page.loading && PageLoading) {
-        console.log('show normal loader')
-        console.log('%c show NORMAL loading ', 'font-size: 22px; color: red');
+        props.logger.info(
+          `phenomic: <${Layout.name}> component has no static loadingState set. Show default loader [LINK TO DOCS]`
+        )
         // use default loading page
         return <PageLoading />
       } else if (Layout) {
