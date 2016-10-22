@@ -1,5 +1,8 @@
 # HEAD
 
+- Fixed: package.json is correctly populated during setup
+  ([#835](https://github.com/MoOx/phenomic/issues/835) - @MoOx)
+
 # 0.17.10 - 2016-10-21
 
 - Fixed: npm `postinstall` step

@@ -46,7 +46,7 @@ export default async function setup(argv) {
     // node_modules is excluded because can be present during tests
     // (but will never be in public package)
     const files = globby.sync(
-      [ "*", "!node_modules" ],
+      [ "*", "!node_modules", "!package.json" ],
       { dot: true, cwd: themePath }
     )
     await Promise.all(files.map((file) => fs.copy(
