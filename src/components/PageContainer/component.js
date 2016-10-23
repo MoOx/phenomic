@@ -255,8 +255,8 @@ class PageContainer extends Component<DefaultProps, Props, void> {
           `phenomic: <${LayoutName}> component has static loadingState set.
           Show custom loading during data fetch [LINK TO DOCS]`
         )
-        // if loading and requested component has phenomicLoading prop
-        return <Layout phenomicLoading />
+        // use normal layout and set isLoading prop to true
+        return <Layout isLoading />
       }
       else if (page.loading && PageLoading) {
         props.logger.info(
