@@ -250,9 +250,9 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       return <PageError { ...page } />
     }
     else {
-      if (page.loading && Layout && Layout.loadingState) {
+      if (page.loading && Layout && Layout.hasLoadingState) {
         props.logger.info(
-          `phenomic: <${LayoutName}> component has static loadingState set.
+          `phenomic: <${LayoutName}> component has static hasLoadingState set.
           Show custom loading during data fetch [LINK TO DOCS]`
         )
         // use normal layout and set isLoading prop to true
@@ -260,8 +260,8 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       else if (page.loading && PageLoading) {
         props.logger.info(
-          `phenomic: <${LayoutName}> component has no static loadingState set.
-          Show default loader during data fetch [LINK TO DOCS]`
+          `phenomic: <${LayoutName}> component has no static hasLoadingState set
+          . Show default loader during data fetch [LINK TO DOCS]`
         )
         // use default loading page
         return <PageLoading />
