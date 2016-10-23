@@ -207,7 +207,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const page = props.pages[pageUrl]
     let pageType = (page) ? page.type : ""
     // SSR window check
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window.__COLLECTION__) {
       // use window collection instead of page props
       const pageFromCollection = window.__COLLECTION__.filter((pageData) => {
         return pageUrl === pageData.__url
