@@ -6,6 +6,9 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
   ],
+  "plugins": [
+    "react"
+  ],
   "env": {
     "browser": true,
     "node": true,
