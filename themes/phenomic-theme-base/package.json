@@ -74,6 +74,7 @@
     }
   },
   "eslintConfig": {
+    "root": true,
     "extends": "./node_modules/phenomic/lib/eslint-config-recommended/index.js"
   },
   "stylelint": {
