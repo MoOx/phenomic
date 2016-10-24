@@ -157,7 +157,7 @@
     "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
     "integration-tests": "ava __tests__/index.js && ava __tests__/cli.js",
     "phenomic-theme-base": "babel-node scripts/phenomic-theme-base.js",
-    "phenomic-theme-base-linting": "eslint --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
+    "phenomic-theme-base-linting": "eslint --config package.json --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "prephenomic-theme-base-start": "npm run transpile && npm run phenomic-theme-base",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
     "pretest-phenomic-theme-base": "babel-node scripts/test-phenomic-theme-base.js",
