@@ -10,6 +10,9 @@ module.exports = {
     "browser": true,
     "node": true,
   },
+  "plugins": [
+    "react"
+  ],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
