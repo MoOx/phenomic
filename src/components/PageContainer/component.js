@@ -214,7 +214,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         return pageUrl === pageData.__url
       })
       loadingData = pageFromCollection[0]
-      pageType = loadingData.layout
+      pageType = loadingData && loadingData.layout
     }
     if (!page) {
       if (isDevelopmentClient()) {
