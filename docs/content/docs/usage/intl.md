@@ -151,6 +151,29 @@ const store = createStore(
 )
 ```
 
+## Overide intl in context
+
+The default `intl` in context can't change. We need to override the `intl` context by `intl` state from our `redux` store.
+To do that, let's update the `AppContainer.js` :
+
+```javascript
+import {connect} from "react-redux"
+...
+const ReduxIntlProvider = connect(state => state.intl)(IntlProvider)
+const AppContainer = (props) => (
+  <ReduxIntlProvider>
+    <Container>
+      <DefaultHeadMeta />
+      <Header />
+      <Content>
+        {props.children}
+      </Content>
+      <Footer />
+    </Container>
+  </ReduxIntlProvider>
+)
+```
+
 ## Get your translated content
 
 Add a metadata `locale` to your `.md` files
@@ -190,30 +213,35 @@ Once you can have your translated content, we have to add two buttons in the hea
 
 ```javascript
 ...
+import {browserHistory} from "phenomic/lib/client"
 import {setLocale} from "actions/intl"
 ...
 class Header extends Component {
-  constructor() {
-    super()
-    this.updateLocale = this.updateLocale.bind(this)
-  }
-
-  updateLocale(locale) {
-    store.dispatch(setLocale(locale))
-  }
-
+  ...
   render() {
+    const {updateLocale} = this.props
     return (
       <header>
         <nav>
           ...
-          <div onClick={() => this.updateLocale("en")}>{"en"}</div>
-          <div onClick={() => this.updateLocale("fr")}>{"fr"}</div>
+          <div onClick={() => updateLocale("en")}>{"en"}</div>
+          <div onClick={() => updateLocale("fr")}>{"fr"}</div>
         </nav>
       </header>
     )
   }
 }
+
+export default connect(
+  null,
+  dispatch => ({
+    ...
+    updateLocale: (locale) => {
+      dispatch(setLocale(locale))
+      browserHistory.push("/")
+    },
+  })
+)(Header)
 ```
 
 ## Initialize with right locale
