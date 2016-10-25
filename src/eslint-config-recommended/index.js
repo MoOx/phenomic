@@ -11,7 +11,7 @@ module.exports = {
     "node": true,
   },
   "plugins": [
-    "react"
+    "react",
   ],
   "parserOptions": {
     "ecmaVersion": 6,

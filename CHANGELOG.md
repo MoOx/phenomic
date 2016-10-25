@@ -1,5 +1,10 @@
 # HEAD
 
+# 0.17.12 - 2016-10-25
+
+- Fixed: Linter errors from base theme have been removed
+  ([#838](https://github.com/MoOx/phenomic/issues/838) - @montogeek)
+
 # 0.17.11 - 2016-10-22
 
 - Fixed: package.json is correctly populated during setup
