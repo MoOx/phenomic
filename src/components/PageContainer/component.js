@@ -201,6 +201,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
   render() {
     const { props } = this
+    const { collection } = this.context
 
     const pageUrl = splatToUrl(props.params.splat)
     // page url from redux store
@@ -208,9 +209,9 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     let pageType = (page) ? page.type : ""
     let loadingData
     // SSR window check
-    if (typeof window !== "undefined" && window.__COLLECTION__) {
+    if (typeof window !== "undefined" && collection) {
       // use window collection instead of page props
-      const pageFromCollection = window.__COLLECTION__.filter((pageData) => {
+      const pageFromCollection = collection.filter((pageData) => {
         return pageUrl === pageData.__url
       })
       loadingData = pageFromCollection[0]
