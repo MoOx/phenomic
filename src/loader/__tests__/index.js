@@ -184,16 +184,18 @@ it("can be used with plugins", () => {
         console.log(stats.compilation.warnings)
       }
 
+      let expectations = 0
       Object.keys(stats.compilation.assets)
       .filter((key) => key.endsWith(".json"))
       .forEach((key) => {
         const result = JSON.parse(stats.compilation.assets[key]._value)
         if (result.test) {
           expect(result.test).toBe("dumb")
+          expectations++
         }
       })
-      // t.plan(2+5) // 2, err, warn, 5   => array
-      // t.end()
+      // check we got all the expectation we wanted
+      expect(expectations).toBe(5)
     },
     (err) => expect(err).toBe(undefined)
   )

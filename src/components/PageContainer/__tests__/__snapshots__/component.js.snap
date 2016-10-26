@@ -12,7 +12,7 @@ available 1`] = `
 <div
   style={
     Object {
-      "text-align": "center"
+      "text-align": "center",
     }
   }>
   <h1>

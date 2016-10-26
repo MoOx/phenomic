@@ -93,14 +93,12 @@ const routesNoMatches = (
   </Route>
 )
 
-it("log message if there is no matches", () => {
-  jest.resetModules()
-
-  const log = jest.fn()
-  routesToUrls(routesNoMatches, collection, { log })
-
-  expect(log).toBeCalled()
-  expect(log.mock.calls[0][0]).toContain(
-    "It looks like some parameters can't be mapped to create routes:  :lol"
-  )
+it("log message if there is no matches", (done) => {
+  routesToUrls(routesNoMatches, collection, (log) => {
+    if (log.includes(
+      "It looks like some parameters can't be mapped to create routes:  :lol"
+    )) {
+      done()
+    }
+  })
 })

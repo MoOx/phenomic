@@ -5,7 +5,7 @@ import colors from "chalk"
 
 import arrayUnique from "../../_utils/array-unique"
 
-const defaultConsole = console
+const defaultConsole = console.log
 
 const flattenRoute = (route) => {
   const root = route.path ? route.path : ""
@@ -77,7 +77,7 @@ const paramsListFromCollection = (collection) => {
   return params
 }
 
-const createUrlsFromParamsReplacementInUrl = (url, params, console) => {
+const createUrlsFromParamsReplacementInUrl = (url, params, log) => {
   // don't compute anything if url doesn't seems to have dynamic parameters
   // react-router url params are like ``:that`` (or splat *)
   if (url.indexOf(":") === -1 && url.indexOf("*") === -1) {
@@ -100,7 +100,7 @@ const createUrlsFromParamsReplacementInUrl = (url, params, console) => {
         nonMissingKeys.push(paramName)
       }
       catch (e) {
-        // console.log(paramName, e.message)
+        // log(paramName, e.message)
 
         const matches = e.message.match(/Missing \"(.*)\" parameter for path/)
         if (matches && matches[1]) {
@@ -123,7 +123,7 @@ const createUrlsFromParamsReplacementInUrl = (url, params, console) => {
     (key) => nonMissingKeys.indexOf(key) === -1
   )
   if (missingKeys.length) {
-    console.log("⚠️ " + colors.red(
+    log("⚠️ " + colors.red(
       "It looks like some parameters can't be mapped to create routes: ",
       missingKeys.map((key) => ":" + key).join(", "),
     ))
@@ -135,13 +135,13 @@ const createUrlsFromParamsReplacementInUrl = (url, params, console) => {
   return arrayUnique(urls.sort())
 }
 
-const hydrateRoutesUrls = (routesUrls, collection, console) => {
+const hydrateRoutesUrls = (routesUrls, collection, log) => {
   const paramsList = paramsListFromCollection(collection)
 
   return routesUrls.reduce((acc, url) => {
     return [
       ...acc,
-      ...createUrlsFromParamsReplacementInUrl(url, paramsList, console),
+      ...createUrlsFromParamsReplacementInUrl(url, paramsList, log),
     ]
   }, [])
 }
@@ -149,9 +149,9 @@ const hydrateRoutesUrls = (routesUrls, collection, console) => {
 export default (
   routes: React$Element<any>,
   collection: PhenomicCollection,
-  console: typeof console = defaultConsole,
+  // for testing
+  log: Function = defaultConsole,
 ): Array<string>  => {
-
   const flattenedRoutes = createRoutes(routes)
     .reduce((acc, r) => [ ...acc, ...flattenRoute(r) ], [])
 
@@ -164,5 +164,5 @@ export default (
     )
   }
 
-  return hydrateRoutesUrls(flattenedRoutes, collection, console)
+  return hydrateRoutesUrls(flattenedRoutes, collection, log)
 }

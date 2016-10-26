@@ -15,6 +15,7 @@ rimraf(outputPath)
 it("Feed webpack plugin", () => {
   return new Promise((resolve, reject) => webpack(
     {
+      context: __dirname,
       module: {
         [webpackVersion() === 1 ? "loaders" : "rules"]: [
           {

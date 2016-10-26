@@ -5,16 +5,12 @@ import colors from "chalk"
 
 import pkg from "../../package.json"
 
-module.exports = function() {
+module.exports = function(nodeVersion, npmVersion) {
   const requirements = pkg.engines
-  const nodeVersion = process.env.TESTING
-    ? process.env.FAKE_NODE_VERSION
-    : process.version
+  nodeVersion = (nodeVersion || process.version)
 
   const npm = /^win/.test(process.platform) ? "npm.cmd" : "npm"
-  const npmVersion = process.env.TESTING ?
-    process.env.FAKE_NPM_VERSION :
-    execSync(npm + " --version").toString().trim()
+  npmVersion = (npmVersion || execSync(npm + " --version").toString().trim())
 
   if (!(
     semver.satisfies(nodeVersion, requirements.node) &&

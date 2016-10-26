@@ -2,7 +2,7 @@
 
 import path from "path"
 
-import test from "ava"
+import test from "jest-ava-api"
 import multili from "multili"
 
 import errorFormatter from "../index.js"

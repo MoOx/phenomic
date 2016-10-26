@@ -106,7 +106,7 @@
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
     "flow-bin": "^0.32.0",
-    "jest": "^15.1.1",
+    "jest": "^16.0.2",
     "jest-ava-api": "^0.1.0",
     "js-beautify": "^1.5.10",
     "jsdom": "^9.2.0",
@@ -152,35 +152,31 @@
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "cross-env TESTING=1 jest",
-    "#integration-tests": "needs this order (index test the build, and cli is cleaning it)",
-    "integration-tests": "jest --config __tests__/jest-config.json",
+    "tests": "cross-env TESTING=1 jest --runInBand --coverage src",
+    "e2e:tests": "jest --runInBand --forceExit e2e-tests",
     "phenomic-theme-base": "babel-node scripts/phenomic-theme-base.js",
     "phenomic-theme-base-linting": "eslint --config package.json --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "prephenomic-theme-base-start": "npm run transpile && npm run phenomic-theme-base",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
-    "pretest-phenomic-theme-base": "babel-node scripts/test-phenomic-theme-base.js",
+    "test-phenomic-theme-base:prepare": "babel-node scripts/test-phenomic-theme-base.js",
+    "pretest-phenomic-theme-base": "npm run test-phenomic-theme-base:prepare",
     "test-phenomic-theme-base": "cd test-phenomic-theme-base && npm test",
-    "posttest-phenomic-theme-base": "npm run integration-tests",
     "docs": "babel-node scripts/docs.js",
     "docs-linting": "eslint --ignore-path .gitignore --fix docs/scripts docs/src",
     "docs-webpack-2": "npm i webpack@^2.1.0-beta.25 && babel-node scripts/docs.js && cd docs && npm i extract-text-webpack-plugin@^2.0.0-beta.4",
     "docs-webpack-2-start": "npm run docs-webpack-2 && npm start",
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
+    "docs-webpack-2-reset": "npm install && npm run docs",
     "pretest-docs": "npm run docs && npm run docs-linting",
     "test-docs": "cd docs && npm test",
-    "#posttest-docs": "install back webpack 1",
-    "posttest-docs": "npm install && npm run docs",
     "predocs-start": "npm run docs",
     "docs-start": "cd docs && npm start",
     "predocs-deploy": "cd docs && npm run showcase-screenshots && npm run build",
     "docs-deploy": "cd docs && ./scripts/deploy.sh",
-    "preall-tests": "npm run transpile && npm run lint",
-    "all-tests": "cross-env TESTING=1 npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base",
-    "test": "npm run all-tests",
+    "pretests": "npm run transpile && npm run lint",
+    "test": "npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-phenomic-theme-base && npm run e2e:tests",
     "posttest": "npm run test-docs",
-    "test-with-coverage": "nyc --check-coverage --lines 70 npm run all-tests",
-    "coverage": "coveralls",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
     "release": "npmpub",
     "postrelease": "npm run docs-deploy"
   },
@@ -220,19 +216,25 @@
     "extends": "stylelint-config-standard"
   },
   "jest": {
+    "testEnvironment": "node",
+    "notify": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 65,
+        "functions": 65,
+        "lines": 65,
+        "statements": 65
+      }
+    },
     "preprocessorIgnorePatterns": [
       "node_modules"
     ],
     "testPathIgnorePatterns": [
+      "/utils/",
       "/fixtures/",
       "/results/",
       "/stub/",
       "/_output/"
-    ],
-    "testPathDirs": [
-      "src"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/scripts/jest-framework-setup.js",
-    "testEnvironment": "node"
+    ]
   }
 }

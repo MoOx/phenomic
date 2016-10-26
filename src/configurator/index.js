@@ -61,10 +61,9 @@ export default function config({ argv = [], pkg = {} } = {}) {
     if (process.env.TESTING) {
       throw new Error(errorMessage)
     }
-    else {
-      console.error(errorMessage)
-      process.exit(1)
-    }
+    // else
+    console.error(errorMessage)
+    process.exit(1)
   }
 
   return config

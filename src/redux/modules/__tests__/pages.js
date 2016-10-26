@@ -6,9 +6,10 @@ import reducer, * as module from "../pages"
 process.env.PHENOMIC_USER_PATHNAME = "/"
 
 test("should have action to handle get", async (t) => {
-  // t.plan(3)
+  let expectations = 0
 
   global.fetch = (url) => {
+    expectations++
     t.is(url, "/url")
 
     return new Promise((resolve) => resolve(
@@ -19,15 +20,17 @@ test("should have action to handle get", async (t) => {
     ))
   }
   const action = module.get("/page", "/url")
+  expect(expectations).toBe(1)
 
   t.is(action.page, "/page")
   t.deepEqual(action.types, [ module.GET, module.SET, module.ERROR ])
 })
 
 test("should have action to handle refresh", async (t) => {
-  // t.plan(3)
+  let expectations = 0
 
   global.fetch = (url) => {
+    expectations++
     t.is(url, "/url")
 
     return new Promise((resolve) => resolve(
@@ -39,6 +42,7 @@ test("should have action to handle refresh", async (t) => {
   }
   const action = module.refresh("/page", "/url")
 
+  expect(expectations).toBe(1)
   t.is(action.page, "/page")
   t.deepEqual(action.types, [ module.NOOP, module.SET, module.ERROR ])
 })
