@@ -31,8 +31,6 @@ test("don't break if there is nothing to transform", async (t) => {
 })
 
 test("writeAllHTMLFiles", (t) => {
-  // t.plan(3)
-
   return writeAllHTMLFiles({
     routes: require("./fixtures/routes.js").default,
     collection,
@@ -49,7 +47,6 @@ test("writeAllHTMLFiles", (t) => {
       if (!expectedHTML[filename]) {
         throw new Error(filename + " is missing in expectedHTML results")
       }
-
       t.deepEqual(
         beautifyHTML(html),
         expectedHTML[filename](),

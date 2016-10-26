@@ -17,6 +17,13 @@
   "#babel": "webpack-(development|production) are useful for webpack 2, otherwise use development|production",
   "babel": {
     "env": {
+      "test": {
+        "presets": [
+          "babel-preset-latest",
+          "babel-preset-stage-1",
+          "babel-preset-react"
+        ]
+      },
       "development": {
         "presets": [
           "babel-preset-latest",

@@ -4,6 +4,8 @@ import test from "jest-ava-api"
 
 import configurator from ".."
 
+const currentNodeEnv = process.env.NODE_ENV
+
 test("should return a default configuration", (t) => {
   const config = configurator()
 
@@ -49,6 +51,8 @@ test("should return a default configuration", (t) => {
     config,
     expected
   )
+
+  process.env.NODE_ENV = currentNodeEnv
 })
 
 test("should allow to override some default values", (t) => {
@@ -65,10 +69,11 @@ test("should allow to override some default values", (t) => {
   t.is(config.CNAME, true)
   t.is(config.devPort, 2000)
   t.is(config.devHost, "1.2.3.4")
+
+  process.env.NODE_ENV = currentNodeEnv
 })
 
 test("should warn if config is invalid", (t) => {
-  process.env.TESTING = "1"
   t.throws(
     () => configurator({
       pkg: {
@@ -79,10 +84,11 @@ test("should warn if config is invalid", (t) => {
     }),
     (error) => error.message.includes("Unknow option 'lol'.")
   )
+
+  process.env.NODE_ENV = currentNodeEnv
 })
 
 test("should warn if config is invalid when '--production' is used", (t) => {
-  process.env.TESTING = "1"
   t.throws(
     () => {
       configurator({
@@ -91,6 +97,8 @@ test("should warn if config is invalid when '--production' is used", (t) => {
     },
     (error) => error.message.includes("Your package.json require a 'homepage'")
   )
+
+  process.env.NODE_ENV = currentNodeEnv
 })
 
 test("should not warn if config is valid when '--production' is used", (t) => {
@@ -100,6 +108,8 @@ test("should not warn if config is valid when '--production' is used", (t) => {
     argv: [ "--production" ],
   })
   t.is(config.baseUrl.href, "http://te.st/")
+
+  process.env.NODE_ENV = currentNodeEnv
 })
 
 test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
@@ -109,4 +119,6 @@ test("should adjust 'NODE_ENV' when '--production' is used", (t) => {
     argv: [ "--production" ],
   })
   t.is(process.env.NODE_ENV, "production")
+
+  process.env.NODE_ENV = currentNodeEnv
 })

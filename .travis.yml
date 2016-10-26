@@ -27,6 +27,6 @@ before_install:
   - npm prune
 
 script:
-  - npm run test-with-coverage && npm run docs-webpack-2-test
+  - npm run test && npm run docs-webpack-2-test && npm run docs-webpack-2-reset
 
 after_success: npm run coverage
