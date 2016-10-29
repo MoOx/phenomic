@@ -25,7 +25,7 @@ export default function reducer(
     return {
       ...state,
       [action.page]: {
-        loading: true,
+        isLoading: true,
       },
     }
 

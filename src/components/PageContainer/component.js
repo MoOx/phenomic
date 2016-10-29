@@ -1,9 +1,14 @@
 // @flow
+
 /* eslint-disable react/sort-comp */
 import React, { Component, PropTypes } from "react"
 import { findDOMNode } from "react-dom"
 
 import urlify from "../../_utils/urlify"
+import catchLinks from "../../_utils/catch-links"
+import { browserHistory } from "../../client"
+
+const logPrefix = "phenomic: PageContainer:"
 
 type DefaultProps = {
   defaultLayout: string,
@@ -32,18 +37,6 @@ const splatToUrl = (string) => {
   return (url === "//") ? "/" : url
 }
 
-const isDevelopment = (): boolean => process.env.NODE_ENV !== "production"
-const isClient = (): boolean => typeof window !== "undefined"
-const isDevelopmentClient = (): boolean => isDevelopment() && isClient()
-
-let catchLinks
-let browserHistory
-
-if (isClient()) {
-  catchLinks = require("../../_utils/catch-links").default
-  browserHistory = require("../../client").browserHistory
-}
-
 function find(
   collection: PhenomicCollection,
   pageUrl: string
@@ -69,8 +62,7 @@ function adjustCurrentUrl(location: Object, item: Object, props: Props): void {
 
   if (currentExactPageUrl !== itemURL) {
     props.logger.info(
-      "phenomic: PageContainer: " +
-      `replacing by '${ currentExactPageUrl }' to '${ itemURL }'`
+      `${ logPrefix } replacing by '${ currentExactPageUrl }' to '${ itemURL }'`
     )
     if (browserHistory) {
       browserHistory.replace(itemURL)
@@ -102,18 +94,13 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     logger: console,
   };
 
-  constructor(props: Props) {
-    super(props)
-
+  componentWillMount() {
+    const { props } = this
     if (!getLayout(props.defaultLayout, props)) {
       props.logger.error(
-        "phenomic: PageContainer: " +
-        `default layout "${ props.defaultLayout }" not provided. `
+        `${ logPrefix } default layout "${ props.defaultLayout }" not provided.`
       )
     }
-  }
-
-  componentWillMount() {
     this.preparePage(this.props, this.context)
   }
 
@@ -130,10 +117,6 @@ class PageContainer extends Component<DefaultProps, Props, void> {
   }
 
   catchInternalLink() {
-    if (!isClient()) {
-      return
-    }
-
     const layoutDOMElement = findDOMNode(this)
 
     if (layoutDOMElement) {
@@ -159,14 +142,14 @@ class PageContainer extends Component<DefaultProps, Props, void> {
 
   preparePage(props: Props, context: Context): void {
     const pageUrl = splatToUrl(props.params.splat)
-    if (isDevelopmentClient()) {
+    if (process.env.NODE_ENV !== "production") {
       props.logger.info(
-        `phenomic: PageContainer: '${ pageUrl }' rendering...`
+        `${ logPrefix } '${ pageUrl }' rendering...`
       )
     }
 
     const item = find(context.collection, pageUrl)
-    if (isClient() && item) {
+    if (typeof window !== "undefined" && item) {
       adjustCurrentUrl(window.location, item, props)
     }
 
@@ -177,7 +160,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       else {
         props.logger.error(
-          `phenomic: PageContainer: ${ pageUrl } is a page not found.`
+          `${ logPrefix } ${ pageUrl } is a page not found.`
         )
         props.setPageNotFound(pageUrl)
       }
@@ -190,9 +173,8 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       const Layout = getLayout(page.type, props)
       if (page.type !== undefined && !Layout) {
         props.logger.error(
-          "phenomic: PageContainer: " +
-          `Unkown page type: "${ page.type }" component not available in ` +
-          "\"layouts\" property. " +
+          `${ logPrefix } Unkown page type: "${ page.type }"` +
+          "component not available in \"layouts\" property." +
           `Please check the "layout" or "type" of page "${ page }" header.`
         )
       }
@@ -206,40 +188,40 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     const pageUrl = splatToUrl(props.params.splat)
     // page url from redux store
     const page = props.pages[pageUrl]
-    let pageType = (page) ? page.type : ""
-    let loadingData
-    // SSR window check
-    if (typeof window !== "undefined" && collection) {
-      // use window collection instead of page props
-      const pageFromCollection = collection.filter((pageData) => {
-        return pageUrl === pageData.__url
-      })
-      loadingData = pageFromCollection[0]
-      pageType = loadingData && loadingData.layout
-    }
+    const partialPageHead = collection.find((pageData) => {
+      return pageUrl === pageData.__url
+    }) || {}
+
     if (!page) {
-      if (isDevelopmentClient()) {
-        props.logger.info(`phenomic: PageContainer: '${ pageUrl }' no data`)
+      if (process.env.NODE_ENV !== "production") {
+        props.logger.info(`${ logPrefix } '${ pageUrl }' no data`)
       }
-      return null
+      // return null
     }
-    if (isDevelopmentClient()) {
-      props.logger.info(`phenomic: PageContainer: '${ pageUrl }'`, page)
+    if (process.env.NODE_ENV !== "production") {
+      props.logger.info(`${ logPrefix } '${ pageUrl }'`, page)
     }
 
-    if (typeof page !== "object" || page.toString() !== "[object Object]") {
+    if (
+      typeof page !== "object" ||
+      page.toString() !== "[object Object]"
+    ) {
       props.logger.info(
-        `phenomic: PageContainer: page ${ pageUrl } should be an object`
+        `${ logPrefix } page ${ pageUrl } should be an object`
       )
       return null
     }
     const PageLoading = getLayout("PageLoading", props)
     const PageError = getLayout("PageError", props)
     const LayoutFallback = getLayout(props.defaultLayout, props)
-    const Layout = getLayout(pageType, props) || LayoutFallback
-    const LayoutName = Layout && Layout.name || props.defaultLayout || ""
-    /* set to true to debug loading states */
-    // page.loading = true
+    const Layout = getLayout(
+      (
+        partialPageHead.type || partialPageHead.layout ||
+        // page.type is head type||layout too
+        page.type
+      ),
+      props
+    ) || LayoutFallback
 
     if (page.error) {
       if (!PageError) {
@@ -253,25 +235,22 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       return <PageError { ...page } />
     }
     else {
-      if (page.loading && Layout && Layout.hasLoadingState) {
-        props.logger.info(
-          `phenomic: <${LayoutName}> component has static hasLoadingState set.
-          Show custom loading during data fetch [LINK TO DOCS]`
-        )
-        // use normal layout and set isLoading prop to true
-        return <Layout loadingData={ loadingData } isLoading />
-      }
-      else if (page.loading && PageLoading) {
-        props.logger.info(
-          `phenomic: <${LayoutName}> component has no static hasLoadingState set
-          . Show default loader during data fetch [LINK TO DOCS]`
-        )
-        // use default loading page
+      if (
+        page.isLoading &&
+        PageLoading &&
+        Layout && !Layout.hasLoadingState
+      ) {
         return <PageLoading />
       }
       else if (Layout) {
-        // load normal page with data
-        return <Layout { ...page } />
+        return (
+          <Layout
+            // head will be overwritten by "page"
+            // (since page contains a head when loaded)
+            head={ partialPageHead }
+            { ...page }
+          />
+        )
       }
     }
 
