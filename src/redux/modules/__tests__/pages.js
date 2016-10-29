@@ -73,7 +73,7 @@ test("reducer <-- GET, should set loading state", (t) => {
 
   t.deepEqual(nextState, {
     "/foo": {
-      loading: true,
+      isLoading: true,
     },
   })
 })
