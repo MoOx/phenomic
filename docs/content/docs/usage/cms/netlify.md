@@ -32,14 +32,12 @@ with 2 files :
   <html>
     <head>
       <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+      <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
       <title>Content Manager</title>
-      <link rel="stylesheet" href="//cms.netlify.com/assets/cms.css" />
+      <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^0.1.1/dist/cms.css" />
     </head>
     <body>
-      <script src="//cms.netlify.com/assets/vendor.js"></script>
-      <script src="//cms.netlify.com/assets/cms.js"></script>
+      <script src="https://unpkg.com/netlify-cms@^0.1.1/dist/cms.js"></script>
     </body>
   </html>
   ```
@@ -50,7 +48,7 @@ with 2 files :
 
   ```yml
   backend:
-    name: github-api
+    name: github
     repo: {YOUR_GIT_REPO} # owner/repo
     branch: {YOUR_BRANCH} # master
 
