@@ -1,4 +1,5 @@
 import { join } from "path"
+import { execSync } from "child_process"
 
 import express, { Router } from "express"
 import webpack from "webpack"
@@ -196,7 +197,33 @@ export default (config) => {
       const href = `http://${ devHost }:${ port }${ config.baseUrl.pathname }`
       log(`Development server listening on ${ href }`)
       if (config.open) {
-        opn(href.replace(devHost, "localhost"))
+        const openUrl = href.replace(devHost, "localhost")
+        if (process.platform === "darwin") {
+          try {
+            // Try our best to reuse existing tab
+            // on OS X Google Chrome with AppleScript
+            execSync("ps cax | grep \"Google Chrome\"")
+            execSync(
+              "osascript openChrome.applescript " + openUrl,
+              { cwd: __dirname, stdio: "ignore" }
+            )
+            return true
+          }
+          catch (err) {
+            // Ignore errors.
+          }
+        }
+        // Fallback to opn
+        // (It will always open new tab)
+        try {
+          opn(openUrl)
+          .catch(() => {}) // Prevent `unhandledRejection` error.
+          return true
+        }
+        catch (err) {
+          return false
+        }
+
       }
     })
   })
