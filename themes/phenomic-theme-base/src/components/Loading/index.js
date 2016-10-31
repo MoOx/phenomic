@@ -12,7 +12,7 @@ TopBarProgressIndicator.config({
   shadowBlur: 5,
 })
 
-const PageLoading = () => (
+const Loading = () => (
   <div>
     <Helmet
       title={ "Loading..." }
@@ -24,4 +24,4 @@ const PageLoading = () => (
   </div>
 )
 
-export default PageLoading
+export default Loading

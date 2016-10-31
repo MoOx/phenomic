@@ -3,10 +3,13 @@ import Helmet from "react-helmet"
 import invariant from "invariant"
 import { BodyContainer, joinUri } from "phenomic"
 
+import Loading from "../../components/Loading"
+
 import styles from "./index.css"
 
 const Page = (
   {
+    isLoading,
     __filename,
     __url,
     head,
@@ -52,7 +55,11 @@ const Page = (
         <h1 className={ styles.heading }>{ head.title }</h1>
       }
       { header }
-      <BodyContainer>{ body }</BodyContainer>
+      {
+        isLoading
+        ? <Loading />
+        : <BodyContainer>{ body }</BodyContainer>
+      }
       { children }
       { footer }
     </div>
@@ -60,11 +67,12 @@ const Page = (
 }
 
 Page.propTypes = {
+  isLoading: PropTypes.boolean,
   children: PropTypes.node,
   __filename: PropTypes.string.isRequired,
   __url: PropTypes.string.isRequired,
   head: PropTypes.object.isRequired,
-  body: PropTypes.string.isRequired,
+  body: PropTypes.string,
   header: PropTypes.element,
   footer: PropTypes.element,
 }

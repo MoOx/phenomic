@@ -25,8 +25,7 @@ Built with
 
 ---
 
-You may want to take a look to the <a href="/404.html">404.html</a> page and
-the <a href="/loading/">loading</a> page.
+You may want to take a look to the <a href="/404.html">404.html</a>.
 
 If you want to adjust those, directly adjust them in ``src/layouts/``.
 
