@@ -251,6 +251,13 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         />
       )
     }
+
+    if (process.env.NODE_ENV !== "production") {
+      return (
+        <div>
+          { "No layout can be rendered. See console for more information." }
+        </div>
+      )
     }
 
     return null
