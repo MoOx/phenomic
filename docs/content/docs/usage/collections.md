@@ -81,7 +81,7 @@ export default class Collection extends Component {
 
   static propTypes = {
     head: PropTypes.object.isRequired,
-    body: PropTypes.string.isRequired,
+    body: PropTypes.string,
   };
 
   static contextTypes = {
