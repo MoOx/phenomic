@@ -2,8 +2,6 @@ import React from "react"
 import Helmet from "react-helmet"
 import TopBarProgressIndicator from "react-topbar-progress-indicator"
 
-import Banner from "../../components/Banner"
-
 import styles from "./index.css"
 
 TopBarProgressIndicator.config({
@@ -20,9 +18,6 @@ const Loading = () => (
       title={ "Loading..." }
     />
     <TopBarProgressIndicator />
-    <Banner small>
-      <h1>{ " " }</h1>
-    </Banner>
     <div className={ styles.loader }>
       <div className={ styles.spinner } />
     </div>
