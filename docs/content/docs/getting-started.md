@@ -145,7 +145,6 @@ So you need to register your layout in ``src/routes.js`` in the ``PhenomicPageCo
 ```js
 import Page from "./layouts/Page"
 import PageError from "./layouts/PageError"
-import PageLoading from "./layouts/PageLoading"
 import Homepage from "./layouts/Homepage"
 import Post from "./layouts/Post"
 // ↓ Add your layout here
@@ -158,7 +157,6 @@ import MySuperLayout from "./layouts/MySuperLayout"
         layouts={ {
           Page,
           PageError,
-          PageLoading,
           Homepage,
           Post,
           MySuperLayout, // ← Add your layout here
