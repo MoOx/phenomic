@@ -49,7 +49,6 @@ it("should build the base theme correctly",
         [
           "404.html",
           "index.html",
-          "loading/index.html",
           "posts/first-post/index.html",
           "posts/hello-world/index.html",
         ]
@@ -78,14 +77,6 @@ it("should build the base theme correctly",
 
       expect(htmlIndex).toContain(
         "window.__INITIAL_STATE__ = {\"pages\":{\"/\"",
-      )
-
-      const htmlLoading = read(testFolder, "loading/index.html")
-      expect(htmlLoading).toContain(
-        ">Loading..."
-      )
-      expect(htmlLoading).toContain(
-        "window.__INITIAL_STATE__ = {\"pages\":{\"/loading/\"",
       )
 
       const htmlFirstPost = read(testFolder, "posts/first-post/index.html")

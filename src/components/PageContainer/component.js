@@ -234,24 +234,23 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       }
       return <PageError { ...page } />
     }
-    else {
-      if (
-        page.isLoading &&
-        PageLoading &&
-        Layout && !Layout.hasLoadingState
-      ) {
-        return <PageLoading />
-      }
-      else if (Layout) {
-        return (
-          <Layout
-            // head will be overwritten by "page"
-            // (since page contains a head when loaded)
-            head={ partialPageHead }
-            { ...page }
-          />
-        )
-      }
+    else if (
+      page.isLoading &&
+      PageLoading &&
+      (Layout && !Layout.hasLoadingState)
+    ) {
+      return <PageLoading />
+    }
+    else if (Layout) {
+      return (
+        <Layout
+          // head will be overwritten by "page"
+          // (since page contains a head when loaded)
+          head={ partialPageHead }
+          { ...page }
+        />
+      )
+    }
     }
 
     return null
