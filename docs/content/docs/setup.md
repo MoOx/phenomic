@@ -3,7 +3,7 @@ title: How to setup Phenomic
 ---
 
 Phenomic require at least
-**[Node.js@^4.2.0](http://nodejs.org/) / [npm@^3.0.0](http://npmjs.com/)**.  
+**[Node.js@^4.2.0](http://nodejs.org/) / [npm@^3.0.0](https://www.npmjs.com/) or [yarn@^0.15.1](https://yarnpkg.com/)**.  
 We recommend you to use [nvm](https://github.com/creationix/nvm) to manage
 different versions of node.
 
@@ -32,6 +32,12 @@ Right after that, we will grab required dependencies & you are good to go!
 npm install phenomic && ./node_modules/.bin/phenomic setup
 npm install && npm start
 ```
+_or with `yarn`_
+
+```sh
+yarn add phenomic && ./node_modules/.bin/phenomic setup
+yarn install && yarn start
+```
 
 ### Windows
 
@@ -45,10 +51,15 @@ mkdir %DIR% && cd %DIR% && mkdir node_modules
 
 Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
-
 ```cmd
 npm install phenomic && .\node_modules\.bin\phenomic setup
-npm install && npm start
+npm install && yarn start
+```
+_or with `yarn`_
+
+```cmd
+yarn add phenomic && .\node_modules\.bin\phenomic setup
+yarn install && yarn start
 ```
 
 🚀 **When you get the hello world, it's time to take a look to our
@@ -86,10 +97,13 @@ mkdir node_modules
 folder, otherwise, npm might try to install it in a parent folder until it
 finds a ``node_modules`` or a ``package.json``, up to your HOME folder.*
 
-#### Install from npm
-
+#### Install from npm or yarn
 ```sh
 npm install phenomic
+```
+_or with `yarn`_
+```sh
+yarn add phenomic
 ```
 
 * ``--save[-dev]`` is useless because there is no ``package.json`` yet.
@@ -104,6 +118,12 @@ To install from git, you will need to get some deps to transpile sources
 ```sh
 npm install babel-cli babel-preset-react babel-preset-latest babel-preset-stage-1 babel-plugin-flow-react-proptypes
 npm install https://github.com/MoOx/phenomic.git
+```
+_or with `yarn`_
+
+```sh
+yarn add babel-cli babel-preset-react babel-preset-latest babel-preset-stage-1 babel-plugin-flow-react-proptypes
+yarn add https://github.com/MoOx/phenomic.git
 ```
 
 ### Setup phenomic-theme-base
@@ -131,17 +151,24 @@ When you are done the setup, it's time to get all dependencies.
 ```sh
 npm install
 ```
+_or if using `yarn`_
+```sh
+yarn install
+```
 
-npm will install some peer dependencies for you; by doing this we ensure that
+yarn will install some peer dependencies for you; by doing this we ensure that
 _you_ control the dependencies that you are using. This way you are totally aware
 of what you use and are not locked in to using packages that you don't want to.
 
 Now it's time to...
 
 ### Start the engine
-
 ```sh
 npm start
+```
+_or if using `yarn`_
+```sh
+yarn start
 ```
 
 It's that simple.

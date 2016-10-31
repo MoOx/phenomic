@@ -89,6 +89,8 @@ Here is a commented ``package.json`` with only the interesting parts
     "force-offline": false,
     // best thing is to use this value in the CLI
     // $ npm start -- --force-offline
+    // or with yarn
+    // $ yarn start -- --force-offline
 
     // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
     "cache": false
