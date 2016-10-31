@@ -54,13 +54,6 @@ const Footer = () => (
       >
         { "404" }
       </Link>
-      { ", " }
-      <Link
-        className={ styles.link }
-        to="/loading/"
-      >
-        { "Loading" }
-      </Link>
     </Banner>
   </footer>
 )

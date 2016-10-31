@@ -3,6 +3,7 @@ import Helmet from "react-helmet"
 import invariant from "invariant"
 import { joinUri, BodyContainer } from "phenomic"
 
+import Loading from "../../components/Loading"
 import EditThisPage from "../../components/EditThisPage"
 import Banner from "../../components/Banner"
 import ContentWrapper from "../../components/ContentWrapper"
@@ -11,6 +12,7 @@ import styles from "./index.css"
 
 const Page = (
   {
+    isLoading,
     __filename,
     __url,
     head,
@@ -86,7 +88,9 @@ const Page = (
           </div>
         }
         {
-          body &&
+          isLoading
+          ? <Loading />
+          : body &&
           <div className={ styles.content }>
             <BodyContainer>{ body }</BodyContainer>
           </div>
@@ -100,6 +104,7 @@ const Page = (
 
 Page.propTypes = {
   children: PropTypes.node,
+  isLoading: PropTypes.boolean,
   __filename: PropTypes.string.isRequired,
   __url: PropTypes.string.isRequired,
   head: PropTypes.object.isRequired,
