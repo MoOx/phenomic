@@ -9,6 +9,15 @@ node_js:
 matrix:
   fast_finish: true
 
+before_install:
+  # Repo for newer Node.js versions
+  - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  # Repo for Yarn
+  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn
+
 # cache node modules
 cache:
   directories:
@@ -19,11 +28,8 @@ cache:
     - test-phenomic-theme-base/node_modules
     - docs/node_modules
 
-before_install:
-  - time npm i -g yarn --cache-min 999999999
-
 install:
-  - time yarn
+  - yarn install
 
 script:
   - yarn run test
