@@ -32,7 +32,7 @@ with 2 files :
   <html>
     <head>
       <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Content Manager</title>
       <link rel="stylesheet" href="https://unpkg.com/netlify-cms/dist/cms.css" />
     </head>
