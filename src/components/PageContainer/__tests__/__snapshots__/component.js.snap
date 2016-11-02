@@ -1,27 +1,21 @@
 exports[`test should be able to render a loading state 1`] = `
-<function Page(props) /* istanbul ignore next */{return (
-    props.isLoading ?
-    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "isLoading" }) :
-    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "Page" }));}
+<Page
   head={Object {}}
   isLoading={true} />
 `;
 
 exports[`test should render PageError if page not found and PageError is available 1`] = `
-<function PageError() /* istanbul ignore next */{return (/* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "PageError" }));}
+<PageError
   error="Test" />
 `;
 
 exports[`test should render a Page if page is ok 1`] = `
-<function Page(props) /* istanbul ignore next */{return (
-    props.isLoading ?
-    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "isLoading" }) :
-    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "Page" }));}
+<Page
   head={Object {}} />
 `;
 
 exports[`test should render a another page layout if defaultLayout is used 1`] = `
-<function AnotherPage() /* istanbul ignore next */{return (/* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"div", /* istanbul ignore next */{ className: "AnotherPage" }));}
+<AnotherPage
   head={Object {}} />
 `;
 
