@@ -6,7 +6,6 @@ import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 import webpackHotMiddleware from "webpack-hot-middleware"
 import historyFallbackMiddleware from "connect-history-api-fallback"
-import WebpackNotifierPlugin from "webpack-notifier"
 import portFinder from "portfinder"
 import opn from "opn"
 
@@ -69,8 +68,6 @@ export default (config) => {
         ),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-
-        new WebpackNotifierPlugin(),
       ],
     }
 
