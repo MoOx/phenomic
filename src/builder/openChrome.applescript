@@ -1,10 +1,5 @@
 (*
-Copyright (c) 2015-present, Facebook, Inc.
-All rights reserved.
-
-This source code is licensed under the BSD-style license found in the
--- LICENSE file in the root directory of this source tree. An additional grant
-of patent rights can be found in the PATENTS file in the same directory.
+Ripped from https://gist.github.com/mayoff/1138816
 *)
 
 on run argv
@@ -23,8 +18,9 @@ on run argv
       set theTabIndex to 0
       repeat with theTab in every tab of theWindow
         set theTabIndex to theTabIndex + 1
+        # found url from the same path, not only exact urls
+        # if theTab's URL is theURL then
         if theTab's URL contains theURL then
-        #if theTab's URL is theURL then
           set found to true
           exit repeat
         end if

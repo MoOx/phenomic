@@ -190,12 +190,14 @@ export default (config) => {
     if (port !== devPort) {
       log(`Port ${ devPort } is not available. Using port ${ port } instead.`)
     }
+
     server.listen(port, devHost, (err) => {
       if (err) {
         throw err
       }
       const href = `http://${ devHost }:${ port }${ config.baseUrl.pathname }`
       log(`Development server listening on ${ href }`)
+
       if (config.open) {
         const openUrl = href.replace(devHost, "localhost")
         if (process.platform === "darwin") {
@@ -215,15 +217,7 @@ export default (config) => {
         }
         // Fallback to opn
         // (It will always open new tab)
-        try {
-          opn(openUrl)
-          .catch(() => {}) // Prevent `unhandledRejection` error.
-          return true
-        }
-        catch (err) {
-          return false
-        }
-
+        opn(openUrl)
       }
     })
   })
