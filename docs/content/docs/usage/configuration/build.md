@@ -3,7 +3,7 @@ title: How to configure Phenomic build step with Webpack?
 ---
 
 If you want to change stuff like CSS or JS preprocessors or linters, you might
-want to edit the _webpack configuration_ (``webpack.config.babel.js``).
+want to edit the _webpack configuration_ (``webpack.config.js``).
 
 _Be sure to check out the
 [webpack documentation](http://webpack.github.io/docs/)._

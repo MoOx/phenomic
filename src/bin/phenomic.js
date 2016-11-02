@@ -24,7 +24,7 @@ const startAndBuildOptions = {
   "webpack-config": {
     type: "string",
     describe: "Webpack config (must export a function)",
-    default: "webpack.config.babel.js",
+    default: "webpack.config.js",
   },
   "script-browser": {
     type: "string",

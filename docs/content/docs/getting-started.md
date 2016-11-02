@@ -273,7 +273,7 @@ Here is a short explanation on what you can do by default.
 
 By default files are processed via
 [PostCSS](https://github.com/postcss/postcss) with [cssnext](http://cssnext.io/)
-but you can adjust `webpack.config.babel.js` file to support anything you want.
+but you can adjust `webpack.config.js` file to support anything you want.
 
 ---
 
@@ -290,7 +290,7 @@ you can rely on cssnext support of CSS custom properties to do so
 ([limited to :root](https://github.com/postcss/postcss-custom-properties#readme)):
 
 The more effcient way to have global variables is add to some values in cssnext
-configuration `customProperties.variables` entry in `webpack.config.babel.js` :
+configuration `customProperties.variables` entry in `webpack.config.js` :
 
 ```js
 require("postcss-cssnext")({
@@ -321,12 +321,12 @@ Now simply use the variable in your CSS :
 ### How to add Sass or LESS support?
 
 If you really want to add Sass or LESS for you styles you can replace in your
-`webpack.config.babel.js` `postcss-loader` by `sass-loader` or `less-loader`:
+`webpack.config.js` `postcss-loader` by `sass-loader` or `less-loader`:
 
 - Install dependencies
   - `npm install --save-dev node-sass sass-loader`
   - or `npm install --save-dev less less-loader`
-- Adjust `webpack.config.babel.js` configuration for .css
+- Adjust `webpack.config.js` configuration for .css
   - duplicate css section and replace `.css` by `.sass` (or `.less`)
   - or directly replace `.css` by `.sass` (or `.less`).
 
