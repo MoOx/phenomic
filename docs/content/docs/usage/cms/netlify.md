@@ -77,7 +77,7 @@ We need to install the `Copy Webpack Plugin` :
 npm install -D copy-webpack-plugin
 ```
 
-Next import it in your `webpack.config.babel.js`
+Next import it in your `webpack.config.js`
 
 ```js
 import CopyWebpackPlugin from "copy-webpack-plugin"

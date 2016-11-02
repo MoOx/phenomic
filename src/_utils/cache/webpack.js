@@ -24,7 +24,7 @@ export default (config: PhenomicConfig): Array<any> => {
         root: config.cwd,
         files: [
           "package.json",
-          "webpack.config.babel.js",
+          "webpack.config.js",
         ],
       },
     }),
