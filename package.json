@@ -80,7 +80,6 @@
     "valid-url": "^1.0.9",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-notifier": "^1.4.0",
     "webpack-sources": "^0.1.2",
     "yargs": "^4.3.1"
   },
