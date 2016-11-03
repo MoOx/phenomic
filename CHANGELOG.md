@@ -9,7 +9,7 @@ connection using your browser developer tools with a slow connection._
 ![phenomic-optimistic-loading](https://cloud.githubusercontent.com/assets/157534/19846901/463a09d8-9f43-11e6-951e-283195b2a63d.gif)
 
 **This release should not bring any major breaking change so you should be
-available to update very easily (probably by just bumping version number)**.
+available to update very easily (probably by just bumping version number and renaming `webpack.config.babel.js` to `webpack.config.js`)**.
 
 - Added: layouts can now receive partial data accompanied with a loading flag
   (``isLoading`` props)
