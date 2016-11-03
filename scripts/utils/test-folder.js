@@ -1,4 +1,4 @@
-// All these weird steps for this 'simple' test-phenomic-theme-base has been
+// All these weird steps for this 'simple' test-setup has been
 // made to boost CI testing, tune with care if you dare to
 
 import pify from "pify"

@@ -18,7 +18,7 @@ it("should build the base theme correctly",
         reject("Build should work")
       }
 
-      const testFolder = __dirname + "/../../test-phenomic-theme-base/dist"
+      const testFolder = __dirname + "/../../test-setup/dist"
       const files = globby.sync("**/*", {
         cwd: testFolder,
         nodir: true,

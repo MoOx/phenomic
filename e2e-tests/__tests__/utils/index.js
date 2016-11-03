@@ -4,7 +4,7 @@ import { readFileSync } from "fs"
 export { exec } from "child_process"
 
 const target = join(
-  __dirname, "..", "..", "..", "test-phenomic-theme-base"
+  __dirname, "..", "..", "..", "test-setup"
 )
 
 export const execOpts = { cwd: target, stdio: "inherit" }

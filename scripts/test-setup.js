@@ -3,14 +3,14 @@ import globby from "globby"
 
 import testFolder, { exec } from "./utils/test-folder.js"
 
-const target = "test-phenomic-theme-base"
+const target = "test-setup"
 
 testFolder(
   target,
   {
-    // test-phenomic-theme-base cleanu
+    // test-setup cleanu
     cleanup: async () => Promise.all(
-      globby.sync("test-phenomic-theme-base/!(node_modules)", { dot: true })
+      globby.sync("test-setup/!(node_modules)", { dot: true })
       .map(
         (file) => remove(file)
       ),

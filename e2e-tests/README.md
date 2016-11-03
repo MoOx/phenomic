@@ -7,7 +7,7 @@ Tests here need to be run with a transpiled sources & a test folder ready to run
 
 ```console
 npm run transpile
-npm run test-phenomic-theme-base:prepare
+npm run test-setup:prepare
 npm run e2e:tests
 ```
 
