@@ -1,5 +1,44 @@
 # HEAD
 
+# 0.18.0 - 2016-11-03
+
+🎉 Optimistic loading is now a thing!  
+_You can see this in action on Phenomic documentation by throttling the network
+connection using your browser developer tools with a slow connection._
+
+![phenomic-optimistic-loading](https://cloud.githubusercontent.com/assets/157534/19846901/463a09d8-9f43-11e6-951e-283195b2a63d.gif)
+
+**This release should not bring any major breaking change so you should be
+available to update very easily (probably by just bumping version number)**.
+
+- Added: layouts can now receive partial data accompanied with a loading flag
+  (``isLoading`` props)
+  Now, if you remove your ``PageLoading`` layouts, you will automatically receive partial data in the correct (future) layout (only head, body won't be defined until ``isLoading`` is != true).  
+  _Should not be a breaking change if you do still use ``PageLoading``_.  
+  If you still use ``PageLoading``, you can define a static property in some
+  layouts to tell Phenomic to send an ``isLoading`` props to your specific
+  layout instead of using ``PageLoading`` for this specific transition.  
+  You can refer to [the minimal change you can do in the docs code](https://github.com/MoOx/phenomic/commit/5d8a6021b411e3bfc721c7c1f34b13ec4757c996) if you want to replace ``PageLoading`` usage by optimistic loading via ``isLoading`` props.
+  This probably allows you to handle page transitions more easily since similar
+  layouts won't be unmounted.
+  ([#855](https://github.com/MoOx/phenomic/pull/855) - @DavidWells & @MoOx)
+- Added: If site is already open in Chrome on macOS, we reuse the existing tab
+  instead of opening a new one
+  ([#854](https://github.com/MoOx/phenomic/pull/854) - @DavidWells)
+- Added: less restriction on babel-register hook
+  You can now use `webpack.config.js` instead of
+  `webpack.config.babel.js` and so import es2015 files in webpack
+  configuration file.
+  ([#450](https://github.com/MoOx/phenomic/issues/450) - @MoOx)
+- Removed: webpack build notifications
+  If you want to add notifications back, please directly use
+  [webpack-notifier](https://www.npmjs.com/package/webpack-notifier).
+  [We will add a better, more accurate option later](https://github.com/MoOx/phenomic/issues/863)
+  ([#859](https://github.com/MoOx/phenomic/issues/859) - @MoOx)
+- Added: support of text, textile, text2tags, asciidoc file extensions
+  for clean urls 
+  ([#852](https://github.com/MoOx/phenomic/issues/852) - @MoOx)
+
 # 0.17.12 - 2016-10-25
 
 - Fixed: Linter errors from base theme have been removed
@@ -48,7 +87,7 @@ In short:
 
 - Fixed: Service worker file was imported relatively, which only works at the
   root
-  (@Moox)
+  (@MoOx)
 
 # 0.17.7 - 2016-10-08
 
