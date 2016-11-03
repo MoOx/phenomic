@@ -192,10 +192,9 @@ Then, use the `filter` option from `enhanceCollection` in your layouts to get yo
 ...
 class Homepage extends Component {
   render() {
-    const {collection, store} = this.context
-    const locale = store.getState().intl.locale
+    const {collection} = this.context
     const data = enhanceCollection(collection, {
-      filter: {locale},
+      filter: {locale: this.props.currentLocale},
     })
 
     return (
@@ -205,6 +204,10 @@ class Homepage extends Component {
     )
   }
 }
+...
+export default connect(
+  ({intl}) => ({currentLocale: intl.locale}),
+)(Homepage)
 ```
 
 ## Update your header
@@ -231,18 +234,28 @@ class Header extends Component {
     )
   }
 }
-
+...
 export default connect(
   null,
   dispatch => ({
     ...
     updateLocale: (locale) => {
       dispatch(setLocale(locale))
+
+      /*
+        We recommend you to use different urls for each language and to redirect to your homepage.
+        Have a uniq url for a specific language has advantages :
+          - your SEO will be better
+          - your users could share urls easier with the right locale
+          - your UX will be better because you will avoid flash effect when the locale will change
+      */
       browserHistory.push("/")
     },
   })
 )(Header)
 ```
+
+_Note:
 
 ## Initialize with right locale
 
