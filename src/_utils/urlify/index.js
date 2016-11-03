@@ -16,12 +16,17 @@ export default function urlify(
   url = url.replace(/\\/g, "/")
 
   url = url
-    // something/index.md => something
-    // something/index.markdown => something
-    .replace(/\bindex\.(md|markdown)$/, "")
     // something-else.md => something-else
     // something-else.markdown => something-else
-    .replace(/\.(md|markdown)$/, "")
+    .replace(
+      /\.(md|markdown|txt|tex|textile|t2t|asciidoc|asc|adoc)$/, ""
+    )
+
+    // something/index.md => something
+    // something/index.markdown => something
+    .replace(
+      /\bindex$/, ""
+    )
 
   // if url is not and html file, we will tweak it a little bit depending on the
   // length wanted (full url or folder url)
