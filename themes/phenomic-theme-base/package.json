@@ -85,7 +85,7 @@
     "extends": "./node_modules/phenomic/lib/eslint-config-recommended/index.js"
   },
   "stylelint": {
-    "extends": "stylelint-config-standard"
+    "extends": "./node_modules/phenomic/lib/stylelint-config-recommended/index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
