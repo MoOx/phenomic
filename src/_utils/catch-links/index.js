@@ -25,7 +25,7 @@ const catchLinks = (cb) => (ev: any): void => {
   const href = anchor.getAttribute("href")
 
   // Don't intercerpt anchor
-  if (href.startsWith("#")) {
+  if (!href || href.startsWith("#")) {
     return
   }
 
