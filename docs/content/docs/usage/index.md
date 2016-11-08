@@ -27,3 +27,7 @@ as an example as well as examples in the [Showcase](/showcase/).
 ## CMS
 
 - [Use Netlify CMS to manage your content](cms/netlify/)
+
+## Internationalization
+
+- [Use React-int to internationalize your content](intl/)
