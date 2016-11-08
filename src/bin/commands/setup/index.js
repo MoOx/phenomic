@@ -54,7 +54,10 @@ export default async function setup(argv) {
     )))
     log("Base theme installed")
 
-    log("Project ready. Now run `npm install` to finish the setup!", "success")
+    log(
+      "Project ready. Only one `npm install` and you are good to go!",
+      "success"
+    )
   }
   catch (err) {
     console.error(color.red(err))
