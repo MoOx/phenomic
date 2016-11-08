@@ -18,12 +18,21 @@ magically open itself in your browser!
 ### macOS / Linux
 
 First thing to do is to create a folder with a `node_modules` so we can install
-Phenomic locally.
+Phenomic locally.  
+_Tip: you can edit ``your-website-folder`` in the text box below_.
+
+<!--
+we use html just to add contenteditable
 
 ```sh
 DIR=your-website-folder
 mkdir $DIR && cd $DIR && mkdir node_modules
 ```
+
+-->
+
+<pre contenteditable="true"><code class="hljs language-sh">DIR=your-website-folder
+mkdir <span class="hljs-variable">$DIR</span> &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-variable">$DIR</span> &amp;&amp; mkdir node_modules</code></pre>
 
 Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
@@ -36,12 +45,21 @@ npm install && npm start
 ### Windows
 
 First thing to do is to create a folder with a `node_modules` so we can install
-Phenomic locally.
+Phenomic locally.  
+_Tip: you can edit ``your-website-folder`` in the text box below_.
+
+<!--
+we use html just to add contenteditable
 
 ```cmd
 SET DIR=your-website-folder
 mkdir %DIR% && cd %DIR% && mkdir node_modules
 ```
+
+-->
+
+<pre contenteditable="true"><code class="hljs language-cmd"><span class="hljs-built_in">SET</span> <span class="hljs-built_in">DIR</span>=your-website-folder
+<span class="hljs-built_in">mkdir</span> <span class="hljs-variable">%DIR%</span> &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-variable">%DIR%</span> &amp;&amp; <span class="hljs-built_in">mkdir</span> node_modules</code></pre>
 
 Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
