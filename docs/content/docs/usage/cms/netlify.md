@@ -60,6 +60,7 @@ with 2 files :
       label: "Post"
       folder: "{PHENOMIC_SOURCE}/posts"
       create: true
+      card: {type: "alltype", text: "title"}
       fields:
         - {label: "Title", name: "title", widget: "string"}
         - {label: "Body", name: "body", widget: "markdown"}
