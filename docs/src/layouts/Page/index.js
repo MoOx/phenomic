@@ -104,9 +104,9 @@ const Page = (
 
 Page.propTypes = {
   children: PropTypes.node,
-  isLoading: PropTypes.boolean,
-  __filename: PropTypes.string.isRequired,
-  __url: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
+  __filename: PropTypes.string,
+  __url: PropTypes.string,
   head: PropTypes.object.isRequired,
   body: PropTypes.string,
 }
