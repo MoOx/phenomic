@@ -2,39 +2,46 @@
 title: Internationalize your content
 ---
 
-You may need to add internationalization to your site to handle multiple locales.
+You have multiple solutions available to help you translate your user interface
+and handle multiple locales.
 
-## Get react-intl
+Here we will explain 2 solutions based on
+[react-int](https://github.com/yahoo/react-intl).
 
-First you need to add `react-intl` to your `package.json`
-
-```console
-npm i -S react-intl
-```
-
-## Translate your content
-
-We will use a `YAML` file to translate our content.
-
-Add `yaml-loader` and `json-loader` to your package.json.
+First you need to install `react-intl`.
 
 ```console
-npm i -D yaml-loader json-loader
+npm install --save react-intl
 ```
 
-Add the `yaml-loader` to your `webpack` loaders config to handle `.yml` files.
+## Translating your content
 
-```javascript
+We will use a `YAML` file to translate our content since this file format is
+easier to update than JSON (assuming your projects have simple needs).
+
+Obviously you can adjust this to a more complicated format if needed.
+
+You will need to get `yaml-loader` and `json-loader`.
+
+```console
+npm install --save-dev yaml-loader json-loader
+```
+
+We will also need to add a webpack configuration loader section
+
+```js
 {
   test: /\.yml$/,
-  loader: "json!yaml",
+  loaders: [ "json-loader", "yaml-loader" ],
 },
 ```
 
-Now create differents `.yml` files under `translations` folder.
-If you want handle two languages, you have to create two files, with language key as filename.
+Now create differents `.yml` files in a `translations` folder.
+If you want handle two languages, you have to create two files,
+with language key as filename.
 
 `en.yml`:
+
 ```yml
 locale: "en"
 
@@ -43,6 +50,7 @@ messages:
 ```
 
 `fr.yml`:
+
 ```yml
 locale: "fr"
 
@@ -50,16 +58,50 @@ messages:
   phenomic-is-awesome: "Phenomic est génial !"
 ```
 
-## Create redux action
+From now you have 2 variations: with or without redux.
+
+Without redux the thing will be pretty simple:
+
+We will assume all your urls will contain the locale key as the first part
+
+```
+http://domain.tld/en
+http://domain.tld/fr
+```
+
+You can read the locale like this in your appContainer using ``location`` from
+react-router context
+
+```js
+const locale = location.pathname.replace(/^\//, "").split("/")[0]
+```
+
+For you homepage, you can choose to rely on a default locale in your code.
+
+This should be enough in most cases.
+
+When you have the locale, you can rely on it in ``AppContainer`` to initialize
+[``IntlProvider``](https://github.com/yahoo/react-intl/wiki/Components#intlprovider)
+
+// @todo document more
+
+That said, you might want something more complex, you can use the following
+section.
+
+---
+
+## Using Redux
+
+### Create redux action
 
 We will define our `redux` actions constants.
 Create an `actions.js` file under a `constants` folder.
 
-```javascript
+```js
 export const SET_LOCALE = "SET_LOCALE"
 ```
 
-## Create intl actions
+### Create intl actions
 
 We need to implement the `setLocale` `redux` action.
 
@@ -71,7 +113,7 @@ npm i -S flat
 
 Create a `intl.js` file under an `actions` folder.
 
-```javascript
+```js
 import {addLocaleData} from "react-intl"
 import flatten from "flat"
 
@@ -103,11 +145,11 @@ export function setLocale(locale) {
 }
 ```
 
-## Create intl reducer
+### Create intl reducer
 
 Create a `intl.js` file under a `reducers` folder
 
-```
+```js
 import {SET_LOCALE} from "constants/actions"
 
 const initialState = {
@@ -129,9 +171,9 @@ export default function intlReducer(state = initialState, action) {
 }
 ```
 
-## Add intl reducer to your store
+### Add intl reducer to your store
 
-```
+```js
 import {combineReducers} from "redux"
 ...
 import * as phenomicReducers from "phenomic/lib/redux/modules"
@@ -151,12 +193,12 @@ const store = createStore(
 )
 ```
 
-## Overide intl in context
+### Overide intl in context
 
 The default `intl` in context can't change. We need to override the `intl` context by `intl` state from our `redux` store.
 To do that, let's update the `AppContainer.js` :
 
-```javascript
+```js
 import {connect} from "react-redux"
 ...
 const ReduxIntlProvider = connect(state => state.intl)(IntlProvider)
@@ -174,7 +216,7 @@ const AppContainer = (props) => (
 )
 ```
 
-## Get your translated content
+### Get your translated content
 
 Add a metadata `locale` to your `.md` files
 
@@ -188,7 +230,7 @@ Your content
 
 Then, use the `filter` option from `enhanceCollection` in your layouts to get your translated content :
 
-```javascript
+```js
 ...
 class Homepage extends Component {
   render() {
@@ -210,15 +252,15 @@ export default connect(
 )(Homepage)
 ```
 
-## Update your header
+### Update your header
 
 Once you can have your translated content, we have to add two buttons in the header to change our locale.
 
-```javascript
-...
+```js
+// ...
 import {browserHistory} from "phenomic/lib/client"
 import {setLocale} from "actions/intl"
-...
+// ...
 class Header extends Component {
   ...
   render() {
@@ -234,7 +276,7 @@ class Header extends Component {
     )
   }
 }
-...
+// ...
 export default connect(
   null,
   dispatch => ({
@@ -255,23 +297,17 @@ export default connect(
 )(Header)
 ```
 
-_Note:
-
-## Initialize with right locale
+### Initialize with right locale
 
 Now we need to initialize the site with the right locale.
 
 To do this, open your `scripts/phenomic.browser.js` and add :
 
-```javascript
-import {setLocale} from "actions/intl"
+```js
+import { setLocale } from "actions/intl"
 const DEFAULT_LOCALE = "en"
-...
-let locale = window.localStorage.getItem("locale")
 
-if (locale !== null) {
-  store.dispatch(setLocale(locale))
-} else {
-  store.dispatch(setLocale(DEFAULT_LOCALE))
-}
+// ...
+
+store.dispatch(setLocale(window.localStorage.getItem("locale") || DEFAULT_LOCALE)
 ```
