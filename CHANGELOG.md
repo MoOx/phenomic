@@ -1,5 +1,23 @@
 # HEAD
 
+# 0.18.1 - 2016-11-09
+
+Bugfixes, including small proptypes issues for new projects (since 0.18.0).
+We also introduced a less strict stylelint config, like we made for eslint
+recently.
+
+- Fixed: don't intercept clicks on links (``<a>``) with no href
+  ([#867](https://github.com/MoOx/phenomic/pull/867) - @grncdr) 
+- Added: new stylelint recommended config that fit phenomic base theme
+  ([#849](https://github.com/MoOx/phenomic/pull/849) - @xuopled)
+
+## Base theme
+
+- Fixed: remove React warnings related to new way to load pages
+  ([#868](https://github.com/MoOx/phenomic/issues/868) - @MoOx)
+- Added: Integration of the new styleint recommended config
+  ([#849](https://github.com/MoOx/phenomic/pull/849) - @xuopled)
+
 # 0.18.0 - 2016-11-03
 
 🎉 Optimistic loading is now a thing!  
