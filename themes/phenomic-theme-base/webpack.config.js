@@ -163,7 +163,7 @@ export default (config = {}) => {
           // include: path.resolve(__dirname, "node_modules"),
           loader: ExtractTextPlugin.extract(
             "style-loader",
-            loader: [
+            [
               "css-loader",
               "postcss-loader",
             ].join("!")
