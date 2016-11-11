@@ -27,6 +27,15 @@ export default async function test(
   try {
     const targetModules = `${ target }/node_modules`
 
+    let yarn
+    try {
+      await exec("yarn --version")
+      yarn = true
+    }
+    catch (e) {
+      yarn = false
+    }
+
     await cleanup()
 
     await Promise.all([
@@ -41,11 +50,11 @@ export default async function test(
 
     await init()
 
-
-    try {
+    if (yarn) {
       log("yarn installing...")
       await exec("yarn install", { cwd: target })
-    } catch (err) {
+    }
+    else {
       log("npm installing...")
       await exec("npm prune", { cwd: target })
       await exec("npm install", { cwd: target })
