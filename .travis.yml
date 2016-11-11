@@ -13,9 +13,9 @@ matrix:
 cache:
   directories:
     - node_modules
-    - phenomic-theme-base/node_modules
-    - test-setup/node_modules
     - docs/node_modules
+    - themes/phenomic-theme-base/node_modules
+    - test-setup/node_modules
 
 before_install:
   # ensure npm @ 3 is installed (check only first number of npm)

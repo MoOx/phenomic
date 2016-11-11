@@ -8,7 +8,7 @@ const target = "test-setup"
 testFolder(
   target,
   {
-    // test-setup cleanu
+    // test-setup cleanup
     cleanup: async () => Promise.all(
       globby.sync("test-setup/!(node_modules)", { dot: true })
       .map(

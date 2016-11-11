@@ -1,9 +1,10 @@
 import validUrl from "valid-url"
 
 export const defaultTestAnswers = {
-  name: "Phenomic",
-  homepage: "https://phenomic.io/",
+  name: "phenomic-theme-base",
+  homepage: "https://phenomic.io/themes/base/demo",
   twitter: "Phenomic_app",
+  repository: "https://github.com/MoOx/phenomic",
   CNAME: false,
 }
 

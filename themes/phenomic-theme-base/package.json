@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "undefined",
-  "homepage": "undefined",
-  "twitter": "undefined",
-  "repository": "undefined",
+  "name": "phenomic-theme-base",
+  "homepage": "https://phenomic.io/themes/base/demo",
+  "twitter": "Phenomic_app",
+  "repository": "https://github.com/MoOx/phenomic",
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"src/**/*.css\"",
