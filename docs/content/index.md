@@ -36,7 +36,7 @@ the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
 <center style="font-weight: bold"><a href="showcase/">
-  Take a look to websites using Phenomic
+  Take a look to websites using Phenomic 👀
 </a></center>
 
 ## Setup a website in a flash
@@ -57,3 +57,17 @@ you edit your website. You will also see compilation & runtime errors.
 Phenomic is easily customizable; choose your own Markdown engine
 (with your own plugins), your own CSS preprocessor etc, thanks to the
 flexibility of Webpack and its loaders.
+
+By default, Phenomic provides a
+[base theme](https://github.com/MoOx/phenomic/tree/master/themes/phenomic-theme-base)
+that includes a recommended workflow.
+It also contains commented pieces of code that allows you to quickly customize
+it to fit your needs.
+
+<center style="font-weight: bold"><a href="themes/base/demo/">
+  Take a look to the base theme demo 👀
+</a></center>
+
+---
+
+Wanna play with Phenomic? It will take just 2 commands to setup a fresh project!
