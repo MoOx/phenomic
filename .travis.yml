@@ -32,10 +32,7 @@ cache:
 
 install: yarn
 
-script:
-  - yarn run test
-  - yarn run docs-webpack-2-test
-  - yarn run docs-webpack-2-reset && yarn run docs # reset cache
+script: yarn run test
 
 after_success: yarn run coverage
 
