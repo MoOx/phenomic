@@ -323,9 +323,9 @@ Now simply use the variable in your CSS :
 If you really want to add Sass or LESS for you styles you can replace in your
 `webpack.config.js` `postcss-loader` by `sass-loader` or `less-loader`:
 
-- Install dependencies
-  - `npm install --save-dev node-sass sass-loader`
-  - or `npm install --save-dev less less-loader`
+- Install dependencies through `yarn` or `npm`
+  - `npm install node-sass sass-loader` or `npm install less less-loader`
+  - `yarn add node-sass sass-loader` or `yarn add less less-loader`
 - Adjust `webpack.config.js` configuration for .css
   - duplicate css section and replace `.css` by `.sass` (or `.less`)
   - or directly replace `.css` by `.sass` (or `.less`).

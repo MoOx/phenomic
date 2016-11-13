@@ -10,34 +10,45 @@ const fs = require("fs-extra")
 
 const pkg = require("../package.json")
 
-// no need for th is step on CI
-if (process.env.CI) {
-  process.exit(0)
-}
-
 const spawnOpts = {
   stdio: "inherit",
   cwd: join(__dirname, "../"),
 }
 
-stat("__tests__", function(error, stats) {
+// e2e-tests are only present if you clone the full repo
+// (won't be present when npm install with git ref)
+
+stat("e2e-tests", function(error, stats) {
+
+  // for dev install, we prepare docs and base theme deps
   if (!error && stats.isDirectory()) {
     console.log("Tweaking and installing dependencies for docs & themes")
 
-    spawn("babel-node", [ "scripts/docs.js" ], spawnOpts)
+    const babelNode = /^win/.test(process.platform)
+      ? ".\\node_modules\\.bin\\babel-node"
+      : "babel-node"
+
+    spawn(babelNode, [ "scripts/docs.js" ], spawnOpts)
     .on("error", (err) => {
       console.error("Failed to prepare docs")
       console.error(err)
     })
 
-    spawn("babel-node", [ "scripts/phenomic-theme-base.js" ], spawnOpts)
+    spawn(babelNode, [ "scripts/phenomic-theme-base.js" ], spawnOpts)
     .on("error", (err) => {
-      console.error("Failed to prepare docs")
+      console.error("Failed to prepare phenomic-theme-base")
+      console.error(err)
+    })
+
+    spawn(babelNode, [ "scripts/test-setup.js" ], spawnOpts)
+    .on("error", (err) => {
+      console.error("Failed to prepare test-setup")
       console.error(err)
     })
   }
 })
 
+// npm rename .gitignore to .npmignore (which is just stupid for us)
 const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
 stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
   if (err) {
@@ -58,7 +69,16 @@ stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
   )
 })
 
+// if repo installed from npm, we try to compile src
 stat("lib", function(error, stats) {
+
+  // no need for th is step on CI,
+  // only make sense when cloning the repo for dev
+  if (process.env.CI) {
+    return true
+  }
+
+  // if lib is present, no need to transpile
   if (!error && stats.isDirectory()) {
     return true
   }

@@ -35,7 +35,8 @@
   },
   "engines": {
     "node": ">=4.2.0",
-    "npm": ">=3.0.0"
+    "npm": ">=3.0.0",
+    "yarn": ">=0.16.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
@@ -87,6 +88,7 @@
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
+    "babel-jest": "^17.0.0",
     "babel-plugin-flow-react-proptypes": "^0.10.1",
     "babel-plugin-istanbul": "^2.0.0",
     "babel-preset-latest": "^6.14.0",
@@ -159,10 +161,10 @@
     "test-setup": "cd test-setup && npm test",
     "docs": "babel-node scripts/docs.js",
     "docs-linting": "eslint --ignore-path .gitignore --fix docs/scripts docs/src",
-    "docs-webpack-2": "npm i webpack@^2.1.0-beta.25 && babel-node scripts/docs.js && cd docs && npm i extract-text-webpack-plugin@^2.0.0-beta.4",
-    "docs-webpack-2-start": "npm run docs-webpack-2 && npm start",
+    "docs-webpack-2": "npm install webpack@^2.1.0-beta.25 && babel-node scripts/docs.js && cd docs && npm install extract-text-webpack-plugin@^2.0.0-beta.4",
+    "docs-webpack-2-reset": "npm install webpack@^1.11.0 && babel-node scripts/docs.js && cd docs && npm install extract-text-webpack-plugin@^1.0.1",
     "docs-webpack-2-test": "npm run docs-webpack-2 && cd docs && npm test",
-    "docs-webpack-2-reset": "npm install && npm run docs",
+    "docs-webpack-2-start": "npm run docs-webpack-2 && npm start",
     "pretest-docs": "npm run docs && npm run docs-linting",
     "test-docs": "cd docs && npm test",
     "predocs-start": "npm run docs",

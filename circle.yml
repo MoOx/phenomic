@@ -1,0 +1,19 @@
+machine:
+  node:
+    version: 6
+
+dependencies:
+  override:
+    - npm prune
+    - npm install
+
+  cache_directories:
+    - node_modules
+    - docs/node_modules
+    - themes/phenomic-theme-base/node_modules
+    - test-setup/node_modules
+
+test:
+  override:
+    - npm test && npm run docs-webpack-2-test # && npm run docs-webpack-2-reset
+    # no need to run "docs-webpack-2-reset" as circle ci cache is saved just after the initial npm install

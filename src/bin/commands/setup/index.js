@@ -43,10 +43,17 @@ export default async function setup(argv) {
     await fs.writeJson(join(cwd, "package.json"), pkg)
     log("`package.json` generated")
 
-    // node_modules is excluded because can be present during tests
-    // (but will never be in public package)
     const files = globby.sync(
-      [ "*", "!node_modules", "!package.json" ],
+      [
+        "*",
+        // node_modules is excluded because can be present during tests
+        // (but will never be in public package)
+        "!node_modules",
+        // already generated
+        "!package.json",
+        // we assume it's up to the user
+        "!yarn.lock",
+      ],
       { dot: true, cwd: themePath }
     )
     await Promise.all(files.map((file) => fs.copy(

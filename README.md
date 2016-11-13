@@ -1,6 +1,7 @@
 # [![Phenomic](https://rawgit.com/MoOx/phenomic/master/logo/phenomic.svg)](https://phenomic.io)
 
-[![Unix Build status](https://img.shields.io/travis/MoOx/phenomic/master.svg?branch=master&label=unix%20build)](https://travis-ci.org/MoOx/phenomic)
+[![Unix/Yarn Build status](https://img.shields.io/travis/MoOx/phenomic/master.svg?label=unix%2Fyarn%20build)](https://travis-ci.org/MoOx/phenomic)
+[![Unix/npm Build status](https://img.shields.io/circleci/project/github/MoOx/phenomic/master.svg?label=unix%2Fnpm%20build)](https://circleci.com/gh/MoOx/phenomic)
 [![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/phenomic/branch/master)
 [![Code Coverage](https://img.shields.io/coveralls/MoOx/phenomic/master.svg)](https://coveralls.io/github/MoOx/phenomic)
 [![Version](https://img.shields.io/npm/v/phenomic.svg)](https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md)

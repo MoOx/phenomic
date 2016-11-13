@@ -5,23 +5,46 @@ import colors from "chalk"
 
 import pkg from "../../package.json"
 
-module.exports = function(nodeVersion, npmVersion) {
+module.exports = function(nodeVersion, npmVersion, yarnVersion) {
   const requirements = pkg.engines
   nodeVersion = (nodeVersion || process.version)
 
   const npm = /^win/.test(process.platform) ? "npm.cmd" : "npm"
   npmVersion = (npmVersion || execSync(npm + " --version").toString().trim())
 
+  try {
+    const yarn = /^win/.test(process.platform) ? "yarn.cmd" : "yarn"
+    yarnVersion = (
+      yarnVersion !== undefined
+      ? yarnVersion
+      : execSync(yarn + " --version").toString().trim()
+    )
+  }
+  catch (e) {
+    // nothing, assuming yarn does not exist
+  }
+
   if (!(
     semver.satisfies(nodeVersion, requirements.node) &&
-    semver.satisfies(npmVersion, requirements.npm)
+    (
+      semver.satisfies(npmVersion, requirements.npm) ||
+      (yarnVersion && semver.satisfies(yarnVersion, requirements.yarn))
+    )
   )) {
     const errorMessage = colors.yellow(
       "\n⚠️ " + "Phenomic requires at least " +
-      "node@" + requirements.node + " and npm@" + requirements.npm +
+      "node@" + requirements.node +
+      " and " +
+      "npm@" + requirements.npm + " (or yarn@" + requirements.yarn + ")" +
       "\n\n" +
       "Your node version is " + nodeVersion +
-      " and your npm version is " + npmVersion +
+      (yarnVersion ? ", " : " and ") +
+      "your npm version is " + npmVersion +
+      (
+        !yarnVersion ? "" :
+        " and " +
+        "your yarn version is " + yarnVersion
+      ) +
       "\n\n" +
       colors.yellow("See 'Setup' instruction in documentation.") +
       " " +
