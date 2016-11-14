@@ -20,6 +20,7 @@
   ],
   "author": "Maxime Thirouin",
   "license": "MIT",
+  "homepage": "https://phenomic.io",
   "repository": "https://github.com/MoOx/phenomic.git",
   "main": "lib/index.js",
   "files": [
