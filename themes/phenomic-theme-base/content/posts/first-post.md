@@ -1,5 +1,5 @@
 ---
-title: First Post
+title: First Post, no hero.
 date: 2016-01-22
 layout: Post
 ---
@@ -12,7 +12,7 @@ Code is highlighted by default.
 const StatelessComponent = (props) => {
   return (
     <div>
-      I'am a stateless component that accept children
+      I‘m a stateless component that accepts children
       { props.children }
     </div>
   )

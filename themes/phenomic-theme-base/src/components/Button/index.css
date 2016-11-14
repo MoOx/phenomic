@@ -1,0 +1,48 @@
+.button {
+  display: inline-flex;
+  padding: 0 1rem;
+  line-height: 2rem;
+  font-weight: 100;
+  text-align: center;
+  border-radius: 3px;
+
+  transition: .2s all;
+
+  color: var(--colorPrimary);
+  border: 1px solid var(--colorPrimary);
+  background: color(var(--colorNeutralLight) a(0.2));
+
+  &:hover {
+    text-decoration: none;
+    color: var(--colorPrimaryDark);
+    border: 1px solid var(--colorPrimaryDark);
+  }
+}
+
+.secondary {
+  color: var(--colorSecondary);
+  border: 1px solid var(--colorSecondary);
+
+  &:hover {
+    color: var(--colorSecondaryDark);
+    border: 1px solid var(--colorSecondaryDark);
+  }
+}
+
+.light {
+  color: var(--colorNeutralLight);
+  border: 1px solid var(--colorNeutralLight);
+
+  &:hover {
+    color: var(--colorNeutralLight);
+    border: 1px solid var(--colorNeutralLight);
+    background: color(var(--colorNeutralLight) a(0.3));
+  }
+}
+
+
+.big {
+  font-size: 1.5rem;
+  padding: 0 2rem;
+  line-height: 3rem;
+}

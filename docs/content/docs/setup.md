@@ -1,5 +1,5 @@
 ---
-title: How to setup Phenomic
+title: How to setup a new project with Phenomic
 ---
 
 Phenomic require at least

@@ -5,8 +5,15 @@ module.exports = (config) => [
       features: {
         customProperties: {
           variables: {
-            mainColor: "#111",
-            mainColorContrasted: "#eee",
+            maxWidth: "60rem",
+            colorPrimaryDark: "#107491",
+            colorPrimary: "#007acc",
+            colorSecondaryDark: "#22846C",
+            colorSecondary: "#46BE77",
+            colorNeutralDark: "#111",
+            colorNeutral: "#8C8D91",
+            colorNeutralLight: "#FBFCFC",
+            colorText: "#555",
           },
         },
       },

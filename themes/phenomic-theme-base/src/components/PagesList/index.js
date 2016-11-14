@@ -2,13 +2,15 @@ import React, { PropTypes } from "react"
 
 import PagePreview from "../PagePreview"
 
+import styles from "./index.css"
+
 const PagesList = ({ pages }) => {
   return (
     <div>
       {
       pages.length
       ? (
-        <ul>
+        <ul className={ styles.list }>
           {
           pages.map((page) => (
             <li key={ page.title }><PagePreview { ...page } /></li>

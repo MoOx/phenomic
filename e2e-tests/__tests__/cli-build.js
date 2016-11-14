@@ -48,6 +48,7 @@ it("should build the base theme correctly",
       .toEqual(
         [
           "404.html",
+          "about/index.html",
           "index.html",
           "posts/first-post/index.html",
           "posts/hello-world/index.html",
@@ -58,7 +59,7 @@ it("should build the base theme correctly",
       const html404 = read(testFolder, "404.html")
       expect(html404).toContain(
         "window.__COLLECTION__ = " +
-        "[{\"layout\":\"PageError\",\"route\":\"404.html\",\"description\""
+        "[{\"layout\":\"PageError\",\"route\":\"404.html\",\"hero\""
       )
 
       // ensure all pages have the correct title
@@ -89,7 +90,7 @@ it("should build the base theme correctly",
 
       const htmlHello = read(testFolder, "posts/hello-world/index.html")
       expect(htmlHello).toContain(
-        ">Hello World!"
+        ">Welcome back"
       )
       expect(htmlHello).toContain(
         "window.__INITIAL_STATE__ = {\"pages\":{\"/posts/hello-world/\"",

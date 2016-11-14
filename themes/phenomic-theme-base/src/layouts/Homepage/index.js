@@ -1,29 +1,14 @@
-import React, { PropTypes } from "react"
-import enhanceCollection from "phenomic/lib/enhance-collection"
+import React from "react"
 
+import LatestPosts from "../../components/LatestPosts"
 import Page from "../Page"
-import PagesList from "../../components/PagesList"
 
-const numberOfLatestPosts = 6
-
-const Homepage = (props, { collection }) => {
-  const latestPosts = enhanceCollection(collection, {
-    filter: { layout: "Post" },
-    sort: "date",
-    reverse: true,
-  })
-  .slice(0, numberOfLatestPosts)
-
+const Homepage = (props) => {
   return (
     <Page { ...props }>
-      <h2>{ "Latest Posts" }</h2>
-      <PagesList pages={ latestPosts } />
+      <LatestPosts />
     </Page>
   )
-}
-
-Homepage.contextTypes = {
-  collection: PropTypes.array.isRequired,
 }
 
 export default Homepage

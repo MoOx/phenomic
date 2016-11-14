@@ -27,10 +27,11 @@ body {
  */
 html {
   min-height: 100%;
-  background: color(#deecf1 a(0.4));
+  background: color(var(--colorPrimary) l(99%));
 }
 
 body {
+  color: var(--colorText);
   font-size: 1rem;
   line-height: 1.5rem;
 
@@ -73,10 +74,18 @@ body {
 
 /* minimal styling, prefer removing this and use local styles */
 a {
-  color: #0e63e3;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-/* handy for content */
-img {
-  max-width: 100%;
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--colorNeutral);
+  opacity: 0.2;
+  margin: 2rem 0;
 }
