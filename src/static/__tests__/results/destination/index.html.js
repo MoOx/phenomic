@@ -1,4 +1,4 @@
-import htmlMetas from "../../../../../../_utils/html-metas"
+import htmlMetas from "../../../../_utils/html-metas"
 
 export default () => (
       `<!doctype html>
@@ -13,7 +13,7 @@ export default () => (
 
 <body>
   <div id="phenomic">
-    <p>ReactTestContainer</p>
+    <p>TestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{
@@ -24,7 +24,11 @@ export default () => (
       "__resourceUrl": "/test-url/index.html"
     }];
     window.__INITIAL_STATE__ = {
-      "pages": {}
+      "pages": {
+        "/": {
+          "home": "page"
+        }
+      }
     }
   </script>
   <script src="/test.js"></script>

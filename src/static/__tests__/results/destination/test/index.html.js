@@ -1,4 +1,4 @@
-import htmlMetas from "../../../../../../_utils/html-metas"
+import htmlMetas from "../../../../../_utils/html-metas"
 
 export default () => (
       `<!doctype html>
@@ -13,7 +13,7 @@ export default () => (
 
 <body>
   <div id="phenomic">
-    <p>TestContainer</p>
+    <p>ReactTestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{

@@ -53,10 +53,21 @@ export type PhenomicConfig = {
   baseUrl: Object,
   scriptNode: string,
   scriptBrowser: string,
+  clientScripts: boolean,
   webpackConfig?: WebpackConfig,
   webpackConfigBrowser?: WebpackConfig,
   webpackConfigNode?: WebpackConfig,
   cache?: boolean,
+}
+
+export type PhenomicStaticConfig = PhenomicConfig & {
+  // private
+  collection: PhenomicCollection,
+  assetsFiles: WebpackAssetsFiles,
+  // user
+  metadata: Object,
+  routes: Object,
+  store: Object,
 }
 
 export type PhenomicLoaderOptions = {}
@@ -70,3 +81,8 @@ export type PhenomicLoaderPluginInput = {
 export type PhenomicLoaderPlugin = (
   obj: PhenomicLoaderPluginInput
 ) => PhenomicCollectionItem
+
+export type PhenomicAssetsFiles = {
+  css: Array<string>,
+  js: Array<string>
+}

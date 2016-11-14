@@ -93,7 +93,12 @@ Here is a commented ``package.json`` with only the interesting parts
     // $ yarn start -- --force-offline
 
     // EXPERIMENTAL: enable webpack hard cache via Webpack hard-source-plugin
-    "cache": false
+    "cache": false,
+
+    // disable all client scripts code
+    // To turn Phenomic into a standard static website generator
+    // 🙃
+    "clientScripts": true,
   },
 
   // That's because es5 is not enough

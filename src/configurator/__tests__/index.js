@@ -45,6 +45,7 @@ test("should return a default configuration", (t) => {
       path: "/",
       href: "http://0.0.0.0:3333/",
     },
+    clientScripts: true,
   }
 
   t.deepEqual(

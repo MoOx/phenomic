@@ -2,8 +2,8 @@ import url from "url"
 
 import test from "jest-ava-api"
 
-import beautifyHTML from "../../../_utils/beautify-html"
-import htmlMetas from "../../../_utils/html-metas"
+import beautifyHTML from "../../_utils/beautify-html"
+import htmlMetas from "../../_utils/html-metas"
 import urlAsHtml from "../url-as-html"
 
 import collection from "./fixtures/collection.js"
@@ -20,7 +20,9 @@ test("url as html", async (t) => {
       assetsFiles: {
         js: [ "test.js" ],
       },
+      clientScripts: true,
     },
+    undefined, // Html
     true
   )
 
@@ -60,6 +62,42 @@ test("url as html", async (t) => {
   t.is(beautifyHTML(html),  expectedHTML)
 })
 
+test("url as html without JS", async (t) => {
+  const html = await urlAsHtml(
+    "/",
+    {
+      routes: require("./fixtures/routes.js").default,
+      collection,
+      store,
+      baseUrl: url.parse("http://0.0.0.0:3000/"),
+      assetsFiles: {
+        js: [ "test.js" ],
+      },
+      clientScripts: false,
+    },
+    undefined, // Html
+    true
+  )
+
+  const expectedHTML = (
+`<!doctype html>
+<html lang="en">
+
+<head>
+  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
+  <title data-react-helmet="true"></title>
+</head>
+
+<body>
+  <div id="phenomic">
+    <p>TestContainer</p>
+  </div>
+</body>
+
+</html>`)
+  t.is(beautifyHTML(html),  expectedHTML)
+})
+
 test("baseUrl with offline support", async (t) => {
   const html = await urlAsHtml(
     "/",
@@ -76,7 +114,9 @@ test("baseUrl with offline support", async (t) => {
       assetsFiles: {
         js: [ "test.js" ],
       },
+      clientScripts: true,
     },
+    undefined, // Html
     true
   )
 
@@ -127,7 +167,9 @@ test("custom script tags", async (t) => {
       assetsFiles: {
         js: [ "test.js" ],
       },
+      clientScripts: true,
     },
+    undefined, // Html
     true
   )
 

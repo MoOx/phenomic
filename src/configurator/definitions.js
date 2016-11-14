@@ -89,4 +89,9 @@ export default {
       "(hard-source-webpack-plugin)",
     default: false,
   },
+  "clientScripts": {
+    type: "boolean",
+    description: "flag to disable client side JavaScript in HTML files",
+    default: true,
+  },
 }

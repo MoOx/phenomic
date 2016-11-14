@@ -1,17 +1,11 @@
 // @flow
 
-type assetsFiles = {
-  css: Array<string>,
-  js: Array<string>
-}
-
-type assets = { [key: string]: Array<string> }
 /*
  * Get JSON stats
  * Flatten chunk name
  * Sort a-z => predictable chunks order
  */
-export default function(assets: assets): assetsFiles {
+export default function(assets: WebpackAssetsFiles): PhenomicAssetsFiles {
   const assetsFiles = { css: [], js: [] }
 
   Object.keys(assets)

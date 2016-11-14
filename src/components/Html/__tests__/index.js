@@ -4,7 +4,7 @@ import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"
 import expectJSX from "expect-jsx"
 
-import Html from "../Html"
+import Html from "../index.js"
 
 expect.extend(expectJSX)
 
@@ -27,6 +27,7 @@ test("should render Html componnent", () => {
         head={ head }
         body={ body }
         script={ script }
+        config={{ clientScripts: true }}
       >
         <p>{ "foo" }</p>
       </Html>

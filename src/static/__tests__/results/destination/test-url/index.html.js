@@ -24,11 +24,7 @@ export default () => (
       "__resourceUrl": "/test-url/index.html"
     }];
     window.__INITIAL_STATE__ = {
-      "pages": {
-        "/": {
-          "home": "page"
-        }
-      }
+      "pages": {}
     }
   </script>
   <script src="/test.js"></script>

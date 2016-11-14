@@ -6,39 +6,28 @@ import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
 import Helmet from "react-helmet"
 
-import htmlMetas from "../../_utils/html-metas"
-import pathToUri from "../../_utils/path-to-uri"
-import PhenomicContextProvider from "../../components/ContextProvider"
-import serialize from "../../_utils/serialize"
-import minifyCollection from "../../loader/minify"
-
-import Html from "./Html"
+import DefaultHtml from "../components/Html"
+import htmlMetas from "../_utils/html-metas"
+import pathToUri from "../_utils/path-to-uri"
+import PhenomicContextProvider from "../components/ContextProvider"
+import serialize from "../_utils/serialize"
+import minifyCollection from "../loader/minify"
 
 export default function(
   url: string,
-  {
-    metadata,
-    routes,
-    store,
-    collection,
-
-    baseUrl,
-    assetsFiles,
-    offline,
-    offlineConfig,
-  }: {
-    metadata: Object,
-    routes: Object,
-    store: Object,
-    collection: PhenomicCollection,
-
-    baseUrl: Object,
-    assetsFiles: Object,
-    offline: boolean,
-    offlineConfig: PhenomicOfflineConfig,
-  },
+  options: PhenomicStaticConfig,
+  Html: Function = DefaultHtml,
   testing?: boolean
 ): Promise<string> {
+
+  const {
+    baseUrl,
+    assetsFiles,
+    routes,
+    collection,
+    metadata,
+    store,
+  } = options
 
   const render = ReactDOMserver[
     !testing
@@ -149,6 +138,7 @@ export default function(
                   head: headTags,
                   body,
                   script,
+                  config: options,
                 },
                 scriptTags
               )
