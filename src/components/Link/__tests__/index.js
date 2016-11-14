@@ -4,8 +4,11 @@ import { createRenderer } from "react-addons-test-utils"
 import expect from "expect"
 import expectJSX from "expect-jsx"
 
-// eslint-disable-next-line import/no-named-as-default
+import dom from "../../../_utils/jsdom"
 import Link from "../"
+
+dom("http://localhost/test/")
+process.env.PHENOMIC_USER_PATHNAME = "/test/"
 
 expect.extend(expectJSX)
 
@@ -20,7 +23,7 @@ test("should render <a> tag", () => {
     createElement(
       Link,
       {
-        to: "/",
+        to: "/test/",
         className: "foo",
         children: <span />,
       },
@@ -43,12 +46,54 @@ test("should render <a> tag", () => {
   )
 })
 
+test("should render normal <a> tag if to is not 'local'", () => {
+  const component = renderer(
+    createElement(
+      Link,
+      {
+        to: "http://test.com",
+        className: "foo",
+        children: <span />,
+      },
+    ),
+    {
+      router: {
+        isActive: () => false,
+      },
+    }
+  )
+
+  expect(component.props.href)
+  .toEqual("http://test.com")
+})
+
+test("should render normal <a> tag if to is not in the same root path", () => {
+  const component = renderer(
+    createElement(
+      Link,
+      {
+        to: "/root",
+        className: "foo",
+        children: <span />,
+      },
+    ),
+    {
+      router: {
+        isActive: () => false,
+      },
+    }
+  )
+
+  expect(component.props.href)
+  .toEqual("/root")
+})
+
 test("should allow passing props to <a> tag", () => {
   const component = renderer(
     createElement(
       Link,
       {
-        to: "/",
+        to: "/test/",
         className: "foo",
         disabled: true,
         children: <span />,
@@ -78,7 +123,7 @@ test("should have activeClassName when url matched", () => {
     createElement(
       Link,
       {
-        to: "/",
+        to: "/test/",
         className: "foo",
         activeClassName: "bar",
         disabled: true,
@@ -87,7 +132,7 @@ test("should have activeClassName when url matched", () => {
     ),
     {
       router: {
-        isActive: ({ pathname }) => (pathname === "/"),
+        isActive: ({ pathname }) => (pathname === "/test/"),
       },
     }
   )
@@ -109,7 +154,7 @@ test("should have activeClassName when url matched with index.html", () => {
     createElement(
       Link,
       {
-        to: "/",
+        to: "/test/",
         className: "foo",
         activeClassName: "bar",
         disabled: true,
@@ -118,7 +163,7 @@ test("should have activeClassName when url matched with index.html", () => {
     ),
     {
       router: {
-        isActive: ({ pathname }) => (pathname === "/index.html"),
+        isActive: ({ pathname }) => (pathname === "/test/index.html"),
       },
     }
   )
@@ -140,7 +185,7 @@ test("should not have undefined when no activeClassName props", () => {
     createElement(
       Link,
       {
-        to: "/",
+        to: "/test/",
         className: "foo",
         disabled: true,
         children: <span />,
@@ -148,7 +193,7 @@ test("should not have undefined when no activeClassName props", () => {
     ),
     {
       router: {
-        isActive: ({ pathname }) => (pathname === "/"),
+        isActive: ({ pathname }) => (pathname === "/test/"),
       },
     }
   )

@@ -30,17 +30,19 @@ Example with `moment.js`
 ++ moment(date).utc().format("DD MMM YYYY")
 ```
 
-### Navigation links with active class
+### Navigation links with active class on different urls (/ or /index.html)
 
 With Phenomic, a user can request a page with or without the trailing `index.html`.
 If you are using `react-router` `<Link />` component with the `activeClassName` property,
-React will warn with the above message. We provided a `<LinkWrapper />` component to
-cover this case.
+React will warn with the above message.
+We provided a `<Link />` wrapper component to cover this case.
 
 ```diff
 -- import { Link } from "react-router"
-++ import { Link } from "phenomic/lib/Link"
+++ import { Link } from "phenomic"
 ```
+
+[See ``Link`` documentation](/docs/usage/scripting/#link)
 
 ### How to debug this checksum issue?
 

@@ -43,6 +43,22 @@ Component to define and declare all pages layouts.
 
 [Check the usage in the phenomic-theme-base.](https://github.com/MoOx/phenomic/blob/master/docs/src/routes.js)
 
+#### ``Link``
+
+With Phenomic, a user can request a page **with or without** a trailing `index.html`.
+
+If you are using `react-router` `<Link />` component with the `activeClassName`
+property,
+[React will warn about a difference from client & static rendering](/docs/faq/react/).
+
+Phenomic provides a Link component to cover this case.
+
+**Note that ``Link`` can also be used for unknow links (internal or external).**
+Current ``react-router`` ``Link`` implementation just crash if you use an
+external link. Phenomic ``Link`` component fix this for you.
+This is especially handy if you generate links from unknown data
+(eg: markdow front-matter value that can point to internal or external pages) .
+
 #### ``BodyContainer``
 
 This component should be used to wrap pages ``body``.
