@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react"
-import { Link } from "phenomic/lib/Link"
+import { Link } from "phenomic"
 import enhanceCollection from "phenomic/lib/enhance-collection"
 
 import urlToSlug from "../../utils/url-to-slug"

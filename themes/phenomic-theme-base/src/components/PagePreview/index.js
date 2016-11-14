@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react"
-import { Link } from "react-router"
+import { Link } from "phenomic"
 
 import Button from "../../components/Button"
 
