@@ -41,5 +41,7 @@ This will fix all the errors that ESLint or its plugins can handle.
 ## CSS Linting
 
 [stylelint](http://stylelint.io/) is a must have CSS linter; the default
-phenomic-theme-base provides you with a nice [standard set of rules](https://github.com/stylelint/stylelint-config-standard)
+phenomic-theme-base provides you with a very minimal set of rules to prevent
+errors, but we recommend you to use the nice
+[standard set of rules](https://github.com/stylelint/stylelint-config-standard)
 for modern CSS development.

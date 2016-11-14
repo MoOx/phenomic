@@ -1,25 +1,17 @@
 // @flow
 
 module.exports = {
-  "extends": "stylelint-config-standard",
-  "rules": {
-    "property-no-unknown": [
+  // too many opinionated rules
+  // "extends": "stylelint-config-standard",
+  rules: {
+    // only prevent user errors
+    "string-no-newline": true,
+    "unit-no-unknown": true,
+    "property-no-unknown": true,
+    "declaration-block-no-duplicate-properties": [
       true,
-      {
-        "ignoreProperties": [
-          "composes",
-        ],
-      },
+      { "ignore": [ "consecutive-duplicates-with-different-values" ] },
     ],
-
-    // too annoying during development
-    //
-    "block-no-empty": null,
-
-    // does not make sense when you comment a line of code in a block
-    "comment-empty-line-before": null,
-
-    // atom command to comment code don't add space, so super annoying...
-    "comment-whitespace-inside": null,
+    "declaration-block-no-ignored-properties" : true,
   },
 }

@@ -213,7 +213,12 @@
   "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
   "#eslintConfig/rules/import/no-unresolved": "deps in docs & theme are installed after the lint step",
   "stylelint": {
-    "extends": "stylelint-config-standard"
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "block-no-empty": null,
+      "comment-empty-line-before": null,
+      "comment-whitespace-inside": null
+    }
   },
   "jest": {
     "testEnvironment": "node",
