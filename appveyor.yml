@@ -4,6 +4,9 @@ environment:
   matrix:
     - nodejs_version: '6'
 
+  # stick to npm
+  PHENOMIC_TEST_WITH_YARN: 0
+
 version: "{build}"
 build: off
 deploy: off
