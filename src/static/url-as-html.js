@@ -16,8 +16,7 @@ import minifyCollection from "../loader/minify"
 export default function(
   url: string,
   options: PhenomicStaticConfig,
-  Html: Function = DefaultHtml,
-  testing?: boolean
+  Html: Function = DefaultHtml
 ): Promise<string> {
 
   const {
@@ -30,9 +29,9 @@ export default function(
   } = options
 
   const render = ReactDOMserver[
-    !testing
-    ? "renderToString"
-    : "renderToStaticMarkup"
+    (!options.clientScripts)
+    ? "renderToStaticMarkup"
+    : "renderToString"
   ]
 
   return new Promise((resolve, reject) => {

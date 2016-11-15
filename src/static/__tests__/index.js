@@ -25,9 +25,6 @@ test("don't break if there is nothing to transform", async (t) => {
   .then((files) => {
     t.is(files.length, 0)
   })
-  .catch((error) => {
-    t.fail(error)
-  })
 })
 
 test("writeAllHTMLFiles", (t) => {
@@ -48,14 +45,11 @@ test("writeAllHTMLFiles", (t) => {
       if (!expectedHTML[filename]) {
         throw new Error(filename + " is missing in expectedHTML results")
       }
-      t.deepEqual(
+      t.is(
         beautifyHTML(html),
         expectedHTML[filename](),
       )
     },
     forgetPageData: () => {},
   }, true)
-  .catch((error) => {
-    t.fail(error)
-  })
 })

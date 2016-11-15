@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import url from "url"
 
 import test from "jest-ava-api"
@@ -23,7 +25,6 @@ test("url as html", async (t) => {
       clientScripts: true,
     },
     undefined, // Html
-    true
   )
 
   const expectedHTML = (
@@ -37,7 +38,7 @@ test("url as html", async (t) => {
 
 <body>
   <div id="phenomic">
-    <p>TestContainer</p>
+    <p data-reactroot="" data-reactid="1" data-react-checksum="305402615">TestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{
@@ -76,7 +77,6 @@ test("url as html without JS", async (t) => {
       clientScripts: false,
     },
     undefined, // Html
-    true
   )
 
   const expectedHTML = (
@@ -117,7 +117,6 @@ test("baseUrl with offline support", async (t) => {
       clientScripts: true,
     },
     undefined, // Html
-    true
   )
 
   const expectedHTML = (
@@ -131,7 +130,7 @@ test("baseUrl with offline support", async (t) => {
 
 <body>
   <div id="phenomic">
-    <p>TestContainer</p>
+    <p data-reactroot="" data-reactid="1" data-react-checksum="305402615">TestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{
@@ -170,7 +169,6 @@ test("custom script tags", async (t) => {
       clientScripts: true,
     },
     undefined, // Html
-    true
   )
 
   const expectedHTML = (
@@ -184,8 +182,9 @@ test("custom script tags", async (t) => {
 
 <body>
   <div id="phenomic">
-    <div>
-      <p>TestContainer</p>
+    <div data-reactroot="" data-reactid="1" data-react-checksum="1089807005">
+      <!-- react-empty: 2 -->
+      <p data-reactid="3">TestContainer</p>
     </div>
   </div>
   <script>

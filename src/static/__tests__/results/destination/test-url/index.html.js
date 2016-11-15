@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import htmlMetas from "../../../../../_utils/html-metas"
 
 export default () => (
@@ -13,7 +14,7 @@ export default () => (
 
 <body>
   <div id="phenomic">
-    <p>TestContainer</p>
+    <p data-reactroot="" data-reactid="1" data-react-checksum="305402615">TestContainer</p>
   </div>
   <script>
     window.__COLLECTION__ = [{
