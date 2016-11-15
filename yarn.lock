@@ -503,6 +503,14 @@ babel-jest@^16.0.0:
     babel-plugin-istanbul "^2.0.0"
     babel-preset-jest "^16.0.0"
 
+babel-jest@^17.0.0:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-17.0.2.tgz#8d51e0d03759713c331f108eb0b2eaa4c6efff74"
+  dependencies:
+    babel-core "^6.0.0"
+    babel-plugin-istanbul "^2.0.0"
+    babel-preset-jest "^17.0.2"
+
 babel-messages@^6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-6.8.0.tgz#bf504736ca967e6d65ef0adb5a2a5f947c8e0eb9"
@@ -534,6 +542,10 @@ babel-plugin-istanbul@^2.0.0:
 babel-plugin-jest-hoist@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-16.0.0.tgz#b58ca3f770982a7e7c25b5614b2e57e9dafc6e76"
+
+babel-plugin-jest-hoist@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-17.0.2.tgz#213488ce825990acd4c30f887dca09fffeb45235"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -922,6 +934,12 @@ babel-preset-jest@^16.0.0:
   resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-16.0.0.tgz#417aabc2d7d93170f43c20ef1ea0145e8f7f2db5"
   dependencies:
     babel-plugin-jest-hoist "^16.0.0"
+
+babel-preset-jest@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-17.0.2.tgz#141e935debe164aaa0364c220d31ccb2176493b2"
+  dependencies:
+    babel-plugin-jest-hoist "^17.0.2"
 
 babel-preset-latest@^6.14.0:
   version "6.16.0"
@@ -1788,7 +1806,7 @@ enhanced-resolve@~0.9.0:
     memory-fs "^0.2.0"
     tapable "^0.1.8"
 
-env-hash@^1.0.1:
+env-hash@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/env-hash/-/env-hash-1.1.0.tgz#cc7c670dbbe5f076b39b4854937996a7c640f030"
   dependencies:
@@ -2709,12 +2727,12 @@ har-validator@~2.0.6:
     is-my-json-valid "^2.12.4"
     pinkie-promise "^2.0.0"
 
-hard-source-webpack-plugin@^0.1.0:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/hard-source-webpack-plugin/-/hard-source-webpack-plugin-0.1.4.tgz#b0de669c9f20aa9609df8cf5fd15247713ad1fae"
+hard-source-webpack-plugin@^0.2.0:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/hard-source-webpack-plugin/-/hard-source-webpack-plugin-0.2.2.tgz#b9bd21d055f585d356fe3dc4bd9a2b7a00eaa7bc"
   dependencies:
     bluebird "^3.0.0"
-    env-hash "^1.0.1"
+    env-hash "^1.1.0"
     level "^1.4.0"
     lodash "^4.15.0"
     mkdirp "^0.5.1"
