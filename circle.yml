@@ -2,6 +2,10 @@ machine:
   node:
     version: 6
 
+  environment:
+    # stick to npm
+    PHENOMIC_TEST_WITH_YARN: false
+
 dependencies:
   override:
     - npm prune

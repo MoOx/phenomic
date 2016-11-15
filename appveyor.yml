@@ -5,7 +5,7 @@ environment:
     - nodejs_version: '6'
 
   # stick to npm
-  PHENOMIC_TEST_WITH_YARN: 0
+  PHENOMIC_TEST_WITH_YARN: false
 
 version: "{build}"
 build: off

@@ -27,7 +27,12 @@ export default async function test(
   try {
     const targetModules = `${ target }/node_modules`
 
-    let yarn = process.env.PHENOMIC_TEST_WITH_YARN || true
+    let yarn = (
+      typeof process.env.PHENOMIC_TEST_WITH_YARN !== "undefined"
+      ? Boolean(JSON.parse(process.env.PHENOMIC_TEST_WITH_YARN))
+      : true
+    )
+
     if (yarn) {
       try {
         await exec("yarn --version")
