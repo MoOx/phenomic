@@ -4,10 +4,8 @@ import React from "react"
 import ReactDOMserver from "react-dom/server"
 import { match, RouterContext as RouterContextProvider } from "react-router"
 import { Provider as ReduxContextProvider } from "react-redux"
-import Helmet from "react-helmet"
 
 import DefaultHtml from "../components/Html"
-import htmlMetas from "../_utils/html-metas"
 import pathToUri from "../_utils/path-to-uri"
 import PhenomicContextProvider from "../components/ContextProvider"
 import serialize from "../_utils/serialize"
@@ -35,11 +33,6 @@ export default function(
   ]
 
   return new Promise((resolve, reject) => {
-    const defaultMetas = htmlMetas({
-      baseUrl,
-      css: assetsFiles.css,
-    }).join("")
-
     try {
       match(
         {
@@ -48,10 +41,6 @@ export default function(
           basename: baseUrl.pathname,
         },
         (error, redirectLocation, renderProps) => {
-          let head
-          let body
-          let script
-
           if (error) {
             return reject(error)
           }
@@ -70,10 +59,13 @@ export default function(
               "workaround: https://github.com/MoOx/phenomic/issues"
             )
           }
-          else {
-            const collectionMin = minifyCollection(collection)
-            // render app body as "react"ified html (with data-react-id)
-            body = render(
+
+          const collectionMin = minifyCollection(collection)
+
+          /* eslint-disable react/no-multi-comp */
+
+          const renderBody = () => {
+            const body = render(
               <PhenomicContextProvider
                 collection={ collectionMin }
                 metadata={ metadata }
@@ -84,46 +76,32 @@ export default function(
               </PhenomicContextProvider>
             )
 
-            head = Helmet.rewind()
+            return (
+              <div id="phenomic" dangerouslySetInnerHTML={{ __html: body }} />
+            )
+          }
 
-            const initialState = {
-              ...store.getState(),
-              // only keep current page as others are not necessary
-              pages: {
-                [url]: store.getState().pages[url],
-              },
+          const renderScript = () => {
+            if (options.clientScripts) {
+              const initialState = {
+                ...store.getState(),
+                // only keep current page as others are not necessary
+                pages: {
+                  [url]: store.getState().pages[url],
+                },
+              }
+              const script = (
+                `window.__COLLECTION__ = ${ serialize(collectionMin) };` +
+                `window.__INITIAL_STATE__ = ${ serialize(initialState) }`
+              )
+
+              return (
+                <script dangerouslySetInnerHTML={{ __html: script }} />
+              )
             }
-            script =
-              `window.__COLLECTION__ = ${
-                serialize(collectionMin)
-              };` +
-              `window.__INITIAL_STATE__ = ${
-                serialize(initialState)
-              }`
+
+            return null
           }
-
-          const headTags = (
-            head.base.toString() +
-            defaultMetas +
-            head.meta.toString() +
-            head.title.toString() +
-            head.link.toString()
-          )
-
-          const htmlProps = {
-            lang: "en",
-            ...head.htmlAttributes.toComponent(),
-          }
-
-          const scriptTags = assetsFiles.js.map((fileName) =>
-            <script
-              key={ fileName }
-              src={ `${ pathToUri(baseUrl.pathname, fileName) }` }
-            />
-          )
-
-          // TODO: How to let's user push custom tags to the end of the array ?
-          scriptTags.unshift(head.script.toComponent())
 
           // write htmlString as html files
           return resolve(
@@ -133,13 +111,21 @@ export default function(
               React.createElement(
                 Html,
                 {
-                  htmlProps,
-                  head: headTags,
-                  body,
-                  script,
-                  config: options,
-                },
-                scriptTags
+                  ...assetsFiles && {
+                    css: assetsFiles.css
+                    ? assetsFiles.css.map(
+                      (fileName) => pathToUri(baseUrl.pathname, fileName)
+                    )
+                    : [],
+                    js: options.clientScripts && assetsFiles.js
+                    ? assetsFiles.js.map(
+                      (fileName) => pathToUri(baseUrl.pathname, fileName)
+                    )
+                    : [],
+                  },
+                  renderBody,
+                  renderScript,
+                }
               )
             )
           )

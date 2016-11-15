@@ -5,7 +5,6 @@ import url from "url"
 import test from "jest-ava-api"
 
 import beautifyHTML from "../../_utils/beautify-html"
-import htmlMetas from "../../_utils/html-metas"
 import urlAsHtml from "../url-as-html"
 
 import collection from "./fixtures/collection.js"
@@ -21,6 +20,7 @@ test("url as html", async (t) => {
       baseUrl: url.parse("http://0.0.0.0:3000/"),
       assetsFiles: {
         js: [ "test.js" ],
+        css: [ "test.css" ],
       },
       clientScripts: true,
     },
@@ -32,8 +32,11 @@ test("url as html", async (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
+  <meta data-react-helmet="true" charset="utf-8" />
+  <meta data-react-helmet="true" http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1" />
+  <link data-react-helmet="true" rel="stylesheet" href="/test.css" />
 </head>
 
 <body>
@@ -56,7 +59,7 @@ test("url as html", async (t) => {
       }
     }
   </script>
-  <script src="/test.js"></script>
+  <script data-react-helmet="true" src="/test.js"></script>
 </body>
 
 </html>`)
@@ -84,8 +87,10 @@ test("url as html without JS", async (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
+  <meta data-react-helmet="true" charset="utf-8" />
+  <meta data-react-helmet="true" http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -124,8 +129,10 @@ test("baseUrl with offline support", async (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { pathname: "/phenomic" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
+  <meta data-react-helmet="true" charset="utf-8" />
+  <meta data-react-helmet="true" http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -148,7 +155,7 @@ test("baseUrl with offline support", async (t) => {
       }
     }
   </script>
-  <script src="/phenomic/test.js"></script>
+  <script data-react-helmet="true" src="/phenomic/test.js"></script>
 </body>
 
 </html>`)
@@ -176,8 +183,10 @@ test("custom script tags", async (t) => {
 <html lang="en">
 
 <head>
-  ${ htmlMetas({ baseUrl: { pathname: "/" } }).join("\n  ") }
   <title data-react-helmet="true"></title>
+  <meta data-react-helmet="true" charset="utf-8" />
+  <meta data-react-helmet="true" http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -203,8 +212,8 @@ test("custom script tags", async (t) => {
       }
     }
   </script>
+  <script data-react-helmet="true" src="/test.js"></script>
   <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
-  <script src="/test.js"></script>
 </body>
 
 </html>`)
