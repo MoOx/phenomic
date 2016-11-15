@@ -1,5 +1,5 @@
 import React from "react"
-import Link from "phenomic/lib/Link"
+import { Link } from "phenomic"
 
 // sketch svg export is too bugy :/
 // import Svg from "react-svg-inline"
