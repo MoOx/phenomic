@@ -36,7 +36,7 @@ the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
 <center style="font-weight: bold"><a href="showcase/">
-  Take a look to websites using Phenomic 👀
+  Take a look at websites using Phenomic 👀
 </a></center>
 
 ## Setup a website in a flash
@@ -65,7 +65,7 @@ It also contains commented pieces of code that allows you to quickly customize
 it to fit your needs.
 
 <center style="font-weight: bold"><a href="themes/base/demo/">
-  Take a look to the base theme demo 👀
+  Take a look at the base theme demo 👀
 </a></center>
 
 ---

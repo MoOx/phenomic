@@ -80,7 +80,7 @@ yarn add phenomic && .\node_modules\.bin\phenomic setup
 yarn install && yarn start
 ```
 
-🚀 **When you get the hello world, it's time to take a look to our
+🚀 **When you get the hello world, it's time to take a look at our
 [Getting Started](../getting-started/) page and to [start hacking!](../usage/).**
 
 
@@ -201,5 +201,5 @@ your development server in your favorite browser).
 
 ---
 
-🚀 **When you get the hello world, it's time to take a look to our
+🚀 **When you get the hello world, it's time to take a look at our
 [Getting Started](../getting-started/) page and to [start hacking!](../usage/).**

@@ -107,7 +107,7 @@ If you need to start with React you might want to check the following resources:
 - [reactforbeginners.com](https://ReactForBeginners.com/friend/MOOX)
 - [Build your first real world React.js application](http://academy.plot.ly/#react)
 
-You might also take a look to
+You might also take a look at
 [react-howto](https://github.com/petehunt/react-howto) to understand what you might need to learn and what you don't.
 
 Also learning ES6/ES2015+ is recommended.
@@ -338,5 +338,5 @@ If you really want to add Sass or LESS for you styles you can replace in your
 
 🤗 Now have fun!
 
-**Take a look to the [rest of the documentation](../usage/) where you will
+**Take a look at the [rest of the documentation](../usage/) where you will
 find more details on everything about Phenomic and how to use it**.

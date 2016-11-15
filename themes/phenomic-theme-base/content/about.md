@@ -12,14 +12,13 @@ cta:
 You are currently viewing Phenomic base theme.
 
 For now [Phenomic does not provide a native way to extend themes](https://github.com/MoOx/phenomic/issues/508) but since it's based on
-React and use a component approach, it's pretty easy to make your own collection
-of layouts and components and reuse those.
+React and uses a component approach, it's pretty easy to make your own reusable collection of layouts and components.
 
 ---
 
 This website is made with [Phenomic](https://phenomic.io/).
 
-If you are curious about it, you can take a look to
+If you are curious about it, you can take a look at
 [existing websites that use Phenomic](https://phenomic.io/showcase/),
 some projects share their source code!
 
