@@ -64,22 +64,16 @@ export default function(
 
           /* eslint-disable react/no-multi-comp */
 
-          const renderBody = () => {
-            const body = render(
-              <PhenomicContextProvider
-                collection={ collectionMin }
-                metadata={ metadata }
-              >
-                <ReduxContextProvider store={ store }>
-                  <RouterContextProvider { ...renderProps } />
-                </ReduxContextProvider>
-              </PhenomicContextProvider>
-            )
-
-            return (
-              <div id="phenomic" dangerouslySetInnerHTML={{ __html: body }} />
-            )
-          }
+          const renderBody = () => render(
+            <PhenomicContextProvider
+              collection={ collectionMin }
+              metadata={ metadata }
+            >
+              <ReduxContextProvider store={ store }>
+                <RouterContextProvider { ...renderProps } />
+              </ReduxContextProvider>
+            </PhenomicContextProvider>
+          )
 
           const renderScript = () => {
             if (options.clientScripts) {

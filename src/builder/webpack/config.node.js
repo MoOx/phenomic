@@ -20,6 +20,10 @@ const defaultExternals = [
   // to not bundle all deps in the static build (for perf)
   // the problem is that if people rely on node_modules for stuff
   // like css, this breaks their build.
+  //
+  // Glamor integration
+  "glamor",
+  "glamor/server",
 ]
 
 const sourceMapSupport = require.resolve("source-map-support/register")

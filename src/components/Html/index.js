@@ -24,12 +24,52 @@ const defaultMeta = [
 ]
 
 const Html = (props: Props) => {
+
   // Inject default html metas before
   // Those need to be rendered somehow otherwise Helmet won't consider those
   renderToString(
     <Helmet
       htmlAttributes={ defaultHtmlAttributes }
       meta={ defaultMeta }
+    />
+  )
+
+  // Glamor integration
+  // https://github.com/threepointone/glamor/blob/master/docs/server.md
+  let glamorRenderStatic
+  try {
+    // $FlowFixMe just ignore glamor as we don't have it as a dep
+    glamorRenderStatic = require("glamor/server").renderStatic
+  }
+  catch (e) {
+    // skip glamor if not working
+  }
+
+  // render body
+  let body
+  if (glamorRenderStatic) {
+    const glamorResult = glamorRenderStatic(() => props.renderBody())
+
+    console.log({ glamorResult })
+    renderToString(
+      <Helmet
+        style={ [
+          { "cssText": glamorResult.css },
+        ] }
+        script={ [
+          { "innerHTML": `window._glam = ${
+            JSON.stringify(glamorResult.ids)
+          }` },
+        ] }
+      />
+    )
+    body = glamorResult.html
+  }
+
+  body = body || props.renderBody()
+
+  renderToString(
+    <Helmet
       link={ [
         ...props.css.map((file) => ({ rel: "stylesheet", href: file })),
       ] }
@@ -39,8 +79,6 @@ const Html = (props: Props) => {
     />
   )
 
-  // render body
-  const body = props.renderBody()
   // rewind html metas
   const head = Helmet.rewind()
 
@@ -51,10 +89,11 @@ const Html = (props: Props) => {
         { head.base.toComponent() }
         { head.title.toComponent() }
         { head.meta.toComponent() }
+        { head.style.toComponent() }
         { head.link.toComponent() }
       </head>
       <body>
-        { body }
+        <div id="phenomic" dangerouslySetInnerHTML={{ __html: body }} />
         { props.renderScript() }
         { head.script.toComponent() }
       </body>

@@ -212,8 +212,8 @@ test("custom script tags", async (t) => {
       }
     }
   </script>
-  <script data-react-helmet="true" src="/test.js"></script>
   <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
+  <script data-react-helmet="true" src="/test.js"></script>
 </body>
 
 </html>`)
