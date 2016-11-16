@@ -45,25 +45,55 @@ const Html = (props: Props) => {
     // skip glamor if not working
   }
 
+  // Aprodite
+  // https://github.com/Khan/aphrodite#server-side-rendering
+  let aproditeRenderStatic
+  try {
+    // $FlowFixMe just ignore aprodite as we don't have it as a dep
+    aproditeRenderStatic = require("aphrodite").StyleSheetServer.renderStatic
+  }
+  catch (e) {
+    // skip aprodite if not working
+  }
+
   // render body
   let body
   if (glamorRenderStatic) {
     const glamorResult = glamorRenderStatic(() => props.renderBody())
 
-    console.log({ glamorResult })
     renderToString(
       <Helmet
         style={ [
           { "cssText": glamorResult.css },
         ] }
         script={ [
-          { "innerHTML": `window._glam = ${
+          { "innerHTML": `window._glamor = ${
             JSON.stringify(glamorResult.ids)
           }` },
         ] }
       />
     )
     body = glamorResult.html
+  }
+  else if (aproditeRenderStatic) {
+    const aproditeResult = aproditeRenderStatic(() => props.renderBody())
+
+    renderToString(
+      <Helmet
+        style={ [
+          {
+            "cssText": aproditeResult.css.content,
+            "data-aphrodite": undefined,
+          },
+        ] }
+        script={ [
+          { "innerHTML": `window._aphrodite = ${
+            JSON.stringify(aproditeResult.css.renderedClassNames)
+          });` },
+        ] }
+      />
+    )
+    body = aproditeResult.html
   }
 
   body = body || props.renderBody()

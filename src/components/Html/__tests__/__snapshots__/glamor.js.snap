@@ -1,4 +1,4 @@
-exports[`test should render Html component 1`] = `
+exports[`test should render Html component with glamor styles when possible 1`] = `
 <html
   lang="en">
   <head>
@@ -15,6 +15,13 @@ exports[`test should render Html component 1`] = `
       content="width=device-width, initial-scale=1"
       data-react-helmet={true}
       name="viewport" />
+    <style
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": ".stuff {}",
+        }
+      }
+      data-react-helmet={true} />
     <link
       data-react-helmet={true}
       href="test.css"
@@ -30,6 +37,13 @@ exports[`test should render Html component 1`] = `
       id="phenomic" />
     <script
       phenomicStuff={true} />
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window._glamor = [{\"id\":\"s\"}]",
+        }
+      }
+      data-react-helmet={true} />
     <script
       data-react-helmet={true}
       src="test.js" />
