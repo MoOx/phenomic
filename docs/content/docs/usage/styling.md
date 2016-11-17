@@ -96,7 +96,7 @@ Static rendering step will take that into account and will pre-render styles
 for you. Nothing to setup.
 It’s even injecting all requirements if you want to rehydrate on startup (in ``window._glamor`` or ``window._aphrodite``).
 
-An optional (but recommended) step is to enable re-hydratation.
+An optional (but recommended) step is to enable re-hydration.
 You will need to add some code in your ``scripts/phenomic.browser.js``
 and adjust the code depending on the library you use.
 
@@ -139,10 +139,11 @@ phenomicClient({ /* ... */ })
 #### A note on pure inline styles
 
 Unfortunately, pure inline styles don't play well with pre-rendering for now.
-When we build the static version, we don't know where the site will be viewed on,
+When we build the static version, we don't know what devices the site will be
+viewed on,
 so viewport adjustments can't be done properly and will therefore result in some
-visual changes/re-rendering. That's because pure inline styles don't have media
-queries.
+visual changes/re-rendering.
+That's because pure inline styles don't have media queries.
 
 You can probably provide a fairly decent user experience with smooth
 re-rendering, but it isn't an easy task. However, please feel free to open an

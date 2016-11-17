@@ -38,7 +38,7 @@ the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
 <center style="font-weight: bold"><a href="showcase/">
-  See how is using Phenomic
+  See who is using Phenomic
 </a></center>
 
 ## Choose your flavor
