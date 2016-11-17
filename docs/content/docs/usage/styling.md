@@ -2,10 +2,18 @@
 title: How to style your app/website in Phenomic
 ---
 
-## Syntax and Architecture
+You are free to use whatever solutions you want:
+raw CSS,
+CSS preprocessors,
+[CSS Modules](https://github.com/css-modules/css-modules),
+[CSS in JS or inline styles](https://github.com/MicheleBertoli/css-in-js).
 
-The phenomic-theme-base allows you to write, by default, stylesheets with two
-different approaches:
+Below you will find some details about most popular solutions.
+
+## Recommended syntax and architecture
+
+The ``phenomic-theme-base`` allows you to write, by default, stylesheets with
+two different approaches:
 Global (normal) CSS and/or
 [CSS modules](#css-modules).
 
@@ -72,12 +80,75 @@ whenever you can.
 _If you think this brief documentation is not enough, feel free to open an
 issue._
 
-### Why not inline styles instead of CSS?
+---
 
-Unfortunately, inline styles don't play well with pre-rendering for now. When
-we build the static version, we don't know where the site will be viewed on, so
-viewport adjustments can't be done properly and will therefore result in some
-visual changes/re-rendering.
+### Inline styles / CSS in JS
+
+#### CSS in JS
+
+While there are [severals solutions](https://github.com/MicheleBertoli/css-in-js)
+out there, some are more popular.
+[Glamor](https://github.com/threepointone/glamor/),
+[styled-components](https://styled-components.com/)
+and
+[Aphrodite](https://github.com/Khan/aphrodite)
+should work out of the box.
+Static rendering step will take that into account and will pre-render styles
+for you. Nothing to setup.
+It’s even injecting all requirements if you want to rehydrate on startup (in ``window._glamor`` or ``window._aphrodite``).
+
+An optional (but recommended) step is to enable re-hydratation.
+You will need to add some code in your ``scripts/phenomic.browser.js``
+and adjust the code depending on the library you use.
+
+##### Glamor / styled-components
+
+You need to adjust your ``scripts/phenomic.browser.js``
+
+```js
+// ...
+
+import { rehydrate } from "glamor"
+
+if (window._glamor) {
+  rehydrate(window._glamor)
+}
+
+phenomicClient({ /* ... */ })
+```
+
+Note about styled-components:
+[styled-components](https://styled-components.com/)
+[uses Glamor under the hood](https://github.com/styled-components/styled-components/issues/124),
+so this should work for this library using this code.
+
+[See glamor server documentation](https://github.com/threepointone/glamor/blob/master/docs/server.md)
+
+##### Aphrodite
+
+You need to adjust your ``scripts/phenomic.browser.js``
+
+```js
+// ...
+
+import { StyleSheet } from "aphrodite"
+
+if (window._aphrodite) {
+  StyleSheet.rehydrate(window._aphrodite)
+}
+
+phenomicClient({ /* ... */ })
+```
+
+[See aphrodite server documentation](https://github.com/Khan/aphrodite#server-side-rendering)
+
+#### A note on pure inline styles
+
+Unfortunately, pure inline styles don't play well with pre-rendering for now.
+When we build the static version, we don't know where the site will be viewed on,
+so viewport adjustments can't be done properly and will therefore result in some
+visual changes/re-rendering. That's because pure inline styles don't have media
+queries.
 
 You can probably provide a fairly decent user experience with smooth
 re-rendering, but it isn't an easy task. However, please feel free to open an
