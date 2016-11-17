@@ -88,8 +88,7 @@ issue._
 
 While there are [severals solutions](https://github.com/MicheleBertoli/css-in-js)
 out there, some are more popular.
-[Glamor](https://github.com/threepointone/glamor/),
-[styled-components](https://styled-components.com/)
+[Glamor](https://github.com/threepointone/glamor/)
 and
 [Aphrodite](https://github.com/Khan/aphrodite)
 should work out of the box.
@@ -101,7 +100,7 @@ An optional (but recommended) step is to enable re-hydratation.
 You will need to add some code in your ``scripts/phenomic.browser.js``
 and adjust the code depending on the library you use.
 
-##### Glamor / styled-components
+##### Glamor
 
 You need to adjust your ``scripts/phenomic.browser.js``
 
@@ -116,11 +115,6 @@ if (window._glamor) {
 
 phenomicClient({ /* ... */ })
 ```
-
-Note about styled-components:
-[styled-components](https://styled-components.com/)
-[uses Glamor under the hood](https://github.com/styled-components/styled-components/issues/124),
-so this should work for this library using this code.
 
 [See glamor server documentation](https://github.com/threepointone/glamor/blob/master/docs/server.md)
 
