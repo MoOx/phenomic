@@ -97,7 +97,7 @@ Here is an example on a website that [implemented some tags and authors pages](h
 
 ⚠️ _Pagination is not supported yet, but it's on Phenomic roadmap._
 
-# Handling Redirection
+## Handling Redirection
 
 Phenomic static build does not yet handle react-router redirects so if you are making `onEnter` redirection call make sure to wrap with `typeof window !== 'undefined'` check
 
