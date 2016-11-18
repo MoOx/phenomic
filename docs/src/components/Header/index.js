@@ -3,7 +3,6 @@ import { Link } from "phenomic"
 import Color from "color"
 import Svg from "react-svg-inline"
 
-import ContentWrapper from "../ContentWrapper"
 import GradientLine from "../GradientLine"
 import DocSearch from "../DocSearch"
 import npmPkg from "../../../../package.json"
@@ -22,11 +21,9 @@ const Header = () => {
   let i = 1
   return (
     <header className={ styles.header }>
-      <ContentWrapper>
-        <nav className={ styles.nav }>
-          <div
-            className={ styles.logo }
-          >
+      <nav className={ styles.nav }>
+        <div className={ styles.navPart }>
+          <div className={ styles.logo }>
             <Link
               to="/"
               className={ styles.logoLink }
@@ -47,7 +44,7 @@ const Header = () => {
               { npmPkg.version }
             </a>
           </div>
-          <div className={ styles.internal }>
+          <div className={ styles.navSubPart }>
             <Link
               style={{
                 color:
@@ -92,6 +89,13 @@ const Header = () => {
             >
               { "FAQ" }
             </Link>
+          </div>
+        </div>
+        <div className={ styles.navPart }>
+          <div className={ styles.navSubPart }>
+            <DocSearch />
+          </div>
+          <div className={ styles.navSubPart }>
             <Link
               style={{
                 color:
@@ -103,27 +107,24 @@ const Header = () => {
             >
               <strong>{ "Showcase" }</strong>
             </Link>
-          </div>
-          <div className={ styles.internal }>
-            <DocSearch />
-          </div>
-          <div className={ styles.internal }>
             <a
               style={{
                 color:
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               }}
               className={ styles.link }
-              href={ "https://gitter.im/MoOx/phenomic" }
+              title="Chat"
+              href="https://gitter.im/MoOx/phenomic"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Svg
                 className={ styles.linkIcon }
                 svg={ chatSvg }
-                width={ "1rem" }
+                width={ "2rem" }
                 fill={ "currentColor" }
                 cleanup
               />
-              { "Chat" }
             </a>
             <a
               style={{
@@ -131,6 +132,7 @@ const Header = () => {
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               }}
               className={ styles.link }
+              title="GitHub"
               href="https://github.com/MoOx/phenomic"
               target="_blank"
               rel="noopener noreferrer"
@@ -138,11 +140,10 @@ const Header = () => {
               <Svg
                 className={ styles.linkIcon }
                 svg={ githubSvg }
-                width={ "1rem" }
-                fill={ "currentColor" }
+                width="2rem"
+                fill="currentColor"
                 cleanup
               />
-              { "GitHub" }
             </a>
             <a
               style={{
@@ -150,6 +151,7 @@ const Header = () => {
                   green.clone().mix(blue, (i++ - 1) / totalLink).rgbString(),
               }}
               className={ styles.link }
+              title="Twitter"
               href="https://twitter.com/Phenomic_app"
               target="_blank"
               rel="noopener noreferrer"
@@ -157,15 +159,14 @@ const Header = () => {
               <Svg
                 className={ styles.linkIcon }
                 svg={ twitterSvg }
-                width={ "1rem" }
-                fill={ "currentColor" }
+                width="2rem"
+                fill="currentColor"
                 cleanup
               />
-              { "Twitter" }
             </a>
           </div>
-        </nav>
-      </ContentWrapper>
+        </div>
+      </nav>
       <GradientLine height={ 1 } />
     </header>
   )

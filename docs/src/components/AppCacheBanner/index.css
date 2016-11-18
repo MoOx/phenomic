@@ -34,7 +34,7 @@
 }
 
 .content {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

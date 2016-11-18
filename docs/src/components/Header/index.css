@@ -8,31 +8,74 @@
 }
 
 .nav {
-  @media (width >= 60rem) {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: space-between;
+  /*padding: 0 2rem;*/
+  line-height: 4rem;
+
+  @media (width < 40rem) {
+    font-size: 0.9rem;
+    line-height: 3rem;
+  }
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+
+.navPart {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-around;
+
+  @media (width < 40rem) {
     flex-wrap: wrap;
   }
 }
 
 .logo {
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  @media (width < 40rem) {
+    height: 3rem;
+  }
 }
 
 .logoLink {
-  max-width: 12rem;
   display: inline-flex;
+  align-items: center;
+  max-width: 10rem;
+  min-width: 6rem;
 }
 
-.internal,
-.external {
+.version {
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  color: #08b09b;
+  display: inline-flex;
+
+  @media (width < 30rem) {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+    line-height: 1rem;
+  }
+}
+
+.navSubPart {
   display: flex;
   flex-direction: row;
+  align-self: center;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .link {
@@ -41,8 +84,8 @@
   align-items: center;
   padding-left: 0.6rem;
   padding-right: 0.6rem;
-  line-height: 2rem;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .link:hover,
@@ -52,21 +95,4 @@
 
 .linkIcon {
   margin-right: 0.25rem;
-}
-
-.version {
-  font-size: 0.8rem;
-  text-decoration: none;
-  color: #08b09b;
-  display: inline-flex;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  @media (width >= 60rem) {
-    top: 5rem;
-    padding: 1rem;
-    color: #fff;
-    opacity: 0.5;
-  }
 }
