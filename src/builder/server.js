@@ -20,6 +20,14 @@ import webpackVersion from "../_utils/webpack-version"
 
 import { handleInvalid, handleDone } from "./webpack/log-formatter.js"
 
+const devServerNoScript = (
+`Phenomic development server requires JavaScript.
+If you want to check our your website works without JavaScript, you need to
+build the static version and server the result.
+You can do this by doing: <code>npm run build -- --serve</code>
+`
+)
+
 export default (config) => {
   const { webpackConfigBrowser: webpackConfig } = config
 
@@ -143,7 +151,7 @@ export default (config) => {
     <div id="phenomic">
       <div
         id="phenomic-DevLoader"
-        style="color: red; font: caption; text-align: center; line-height: 100vh; font-size: 2rem;"
+        style="color: red; font: caption; font-size: 2rem; padding: 40vh 10vw; text-align: center;"
       >
         <script>
         window.onerror = function(e) {
@@ -153,6 +161,7 @@ export default (config) => {
           window.onerror = null
         }
         </script>
+        <noscript>${ devServerNoScript }</noscript>
       </div>
     </div>
     <script>
