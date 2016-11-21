@@ -1,5 +1,82 @@
 # HEAD
 
+# 0.19.0 - 2016-11-21
+
+**This release contains only a minor breaking change (less strict CSS linting)**
+that you can adjust in a few seconds.
+
+🎉 A cool new "feature" is a brand new base theme for new projects.
+This base theme is not only prettier than before but it's also a good starting
+point with multiples interesting examples to leverage Phenomic features!
+
+![phenomic-0 19-new-base-theme](https://cloud.githubusercontent.com/assets/157534/20500426/a93bcd98-b035-11e6-840c-0818f12b353d.jpg)
+
+## 💥 (Minor) Breaking change
+
+- 💥 Removed: ``stylelint-config-standard`` has been removed from our recommended  
+stylelint config in favor of a minimal number of rules to prevent errors only.
+This change has been made to make Phenomic more easier to play with.
+If you want the previous config, just extend ``stylelint-config-standard``
+directly.
+(@MoOx)
+
+## 🚨 Minor change
+
+- 🚨 Changed: ``phenomic/lib/Link`` has been relocated.
+To prevent issue in the future, it is now accessible with
+``import { Link } from "phenomic"``.
+The old reference still works but will show you a warning and will be removed
+in the future.
+(@MoOx)
+
+## 🐛 Bugfixes
+
+- 🐛 Fixed: Non ASCII characters in filenames break the static build.
+Filesystem filename (de)conversion (url decoding) was not correctly made before accessing data during the static build.
+([#878](https://github.com/MoOx/phenomic/issues/878) - @MoOx)
+
+- 🐛 Fixed: Add missing homepage field in package.json which fix ``process.env.PHENOMIC_HOMEPAGE``
+(@MoOx)
+
+## ✨ New features
+
+- ✨ Added: ``Link`` can now be used for unknow links (internal or external).
+Current ``react-router`` ``Link`` implementation just crash if you use an
+external link. Phenomic now wrap this by providing a unique API.
+This is especially handy if you generate links from unknown data
+(eg: markdow front-matter value that can point to internal or external pages)
+(@MoOx)
+
+- ✨ Added: full support for Yarn.
+Phenomic is now fully tested using Yarn (via Travis-CI) as well as npm
+(via Circle-CI) on Unix system.
+Windows support is only ensured with npm (Appveyor).
+([#872](https://github.com/MoOx/phenomic/pull/872) - @dflynn15 & @MoOx)
+
+- ✨ Added: new ``clientScripts`` option to disable all JavaScript code 🙃.
+This allows you to turn Phenomic into a standard static website generator
+([#874](https://github.com/MoOx/phenomic/issues/874) - @MoOx)
+
+- ✨ Added: support for ``Glamor`` and ``Aphrodite`` out of the box.
+[You can look at the dedicated documentation for this for more information](https://phenomic.io/docs/usage/styling/#inline-styles--css-in-js)
+([#864](https://github.com/MoOx/phenomic/issues/864) - @MoOx)
+
+- ✨ Added: message when you start the development server with JavaScript disabled
+(@MoOx)
+
+
+## Base theme
+
+- 🎉 Changed: base theme has been completely redesigned.
+  Now includes more components and examples of how you can leverage Phenomic.
+  (@MoOx)
+
+- ✨ Added: hot loading for PostCSS config in base theme.
+  [A discussion is now open to push this solution in ``postcss-loader``](https://github.com/postcss/postcss-loader/issues/66#issuecomment-260214570)
+  but until it is, you can use this solution to get hot loading for your PostCSS
+  config. Very handy for development.
+  (@MoOx)
+
 # 0.18.1 - 2016-11-09
 
 Bugfixes, including small proptypes issues for new projects (since 0.18.0).
