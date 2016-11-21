@@ -9,23 +9,14 @@ node_js:
 matrix:
   fast_finish: true
 
-before_install:
-  - npm install -g yarn@0.16.1
-
 # cache node modules
 cache:
+  yarn: true
   directories:
-    # yarn
-    - $HOME/.yarn-cache
-    # phenomic
     - node_modules
     - docs/node_modules
     - themes/phenomic-theme-base/node_modules
     - test-setup/node_modules
-
-install: yarn
-
-script: yarn run test
 
 after_success: yarn run coverage
 
