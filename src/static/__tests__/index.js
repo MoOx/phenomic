@@ -15,6 +15,8 @@ const expectedHTML = {
     require("./results/destination/test-url/index.html").default,
   [join("destination", "test", "index.html")]:
     require("./results/destination/test/index.html").default,
+  [join("destination", "日本語.html")]:
+    require("./results/destination/日本語.html").default,
 }
 
 test("don't break if there is nothing to transform", async (t) => {

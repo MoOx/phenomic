@@ -81,10 +81,11 @@ export function writeAllHTMLFiles(
   return Promise.all(
     urls.map((url) => {
       const item = collection.find((item) => item.__url === url)
-      const filename = item
+      const filename = decodeURIComponent(
+        item
         ? path.join(destination, item.__resourceUrl)
         : path.join(destination, urlify(url, true))
-
+      )
       setPageData(url, collection, store)
       return (
         urlAsHtml(url, options, Html, testing)

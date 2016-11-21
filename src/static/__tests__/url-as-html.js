@@ -50,6 +50,9 @@ test("url as html", async (t) => {
     }, {
       "__url": "/test-url",
       "__resourceUrl": "/test-url/index.html"
+    }, {
+      "__url": "/日本語.html",
+      "__resourceUrl": "/日本語.html"
     }];
     window.__INITIAL_STATE__ = {
       "pages": {
@@ -146,6 +149,9 @@ test("baseUrl with offline support", async (t) => {
     }, {
       "__url": "/test-url",
       "__resourceUrl": "/test-url/index.html"
+    }, {
+      "__url": "/日本語.html",
+      "__resourceUrl": "/日本語.html"
     }];
     window.__INITIAL_STATE__ = {
       "pages": {
@@ -203,6 +209,9 @@ test("custom script tags", async (t) => {
     }, {
       "__url": "/test-url",
       "__resourceUrl": "/test-url/index.html"
+    }, {
+      "__url": "/日本語.html",
+      "__resourceUrl": "/日本語.html"
     }];
     window.__INITIAL_STATE__ = {
       "pages": {
