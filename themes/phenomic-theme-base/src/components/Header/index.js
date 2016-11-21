@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react"
-import { Link } from "react-router"
+import { Link } from "phenomic"
 import Svg from "react-svg-inline"
 
 import twitterSvg from "../icons/iconmonstr-twitter-1.svg"

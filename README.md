@@ -1,19 +1,52 @@
-# [![Phenomic](https://rawgit.com/MoOx/phenomic/master/logo/phenomic.svg)](https://phenomic.io)
+<p align="center">
+  <a href="https://phenomic.io">
+    <img alt="babel" src="https://rawgit.com/MoOx/phenomic/master/logo/phenomic.svg" width="600">
+  </a>
+</p>
 
-[![Unix/Yarn Build status](https://img.shields.io/travis/MoOx/phenomic/master.svg?label=unix%2Fyarn%20build)](https://travis-ci.org/MoOx/phenomic)
-[![Unix/npm Build status](https://img.shields.io/circleci/project/github/MoOx/phenomic/master.svg?label=unix%2Fnpm%20build)](https://circleci.com/gh/MoOx/phenomic)
-[![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/phenomic/branch/master)
-[![Code Coverage](https://img.shields.io/coveralls/MoOx/phenomic/master.svg)](https://coveralls.io/github/MoOx/phenomic)
-[![Version](https://img.shields.io/npm/v/phenomic.svg)](https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md)
-[![Support on gitter chat](https://img.shields.io/badge/support-gitter%20chat-E40255.svg)](https://gitter.im/MoOx/phenomic)
-[![Twitter Follow](https://img.shields.io/twitter/follow/Phenomic_app.svg?style=social)](https://twitter.com/Phenomic_app)
+<p align="center">
+<a title="Unix/Yarn Build status" href="https://travis-ci.org/MoOx/phenomic">
+  <img src="https://img.shields.io/travis/MoOx/phenomic/master.svg?label=unix%2Fyarn%20build" />
+</a>
+<a title="Unix/npm Build status" href="https://circleci.com/gh/MoOx/phenomic">
+  <img src="https://img.shields.io/circleci/project/github/MoOx/phenomic/master.svg?label=unix%2Fnpm%20build" />
+</a>
+<a title="Windows Build status" href="https://ci.appveyor.com/project/MoOx/phenomic/branch/master">
+  <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />
+</a>
+<a title="Code Coverage" href="https://coveralls.io/github/MoOx/phenomic">
+  <img src="https://img.shields.io/coveralls/MoOx/phenomic/master.svg" />
+</a>
+<a title="Version" href="https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md">
+  <img src="https://img.shields.io/npm/v/phenomic.svg" />
+</a>
+</p>
 
-[![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-3D76C2.svg)](https://github.com/MoOx/phenomic)
-[![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-6C488A.svg)](https://gitlab.com/MoOx/phenomic)
-[![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-1F5081.svg)](https://bitbucket.org/MoOx/phenomic)
-
+<p align="center">
+<a href="https://gitter.im/MoOx/phenomic">
+  💬 Support Chat
+</a>
+|
+<a href="https://twitter.com/Phenomic_app">
+  Twitter
+</a>
+|
+<a href="https://github.com/MoOx/phenomic">
+  GitHub
+</a>
+|
+<a href="https://gitlab.com/MoOx/phenomic">
+  GitLab
+</a>
+|
+<a href="https://bitbucket.org/MoOx/phenomic">
+  BitBucket
+</a>
+</p>
 
 > Modern website generator based on the React and Webpack ecosystem.
+
+![Developer experience preview](docs/content/assets/phenomic-demo.gif)
 
 ---
 

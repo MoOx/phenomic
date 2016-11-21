@@ -45,6 +45,12 @@ const collection: PhenomicCollection = [
       ],
     },
   },
+  {
+    "__url": "/日本語.html",
+  },
+  {
+    "__url": "/héhé/",
+  },
 ]
 
 const routes = (
@@ -80,6 +86,8 @@ it("generate a list of routes based on tags", () => {
       "/blog/tag/puppy",
       "/key/value",
       "/key/value2",
+      "/%E6%97%A5%E6%9C%AC%E8%AA%9E.html",
+      "/h%C3%A9h%C3%A9/",
       "/one",
       "/two",
     ]

@@ -24,6 +24,8 @@ to help you build your website, blog or even a small app.
 
 _Phenomic_ will help you generate and deploy a website in a heartbeat.
 
+![Developer experience preview](/assets/phenomic-demo.gif)
+
 ## Static and dynamic
 
 [React](http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome)
@@ -36,27 +38,15 @@ the minimal amount of data for each new page**
 (a single file that only contains your page data).
 
 <center style="font-weight: bold"><a href="showcase/">
-  Take a look to websites using Phenomic 👀
+  See who is using Phenomic
 </a></center>
 
-## Setup a website in a flash
+## Choose your flavor
 
-Creating a website based on Phenomic only takes a minute.
-[Why not give it a try?](docs/setup/)
-
-## Awesome DX (Developer Experience)
-
-During development, enjoy the benefit of hot loading with visual errors in your
-layout! That means you won't have to refresh your page during development when
-you edit your website. You will also see compilation & runtime errors.
-
-[![Developer experience preview](/assets/dx-play.jpg)](/assets/dx.mp4)
-
-### Choose your Phenomic flavor
-
-Phenomic is easily customizable; choose your own Markdown engine
-(with your own plugins), your own CSS preprocessor etc, thanks to the
-flexibility of Webpack and its loaders.
+Phenomic is easily customizable.
+You can choose your own Markdown engine ([or any other engine](/docs/usage/plugins/))
+and your own
+[CSS preprocessor, CSS in JS or inline styles solution](/docs/usage/styling/).
 
 By default, Phenomic provides a
 [base theme](https://github.com/MoOx/phenomic/tree/master/themes/phenomic-theme-base)
@@ -65,8 +55,15 @@ It also contains commented pieces of code that allows you to quickly customize
 it to fit your needs.
 
 <center style="font-weight: bold"><a href="themes/base/demo/">
-  Take a look to the base theme demo 👀
+  Check out the base theme demo 👀
 </a></center>
+
+
+## Awesome DX (Developer Experience)
+
+During development, enjoy the benefit of hot loading with visual errors in your
+layout! That means you won't have to refresh your page during development when
+you edit your website. You will also see compilation & runtime errors.
 
 ---
 

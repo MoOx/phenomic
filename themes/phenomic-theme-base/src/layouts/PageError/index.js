@@ -1,27 +1,35 @@
 import React, { PropTypes } from "react"
 
+import Page from "../Page"
+
 import styles from "./index.css"
 
-const PageError = ({ error, errorText }) => (
-  <div className={ styles.container }>
-    <div className={ styles.oops }>{ "😱 Oooops!" }</div>
-    <div className={ styles.text }>
-      <p className={ styles.title }>
-        <strong>{ error }</strong>
-        { " " }
-        { errorText }
-      </p>
-      {
-        error === 404 &&
-        <div>
-          { "It seems you found a broken link. " }
-          { "Sorry about that. " }
-          <br />
-          { "Do not hesitate to report this page 😁." }
-        </div>
-      }
+const PageError = ({ error, errorText, ...otherProps }) => (
+  <Page
+    { ...otherProps }
+    // we don't need body content
+    body={ undefined }
+  >
+    <div className={ styles.container }>
+      <div className={ styles.oops }>{ "😱 Oooops!" }</div>
+      <div className={ styles.text }>
+        <p className={ styles.title }>
+          <strong>{ error }</strong>
+          { " " }
+          { errorText }
+        </p>
+        {
+          error === 404 &&
+          <div>
+            { "It seems you found a broken link. " }
+            { "Sorry about that. " }
+            <br />
+            { "Do not hesitate to report this page 😁." }
+          </div>
+        }
+      </div>
     </div>
-  </div>
+  </Page>
 )
 
 PageError.propTypes = {

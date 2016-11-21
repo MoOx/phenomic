@@ -810,7 +810,7 @@ _You will need at least ``react-router@^2.3.0``._
 **Don't be afraid by the length of this release notes. It's for the better.**
 
 Most noticeable change occurs in the ``scripts`` folder.
-It might be a good idea is to take a look to the new folder of the default
+It might be a good idea is to take a look at the new folder of the default
 boilerplate:
 
 - There is now just 2 files: ``phenomic.browser.js`` (client runtime) and

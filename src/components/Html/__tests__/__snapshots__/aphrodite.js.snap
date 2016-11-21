@@ -1,0 +1,53 @@
+exports[`test should render Html component with aphrodite styles when possible 1`] = `
+<html
+  lang="en">
+  <head>
+    <title
+      data-react-helmet={true} />
+    <meta
+      charSet="utf-8"
+      data-react-helmet={true} />
+    <meta
+      content="IE=edge"
+      data-react-helmet={true}
+      httpEquiv="X-UA-Compatible" />
+    <meta
+      content="width=device-width, initial-scale=1"
+      data-react-helmet={true}
+      name="viewport" />
+    <style
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": ".stuff {}",
+        }
+      }
+      data-aphrodite={undefined}
+      data-react-helmet={true} />
+    <link
+      data-react-helmet={true}
+      href="test.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<div />",
+        }
+      }
+      id="phenomic" />
+    <script
+      phenomicStuff={true} />
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window._aphrodite = [\"stuff\"]);",
+        }
+      }
+      data-react-helmet={true} />
+    <script
+      data-react-helmet={true}
+      src="test.js" />
+  </body>
+</html>
+`;

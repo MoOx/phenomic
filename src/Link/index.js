@@ -1,51 +1,12 @@
-// @flow
-import React, { PropTypes } from "react"
-import cx from "classnames"
-import { Link as RouterLink } from "react-router"
+// deprecated
+import colors from "chalk"
 
-export function Link(
-  props: {
-    className: string,
-    activeClassName: string,
-    to: string,
-    children: any,
-  },
-  { router }: { router: Object }
-): React$Element<any> {
-  return (
-    <RouterLink
-      { ...props }
-      className={ cx(props.className, {
-        [props.activeClassName]: (router && (
-          router.isActive({ pathname: props.to }) ||
-          router.isActive({ pathname: props.to + "index.html" })
-        )) && props.activeClassName,
-      }) }
-    >
-      { props.children }
-    </RouterLink>
-  )
-}
+import Link from "../components/Link"
 
-Link.propTypes = {
-  children: PropTypes.node,
-  to: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  activeClassName: PropTypes.string,
-}
+console.log("⚠️ " + colors.yellow(
+  "'phenomic/lib/Link' reference is deprecated.\n" +
+  "Please use `import { Link } from \"phenomic\" instead`."
+))
 
-Link.contextTypes = {
-  router: PropTypes.object.isRequired,
-}
-
-Link.displayName = "Link"
-
-/*
-  exported as default and Link so people can easily switch their
-  import { Link } from "react-router"
-  to
-  import { Link } from "phenomic/lib/Link"
-  or
-  import Link from "phenomic/lib/Link"
-*/
+export { Link }
 export default Link

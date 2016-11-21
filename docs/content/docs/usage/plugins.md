@@ -129,7 +129,7 @@ Phenomic provides the following presets:
 
 🛠 This preset is kind of the phenomic default requirement.
 Use it if you want to use classic files with a front-matter and any text format.
-**Feel free to take a look to markdown preset to implement your own engine!**
+**Feel free to take a look at markdown preset to implement your own engine!**
 
 ### ``phenomic/lib/loader-preset-markdown``
 
@@ -181,7 +181,7 @@ import { phenomicLoader } from "phenomic"
           // doYourThing() can be any transformation you want.
           // Per previous plugins, ``body`` will contain the raw input
           // passed to the loader, with the front-matter removed.
-          // Feel free to take a look to the plugins source before,
+          // Feel free to take a look at the plugins source before,
           // it's very short !
           // https://github.com/MoOx/phenomic/blob/master/src/
         }
@@ -283,6 +283,6 @@ const transformMdBodyPropertyToHTML = ({ result }) => {
 }
 ```
 
-⚠️ If you want to see some examples for plugins, take a look to
+⚠️ If you want to see some examples for plugins, take a look at
 
 https://github.com/MoOx/phenomic/blob/master/src/

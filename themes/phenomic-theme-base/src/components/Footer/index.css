@@ -1,12 +1,10 @@
 .footer {
-  color: var(--mainColorContrasted);
-  background: var(--mainColor);
   text-align: center;
 }
 
 .phenomicReference {
   font-size: 0.75rem;
-  opacity: 0.4;
+  opacity: 0.6;
   color: inherit;
   text-decoration: none;
 }

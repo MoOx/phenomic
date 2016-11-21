@@ -20,6 +20,7 @@
   ],
   "author": "Maxime Thirouin",
   "license": "MIT",
+  "homepage": "https://phenomic.io",
   "repository": "https://github.com/MoOx/phenomic.git",
   "main": "lib/index.js",
   "files": [
@@ -50,7 +51,7 @@
     "fs-promise": "^0.3.1",
     "globby": "^6.0.0",
     "gray-matter": "^2.0.0",
-    "hard-source-webpack-plugin": "^0.1.0",
+    "hard-source-webpack-plugin": "^0.2.0",
     "inquirer": "^1.0.0",
     "loader-utils": "^0.2.11",
     "log-symbols": "^1.0.2",
@@ -122,6 +123,7 @@
     "react-helmet": "^3.0.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
+    "react-test-renderer": "^15.3.2",
     "redux": "^3.0.0",
     "stylelint": "^7.2.0",
     "stylelint-config-standard": "^13.0.0",
@@ -213,7 +215,12 @@
   "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
   "#eslintConfig/rules/import/no-unresolved": "deps in docs & theme are installed after the lint step",
   "stylelint": {
-    "extends": "stylelint-config-standard"
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "block-no-empty": null,
+      "comment-empty-line-before": null,
+      "comment-whitespace-inside": null
+    }
   },
   "jest": {
     "testEnvironment": "node",
