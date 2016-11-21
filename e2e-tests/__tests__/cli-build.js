@@ -59,7 +59,7 @@ it("should build the base theme correctly",
       const html404 = read(testFolder, "404.html")
       expect(html404).toContain(
         "window.__COLLECTION__ = " +
-        "[{\"layout\":\"PageError\",\"route\":\"404.html\",\"hero\""
+        "[{\"layout\":\"PageError\",\"route\":\"404.html\""
       )
 
       // ensure all pages have the correct title
