@@ -128,6 +128,11 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         bodyContainers = [ layoutDOMElement ]
       }
       catchLinks(bodyContainers, (href) => {
+        // do not catch links that are under the current base path
+        if (href.indexOf(process.env.PHENOMIC_USER_PATHNAME) === -1) {
+        // === if (!href.includes(process.env.PHENOMIC_USER_PATHNAME)) {
+          return false
+        }
         const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
         if (!find(this.context.collection, pageUrl)) {
           return false
