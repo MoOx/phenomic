@@ -5,7 +5,7 @@ title: Internationalize your content
 You have multiple solutions available to help you translate your user interface
 and handle multiple locales.
 
-Here we will explain 2 solutions based on
+Here we will explain the solution based on
 [react-int](https://github.com/yahoo/react-intl).
 
 First you need to install `react-intl`.
@@ -40,27 +40,60 @@ Now create differents `.yml` files in a `translations` folder.
 If you want handle two languages, you have to create two files,
 with language key as filename.
 
-`en.yml`:
+`src/translation/en.yml`:
 
 ```yml
-locale: "en"
+header:
+  title: "Phenomic"
+  posts: "Posts"
+  fr: "French"
+  en: "English"
 
-messages:
+content:
   phenomic-is-awesome: "Phenomic is awesome !"
 ```
 
-`fr.yml`:
+`src/translation/fr.yml`:
 
 ```yml
-locale: "fr"
+header:
+  title: "Phenomic"
+  posts: "Articles"
+  fr: "Français"
+  en: "Anglais"
 
-messages:
+content:
   phenomic-is-awesome: "Phenomic est génial !"
 ```
 
-From now you have 2 variations: with or without redux.
+## Initialize react-intl
 
-Without redux the thing will be pretty simple:
+We will need the `flat` lib to transform our translations files into flatten objects.
+The `flat` lib will take our nested translations objects and flatten then.
+
+So instead of have:
+
+```javascript
+{
+  header: {
+    title: "Phenomic",
+    posts: "Posts",
+  }
+}
+```
+
+We will have:
+
+```javascript
+{
+  "header.title": "Phenomic",
+  "header.posts": "Posts",
+}
+```
+
+```console
+npm i --save flat
+```
 
 We will assume all your urls will contain the locale key as the first part
 
@@ -69,174 +102,108 @@ http://domain.tld/en
 http://domain.tld/fr
 ```
 
-You can read the locale like this in your appContainer using ``location`` from
-react-router context
-
-```js
-const locale = location.pathname.replace(/^\//, "").split("/")[0]
-```
-
-For you homepage, you can choose to rely on a default locale in your code.
-
-This should be enough in most cases.
-
-When you have the locale, you can rely on it in ``AppContainer`` to initialize
-[``IntlProvider``](https://github.com/yahoo/react-intl/wiki/Components#intlprovider)
-
-// @todo document more
-
-That said, you might want something more complex, you can use the following
-section.
-
----
-
-## Using Redux
-
-### Create redux action
-
-We will define our `redux` actions constants.
-Create an `actions.js` file under a `constants` folder.
-
-```js
-export const SET_LOCALE = "SET_LOCALE"
-```
-
-### Create intl actions
-
-We need to implement the `setLocale` `redux` action.
-
-We will need the `flat` lib to transform our translations files into flatten objects
-
-```console
-npm i -S flat
-```
-
-Create a `intl.js` file under an `actions` folder.
-
-```js
-import {addLocaleData} from "react-intl"
-import flatten from "flat"
-
-// Import locales you need to handle
-import __intlEN from "react-intl/locale-data/en"
-import __intlFR from "react-intl/locale-data/fr"
-
-// Import your translations files
-import localeEN from "translations/en.yml"
-import localeFR from "translations/fr.yml"
-
-import {SET_LOCALE} from "constants/actions"
-
-addLocaleData(__intlEN)
-addLocaleData(__intlFR)
-
-function compileLocale(locale, {messages, formats = {}}) {
-  return {locale, messages: flatten(messages), formats}
-}
-
-const LOCALES = {
-  "en": compileLocale("en", localeEN),
-  "fr": compileLocale("fr", localeFR),
-}
-
-export function setLocale(locale) {
-  window.localStorage.setItem("locale", locale)
-  return {type: SET_LOCALE, ...LOCALES[locale]}
-}
-```
-
-### Create intl reducer
-
-Create a `intl.js` file under a `reducers` folder
-
-```js
-import {SET_LOCALE} from "constants/actions"
-
-const initialState = {
-  locale: null,
-  messages: null,
-  formats: null,
-}
-
-export default function intlReducer(state = initialState, action) {
-  if (action.type === SET_LOCALE) {
-    return {
-      locale: action.locale,
-      messages: action.messages,
-      formats: action.formats,
-    }
-  }
-
-  return state
-}
-```
-
-### Add intl reducer to your store
-
-```js
-import {combineReducers} from "redux"
-...
-import * as phenomicReducers from "phenomic/lib/redux/modules"
-import intl from "reducers/intl"
-const store = createStore(
-  combineReducers({
-    ...phenomicReducers,
-    ...{
-      intl
-    },
-  }),
-  {...(typeof window !== "undefined") && window.__INITIAL_STATE__},
-  [
-    thunk,
-    createLogger({collapsed: true}),
-  ],
-)
-```
-
-### Overide intl in context
-
-The default `intl` in context can't change. We need to override the `intl` context by `intl` state from our `redux` store.
-To do that, let's update the `AppContainer.js` :
-
-```js
-import {connect} from "react-redux"
-...
-const ReduxIntlProvider = connect(state => state.intl)(IntlProvider)
-const AppContainer = (props) => (
-  <ReduxIntlProvider>
-    <Container>
-      <DefaultHeadMeta />
-      <Header />
-      <Content>
-        {props.children}
-      </Content>
-      <Footer />
-    </Container>
-  </ReduxIntlProvider>
-)
-```
-
-### Get your translated content
+If it's not the case, add the `route` metadata to your markdown files :
 
 Add a metadata `locale` to your `.md` files
 
 ```markdown
 ---
 title: Your title
-locale: en
+route: en/your-title
 ---
 Your content
 ```
 
-Then, use the `filter` option from `enhanceCollection` in your layouts to get your translated content :
+So let's initialize `react-intl` by creating an `src/utils/intl.js` file.
 
 ```js
-...
+import {addLocaleData} from "react-intl"
+import __intlEN from "react-intl/locale-data/en"
+import __intlFR from "react-intl/locale-data/fr"
+import flatten from "flat"
+
+// Get our translations files
+import localeEN from "translations/en.yml"
+import localeFR from "translations/fr.yml"
+
+// Load "en" and "fr" utils
+addLocaleData(__intlEN)
+addLocaleData(__intlFR)
+
+const locales = ["fr", "en"]
+const defaultLocale = "en"
+const messages = {
+  en: flatten(localeEN),
+  fr: flatten(localeFR),
+}
+
+export function getLocale(url) {
+  // Get the "en" from the url "http://domain.tld/en"
+  const firstURIlevel = url.replace(/^\//, "").split("/")[0]
+
+  // If there is not the locale in the url, we take the default locale
+  return firstURIlevel && locales.indexOf(firstURIlevel) > -1
+    ? firstURIlevel
+    : defaultLocale
+}
+
+export function getIntl(locale) {
+  // We will inject this into IntlProvider
+  return {
+    locale: locale,
+    messages: messages[locale],
+    defaultLocale: defaultLocale,
+  }
+}
+```
+
+Now we need to inject props to the [``IntlProvider``](https://github.com/yahoo/react-intl/wiki/Components#intlprovider).
+We will use our just created function `getIntl`.
+
+```js
+import {IntlProvider} from "react-intl"
+import {getIntl, getLocale} from "utils/intl"
+// ...
+const AppContainer = (props) => {
+  const {location} = this.context
+  const {children} = this.props
+  const locale = getLocale(location.pathname)
+  const intl = getIntl(locale)
+  return (
+    <IntlProvider {...intl}>
+      <Container>
+        <DefaultHeadMeta />
+        <Header />
+        <Content>
+          {props.children}
+        </Content>
+        <Footer />
+      </Container>
+    </IntlProvider>
+  )
+}
+
+AppContainer.contextTypes = {
+  location: PropTypes.object.isRequired,
+}
+```
+
+## Get your translated content
+
+Use the `filter` option from `enhanceCollection` in your layouts to get your translated content :
+
+```js
+import {injectIntl, intlShape} from "react-intl"
+import {getLocale} from "utils/intl"
+// ...
 class Homepage extends Component {
   render() {
     const {collection} = this.context
+    const {intl} = this.props
     const data = enhanceCollection(collection, {
-      filter: {locale: this.props.currentLocale},
+      // Filter the data by the "locale" front-matter metadata
+      filter: (c) => c.layout === "Post"
+        && getLocale(c.__url) === intl.locale,
     })
 
     return (
@@ -246,68 +213,62 @@ class Homepage extends Component {
     )
   }
 }
-...
-export default connect(
-  ({intl}) => ({currentLocale: intl.locale}),
-)(Homepage)
+
+Homepage.contextTypes = {
+  collection: PropTypes.array.isRequired,
+}
+
+Homepage.propTypes = {
+  intl: intlShape.isRequired,
+}
+
+export default injectIntl(Homepage)
 ```
 
-### Update your header
+## Update your header
 
-Once you can have your translated content, we have to add two buttons in the header to change our locale.
+Once you can have your translated content, we have to add links in the header to change our locale and naviguate bewteen pages :
 
 ```js
 // ...
-import {browserHistory} from "phenomic/lib/client"
-import {setLocale} from "actions/intl"
+import {Link} from "react-router"
+import {FormattedMessage, injectIntl, intlShape} from "react-intl"
+import {getLocale} from "utils/intl"
 // ...
 class Header extends Component {
-  ...
+  // ...
   render() {
-    const {updateLocale} = this.props
+    // We get all pages that list posts (using Posts layout) and the url which match the language
+    const postsPages = enhanceCollection(collection, {
+      filter: (c) => (c.layout === "Posts" && getLocale(c.__url) === intl.locale),
+    })
+
+    // Usually, we have only one page with the layout "Posts", so we get the first one
+    const postsPage = postsPages.shift()
+
     return (
       <header>
         <nav>
-          ...
-          <div onClick={() => updateLocale("en")}>{"en"}</div>
-          <div onClick={() => updateLocale("fr")}>{"fr"}</div>
+          // If "postsPage" is defined, the link will redirect to "__url" front-matter data
+          <Link className={styles.item} to={postsPage && postsPage.__url}>
+            // Translate the key "header.posts"
+            <FormattedMessage id="header.posts" />
+          </Link>
+          <Link to="/en">
+            <FormattedMessage id="header.en" />
+          </div>
+          <Link to="/fr">
+            <FormattedMessage id="header.fr" />
+          </div>
         </nav>
       </header>
     )
   }
 }
-// ...
-export default connect(
-  null,
-  dispatch => ({
-    ...
-    updateLocale: (locale) => {
-      dispatch(setLocale(locale))
 
-      /*
-        We recommend you to use different urls for each language and to redirect to your homepage.
-        Have a uniq url for a specific language has advantages :
-          - your SEO will be better
-          - your users could share urls easier with the right locale
-          - your UX will be better because you will avoid flash effect when the locale will change
-      */
-      browserHistory.push("/")
-    },
-  })
-)(Header)
-```
+Header.propTypes = {
+  intl: intlShape.isRequired,
+}
 
-### Initialize with right locale
-
-Now we need to initialize the site with the right locale.
-
-To do this, open your `scripts/phenomic.browser.js` and add :
-
-```js
-import { setLocale } from "actions/intl"
-const DEFAULT_LOCALE = "en"
-
-// ...
-
-store.dispatch(setLocale(window.localStorage.getItem("locale") || DEFAULT_LOCALE)
+export default injectIntl(Header)
 ```
