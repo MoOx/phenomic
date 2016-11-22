@@ -7,8 +7,9 @@ import expectJSX from "expect-jsx"
 import dom from "../../../_utils/jsdom"
 import Link from "../"
 
-dom("http://localhost/test/")
+process.env.PHENOMIC_USER_URL = "http://localhost/test/"
 process.env.PHENOMIC_USER_PATHNAME = "/test/"
+dom(process.env.PHENOMIC_USER_URL)
 
 expect.extend(expectJSX)
 
@@ -65,6 +66,36 @@ test("should render normal <a> tag if to is not 'local'", () => {
 
   expect(component.props.href)
   .toEqual("http://test.com")
+})
+
+test("should render normal <a> tag if to is not in the same root path", () => {
+  const component = renderer(
+    createElement(
+      Link,
+      {
+        to: "http://localhost/root",
+        className: "foo",
+        children: <span />,
+      },
+    ),
+    {
+      router: {
+        isActive: () => false,
+      },
+    }
+  )
+
+  expect(component.props.href)
+  .toEqual("http://localhost/root")
+
+  expect(component).toEqualJSX(
+    <a
+      href="http://localhost/root"
+      className="foo"
+    >
+      <span />
+    </a>
+  )
 })
 
 test("should allow passing props to <a> tag", () => {

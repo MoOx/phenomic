@@ -38,11 +38,20 @@ function Link(
     return simpleLink
   }
 
-  const link = document.createElement("a")
-  link.href = to
+  const toLink = document.createElement("a")
+  toLink.href = to
 
   if (
-    origin(link) === origin(window.location)
+    // parent absolute url with the same domain
+    // should not be Link
+    to.indexOf("://") > -1 &&
+    to.indexOf(process.env.PHENOMIC_USER_URL) === -1
+  ) {
+    return simpleLink
+  }
+
+  if (
+    origin(toLink) === origin(window.location)
     // we might want to restrict Link to path including the pathname
     // but this will require to preprend pathname to all Links from the
     // collection, which sucks.
@@ -50,8 +59,8 @@ function Link(
     // you will need to includes the entire url, / won't work at it will use
     // the react-router basename defined by Phenomic.
     // &&
-    // link.pathname.includes(process.env.PHENOMIC_USER_PATHNAME)
-    // link.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
+    // toLink.pathname.includes(process.env.PHENOMIC_USER_PATHNAME)
+    // toLink.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
   ) {
     return (
       <RouterLink
