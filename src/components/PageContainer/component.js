@@ -116,6 +116,8 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     this.catchInternalLink()
   }
 
+  cleanupInternalLinks: Function
+
   catchInternalLink() {
     const layoutDOMElement = findDOMNode(this)
 
@@ -127,6 +129,18 @@ class PageContainer extends Component<DefaultProps, Props, void> {
       if (!bodyContainers.length) {
         bodyContainers = [ layoutDOMElement ]
       }
+
+      // as soon as we listened to something, we should carefully unlisten
+      // because
+      // - it can be listening in the layoutDOMElement (a parent)
+      // - it can be listening in a <BodyContainer (a children)
+      // if we don't do this cleanup, we might listen on a parent and a children
+      // and if the parent contains other links to, let's say a parent part of
+      // the website, <Link> might be catched (but they are not supposed to)
+      if (this.cleanupInternalLinks) {
+        this.cleanupInternalLinks()
+      }
+      this.cleanupInternalLinks =
       catchLinks(bodyContainers, (href) => {
         // do not catch links that are under the current base path
         if (href.indexOf(process.env.PHENOMIC_USER_PATHNAME) === -1) {

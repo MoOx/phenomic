@@ -50,7 +50,11 @@ const catchLinks = (cb) => (ev: any): void => {
 export default function(
   elements: Array<Element>,
   cb: Function
-): void {
+): Function {
   const eventCallback = catchLinks(cb)
   elements.map((el) => el.addEventListener("click", eventCallback))
+
+  return () => {
+    elements.map((el) => el.removeEventListener("click", eventCallback))
+  }
 }
