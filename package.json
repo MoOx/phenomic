@@ -1,6 +1,6 @@
 {
   "name": "phenomic",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",
@@ -174,7 +174,7 @@
     "predocs-deploy": "cd docs && npm run showcase-screenshots",
     "docs-deploy": "cd docs && npm run build && cd .. && npm run themes:prepare",
     "postdocs-deploy": "cd docs && ./scripts/deploy.sh",
-    "themes:prepare": "cp-cli test-setup/dist docs/dist/themes/base/demo",
+    "themes:prepare": "cp-cli theme/phenomic-theme-base/dist docs/dist/themes/base/demo",
     "pretest": "npm run transpile && npm run lint",
     "test": "npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-setup && npm run e2e:tests",
     "posttest": "npm run test-docs",

@@ -1,5 +1,12 @@
 # HEAD
 
+# 0.19.1 - 2016-11-21
+
+- 🐛 Fixed: static build does not write phenomic assets as if they were handled by react-helmet.
+This fix the issue where phenomic CSS are removed from the page when
+client script take the relay.
+(@MoOx)
+
 # 0.19.0 - 2016-11-21
 
 **This release contains only a minor breaking change (less strict CSS linting)**
