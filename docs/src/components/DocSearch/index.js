@@ -45,9 +45,9 @@ export default class DocSearch extends Component {
           #algolia-docsearch {
             background:
               #eee
-              url('data:image/svg+xml;utf8,${
+              url(data:image/svg+xml;utf8,${
                 encodeURIComponent(MagnifierSVG)
-              }')
+              })
               12px 50% / 14px 14px no-repeat;
             padding-left: 2rem !important;
           }
