@@ -1,6 +1,4 @@
-# HEAD
-
-# 0.19.2 - 2016-11-21
+# 0.19.3 - 2016-11-21
 
 🍭 This bugfixes are a good thing and have been detected since we use 2
 different Phenomic projects for our documentation website:
@@ -23,6 +21,15 @@ This is probably and edge case, more than the case we are fixing here.
 We might revisit this issue when refactoring how collection is handled and
 rendered.
 (@MoOx)
+
+🐛 Fixed: when a ``<Link>`` explicitly receive an absolute url from the same
+domain, but not the same project base path, a normal ``<a>`` is rendered
+(@MoOx)
+
+# 0.19.2 - 2016-11-21
+
+**broken**: npm published a incomplete package which resulted in an error during
+installation: ``Cannot find module '...phenomic/npm/postinstall.js'``
 
 # 0.19.1 - 2016-11-21
 
