@@ -1,5 +1,29 @@
 # HEAD
 
+# 0.19.2 - 2016-11-21
+
+🍭 This bugfixes are a good thing and have been detected since we use 2
+different Phenomic projects for our documentation website:
+one at the root, for the main documentation website and
+one under ``/themes/base/demo/`` which host the base theme as a demo.
+
+- 🐛 Fixed: Do not catch links that are not under the current base path
+(@MoOx)
+
+- 🐛  Fixed: Avoid catching unwanted ``<Link>`` that can be children of a
+``<PageContainer>`` instance by cleaning up all links listeners on each
+``<PageContainer>`` updates.
+(@MoOx)
+
+- 🐛 Fixed: Phenomic ``<Link>`` understand collection links without the base
+path.
+⚠️ One caveat is now you can’t use ``<Link>`` to point to a path before the current
+project base path.
+This is probably and edge case, more than the case we are fixing here.
+We might revisit this issue when refactoring how collection is handled and
+rendered.
+(@MoOx)
+
 # 0.19.1 - 2016-11-21
 
 - 🐛 Fixed: static build does not write phenomic assets as if they were handled by react-helmet.
