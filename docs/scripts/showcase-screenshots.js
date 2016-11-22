@@ -2,7 +2,6 @@ import { resolve, join } from "path"
 import fs from "fs"
 
 import mkdirp from "mkdirp"
-import findCacheDir from "find-cache-dir"
 import grayMatter from "gray-matter"
 import Nightmare from "nightmare"
 import pngToJpg from "png-jpg"
@@ -10,12 +9,8 @@ import optimizer from "image-optim"
 
 import urlToSlug from "../src/utils/url-to-slug"
 
-const cacheDir = findCacheDir({
-  name: join("phenomic", "screenshots"),
-  create: true,
-})
-
-const showcaseDir = join(__dirname, "..", "content", "showcase", "entry")
+const cacheDir = resolve(__dirname, "..", ".screenshots")
+const showcaseDir = resolve(__dirname, "..", "content", "showcase", "entry")
 
 const showcasesFile = fs.readdirSync(showcaseDir)
 

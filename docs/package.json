@@ -45,7 +45,6 @@
     "eslint-plugin-react": "^6.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "find-cache-dir": "^0.1.1",
     "gray-matter": "^2.0.2",
     "history": "^2.0.0",
     "image-optim": "^3.0.0",
