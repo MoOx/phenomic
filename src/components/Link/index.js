@@ -42,8 +42,16 @@ function Link(
   link.href = to
 
   if (
-    origin(link) === origin(window.location) &&
-    link.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
+    origin(link) === origin(window.location)
+    // we might want to restrict Link to path including the pathname
+    // but this will require to preprend pathname to all Links from the
+    // collection, which sucks.
+    // If people wants to use Link for a same domain, but in the parent path,
+    // you will need to includes the entire url, / won't work at it will use
+    // the react-router basename defined by Phenomic.
+    // &&
+    // link.pathname.includes(process.env.PHENOMIC_USER_PATHNAME)
+    // link.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
   ) {
     return (
       <RouterLink

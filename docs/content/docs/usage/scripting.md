@@ -57,7 +57,11 @@ Phenomic provides a Link component to cover this case.
 Current ``react-router`` ``Link`` implementation just crash if you use an
 external link. Phenomic ``Link`` component fix this for you.
 This is especially handy if you generate links from unknown data
-(eg: markdow front-matter value that can point to internal or external pages) .
+(eg: markdow front-matter value that can point to internal or external pages).
+
+⚠️ One caveat is you can’t use ``<Link>`` to point to a path **before
+the current project base path**. This is probably and edge case, more than using
+``<Link>`` for project related and collection links.
 
 #### ``BodyContainer``
 

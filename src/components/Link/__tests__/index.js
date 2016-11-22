@@ -67,27 +67,6 @@ test("should render normal <a> tag if to is not 'local'", () => {
   .toEqual("http://test.com")
 })
 
-test("should render normal <a> tag if to is not in the same root path", () => {
-  const component = renderer(
-    createElement(
-      Link,
-      {
-        to: "/root",
-        className: "foo",
-        children: <span />,
-      },
-    ),
-    {
-      router: {
-        isActive: () => false,
-      },
-    }
-  )
-
-  expect(component.props.href)
-  .toEqual("/root")
-})
-
 test("should allow passing props to <a> tag", () => {
   const component = renderer(
     createElement(
