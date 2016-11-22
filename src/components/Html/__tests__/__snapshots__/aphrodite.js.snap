@@ -5,15 +5,12 @@ exports[`test should render Html component with aphrodite styles when possible 1
     <title
       data-react-helmet={true} />
     <meta
-      charSet="utf-8"
-      data-react-helmet={true} />
+      charSet="utf-8" />
     <meta
       content="IE=edge"
-      data-react-helmet={true}
       httpEquiv="X-UA-Compatible" />
     <meta
       content="width=device-width, initial-scale=1"
-      data-react-helmet={true}
       name="viewport" />
     <style
       dangerouslySetInnerHTML={
@@ -24,7 +21,6 @@ exports[`test should render Html component with aphrodite styles when possible 1
       data-aphrodite={undefined}
       data-react-helmet={true} />
     <link
-      data-react-helmet={true}
       href="test.css"
       rel="stylesheet" />
   </head>
@@ -46,7 +42,6 @@ exports[`test should render Html component with aphrodite styles when possible 1
       }
       data-react-helmet={true} />
     <script
-      data-react-helmet={true}
       src="test.js" />
   </body>
 </html>

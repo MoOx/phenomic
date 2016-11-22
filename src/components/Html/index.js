@@ -11,28 +11,7 @@ type Props = {
   renderScript: () => React$Element<any>,
 }
 
-const defaultHtmlAttributes = {
-  "lang": "en",
-}
-const defaultMeta = [
-  // <meta charset="utf-8" />
-  { "charset": "utf-8" },
-  // <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  { "http-equiv": "X-UA-Compatible", "content": "IE=edge" },
-  // <meta name="viewport" content="width=device-width, initial-scale=1" />
-  { "name": "viewport", "content": "width=device-width, initial-scale=1" },
-]
-
 const Html = (props: Props) => {
-
-  // Inject default html metas before
-  // Those need to be rendered somehow otherwise Helmet won't consider those
-  renderToString(
-    <Helmet
-      htmlAttributes={ defaultHtmlAttributes }
-      meta={ defaultMeta }
-    />
-  )
 
   // Glamor integration
   // https://github.com/threepointone/glamor/blob/master/docs/server.md
@@ -98,34 +77,39 @@ const Html = (props: Props) => {
 
   body = body || props.renderBody()
 
-  renderToString(
-    <Helmet
-      link={ [
-        ...props.css.map((file) => ({ rel: "stylesheet", href: file })),
-      ] }
-      script={ [
-        ...props.js.map((file) => ({ src: file })),
-      ] }
-    />
-  )
-
   // rewind html metas
   const head = Helmet.rewind()
 
   // <!doctype html> is automatically prepended
   return (
-    <html { ...head.htmlAttributes.toComponent() }>
+    <html
+      lang="en"
+      { ...head.htmlAttributes.toComponent() }
+    >
       <head>
         { head.base.toComponent() }
         { head.title.toComponent() }
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         { head.meta.toComponent() }
         { head.style.toComponent() }
         { head.link.toComponent() }
+        {
+          props.css.map((file, i) => (
+            <link key={ "phenomic.css." + i } rel="stylesheet" href={ file } />
+          ))
+        }
       </head>
       <body>
         <div id="phenomic" dangerouslySetInnerHTML={{ __html: body }} />
         { props.renderScript() }
         { head.script.toComponent() }
+        {
+          props.js.map((file, i) => (
+            <script key={ "phenomic.js." + i } src={ file } />
+          ))
+        }
       </body>
     </html>
   )

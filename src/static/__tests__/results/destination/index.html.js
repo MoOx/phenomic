@@ -5,10 +5,10 @@ export default () => (
 
 <head>
   <title data-react-helmet="true"></title>
-  <meta data-react-helmet="true" charset="utf-8" />
-  <meta data-react-helmet="true" http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1" />
-  <link data-react-helmet="true" rel="stylesheet" href="/test.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/test.css" />
 </head>
 
 <body>
@@ -34,7 +34,7 @@ export default () => (
       }
     }
   </script>
-  <script data-react-helmet="true" src="/test.js"></script>
+  <script src="/test.js"></script>
 </body>
 
 </html>`
