@@ -9,6 +9,8 @@ import { Provider as ReduxContextProvider } from "react-redux"
 
 import PhenomicContextProvider from "../components/ContextProvider"
 
+import shouldUpdateScroll from "./should-update-scroll.js"
+
 export const browserHistory =
   typeof window !== "undefined" // just for node testing
   ? useRouterHistory(createBrowserHistory)({
@@ -41,7 +43,7 @@ export default function phenomic({
         <Router
           history={ browserHistory }
           routes={ routes }
-          render={ applyRouterMiddleware(useScroll()) }
+          render={ applyRouterMiddleware(useScroll(shouldUpdateScroll)) }
         />
       </ReduxContextProvider>
     </PhenomicContextProvider>,
