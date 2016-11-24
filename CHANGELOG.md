@@ -1,4 +1,9 @@
-# 0.19.3 - 2016-11-21
+# 0.19.4 - 2016-11-24
+
+- 🐛 Fixed: click on anchors are now scrolling has expected
+([#665](https://github.com/MoOx/phenomic/issues/665) - @MoOx)
+
+# 0.19.3 - 2016-11-22
 
 🍭 This bugfixes are a good thing and have been detected since we use 2
 different Phenomic projects for our documentation website:
@@ -22,16 +27,16 @@ We might revisit this issue when refactoring how collection is handled and
 rendered.
 (@MoOx)
 
-🐛 Fixed: when a ``<Link>`` explicitly receive an absolute url from the same
+- 🐛 Fixed: when a ``<Link>`` explicitly receive an absolute url from the same
 domain, but not the same project base path, a normal ``<a>`` is rendered
 (@MoOx)
 
-# 0.19.2 - 2016-11-21
+# 0.19.2 - 2016-11-22
 
 **broken**: npm published a incomplete package which resulted in an error during
 installation: ``Cannot find module '...phenomic/npm/postinstall.js'``
 
-# 0.19.1 - 2016-11-21
+# 0.19.1 - 2016-11-22
 
 - 🐛 Fixed: static build does not write phenomic assets as if they were handled by react-helmet.
 This fix the issue where phenomic CSS are removed from the page when
