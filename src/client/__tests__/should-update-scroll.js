@@ -46,6 +46,16 @@ const anotherState = {
 // false mean react-router addon won't handle a scroll to top
 // (browser will handle scroll change, with hash and shit)
 
+it("shouldUpdateScroll, new page, no need to scroll", () => {
+  expect(shouldUpdateScroll(null, someState))
+  .toBe(false)
+})
+
+it("shouldUpdateScroll, new page with hash, no need to scroll", () => {
+  expect(shouldUpdateScroll(null, someStateButWithHash))
+  .toBe(false)
+})
+
 it("shouldUpdateScroll, no hash to hash", () => {
   expect(shouldUpdateScroll(someState, someStateButWithHash))
   .toBe(false)
@@ -62,11 +72,6 @@ it("shouldUpdateScroll, another hash", () => {
 })
 
 // Here we scroll
-
-it("shouldUpdateScroll, new page, scroll", () => {
-  expect(shouldUpdateScroll(null, someState))
-  .toBe(true)
-})
 
 it("shouldUpdateScroll, same url, again (scroll to top expected)", () => {
   expect(shouldUpdateScroll(someState, someState))
