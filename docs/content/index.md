@@ -67,4 +67,6 @@ you edit your website. You will also see compilation & runtime errors.
 
 ---
 
-Wanna play with Phenomic? It will take just 2 commands to setup a fresh project!
+Wanna play with Phenomic? It will take just 2 commands to
+[setup a fresh project](/docs/setup/)
+and [play with it](/docs/getting-started/#table-of-contents)!
