@@ -1,3 +1,13 @@
+# 0.19.5 - 2016-11-25
+
+- 🐛 Fixed: scroll to top should not happen for fresh page, with or without hash
+([#665](https://github.com/MoOx/phenomic/issues/665) - @MoOx)
+- 🐛 Fixed: internal links to other pages with hash now works as expected
+(no full page load)
+(@MoOx)
+- 🐛 Fixed: click on link with hash to another page now scroll correctly when page is completely rendered with all data
+([#665](https://github.com/MoOx/phenomic/issues/665) - @MoOx)
+
 # 0.19.4 - 2016-11-24
 
 - 🐛 Fixed: click on anchors are now scrolling has expected
