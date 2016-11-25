@@ -147,8 +147,19 @@ class PageContainer extends Component<DefaultProps, Props, void> {
         // === if (!href.includes(process.env.PHENOMIC_USER_PATHNAME)) {
           return false
         }
-        const pageUrl = href.replace(process.env.PHENOMIC_USER_PATHNAME, "/")
-        if (!find(this.context.collection, pageUrl)) {
+
+        // lookup in collection by adjusting the link with our stored links
+        const pageUrl = href
+          // remove pathname as collection links don't have pathname included
+          .replace(process.env.PHENOMIC_USER_PATHNAME, "/")
+        if (
+          !find(
+            this.context.collection,
+            pageUrl
+            // remove hash for the lookup as it's not necessary
+            .replace(/#.*/, "")
+          )
+        ) {
           return false
         }
         if (browserHistory) {
