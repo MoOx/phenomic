@@ -130,7 +130,7 @@ export default (
 
 Fix and wrap onEnter with `typeof window !== 'undefined'`
 
-```
+```js
 // Will build. Yay!
 import React from 'react'
 import { Route } from 'react-router'
@@ -158,4 +158,58 @@ export default (
     <Route path='*' component={Layouts} />
   </Route>
 )
+```
+
+## Manipulating history
+
+To create basics links, you need to use the `Link` component from phenomic:
+
+```js
+
+import {Link} from "phenomic"
+
+const Nav = () => (
+  <div>
+    // ...
+    <Link to="/">
+      {"Homepage"}
+    </Link>
+    // ...
+  </div>
+)
+```
+
+But maybe you need to manipulate history outside of `Link` context.
+
+If you already use `react-router` you may know [browserHistory](https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md).
+
+Phenomic injects its own `browserHistory` instance as a `react-router` props.
+So instead of using `react-router` `browserHistory` directly, you should use the object exported by phenomic.
+
+```js
+
+import {browserHistory} from "phenomic/lib/client"
+
+class Nav extends Component {
+  constructor() {
+    super()
+    this.handleRedirect = this.handleRedirect.bind(this)
+  }
+
+  handleRedirectHome() {
+    browserHistory.push("/")
+  }
+
+  render() {
+    return (
+      <div>
+        // ...
+        <span onClick={this.handleRedirectHome}>
+          {"Home"}
+        <span>
+        // ...
+      </div>
+    )
+  }
+}
 ```
