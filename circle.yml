@@ -12,7 +12,6 @@ dependencies:
     - npm install
 
   cache_directories:
-    - node_modules
     - docs/node_modules
     - themes/phenomic-theme-base/node_modules
     - test-setup/node_modules
