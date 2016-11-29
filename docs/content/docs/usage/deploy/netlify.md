@@ -29,4 +29,6 @@ To specify `node` version to Netlify, you have to create an `.nvmrc` file, to th
   - **Build command**: `npm run build`
   - **Public folder**: `/dist`
 
-Now, when you will push a commit to your `YOUR_BRANCH` branch
+Now, when you push a commit to your `YOUR_BRANCH` branch, your site will be live on your netlify url (something like "http://'YOUR_PROJECT_NAME'.netlify.com/")
+
+NOTE: If your site is not styled properly on the live URL, make sure you provided that live URL in the package.json file under the "homepage" property.
