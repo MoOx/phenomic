@@ -220,7 +220,8 @@
     "rules": {
       "block-no-empty": null,
       "comment-empty-line-before": null,
-      "comment-whitespace-inside": null
+      "comment-whitespace-inside": null,
+      "selector-pseudo-class-no-unknown": null
     }
   },
   "jest": {
