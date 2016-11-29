@@ -5,6 +5,17 @@
 node_modules
 npm-debug.log
 
+# Yarn
+# I (@MoOx) know that yarn.lock exist to be versionned
+# but in the case of a product like us, we don't control user package.json so
+# it's only hiding us some potential semver issue.
+# It pretty cool for local full testing, but at some point, we need to do some
+# cleanup (e.g. before cutting a release) to ensure this will work in real world
+# Maybe we should pin our deps (even if deps of deps are not under our control)
+# but that's kind of another story
+# Feel free to open a discussion about that ;)
+yarn.lock
+
 # code coverage
 .nyc_output
 coverage

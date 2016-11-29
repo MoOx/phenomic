@@ -180,6 +180,7 @@
     "test": "npm run tests && npm run phenomic-theme-base && npm run phenomic-theme-base-linting && npm run test-setup && npm run e2e:tests",
     "posttest": "npm run test-docs",
     "coverage": "cat ./coverage/lcov.info | coveralls",
+    "prerelease": "rimraf yarn.lock docs/yarn.lock themes/phenomic-theme-base/yarn.lock",
     "release": "npmpub",
     "postrelease": "npm run docs-deploy"
   },
