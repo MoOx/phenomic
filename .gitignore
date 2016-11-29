@@ -17,7 +17,6 @@ npm-debug.log
 yarn.lock
 
 # code coverage
-.nyc_output
 coverage
 
 # build
