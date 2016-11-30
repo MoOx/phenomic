@@ -3,17 +3,16 @@ import { execSync } from "child_process"
 import semver from "semver"
 import colors from "chalk"
 
+import { npm, yarn } from "../_utils/bins.js"
 import pkg from "../../package.json"
 
 module.exports = function(nodeVersion, npmVersion, yarnVersion) {
   const requirements = pkg.engines
   nodeVersion = (nodeVersion || process.version)
 
-  const npm = /^win/.test(process.platform) ? "npm.cmd" : "npm"
   npmVersion = (npmVersion || execSync(npm + " --version").toString().trim())
 
   try {
-    const yarn = /^win/.test(process.platform) ? "yarn.cmd" : "yarn"
     yarnVersion = (
       yarnVersion !== undefined
       ? yarnVersion

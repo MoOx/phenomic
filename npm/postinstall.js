@@ -8,6 +8,10 @@ const join = require("path").join
 
 const fs = require("fs-extra")
 
+// node 4 don't like this
+// const { babelNode, npm } = require("../src/_utils/bins.js")
+const babelNode = require("../src/_utils/bins.js").babelNode
+const npm = require("../src/_utils/bins.js").npm
 const pkg = require("../package.json")
 
 const spawnOpts = {
@@ -22,10 +26,6 @@ function prepareOtherNodeModulesFolder() {
     // for dev install, we prepare docs and base theme deps
     if (!error && stats.isDirectory()) {
       console.log("ℹ️ Tweaking and installing dependencies for docs & themes")
-
-      const babelNode = /^win/.test(process.platform)
-        ? ".\\node_modules\\.bin\\babel-node"
-        : "babel-node"
 
       spawn(babelNode, [ "scripts/docs.js" ], spawnOpts)
       .on("error", (err) => {
@@ -94,7 +94,7 @@ stat("lib", function(error, stats) {
   // https://github.com/npm/npm/issues/10686
 
   // const installTranspiler = spawn(
-  //   "npm",
+  //   npm,
   //   [ "i" , "babel-cli", ...pkg.babel.presets ],
   //   spawnOpts
   // )
@@ -104,7 +104,7 @@ stat("lib", function(error, stats) {
   //   console.log(pkg.name, "postinstall deps installed")
   //   if (code === 0) {
   const installer = spawn(
-    "npm",
+    npm,
     [ "run", "transpile" ],
     spawnOpts
   )
