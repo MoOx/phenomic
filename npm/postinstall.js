@@ -4,6 +4,7 @@
 
 const stat = require("fs").stat
 const spawn = require("child_process").spawn
+const execSync = require("child_process").execSync
 const join = require("path").join
 
 const fs = require("fs-extra")
@@ -19,30 +20,23 @@ const spawnOpts = {
   cwd: join(__dirname, "../"),
 }
 
+const toPrepare = [
+  "docs",
+  "phenomic-theme-base",
+  "test-setup",
+]
+
 function prepareOtherNodeModulesFolder() {
   // e2e-tests are only present if you clone the full repo
   // (won't be present when npm install with git ref)
   stat("e2e-tests", function(error, stats) {
     // for dev install, we prepare docs and base theme deps
     if (!error && stats.isDirectory()) {
-      console.log("ℹ️ Tweaking and installing dependencies for docs & themes")
+      console.log("ℹ️ Tweaking and installing dependencies for sub-projects")
 
-      spawn(babelNode, [ "scripts/docs.js" ], spawnOpts)
-      .on("error", (err) => {
-        console.error("❌ Failed to prepare docs")
-        throw err
-      })
-
-      spawn(babelNode, [ "scripts/phenomic-theme-base.js" ], spawnOpts)
-      .on("error", (err) => {
-        console.error("❌ Failed to prepare phenomic-theme-base")
-        throw err
-      })
-
-      spawn(babelNode, [ "scripts/test-setup.js" ], spawnOpts)
-      .on("error", (err) => {
-        console.error("❌ Failed to prepare test-setup")
-        throw err
+      toPrepare.forEach((script) => {
+        console.log("- Preparing "+ script)
+        execSync(babelNode + " scripts/" + script + ".js", spawnOpts)
       })
     }
   })
