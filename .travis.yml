@@ -11,8 +11,10 @@ matrix:
 # cache node modules
 cache:
   directories:
+    # Yarn
     - $HOME/.yarn-cache
-    - node_modules
+    # Phenomic
+    # - node_modules # yarn is a mess with native module atm
     - docs/node_modules
     - themes/phenomic-theme-base/node_modules
     - test-setup/node_modules
