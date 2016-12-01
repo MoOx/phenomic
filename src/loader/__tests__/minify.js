@@ -26,3 +26,20 @@ test("phenomic/lib/loader/minify", (t) => {
     "should create a minified collection (without body)"
   )
 })
+
+it("should throw for non collection", () => {
+  expect(() =>{
+    minify()
+  })
+  .toThrowError()
+
+  expect(() =>{
+    minify(2)
+  })
+  .toThrowError()
+
+  expect(() =>{
+    minify("aze")
+  })
+  .toThrowError()
+})

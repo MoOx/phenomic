@@ -18,7 +18,7 @@ export default (config: PhenomicConfig): WebpackConfig => {
   return {
     ...webpackConfig,
     plugins: [
-      ...webpackConfig.plugins,
+      ...webpackConfig.plugins ? webpackConfig.plugins : [],
       ...hardSourcePlugin(config),
       new DefinePlugin({ "process.env": {
         NODE_ENV: wrap(

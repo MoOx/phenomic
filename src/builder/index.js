@@ -23,7 +23,7 @@ export default function(config: Object): void {
   // log(JSON.stringify(config, null, 2))
 
   const makeWebpackConfigModule = dynamicRequire(
-    join(config.cwd, config["webpack-config"])
+    join(config.cwd, config["webpackConfig"])
   )
   const makeWebpackConfig =
     typeof makeWebpackConfigModule.default === "function"
@@ -127,7 +127,7 @@ export default function(config: Object): void {
     devServer(config)
   }
   else {
-    console.error(colors.red(
+    throw new Error(colors.red(
       "phenomic: CLI needs --static or --server"
     ))
   }

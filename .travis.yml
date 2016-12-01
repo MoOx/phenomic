@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
   - '6'
-  - '5'
   - '4'
 
 # fail asap when there is a failure
@@ -11,17 +10,25 @@ matrix:
 
 # cache node modules
 cache:
-  yarn: true
   directories:
-    - node_modules
+    # Yarn
+    - $HOME/.yarn-cache
+    # Phenomic
+    # - node_modules # yarn is a mess with native module atm
     - docs/node_modules
     - themes/phenomic-theme-base/node_modules
     - test-setup/node_modules
 
+# We don't use yarn.lock but want Yarn to be installed
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+install: yarn
+
 after_success: yarn run coverage
 
 # for Yarn, to build some native deps
-
 env:
   - CXX=g++-4.8
 addons:
