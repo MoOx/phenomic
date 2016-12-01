@@ -4,10 +4,15 @@
 
 const stat = require("fs").stat
 const spawn = require("child_process").spawn
+const execSync = require("child_process").execSync
 const join = require("path").join
 
 const fs = require("fs-extra")
 
+// node 4 don't like this
+// const { babelNode, npm } = require("../src/_utils/bins.js")
+const babelNode = require("../src/_utils/bins.js").babelNode
+const npm = require("../src/_utils/bins.js").npm
 const pkg = require("../package.json")
 
 const spawnOpts = {
@@ -15,77 +20,41 @@ const spawnOpts = {
   cwd: join(__dirname, "../"),
 }
 
-// e2e-tests are only present if you clone the full repo
-// (won't be present when npm install with git ref)
+const toPrepare = [
+  "docs",
+  "phenomic-theme-base",
+  "test-setup",
+]
 
-stat("e2e-tests", function(error, stats) {
+function prepareOtherNodeModulesFolder() {
+  // e2e-tests are only present if you clone the full repo
+  // (won't be present when npm install with git ref)
+  stat("e2e-tests", function(error, stats) {
+    // for dev install, we prepare docs and base theme deps
+    if (!error && stats.isDirectory()) {
+      console.log("ℹ️ Tweaking and installing dependencies for sub-projects")
 
-  // for dev install, we prepare docs and base theme deps
-  if (!error && stats.isDirectory()) {
-    console.log("Tweaking and installing dependencies for docs & themes")
-
-    const babelNode = /^win/.test(process.platform)
-      ? ".\\node_modules\\.bin\\babel-node"
-      : "babel-node"
-
-    spawn(babelNode, [ "scripts/docs.js" ], spawnOpts)
-    .on("error", (err) => {
-      console.error("Failed to prepare docs")
-      console.error(err)
-    })
-
-    spawn(babelNode, [ "scripts/phenomic-theme-base.js" ], spawnOpts)
-    .on("error", (err) => {
-      console.error("Failed to prepare phenomic-theme-base")
-      console.error(err)
-    })
-
-    spawn(babelNode, [ "scripts/test-setup.js" ], spawnOpts)
-    .on("error", (err) => {
-      console.error("Failed to prepare test-setup")
-      console.error(err)
-    })
-  }
-})
-
-// npm rename .gitignore to .npmignore (which is just stupid for us)
-const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
-stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
-  if (err) {
-    console.log("No .npmignore in phenomic-theme-base to rename")
-    return true
-  }
-
-  fs.move(
-    join(phenomicThemeBaseDir, ".npmignore"),
-    join(phenomicThemeBaseDir, ".gitignore"),
-    function(err) {
-      if (err) {
-        throw new Error(
-          "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
-        )
-      }
+      toPrepare.forEach((script) => {
+        console.log("- Preparing "+ script)
+        execSync(babelNode + " scripts/" + script + ".js", spawnOpts)
+      })
     }
-  )
-})
+  })
+}
 
 // if repo installed from npm, we try to compile src
 stat("lib", function(error, stats) {
 
-  // no need for th is step on CI,
-  // only make sense when cloning the repo for dev
-  if (process.env.CI) {
-    return true
-  }
-
   // if lib is present, no need to transpile
+  // just prepare
   if (!error && stats.isDirectory()) {
+    prepareOtherNodeModulesFolder()
     return true
   }
 
   console.warn(
     "\n" +
-    "Builded sources not found. It looks like you might be attempting " +
+    "ℹ️ Builded sources not found. It looks like you might be attempting " +
     `to install ${ pkg.name } from git. \n` +
     "Sources need to be transpiled before use. " +
     // see commented code below
@@ -95,7 +64,7 @@ stat("lib", function(error, stats) {
 
   const fail  = (err) => {
     console.error(
-      `Failed to build ${ pkg.name } automatically. ` +
+      `❌ Failed to build ${ pkg.name } automatically. ` +
 
       // see commented babel install below
       "Do you have to required dependencies to install from git?\n" +
@@ -119,7 +88,7 @@ stat("lib", function(error, stats) {
   // https://github.com/npm/npm/issues/10686
 
   // const installTranspiler = spawn(
-  //   "npm",
+  //   npm,
   //   [ "i" , "babel-cli", ...pkg.babel.presets ],
   //   spawnOpts
   // )
@@ -129,12 +98,37 @@ stat("lib", function(error, stats) {
   //   console.log(pkg.name, "postinstall deps installed")
   //   if (code === 0) {
   const installer = spawn(
-    "npm",
+    npm,
     [ "run", "transpile" ],
     spawnOpts
   )
 
   installer.on("error", fail)
+  installer.on("close", function() {
+    console.log("✅ Source transpiled.")
+    prepareOtherNodeModulesFolder()
+  })
   //   }
   // })
+})
+
+// npm rename .gitignore to .npmignore (which is just stupid for us)
+const phenomicThemeBaseDir = join(__dirname, "../themes/phenomic-theme-base")
+stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
+  if (err) {
+    console.log("ℹ️ No .npmignore in phenomic-theme-base to rename")
+    return true
+  }
+
+  fs.move(
+    join(phenomicThemeBaseDir, ".npmignore"),
+    join(phenomicThemeBaseDir, ".gitignore"),
+    function(err) {
+      if (err) {
+        throw new Error(
+          "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
+        )
+      }
+    }
+  )
 })

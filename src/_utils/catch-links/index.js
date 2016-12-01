@@ -1,7 +1,7 @@
 // @flow
 import url from "url"
 
-const catchLinks = (cb) => (ev: any): void => {
+const catchLinks = (cb: Function) => (ev: any): void => {
   if (
     ev.altKey ||
     ev.ctrlKey ||

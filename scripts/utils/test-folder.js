@@ -35,7 +35,7 @@ export default async function test(
 
     if (yarn) {
       try {
-        await exec("yarn --version")
+        await exec("yarn --version", { stdio: "ignore" })
         yarn = true
       }
       catch (e) {

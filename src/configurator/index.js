@@ -31,7 +31,7 @@ export default function config({ argv = [], pkg = {} } = {}) {
   const config = {
     ...defaultAndCLIconfig,
     ...userJSConfig,
-    ...process.env.TESTING && {
+    ...process.env.TESTING && userJSConfig.cwd === undefined && {
       cwd: join(__dirname, "__tests__"),
     },
   }
