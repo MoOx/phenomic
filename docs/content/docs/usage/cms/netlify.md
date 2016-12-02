@@ -42,23 +42,34 @@ with 2 files :
   </html>
   ```
 
-2. `config.yml`:
-  _Note: PHENOMIC_SOURCE & ASSETS_FOLDER are configurable in your `package.json`.
-  Replace those in the section below_
+2. `package.json`
+
+  You need to configure the `source` and `assets` folders.
+
+  ```json
+  "phenomic": {
+     "source": "content",
+     "assets": "content/assets",
+  }
+  ```
+
+3. `config.yml`:
+
+  _Note: Be sure your source and assets folders are the same in you `package.json` and your `config.yml`._
 
   ```yml
   backend:
     name: github
-    repo: {YOUR_GIT_REPO} # owner/repo
-    branch: {YOUR_BRANCH} # master
+    repo: owner/repo # replace by your repo
+    branch: master # replace if you want netlify-cms publish on a different branch
 
-  public_folder: "{PHENOMIC_SOURCE}"
-  media_folder: "{PHENOMIC_SOURCE}/{ASSETS_FOLDER}"
+  public_folder: "content" # the same as your phenomic.source in your package.json
+  media_folder: "content/assets" # the same as your phenomic.assets in your package.json
 
   collections:
     - name: "post"
       label: "Post"
-      folder: "{PHENOMIC_SOURCE}/posts"
+      folder: "content/posts" # a subfolder of your public_folder
       create: true
       card: {type: "alltype", text: "title"}
       fields:
