@@ -100,11 +100,11 @@ const Html = (props: Props) => {
             <link key={ "phenomic.css." + i } rel="stylesheet" href={ file } />
           ))
         }
+        { head.script.toComponent() }
       </head>
       <body>
         <div id="phenomic" dangerouslySetInnerHTML={{ __html: body }} />
         { props.renderScript() }
-        { head.script.toComponent() }
         {
           props.js.map((file, i) => (
             <script key={ "phenomic.js." + i } src={ file } />
