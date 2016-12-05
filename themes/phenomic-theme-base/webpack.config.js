@@ -5,6 +5,8 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 import { phenomicLoader } from "phenomic"
 import PhenomicLoaderFeedWebpackPlugin
   from "phenomic/lib/loader-feed-webpack-plugin"
+import PhenomicLoaderSitemapWebpackPlugin
+  from "phenomic/lib/loader-sitemap-webpack-plugin"
 
 import pkg from "./package.json"
 
@@ -252,6 +254,10 @@ export default (config = {}) => {
             },
           },
         },
+      }),
+
+      new PhenomicLoaderSitemapWebpackPlugin({
+        site_url: pkg.homepage,
       }),
 
       // webpack 1
