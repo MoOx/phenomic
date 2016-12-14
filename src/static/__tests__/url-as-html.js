@@ -193,6 +193,7 @@ test("custom script tags", async (t) => {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
 </head>
 
 <body>
@@ -221,7 +222,6 @@ test("custom script tags", async (t) => {
       }
     }
   </script>
-  <script data-react-helmet="true" src="http://foo.bar/baz.js"></script>
   <script src="/test.js"></script>
 </body>
 
