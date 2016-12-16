@@ -39,9 +39,9 @@ import PhenomicLoaderSitemapWebpackPlugin
       site_url: pkg.homepage,
       // this special key allows to filter the collection
       collectionOptions: {
-        // For exemple you can add a front-matter metadata to your `.md` files
+        // For example you can add a front-matter metadata to your `.md` files
         // We display all urls in sitemap except if front-matter `isInSitemap: false` is defined
-        filter: (c) => typeof(c.isInSitemap) === "undefined" || c.isInSitemap === true
+        filter: (c) => typeof(c.isInSitemap) === "undefined" || c.isInSitemap === true,
         sort: "__url",
       },
     }),
