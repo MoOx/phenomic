@@ -1,6 +1,6 @@
 {
   "name": "phenomic",
-  "version": "0.19.5",
+  "version": "0.20.0",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
     "react",
@@ -174,7 +174,6 @@
     "posttest": "npm run test-docs",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "cleanup": "rimraf yarn.lock docs/yarn.lock themes/phenomic-theme-base/yarn.lock node_modules docs/node_modules themes/phenomic-theme-base/node_modules test-setup",
-    "prerelease": "npm run cleanup",
     "release": "npmpub",
     "postrelease": "npm run docs-deploy"
   },

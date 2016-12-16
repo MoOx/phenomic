@@ -1,3 +1,18 @@
+# 0.20.0 - 2016-12-16
+
+**No major breaking changes.**
+
+Just be careful if you are injecting scripts using ``react-helmet``.
+
+- 🐛 Fixed: move ``react-helmet`` injected scripts in the head to prevent duplicate loading of JS files
+([#904](https://github.com/MoOx/phenomic/pull/904) - @timothycoy)
+ Previously, scripts injected via ``react-helmet`` where injected before the end of the ``</body>`` tag. But it can produce unexpected behavior since on the client side, ``react-helmet`` injects those in the ``<head>``, which can make some scripts doing twice their job (and that's probably not what you want).
+
+- 🍭 Added: sitemap webpack plugin
+([#907](https://github.com/MoOx/phenomic/pull/907) - @xuopled)
+ You can now rely on ``import PhenomicLoaderSitemapWebpackPlugin from "phenomic/lib/loader-sitemap-webpack-plugin"`` to generate a Sitemap.
+See https://phenomic.io/docs/usage/sitemap/ for more information.
+
 # 0.19.5 - 2016-11-25
 
 - 🐛 Fixed: scroll to top should not happen for fresh page, with or without hash
