@@ -23,6 +23,13 @@ exports[`test should render Html component with aphrodite styles when possible 1
     <link
       href="test.css"
       rel="stylesheet" />
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window._aphrodite = [\"stuff\"]);",
+        }
+      }
+      data-react-helmet={true} />
   </head>
   <body>
     <div
@@ -34,13 +41,6 @@ exports[`test should render Html component with aphrodite styles when possible 1
       id="phenomic" />
     <script
       phenomicStuff={true} />
-    <script
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "window._aphrodite = [\"stuff\"]);",
-        }
-      }
-      data-react-helmet={true} />
     <script
       src="test.js" />
   </body>
