@@ -1,8 +1,9 @@
 {
   "name": "phenomic",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Modern website generator based on the React and Webpack ecosystem.",
   "keywords": [
+    "webpack",
     "react",
     "ssg",
     "static",
@@ -16,7 +17,8 @@
     "wintersmith",
     "blacksmith",
     "metalsmith",
-    "gatsby"
+    "gatsby",
+    "gatsbyjs"
   ],
   "author": "Maxime Thirouin",
   "license": "MIT",

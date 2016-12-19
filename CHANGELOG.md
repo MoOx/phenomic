@@ -1,3 +1,10 @@
+# 0.20.1 - 2016-12-19
+
+- 🐛 Fixed: Aphrodite styles in HTML are not throwing a syntax error
+([#923](https://github.com/MoOx/phenomic/pull/923) - @xuopled)
+- 🐛 Fixed: first install with ``yarn`` does not fail anymore
+([#911](https://github.com/MoOx/phenomic/pull/911) - @raygesualdo)
+
 # 0.20.0 - 2016-12-16
 
 **No major breaking changes.**
