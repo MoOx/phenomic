@@ -124,7 +124,7 @@ stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
     join(phenomicThemeBaseDir, ".npmignore"),
     join(phenomicThemeBaseDir, ".gitignore"),
     function(err) {
-      if (err) {
+      if (err && err.code !== "EEXIST") {
         throw new Error(
           "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
         )
