@@ -124,16 +124,10 @@ stat(join(phenomicThemeBaseDir, ".npmignore"), function(err) {
     join(phenomicThemeBaseDir, ".npmignore"),
     join(phenomicThemeBaseDir, ".gitignore"),
     function(err) {
-      if (err) {
-        if (err.code === "EEXIST") {
-          console.log("ℹ️ .gitignore already exists")
-          return true
-        }
-        else {
-          throw new Error(
-            "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
-          )
-        }
+      if (err && err.code !== "EEXIST") {
+        throw new Error(
+          "Cannot rename .npmignore to .gitignore in phenomic-theme-base"
+        )
       }
     }
   )
