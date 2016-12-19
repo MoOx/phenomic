@@ -26,7 +26,7 @@ exports[`test should render Html component with aphrodite styles when possible 1
     <script
       dangerouslySetInnerHTML={
         Object {
-          "__html": "window._aphrodite = [\"stuff\"]);",
+          "__html": "window._aphrodite = [\"stuff\"];",
         }
       }
       data-react-helmet={true} />

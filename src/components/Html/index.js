@@ -68,7 +68,7 @@ const Html = (props: Props) => {
         script={ [
           { "innerHTML": `window._aphrodite = ${
             JSON.stringify(aproditeResult.css.renderedClassNames)
-          });` },
+          };` },
         ] }
       />
     )
