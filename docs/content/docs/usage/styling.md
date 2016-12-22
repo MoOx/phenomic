@@ -136,6 +136,58 @@ phenomicClient({ /* ... */ })
 
 [See aphrodite server documentation](https://github.com/Khan/aphrodite#server-side-rendering)
 
+##### styled-components
+
+styled-components doesn't work out-of-the-box with Phenomic (_yet_) but a manual workaround is available. Start by creating ``src/components/ServerSideStyles.js``:
+
+```js
+// src/components/ServerSideStyles.js
+import React, { PropTypes } from "react"
+import Helmet from "react-helmet"
+import styleSheet from "styled-components/lib/models/StyleSheet"
+
+const ServerSideStyles = () => {
+  const styles = styleSheet.rules().map(rule => rule.cssText).join("\n")
+
+  return (
+    typeof window !== "undefined" 
+    ? null
+    : <Helmet 
+        style={ [ 
+          { type: "text/css", cssText: styles }
+         ] }
+      />
+  )
+}
+
+export default ServerSideStyles
+```
+
+The code above imports the stylesheet that styled-components uses internally, extracts all the CSS rules from it, and injects those rules into the head using Helmet when rendering server-side. 
+
+Next, edit ``src/AppContainer.js``:
+
+```js
+// src/AppContainer.js
+import ServerSideStyles from "./components/ServerSideStyles"
+// ...
+const AppContainer = (props) => (
+  <Container>
+    <DefaultHeadMeta />
+    <Header />
+    <Content>
+      { props.children }
+    </Content>
+    <Footer />
+    <ServerSideStyles />
+  </Container>
+)
+```
+
+The changes above import our ``<ServerSideStyles />`` component and add it as the _last_ component inside ``Container``. You're all set.
+
+_NOTE: ``<ServerSideStyles />`` **must** be the last component in your component heirarchy so that it captures all the styles in the component tree._
+
 #### A note on pure inline styles
 
 Unfortunately, pure inline styles don't play well with pre-rendering for now.
