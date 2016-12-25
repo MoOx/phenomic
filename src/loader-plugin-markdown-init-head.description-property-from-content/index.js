@@ -28,8 +28,7 @@ function description(text, opts = {}) {
       .use(stripMd)
       .process(text)
       .toString()
-      .replace(/\n+/g, "\n") // Replace multiple new lines with one
-      .replace(/\n/g, " ") // Avoid useless new lines
+      .replace(/\n+/g, " ") // Avoid useless new lines
       .trim()
     ,
     opts.pruneLength,
