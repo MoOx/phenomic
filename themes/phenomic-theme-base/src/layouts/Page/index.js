@@ -42,6 +42,7 @@ const Page = (
     { name: "twitter:title", content: metaTitle },
     { name: "twitter:creator", content: `@${ pkg.twitter }` },
     { name: "twitter:description", content: head.description },
+    { name: "twitter:image", content: joinUri(process.env.PHENOMIC_USER_URL, head.hero) },
     { name: "description", content: head.description },
   ]
 
