@@ -30,7 +30,7 @@ const Page = (
 
   const metaTitle = head.metaTitle ? head.metaTitle : head.title
 
-  const externalUrlCheck = new RegExp('^https?://');
+  const externalUrlCheck = new RegExp('^(https?:)?\/\/');
   const socialImage = externalUrlCheck.test(head.hero) ?
   head.hero : joinUri(process.env.PHENOMIC_USER_URL, head.hero)
 
