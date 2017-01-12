@@ -1,0 +1,15 @@
+exports[`resolveAll should reject if a promise rejects 1`] = `2`;
+
+exports[`resolveAll should resolve all values in object 1`] = `
+Object {
+  "a": 1,
+  "b": 2,
+}
+`;
+
+exports[`resolveAll should resolve non promises values 1`] = `
+Object {
+  "a": 1,
+  "b": 2,
+}
+`;

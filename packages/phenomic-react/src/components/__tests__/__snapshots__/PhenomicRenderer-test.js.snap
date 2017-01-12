@@ -1,0 +1,8 @@
+exports[`PhenomicRenderer should render 1`] = `<div />`;
+
+exports[`PhenomicRenderer should render with children 1`] = `
+<div>
+  <div />
+  <div />
+</div>
+`;

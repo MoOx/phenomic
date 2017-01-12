@@ -1,0 +1,15 @@
+{
+  "name": "phenomic-plugin-transform-markdown",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "front-matter": "^2.1.1",
+    "highlight.js": "^9.9.0",
+    "lodash.deburr": "^4.1.0",
+    "lodash.kebabcase": "^4.1.1",
+    "marked": "^0.3.6"
+  }
+}

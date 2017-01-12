@@ -10,6 +10,7 @@ coverage
 
 # build
 lib
+.tmp
 
 # tests results
 **/__tests__/_output*

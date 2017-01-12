@@ -1,0 +1,7 @@
+exports[`createStore should create a store with an empty state 1`] = `Object {}`;
+
+exports[`createStore should create a store with an filled state 1`] = `
+Object {
+  "foo": "bar",
+}
+`;
