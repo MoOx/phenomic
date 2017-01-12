@@ -18,17 +18,29 @@ const Showcase = (props, context) => {
         item.showcaseTags && item.showcaseTags.indexOf(currentTag) > -1
       )
       : (item) => Boolean(item.showcaseTags),
-    sort: (a, b) => (
-      (!a.curated && b.curated) ||
+    sort: (a, b) => {
+      if (a.curated && !b.curated) {
+        return -1
+      }
+
       // more tags first
-      (
-        !a.curated &&
-        !b.curated &&
-        a.showcaseTags.length < b.showcaseTags.length
-      ) ||
+      if (a.showcaseTags.length < b.showcaseTags.length) {
+        return 1
+      }
+      if (a.showcaseTags.length > b.showcaseTags.length) {
+        return -1
+      }
+
       // blog last
-      a.showcaseTags.indexOf("blog") > -1
-    ),
+      if (
+        a.showcaseTags.indexOf("blog") === -1 &&
+        b.showcaseTags.indexOf("blog") > -1
+      ) {
+        return -1
+      }
+
+      return 0
+    },
   })
   // place Phenomic itself at the end
   .filter((item) => {
