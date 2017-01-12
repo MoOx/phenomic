@@ -1,0 +1,26 @@
+{
+  "name": "phenomic-docs",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node scripts/start"
+  },
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "phenomic": "1.0.0",
+    "phenomic-plugin-transform-markdown": "1.0.0",
+    "phenomic-plugin-directory-collector": "1.0.0",
+    "phenomic-react": "1.0.0",
+    "phenomic-webpack": "1.0.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-helmet": "^3.2.3",
+    "react-native-web": "^0.0.68",
+    "react-router": "^3.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  }
+}
