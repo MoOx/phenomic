@@ -55,9 +55,9 @@ const screenshots = list.reduce((screenshots, { url }) => {
 }, [])
 
 const nightmare = Nightmare({
-  waitTimeout: 30000,
-  gotoTimeout: 30000,
-  loadTimeout: 30000,
+  // waitTimeout: 30000,
+  // gotoTimeout: 30000,
+  // loadTimeout: 30000,
 })
 let prevUrl
 screenshots.forEach(({ url, tmpLocation, width, height }) => {
@@ -69,7 +69,7 @@ screenshots.forEach(({ url, tmpLocation, width, height }) => {
     if (url !== prevUrl) {
       nightmare
         .goto(url)
-        .wait(10000) // eg: huge backgrounds are slow to get :)
+        .wait(15000) // eg: huge backgrounds are slow to get :)
     }
     nightmare
       .wait(2000) // wait for some logo animations & stuff (eg putaindecode.io)
