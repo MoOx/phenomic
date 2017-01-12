@@ -1,0 +1,8 @@
+{
+  "name": "phenomic-cli",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ]
+}

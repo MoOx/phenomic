@@ -1,0 +1,11 @@
+{
+  "name": "phenomic-plugin-api-related-content",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "depedencies": {
+    "lodash.flatten": "^4.4.0"
+  }
+}

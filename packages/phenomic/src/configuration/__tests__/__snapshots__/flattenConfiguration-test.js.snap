@@ -1,0 +1,23 @@
+exports[`flattenConfiguration should flatten correctly 1`] = `
+Array [
+  "a",
+  "b",
+]
+`;
+
+exports[`flattenConfiguration should flatten correctly 2`] = `
+Array [
+  "a",
+  "b",
+  "c",
+]
+`;
+
+exports[`flattenConfiguration should flatten correctly 3`] = `
+Array [
+  "a",
+  "b",
+  "c",
+  "d",
+]
+`;

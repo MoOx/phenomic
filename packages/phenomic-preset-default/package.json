@@ -1,0 +1,12 @@
+{
+  "name": "phenomic-preset-default",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "depedencies": {
+    "phenomic-plugin-transform-markdown": "1.0.0",
+    "phenomic-plugin-transform-json": "1.0.0"
+  }
+}

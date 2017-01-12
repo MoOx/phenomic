@@ -1,0 +1,22 @@
+.Markdown pre {
+  background: #fafafa;
+  padding: 10px;
+  font-size: 16px;
+  overflow-x: auto;
+}
+
+.Markdown code {
+  font-family: SFMono-Regular;
+}
+
+.hljs-comment {
+  color: #aaa;
+}
+
+.hljs-keyword {
+  color: #266676;
+}
+
+.hljs-string {
+  color: #78C286;
+}

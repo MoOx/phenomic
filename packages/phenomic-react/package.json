@@ -1,0 +1,26 @@
+{
+  "name": "phenomic-react",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "phenomic-api-client": "1.0.0",
+    "socket.io-client": "^1.7.2"
+  },
+  "peerDependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.0"
+  },
+  "devDependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-helmet": "^3.2.3",
+    "react-router": "^3.0.0"
+  },
+  "scripts": {
+    "postinstall": "mkdir -p .tmp"
+  }
+}

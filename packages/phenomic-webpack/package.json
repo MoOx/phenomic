@@ -1,0 +1,16 @@
+{
+  "name": "phenomic-webpack",
+  "main": "lib/index.js",
+  "version": "1.0.0",
+  "files": [
+    "lib"
+  ],
+  "peerDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.8.4"
+  },
+  "devDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.8.4"
+  }
+}

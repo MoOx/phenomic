@@ -1,0 +1,11 @@
+{
+  "name": "phenomic-plugin-rss-feed",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "depedencies": {
+    "rss": "^1.2.1"
+  }
+}
