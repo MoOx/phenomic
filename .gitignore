@@ -1,9 +1,10 @@
+*.log
+
 # macOS crap
 .DS_Store
 
 # Node.js / npm
 node_modules
-npm-debug.log
 
 # code coverage
 coverage
