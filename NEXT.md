@@ -34,6 +34,13 @@ From https://github.com/MoOx/phenomic/issues/925#issuecomment-271502547
 
 Note that stuff can be missing
 
+- [ ] setup is simple
+- [ ] you can specify your own base theme during the setup
+- [ ] markdown files can specify their own layouts
+- [ ] font matters data are accessible in react components
+- [ ] markdown files can specify their own routes
+- [ ] pages can be a react components
+- [ ] user can provide their own webpack config
 - [ ] webpack can be boosted with hard source plugin (cache)
 - [ ] internal links from markdown are not doing full page load, but caught and leveraging phenomic optimistic loading (note that “internal” but not unknown links (eg: /project/static-but-not-handled-by-phenomic.html) are not caught. (see `src/_utils/catch-links`)
 - [ ] `src/_utils/error-formatter` transform errors to make those more readable (adjust path + remove useless stuff)
