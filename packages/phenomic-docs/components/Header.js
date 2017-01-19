@@ -3,42 +3,42 @@ import { View, Text, StyleSheet } from "react-native-web"
 import { Link } from "react-router"
 
 const Header = () => (
-  <View style={styles.header}>
+  <View style={ styles.header }>
     <Link to="/" style={{ textDecoration: "none" }}>
-      <Text style={styles.text}>
+      <Text style={ styles.text }>
         Phenomic
       </Text>
     </Link>
-    <View style={styles.nav}>
-      <View style={styles.linkContainer}>
+    <View style={ styles.nav }>
+      <View style={ styles.linkContainer }>
         <Link
           style={{ textDecoration: "none", padding: 10 }}
           to="/docs/getting-started"
           activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
         >
-          <Text style={styles.link}>
+          <Text style={ styles.link }>
             {"Getting started"}
           </Text>
         </Link>
       </View>
-      <View style={styles.linkContainer}>
+      <View style={ styles.linkContainer }>
         <Link
           style={{ textDecoration: "none", padding: 10 }}
           to="/api"
           activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
         >
-          <Text style={styles.link}>
+          <Text style={ styles.link }>
             {"API Reference"}
           </Text>
         </Link>
       </View>
-      <View style={styles.linkContainer}>
+      <View style={ styles.linkContainer }>
         <Link
           style={{ textDecoration: "none", padding: 10 }}
           to="/showcase"
           activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
         >
-          <Text style={[ styles.link, styles.linkBold ]}>
+          <Text style={ [ styles.link, styles.linkBold ] }>
             {"Showcase"}
           </Text>
         </Link>

@@ -6,7 +6,7 @@ const QueryString = {
       .join("&")
   },
   decode(string) {
-    if(string.charAt(0) === "?" || string.charAt(0) === "#") {
+    if (string.charAt(0) === "?" || string.charAt(0) === "#") {
       string = string.slice(1)
     }
     const params = string.split("&")

@@ -22,7 +22,8 @@ declare module "redux" {
   declare type ActionCreatorOrObjectOfACs = ActionCreator | { [key: string]: ActionCreator };
   declare type Reducers = { [key: string]: Reducer<any, any> };
   declare class Redux {
-    bindActionCreators<actionCreators: ActionCreatorOrObjectOfACs>(actionCreators: actionCreators, dispatch: Dispatch): actionCreators;
+    bindActionCreators<actionCreators: ActionCreatorOrObjectOfACs>
+      (actionCreators: actionCreators, dispatch: Dispatch): actionCreators;
     combineReducers(reducers: Reducers): Reducer<any, any>;
     createStore(reducer: Reducer<any, any>, initialState?: State, enhancer?: StoreEnhancer): Store;
     applyMiddleware(...middlewares: Array<Middleware>): StoreEnhancer;

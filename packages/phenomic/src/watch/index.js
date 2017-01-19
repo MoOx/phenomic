@@ -6,7 +6,7 @@ import type { Client } from "fb-watchman"
 const path = require("path")
 
 const createErrorHandler = (client: Client) => (error: any) => {
-  if(error) {
+  if (error) {
     client.end()
     throw error
   }
@@ -15,7 +15,7 @@ const createErrorHandler = (client: Client) => (error: any) => {
 function getExtensionsToWatch(plugins): Array<string> {
   return plugins.reduce((acc, plugin) => {
     // $FlowFixMe
-    if(Array.isArray(plugin.supportedFileTypes)) {
+    if (Array.isArray(plugin.supportedFileTypes)) {
       acc.push(...plugin.supportedFileTypes)
     }
     return acc
@@ -33,27 +33,28 @@ function createWatcher(config: PhenomicConfig) {
   const client = new watchman.Client()
   const handleError = createErrorHandler(client)
   let subscribers = []
-  let files = {}
-  client.capabilityCheck({ optional: [], required: ["relative_root"] }, (error) => {
+  const files = {}
+  client.capabilityCheck({ optional: [], required: [ "relative_root" ] }, (error) => {
     handleError(error)
-    client.command(["watch-project", config.path], (error, response) => {
+    client.command([ "watch-project", config.path ], (error, response) => {
       handleError(error)
       const subcription = {
         expression: [
           "anyof",
-          ...getExtensionsToWatch(config.plugins).map((extension: string) => ["match", `*.${ extension }`])
+          ...getExtensionsToWatch(config.plugins).map((extension: string) => [ "match", `*.${ extension }` ]),
         ],
-        fields: ["name", "exists", "type"],
+        fields: [ "name", "exists", "type" ],
         relative_root: response.relative_path,
       }
 
-      client.command(["subscribe", response.watch, "files", subcription], handleError)
+      client.command([ "subscribe", response.watch, "files", subcription ], handleError)
 
       client.on("subscription", (event) => {
         event.files.forEach(file => {
-          if(files[file.name] && !file.exists) {
+          if (files[file.name] && !file.exists) {
             delete files[file.name]
-          } else {
+          }
+          else {
             files[file.name] = {
               name: file.name,
               fullpath: path.join(config.path, file.name),

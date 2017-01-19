@@ -7,9 +7,10 @@ function flattenRoutes(routes, path = "") {
       ...route,
       path: (route.path || "").startsWith("/") ? route.path : path + "/" + (route.path || ""),
     }
-    if(route.childRoutes) {
+    if (route.childRoutes) {
       acc.push(...flattenRoutes(nextRoute.childRoutes, nextRoute.path))
-    } else {
+    }
+    else {
       acc.push(nextRoute)
     }
     return acc

@@ -4,15 +4,15 @@ function postfix(url) {
 
 function url(config) {
   const root = config.root || "/"
-  if(typeof config === "string") {
+  if (typeof config === "string") {
     return [ root, config ].join("/")
   }
-  if(typeof config.id === "string") {
+  if (typeof config.id === "string") {
     return postfix([
       root,
       config.collection,
       "item",
-      config.id
+      config.id,
     ].join("/"))
   }
   return postfix([
@@ -21,8 +21,8 @@ function url(config) {
     `by-${ config.by }`,
     config.value,
     config.order,
-    ...config.limit ? [`limit-${ config.limit }`] : [],
-    ...config.limit && config.after ? [`after-${ config.after }`] : [],
+    ...config.limit ? [ `limit-${ config.limit }` ] : [],
+    ...config.limit && config.after ? [ `after-${ config.after }` ] : [],
   ].join("/"))
 }
 

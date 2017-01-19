@@ -1,17 +1,17 @@
-type Watch = {}
+export type Watch = {}
 
-type CommandResponse = {
+export type CommandResponse = {
   watch: Watch,
   relative_path: string,
 }
 
-type Subscription = {
+export type Subscription = {
   expression: Array<string | [ string, string ]>,
   fields: Array<string>,
   relative_root: string,
 }
 
-type WatchEvent = {
+export type WatchEvent = {
   files: Array<Object>,
 }
 

@@ -9,7 +9,7 @@ module.exports = {
   output: {
     publicPath: "/",
     path: path.join(process.cwd(), "dist"),
-    filename: "[name].js"
+    filename: "[name].js",
   },
   module: {
     loaders: [
@@ -35,9 +35,9 @@ module.exports = {
   resolve: {
     alias: {
       "react-native": "react-native-web",
-      "react": path.resolve('./node_modules/react'),
-      "react-dom": path.resolve('./node_modules/react-dom'),
-      "react-router": path.resolve('./node_modules/react-router'),
+      "react": path.resolve("./node_modules/react"),
+      "react-dom": path.resolve("./node_modules/react-dom"),
+      "react-router": path.resolve("./node_modules/react-router"),
     },
   },
 }

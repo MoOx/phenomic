@@ -3,7 +3,7 @@ const NO_VALUE_EDGE = {
   node: null,
 }
 
-function createStore (state = {}) {
+function createStore(state = {}) {
   let subscribers = []
 
   function subscribe(func) {
@@ -14,7 +14,7 @@ function createStore (state = {}) {
   }
 
   function get(key) {
-    if(state.hasOwnProperty(key)) {
+    if (state.hasOwnProperty(key)) {
       return state[key]
     }
     return NO_VALUE_EDGE
@@ -24,7 +24,7 @@ function createStore (state = {}) {
     update({
       [key]: {
         status: "idle",
-        node
+        node,
       },
     })
   }

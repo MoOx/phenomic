@@ -11,10 +11,10 @@ const Home = (props) => (
       <ActivityIndicator />
     }
     {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>{props.page.node.title}</Text>
+      <View style={ styles.page }>
+        <Text style={ styles.title }>{props.page.node.title}</Text>
         <MarkdownGenerated
-          body={props.page.node.body}
+          body={ props.page.node.body }
         />
       </View>
     }
@@ -38,5 +38,5 @@ export default createContainer(Home, props => ({
   page: query({
     collection: "docs",
     id: props.params.splat,
-  })
+  }),
 }))

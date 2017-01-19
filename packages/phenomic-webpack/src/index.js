@@ -27,10 +27,11 @@ module.exports = function() {
       }
       return new Promise((resolve, reject) => {
         webpack(specialConfig).run(function(error, stats) {
-          if(error) {
+          if (error) {
             console.error(error)
             reject(error)
-          } else {
+          }
+          else {
             resolve(require(path.join(process.cwd(), ".tmp/webpack/bundle")))
           }
         })
@@ -40,9 +41,10 @@ module.exports = function() {
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       return new Promise((resolve, reject) => {
         webpack(webpackConfig).run(function(error, stats) {
-          if(error) {
+          if (error) {
             reject(error)
-          } else {
+          }
+          else {
             resolve()
           }
         })

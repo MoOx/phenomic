@@ -8,9 +8,9 @@ import MarkdownGenerated from "./MarkdownGenerated"
 
 const Home = (props) => (
   <View>
-    <View style={styles.page}>
-      <View style={styles.column}>
-        <Text style={styles.menuTitle}>
+    <View style={ styles.page }>
+      <View style={ styles.column }>
+        <Text style={ styles.menuTitle }>
           {"API Reference"}
         </Text>
         {props.apis.status === "loading" &&
@@ -18,16 +18,16 @@ const Home = (props) => (
         }
         {props.apis.status === "idle" &&
           props.apis.node.list.map(api =>
-            <View key={api.id}>
-              <Link to={`/api/${ api.id }`}>
-                <Text style={styles.property}>
+            <View key={ api.id }>
+              <Link to={ `/api/${ api.id }` }>
+                <Text style={ styles.property }>
                   {api.title}
                 </Text>
               </Link>
             </View>
           )
         }
-        <Text style={styles.menuTitle}>
+        <Text style={ styles.menuTitle }>
           {"Tags"}
         </Text>
         {props.tags.status === "loading" &&
@@ -35,9 +35,9 @@ const Home = (props) => (
         }
         {props.tags.status === "idle" &&
           props.tags.node.list.map(tag =>
-            <View key={tag.id}>
-              <Link to={`/api/tag/${ tag.id }`}>
-                <Text style={styles.property}>
+            <View key={ tag.id }>
+              <Link to={ `/api/tag/${ tag.id }` }>
+                <Text style={ styles.property }>
                   {tag.id}
                 </Text>
               </Link>
@@ -46,17 +46,17 @@ const Home = (props) => (
         }
       </View>
       <View>
-        <Text style={styles.title}>{props.page.title}</Text>
+        <Text style={ styles.title }>{props.page.title}</Text>
         {props.page.status === "loading" &&
           <ActivityIndicator />
         }
         {props.page.status === "idle" &&
           <View>
-            <Text style={styles.title}>
+            <Text style={ styles.title }>
               {props.page.node.title}
             </Text>
             <MarkdownGenerated
-              body={props.page.node.body}
+              body={ props.page.node.body }
             />
           </View>
         }
@@ -102,5 +102,5 @@ export default createContainer(Home, props => ({
   page: query({
     collection: "api",
     id: props.params.splat,
-  })
+  }),
 }))

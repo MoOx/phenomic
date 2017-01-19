@@ -2,12 +2,12 @@ import React from "react"
 import { View, Text, StyleSheet } from "react-native-web"
 
 const Hero = () => (
-  <View style={styles.hero}>
-    <View style={styles.contents}>
-      <Text style={styles.title}>
+  <View style={ styles.hero }>
+    <View style={ styles.contents }>
+      <Text style={ styles.title }>
         {"Make your website fast"}
       </Text>
-      <Text style={styles.text}>
+      <Text style={ styles.text }>
         {"A single page application that's statically generated"}
       </Text>
     </View>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2A2A2A",
     paddingLeft: 10,
     paddingRight: 10,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   contents: {
     maxWidth: 800,

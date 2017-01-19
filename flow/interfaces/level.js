@@ -1,4 +1,4 @@
-type Level = {
+export type Level = {
   put(key: string, value: any, options: Object, callback: (error: any) => any): void,
   get(key: string, options: Object, callback: (error: any, data: any) => any): void,
   del(key: string, options: Object, callback: (error: any) => any): void,
@@ -7,13 +7,13 @@ type Level = {
   close(callback: (error: any) => any): void,
 }
 
-type SublevelPartial = {
+export type SublevelPartial = {
   sublevel(key: string): Sublevel,
 };
 
-type Sublevel = Level & SublevelPartial;
+export type Sublevel = Level & SublevelPartial;
 
-type LevelStreamConfig = {
+export type LevelStreamConfig = {
   gt?: string,
   lt?: string,
   limit?: number,

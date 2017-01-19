@@ -19,7 +19,7 @@ const PhenomicRenderer = {
     return {
       routes,
       render() {
-        if(canUseDOM) {
+        if (canUseDOM) {
           const renderer = config.render || require("../render/client")
           return renderer(routes)
         }
@@ -27,7 +27,7 @@ const PhenomicRenderer = {
       renderServer: config.renderServer || require("../render/server"),
       renderToString: config.renderToString || require("../render/server").renderToString,
     }
-  }
+  },
 }
 
 module.exports = PhenomicRenderer

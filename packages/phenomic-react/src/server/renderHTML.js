@@ -4,7 +4,7 @@ const ReactDOMServer = require("react-dom/server")
 const HTML = require("../components/HTML")
 
 function renderHTML(props) {
-  const tree = <HTML {...props} />
+  const tree = <HTML { ...props } />
   return `<!DOCTYPE html>${ ReactDOMServer.renderToStaticMarkup(tree) }`
 }
 

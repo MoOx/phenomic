@@ -19,19 +19,20 @@ let lastStamp = Date.now()
 
 require("rimraf").sync("dist")
 
-async function getContent (db, config) {
+async function getContent(db, config) {
   return new Promise((resolve, reject) => {
     const watcher = createWatcher({
       path: path.join(config.path, "content"),
       plugins: config.plugins,
     })
-    watcher.onChange(async function (files) {
+    watcher.onChange(async function(files) {
       watcher.close()
       await db.destroy()
       try {
         await Promise.all(files.map(file => processFile(db, file, config.plugins, true)))
         resolve()
-      } catch(error) {
+      }
+      catch (error) {
         reject(error)
       }
     })
@@ -45,7 +46,7 @@ function createFetchFunction(port) {
   }
 }
 
-async function prerenderFileAndDependencies (config, app, fetch, url) {
+async function prerenderFileAndDependencies(config, app, fetch, url) {
   const files = await app.renderServer(app, fetch, url)
   return Promise.all(files.map(file => writeFile(path.join(config.outdir, file.path), file.contents)))
 }
