@@ -1,7 +1,7 @@
 // @flow
 export default function(
   { pkg, config, errors } :
-  { pkg: Object, config: PhenomicConfig, errors: Array<string> }
+  { pkg: Object, config: PhenomicOldConfig, errors: Array<string> }
 ): void {
   if (config.production) {
     process.env.NODE_ENV = "production"

@@ -11,7 +11,7 @@ import log, { plainLog, totalElapsedTime } from "../_utils/log"
 const { writeFile } = pify(fs)
 
 export default function(
-  config: PhenomicConfig,
+  config: PhenomicOldConfig,
   files: Array<any>
 ): Promise<any> {
   log(`${ files.length } files written`, "info")

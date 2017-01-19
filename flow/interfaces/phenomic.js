@@ -34,7 +34,7 @@ export type PhenomicOfflineConfig = {
 }
 
 // Configs generated from configurator
-export type PhenomicConfig = {
+export type PhenomicOldConfig = {
   cwd: string,
   source: string,
   destination: string,

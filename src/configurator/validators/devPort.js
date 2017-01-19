@@ -1,6 +1,6 @@
 // @flow
 export default function(
-  { config, errors } : { config: PhenomicConfig, errors: Array<string> }
+  { config, errors } : { config: PhenomicOldConfig, errors: Array<string> }
 ): void {
   const port = Math.trunc(config.devPort)
 

@@ -1,0 +1,11 @@
+exports[`url should build URLs 1`] = `"//posts/item/test.json"`;
+
+exports[`url should build URLs 2`] = `"//posts/by-tag/test/.json"`;
+
+exports[`url should build URLs 3`] = `"//posts/by-tag/test/asc.json"`;
+
+exports[`url should build URLs 4`] = `"//posts/by-tag/test/asc/limit-10.json"`;
+
+exports[`url should build URLs 5`] = `"//posts/by-tag/test/asc/limit-10/after-BASE64.json"`;
+
+exports[`url should build URLs 6`] = `"local/posts/by-tag/test/asc/limit-10/after-BASE64.json"`;

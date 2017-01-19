@@ -7,7 +7,7 @@ import definitions from "../definitions.js"
 export default function(
   { config, errors }:
   {
-    config: PhenomicConfig,
+    config: PhenomicOldConfig,
     errors: Array<string>,
   }
 ): void {
