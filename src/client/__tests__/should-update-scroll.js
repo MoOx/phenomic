@@ -18,7 +18,12 @@ const bigThing = document.createElement("div")
 bigThing.id = "placeholder"
 bigThing.innerHTML = "test"
 bigThing.style.cssText = "width: 2000px; height: 4000px"
-document.body.appendChild(bigThing)
+
+if (!(document.body && document.querySelectorAll && document.querySelector)) {
+  expect(false).toBeTruthy()
+}
+
+document.body && document.body.appendChild(bigThing)
 
 const someState = {
   location: {
@@ -131,13 +136,13 @@ async () => {
   expect(window.pageYOffset)
   .toBe(0)
 
-  console.log("innerHeight", document.body.clientHeight)
+  console.log("innerHeight", document.body && document.body.clientHeight)
 
   // inject new stuff in the dom
   const thing = document.createElement("div")
   thing.id = anotherStateWithHash.location.hash.slice(1)
   thing.innerHTML = "test"
-  document.body.appendChild(thing)
+  document.body && document.body.appendChild(thing)
 
   // jsdom don't have a real getBoundingClientRect()
   // $FlowFixMe trick for jsdom
@@ -146,7 +151,7 @@ async () => {
     left: 0, bottom: 0, right: 0,  width: 0, height: 0,
   })
 
-  console.log("innerHeight after", document.body.clientHeight)
+  console.log("innerHeight after", document.body && document.body.clientHeight)
 
   // hash now does exist in the document
   await new Promise((resolve) => {
@@ -160,7 +165,7 @@ async () => {
   })
 
   // cleanup
-  document.body.removeChild(thing)
+  document.body && document.body.removeChild(thing)
   // reset poor jsdom scrollTo hack
   // $FlowFixMe window
   window.pageXOffset = 0
@@ -174,7 +179,7 @@ async () => {
   const thing = document.createElement("div")
   thing.id = anotherStateWithHash.location.hash.slice(1)
   thing.innerHTML = "test"
-  document.body.appendChild(thing)
+  document.body && document.body.appendChild(thing)
 
   // jsdom don't have a real getBoundingClientRect()
   // $FlowFixMe trick for jsdom
@@ -198,7 +203,7 @@ async () => {
   })
 
   // cleanup
-  document.body.removeChild(thing)
+  document.body && document.body.removeChild(thing)
   // reset poor jsdom scrollTo hack
   // $FlowFixMe window
   window.pageXOffset = 0
