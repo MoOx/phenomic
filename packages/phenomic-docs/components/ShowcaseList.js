@@ -10,20 +10,20 @@ const ShowcaseList = (props) => (
       <ActivityIndicator />
     }
     {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>
+      <View style={ styles.page }>
+        <Text style={ styles.title }>
           {"Showcase"}
         </Text>
-        <View style={styles.list}>
+        <View style={ styles.list }>
           {props.showcase.node.list.map(site =>
-            <TouchableOpacity style={styles.item} key={site.id} href={site.url}>
+            <TouchableOpacity style={ styles.item } key={ site.id } href={ site.url }>
               <View>
                 <Image
                   source={{ uri: `/assets/showcase/${ site.media.desktop }` }}
-                  style={styles.image}
+                  style={ styles.image }
                   resizeMode="contain"
                 />
-                <Text style={styles.siteName}>
+                <Text style={ styles.siteName }>
                   {site.title}
                 </Text>
               </View>

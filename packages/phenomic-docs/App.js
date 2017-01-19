@@ -15,20 +15,24 @@ import APITagListPage from "./components/APITagListPage"
 import { Renderer } from "phenomic-react/lib/client"
 
 const app = Renderer.createApp(
-  <Router history={browserHistory}>
-    <Route component={(props) => <div><Header />{props.children}</div>}>
-      <Route path="/" component={Home} />
-      <Route component={props => <div>{props.children}</div>}>
-        <Route path="/api" component={APIListPage} />
-        <Route path="/api/tag/*" component={APITagListPage} collection={{ collection: "tags", by: "collection", value: "api" }} />
-        <Route path="/api/*" component={APIPage} collection="api" />
+  <Router history={ browserHistory }>
+    <Route component={ (props) => <div><Header />{props.children}</div> }>
+      <Route path="/" component={ Home } />
+      <Route component={ props => <div>{props.children}</div> }>
+        <Route path="/api" component={ APIListPage } />
+        <Route
+          path="/api/tag/*"
+          component={ APITagListPage }
+          collection={{ collection: "tags", by: "collection", value: "api" }}
+        />
+        <Route path="/api/*" component={ APIPage } collection="api" />
       </Route>
-      <Route component={props => <div>{props.children}</div>}>
-        <Route path="/changelog" component={ChangelogListPage} />
-        <Route path="/changelog/*" component={ChangelogPage} collection="page"/>
+      <Route component={ props => <div>{props.children}</div> }>
+        <Route path="/changelog" component={ ChangelogListPage } />
+        <Route path="/changelog/*" component={ ChangelogPage } collection="page" />
       </Route>
-      <Route path="/docs/*" component={DocPage} collection="docs" />
-      <Route path="/showcase" component={ShowcaseList} collection="showcase" />
+      <Route path="/docs/*" component={ DocPage } collection="docs" />
+      <Route path="/showcase" component={ ShowcaseList } collection="showcase" />
     </Route>
   </Router>
 )

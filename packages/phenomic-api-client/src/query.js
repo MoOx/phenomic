@@ -8,7 +8,7 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
     typeof config.collection === "string",
     "A query must at least contain a collection"
   )
-  if(typeof config.id === "string") {
+  if (typeof config.id === "string") {
     return {
       collection: config.collection,
       id: config.id,

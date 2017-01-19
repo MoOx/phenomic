@@ -11,9 +11,10 @@ const path = require("path")
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
     match({ routes, location: `/${ location }` }, (error, redirectLocation, renderProps) => {
-      if(error) {
+      if (error) {
         reject(error)
-      } else {
+      }
+      else {
         resolve({ renderProps, redirectLocation })
       }
     })
@@ -23,7 +24,7 @@ function getMatch({ routes, location }) {
 function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
   const ReactDOMServer = require("react-dom/server")
   const body = ReactDOMServer.renderToString(
-    <Provider fetch={fetch} store={store}>
+    <Provider fetch={ fetch } store={ store }>
       <RouterContext { ...renderProps } />
     </Provider>
   )
@@ -33,7 +34,7 @@ function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
   })
 }
 
-async function serverRender (app, fetch, location) {
+async function serverRender(app, fetch, location) {
   const routes = RouteUtils.createRouteFromReactElement(app.routes)
   const store = createStore()
   const { renderProps, redirectLocation } = await getMatch({ routes, location })
@@ -48,7 +49,7 @@ async function serverRender (app, fetch, location) {
   return [
     { path: path.join(location, "index.html"), contents },
     ...Object.keys(state)
-      .map(key => ({ path: createURL({ root: "phenomic", ...QueryString.decode(key) }), contents: JSON.stringify(state[key].node) }) )
+      .map(key => ({ path: createURL({ root: "phenomic", ...QueryString.decode(key) }), contents: JSON.stringify(state[key].node) })),
   ]
 }
 

@@ -13,34 +13,36 @@ const level = subLevel(database)
 const options = { valueEncoding: "json" }
 const wrapStreamConfig = config => Object.assign({}, config, options)
 
-function getSublevel (db: Sublevel, sub: string | Array<string>, filter: ?string, filterValue: ?string) {
-  if(!Array.isArray(sub)) {
+function getSublevel(db: Sublevel, sub: string | Array<string>, filter: ?string, filterValue: ?string) {
+  if (!Array.isArray(sub)) {
     sub = [ sub ]
   }
-  if(filter) {
+  if (filter) {
     sub = sub.concat(filter)
-    if(filter !== "default" && filterValue) {
+    if (filter !== "default" && filterValue) {
       sub = sub.concat(filterValue)
     }
   }
   return sub.reduce((db: Sublevel, name) => db.sublevel(name), db)
 }
 
-async function getDataRelation (fieldName, keys) {
+async function getDataRelation(fieldName, keys) {
   let partial = null
   try {
-    if(Array.isArray(keys)) {
+    if (Array.isArray(keys)) {
       partial = await Promise.all(keys.map(key => db.getPartial(fieldName, key)))
-    } else {
+    }
+    else {
       partial = await db.getPartial(fieldName, keys)
     }
     return partial
-  } catch(error) {
+  }
+  catch (error) {
     return keys
   }
 }
 
-async function getDataRelations (fields) {
+async function getDataRelations(fields) {
   const keys = Object.keys(fields)
   const resolvedValues = await Promise.all(keys.map(key => getDataRelation(key, fields[key])))
   return keys.reduce((resolvedFields, key, index) => {
@@ -54,9 +56,10 @@ const db = {
     return new Promise((resolve, reject) => {
       database.close(() => {
         levelDown.destroy(ADDRESS, (error) => {
-          if(error) {
+          if (error) {
             reject(error)
-          } else {
+          }
+          else {
             database.open(() => {
               resolve()
             })
@@ -71,10 +74,11 @@ const db = {
       const table = getSublevel(level, sub)
       return getSublevel(level, sub)
         .put(key, data, options, (error) => {
-          if(error) {
+          if (error) {
             reject(error)
             return
-          } else {
+          }
+          else {
             resolve(data)
           }
         })
@@ -82,10 +86,11 @@ const db = {
   },
   get(sub: string | Array<string>, key: string) {
     return new Promise((resolve, reject) => {
-      return getSublevel(level, sub).get(key, options, async function (error, data) {
-        if(error) {
+      return getSublevel(level, sub).get(key, options, async function(error, data) {
+        if (error) {
           reject(error)
-        } else {
+        }
+        else {
           const { body, ...metadata } = data.data
           const relatedData = await getDataRelations(metadata)
           resolve({
@@ -102,9 +107,10 @@ const db = {
   getPartial(sub: string | Array<string>, key: string) {
     return new Promise((resolve, reject) => {
       return getSublevel(level, sub).get(key, options, (error, data) => {
-        if(error) {
+        if (error) {
           reject(error)
-        } else {
+        }
+        else {
           resolve({ id: key, ...data.partial })
         }
       })
@@ -114,7 +120,7 @@ const db = {
     return new Promise((resolve, reject) => {
       const array = []
       getSublevel(level, sub, filter, filterValue).createReadStream(wrapStreamConfig(config))
-        .on("data", async function (data) {
+        .on("data", async function(data) {
           array.push(
             db.getPartial(sub, data.value.id)
               .then(value => ({
@@ -123,7 +129,7 @@ const db = {
               }))
           )
         })
-        .on("end", async function () {
+        .on("end", async function() {
           const returnValue = await Promise.all(array)
           resolve(returnValue)
         })
@@ -131,7 +137,7 @@ const db = {
           reject(error)
         })
     })
-  }
+  },
 }
 
 module.exports = db

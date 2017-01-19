@@ -10,14 +10,14 @@ const ChangelogListPage = (props) => (
       <ActivityIndicator />
     }
     {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>
+      <View style={ styles.page }>
+        <Text style={ styles.title }>
           {"Changelog"}
         </Text>
         {props.apis.node.list.map(api =>
-          <View key={api.id}>
-            <Link to={`/changelog/${ api.id }`}>
-              <Text style={styles.property}>
+          <View key={ api.id }>
+            <Link to={ `/changelog/${ api.id }` }>
+              <Text style={ styles.property }>
                 {api.title}
               </Text>
             </Link>

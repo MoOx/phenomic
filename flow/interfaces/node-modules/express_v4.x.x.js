@@ -1,7 +1,7 @@
 // flow-typed signature: c3abd38bbfc1fc2ef09318ae0b630774
 // flow-typed version: 622c2ee76d/express_v4.x.x/flow_>=v0.28.x
 
-import type { Server } from 'http';
+import type { Server } from "http"
 
 declare type express$RouterOptions = {
   caseSensitive?: boolean,
@@ -162,7 +162,7 @@ declare class express$Application extends express$Router mixins events$EventEmit
   render(name: string, optionsOrFunction: {[name: string]: mixed}, callback: express$RenderCallback): void;
 }
 
-declare module 'express' {
+declare module "express" {
   declare function serveStatic(root: string, options?: Object): express$Middleware;
 
   declare type RouterOptions = express$RouterOptions;

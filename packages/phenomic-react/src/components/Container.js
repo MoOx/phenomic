@@ -13,18 +13,18 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       super(props, context)
       this.computeQueries(props)
       // if we're on the server, let's just run the query
-      if(this.context.__prerendering) {
+      if (this.context.__prerendering) {
         this.query()
       }
       this.forceQuery = this.forceQuery.bind(this)
     }
 
     componentDidMount() {
-      if(!this.context.__prerendering) {
+      if (!this.context.__prerendering) {
         this.query()
       }
       this.unsubscribe = this.context.store.subscribe(() => this.update())
-      if(process.env.NODE_ENV !== "production") {
+      if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")("http://localhost:1415")
           .on("change", this.forceQuery)
       }
@@ -37,7 +37,7 @@ function createContainer(Component, getQueries = defaultGetQueries) {
     componentWillUnmount() {
       this.unsubscribe()
       this.unsubscribe = null
-      if(process.env.NODE_ENV !== "production") {
+      if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")("http://localhost:1415")
           .removeListener("change", this.forceQuery)
       }
@@ -54,7 +54,7 @@ function createContainer(Component, getQueries = defaultGetQueries) {
 
     schedule(func) {
       requestAnimationFrame(() => {
-        if(this.unsubscribe) {
+        if (this.unsubscribe) {
           func()
         }
       })
@@ -67,9 +67,10 @@ function createContainer(Component, getQueries = defaultGetQueries) {
     query(force) {
       const store = this.context.store
       const values = Object.keys(this.queries).map(key => this.queries[key])
-      if(force) {
+      if (force) {
         this.context.query(values)
-      } else {
+      }
+      else {
         this.context.query(values.filter(item => store.get(item).status !== "idle"))
       }
     }
@@ -80,16 +81,16 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       const isLoading = values.some(item => !store.get(item).node)
       const hasErrored = values.some(item => store.get(item).status === "error")
       const props = mapValues(this.queries, (value, key) => store.get(this.queries[key]))
-      if(hasErrored) {
+      if (hasErrored) {
         return (
           null
         )
       }
       return (
         <Component
-          {...this.props}
-          isLoading={isLoading}
-          {...props}
+          { ...this.props }
+          isLoading={ isLoading }
+          { ...props }
         />
       )
     }

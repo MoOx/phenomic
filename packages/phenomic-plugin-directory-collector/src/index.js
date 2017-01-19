@@ -3,8 +3,8 @@
  */
 const path = require("path")
 
-function getKey (name, json) {
-  if(json.path) {
+function getKey(name, json) {
+  if (json.path) {
     return json.path
   }
   return path.join(
@@ -13,7 +13,7 @@ function getKey (name, json) {
   )
 }
 
-function formatDate (dateString) {
+function formatDate(dateString) {
   const date = new Date(dateString).toISOString()
   return date.substring(0, date.indexOf("T"))
 }
@@ -23,26 +23,26 @@ function formatDate (dateString) {
  * as level sorts by name (YYYY-MM-DD does the trick).
  * If not, we just use alphabetical order.
  */
-function getSortedKey (name, json) {
+function getSortedKey(name, json) {
   const key = getKey(name, json)
-  if(typeof json.date === "string") {
+  if (typeof json.date === "string") {
     return `${ formatDate(json.date) }-${ key }`
   }
   return key
 }
 
 function getAuthors(json) {
-  if(typeof json.data.author === "string") {
+  if (typeof json.data.author === "string") {
     return [ json.data.author ]
   }
-  if(Array.isArray(json.data.authors)) {
+  if (Array.isArray(json.data.authors)) {
     return json.data.authors
   }
   return []
 }
 
 function getTags(json) {
-  if(Array.isArray(json.data.tags)) {
+  if (Array.isArray(json.data.tags)) {
     return json.data.tags
   }
   return []
@@ -79,6 +79,6 @@ module.exports = function() {
           ])
         }),
       ])
-    }
+    },
   }
 }

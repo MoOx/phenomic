@@ -19,8 +19,8 @@ function createApp() {
 
   return (
     <Provider
-      fetch={createFetchFunction()}
-      store={store}
+      fetch={ createFetchFunction() }
+      store={ store }
     >
       <BrowserRouter>
         {app}

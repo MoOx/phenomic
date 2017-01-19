@@ -7,5 +7,5 @@ module.exports = {
     api: [
       require("phenomic-plugin-api-related-content"),
     ],
-  }
+  },
 }

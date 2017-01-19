@@ -12,8 +12,8 @@ function transformMarkdownFile(file, contents) {
   const data = {
     ...partial,
     body: marked(front.body, {
-      highlight (code, language) {
-        return require('highlight.js').highlightAuto(code).value
+      highlight(code, language) {
+        return require("highlight.js").highlightAuto(code).value
       },
     }),
   }

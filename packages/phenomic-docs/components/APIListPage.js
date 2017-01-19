@@ -10,14 +10,14 @@ const Home = (props) => (
       <ActivityIndicator />
     }
     {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>
+      <View style={ styles.page }>
+        <Text style={ styles.title }>
           {"API Reference"}
         </Text>
         {props.apis.node.list.map(api =>
-          <View key={api.id}>
-            <Link to={`/api/${ api.id }`}>
-              <Text style={styles.property}>
+          <View key={ api.id }>
+            <Link to={ `/api/${ api.id }` }>
+              <Text style={ styles.property }>
                 {api.title}
               </Text>
             </Link>

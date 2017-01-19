@@ -24,7 +24,7 @@ const HTML = (props) => (
           }}
         />
       }
-      <script src="/bundle.js" async></script>
+      <script src="/bundle.js" async />
     </body>
   </html>
 )

@@ -13,7 +13,7 @@
  * https://github.com/flowtype/flow-typed
  */
 
-declare module 'babel-plugin-transform-async-to-generator' {
+declare module "babel-plugin-transform-async-to-generator" {
   declare module.exports: any;
 }
 
@@ -22,11 +22,11 @@ declare module 'babel-plugin-transform-async-to-generator' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'babel-plugin-transform-async-to-generator/lib/index' {
+declare module "babel-plugin-transform-async-to-generator/lib/index" {
   declare module.exports: any;
 }
 
 // Filename aliases
-declare module 'babel-plugin-transform-async-to-generator/lib/index.js' {
+declare module "babel-plugin-transform-async-to-generator/lib/index.js" {
   declare module.exports: $Exports<'babel-plugin-transform-async-to-generator/lib/index'>;
 }

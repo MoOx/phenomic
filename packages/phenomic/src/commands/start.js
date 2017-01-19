@@ -13,8 +13,7 @@ function createWebpackServer(config) {
   return server
 }
 
-
-function start (config) {
+function start(config) {
   const phenomicServer = createServer(db, config.plugins)
   const webpackServer = createWebpackServer(config)
   const io = require("socket.io")(1415)
@@ -22,14 +21,14 @@ function start (config) {
     path: path.join(config.path, "content"),
     plugins: config.plugins,
   })
-  watcher.onChange(async function (files) {
+  watcher.onChange(async function(files) {
     await db.destroy()
     await Promise.all(files.map(file => processFile(db, file, config.plugins)))
     io.emit("change")
   })
   webpackServer.use("/phenomic", phenomicServer)
   webpackServer.use("/assets", express.static(path.join(process.cwd(), "examples/content")))
-  webpackServer.get("*", function (req, res) {
+  webpackServer.get("*", function(req, res) {
     res.type(".html")
     res.end(config.renderer.renderHTML())
   })

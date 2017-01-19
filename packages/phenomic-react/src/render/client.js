@@ -19,8 +19,8 @@ function render(routes) {
 
   ReactDOM.render(
     <Provider
-      fetch={createFetchFunction()}
-      store={store}
+      fetch={ createFetchFunction() }
+      store={ store }
     >
       {routes}
     </Provider>,

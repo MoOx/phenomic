@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-function flattenConfiguration (config: PhenomicInputPreset = {}): Array<(arg: ?any) => PhenomicPlugin> {
+function flattenConfiguration(config: PhenomicInputPreset = {}): Array<(arg: ?any) => PhenomicPlugin> {
   const plugins = config.plugins || []
   const presets = config.presets || []
   return [

@@ -154,8 +154,7 @@
     "postinstall": "node npm/postinstall.js",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
-    "#lint:js:eslint": "https://github.com/eslint/eslint/issues/5679",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix src scripts npm __tests__",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
@@ -202,6 +201,7 @@
       "jest": true
     },
     "rules": {
+      "max-len": [2, 120 ],
       "import/max-dependencies": [
         2,
         {

@@ -5,9 +5,10 @@ const fs = require("fs")
 
 const readFile = (path: string): Promise<string> => new Promise((resolve, reject) => {
   fs.readFile(path, (error, file) => {
-    if(error) {
+    if (error) {
       reject(error)
-    } else {
+    }
+    else {
       resolve(file.toString())
     }
   })
