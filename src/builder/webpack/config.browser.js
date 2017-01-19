@@ -11,7 +11,7 @@ import commonWebpackConfig from "./config.common.js"
 
 const chunkNameBrowser = "phenomic.browser"
 
-export default (config: PhenomicConfig): WebpackConfig => {
+export default (config: PhenomicOldConfig): WebpackConfig => {
 
   const webpackConfig = commonWebpackConfig(config)
 

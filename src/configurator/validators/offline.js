@@ -21,7 +21,7 @@ const knownKeys = Object.keys(defaultOfflineConfig)
 
 export default (
   { pkg, config, errors }:
-  { pkg: Object, config: PhenomicConfig, errors: Array<string> }
+  { pkg: Object, config: PhenomicOldConfig, errors: Array<string> }
 ) => {
 
   if (!config.offline) {

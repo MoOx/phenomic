@@ -1,12 +1,18 @@
-type PhenomicDB = {
+export type PhenomicDB = {
   destroy: () => Promise<*>,
   put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,
   get: (sub: string | Array<string>, key: string) => Promise<*>,
   getPartial: (sub: string | Array<string>, key: string) => Promise<*>,
-  getList: (sub: string | Array<string>, config: LevelStreamConfig, filter: ?string, filterValue: string) => Promise<*>,
+  getList:
+    (
+      sub: string | Array<string>,
+      config: LevelStreamConfig,
+      filter: ?string,
+      filterValue: string
+    ) => Promise<*>,
 }
 
-type PhenomicInputConfig = PhenomicInputPreset & {
+export type PhenomicInputConfig = PhenomicInputPreset & {
   path?: string,
   outdir?: string,
   bundler: () => PhenomicBundler,
@@ -14,55 +20,56 @@ type PhenomicInputConfig = PhenomicInputPreset & {
   port?: number,
 }
 
-type PhenomicBundler = {}
+export type PhenomicBundler = {}
 
-type PhenomicRenderer = {}
+export type PhenomicRenderer = {}
 
-type PhenomicContentFile = {
+export type PhenomicContentFile = {
   name: string,
   fullpath: string,
   exists: boolean,
   type: string,
 }
 
-type PhenomicTransformPlugin = {
+export type PhenomicTransformPlugin = {
   type: "transform",
   supportedFileTypes: Array<string>,
-  transform(file: PhenomicContentFile, fileContents: string): Promise<any> | any,
+  transform:
+    (file: PhenomicContentFile, fileContents: string) => Promise<any> | any,
 }
 
-type PhenomicAPIPlugin = {
+export type PhenomicAPIPlugin = {
   type: "api",
   define(api: express$Application, db: PhenomicDB): mixed,
 }
 
-type PhenomicCollectorPlugin = {
+export type PhenomicCollectorPlugin = {
   type: "collector",
   collect(file: mixed): Array<mixed>,
 }
 
-type PhenomicPlugin =
+export type PhenomicPlugin =
   PhenomicTransformPlugin |
   PhenomicAPIPlugin |
   PhenomicCollectorPlugin;
 
-type PhenomicPlugins = Array<PhenomicPlugin>
+export type PhenomicPlugins = Array<PhenomicPlugin>
 
-type PhenomicPreset = {
+export type PhenomicPreset = {
   plugins?: PhenomicPlugins,
   presets?: PhenomicPresets,
 }
 
-type PhenomicInputPreset = {
+export type PhenomicInputPreset = {
   plugins?: Array<(arg: ?any) => PhenomicPlugin>,
   presets?: Array<PhenomicInputPreset>,
 }
 
-type PhenomicPresets = Array<PhenomicPreset>
+export type PhenomicPresets = Array<PhenomicPreset>
 
-type PhenomicExtensions = PhenomicPreset
+export type PhenomicExtensions = PhenomicPreset
 
-type PhenomicConfig = {
+export type PhenomicConfig = {
   path: string,
   outdir: string,
   bundler: PhenomicBundler,
@@ -71,7 +78,7 @@ type PhenomicConfig = {
   plugins: Array<PhenomicPlugin>,
 }
 
-type PhenomicQueryConfig = {
+export type PhenomicQueryConfig = {
   collection: string,
   id?: string,
   after?: string,
@@ -80,10 +87,15 @@ type PhenomicQueryConfig = {
   limit?: number
 }
 
-type PhenomicRoute = {
+export type PhenomicRoute = {
   path: string,
   params?: { [key: string]: any },
-  getQueries: (props: { params: { [key: string]: any }}) => { [key: string]: PhenomicQueryConfig },
+  getQueries:
+    (props: { params: { [key: string]: any }})
+    =>
+    { [key: string]: PhenomicQueryConfig }
+  ,
 }
 
-type PhenomicFetch = (config: PhenomicQueryConfig | string) => Promise<any>
+export type PhenomicFetch =
+  (config: PhenomicQueryConfig | string) => Promise<any>

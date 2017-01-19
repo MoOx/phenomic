@@ -6,7 +6,7 @@ import HardSourceWebpackPlugin from "hard-source-webpack-plugin"
 import ObjectHash from "node-object-hash"
 import findCacheDir from "find-cache-dir"
 
-export default (config: PhenomicConfig): Array<any> => {
+export default (config: PhenomicOldConfig): Array<any> => {
   if (!config.cache) {
     return []
   }

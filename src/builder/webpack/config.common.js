@@ -11,7 +11,7 @@ export const chunkNameBrowser = "phenomic.browser"
 
 const wrap = JSON.stringify
 
-export default (config: PhenomicConfig): WebpackConfig => {
+export default (config: PhenomicOldConfig): WebpackConfig => {
 
   const { webpackConfig = {} } = config
 

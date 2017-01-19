@@ -14,7 +14,7 @@ const createErrorHandler = (client: Client) => (error: any) => {
 
 function getExtensionsToWatch(plugins): Array<string> {
   return plugins.reduce((acc, plugin) => {
-    // $FlowIssue
+    // $FlowFixMe
     if(Array.isArray(plugin.supportedFileTypes)) {
       acc.push(...plugin.supportedFileTypes)
     }

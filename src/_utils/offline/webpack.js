@@ -8,7 +8,7 @@ import joinUri from "url-join"
 
 const runtimeEntry = resolve(__dirname, "runtime.js")
 
-export const offlinePlugin = (config: PhenomicConfig): Array<Object> => {
+export const offlinePlugin = (config: PhenomicOldConfig): Array<Object> => {
   if (!config.offline) {
     return []
   }
@@ -92,7 +92,7 @@ export const offlinePlugin = (config: PhenomicConfig): Array<Object> => {
   ]
 }
 
-export const offlineEntry = (config: PhenomicConfig): Array<string> => {
+export const offlineEntry = (config: PhenomicOldConfig): Array<string> => {
   if (!config.offline) {
     return []
   }
