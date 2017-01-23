@@ -27,6 +27,7 @@ as an example as well as examples in the [Showcase](/showcase/).
 ## CMS
 
 - [Use Netlify CMS to manage your content](cms/netlify/)
+- [Use Prose to manage your content hosted on GitHub](cms/prose/)
 
 ## Internationalization
 

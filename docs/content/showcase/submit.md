@@ -33,7 +33,7 @@ showcaseTags:
   - learning
   - business
   - multi-languages
-  - # Choose what you need! Ask on the chat if you are not sure :)
+  - # Choose what you need in that list only! Ask on our chat if you are not sure :)
 ---
 
 A description and technical detail here (optional)

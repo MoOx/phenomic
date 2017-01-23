@@ -1,3 +1,8 @@
+# 0.20.2 - 2017-01-16
+
+- 🐛 Fixed: some issues related to the cache option by upgrading ``hard-source-webpack-plugin``
+(@MoOx)
+
 # 0.20.1 - 2016-12-19
 
 - 🐛 Fixed: Aphrodite styles in HTML are not throwing a syntax error

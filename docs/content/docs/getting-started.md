@@ -80,7 +80,7 @@ My super **content**!
 ```
 
 Then your content will be accessible at
-[http://localhost:3333/my-super-url/](http://localhost:3333/my-super-url/)
+[http://localhost:3333/my-super-url.html](http://localhost:3333/my-super-url.html)
 
 ---
 
