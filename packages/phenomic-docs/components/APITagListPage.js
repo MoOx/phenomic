@@ -2,10 +2,9 @@ import React from "react"
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
 import { Link } from "react-router"
 import Helmet from "react-helmet"
-
 import { createContainer, query } from "phenomic-react/lib/client"
 
-const Home = (props) => (
+const Home = (props: Object) => (
   <View>
     {props.isLoading &&
       <ActivityIndicator />

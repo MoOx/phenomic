@@ -1,10 +1,9 @@
 import React from "react"
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
 import { Link } from "react-router"
-
 import { createContainer, query } from "phenomic-react/lib/client"
 
-const ChangelogListPage = (props) => (
+const ChangelogListPage = (props: Object) => (
   <View>
     {props.isLoading &&
       <ActivityIndicator />
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default createContainer(ChangelogListPage, props => ({
+export default createContainer(ChangelogListPage, () => ({
   apis: query({
     collection: "changelog",
   }),

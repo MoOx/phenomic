@@ -1,11 +1,11 @@
-const React = require("react")
-const ReactDOMServer = require("react-dom/server")
+import React from "react"
+import ReactDOMServer from "react-dom/server"
 
-const HTML = require("../components/HTML")
+import Html from "../components/HTML"
 
 function renderHTML(props) {
-  const tree = <HTML { ...props } />
+  const tree = <Html { ...props } />
   return `<!DOCTYPE html>${ ReactDOMServer.renderToStaticMarkup(tree) }`
 }
 
-module.exports = renderHTML
+export default renderHTML

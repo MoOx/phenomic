@@ -26,4 +26,4 @@ function url(config) {
   ].join("/"))
 }
 
-module.exports = url
+export default url

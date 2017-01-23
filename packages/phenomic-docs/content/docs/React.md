@@ -4,7 +4,7 @@ draft: true
 ---
 
 ```javascript
-const BlogPost = (props) => (
+const BlogPost = (props: Object) => (
   <div />
 )
 
@@ -20,7 +20,7 @@ module.exports = createContainer(BlogPost, props => {
 ```javascript
 // each field you query is passed as an edge, containing the current status of
 // the node, and the node itself when ready
-const BlogPost = (props) => (
+const BlogPost = (props: Object) => (
   <div>
     {props.post.status === "loading" &&
       <Spinner />

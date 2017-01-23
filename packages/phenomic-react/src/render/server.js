@@ -1,12 +1,16 @@
-const React = require("react")
-const Provider = require("../components/Provider")
-const createStore = require("../shared/store")
-const createURL = require("phenomic-api-client/lib/url")
-const { match, RouterContext } = require("react-router")
-const RouteUtils = require("react-router/lib/RouteUtils")
-const performQuery = require("../shared/performQuery")
-const QueryString = require("../shared/QueryString")
-const path = require("path")
+import path from "path"
+
+import React from "react"
+import ReactDOMServer from "react-dom/server"
+import { match, RouterContext } from "react-router"
+import RouteUtils from "react-router/lib/RouteUtils"
+import createURL from "phenomic-api-client/lib/url"
+
+import Provider from "../components/Provider"
+import createStore from "../shared/store"
+import performQuery from "../shared/performQuery"
+import QueryString from "../shared/QueryString"
+import renderHTML from "../server/renderHTML"
 
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
@@ -22,7 +26,6 @@ function getMatch({ routes, location }) {
 }
 
 function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
-  const ReactDOMServer = require("react-dom/server")
   const body = ReactDOMServer.renderToString(
     <Provider fetch={ fetch } store={ store }>
       <RouterContext { ...renderProps } />
@@ -43,15 +46,17 @@ async function serverRender(app, fetch, location) {
     const queries = item.getQueries(renderProps)
     return performQuery(store, fetch, Object.keys(queries).map(key => QueryString.encode(queries[key])))
   }))
-  const renderHTML = require("../server/renderHTML")
   const contents = await app.renderToString(store, { renderProps, redirectLocation }, renderHTML)
   const state = store.getState()
   return [
     { path: path.join(location, "index.html"), contents },
     ...Object.keys(state)
-      .map(key => ({ path: createURL({ root: "phenomic", ...QueryString.decode(key) }), contents: JSON.stringify(state[key].node) })),
+      .map(key => ({
+        path: createURL({ root: "phenomic", ...QueryString.decode(key) }),
+        contents: JSON.stringify(state[key].node),
+      })),
   ]
 }
 
-module.exports = serverRender
+export default serverRender
 module.exports.renderToString = renderToString

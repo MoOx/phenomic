@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   plugins: {
     transform: [
       require("phenomic-plugin-transform-markdown"),

@@ -1,12 +1,11 @@
 import React from "react"
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
 import { Link } from "react-router"
-
 import { createContainer, query } from "phenomic-react/lib/client"
 
 import MarkdownGenerated from "./MarkdownGenerated"
 
-const Home = (props) => (
+const Home = (props: Object) => (
   <View>
     <View style={ styles.page }>
       <View style={ styles.column }>

@@ -1,4 +1,4 @@
-const flattenConfiguration = require("../flattenConfiguration")
+import flattenConfiguration from "../flattenConfiguration"
 
 describe("flattenConfiguration", () => {
 

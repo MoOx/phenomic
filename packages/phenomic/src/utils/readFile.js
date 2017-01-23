@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-const fs = require("fs")
+import fs from "fs"
 
 const readFile = (path: string): Promise<string> => new Promise((resolve, reject) => {
   fs.readFile(path, (error, file) => {
@@ -14,4 +14,4 @@ const readFile = (path: string): Promise<string> => new Promise((resolve, reject
   })
 })
 
-module.exports = readFile
+export default readFile

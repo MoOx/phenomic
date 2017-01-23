@@ -1,18 +1,15 @@
-const createWatcher = require("../watch")
-const path = require("path")
+import path from "path"
 
-const processFile = require("../injection/processFile")
+import "isomorphic-fetch"
+import getPort from "get-port"
+import createURL from "phenomic-api-client/lib/url"
 
-require("isomorphic-fetch")
-
-const createServer = require("../api")
-
-const writeFile = require("../utils/writeFile")
-
-const resolveURLsToPrerender = require("../prerender/resolve")
-const db = require("../db")
-const createURL = require("phenomic-api-client/lib/url")
-const getPort = require("get-port")
+import createWatcher from "../watch"
+import processFile from "../injection/processFile"
+import createServer from "../api"
+import writeFile from "../utils/writeFile"
+import resolveURLsToPrerender from "../prerender/resolve"
+import db from "../db"
 
 console.log("⚡️ Hey! Let's get on with it")
 let lastStamp = Date.now()
@@ -41,7 +38,7 @@ async function getContent(db, config) {
 
 function createFetchFunction(port) {
   return config => {
-    return fetch(createURL({ ...config, root: `http://localhost:${ port }` }))
+    return fetch(createURL({ ...config, root: `http://localhost:${ port }` }))
       .then(res => res.json())
   }
 }
@@ -92,4 +89,4 @@ async function build(config) {
    })
  */
 
-module.exports = build
+export default build

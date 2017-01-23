@@ -1,4 +1,4 @@
-const createStore = require("..")
+import createStore from ".."
 
 describe("createStore", () => {
 

@@ -1,8 +1,9 @@
 /**
  * @flow
  */
-const readFile = require("../utils/readFile")
-const path = require("path")
+import path from "path"
+
+import readFile from "../utils/readFile"
 
 const defaultTransformPlugin: PhenomicTransformPlugin = {
   type: "transform",
@@ -25,11 +26,11 @@ async function processFile(
 ) {
   const fileContents = await readFile(file.fullpath)
   const transformPlugin = plugins.find((plugin) => (
-    // $FlowFixMe
-    Array.isArray(plugin.supportedFileTypes) &&
-    plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !== -1
-  ))
-  // $FlowFixMe
+  // $FlowFixMe unknown type
+  Array.isArray(plugin.supportedFileTypes) &&
+  plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !== -1
+))
+  // $FlowFixMe unknown type
   const parsed = await (transformPlugin || defaultTransformPlugin).transform(file, fileContents)
   // Don't show drafts in production
   if (isProduction && parsed.draft) {
@@ -41,4 +42,4 @@ async function processFile(
   }
 }
 
-module.exports = processFile
+export default processFile

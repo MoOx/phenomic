@@ -14,4 +14,4 @@ function flattenConfiguration(config: PhenomicInputPreset = {}): Array<(arg: ?an
   ]
 }
 
-module.exports = flattenConfiguration
+export default flattenConfiguration

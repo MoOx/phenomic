@@ -1,10 +1,8 @@
 import React from "react"
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native-web"
-import { Link } from "react-router"
-
 import { createContainer, query } from "phenomic-react/lib/client"
 
-const ShowcaseList = (props) => (
+const ShowcaseList = (props: Object) => (
   <View>
     {props.isLoading &&
       <ActivityIndicator />
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default createContainer(ShowcaseList, props => ({
+export default createContainer(ShowcaseList, () => ({
   showcase: query({
     collection: "showcase",
   }),

@@ -1,11 +1,12 @@
-const createWatcher = require("../watch")
-const path = require("path")
-const processFile = require("../injection/processFile")
+import path from "path"
 
-const db = require("../db")
-const createServer = require("../api")
+import express from "express"
+import socketIO from "socket.io"
 
-const express = require("express")
+import createWatcher from "../watch"
+import processFile from "../injection/processFile"
+import db from "../db"
+import createServer from "../api"
 
 function createWebpackServer(config) {
   const server = express()
@@ -16,7 +17,7 @@ function createWebpackServer(config) {
 function start(config) {
   const phenomicServer = createServer(db, config.plugins)
   const webpackServer = createWebpackServer(config)
-  const io = require("socket.io")(1415)
+  const io = socketIO(1415)
   const watcher = createWatcher({
     path: path.join(config.path, "content"),
     plugins: config.plugins,
@@ -36,4 +37,4 @@ function start(config) {
   console.log(`✨ Open http://localhost:${ config.port }`)
 }
 
-module.exports = start
+export default start

@@ -1,6 +1,7 @@
-const PhenomicRenderer = require("../Renderer")
-const React = require("react")
-const renderer = require("react-test-renderer")
+import React from "react"
+import renderer from "react-test-renderer"
+
+import PhenomicRenderer from "../Renderer"
 
 describe("PhenomicRenderer", () => {
 

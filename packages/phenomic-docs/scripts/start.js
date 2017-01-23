@@ -1,5 +1,6 @@
-const phenomic = require("phenomic")
-const path = require("path")
+import path from "path"
+
+import phenomic from "phenomic"
 
 phenomic.start({
   path: path.resolve(__dirname, ".."),

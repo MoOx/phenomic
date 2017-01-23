@@ -1,8 +1,8 @@
-const renderHTML = require("./server/renderHTML")
-// const render = require("./server/render")
-const getRoutes = require("./server/getRoutes")
+import renderHTML from "./server/renderHTML"
+// import render from "./server/render"
+import getRoutes from "./server/getRoutes"
 
-module.exports = function() {
+export default function() {
   return {
     renderHTML,
     // render,

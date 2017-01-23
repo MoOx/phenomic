@@ -1,4 +1,4 @@
-const QueryString = require("../QueryString")
+import QueryString from "../QueryString"
 
 describe("QueryString", () => {
 
