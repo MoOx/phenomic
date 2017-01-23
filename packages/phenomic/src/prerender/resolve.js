@@ -1,14 +1,18 @@
 /**
  * @flow
  */
-// $FlowFixMe
-const createQuery = require("phenomic-api-client/lib/query")
+// $FlowFixMe ?
+import createQuery from "phenomic-api-client/lib/query"
 
 const resolveURLsForDynamicParams = async function(fetch: PhenomicFetch, route: PhenomicRoute) {
   if (!route.collection) {
     return route
   }
-  const collection = await fetch(createQuery(typeof route.collection === "string" ? { collection: route.collection } : route.collection))
+  const collection = await fetch(createQuery(
+    typeof route.collection === "string"
+    ? { collection: route.collection }
+    : route.collection
+  ))
   const path = route.path || "*"
   return collection.list
     .map(item => {
@@ -28,7 +32,12 @@ const findPaginatedQuery = function(queries) {
   return queries[key]
 }
 
-const resolveNextURLsInPagination = async function(path: string, query: PhenomicQueryConfig, fetch: PhenomicFetch, urls: Array<string> = []) {
+const resolveNextURLsInPagination = async function(
+  path: string,
+  query: PhenomicQueryConfig,
+  fetch: PhenomicFetch,
+  urls: Array<string> = []
+) {
   urls = [ ...urls, path.replace("/:after?", query.after ? "/" + query.after : "") ]
   const nextPage = await fetch(createQuery(query))
   if (nextPage.hasNextPage) {
@@ -81,4 +90,4 @@ const resolveURLsToPrerender = async function(routes: Array<PhenomicRoute>, fetc
   return flatten(paginatedURLs).map(normalizePath)
 }
 
-module.exports = resolveURLsToPrerender
+export default resolveURLsToPrerender

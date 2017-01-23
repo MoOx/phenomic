@@ -1,6 +1,6 @@
-const React = require("react")
+import React from "react"
 
-const HTML = (props) => (
+const HTML = (props: Object) => (
   <html>
     <head>
       <meta charSet="utf-8" />
@@ -12,7 +12,7 @@ const HTML = (props) => (
     <body>
       <div
         dangerouslySetInnerHTML={{
-          __html: `<div id="PhenomicRoot">${ props.body || "" }</div>`,
+          __html: `<div id="PhenomicRoot">${ props.body || "" }</div>`,
         }}
       />
       {props.state &&
@@ -29,4 +29,4 @@ const HTML = (props) => (
   </html>
 )
 
-module.exports = HTML
+export default HTML

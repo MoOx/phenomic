@@ -1,5 +1,4 @@
-const React = require("react")
-const RouteUtils = require("react-router/lib/RouteUtils")
+import RouteUtils from "react-router/lib/RouteUtils"
 
 function flattenRoutes(routes, path = "") {
   return routes.reduce((acc, route) => {
@@ -23,4 +22,4 @@ function getRoutes(app) {
   return flatRoutes.map(item => ({ ...item, getQuery: item.component.getQueries }))
 }
 
-module.exports = getRoutes
+export default getRoutes

@@ -1,10 +1,11 @@
-const React = require("react")
-const Provider = require("../components/Provider")
-const createStore = require("../shared/store")
-const createURL = require("phenomic-api-client/lib/url")
-const ReactDOM = require("react-dom")
+import React from "react"
+import ReactDOM from "react-dom"
+import createURL from "phenomic-api-client/lib/url"
 
-function render(routes) {
+import Provider from "../components/Provider"
+import createStore from "../shared/store"
+
+function render(routes) {
 
   function createFetchFunction() {
     return config => fetch(createURL({ ...config, root: "/phenomic" })).then(res => res.json())
@@ -28,4 +29,4 @@ function render(routes) {
   )
 }
 
-module.exports = render
+export default render

@@ -1,21 +1,18 @@
-const sm = require("sitemap")
+// @todo sitemap
+// import sm from "sitemap"
 
-module.exports = function() {
+export default function() {
   return {
     type: "build",
-    getFile(build) {
-      /* sm.createSitemap({
-        hostname: "https://putaindecode.io",
+    getFile() {
+      /*
+      sm.createSitemap({
+        hostname: ROOT,
         cacheTime: 600000,
-        urls: urls.map(url => ({ url })),
+        urls: urls.map((url) => ({ url })),
       })
-      .toXML((error, xml) => {
-        if(error) {
-          reject(error)
-        } else {
-          resolve(xml)
-        }
-      })*/
+      .toXML((error, xml) => error ? reject(error) : resolve(xml))
+      */
     },
   }
 }

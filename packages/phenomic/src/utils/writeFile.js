@@ -1,9 +1,10 @@
 /**
  * @flow
  */
-const fs = require("fs")
-const mkdirp = require("mkdirp")
-const path = require("path")
+import path from "path"
+import fs from "fs"
+
+import mkdirp from "mkdirp"
 
 const writeFile = (filepath: string, data: string) => new Promise((resolve, reject) => {
   mkdirp(path.dirname(filepath), (error) => {
@@ -22,4 +23,4 @@ const writeFile = (filepath: string, data: string) => new Promise((resolve, reje
   })
 })
 
-module.exports = writeFile
+export default writeFile

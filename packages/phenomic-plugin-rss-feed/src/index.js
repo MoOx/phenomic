@@ -1,6 +1,10 @@
-const RSS = require("rss")
+import RSS from "rss"
 
-module.exports = function() {
+const oneYear = 1000 * 60 * 60 * 24 * 365
+
+export default function() {
+  // @todo fix this ROOT url thing
+
   return {
     type: "api",
     async build(fetch, writeFile) {
@@ -10,15 +14,19 @@ module.exports = function() {
     define(api) {
       api.get("/feed.xml", async function(req, res) {
         const rss = new RSS({
-          feed_url: "https://putaindecode.io",
+          // feed_url: ROOT,
+          feed_url: "HTTP://TODO-ROOT/",
         })
         const posts = await req.db.getList({ collection: "posts" })
-        const postsFromLastYear = posts.filter(post => Date.now() - new Date(post.date).getTime() < (1000 * 60 * 60 * 24 * 365))
+        const postsFromLastYear = posts.filter((post) => (
+          Date.now() - new Date(post.date).getTime() < oneYear
+        ))
         postsFromLastYear
           .forEach(post => {
             rss.item({
               title: post.title,
-              url: "https://putaindecode.io" + post.path,
+              // url: ROOT + post.path,
+              url: "HTTP://TODO-ROOT/" + post.path,
               description: post.content,
               categories: post.tags,
               author: post.author,

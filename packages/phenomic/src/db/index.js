@@ -1,10 +1,11 @@
 /**
  * @flow
  */
-const levelUp = require("levelup")
-const levelDown = require("leveldown")
-const subLevel = require("level-sublevel")
-const path = require("path")
+import path from "path"
+
+import levelUp from "levelup"
+import levelDown from "leveldown"
+import subLevel from "level-sublevel"
 
 const ADDRESS = path.join(process.cwd(), ".tmp/db")
 
@@ -71,17 +72,16 @@ const db = {
   put(sub: string | Array<string>, key: string, value: any) {
     return new Promise((resolve, reject) => {
       const data = { ...value, key }
-      const table = getSublevel(level, sub)
       return getSublevel(level, sub)
-        .put(key, data, options, (error) => {
-          if (error) {
-            reject(error)
-            return
-          }
-          else {
-            resolve(data)
-          }
-        })
+      .put(key, data, options, (error) => {
+        if (error) {
+          reject(error)
+          return
+        }
+        else {
+          resolve(data)
+        }
+      })
     })
   },
   get(sub: string | Array<string>, key: string) {
@@ -120,24 +120,24 @@ const db = {
     return new Promise((resolve, reject) => {
       const array = []
       getSublevel(level, sub, filter, filterValue).createReadStream(wrapStreamConfig(config))
-        .on("data", async function(data) {
-          array.push(
-            db.getPartial(sub, data.value.id)
-              .then(value => ({
-                ...value,
-                key: data.key,
-              }))
-          )
-        })
-        .on("end", async function() {
-          const returnValue = await Promise.all(array)
-          resolve(returnValue)
-        })
-        .on("error", (error) => {
-          reject(error)
-        })
+      .on("data", async function(data) {
+        array.push(
+          db.getPartial(sub, data.value.id)
+            .then(value => ({
+              ...value,
+              key: data.key,
+            }))
+        )
+      })
+      .on("end", async function() {
+        const returnValue = await Promise.all(array)
+        resolve(returnValue)
+      })
+      .on("error", (error) => {
+        reject(error)
+      })
     })
   },
 }
 
-module.exports = db
+export default db

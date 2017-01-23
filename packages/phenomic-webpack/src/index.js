@@ -1,8 +1,9 @@
-const webpack = require("webpack")
-const webpackDevMiddleware = require("webpack-dev-middleware")
-const path = require("path")
+import path from "path"
 
-module.exports = function() {
+import webpack from "webpack"
+import webpackDevMiddleware from "webpack-dev-middleware"
+
+export default function() {
   return {
     getMiddleware(config) {
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
@@ -26,7 +27,7 @@ module.exports = function() {
         },
       }
       return new Promise((resolve, reject) => {
-        webpack(specialConfig).run(function(error, stats) {
+        webpack(specialConfig).run(function(error /* , stats*/) {
           if (error) {
             console.error(error)
             reject(error)
@@ -40,7 +41,7 @@ module.exports = function() {
     build(config) {
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       return new Promise((resolve, reject) => {
-        webpack(webpackConfig).run(function(error, stats) {
+        webpack(webpackConfig).run(function(error /* , stats */) {
           if (error) {
             reject(error)
           }

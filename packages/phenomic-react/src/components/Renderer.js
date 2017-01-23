@@ -4,15 +4,11 @@
  * It's just a way for us to make sure we can read the top-level
  * route configuration.
  */
-const React = require("react")
-
 const canUseDOM = !!(
   typeof window !== "undefined" &&
   window.document &&
   window.document.createElement
 )
-
-const emptyFunction = () => {}
 
 const PhenomicRenderer = {
   createApp: function(routes, config = {}) {
@@ -30,4 +26,4 @@ const PhenomicRenderer = {
   },
 }
 
-module.exports = PhenomicRenderer
+export default PhenomicRenderer

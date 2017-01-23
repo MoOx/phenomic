@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-const invariant = require("invariant")
+import invariant from "invariant"
 
 function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
   invariant(
@@ -24,4 +24,4 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
   }
 }
 
-module.exports = query
+export default query

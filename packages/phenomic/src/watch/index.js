@@ -1,9 +1,10 @@
 /**
  * @flow
  */
-const watchman = require("fb-watchman")
+import path from "path"
+
+import watchman from "fb-watchman"
 import type { Client } from "fb-watchman"
-const path = require("path")
 
 const createErrorHandler = (client: Client) => (error: any) => {
   if (error) {
@@ -14,7 +15,7 @@ const createErrorHandler = (client: Client) => (error: any) => {
 
 function getExtensionsToWatch(plugins): Array<string> {
   return plugins.reduce((acc, plugin) => {
-    // $FlowFixMe
+    // $FlowFixMe unknown type
     if (Array.isArray(plugin.supportedFileTypes)) {
       acc.push(...plugin.supportedFileTypes)
     }
@@ -83,4 +84,4 @@ function createWatcher(config: PhenomicConfig) {
   }
 }
 
-module.exports = createWatcher
+export default createWatcher

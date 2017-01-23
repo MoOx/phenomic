@@ -68,4 +68,4 @@ function createStore(state = {}) {
 
 }
 
-module.exports = createStore
+export default createStore

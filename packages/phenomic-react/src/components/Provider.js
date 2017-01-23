@@ -1,7 +1,6 @@
-const React = require("react")
-const QueryString = require("../shared/QueryString")
+import React from "react"
 
-const performQuery = require("../shared/performQuery")
+import performQuery from "../shared/performQuery"
 
 class Provider extends React.Component {
   constructor(props) {
@@ -24,6 +23,7 @@ class Provider extends React.Component {
 }
 
 Provider.propTypes = {
+  children: React.PropTypes.node.isRequired,
   fetch: React.PropTypes.func.isRequired,
   store: React.PropTypes.object.isRequired,
   onFetchComplete: React.PropTypes.func,
@@ -37,4 +37,4 @@ Provider.childContextTypes = {
   __prerendering: React.PropTypes.bool,
 }
 
-module.exports = Provider
+export default Provider

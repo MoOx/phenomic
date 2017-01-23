@@ -1,7 +1,7 @@
-const query = require("./query")
-const url = require("./url")
+import query from "./query"
+import url from "./url"
 
-module.exports = {
+export default {
   query,
   url,
 }

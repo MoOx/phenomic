@@ -1,10 +1,10 @@
-const createContainer = require("./components/Container")
-const Renderer = require("./components/Renderer")
-const Provider = require("./components/Provider")
+import query from "phenomic-api-client/lib/query"
 
-const query = require("phenomic-api-client/lib/query")
+import createContainer from "./components/Container"
+import Renderer from "./components/Renderer"
+import Provider from "./components/Provider"
 
-module.exports = {
+export default {
   createContainer,
   Renderer,
   Provider,

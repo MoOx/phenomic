@@ -1,6 +1,7 @@
-const React = require("react")
-const mapValues = require("../shared/mapValues")
-const QueryString = require("../shared/QueryString")
+import React from "react"
+
+import mapValues from "../shared/mapValues"
+import QueryString from "../shared/QueryString"
 
 const emptyObject = {}
 const defaultGetQueries = () => emptyObject
@@ -30,8 +31,9 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       }
     }
 
-    forceQuery() {
-      this.query(true)
+    componentWillReceiveProps(props) {
+      this.computeQueries(props)
+      this.schedule(() => this.query())
     }
 
     componentWillUnmount() {
@@ -43,9 +45,8 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       }
     }
 
-    componentWillReceiveProps(props) {
-      this.computeQueries(props)
-      this.schedule(() => this.query())
+    forceQuery() {
+      this.query(true)
     }
 
     update() {
@@ -108,4 +109,4 @@ function createContainer(Component, getQueries = defaultGetQueries) {
 
 }
 
-module.exports = createContainer
+export default createContainer

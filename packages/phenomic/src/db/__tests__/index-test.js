@@ -1,4 +1,4 @@
-const db = require("..")
+import db from ".."
 
 describe("db", () => {
 

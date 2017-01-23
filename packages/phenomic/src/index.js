@@ -1,11 +1,11 @@
 /**
  * @flow
  */
-const path = require("path")
-const flattenConfiguration = require("./configuration/flattenConfiguration")
+import path from "path"
 
-const start = require("./commands/start")
-const build = require("./commands/build")
+import flattenConfiguration from "./configuration/flattenConfiguration"
+import start from "./commands/start"
+import build from "./commands/build"
 
 function normalizeConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   return {
@@ -18,7 +18,7 @@ function normalizeConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   }
 }
 
-module.exports = {
+export default {
   start(config: PhenomicInputConfig) {
     return start(normalizeConfiguration(config))
   },

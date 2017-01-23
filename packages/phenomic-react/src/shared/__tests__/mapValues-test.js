@@ -1,4 +1,4 @@
-const mapValues = require("../mapValues")
+import mapValues from "../mapValues"
 
 describe("mapValues", () => {
 

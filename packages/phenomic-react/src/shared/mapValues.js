@@ -6,4 +6,4 @@ const mapValues = (object, func) => {
   , {})
 }
 
-module.exports = mapValues
+export default mapValues

@@ -18,4 +18,4 @@ const QueryString = {
   },
 }
 
-module.exports = QueryString
+export default QueryString

@@ -1,4 +1,4 @@
-const QueryString = require("./QueryString")
+import QueryString from "./QueryString"
 
 function performQuery(store, fetch, queries) {
   return Promise.all(
@@ -15,4 +15,4 @@ function performQuery(store, fetch, queries) {
   )
 }
 
-module.exports = performQuery
+export default performQuery

@@ -6,7 +6,7 @@ const Header = () => (
   <View style={ styles.header }>
     <Link to="/" style={{ textDecoration: "none" }}>
       <Text style={ styles.text }>
-        Phenomic
+        { "Phenomic" }
       </Text>
     </Link>
     <View style={ styles.nav }>

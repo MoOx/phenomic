@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-const path = require("path")
+import path from "path"
 
 function getKey(name, json) {
   if (json.path) {
@@ -48,7 +48,7 @@ function getTags(json) {
   return []
 }
 
-module.exports = function() {
+export default function() {
   return {
     type: "collector",
     collect(db: PhenomicDB, name: string, json: any) {

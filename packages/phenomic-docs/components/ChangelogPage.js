@@ -1,11 +1,10 @@
 import React from "react"
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
-
 import { createContainer, query } from "phenomic-react/lib/client"
 
 import MarkdownGenerated from "./MarkdownGenerated"
 
-const ChangelogPage = (props) => (
+const ChangelogPage = (props: Object) => (
   <View>
     {props.isLoading &&
       <ActivityIndicator />

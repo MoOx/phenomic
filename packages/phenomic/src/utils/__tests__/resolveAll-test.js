@@ -1,4 +1,4 @@
-const resolveAll = require("../resolveAll")
+import resolveAll from "../resolveAll"
 
 describe("resolveAll", () => {
 

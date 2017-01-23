@@ -1,4 +1,4 @@
-const url = require("../url")
+import url from "../url"
 
 describe("url", () => {
 

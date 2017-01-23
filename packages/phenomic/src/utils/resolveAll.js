@@ -10,4 +10,4 @@ const resolveAll = (objectOfPromises: { [key: string]: any }): { [key: string]: 
     .then(() => finalObject)
 }
 
-module.exports = resolveAll
+export default resolveAll
