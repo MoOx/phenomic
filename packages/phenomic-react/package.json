@@ -19,8 +19,5 @@
     "react-dom": "^15.4.1",
     "react-helmet": "^3.2.3",
     "react-router": "^3.0.0"
-  },
-  "scripts": {
-    "postinstall": "mkdir -p .tmp"
   }
 }

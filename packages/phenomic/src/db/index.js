@@ -1,15 +1,14 @@
 /**
  * @flow
  */
-import path from "path"
-
+import findCacheDir from "find-cache-dir"
 import levelUp from "levelup"
 import levelDown from "leveldown"
 import subLevel from "level-sublevel"
 
-const ADDRESS = path.join(process.cwd(), ".tmp/db")
+const cacheDir = findCacheDir({ name: "phenomic/db", create: true })
 
-const database = levelUp(ADDRESS)
+const database = levelUp(cacheDir)
 const level = subLevel(database)
 const options = { valueEncoding: "json" }
 const wrapStreamConfig = config => Object.assign({}, config, options)
@@ -56,7 +55,7 @@ const db = {
   destroy() {
     return new Promise((resolve, reject) => {
       database.close(() => {
-        levelDown.destroy(ADDRESS, (error) => {
+        levelDown.destroy(cacheDir, (error) => {
           if (error) {
             reject(error)
           }
