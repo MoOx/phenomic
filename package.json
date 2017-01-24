@@ -94,7 +94,7 @@
     "babel-eslint": "^7.0.0",
     "babel-jest": "^17.0.0",
     "babel-loader": "^6.2.9",
-    "babel-plugin-flow-react-proptypes": "^0.10.1",
+    "babel-plugin-flow-react-proptypes": "^0.20.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -180,6 +180,7 @@
     "release": "npmpub",
     "postrelease": "npm run docs-deploy"
   },
+  "@todo add babel-plugin-flow-react-proptypes back": "https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/66",
   "babel": {
     "presets": [
       "babel-preset-env",
@@ -187,7 +188,6 @@
       "babel-preset-react"
     ],
     "plugins": [
-      "babel-plugin-flow-react-proptypes",
       "babel-plugin-transform-runtime"
     ]
   },

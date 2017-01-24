@@ -4,7 +4,7 @@ import createContainer from "./components/Container"
 import Renderer from "./components/Renderer"
 import Provider from "./components/Provider"
 
-export default {
+export {
   createContainer,
   Renderer,
   Provider,
