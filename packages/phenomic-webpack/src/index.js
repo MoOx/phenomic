@@ -1,7 +1,11 @@
 import path from "path"
 
+import findCacheDir from "find-cache-dir"
 import webpack from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
+
+const bundleName = "phenomic.node"
+const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true })
 
 export default function() {
   return {
@@ -15,11 +19,11 @@ export default function() {
       const specialConfig = {
         ...webpackConfig,
         entry: {
-          bundle: path.join(config.path, "App.js"),
+          [bundleName]: path.join(config.path, "App.js"),
         },
         output: {
           publicPath: "/",
-          path: path.join(process.cwd(), ".tmp/webpack"),
+          path: cacheDir,
           filename: "[name].js",
           target: "node",
           library: "app",
@@ -33,7 +37,7 @@ export default function() {
             reject(error)
           }
           else {
-            resolve(require(path.join(process.cwd(), ".tmp/webpack/bundle")))
+            resolve(require(path.join(cacheDir, bundleName)))
           }
         })
       })
