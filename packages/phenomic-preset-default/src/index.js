@@ -1,11 +1,15 @@
+import transformMarkdown from "phenomic-plugin-transform-markdown"
+import transformJson from "phenomic-plugin-transform-json"
+import apiRelatedContent from "phenomic-plugin-api-related-content"
+
 export default {
   plugins: {
     transform: [
-      require("phenomic-plugin-transform-markdown"),
-      require("phenomic-plugin-transform-json"),
+      transformMarkdown,
+      transformJson,
     ],
     api: [
-      require("phenomic-plugin-api-related-content"),
+      apiRelatedContent,
     ],
   },
 }

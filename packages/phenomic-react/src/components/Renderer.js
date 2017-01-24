@@ -4,6 +4,9 @@
  * It's just a way for us to make sure we can read the top-level
  * route configuration.
  */
+import defaultRender from "../render/client"
+import defaultRenderServer from "../render/server"
+
 const canUseDOM = !!(
   typeof window !== "undefined" &&
   window.document &&
@@ -16,12 +19,12 @@ const PhenomicRenderer = {
       routes,
       render() {
         if (canUseDOM) {
-          const renderer = config.render || require("../render/client")
+          const renderer = config.render || defaultRender
           return renderer(routes)
         }
       },
-      renderServer: config.renderServer || require("../render/server"),
-      renderToString: config.renderToString || require("../render/server").renderToString,
+      renderServer: config.renderServer || defaultRenderServer,
+      renderToString: config.renderToString || defaultRenderServer.renderToString,
     }
   },
 }

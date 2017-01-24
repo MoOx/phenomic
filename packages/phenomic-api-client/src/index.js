@@ -1,7 +1,7 @@
 import query from "./query"
 import url from "./url"
 
-export default {
+export {
   query,
   url,
 }

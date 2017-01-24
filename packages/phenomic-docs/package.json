@@ -2,7 +2,8 @@
   "name": "phenomic-docs",
   "version": "1.0.0",
   "scripts": {
-    "start": "node scripts/start"
+    "start": "babel-node scripts/start",
+    "build": "babel-node scripts/build"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
