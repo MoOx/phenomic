@@ -5,6 +5,9 @@
   "files": [
     "lib"
   ],
+  "dependencies": {
+    "source-map-support": "^0.4.0"
+  },
   "peerDependencies": {
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.8.4"
