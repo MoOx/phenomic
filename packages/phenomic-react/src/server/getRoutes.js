@@ -1,4 +1,4 @@
-import RouteUtils from "react-router/lib/RouteUtils"
+import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
 
 function flattenRoutes(routes, path = "") {
   return routes.reduce((acc, route) => {
@@ -17,7 +17,7 @@ function flattenRoutes(routes, path = "") {
 }
 
 function getRoutes(app) {
-  const routes = RouteUtils.createRouteFromReactElement(app.routes)
+  const routes = createRouteFromReactElement(app.routes)
   const flatRoutes = flattenRoutes(routes.childRoutes)
   return flatRoutes.map(item => ({ ...item, getQuery: item.component.getQueries }))
 }
