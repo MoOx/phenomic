@@ -1,15 +1,19 @@
 import path from "path"
 
 import phenomic from "phenomic"
+import phenomicWebpack from "phenomic-webpack"
+import phenomicReact from "phenomic-react"
+import transformMarkdown from "phenomic-plugin-transform-markdown"
+import directoryCollector from "phenomic-plugin-directory-collector"
 
 phenomic.build({
   path: path.resolve(__dirname, ".."),
   outdir: path.resolve(__dirname, "../dist"),
-  bundler: require("phenomic-webpack"),
-  renderer: require("phenomic-react"),
+  bundler: phenomicWebpack,
+  renderer: phenomicReact,
   plugins: [
-    require("phenomic-plugin-transform-markdown"),
-    require("phenomic-plugin-directory-collector"),
+    transformMarkdown,
+    directoryCollector,
   ],
 })
   .then(

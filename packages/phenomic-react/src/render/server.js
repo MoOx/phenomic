@@ -3,7 +3,7 @@ import path from "path"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import { match, RouterContext } from "react-router"
-import RouteUtils from "react-router/lib/RouteUtils"
+import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
 import createURL from "phenomic-api-client/lib/url"
 
 import Provider from "../components/Provider"
@@ -38,7 +38,7 @@ function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
 }
 
 async function serverRender(app, fetch, location) {
-  const routes = RouteUtils.createRouteFromReactElement(app.routes)
+  const routes = createRouteFromReactElement(app.routes)
   const store = createStore()
   const { renderProps, redirectLocation } = await getMatch({ routes, location })
   const containers = renderProps.components.filter(item => item && typeof item.getQueries === "function")
@@ -59,4 +59,4 @@ async function serverRender(app, fetch, location) {
 }
 
 export default serverRender
-module.exports.renderToString = renderToString
+export { renderToString }
