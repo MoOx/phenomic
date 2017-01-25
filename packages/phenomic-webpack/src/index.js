@@ -1,11 +1,17 @@
 import path from "path"
 
 import findCacheDir from "find-cache-dir"
-import webpack from "webpack"
+import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 
-const bundleName = "phenomic.node"
+const { UglifyJsPlugin } = optimize
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true })
+const bundleName = "phenomic.node"
+const requireSourceMapSupport = `require('${
+  require.resolve("source-map-support/register")
+  // windows support
+  .replace(/\\/g, "/")
+}');`
 
 export default function() {
   return {
@@ -18,6 +24,7 @@ export default function() {
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       const specialConfig = {
         ...webpackConfig,
+        target: "node",
         entry: {
           [bundleName]: path.join(config.path, "App.js"),
         },
@@ -25,20 +32,29 @@ export default function() {
           publicPath: "/",
           path: cacheDir,
           filename: "[name].js",
-          target: "node",
           library: "app",
           libraryTarget: "commonjs2",
         },
+        plugins: [
+          ...webpackConfig.plugins ? webpackConfig.plugins : [],
+          // Remove UglifyJSPlugin from plugin stack
+          ...webpackConfig.plugins.filter(
+            (plugin) => !(plugin instanceof UglifyJsPlugin)
+          ) || [],
+          // sourcemaps
+          new BannerPlugin(
+            requireSourceMapSupport,
+            { raw: true, entryOnly: false }
+          ),
+        ],
+        // sourcemaps
+        devtool: "#source-map",
       }
       return new Promise((resolve, reject) => {
         webpack(specialConfig).run(function(error /* , stats*/) {
-          if (error) {
-            console.error(error)
-            reject(error)
-          }
-          else {
-            resolve(require(path.join(cacheDir, bundleName)))
-          }
+          error
+          ? reject(error)
+          : resolve(require(path.join(cacheDir, bundleName)))
         })
       })
     },
@@ -46,12 +62,9 @@ export default function() {
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       return new Promise((resolve, reject) => {
         webpack(webpackConfig).run(function(error /* , stats */) {
-          if (error) {
-            reject(error)
-          }
-          else {
-            resolve()
-          }
+          error
+          ? reject(error)
+          : resolve()
         })
       })
     },
