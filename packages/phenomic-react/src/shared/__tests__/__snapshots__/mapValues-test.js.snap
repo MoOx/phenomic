@@ -1,0 +1,6 @@
+exports[`mapValues should map object values 1`] = `
+Object {
+  "a": 2,
+  "b": 4,
+}
+`;
