@@ -4,15 +4,20 @@
 // $FlowFixMe ?
 import createQuery from "phenomic-api-client/lib/query"
 
+const debug = require("debug")("phenomic:core:prerender:resolve")
+
 const resolveURLsForDynamicParams = async function(fetch: PhenomicFetch, route: PhenomicRoute) {
   if (!route.collection) {
+    debug("no collection")
     return route
   }
+  debug(`fetching collection '${ route.collection }' for route '${ route.path }'`)
   const collection = await fetch(createQuery(
     typeof route.collection === "string"
     ? { collection: route.collection }
     : route.collection
   ))
+  debug(`collection fetched. ${ collection.list.length } items`)
   const path = route.path || "*"
   return collection.list
     .map(item => {
@@ -72,12 +77,9 @@ const resolvePaginatedURLs = async function(fetch: PhenomicFetch, route: Phenomi
 const flatten = (array: Array<any>) => {
   const flattenedArray = []
   array.forEach(item => {
-    if (Array.isArray(item)) {
-      flattenedArray.push(...flatten(item))
-    }
-    else {
-      flattenedArray.push(item)
-    }
+    Array.isArray(item)
+    ? flattenedArray.push(...flatten(item))
+    : flattenedArray.push(item)
   })
   return flattenedArray
 }

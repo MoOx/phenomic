@@ -1,6 +1,10 @@
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
 
+const debug = require("debug")("phenomic:plugin:react")
+
 function flattenRoutes(routes, path = "") {
+  debug("flattenRoutes")
+
   return routes.reduce((acc, route) => {
     const nextRoute = {
       ...route,

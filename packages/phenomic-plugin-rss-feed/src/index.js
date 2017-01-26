@@ -2,10 +2,13 @@ import RSS from "rss"
 
 const oneYear = 1000 * 60 * 60 * 24 * 365
 
+const debug = require("debug")("phenomic:plugin:rss-feed")
+
 export default function() {
   // @todo fix this ROOT url thing
 
   return {
+    name: "phenomic-plugin-rss-feed",
     type: "api",
     async build(fetch, writeFile) {
       const feed = fetch("/feed.xml")
@@ -13,6 +16,7 @@ export default function() {
     },
     define(api) {
       api.get("/feed.xml", async function(req, res) {
+        debug(req.url)
         const rss = new RSS({
           // feed_url: ROOT,
           feed_url: "HTTP://TODO-ROOT/",

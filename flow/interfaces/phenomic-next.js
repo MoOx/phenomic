@@ -1,3 +1,5 @@
+// @flow
+
 export type PhenomicDB = {
   destroy: () => Promise<*>,
   put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,
@@ -32,26 +34,29 @@ export type PhenomicContentFile = {
 }
 
 export type PhenomicTransformPlugin = {
+  name: string,
   type: "transform",
   supportedFileTypes: Array<string>,
   transform:
-    (file: PhenomicContentFile, fileContents: string) => Promise<any> | any,
+    (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
 }
 
 export type PhenomicAPIPlugin = {
+  name: string,
   type: "api",
-  define(api: express$Application, db: PhenomicDB): mixed,
+  define: (api: express$Application, db: PhenomicDB) => mixed,
 }
 
 export type PhenomicCollectorPlugin = {
+  name: string,
   type: "collector",
-  collect(file: mixed): Array<mixed>,
+  collect: (file: mixed) => Array<mixed>,
 }
 
 export type PhenomicPlugin =
   PhenomicTransformPlugin |
   PhenomicAPIPlugin |
-  PhenomicCollectorPlugin;
+  PhenomicCollectorPlugin
 
 export type PhenomicPlugins = Array<PhenomicPlugin>
 
@@ -95,6 +100,7 @@ export type PhenomicRoute = {
     =>
     { [key: string]: PhenomicQueryConfig }
   ,
+  collection?: string,
 }
 
 export type PhenomicFetch =

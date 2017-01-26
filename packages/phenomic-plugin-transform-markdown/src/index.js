@@ -3,7 +3,11 @@ import kebabCase from "lodash.kebabcase"
 import frontMatter from "front-matter"
 import marked from "marked"
 
+const debug = require("debug")("phenomic:plugin:transform-markdown")
+
 function transformMarkdownFile(file, contents) {
+  debug(`transforming ${ file }`)
+
   const front = frontMatter(contents)
   const partial = {
     ...front.attributes,

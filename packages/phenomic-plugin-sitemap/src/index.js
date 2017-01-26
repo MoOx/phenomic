@@ -3,6 +3,7 @@
 
 export default function() {
   return {
+    name: "phenomic-plugin-sitemap",
     type: "build",
     getFile() {
       /*
