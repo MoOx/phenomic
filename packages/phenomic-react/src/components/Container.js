@@ -5,6 +5,7 @@ import QueryString from "../shared/QueryString"
 
 const emptyObject = {}
 const defaultGetQueries = () => emptyObject
+const socketServerURL = "http://localhost:1415"
 
 function createContainer(Component, getQueries = defaultGetQueries) {
 
@@ -26,7 +27,7 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       }
       this.unsubscribe = this.context.store.subscribe(() => this.update())
       if (process.env.NODE_ENV !== "production") {
-        require("socket.io-client")("http://localhost:1415")
+        require("socket.io-client")(socketServerURL)
           .on("change", this.forceQuery)
       }
     }
@@ -40,7 +41,7 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       this.unsubscribe()
       this.unsubscribe = null
       if (process.env.NODE_ENV !== "production") {
-        require("socket.io-client")("http://localhost:1415")
+        require("socket.io-client")(socketServerURL)
           .removeListener("change", this.forceQuery)
       }
     }
