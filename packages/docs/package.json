@@ -1,5 +1,6 @@
 {
-  "name": "phenomic-docs",
+  "private": true,
+  "name": "docs",
   "version": "1.0.0",
   "scripts": {
     "start": "babel-node scripts/start",
