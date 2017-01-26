@@ -5,7 +5,7 @@
 ```
 lerna boostrap
 npm run next:build
-cd packages/phenomic-docs
+cd packages/docs
 npm start
 ```
 
