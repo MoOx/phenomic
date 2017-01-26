@@ -5,7 +5,7 @@
  * route configuration.
  */
 import defaultRender from "../render/client"
-import defaultRenderServer from "../render/server"
+import defaultRenderServer, { renderToString as defaultRenderToString } from "../render/server"
 
 const canUseDOM = !!(
   typeof window !== "undefined" &&
@@ -24,7 +24,7 @@ const PhenomicRenderer = {
         }
       },
       renderServer: config.renderServer || defaultRenderServer,
-      renderToString: config.renderToString || defaultRenderServer.renderToString,
+      renderToString: config.renderToString || defaultRenderToString,
     }
   },
 }
