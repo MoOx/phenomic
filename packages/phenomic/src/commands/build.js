@@ -61,7 +61,7 @@ async function build(config) {
   debug("building")
   const phenomicServer = createServer(db, config.plugins)
   const port = await getPort()
-  phenomicServer.listen(port)
+  const runningServer = phenomicServer.listen(port)
   debug("server ready")
 
   // Build webpack
@@ -86,6 +86,9 @@ async function build(config) {
   await config.bundler.build(config)
   console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms")
   lastStamp = Date.now()
+
+  runningServer.close()
+  debug("server closed")
 }
 
 export default (options) => {
