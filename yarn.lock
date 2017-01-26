@@ -2726,9 +2726,9 @@ har-validator@~2.0.6:
     is-my-json-valid "^2.12.4"
     pinkie-promise "^2.0.0"
 
-hard-source-webpack-plugin@^0.3.0:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/hard-source-webpack-plugin/-/hard-source-webpack-plugin-0.3.6.tgz#dec8081f0008fafa3528f158ee666fddba2a13b3"
+hard-source-webpack-plugin@^0.3.8:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/hard-source-webpack-plugin/-/hard-source-webpack-plugin-0.3.8.tgz#2d395abe6a444ff935a3b1706de31463707d9af0"
   dependencies:
     bluebird "^3.0.0"
     level "^1.4.0"
