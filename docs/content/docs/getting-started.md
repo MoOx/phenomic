@@ -301,7 +301,7 @@ require("postcss-cssnext")({
         successColor: 'green',
         errorColor: 'red'
       }
-      // not that instead of an object, you can add here a js files
+      // note that instead of an object, you can add here a js files
       // variables: require("./variables.js")
       // where you do
       // modules.export = { key: "value" }
