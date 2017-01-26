@@ -88,20 +88,10 @@ async function build(config) {
   lastStamp = Date.now()
 }
 
-/**
- *   build()
-     .catch(err => {
-       console.error(err)
-       process.exit(1)
-     })
-     .then(() => {
-       console.log("🚀 Ready to ship!")
-       process.exit(0)
-     })
-
-   process.on("uncaughtException", function (err) {
-     console.log(err)
-   })
- */
-
-export default build
+export default (options) => {
+  build(options)
+  .then(
+    () => {},
+    (error) => console.error(error)
+  )
+}

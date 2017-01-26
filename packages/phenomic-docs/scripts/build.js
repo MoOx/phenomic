@@ -16,7 +16,3 @@ phenomic.build({
     directoryCollector,
   ],
 })
-  .then(
-    () => console.log("done"),
-    (error) => console.error(error)
-  )
