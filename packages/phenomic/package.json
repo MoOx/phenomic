@@ -6,6 +6,7 @@
     "lib"
   ],
   "dependencies": {
+    "debug": "^2.6.0",
     "express": "^4.14.0",
     "fb-watchman": "^1.9.0",
     "get-port": "^2.1.0",

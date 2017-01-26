@@ -4,5 +4,8 @@
   "main": "lib/index.js",
   "files": [
     "lib"
-  ]
+  ],
+  "dependencies": {
+    "debug": "^2.6.0"
+  }
 }

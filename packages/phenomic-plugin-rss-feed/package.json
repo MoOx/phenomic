@@ -6,6 +6,7 @@
     "lib"
   ],
   "depedencies": {
+    "debug": "^2.6.0",
     "rss": "^1.2.1"
   }
 }

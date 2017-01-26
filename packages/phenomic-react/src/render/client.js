@@ -5,7 +5,10 @@ import createURL from "phenomic-api-client/lib/url"
 import Provider from "../components/Provider"
 import createStore from "../shared/store"
 
+const debug = require("debug")("phenomic:plugin:react")
+
 function render(routes) {
+  debug("client renderering")
 
   function createFetchFunction() {
     return config => fetch(createURL({ ...config, root: "/phenomic" })).then(res => res.json())
@@ -23,7 +26,7 @@ function render(routes) {
       fetch={ createFetchFunction() }
       store={ store }
     >
-      {routes}
+      { routes }
     </Provider>,
     document.getElementById("PhenomicRoot")
   )

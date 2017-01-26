@@ -6,6 +6,8 @@ import path from "path"
 import watchman from "fb-watchman"
 import type { Client } from "fb-watchman"
 
+const debug = require("debug")("phenomic:core:watch")
+
 const createErrorHandler = (client: Client) => (error: any) => {
   if (error) {
     client.end()
@@ -13,14 +15,16 @@ const createErrorHandler = (client: Client) => (error: any) => {
   }
 }
 
-function getExtensionsToWatch(plugins): Array<string> {
-  return plugins.reduce((acc, plugin) => {
-    // $FlowFixMe unknown type
+function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
+  const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
     if (Array.isArray(plugin.supportedFileTypes)) {
+      debug(`'${ plugin.name }' want to watch '${ String(plugin.supportedFileTypes) }'`)
       acc.push(...plugin.supportedFileTypes)
     }
     return acc
   }, [])
+  debug("extensions to watch", supportedFileTypes)
+  return supportedFileTypes
 }
 
 type File = {

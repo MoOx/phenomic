@@ -4,6 +4,8 @@ import findCacheDir from "find-cache-dir"
 import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 
+const debug = require("debug")("phenomic:plugin:webpack")
+
 const { UglifyJsPlugin } = optimize
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true })
 const bundleName = "phenomic.node"
@@ -16,11 +18,13 @@ const requireSourceMapSupport = `require('${
 export default function() {
   return {
     getMiddleware(config) {
+      debug("get middleware")
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       const compiler = webpack(webpackConfig)
       return webpackDevMiddleware(compiler)
     },
     buildForPrerendering(config) {
+      debug("build for prerendering")
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       const specialConfig = {
         ...webpackConfig,
@@ -59,6 +63,7 @@ export default function() {
       })
     },
     build(config) {
+      debug("build")
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       return new Promise((resolve, reject) => {
         webpack(webpackConfig).run(function(error /* , stats */) {

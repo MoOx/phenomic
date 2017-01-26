@@ -1,7 +1,10 @@
 import express from "express"
 
+const debug = require("debug")("phenomic:cli:server")
+
 const server = express()
 
-express.use(express.static("./dist"))
+debug("static server started")
 
+express.use(express.static("./dist"))
 server.listen(3000)

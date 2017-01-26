@@ -6,6 +6,7 @@
     "lib"
   ],
   "dependencies": {
+    "debug": "^2.6.0",
     "invariant": "^2.2.2"
   }
 }

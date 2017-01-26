@@ -8,13 +8,17 @@ import processFile from "../injection/processFile"
 import db from "../db"
 import createServer from "../api"
 
+const debug = require("debug")("phenomic:core:commands:start")
+
 function createWebpackServer(config) {
+  debug("creating webpack server")
   const server = express()
   server.use(config.bundler.getMiddleware(config))
   return server
 }
 
 function start(config) {
+  debug("starting phenomic server")
   const phenomicServer = createServer(db, config.plugins)
   const webpackServer = createWebpackServer(config)
   const io = socketIO(1415)
@@ -23,6 +27,7 @@ function start(config) {
     plugins: config.plugins,
   })
   watcher.onChange(async function(files) {
+    debug("watcher changed")
     await db.destroy()
     await Promise.all(files.map(file => processFile(db, file, config.plugins)))
     io.emit("change")

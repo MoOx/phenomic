@@ -1,8 +1,10 @@
+// @flow
+
 function postfix(url) {
   return `${ url }.json`
 }
 
-function url(config) {
+function url(config: Object) {
   const root = config.root || "/"
   if (typeof config === "string") {
     return [ root, config ].join("/")

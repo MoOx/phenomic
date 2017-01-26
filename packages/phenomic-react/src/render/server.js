@@ -12,15 +12,14 @@ import performQuery from "../shared/performQuery"
 import QueryString from "../shared/QueryString"
 import renderHTML from "../server/renderHTML"
 
+const debug = require("debug")("phenomic:plugin:react")
+
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
     match({ routes, location: `/${ location }` }, (error, redirectLocation, renderProps) => {
-      if (error) {
-        reject(error)
-      }
-      else {
-        resolve({ renderProps, redirectLocation })
-      }
+      error
+      ? reject(error)
+      : resolve({ renderProps, redirectLocation })
     })
   })
 }
@@ -38,6 +37,8 @@ function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
 }
 
 async function serverRender(app, fetch, location) {
+  debug("server renderering")
+
   const routes = createRouteFromReactElement(app.routes)
   const store = createStore()
   const { renderProps, redirectLocation } = await getMatch({ routes, location })
