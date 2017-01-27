@@ -75,7 +75,11 @@ export default (config) => {
           : [ new webpack.optimize.OccurenceOrderPlugin() ]
         ),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
+        ...(
+          webpackVersion() === 2
+          ? new webpack.NoEmitOnErrorsPlugin()
+          : new webpack.NoErrorsPlugin()
+        ),
       ],
     }
 

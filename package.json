@@ -136,7 +136,7 @@
   "peerDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
-    "extract-text-webpack-plugin": "^1.0.1 || ^2.0.0-beta.4",
+    "extract-text-webpack-plugin": "^1.0.1 || ^2.0.0-beta.5",
     "history": "^2.0.0",
     "react": "^0.14.0 || ^15.0.0-rc.1",
     "react-dom": "^0.14.0 || ^15.0.0-rc.1",
@@ -144,7 +144,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
     "redux": "^3.0.0",
-    "webpack": "^1.11.0 || ^2.1.0-beta.25"
+    "webpack": "^1.11.0 || ^2.2.0"
   },
   "scripts": {
     "postinstall": "node npm/postinstall.js",
@@ -161,7 +161,7 @@
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
     "test-setup": "cd test-setup && npm test",
     "docs-linting": "eslint --ignore-path .gitignore --fix docs/scripts docs/src",
-    "docs-webpack-2": "npm install webpack@^2.1.0-beta.27 && cd docs && npm install extract-text-webpack-plugin@^2.0.0-beta.4",
+    "docs-webpack-2": "npm install webpack@^2.2.0 && cd docs && npm install extract-text-webpack-plugin@^2.0.0-beta.5",
     "docs-webpack-2-reset": "npm install webpack@^1.11.0 && cd docs && npm install extract-text-webpack-plugin@^1.0.1",
     "pretest-docs": "npm run docs-linting",
     "test-docs": "cd docs && npm test",
