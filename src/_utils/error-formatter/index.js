@@ -7,28 +7,33 @@ import colors from "chalk"
 
 import { cacheDir } from "../../builder/webpack/config.node.js"
 
-const cwd = (
-  path.sep === "\\"
-  ? process.cwd().replace(/\\/g, "\\\\")
-  : process.cwd()
-)
+const normalizeWinPath = (path) => path.replace(/\\/g, "\\\\")
 
-const cleanStaticBuildPathRE = new RegExp(cacheDir + "\/(webpack:\/)?", "g")
-const cwdRE = new RegExp(cwd, "g")
+export const cwd = normalizeWinPath(process.cwd())
+const cache = normalizeWinPath(cacheDir)
+
+const reSep = normalizeWinPath(path.sep)
+const webpackNodeModulesRE = new RegExp("webpack:" + reSep + reSep + "?~", "gm")
+const cleanStaticBuildPathRE = new RegExp(cache + reSep, "gm")
+const cwdRE = new RegExp(cwd + reSep, "g")
 const homeRE = new RegExp(os.homedir(), "g")
-const truncatedStack = "[ truncated stack ]"
+
+const cleanPaths = (string) => string
+  // normalize windows path
+  .replace(/\\+g/, "/")
+  // cleanup
+  .replace(cleanStaticBuildPathRE, "")
+  .replace(webpackNodeModulesRE, "node_modules")
+  .replace(cwdRE, "")
+  .replace(homeRE, "~")
 
 export default (error: Error) => {
   error.message = "\n\n" + colors.red(error.message) + "\n"
 
-  error.stack = error.stack
-    .replace(cleanStaticBuildPathRE, "")
-    .replace(cwdRE, ".")
-    .replace(homeRE, "~")
-    .replace(/^(\s*)at\s.*\([a-z].*/gm, "$1" + truncatedStack)
-
-    // keep only one "truncatedStack" line
-    .split(truncatedStack)[0] + truncatedStack + "\n"
+  // sometimes paths are in message
+  // eg: errors thrown by webpack loaders/plugin
+  error.message = cleanPaths(error.message)
+  error.stack = cleanPaths(error.stack)
 
   return error
 }
