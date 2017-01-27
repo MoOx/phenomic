@@ -5,7 +5,7 @@ import path from "path"
 import test from "jest-ava-api"
 import multili from "multili"
 
-import errorFormatter from "../index.js"
+import errorFormatter, { help } from "../index.js"
 
 const s = path.sep
 
@@ -79,5 +79,25 @@ test("errorFormatter", (t) => {
           at module.exports.Object.assign.i (webpack:${ s }webpack${ s }bootstrap bac9bec32862a3081f90:39:1)
           at Object.<anonymous> (phenomic.node.bundle.js:45:10)
     `)
+    + help
+  )
+
+  error.stack = multili(`
+    TypeError:
+
+    window is not defined
+
+        at blah
+  `)
+  t.is(
+    errorFormatter(error).stack,
+    multili(`
+      TypeError:
+
+      window is not defined
+
+          at blah
+    `)
+    + help
   )
 })
