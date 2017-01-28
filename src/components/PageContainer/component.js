@@ -179,7 +179,11 @@ class PageContainer extends Component<DefaultProps, Props, void> {
     }
 
     const item = find(context.collection, pageUrl)
-    if (typeof window !== "undefined" && item) {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.location !== "undefined" &&
+      item
+    ) {
       adjustCurrentUrl(window.location, item, props)
     }
 
