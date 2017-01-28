@@ -70,7 +70,7 @@ export type PhenomicStaticConfig = PhenomicConfig & {
   store: Object,
 }
 
-export type PhenomicLoaderOptions = {}
+export type PhenomicLoaderOptions = Object
 
 export type PhenomicLoaderPluginInput = {
   frontMatter: GrayMatterResult,

@@ -1,10 +1,12 @@
+[version]
+0.38.0
+
 [ignore]
 .*/node_modules/.*
 .*/docs/node_modules/.*
 .*/test-setup/.*
 .*/lib/.*
 .*/coverage/.*
-.*/.nyc_output/.*
 .*/__tests__/_output/.*
 
 [libs]
@@ -13,5 +15,3 @@
 [options]
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
-
-suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

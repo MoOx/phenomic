@@ -38,21 +38,37 @@ it("should only catch internal links from the same domain", () => {
     </a>
   </span>
   `
-  document.body.appendChild(testElement)
 
-  catchLinks(
-    Array.prototype.slice.call(document.querySelectorAll(".test-catchLinks")),
-    cb
-  )
+  if (!(document.body && document.querySelectorAll && document.querySelector)) {
+    expect(false).toBeTruthy()
+  }
 
-  document.querySelector(".test-catchLinks div").click() // no A
-  document.querySelector(".test-catchLinks p a").click() // no href
-  document.querySelector(".test-catchLinks article a").click() // internal hash
-  document.querySelector(".test-catchLinks div a").click() // external
-  document.querySelector(".test-catchLinks span a").click()
-  document.querySelector(".test-catchLinks span a small").click()
+  if (document.body && document.querySelectorAll && document.querySelector) {
+    document.body.appendChild(testElement)
 
-  expect(cb.mock.calls.length).toBe(2)
+    catchLinks(
+      Array.prototype.slice.call(document.querySelectorAll(".test-catchLinks")),
+      cb
+    )
 
-  document.body.removeChild(testElement)
+    const noA = document.querySelector(".test-catchLinks div")
+    const noHref = document.querySelector(".test-catchLinks p a")
+    const internalHash = document.querySelector(".test-catchLinks article a")
+    const external = document.querySelector(".test-catchLinks div a")
+    const ok = document.querySelector(".test-catchLinks span a")
+    const ok2 = document.querySelector(".test-catchLinks span a small")
+
+    noA && noA.click()
+    noHref && noHref.click()
+    internalHash && internalHash.click()
+    external && external.click()
+    ok && ok.click()
+    ok2 && ok2.click()
+
+    expect(cb.mock.calls.length).toBe(2)
+
+    if (document.body) {
+      document.body.removeChild(testElement)
+    }
+  }
 })

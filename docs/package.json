@@ -9,8 +9,9 @@
   "phenomic": {
     "CNAME": true,
     "offline": true,
-    "cache": true
+    "cache": false
   },
+  "phenomic.cache = false?": "https://github.com/NekR/offline-plugin/issues/148",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "lint:js": "eslint --ignore-path .gitignore --fix .",
