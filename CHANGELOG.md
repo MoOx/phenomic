@@ -1,3 +1,28 @@
+# 0.20.3 - 2017-01-28
+
+- 🐛 Fixed: stack trace are not truncated anymore
+([#819](https://github.com/MoOx/phenomic/pull/819) - @MoOx) 
+- ✨ Added: when an error saying "xxx is not defined" during static build,
+a message is printed to give tell people how to handle this problem as it's
+most of the related to a missing browser API.
+![screen shot 2017-01-28 at 22 33 01](https://cloud.githubusercontent.com/assets/157534/22399997/e533f2e0-e5a9-11e6-8329-254debe6298a.png)
+([#819](https://github.com/MoOx/phenomic/pull/819) - @MoOx) 
+- ✨ Added: webpack 2.2 full compatibility
+([#928](https://github.com/MoOx/phenomic/pull/928) - @MoOx) 
+
+⚠️ Note that 2 dependencies to handle ``cache`` and ``offline`` options have been
+updated.
+If using both and are facing
+[an issue](https://github.com/NekR/offline-plugin/issues/148)
+during the static build, you should probably disable ``cache`` option until a
+fix is provided.
+
+## Base theme
+
+- ✨ Added: Base theme: Add Facebook (Open Graph) and Twitter card image support
+based on the hero image
+([#934](https://github.com/MoOx/phenomic/pull/934) - @VagishVela) 
+
 # 0.20.2 - 2017-01-16
 
 - 🐛 Fixed: some issues related to the cache option by upgrading ``hard-source-webpack-plugin``
