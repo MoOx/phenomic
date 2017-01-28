@@ -102,18 +102,25 @@ export default function(config: Object): void {
         .then(() => clientBundleStats)
       )
     })
-    .then((clientBundleStats) => log("Building static files", () => (
-      dynamicRequire(join(
+    .then((clientBundleStats) => log("Building static files", () => {
+      const staticBuild = dynamicRequire(join(
         config.webpackConfigNode.output.path,
         config.webpackConfigNode.output.filename
-      ))({
+      ))
+      // transpilation shit
+      // https://github.com/webpack/webpack/issues/4039
+      return (
+        (typeof staticBuild.default === "function")
+        ? staticBuild.default
+        : staticBuild
+      )({
         ...config,
         collection: PhenomicLoaderWebpackPlugin.collection,
         assetsFiles: sortAssets(
           clientBundleStats.toJson().assetsByChunkName
         ),
       })
-    )))
+    }))
     .then((files) => postBuild(config, files))
     .then(() => config.server && devServer(config))
     .catch((err) => {
