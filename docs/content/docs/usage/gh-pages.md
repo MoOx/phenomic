@@ -22,11 +22,11 @@ but it should not be very different from other solutions.
 
 ## Why force pushing?
 
-Why do you want to keep track of the builded website when you can just rebuild
+Why do you want to keep track of the built website when you can just rebuild
 it any time?  
-**Keep in mind that the branch can become huge since builded website is mainly
+**Keep in mind that the branch can become huge since built website is mainly
 single line HTML and JSON file (diff is expensive).**  
-By just keeping a single builded version, you avoid your repo to unnecessarily grow in size.
+By just keeping a single built version, you avoid your repo unnecessarily growing in size.
 
 ## Create the script
 
