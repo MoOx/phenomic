@@ -15,16 +15,16 @@ const babelNode = require("../src/_utils/bins.js").babelNode
 const npm = require("../src/_utils/bins.js").npm
 const pkg = require("../package.json")
 
-const spawnOpts = {
-  stdio: "inherit",
-  cwd: join(__dirname, "../"),
-}
-
 const toPrepare = [
   "docs",
   "phenomic-theme-base",
   "test-setup",
 ]
+
+const spawnOpts = {
+  stdio: "inherit",
+  cwd: join(__dirname, "../"),
+}
 
 function prepareOtherNodeModulesFolder() {
   // e2e-tests are only present if you clone the full repo
