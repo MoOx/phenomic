@@ -1,5 +1,3 @@
-// @flow
-
 import remark from "remark"
 import stripMd from "strip-markdown"
 

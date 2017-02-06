@@ -1,5 +1,3 @@
-// @flow
-
 module.exports = {
   // too many opinionated rules
   // "extends": "stylelint-config-standard",

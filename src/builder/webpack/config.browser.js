@@ -1,5 +1,3 @@
-// @flow
-
 import { join } from "path"
 
 import { offlinePlugin, offlineEntry } from "../../_utils/offline/webpack.js"

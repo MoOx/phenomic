@@ -1,5 +1,3 @@
-// @flow
-
 import { testConfig } from ".."
 
 it("should accept valid ports", () => {

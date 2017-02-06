@@ -1,4 +1,3 @@
-// @flow
 import memoize from "lru-memoize"
 
 const defaultConsole = console

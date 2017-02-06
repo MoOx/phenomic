@@ -1,5 +1,3 @@
-// @flow
-
 import colors from "chalk"
 import logSymbols from "log-symbols"
 import ora from "ora"

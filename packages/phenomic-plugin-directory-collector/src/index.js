@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import path from "path"
 
 const debug = require("debug")("phenomic:plugin:directory-collector")

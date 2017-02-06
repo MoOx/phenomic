@@ -1,5 +1,3 @@
-// @flow
-
 import { join, basename } from "path"
 
 import { BannerPlugin, optimize } from "webpack"

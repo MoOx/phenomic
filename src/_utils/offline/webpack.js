@@ -1,5 +1,3 @@
-// @flow
-
 import { resolve } from "path"
 
 import { sync as globSync } from "globby"

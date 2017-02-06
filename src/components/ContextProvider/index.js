@@ -1,5 +1,3 @@
-// @flow
-
 import { Component, PropTypes, Children } from "react"
 
 export default class PhenomicContext extends Component {

@@ -1,5 +1,3 @@
-// @flow
-
 import { RawSource } from "webpack-sources"
 import sm from "sitemap"
 

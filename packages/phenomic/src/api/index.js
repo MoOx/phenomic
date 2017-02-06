@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import express from "express"
 
 const debug = require("debug")("phenomic:core:api")

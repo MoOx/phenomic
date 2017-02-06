@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import findCacheDir from "find-cache-dir"
 import levelUp from "levelup"
 import levelDown from "leveldown"

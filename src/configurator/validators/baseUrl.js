@@ -1,4 +1,3 @@
-// @flow
 import { parse } from "url"
 
 import normalizeBaseUrl from "../../_utils/normalize-base-url/index.js"

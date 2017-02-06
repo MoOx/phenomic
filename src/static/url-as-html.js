@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react"
 import ReactDOMserver from "react-dom/server"
 import { match, RouterContext as RouterContextProvider } from "react-router"

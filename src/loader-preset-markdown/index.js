@@ -1,5 +1,3 @@
-// @flow
-
 import defaultPlugins from "../loader-preset-default"
 import initHeadDescriptionPropertyFromContent
   // eslint-disable-next-line max-len

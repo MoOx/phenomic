@@ -1,4 +1,3 @@
-// @flow
 export default (
   collection: PhenomicCollection
 ): PhenomicCollection => {

@@ -1,5 +1,3 @@
-// @flow
-
 // why
 // export { default as Xxxx } from .. ?
 // because

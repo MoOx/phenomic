@@ -1,5 +1,3 @@
-// @flow
-
 import { parse, format } from "url"
 
 export default (baseUrl: Url) => {

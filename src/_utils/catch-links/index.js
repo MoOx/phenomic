@@ -1,4 +1,3 @@
-// @flow
 import url from "url"
 
 const catchLinks = (cb: Function) => (ev: any): void => {

@@ -1,5 +1,3 @@
-// @flow
-
 import dom from "../../_utils/jsdom"
 import shouldUpdateScroll from "../should-update-scroll.js"
 

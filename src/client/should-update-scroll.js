@@ -1,5 +1,3 @@
-// @flow
-
 type RouterPropsType = {
   location: {
     pathname: string,

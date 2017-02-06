@@ -1,5 +1,3 @@
-// @flow
-
 import { parse } from "url"
 
 import { yellow, gray } from "chalk"

@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 // $FlowFixMe ?
 import createQuery from "phenomic-api-client/lib/query"
 

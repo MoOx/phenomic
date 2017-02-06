@@ -1,4 +1,3 @@
-// @flow
 import pathToUri from "../path-to-uri"
 
 export const fileExtensionRE = /\.html?$/
