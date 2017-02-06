@@ -1,5 +1,3 @@
-// @flow
-
 import initHeadPropertyFromConfig
   from "../loader-plugin-init-head-property-from-config"
 import initHeadPropertyFromContent

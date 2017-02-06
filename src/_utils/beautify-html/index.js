@@ -1,4 +1,3 @@
-// @flow
 import {
   html as beautifyHTML,
   default_options as defaultOptions,

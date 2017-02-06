@@ -1,5 +1,3 @@
-// @flow
-
 import colors from "chalk"
 import makeSpinner from "ora"
 import logSymbols from "log-symbols"

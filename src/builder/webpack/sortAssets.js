@@ -1,5 +1,3 @@
-// @flow
-
 /*
  * Get JSON stats
  * Flatten chunk name

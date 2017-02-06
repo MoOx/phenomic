@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import invariant from "invariant"
 
 const debug = require("debug")("phenomic:api-client")

@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react"
 import { renderToString } from "react-dom/server"
 import Helmet from "react-helmet"

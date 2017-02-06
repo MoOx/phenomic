@@ -1,5 +1,3 @@
-// @flow
-
 import { RawSource } from "webpack-sources"
 
 import enhanceCollection from "../enhance-collection"

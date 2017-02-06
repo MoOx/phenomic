@@ -1,5 +1,3 @@
-// @flow
-
 export type PhenomicDB = {
   destroy: () => Promise<*>,
   put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,

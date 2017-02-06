@@ -1,5 +1,3 @@
-// @flow
-
 import fs from "fs"
 // import { RawSource } from "webpack-sources"
 

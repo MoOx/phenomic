@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import fs from "fs"
 
 const readFile = (path: string): Promise<string> => new Promise((resolve, reject) => {

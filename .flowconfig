@@ -1,6 +1,9 @@
 [version]
 0.38.0
 
+[libs]
+./flow/interfaces/
+
 [ignore]
 .*/node_modules/.*
 .*/docs/node_modules/.*
@@ -8,10 +11,17 @@
 .*/lib/.*
 .*/coverage/.*
 .*/__tests__/_output/.*
-
-[libs]
-./flow/interfaces/
+.*/dist/.*
+.*/docs/.*
+<PROJECT_ROOT>/packages
+<PROJECT_ROOT>/scripts
+<PROJECT_ROOT>/npm
+<PROJECT_ROOT>/e2e-tests
+<PROJECT_ROOT>/themes
+# 1.0 won't use the code in src
+<PROJECT_ROOT>/src
 
 [options]
+all=true
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable

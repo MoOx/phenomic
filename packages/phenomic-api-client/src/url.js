@@ -1,5 +1,3 @@
-// @flow
-
 function postfix(url) {
   return `${ url }.json`
 }

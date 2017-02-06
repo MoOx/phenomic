@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import path from "path"
 
 import watchman from "fb-watchman"

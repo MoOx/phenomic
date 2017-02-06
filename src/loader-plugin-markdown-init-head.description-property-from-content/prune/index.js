@@ -1,5 +1,3 @@
-// @flow
-
 export default (s: string, maxLength: number, end: string = "…"): string => {
   const trimmed = s.substr(0, maxLength)
 

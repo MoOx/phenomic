@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import path from "path"
 
 import flattenConfiguration from "./configuration/flattenConfiguration"

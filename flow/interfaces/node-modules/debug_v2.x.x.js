@@ -1,4 +1,4 @@
-declare module 'debug' {
+declare module "debug" {
   declare type Debugger = {
     (...args: Array<mixed>): void,
     (formatter: string, ...args: Array<mixed>): void,
@@ -24,4 +24,4 @@ declare module 'debug' {
   declare var formatters: {
     [formatter: string]: () => {}
   };
-};
+}

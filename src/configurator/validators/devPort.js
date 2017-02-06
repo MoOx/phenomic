@@ -1,4 +1,3 @@
-// @flow
 export default function(
   { config, errors } : { config: PhenomicOldConfig, errors: Array<string> }
 ): void {

@@ -1,5 +1,3 @@
-// @flow
-
 import dom from "../../../_utils/jsdom"
 import catchLinks from "../index.js"
 

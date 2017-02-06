@@ -1,5 +1,3 @@
-// @flow
-
 /* eslint-disable react/sort-comp */
 import React, { Component, PropTypes } from "react"
 import { findDOMNode } from "react-dom"

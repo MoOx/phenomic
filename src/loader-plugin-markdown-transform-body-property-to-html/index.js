@@ -1,5 +1,3 @@
-// @flow
-
 import remark from "remark"
 import slug from "remark-slug"
 import autoLinkHeadings from "remark-autolink-headings"
