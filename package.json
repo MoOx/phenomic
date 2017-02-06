@@ -31,7 +31,9 @@
     "src",
     "themes",
     "docs/content",
-    "!**/__tests__"
+    "!**/__tests__",
+    "lerna.json",
+    "packages/**/*.js"
   ],
   "bin": {
     "phenomic": "npm/bin.js"
@@ -150,8 +152,10 @@
     "webpack": "^2.3.0"
   },
   "scripts": {
-    "next:build": "lerna --ignore '*-docs' exec -- babel src --optional runtime --out-dir lib --ignore '__tests__'",
-    "postinstall": "node npm/postinstall.js",
+    "repo:bootstrap": "lerna bootstrap",
+    "repo:transpile": "lerna --ignore 'docs' exec -- babel src --optional runtime --out-dir lib --ignore '__tests__'",
+    "repo:init": "npm run repo:bootstrap && npm run repo:transpile",
+    "postinstall": "node npm/postinstall.js && npm run repo:init",
     "transpile": "babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "rimraf lib && npm run transpile",
     "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
