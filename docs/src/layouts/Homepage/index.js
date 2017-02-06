@@ -56,7 +56,7 @@ const Homepage = (props) => (
           { " on)." }
           <br />
           { " Phenomic provides a dynamic UX similar to apps. " }
-          { " Try to navigate in this website to see it by yourself. " }
+          { " Try to navigate this website to see it by yourself. " }
         </p>
         <br />
         <iframe
