@@ -6,7 +6,7 @@ You have multiple solutions available to help you translate your user interface
 and handle multiple locales.
 
 Here we will explain the solution based on
-[react-int](https://github.com/yahoo/react-intl).
+[react-intl](https://github.com/yahoo/react-intl).
 
 First you need to install `react-intl`.
 
