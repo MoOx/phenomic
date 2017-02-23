@@ -1,3 +1,14 @@
+# 0.20.4 - 2017-02-23
+
+- Fixed: better support of ``react-router`` routes that don't have slashes
+  ([#941](https://github.com/MoOx/phenomic/pull/941) - @MoOx) 
+- Added: better support of ``react-router`` routes (``IndexRoute`` and trailing slashes)
+  ([#941](https://github.com/MoOx/phenomic/pull/941) - @MoOx) 
+- Removed: ``declaration-block-no-ignored-properties`` has been removed from
+  our ``stylelint`` preset because this rule is not reliable (and deprecated).
+  **This is not a breaking change.**
+  ([#960](https://github.com/MoOx/phenomic/pull/960) - @MoOx) 
+
 # 0.20.3 - 2017-01-28
 
 - 🐛 Fixed: stack trace are not truncated anymore
