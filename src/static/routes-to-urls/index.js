@@ -2,6 +2,7 @@
 
 import { createRoutes, formatPattern } from "react-router"
 import colors from "chalk"
+import urlJoin from "url-join"
 
 import arrayUnique from "../../_utils/array-unique"
 
@@ -15,7 +16,7 @@ const flattenRoute = (route) => {
     route.childRoutes.forEach((route) => {
       routesUrls = [
         ...routesUrls,
-        ...flattenRoute(route).map((r) => root + r),
+        ...flattenRoute(route).map((r) => urlJoin(root, r)),
       ]
     })
   }
