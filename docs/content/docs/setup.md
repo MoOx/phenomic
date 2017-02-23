@@ -25,8 +25,7 @@ _Tip: you can edit ``your-website-folder`` in the text box below_.
 we use html just to add contenteditable
 
 ```sh
-DIR=your-website-folder
-mkdir $DIR && cd $DIR && mkdir node_modules
+mkdir "your-website-folder" && cd "$_" && mkdir node_modules
 ```
 
 -->
@@ -93,8 +92,7 @@ yarn install && yarn start
 That's an easy step.
 
 ```sh
-DIR=your-website-folder
-mkdir $DIR && cd $DIR
+mkdir "your-website-folder" && cd "$_" 
 ```
 
 ### Get Phenomic
