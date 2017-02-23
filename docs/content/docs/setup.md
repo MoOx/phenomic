@@ -26,13 +26,13 @@ we use html just to add contenteditable
 
 ```sh
 DIR=your-website-folder
-mkdir $DIR && cd $DIR && mkdir node_modules
+mkdir "$DIR" && cd "$DIR" && mkdir node_modules
 ```
 
 -->
 
 <pre contenteditable="true"><code class="hljs language-sh">DIR=your-website-folder
-mkdir <span class="hljs-variable">$DIR</span> &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-variable">$DIR</span> &amp;&amp; mkdir node_modules</code></pre>
+mkdir "<span class="hljs-variable">$DIR</span>" &amp;&amp; <span class="hljs-built_in">cd</span> "<span class="hljs-variable">$DIR</span>" &amp;&amp; mkdir node_modules</code></pre>
 
 Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
@@ -94,7 +94,7 @@ That's an easy step.
 
 ```sh
 DIR=your-website-folder
-mkdir $DIR && cd $DIR
+mkdir "$DIR" && cd "$DIR"
 ```
 
 ### Get Phenomic
