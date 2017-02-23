@@ -52,11 +52,11 @@ const Homepage = (props) => (
         </Link>
         <p style={{ marginTop: "3rem", fontSize: "0.8rem" }}>
           { "* All pages are available as HTML (works with no JavaScript)" }
-          { " but user can get an enhanced navigation (when JavaScript is" }
+          { " but users can get an enhanced navigation (when JavaScript is" }
           { " on)." }
           <br />
           { " Phenomic provides a dynamic UX similar to apps. " }
-          { " Try to navigate in this website to see it by yourself. " }
+          { " Try to navigate this website to see it by yourself. " }
         </p>
         <br />
         <iframe
