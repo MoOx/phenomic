@@ -1,3 +1,6 @@
+/* eslint-disable react/no-multi-comp, react/prop-types */
+// https://github.com/yannickcr/eslint-plugin-react/issues/1088
+
 import test from "jest-ava-api"
 import React, { createElement } from "react"
 import { createRenderer } from "react-addons-test-utils"
