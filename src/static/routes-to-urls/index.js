@@ -9,14 +9,18 @@ import arrayUnique from "../../_utils/array-unique"
 const defaultConsole = console.log
 
 const flattenRoute = (route) => {
-  const root = route.path ? route.path : ""
+  // @todo remove the default route.path, user should use IndexRoute instead?
   let routesUrls = route.path ? [ route.path ] : []
 
+  if (route.indexRoute) {
+    routesUrls.push(route.path)
+  }
   if (route.childRoutes) {
+    const root = route.path
     route.childRoutes.forEach((route) => {
       routesUrls = [
         ...routesUrls,
-        ...flattenRoute(route).map((r) => urlJoin(root, r)),
+        ...flattenRoute(route).map((r) => root ? urlJoin(root, r) : r),
       ]
     })
   }
@@ -153,8 +157,9 @@ export default (
   // for testing
   log: Function = defaultConsole,
 ): Array<string>  => {
-  const flattenedRoutes = createRoutes(routes)
-    .reduce((acc, r) => [ ...acc, ...flattenRoute(r) ], [])
+  const flattenedRoutes = arrayUnique(
+    createRoutes(routes).reduce((acc, r) => [ ...acc, ...flattenRoute(r) ], [])
+  )
 
   if (flattenedRoutes.filter((url) => url.indexOf("*") > -1).length > 1) {
     throw new Error(
@@ -165,5 +170,9 @@ export default (
     )
   }
 
-  return hydrateRoutesUrls(flattenedRoutes, collection, log)
+  const normalizedRoutes = flattenedRoutes.map(
+    (route) => "/" + route.replace(/^\/+/, "").replace(/\/+$/, "")
+  )
+
+  return hydrateRoutesUrls(normalizedRoutes, collection, log)
 }

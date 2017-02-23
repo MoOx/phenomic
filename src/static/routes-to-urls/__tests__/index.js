@@ -1,7 +1,7 @@
 // @ flow
 
 import React from "react"
-import { Route } from "react-router"
+import { Route, IndexRoute } from "react-router"
 
 import routesToUrls from "../index.js"
 
@@ -56,10 +56,13 @@ const collection: PhenomicCollection = [
 
 const routes = (
   <Route component={ Noop }>
-    <Route path="/author/:author" component={ Noop } />
+    <Route path="/author">
+      <IndexRoute component={ Noop } />
+      <Route path=":author" component={ Noop } />
+    </Route>
     <Route path="blog" component={ Noop }>
       <Route path="category/:category" component={ Noop } />
-      <Route path="/tag/:tag" component={ Noop } />
+      <Route path="/tag/:tag/" component={ Noop } />
     </Route>
     <Route path="key/:key" component={ Noop } />
     <Route path="*" component={ Noop } />
@@ -75,6 +78,7 @@ it("generate a list of routes based on tags", () => {
     urls
   ).toEqual(
     [
+      "/author",
       "/author/Jack",
       "/author/James",
       "/author/John",
