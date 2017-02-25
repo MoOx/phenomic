@@ -6,6 +6,9 @@ export default (mdContext, collection, store) => (file) => {
     (item) => item.__filename === file.slice("./".length)
   )
   const dataUrl = mdContext(file)
+  if (null == item){
+    return;
+  }
   if (dataUrl !== item.__dataUrl) {
     item.__dataUrl = dataUrl
     console.log(file, " hot update")
