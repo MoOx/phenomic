@@ -61,8 +61,28 @@ chmod +x ./scripts/deploy.sh
 
 ### Windows
 
-@todo (should not be hard to adapt the shell script above into a bat script,
-please make a PR if you do it).
+You can create a `deploy.cmd` file in your root dir and use this script:
+
+```cmd
+ECHO OFF
+
+FOR /F "tokens=* USEBACKQ" %%F ^
+IN (`node -e "process.stdout.write(require('./package.json').repository)"`) ^
+DO SET GIT_DEPLOY_REPO=%%F
+
+IF NOT EXIST dist (
+  ECHO Build is necessary before deploying
+  EXIT /B 1
+)
+
+CD dist
+IF EXIST .git (RMDIR .git /s /q)
+
+git init && ^
+git add . && ^
+git commit -m "Deploy of GitHub Pages" && ^
+git push --force "%GIT_DEPLOY_REPO%" master
+```
 
 ---
 
