@@ -4,6 +4,8 @@ import getRoutes from "./server/getRoutes"
 
 export default function() {
   return {
+    name: "phenomic-plugin-renderer-react",
+    type: "renderer",
     renderHTML,
     // render,
     getRoutes,

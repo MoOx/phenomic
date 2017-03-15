@@ -4,9 +4,8 @@ import readFile from "../utils/readFile"
 
 const debug = require("debug")("phenomic:core:injection")
 
-const defaultTransformPlugin: PhenomicTransformPlugin = {
+const defaultTransformPlugin: TransformPlugin = {
   name: "phenomic-plugin-default-transform",
-  type: "transform",
   supportedFileTypes: [],
   transform(file, fileContents) {
     return {
@@ -27,11 +26,9 @@ async function processFile(
   debug(`processing ${ file.name }`)
   const fileContents = await readFile(file.fullpath)
   const transformPlugin = plugins.find((plugin) => (
-    // $FlowFixMe unknown type
     Array.isArray(plugin.supportedFileTypes) &&
     plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !== -1
   ))
-  // $FlowFixMe unknown type
   const parsed = await (transformPlugin || defaultTransformPlugin).transform(file, fileContents)
   debug(`${ file.name } processed`)
   // Don't show drafts in production

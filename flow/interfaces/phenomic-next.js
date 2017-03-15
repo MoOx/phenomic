@@ -15,14 +15,8 @@ export type PhenomicDB = {
 export type PhenomicInputConfig = PhenomicInputPreset & {
   path?: string,
   outdir?: string,
-  bundler: () => PhenomicBundler,
-  renderer: () => PhenomicRenderer,
   port?: number,
 }
-
-export type PhenomicBundler = {}
-
-export type PhenomicRenderer = {}
 
 export type PhenomicContentFile = {
   name: string,
@@ -31,37 +25,15 @@ export type PhenomicContentFile = {
   type: string,
 }
 
-export type PhenomicTransformPlugin = {
+export type PhenomicPlugin = {
   name: string,
-  type: "transform",
   supportedFileTypes: Array<string>,
-  transform:
-    (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
-}
-
-export type PhenomicAPIPlugin = {
-  name: string,
-  type: "api",
+  transform: (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
   define: (api: express$Application, db: PhenomicDB) => mixed,
-}
-
-export type PhenomicCollectorPlugin = {
-  name: string,
-  type: "collector",
   collect: (file: mixed) => Array<mixed>,
 }
 
-export type PhenomicPlugin =
-  PhenomicTransformPlugin |
-  PhenomicAPIPlugin |
-  PhenomicCollectorPlugin
-
 export type PhenomicPlugins = Array<PhenomicPlugin>
-
-export type PhenomicPreset = {
-  plugins?: PhenomicPlugins,
-  presets?: PhenomicPresets,
-}
 
 export type PhenomicInputPreset = {
   plugins?: Array<(arg: ?any) => PhenomicPlugin>,
@@ -75,8 +47,6 @@ export type PhenomicExtensions = PhenomicPreset
 export type PhenomicConfig = {
   path: string,
   outdir: string,
-  bundler: PhenomicBundler,
-  renderer: PhenomicRenderer,
   port: number,
   plugins: Array<PhenomicPlugin>,
 }
