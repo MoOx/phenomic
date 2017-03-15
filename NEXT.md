@@ -1,22 +1,34 @@
 1.0.0
 
+# requirements
+
+you need (for now) [watchman](https://facebook.github.io/watchman/).
+
 # setup
 
 ```
-lerna boostrap
-npm run next:build
+npm install
 cd packages/docs
-npm start
+DEBUG=phenomic:* npm start
 ```
 
 (`npm run build` for static build)
+
+`npm install` will init [lerna](https://github.com/lerna/lerna) stuff (since we have a monorepo).
+
+Each time you modify `packages/*/src/**/*.js` you will need to run
+
+```console
+npm run repo:transpile
+```
+
+For now no easy way to watch (passing --watch will block the first babel transpilation step, so only a single package, that's not what you want)
 
 # what's todo
 
 A fucking lot
 
 - Finish & refacto current packages
-  - phenomic-react & phenomic-webpack as plugins
   - allow preset (array of plugins)
 - replace main npm scripts workflow for new implementation (break/disable all the things)
   - add stuff in checklist to not forget if necessary
@@ -34,6 +46,7 @@ From https://github.com/MoOx/phenomic/issues/925#issuecomment-271502547
 
 Note that stuff can be missing
 
+- [ ] provide alternative to wathman [like jest](https://github.com/facebook/jest/blob/10e492754fd9f2f0280c625f15800fb8f3347558/packages/jest-haste-map/src/index.js#L536)
 - [ ] setup is simple
 - [ ] you can specify your own base theme during the setup
 - [ ] markdown files can specify their own layouts

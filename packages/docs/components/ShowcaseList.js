@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native-web"
-import { createContainer, query } from "phenomic-react/lib/client"
+import { createContainer, query } from "phenomic-plugin-renderer-react/lib/client"
 
 const ShowcaseList = (props: Object) => (
   <View>

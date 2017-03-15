@@ -17,6 +17,8 @@ const requireSourceMapSupport = `require('${
 
 export default function() {
   return {
+    name: "phenomic-plugin-bundler-webpack",
+    type: "bundler",
     getMiddleware(config) {
       debug("get middleware")
       const webpackConfig = require(path.join(config.path, "webpack.config.js"))

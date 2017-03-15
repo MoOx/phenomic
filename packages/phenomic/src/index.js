@@ -28,8 +28,6 @@ function normalizeConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   return {
     path: config.path || process.cwd(),
     outdir: config.outdir || path.join(process.cwd(), "dist"),
-    bundler: config.bundler(),
-    renderer: config.renderer(),
     plugins: flattenConfiguration(config).map(normalizePlugin),
     port: config.port || 1414,
   }

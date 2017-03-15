@@ -63,9 +63,11 @@ async function build(config) {
   const port = await getPort()
   const runningServer = phenomicServer.listen(port)
   debug("server ready")
+  const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
+  const bundler = bundlers[0]
 
   // Build webpack
-  const app = await config.bundler.buildForPrerendering(config)
+  const app = await bundler.buildForPrerendering(config)
   console.log("📦 Webpack server side done "  + (Date.now() - lastStamp) + "ms")
 
   lastStamp = Date.now()
@@ -75,7 +77,9 @@ async function build(config) {
   console.log("📝 Got your content " + (Date.now() - lastStamp) + "ms")
   lastStamp = Date.now()
   const fetch = createFetchFunction(port)
-  const urls = await resolveURLsToPrerender(config.renderer.getRoutes(app), fetch)
+  const renderers = config.plugins.filter((p) => p.getRoutes)
+  const renderer = renderers[0]
+  const urls = await resolveURLsToPrerender(renderer.getRoutes(app), fetch)
   debug("urls have been resolved")
   debug(urls)
   await Promise.all(urls.map(url => prerenderFileAndDependencies(config, app, fetch, url)))
@@ -83,7 +87,7 @@ async function build(config) {
   console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms")
   lastStamp = Date.now()
 
-  await config.bundler.build(config)
+  await bundler.build(config)
   console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms")
   lastStamp = Date.now()
 

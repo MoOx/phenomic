@@ -10,17 +10,21 @@ import createServer from "../api"
 
 const debug = require("debug")("phenomic:core:commands:start")
 
-function createWebpackServer(config) {
+function createBundlerServer(config) {
   debug("creating webpack server")
   const server = express()
-  server.use(config.bundler.getMiddleware(config))
+  const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
+  const bundler = bundlers[0]
+  bundler.getMiddleware && server.use(bundler.getMiddleware(config))
   return server
 }
 
 function start(config) {
   debug("starting phenomic server")
   const phenomicServer = createServer(db, config.plugins)
-  const webpackServer = createWebpackServer(config)
+  const bundlerServer = createBundlerServer(config)
+  const renderers = config.plugins.filter((p) => p.getRoutes)
+  const renderer = renderers[0]
   const io = socketIO(1415)
   const watcher = createWatcher({
     path: path.join(config.path, "content"),
@@ -32,13 +36,13 @@ function start(config) {
     await Promise.all(files.map(file => processFile(db, file, config.plugins)))
     io.emit("change")
   })
-  webpackServer.use("/phenomic", phenomicServer)
-  webpackServer.use("/assets", express.static(path.join(process.cwd(), "examples/content")))
-  webpackServer.get("*", function(req, res) {
+  bundlerServer.use("/phenomic", phenomicServer)
+  bundlerServer.use("/assets", express.static(path.join(process.cwd(), "examples/content")))
+  bundlerServer.get("*", function(req, res) {
     res.type(".html")
-    res.end(config.renderer.renderHTML())
+    res.end(renderer.renderHTML())
   })
-  webpackServer.listen(config.port)
+  bundlerServer.listen(config.port)
   console.log(`✨ Open http://localhost:${ config.port }`)
 }
 

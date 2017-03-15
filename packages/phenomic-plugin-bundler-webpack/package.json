@@ -1,5 +1,5 @@
 {
-  "name": "phenomic-webpack",
+  "name": "phenomic-plugin-bundler-webpack",
   "main": "lib/index.js",
   "version": "1.0.0",
   "files": [

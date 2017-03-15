@@ -1,5 +1,5 @@
 {
-  "name": "phenomic-react",
+  "name": "phenomic-plugin-renderer-react",
   "version": "1.0.0",
   "main": "lib/index.js",
   "files": [

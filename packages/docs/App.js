@@ -1,6 +1,6 @@
 import React from "react"
 import { Router, Route, browserHistory } from "react-router"
-import { Renderer } from "phenomic-react/lib/client"
+import { Renderer } from "phenomic-plugin-renderer-react/lib/client"
 
 import Header from "./components/Header"
 import Home from "./components/Home"
