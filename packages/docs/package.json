@@ -1,18 +1,18 @@
 {
   "private": true,
   "name": "docs",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "scripts": {
     "start": "babel-node scripts/start",
     "build": "babel-node scripts/build"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
-    "phenomic": "1.0.0",
-    "phenomic-plugin-transform-markdown": "1.0.0",
-    "phenomic-plugin-directory-collector": "1.0.0",
-    "phenomic-plugin-renderer-react": "1.0.0",
-    "phenomic-plugin-bundler-webpack": "1.0.0",
+    "phenomic": "^1.0.0-alpha.0",
+    "phenomic-plugin-transform-markdown": "^1.0.0-alpha.0",
+    "phenomic-plugin-directory-collector": "^1.0.0-alpha.0",
+    "phenomic-plugin-renderer-react": "^1.0.0-alpha.0",
+    "phenomic-plugin-bundler-webpack": "^1.0.0-alpha.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^3.2.3",
