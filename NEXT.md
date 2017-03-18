@@ -24,6 +24,14 @@ npm run repo:transpile
 
 For now no easy way to watch (passing --watch will block the first babel transpilation step, so only a single package, that's not what you want)
 
+# use it locally
+
+```console
+npm run repo:link
+```
+
+This will run `npm link` for all packages so they are available locally :)
+
 # what's todo
 
 A fucking lot

@@ -154,6 +154,7 @@
   "scripts": {
     "repo:bootstrap": "lerna bootstrap",
     "repo:transpile": "lerna --ignore \"docs\" exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "repo:link": "lerna --ignore \"docs\" exec -- npm link",
     "repo:init": "npm run repo:bootstrap && npm run repo:transpile",
     "postinstall": "npm run transpile && node npm/postinstall.js && npm run repo:init",
     "transpile": "rimraf lib && babel --ignore __tests__ --copy-files src --out-dir lib",
