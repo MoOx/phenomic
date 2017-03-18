@@ -6,7 +6,11 @@
     "lib"
   ],
   "depedencies": {
-    "phenomic-plugin-transform-markdown": "1.0.0",
-    "phenomic-plugin-transform-json": "1.0.0"
+    "phenomic-plugin-api-related-content": "^1.0.0-alpha.0",
+    "phenomic-plugin-bundler-webpack": "^1.0.0-alpha.0",
+    "phenomic-plugin-directory-collector": "^1.0.0-alpha.0",
+    "phenomic-plugin-renderer-react": "^1.0.0-alpha.0",
+    "phenomic-plugin-transform-json": "^1.0.0-alpha.0",
+    "phenomic-plugin-transform-markdown": "^1.0.0-alpha.0"
   }
 }
