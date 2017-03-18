@@ -1,5 +1,7 @@
 import express from "express"
 
+import pkg from "../../package.json"
+
 const debug = require("debug")("phenomic:core:api")
 
 const encode = text => new Buffer(text).toString("base64")
@@ -24,7 +26,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
       debug("get api version")
       res.json({
         engine: "phenomic",
-        version: "1.0.0",
+        version: pkg.version,
       })
     })
 
