@@ -1,3 +1,3 @@
-#!/usr/bin/env node
+#!/usr/bin/env babel-node
 
 require("./lib/bin.js")
