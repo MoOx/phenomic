@@ -36,7 +36,6 @@ function transformMarkdownFile(file, contents) {
 export default function() {
   return {
     name: "phenomic-plugin-transform-markdown",
-    type: "transform",
     supportedFileTypes: [ "md", "markdown" ],
     transform: transformMarkdownFile,
   }

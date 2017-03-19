@@ -15,7 +15,10 @@ function createBundlerServer(config) {
   const server = express()
   const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
   const bundler = bundlers[0]
-  bundler.getMiddleware && server.use(bundler.getMiddleware(config))
+  if (!bundler || !bundler.getMiddleware) {
+    throw new Error("At least a bundler plugin should be used")
+  }
+  server.use(bundler.getMiddleware(config))
   return server
 }
 
@@ -25,15 +28,24 @@ function start(config) {
   const bundlerServer = createBundlerServer(config)
   const renderers = config.plugins.filter((p) => p.getRoutes)
   const renderer = renderers[0]
+  const transformers = config.plugins.filter(item => typeof item.transform === "function")
+  if (!transformers.length) {
+    throw Error("Phenomic expects at least a transform plugin")
+  }
+  const collectors = config.plugins.filter(item => typeof item.collect === "function")
+  if (!collectors.length) {
+    throw Error("Phenomic expects at least a collector plugin")
+  }
   const io = socketIO(1415)
   const watcher = createWatcher({
     path: path.join(config.path, "content"),
     plugins: config.plugins,
   })
+
   watcher.onChange(async function(files) {
     debug("watcher changed")
     await db.destroy()
-    await Promise.all(files.map(file => processFile(db, file, config.plugins)))
+    await Promise.all(files.map(file => processFile(db, file, transformers, collectors)))
     io.emit("change")
   })
   bundlerServer.use("/phenomic", phenomicServer)

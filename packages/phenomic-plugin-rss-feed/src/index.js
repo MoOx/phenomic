@@ -9,7 +9,6 @@ export default function() {
 
   return {
     name: "phenomic-plugin-rss-feed",
-    type: "api",
     async build(fetch, writeFile) {
       const feed = fetch("/feed.xml")
       return writeFile("feed.xml", feed)

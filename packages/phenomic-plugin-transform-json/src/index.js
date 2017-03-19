@@ -24,6 +24,7 @@ function transformJSONFile(file, contents) {
 
 export default function() {
   return {
+    name: "phenomic-plugin-transform-json",
     supportedFileTypes: [ "json" ],
     transform: transformJSONFile,
   }

@@ -21,6 +21,14 @@ require("rimraf").sync("dist")
 
 async function getContent(db, config) {
   debug("getting content")
+  const transformers = config.plugins.filter(item => typeof item.transform === "function")
+  if (!transformers.length) {
+    throw Error("Phenomic expects at least a transform plugin")
+  }
+  const collectors = config.plugins.filter(item => typeof item.collect === "function")
+  if (!collectors.length) {
+    throw Error("Phenomic expects at least a collector plugin")
+  }
   return new Promise((resolve, reject) => {
     debug("watcher created")
     const watcher = createWatcher({
@@ -32,7 +40,7 @@ async function getContent(db, config) {
       watcher.close()
       await db.destroy()
       try {
-        await Promise.all(files.map(file => processFile(db, file, config.plugins, true)))
+        await Promise.all(files.map(file => processFile(db, file, transformers, collectors, true)))
         resolve()
       }
       catch (error) {

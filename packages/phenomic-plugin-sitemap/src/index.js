@@ -4,7 +4,6 @@
 export default function() {
   return {
     name: "phenomic-plugin-sitemap",
-    type: "build",
     getFile() {
       /*
       sm.createSitemap({
