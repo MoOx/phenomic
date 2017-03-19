@@ -2,10 +2,16 @@
   "name": "phenomic-cli",
   "version": "1.0.0-alpha.0",
   "main": "lib/index.js",
+  "bin": {
+    "phenomic": "lib/bin.js"
+  },
   "files": [
     "lib"
   ],
   "dependencies": {
-    "debug": "^2.6.0"
+    "babel-cli": "^6.24.0",
+    "debug": "^2.6.0",
+    "phenomic": "^1.0.0-alpha.0",
+    "yargs": "^7.0.2"
   }
 }

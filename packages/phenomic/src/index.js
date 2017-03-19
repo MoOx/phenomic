@@ -1,8 +1,20 @@
 import path from "path"
 
-import flattenConfiguration from "./configuration/flattenConfiguration"
-import start from "./commands/start"
-import build from "./commands/build"
+import cosmiconfig from "cosmiconfig"
+
+import pkg from "../package.json"
+
+import flattenConfiguration from "./configuration/flattenConfiguration.js"
+import start from "./commands/start.js"
+import build from "./commands/build.js"
+
+const debug = require("debug")("phenomic:core")
+
+const defaultConfig = {
+  path: process.cwd(),
+  outdir: path.join(process.cwd(), "dist"),
+  port: 3333,
+}
 
 const normalizePlugin = (plugin) => {
   if (!plugin) {
@@ -10,6 +22,8 @@ const normalizePlugin = (plugin) => {
       "phenomic: You provided an undefined plugin"
     )
   }
+
+  debug("plugin", plugin.name, typeof plugin)
 
   if (typeof plugin !== "function") {
     throw new Error(
@@ -20,24 +34,48 @@ const normalizePlugin = (plugin) => {
     )
   }
 
-  // @todo send config here
-  return plugin()
+  // @todo send config here ?
+  const pluginInstance = plugin()
+
+  if (Array.isArray(pluginInstance)) {
+    throw new Error("Array of plugins should be specified in 'presets' section of your configuration")
+  }
+
+  return pluginInstance
 }
 
-function normalizeConfiguration(config: PhenomicInputConfig): PhenomicConfig {
-  return {
-    path: config.path || process.cwd(),
-    outdir: config.outdir || path.join(process.cwd(), "dist"),
-    plugins: flattenConfiguration(config).map(normalizePlugin),
-    port: config.port || 1414,
-  }
+function normalizeConfiguration(config: PhenomicInputConfig = {}): PhenomicConfig {
+  const configExplorer = cosmiconfig(pkg.name, { cache: false })
+  return configExplorer.load(process.cwd())
+    .then((result) => {
+      if (result === null) {
+        throw new Error(
+          "No configuration file found. Please add a 'phenomic' section in package.json or " +
+          "create a file named .phenomicrc(.json|.yaml)? or phenomic.config.js." +
+          "\nSee https://phenomic.io/docs/usage/configuration/"
+        )
+      }
+      const normalizedConfig = {
+        ...defaultConfig,
+        ...result.config,
+        ...config,
+      }
+      normalizedConfig.plugins = flattenConfiguration(normalizedConfig).map(normalizePlugin)
+      delete normalizedConfig.presets
+      return normalizedConfig
+    })
+    .catch((parsingError) => {
+      setTimeout(() => {
+        throw parsingError
+      }, 1)
+    })
 }
 
 export default {
-  start(config: PhenomicInputConfig) {
-    return start(normalizeConfiguration(config))
+  start(config: PhenomicInputConfig = {}) {
+    normalizeConfiguration(config).then(start)
   },
-  build(config: PhenomicInputConfig) {
-    return build(normalizeConfiguration(config))
+  build(config: PhenomicInputConfig = {}) {
+    normalizeConfiguration(config).then(build)
   },
 }

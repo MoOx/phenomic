@@ -73,8 +73,6 @@ Note that stuff can be missing
 - [ ] webpack 1 and 2 are supported (but I guess webpack 2 can be the only one - [ ] not a lot of changes anyway)
 - [ ] works on windows (it’s a feature yeah)
 - [ ] src/bin/check-engine check that you use the correct node/npm/yarn version before executing phenomic job (to avoid issue on github etc)
-- [ ] $ phenomic start
-- [ ] $ phenomic build
 - [ ] $ phenomic setup: ask questions to create your config and copy the base theme
 - [ ] some const PHENOMIC_* are injected during the build (src/builder/config.common.js)
 - [ ] sourcemap works out of the box during development, even for static build that use webpack build for node build (🙃)

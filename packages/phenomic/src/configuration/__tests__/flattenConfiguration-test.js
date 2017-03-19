@@ -12,28 +12,29 @@ describe("flattenConfiguration", () => {
 
     expect(
       flattenConfiguration({
-        plugins: [ "a", "b" ],
         presets: [
           {
-            plugins: [ "c" ],
+            plugins: [ "a" ],
           },
         ],
+        plugins: [ "b", "c" ],
       })
     ).toMatchSnapshot()
 
     expect(
       flattenConfiguration({
-        plugins: [ "a", "b" ],
         presets: [
           {
-            plugins: [ "c" ],
             presets: [
               {
-                plugins: [ "d" ],
+                plugins: [ "a" ],
               },
             ],
+            plugins: [ "b" ],
           },
         ],
+        plugins: [ "c", "d" ],
+
       })
     ).toMatchSnapshot()
 
