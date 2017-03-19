@@ -5,7 +5,6 @@ const debug = require("debug")("phenomic:plugin:api-related-content")
 export default function() {
   return {
     name: "phenomic-plugin-api-related-content",
-    type: "api",
     define(api) {
       api.get("/related/:collection/limit-:limit/*.json", async function(req, res) {
         debug(req.url, JSON.stringify(req.params))

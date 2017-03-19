@@ -110,7 +110,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
 
   // Install the plugins
   plugins.forEach(plugin => {
-    if (plugin.type === "api") {
+    if (typeof plugin.define === "function") {
       debug(`installing plugin '${ plugin.name }'`)
       plugin.define(server, db)
     }

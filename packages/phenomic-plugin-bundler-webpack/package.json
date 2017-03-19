@@ -10,10 +10,12 @@
     "source-map-support": "^0.4.0"
   },
   "peerDependencies": {
+    "phenomic": "^1.0.0-alpha.0",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.8.4"
   },
   "devDependencies": {
+    "phenomic": "^1.0.0-alpha.0",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.8.4"
   }

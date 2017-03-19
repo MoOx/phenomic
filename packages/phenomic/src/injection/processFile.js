@@ -20,12 +20,13 @@ const defaultTransformPlugin: TransformPlugin = {
 async function processFile(
   db: PhenomicDB,
   file: PhenomicContentFile,
-  plugins: PhenomicPlugins,
+  transformers: PhenomicPlugins,
+  collectors: PhenomicPlugins,
   isProduction: boolean
 ) {
   debug(`processing ${ file.name }`)
   const fileContents = await readFile(file.fullpath)
-  const transformPlugin = plugins.find((plugin) => (
+  const transformPlugin = transformers.find((plugin) => (
     Array.isArray(plugin.supportedFileTypes) &&
     plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !== -1
   ))
@@ -36,13 +37,8 @@ async function processFile(
     debug(`${ file.name } skipped because it's a draft`)
     return
   }
-  const collector = plugins.find(item => item.type === "collector")
 
-  if (!collector || typeof collector.collect !== "function") {
-    throw Error("Phenomic expects at least a collector plugin")
-  }
-
-  return await collector.collect(db, file.name, parsed)
+  return await collectors.forEach((collector) => collector.collect(db, file.name, parsed))
 }
 
 export default processFile
