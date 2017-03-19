@@ -1,6 +1,9 @@
 import path from "path"
+// import url from "url"
 
+// import pkg from "phenomic/package.json"
 import findCacheDir from "find-cache-dir"
+// import webpack, { BannerPlugin, optimize, DefinePlugin } from "webpack"
 import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 
@@ -15,10 +18,35 @@ const requireSourceMapSupport = `require('${
   .replace(/\\/g, "/")
 }');`
 
+// const wrap = JSON.stringify
+
+const getWebpackConfig = (config) => {
+  const userWebpackConfig = require(path.join(config.path, "webpack.config.js"))
+  return {
+    ...userWebpackConfig,
+    // plugins: [
+    //   ...(userWebpackConfig.plugins || []),
+    //   new DefinePlugin({ "process.env": {
+    //     NODE_ENV: wrap(
+    //       config.production
+    //       ? "production"
+    //       : process.env.NODE_ENV
+    //     ),
+    //
+    //     PHENOMIC_USER_PATHNAME: wrap(process.env.PHENOMIC_USER_PATHNAME),
+    //     PHENOMIC_USER_URL: wrap(url.format(config.baseUrl)),
+    //     PHENOMIC_NAME: wrap(pkg.name[0].toUpperCase() + pkg.name.slice(1)),
+    //     PHENOMIC_VERSION: wrap(pkg.version),
+    //     PHENOMIC_HOMEPAGE: wrap(pkg.homepage),
+    //     PHENOMIC_REPOSITORY: wrap(pkg.repository),
+    //   } }),
+    // ],
+  }
+}
+
 export default function() {
   return {
     name: "phenomic-plugin-bundler-webpack",
-    type: "bundler",
     getMiddleware(config) {
       debug("get middleware")
       const compiler = webpack(getWebpackConfig(config))
@@ -31,7 +59,7 @@ export default function() {
     },
     buildForPrerendering(config) {
       debug("build for prerendering")
-      const webpackConfig = require(path.join(config.path, "webpack.config.js"))
+      const webpackConfig = getWebpackConfig(config)
       const specialConfig = {
         ...webpackConfig,
         target: "node",
@@ -70,9 +98,8 @@ export default function() {
     },
     build(config) {
       debug("build")
-      const webpackConfig = require(path.join(config.path, "webpack.config.js"))
       return new Promise((resolve, reject) => {
-        webpack(webpackConfig).run(function(error /* , stats */) {
+        webpack(getWebpackConfig(config)).run(function(error /* , stats */) {
           error
           ? reject(error)
           : resolve()
