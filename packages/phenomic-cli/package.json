@@ -1,11 +1,11 @@
 {
   "name": "phenomic-cli",
   "version": "1.0.0-alpha.0",
-  "main": "lib/index.js",
   "bin": {
-    "phenomic": "lib/bin.js"
+    "phenomic": "index.js"
   },
   "files": [
+    "index.js",
     "lib"
   ],
   "dependencies": {
