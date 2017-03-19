@@ -44,6 +44,12 @@ const normalizePlugin = (plugin) => {
   return pluginInstance
 }
 
+const shittyCatch = (error) => {
+  setTimeout(() => {
+    throw error
+  }, 1)
+}
+
 function normalizeConfiguration(config: PhenomicInputConfig = {}): PhenomicConfig {
   const configExplorer = cosmiconfig(pkg.name, { cache: false })
   return configExplorer.load(process.cwd())
@@ -64,18 +70,14 @@ function normalizeConfiguration(config: PhenomicInputConfig = {}): PhenomicConfi
       delete normalizedConfig.presets
       return normalizedConfig
     })
-    .catch((parsingError) => {
-      setTimeout(() => {
-        throw parsingError
-      }, 1)
-    })
+    .catch(shittyCatch)
 }
 
 export default {
   start(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(start)
+    normalizeConfiguration(config).then(start).catch(shittyCatch)
   },
   build(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(build)
+    normalizeConfiguration(config).then(build).catch(shittyCatch)
   },
 }
