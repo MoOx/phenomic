@@ -6,12 +6,14 @@ import transformJson from "phenomic-plugin-transform-json"
 import apiRelatedContent from "phenomic-plugin-api-related-content"
 
 export default function() {
-  return [
-    bundlerWebpack,
-    rendererReact,
-    transformMarkdown,
-    transformJson,
-    directoryCollector,
-    apiRelatedContent,
-  ]
+  return {
+    plugins: [
+      bundlerWebpack,
+      rendererReact,
+      transformMarkdown,
+      transformJson,
+      directoryCollector,
+      apiRelatedContent,
+    ],
+  }
 }
