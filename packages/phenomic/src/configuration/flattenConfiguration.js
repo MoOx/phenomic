@@ -1,7 +1,5 @@
 import path from "path"
 
-const debug = require("debug")("phenomic:core:configuration")
-
 const normalizeModule = (module) => {
   if (typeof module === "string") {
     module = require(path.resolve(path.join("node_modules", module)))
@@ -25,7 +23,6 @@ function flattenConfiguration(config: PhenomicInputPreset = {}): Array<(arg: ?an
       }, []),
     ...(config.plugins || []).map(normalizeModule),
   ]
-  debug("flattenConfiguration", plugins.map((plugin) => plugin.name))
   return plugins
 }
 
