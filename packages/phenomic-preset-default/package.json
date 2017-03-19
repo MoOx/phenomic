@@ -5,7 +5,7 @@
   "files": [
     "lib"
   ],
-  "depedencies": {
+  "dependencies": {
     "phenomic-plugin-api-related-content": "^1.0.0-alpha.0",
     "phenomic-plugin-bundler-webpack": "^1.0.0-alpha.0",
     "phenomic-plugin-directory-collector": "^1.0.0-alpha.0",

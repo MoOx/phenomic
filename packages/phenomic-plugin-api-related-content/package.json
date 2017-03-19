@@ -5,7 +5,7 @@
   "files": [
     "lib"
   ],
-  "depedencies": {
+  "dependencies": {
     "debug": "^2.6.0",
     "lodash.flatten": "^4.4.0"
   }
