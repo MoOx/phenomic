@@ -163,7 +163,7 @@
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "cross-env TESTING=1 jest --runInBand --coverage src",
+    "tests": "cross-env TESTING=1 jest --runInBand --coverage src packages",
     "e2e:tests": "jest --runInBand --forceExit e2e-tests",
     "phenomic-theme-base-linting": "eslint --config package.json --ignore-path .gitignore --fix themes/phenomic-theme-base/scripts themes/phenomic-theme-base/src",
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
