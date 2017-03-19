@@ -21,9 +21,13 @@ export default function() {
     type: "bundler",
     getMiddleware(config) {
       debug("get middleware")
-      const webpackConfig = require(path.join(config.path, "webpack.config.js"))
-      const compiler = webpack(webpackConfig)
-      return webpackDevMiddleware(compiler)
+      const compiler = webpack(getWebpackConfig(config))
+      return webpackDevMiddleware(compiler, {
+        stats: { chunkModules: false, assets: false },
+        // @todo add this and output ourself a nice message for build status
+        // noInfo: true,
+        // quiet: true,
+      })
     },
     buildForPrerendering(config) {
       debug("build for prerendering")
