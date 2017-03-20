@@ -9,7 +9,7 @@
     "lib"
   ],
   "dependencies": {
-    "babel-cli": "^6.24.0",
+    "babel-register": "^6.24.0",
     "debug": "^2.6.0",
     "phenomic": "^1.0.0-alpha.0",
     "yargs": "^7.0.2"
