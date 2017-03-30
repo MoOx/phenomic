@@ -119,7 +119,7 @@ It's the latest version of JavaScript. Here are some links:
 
 ## Back to the layout. How can I change my page layout?
 
-Easy. There 2 parts you can adjust that are referenced in the app routes:
+Easy. There are 2 parts you can adjust that are referenced in the app routes:
 
 ### ``src/AppContainer.js``
 
@@ -129,7 +129,7 @@ It contains the header, the content and the footer of your website/app.
 ### ``src/layouts/*``
 
 Here is the place where you should find and add all page layouts.
-The page we just created use the default page layout, which is (by default)
+The page we just created uses the default page layout, which is (by default)
 ``Page`` so we will need to adjust ``src/layouts/Page``.
 
 **Layouts are just React components**, so you should be able to do anything
