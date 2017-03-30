@@ -136,7 +136,7 @@ phenomicClient({ /* ... */ })
 
 [See aphrodite server documentation](https://github.com/Khan/aphrodite#server-side-rendering)
 
-##### styled-components
+##### styled-components v1.x
 
 styled-components doesn't work out-of-the-box with Phenomic (_yet_) but a manual workaround is available. Start by creating ``src/components/ServerSideStyles.js``:
 
@@ -187,6 +187,14 @@ const AppContainer = (props) => (
 The changes above import our ``<ServerSideStyles />`` component and add it as the _last_ component inside ``Container``. You're all set.
 
 _NOTE: ``<ServerSideStyles />`` **must** be the last component in your component heirarchy so that it captures all the styles in the component tree._
+
+**Webpack v2 Users**: styled-components v1 requires additional configuration when used with webpack 2. In your webpack config file, add the following snippet:
+
+```
+resolve: {
+  alias: { "styled-components": "styled-components/lib" }
+}
+```
 
 #### A note on pure inline styles
 
