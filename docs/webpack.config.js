@@ -60,8 +60,8 @@ export default (config = {}) => {
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: [
+            fallback: "style-loader",
+            use: [
               {
                 loader: "css-loader",
                 query: {
@@ -87,8 +87,8 @@ export default (config = {}) => {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, "src"),
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: [
+            fallback: "style-loader",
+            use: [
               "css-loader",
               {
                 loader: "postcss-loader",
