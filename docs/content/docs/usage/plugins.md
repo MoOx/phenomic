@@ -152,58 +152,43 @@ import { phenomicLoader } from "phenomic"
 
   // ...
 
-  // webpack 1
-  // the problem with this approach is that it limit one instance of phenomicLoader
-  // This won't work with webpack 2 since configuration is validated
-  // webpack 2 accepts this arguments under `query` loader parameter
-  phenomic: {
-    plugins: [
-      // here are the unopininated default plugins
-      ...require("phenomic/lib/loader-preset-default").default,
-
-      // Instead of specifing via the preset, you can cherry pick some,
-      // require("phenomic/lib/loader-plugin-init-head-property-from-config").default,
-      // require("phenomic/lib/loader-plugin-init-head-property-from-content").default,
-      // require("phenomic/lib/loader-plugin-init-body-property-from-content").default,
-
-      // ...require("phenomic/lib/loader-preset-markdown").default
-      // The commented preset above is part of the default renderer.
-      // You can also cherry pick on plugin or the other
-      // require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default,
-      // require("phenomic/lib/loader-plugin-transform-md-body-property-to-html").default,
-
-      // here is an example of another transformation
-      ({ result }) => {
-        return {
-          ...result,
-          body: doYourThing(result.body),
-
-          // doYourThing() can be any transformation you want.
-          // Per previous plugins, ``body`` will contain the raw input
-          // passed to the loader, with the front-matter removed.
-          // Feel free to take a look at the plugins source before,
-          // it's very short !
-          // https://github.com/MoOx/phenomic/blob/master/src/
-        }
-      }
-    ],
-  }
-
   module: {
-    // webpack 1
-    loaders: [
-    // webpack 2
-    /*
     rules: [
-    */
       {
         test: /\.(md|markdown)$/,
         loader: phenomicLoader,
         query: {
           context: path.join(config.cwd, config.source),
+          plugins: [
+            // here are the unopininated default plugins
+            ...require("phenomic/lib/loader-preset-default").default,
 
-          // only webpack 2 can accept all phenomicLoader option here
-          // since webpack 1 does not allow anything that can't be serialized to json
+            // Instead of specifing via the preset, you can cherry pick some,
+            // require("phenomic/lib/loader-plugin-init-head-property-from-config").default,
+            // require("phenomic/lib/loader-plugin-init-head-property-from-content").default,
+            // require("phenomic/lib/loader-plugin-init-body-property-from-content").default,
+
+            // ...require("phenomic/lib/loader-preset-markdown").default
+            // The commented preset above is part of the default renderer.
+            // You can also cherry pick on plugin or the other
+            // require("phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content").default,
+            // require("phenomic/lib/loader-plugin-transform-md-body-property-to-html").default,
+
+            // here is an example of another transformation
+            ({ result }) => {
+              return {
+                ...result,
+                body: doYourThing(result.body),
+
+                // doYourThing() can be any transformation you want.
+                // Per previous plugins, ``body`` will contain the raw input
+                // passed to the loader, with the front-matter removed.
+                // Feel free to take a look at the plugins source before,
+                // it's very short !
+                // https://github.com/MoOx/phenomic/blob/master/src/
+              }
+            }
+          ],
         },
       },
 
