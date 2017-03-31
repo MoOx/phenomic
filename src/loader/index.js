@@ -19,7 +19,7 @@ const loader = function(input: string) {
 
   const options = {
     ...webpackInstance.options.phenomic,
-    ...loaderUtils.parseQuery(webpackInstance.query),
+    ...loaderUtils.getOptions(webpackInstance),
   }
 
   // removed

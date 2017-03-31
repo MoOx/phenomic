@@ -1,6 +1,6 @@
 declare module "loader-utils" {
   declare interface LoaderUtils {
-    parseQuery: Function;
+    getOptions: Function;
     getHashDigest: Function;
   }
   declare var exports: LoaderUtils;

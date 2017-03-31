@@ -55,7 +55,7 @@
     "gray-matter": "^2.0.0",
     "hard-source-webpack-plugin": "^0.3.8",
     "inquirer": "^1.0.0",
-    "loader-utils": "^0.2.11",
+    "loader-utils": "^1.1.0",
     "log-symbols": "^1.0.2",
     "lru-memoize": "^1.0.1",
     "mkdirp": "^0.5.1",
