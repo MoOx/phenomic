@@ -44,13 +44,6 @@ export default (config = {}) => {
           },
         },
 
-        // *.json => like in node, return json
-        // (not handled by webpack by default)
-        {
-          test: /\.json$/,
-          loader: "json-loader",
-        },
-
         // *.js => babel + eslint
         {
           test: /\.js$/,
