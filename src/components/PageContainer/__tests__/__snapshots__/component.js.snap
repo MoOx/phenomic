@@ -1,32 +1,39 @@
-exports[`test should be able to render a loading state 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be able to render a loading state 1`] = `
 <Page
   head={Object {}}
-  isLoading={true} />
+  isLoading={true}
+/>
 `;
 
-exports[`test should render PageError if page not found and PageError is available 1`] = `
+exports[`should render PageError if page not found and PageError is available 1`] = `
 <PageError
-  error="Test" />
+  error="Test"
+/>
 `;
 
-exports[`test should render a Page if page is ok 1`] = `
+exports[`should render a Page if page is ok 1`] = `
 <Page
-  head={Object {}} />
+  head={Object {}}
+/>
 `;
 
-exports[`test should render a another page layout if defaultLayout is used 1`] = `
+exports[`should render a another page layout if defaultLayout is used 1`] = `
 <AnotherPage
-  head={Object {}} />
+  head={Object {}}
+/>
 `;
 
-exports[`test should render a visible error if page is not ok and no PageError
+exports[`should render a visible error if page is not ok and no PageError
 available 1`] = `
 <div
   style={
     Object {
       "text-align": "center",
     }
-  }>
+  }
+>
   <h1>
     Test
   </h1>
