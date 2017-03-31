@@ -1,7 +1,6 @@
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
-import webpackVersion from "../../_utils/webpack-version"
 // module.exports is used
 // eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../../loader/plugin.js"
@@ -17,7 +16,7 @@ it("Sitemap webpack plugin", () => {
     {
       context: __dirname,
       module: {
-        [webpackVersion() === 1 ? "loaders" : "rules"]: [
+        "rules": [
           {
             test: /\.(md|markdown)$/,
             loader: __dirname + "/../../loader/index.js",
@@ -26,11 +25,6 @@ it("Sitemap webpack plugin", () => {
         ],
       },
       entry: __dirname + "/fixtures/script.js",
-      ...(
-        webpackVersion() === 1
-        ? { resolve: { extensions: [ "" ] } }
-        : {}
-      ),
       output: {
         path: outputPath + "/routes",
         filename: "routes.js",

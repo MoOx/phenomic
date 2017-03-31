@@ -83,9 +83,9 @@
     "strip-markdown": "^0.3.1",
     "url-join": "^1.1.0",
     "valid-url": "^1.0.9",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2",
-    "webpack-sources": "^0.1.2",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.17.1",
+    "webpack-sources": "^0.2.3",
     "yargs": "^4.3.1"
   },
   "devDependencies": {
@@ -131,12 +131,12 @@
     "stylelint": "^7.2.0",
     "stylelint-config-standard": "^13.0.0",
     "suppose": "^0.6.1",
-    "webpack": "^1.11.0"
+    "webpack": "^2.3.0"
   },
   "peerDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
-    "extract-text-webpack-plugin": "^1.0.1 || ^2.0.0-beta.5",
+    "extract-text-webpack-plugin": "^2.1.0",
     "history": "^2.0.0",
     "react": "^0.14.0 || ^15.0.0-rc.1",
     "react-dom": "^0.14.0 || ^15.0.0-rc.1",
@@ -144,7 +144,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.3.0",
     "redux": "^3.0.0",
-    "webpack": "^1.11.0 || ^2.2.0"
+    "webpack": "^2.3.0"
   },
   "scripts": {
     "postinstall": "node npm/postinstall.js",
@@ -161,8 +161,6 @@
     "phenomic-theme-base-start": "cd themes/phenomic-theme-base && npm start",
     "test-setup": "cd test-setup && npm test",
     "docs-linting": "eslint --ignore-path .gitignore --fix docs/scripts docs/src",
-    "docs-webpack-2": "npm install webpack@^2.2.0 && cd docs && npm install extract-text-webpack-plugin@^2.0.0-beta.5",
-    "docs-webpack-2-reset": "npm install webpack@^1.11.0 && cd docs && npm install extract-text-webpack-plugin@^1.0.1",
     "pretest-docs": "npm run docs-linting",
     "test-docs": "cd docs && npm test",
     "docs-start": "cd docs && npm start",
