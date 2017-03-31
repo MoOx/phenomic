@@ -50,7 +50,6 @@
     "history": "^2.0.0",
     "image-optim": "^3.0.0",
     "invariant": "^2.1.1",
-    "json-loader": "^0.5.2",
     "mkdirp": "^0.5.1",
     "nightmare": "^2.6.1",
     "npm-run-all": "^1.7.0",

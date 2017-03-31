@@ -38,10 +38,6 @@ export default (config = {}) => {
           },
         },
         {
-          test: /\.json$/,
-          loader: "json-loader",
-        },
-        {
           test: /\.js$/,
           include: [
             path.resolve(__dirname, "scripts"),
