@@ -134,13 +134,13 @@ yarn add phenomic
 To install from git, you will need to get some deps to transpile sources
 
 ```sh
-npm install babel-cli babel-preset-react babel-preset-latest babel-preset-stage-1 babel-plugin-flow-react-proptypes
+npm install babel-cli babel-preset-react babel-preset-env babel-preset-stage-1 babel-plugin-flow-react-proptypes
 npm install https://github.com/MoOx/phenomic.git
 ```
 _or with `yarn`_
 
 ```sh
-yarn add babel-cli babel-preset-react babel-preset-latest babel-preset-stage-1 babel-plugin-flow-react-proptypes
+yarn add babel-cli babel-preset-react babel-preset-env babel-preset-stage-1 babel-plugin-flow-react-proptypes
 yarn add https://github.com/MoOx/phenomic.git
 ```
 

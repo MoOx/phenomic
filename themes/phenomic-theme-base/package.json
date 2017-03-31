@@ -19,15 +19,15 @@
     "env": {
       "test": {
         "presets": [
-          "babel-preset-latest",
-          "babel-preset-stage-1",
+          "babel-preset-env",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ]
       },
       "development": {
         "presets": [
-          "babel-preset-latest",
-          "babel-preset-stage-1",
+          "babel-preset-env",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ],
         "plugins": [
@@ -39,22 +39,20 @@
       "production": {
         "presets": [
           "babel-preset-react-optimize",
-          "babel-preset-latest",
-          "babel-preset-stage-1",
+          "babel-preset-env",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ]
       },
       "webpack-development": {
         "presets": [
           [
-            "babel-preset-latest",
+            "babel-preset-env",
             {
-              "es2015": {
-                "modules": false
-              }
+              "modules": false
             }
           ],
-          "babel-preset-stage-1",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ],
         "plugins": [
@@ -67,14 +65,12 @@
         "presets": [
           "babel-preset-react-optimize",
           [
-            "babel-preset-latest",
+            "babel-preset-env",
             {
-              "es2015": {
-                "modules": false
-              }
+              "modules": false
             }
           ],
-          "babel-preset-stage-1",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ]
       }
@@ -94,10 +90,10 @@
     "babel-loader": "^7.0.0-beta.1",
     "babel-plugin-transform-react-jsx-self": "^6.11.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "babel-preset-latest": "^6.14.0",
-    "babel-preset-react": "^6.3.13",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-react-optimize": "^1.0.1",
-    "babel-preset-stage-1": "^6.13.0",
+    "babel-preset-stage-2": "^6.22.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.0",
     "eslint": "^3.7.1",

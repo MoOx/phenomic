@@ -105,8 +105,8 @@ Here is a commented ``package.json`` with only the interesting parts
   "babel": {
     "presets": [
       "babel-preset-react",
-      "babel-preset-latest",
-      "babel-preset-stage-1"
+      "babel-preset-env",
+      "babel-preset-stage-2"
     ],
   },
 
