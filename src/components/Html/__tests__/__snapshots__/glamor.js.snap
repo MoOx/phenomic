@@ -1,34 +1,44 @@
-exports[`test should render Html component with glamor styles when possible 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Html component with glamor styles when possible 1`] = `
 <html
-  lang="en">
+  lang="en"
+>
   <head>
     <title
-      data-react-helmet={true} />
+      data-react-helmet={true}
+    />
     <meta
-      charSet="utf-8" />
+      charSet="utf-8"
+    />
     <meta
       content="IE=edge"
-      httpEquiv="X-UA-Compatible" />
+      httpEquiv="X-UA-Compatible"
+    />
     <meta
       content="width=device-width, initial-scale=1"
-      name="viewport" />
+      name="viewport"
+    />
     <style
       dangerouslySetInnerHTML={
         Object {
           "__html": ".stuff {}",
         }
       }
-      data-react-helmet={true} />
+      data-react-helmet={true}
+    />
     <link
       href="test.css"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
     <script
       dangerouslySetInnerHTML={
         Object {
-          "__html": "window._glamor = [{\"id\":\"s\"}]",
+          "__html": "window._glamor = [{\\"id\\":\\"s\\"}]",
         }
       }
-      data-react-helmet={true} />
+      data-react-helmet={true}
+    />
   </head>
   <body>
     <div
@@ -37,11 +47,14 @@ exports[`test should render Html component with glamor styles when possible 1`] 
           "__html": "<div />",
         }
       }
-      id="phenomic" />
+      id="phenomic"
+    />
     <script
-      phenomicStuff={true} />
+      phenomicStuff={true}
+    />
     <script
-      src="test.js" />
+      src="test.js"
+    />
   </body>
 </html>
 `;

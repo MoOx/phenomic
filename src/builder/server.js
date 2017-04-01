@@ -16,7 +16,6 @@ import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
 import minifyCollection from "../loader/minify"
 import serialize from "../_utils/serialize"
 import pathToUri from "../_utils/path-to-uri"
-import webpackVersion from "../_utils/webpack-version"
 
 import { handleInvalid, handleDone } from "./webpack/log-formatter.js"
 
@@ -69,17 +68,9 @@ export default (config) => {
         ...(webpackConfig.plugins || []),
 
         // for hot-middleware
-        ...(
-          webpackVersion() === 2
-          ? [ new webpack.optimize.OccurrenceOrderPlugin() ]
-          : [ new webpack.optimize.OccurenceOrderPlugin() ]
-        ),
+        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        ...(
-          webpackVersion() === 2
-          ? new webpack.NoEmitOnErrorsPlugin()
-          : new webpack.NoErrorsPlugin()
-        ),
+        new webpack.NoEmitOnErrorsPlugin(),
       ],
     }
 

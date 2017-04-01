@@ -6,7 +6,6 @@ import colors from "chalk"
 
 import log from "../_utils/log"
 import errorFormatter from "../_utils/error-formatter"
-import webpackVersion from "../_utils/webpack-version"
 // module.exports is used
 // eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../loader/plugin.js"
@@ -35,7 +34,8 @@ export default function(config: Object): void {
     // deprecated
     : makeWebpackConfigModule.makeConfig
 
-  if (webpackVersion() === 2 && makeWebpackConfigModule.makeConfig) {
+  // deprecated
+  if (makeWebpackConfigModule.makeConfig) {
     log(
       "Your webpack config should now directly export a function.\n" +
       "No need to export a makeConfig() function anymore as webpack@2 " +
@@ -61,10 +61,7 @@ export default function(config: Object): void {
   const destination = join(config.cwd, config.destination)
   fs.emptyDirSync(destination)
 
-  if (webpackVersion() === 2) {
-    const env = process.env.NODE_ENV || "development"
-    process.env.BABEL_ENV = "webpack-" + env
-  }
+  process.env.BABEL_ENV = "webpack-" + (process.env.NODE_ENV || "development")
 
   if (config.static) {
     // Copy static assets to build folder

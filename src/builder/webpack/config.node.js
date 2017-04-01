@@ -5,8 +5,6 @@ import { join, basename } from "path"
 import { BannerPlugin, optimize } from "webpack"
 import findCacheDir from "find-cache-dir"
 
-import webpackVersion from "../../_utils/webpack-version"
-
 import commonWebpackConfig from "./config.common.js"
 
 const { UglifyJsPlugin } = optimize
@@ -71,18 +69,12 @@ export default (config: PhenomicConfig): WebpackConfig => {
       ...webpackConfig.plugins.filter(
         (plugin) => !(plugin instanceof UglifyJsPlugin)
       ) || [],
-      ...(
-        webpackVersion() === 2
-        ? [ new BannerPlugin({
-          banner: requireSourceMapSupport,
-          raw: true,
-          entryOnly: false,
-        }) ]
-        : [ new BannerPlugin(
-          requireSourceMapSupport,
-          { raw: true, entryOnly: false }
-        ) ]
-      ),
+
+      new BannerPlugin({
+        banner: requireSourceMapSupport,
+        raw: true,
+        entryOnly: false,
+      }),
     ],
   }
 }

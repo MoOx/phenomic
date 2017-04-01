@@ -1,7 +1,6 @@
 import webpack from "webpack"
 import { sync as rimraf } from "rimraf"
 
-import webpackVersion from "../../_utils/webpack-version"
 // module.exports is used
 // eslint-disable-next-line import/default
 import PhenomicLoaderWebpackPlugin from "../plugin.js"
@@ -13,7 +12,7 @@ it("should compile markdown files", () => {
   return new Promise((resolve, reject) => webpack(
     {
       module: {
-        [webpackVersion() === 1 ? "loaders" : "rules"]: [
+        "rules": [
           {
             test: /\.(md|markdown)$/,
             loader: __dirname + "/../index.js",
@@ -21,11 +20,6 @@ it("should compile markdown files", () => {
           },
         ],
       },
-      ...(
-        webpackVersion() === 1
-        ? { resolve: { extensions: [ "" ] } }
-        : {}
-      ),
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
@@ -114,48 +108,24 @@ it("can be used with plugins", () => {
   return new Promise((resolve, reject) => webpack(
     {
       module: {
-        [webpackVersion() === 1 ? "loaders" : "rules"]: [
+        "rules": [
           {
             test: /\.(md|markdown)$/,
             loader: __dirname + "/../index.js",
             exclude: /node_modules/,
-            ...(
-              webpackVersion() === 1
-              ? { }
-              : {
-                query: {
-                  plugins: [
-                    () => {
-                      return { test: "dumb" }
-                    },
-                  ],
+            query: {
+              plugins: [
+                () => {
+                  return { test: "dumb" }
                 },
-              }
-            ),
+              ],
+            },
           },
         ],
       },
       plugins: [
         new PhenomicLoaderWebpackPlugin(),
       ],
-      ...(
-        webpackVersion() === 1
-        ? {
-          phenomic: {
-            plugins: [
-              () => {
-                return { test: "dumb" }
-              },
-            ],
-          },
-        }
-        : {}
-      ),
-      ...(
-        webpackVersion() === 1
-        ? { resolve: { extensions: [ "" ] } }
-        : {}
-      ),
       entry: __dirname + "/fixtures/script.js",
       output: {
         path: outputPath + "/plugins",

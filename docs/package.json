@@ -29,39 +29,38 @@
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
-    "babel-loader": "^6.2.5",
+    "babel-loader": "^7.0.0-beta.1",
     "babel-plugin-transform-react-jsx-self": "^6.11.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "babel-preset-latest": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-react-optimize": "^1.0.1",
-    "babel-preset-stage-1": "^6.13.0",
+    "babel-preset-stage-2": "^6.22.0",
     "classnames": "^2.2.3",
     "color": "^0.11.1",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.28.0",
     "eslint": "^3.7.1",
     "eslint-config-i-am-meticulous": "^5.0.2",
-    "eslint-loader": "^1.5.0",
+    "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-react": "^6.4.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.10.1",
     "gray-matter": "^2.0.2",
     "history": "^2.0.0",
     "image-optim": "^3.0.0",
     "invariant": "^2.1.1",
-    "json-loader": "^0.5.2",
     "mkdirp": "^0.5.1",
     "nightmare": "^2.6.1",
     "npm-run-all": "^1.7.0",
     "png-jpg": "0.0.2",
     "postcss-browser-reporter": "^0.4.0",
     "postcss-cssnext": "^2.4.0",
-    "postcss-loader": "^0.13.0",
+    "postcss-loader": "^1.3.3",
     "postcss-reporter": "^1.3.0",
     "raw-loader": "^0.5.1",
-    "react": "^15.0.0-rc.1",
-    "react-dom": "^15.0.0-rc.1",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-google-analytics": "^0.2.0",
     "react-helmet": "^3.0.0",
     "react-hot-loader": "^3.0.0-beta",
@@ -73,8 +72,8 @@
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.0",
     "stylelint": "^7.2.0",
-    "stylelint-config-standard": "^13.0.0",
-    "webpack": "^1.11.0",
+    "stylelint-config-standard": "^16.0.0",
+    "webpack": "^2.3.0",
     "whatwg-fetch": "^0.11.0"
   },
   "#babel": "webpack-(development|production) are useful for webpack 2, otherwise use development|production",
@@ -82,8 +81,8 @@
     "env": {
       "development": {
         "presets": [
-          "babel-preset-latest",
-          "babel-preset-stage-1",
+          "babel-preset-env",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ],
         "plugins": [
@@ -95,22 +94,20 @@
       "production": {
         "presets": [
           "babel-preset-react-optimize",
-          "babel-preset-latest",
-          "babel-preset-stage-1",
+          "babel-preset-env",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ]
       },
       "webpack-development": {
         "presets": [
           [
-            "babel-preset-latest",
+            "babel-preset-env",
             {
-              "es2015": {
-                "modules": false
-              }
+              "modules": false
             }
           ],
-          "babel-preset-stage-1",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ],
         "plugins": [
@@ -123,14 +120,12 @@
         "presets": [
           "babel-preset-react-optimize",
           [
-            "babel-preset-latest",
+            "babel-preset-env",
             {
-              "es2015": {
-                "modules": false
-              }
+              "modules": false
             }
           ],
-          "babel-preset-stage-1",
+          "babel-preset-stage-2",
           "babel-preset-react"
         ]
       }

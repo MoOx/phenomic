@@ -11,21 +11,13 @@ _Be sure to check out the
 ⚠️ Keep in mind that Phenomic will add some pieces to the final webpack
 configuration to fit its requirements, but changes should not affect you.
 
-### Webpack 1 & 2
+### Webpack 2
 
-Phenomic supports Webpack 1 & 2 and is shipped with webpack 1 by default.
+Phenomic only supports Webpack 2.
 
 [webpack documentation](http://webpack.github.io/docs/) states:
 
 > webpack v1 is deprecated. We encourage all developers to upgrade to webpack 2.
-
-If you want to update it is very simple:
-
-```
-npm install webpack@">=2.2.1" extract-text-webpack-plugin@">=2.0.0-beta.5" --save-dev
-```
-
-After that, edit `webpack.config.js` and follow instructions inside the file. All `// webpack 1` sections should be removed and `// webpack 2` should be uncommented.
 
 ### ``phenomicLoader``
 

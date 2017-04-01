@@ -21,10 +21,10 @@ easier to update than JSON (assuming your projects have simple needs).
 
 Obviously you can adjust this to a more complicated format if needed.
 
-You will need to get `yaml-loader` and `json-loader`.
+You will need to get `yaml-loader`.
 
 ```console
-npm install --save-dev yaml-loader json-loader
+npm install --save-dev yaml-loader
 ```
 
 We will also need to add a webpack configuration loader section
@@ -32,7 +32,7 @@ We will also need to add a webpack configuration loader section
 ```js
 {
   test: /\.yml$/,
-  loaders: [ "json-loader", "yaml-loader" ],
+  loaders: [ "yaml-loader" ],
 },
 ```
 

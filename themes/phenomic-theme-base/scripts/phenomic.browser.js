@@ -28,15 +28,6 @@ if (module.hot) {
   // hot load app
   module.hot.accept(
     [ "../src/metadata.js", "../src/routes.js", "../src/store.js" ],
-    // webpack 1
-    () => phenomicClient({
-      metadata: require("../src/metadata.js").default,
-      routes: require("../src/routes.js").default,
-      store: require("../src/store.js").default,
-    })
-    // webpack 2
-    /*
     () => phenomicClient({ metadata, routes, store })
-    */
   )
 }
