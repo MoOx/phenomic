@@ -1,3 +1,33 @@
+# 0.21.0 - 2017-04-01
+
+tl;dr: drop webpack 1 support and some minor update to the base theme.
+
+## Details
+
+- Removed: webpack 1 support. Config has been updated to only match webpack 2.
+  ([#991/e58e9d5](https://github.com/MoOx/phenomic/pull/991/commits/e58e9d5d0c46a827574975c7ac6470290b01c765) - @MoOx)
+- Fixed: avoid loaderUtils.parseQuery() warning
+  ([#991/658a704](https://github.com/MoOx/phenomic/pull/991/commits/658a704612fd748166e63e11ff9969823e666226) - @MoOx)
+
+## Base theme
+
+- Removed: webpack 1 support. Config has been updated to only match webpack 2.
+  ([#991/2f997c3](https://github.com/MoOx/phenomic/pull/991/commits/2f997c3aee3e4ac4d7ef2b2f29b270e981e6f671) - @MoOx)
+- Removed: json-loader is not required with webpack 2
+  ([#991/1f7428b](https://github.com/MoOx/phenomic/pull/991/commits/1f7428bf7cf5ec33b9df3f764d1113c1a4a08256) - @MoOx)
+- Fixed: webpack 2 / extract-text-webpack-plugin warnings
+  ([#991/a516ac2](https://github.com/MoOx/phenomic/pull/991/commits/a516ac2388d04f7f21ae383501fa8e5a6f4214d4) - @MoOx)
+- Fixed: avoid loaderUtils.parseQuery() warning with webpack 2
+  ([#991/27d55bb](https://github.com/MoOx/phenomic/pull/991/commits/27d55bbd85fbc89ab09378806c051a307b2463fa) - @MoOx)
+- Changed: Client side Polyfill now include es6 features for IE 11 compat.
+  ([#963](https://github.com/MoOx/phenomic/issues/963) - @MoOx)
+- Changed: minor change to react version in package.json 
+  ([#991/69156db](https://github.com/MoOx/phenomic/pull/991/commits/69156dbeceb967997121f62a72541e868ba07186) - @MoOx)
+- Updated(base theme): css-loader, postcss-loader & file-loader to latest versions
+  ([#991/cd074ca](https://github.com/MoOx/phenomic/pull/991/commits/cd074ca432cdd2bbc77b65f6008b10cfac5d4e7e) - @MoOx)
+- Changed(base theme): use babel-preset-env instead of babel-preset-latest (which is deprecated now)
+  ([#991/8766ee8](https://github.com/MoOx/phenomic/pull/991/commits/8766ee86d990d594e853ad10df5fb3490d8f0f8c) - @MoOx)
+
 # 0.20.4 - 2017-02-23
 
 - Fixed: better support of ``react-router`` routes that don't have slashes
