@@ -14,7 +14,8 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
         ...props.meta ? props.meta : [],
       ] }
       script={ [
-        { src: "https://cdn.polyfill.io/v2/polyfill.min.js" },
+        { src: "https://cdn.polyfill.io/v2/polyfill.min.js" +
+        "?features=es6&flags=gated" },
         ...props.scripts ? props.scripts : [],
       ] }
     />

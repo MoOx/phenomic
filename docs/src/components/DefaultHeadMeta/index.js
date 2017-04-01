@@ -16,7 +16,8 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
         { name: "twitter:site", content: `@${ pkg.twitter }` },
       ] }
       script={ [
-        { src: "https://cdn.polyfill.io/v2/polyfill.min.js" },
+        { src: "https://cdn.polyfill.io/v2/polyfill.min.js" +
+        "?features=es6&flags=gated" },
       ] }
     />
 
