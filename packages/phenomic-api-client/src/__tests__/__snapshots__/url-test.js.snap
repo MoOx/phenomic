@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`url should build URLs 1`] = `"//posts/item/test.json"`;
 
 exports[`url should build URLs 2`] = `"//posts/by-tag/test/.json"`;

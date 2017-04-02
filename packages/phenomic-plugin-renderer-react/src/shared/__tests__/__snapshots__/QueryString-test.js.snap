@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`QueryString should decode 1`] = `
 Object {
   "a": "1",
