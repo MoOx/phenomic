@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`mapValues should map object values 1`] = `
 Object {
   "a": 2,
