@@ -51,7 +51,7 @@ Here is a commented part of a webpack configuration that use all options
 import pkg from "./package.json"
 import { phenomicLoader } from "phenomic"
 
-export const makeConfig = (config = {}) => {
+export default (config = {}) => {
   return {
     // ...
     module: {

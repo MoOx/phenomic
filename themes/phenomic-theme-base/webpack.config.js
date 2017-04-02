@@ -157,6 +157,7 @@ export default (config = {}) => {
         {
           test: /\.svg$/,
           loader: "raw-loader",
+
         },
       ],
     },
