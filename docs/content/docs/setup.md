@@ -50,6 +50,8 @@ yarn install && yarn start
 
 ### Windows
 
+> The following instructions are made to run with cmd or Powershell only.
+
 First thing to do is to create a folder with a `node_modules` so we can install
 Phenomic locally.  
 _Tip: you can edit ``your-website-folder`` in the text box below_.
@@ -69,6 +71,7 @@ mkdir %DIR% && cd %DIR% && mkdir node_modules
 
 Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
+
 ```cmd
 npm install phenomic && .\node_modules\.bin\phenomic setup
 npm install && npm start
