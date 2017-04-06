@@ -81,7 +81,7 @@ IF EXIST .git (RMDIR .git /s /q)
 git init && ^
 git add . && ^
 git commit -m "Deploy of GitHub Pages" && ^
-git push --force "%GIT_DEPLOY_REPO%" master
+git push --force "%GIT_DEPLOY_REPO%" master:gh-pages
 ```
 
 ---
