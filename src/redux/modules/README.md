@@ -1,1 +1,1 @@
-https://github.com/erikras/redux/modules-modular-redux
+https://github.com/erikras/ducks-modular-redux
