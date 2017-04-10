@@ -65,7 +65,7 @@ const loader = function(input: string) {
   const dataUrl = resourceUrl + "." + contentHash + ".json"
 
   const metadata = {
-    __filename: relativePath,
+    __filename: pathToUri(relativePath),
     __url: pathToUri("/", url),
     __resourceUrl: pathToUri("/", resourceUrl),
     __dataUrl: pathToUri("/", dataUrl),
