@@ -57,7 +57,7 @@ async function renderServer(
     const queries = item.getQueries(renderProps)
     return performQuery(store, fetch, Object.keys(queries).map(key => QueryString.encode(queries[key])))
   }))
-  const contents = await app.renderToString(store, { renderProps, redirectLocation }, renderHTML)
+  const contents = await renderToString(store, { renderProps, redirectLocation }, renderHTML)
   const state = store.getState()
   return [
     { path: path.join(location, "index.html"), contents },
@@ -69,5 +69,4 @@ async function renderServer(
   ]
 }
 
-export default serverRender
-export { renderToString }
+export default renderServer

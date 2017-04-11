@@ -1,3 +1,4 @@
+import "isomorphic-fetch"
 import React from "react"
 import ReactDOM from "react-dom"
 import createURL from "phenomic-api-client/lib/url"
@@ -8,7 +9,7 @@ import createStore from "../shared/store"
 const debug = require("debug")("phenomic:plugin:react")
 
 function render(routes: () => React$Element<any>) {
-  debug("client renderering")
+  debug("client rendering")
 
   function createFetchFunction() {
     return (config: PhenomicQueryConfig) =>

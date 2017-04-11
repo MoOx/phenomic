@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
-import { createContainer, query } from "phenomic-plugin-renderer-react/lib/client"
+import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 import MarkdownGenerated from "./MarkdownGenerated"
 

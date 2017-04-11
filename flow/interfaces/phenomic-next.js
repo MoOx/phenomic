@@ -45,8 +45,8 @@ export type PhenomicPlugin = {
   buildForPrerendering?: Function,
   getMiddleware?: Function,
   // renderer
-  renderHTML?: Function,
   getRoutes?: Function,
+  renderServer?: Function,
 }
 
 export type PhenomicPlugins = Array<PhenomicPlugin>
