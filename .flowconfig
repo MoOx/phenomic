@@ -1,5 +1,5 @@
 [version]
-0.38.0
+0.42.0
 
 [libs]
 ./flow/interfaces/
@@ -13,7 +13,7 @@
 .*/__tests__/_output/.*
 .*/dist/.*
 .*/docs/.*
-<PROJECT_ROOT>/packages
+.*\.md
 <PROJECT_ROOT>/scripts
 <PROJECT_ROOT>/npm
 <PROJECT_ROOT>/e2e-tests
@@ -25,3 +25,7 @@
 all=true
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
+
+# packages/phenomic-*
+module.name_mapper='^phenomic\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/phenomic\1/src/\2'
+module.name_mapper='^phenomic\([a-z-]*\)$' -> '<PROJECT_ROOT>/packages/phenomic\1/src'

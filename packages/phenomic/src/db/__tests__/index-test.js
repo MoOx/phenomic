@@ -3,6 +3,7 @@ import db from ".."
 describe("db", () => {
 
   beforeEach(() => {
+    // $FlowFixMe whatever
     jest.resetModuleRegistry()
   })
 

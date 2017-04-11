@@ -9,12 +9,15 @@ export default function() {
 
   return {
     name: "phenomic-plugin-rss-feed",
-    async build(fetch, writeFile) {
+    async build(fetch: PhenomicFetch, writeFile: Function) {
+      // @todo handle this fetch
+      // $FlowFixMe handle this fetch
       const feed = fetch("/feed.xml")
       return writeFile("feed.xml", feed)
     },
-    define(api) {
-      api.get("/feed.xml", async function(req, res) {
+    define(serverAPI: express$Application) {
+      // $FlowFixMe flow is lost with async function for express
+      serverAPI.get("/feed.xml", async function(req, res) {
         debug(req.url)
         const rss = new RSS({
           // feed_url: ROOT,

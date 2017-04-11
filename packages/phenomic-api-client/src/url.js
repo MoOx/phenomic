@@ -2,7 +2,7 @@ function postfix(url) {
   return `${ url }.json`
 }
 
-function url(config: Object) {
+function url(config: Object): string {
   const root = config.root || "/"
   if (typeof config === "string") {
     return [ root, config ].join("/")

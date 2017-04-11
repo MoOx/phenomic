@@ -7,11 +7,12 @@ import createStore from "../shared/store"
 
 const debug = require("debug")("phenomic:plugin:react")
 
-function render(routes) {
+function render(routes: () => React$Element<any>) {
   debug("client renderering")
 
   function createFetchFunction() {
-    return config => fetch(createURL({ ...config, root: "/phenomic" })).then(res => res.json())
+    return (config: PhenomicQueryConfig) =>
+      fetch(createURL({ ...config, root: "/phenomic" })).then(res => res.json())
   }
 
   const initialStateNode = document.getElementById("Hydration")

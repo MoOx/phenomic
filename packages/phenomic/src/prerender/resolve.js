@@ -1,11 +1,10 @@
-// $FlowFixMe ?
 import createQuery from "phenomic-api-client/lib/query"
 
 const debug = require("debug")("phenomic:core:prerender:resolve")
 
 const resolveURLsForDynamicParams = async function(fetch: PhenomicFetch, route: PhenomicRoute) {
-  if (!route.collection) {
-    debug("no collection")
+  if (typeof route.collection !== "string" && typeof route.collection !== "object") {
+    debug("no valid collection", route.collection)
     return route
   }
   debug(`fetching collection '${ route.collection }' for route '${ route.path }'`)

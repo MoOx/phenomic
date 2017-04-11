@@ -35,7 +35,7 @@ async function getContent(db, config) {
       path: path.join(config.path, "content"),
       plugins: config.plugins,
     })
-    watcher.onChange(async function(files) {
+    watcher.onChange(async function(files: Array<Object>) {
       debug("watcher changed")
       watcher.close()
       await db.destroy()
@@ -103,7 +103,7 @@ async function build(config) {
   debug("server closed")
 }
 
-export default (options) => {
+export default (options: Object) => {
   build(options)
   .then(
     () => {},

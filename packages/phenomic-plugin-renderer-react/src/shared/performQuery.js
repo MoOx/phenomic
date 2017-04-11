@@ -1,6 +1,7 @@
 import QueryString from "./QueryString"
+import type { StoreType } from "./store"
 
-function performQuery(store, fetch, queries) {
+function performQuery(store: StoreType, fetch: PhenomicFetch, queries: phenomic$Queries) {
   return Promise.all(
     queries.map(key => {
       store.setAsLoading(key)

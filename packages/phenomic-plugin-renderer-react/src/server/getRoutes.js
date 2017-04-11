@@ -1,5 +1,7 @@
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
 
+import type { AppType } from "../createApp"
+
 const debug = require("debug")("phenomic:plugin:react")
 
 function flattenRoutes(routes, path = "") {
@@ -20,7 +22,7 @@ function flattenRoutes(routes, path = "") {
   }, [])
 }
 
-function getRoutes(app) {
+function getRoutes(app: AppType) {
   const routes = createRouteFromReactElement(app.routes)
   const flatRoutes = flattenRoutes(routes.childRoutes)
   return flatRoutes.map(item => ({ ...item, getQuery: item.component.getQueries }))

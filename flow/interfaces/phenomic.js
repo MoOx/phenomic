@@ -60,7 +60,7 @@ export type PhenomicOldConfig = {
   cache?: boolean,
 }
 
-export type PhenomicStaticConfig = PhenomicConfig & {
+export type PhenomicStaticConfig = PhenomicOldConfig & {
   // private
   collection: PhenomicCollection,
   assetsFiles: WebpackAssetsFiles,

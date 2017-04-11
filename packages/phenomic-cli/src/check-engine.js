@@ -8,7 +8,7 @@ const platformSuffix = process.platform === "win32" ? ".cmd" : ""
 const npm = "npm" + platformSuffix
 const yarn = "yarn" + platformSuffix
 
-export default function checkVersion(nodeVersion, npmVersion, yarnVersion) {
+export default function checkVersion(nodeVersion?: string, npmVersion?: string, yarnVersion?: string | boolean) {
   const requirements = pkg.engines
   nodeVersion = (nodeVersion || process.version)
 
@@ -23,13 +23,14 @@ export default function checkVersion(nodeVersion, npmVersion, yarnVersion) {
   }
   catch (e) {
     // nothing, assuming yarn does not exist
+    yarnVersion = false
   }
 
   if (!(
     semver.satisfies(nodeVersion, requirements.node) &&
     (
       semver.satisfies(npmVersion, requirements.npm) ||
-      (yarnVersion && semver.satisfies(yarnVersion, requirements.yarn))
+      (typeof yarnVersion === "string" && semver.satisfies(yarnVersion, requirements.yarn))
     )
   )) {
     const errorMessage = colors.yellow(
@@ -42,7 +43,7 @@ export default function checkVersion(nodeVersion, npmVersion, yarnVersion) {
       (yarnVersion ? ", " : " and ") +
       "your npm version is " + npmVersion +
       (
-        !yarnVersion ? "" :
+        typeof yarnVersion !== "string" ? "" :
         " and " +
         "your yarn version is " + yarnVersion
       ) +

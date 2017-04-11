@@ -5,8 +5,9 @@ const debug = require("debug")("phenomic:plugin:api-related-content")
 export default function() {
   return {
     name: "phenomic-plugin-api-related-content",
-    define(api) {
-      api.get("/related/:collection/limit-:limit/*.json", async function(req, res) {
+    define(serverAPI: express$Application) {
+      // $FlowFixMe flow is lost with async function for express
+      serverAPI.get("/related/:collection/limit-:limit/*.json", async function(req, res) {
         debug(req.url, JSON.stringify(req.params))
         try {
           const limit = parseInt(res.params.limit)
