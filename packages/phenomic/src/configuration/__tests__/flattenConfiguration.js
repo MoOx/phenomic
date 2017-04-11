@@ -1,20 +1,20 @@
-import flattenConfiguration from "../flattenConfiguration"
+import { flattenPresets } from "../flattenConfiguration"
 
-function a() {}
-function b() {}
-function c() {}
-function d() {}
+const a = () => ({ name: "a" })
+const b = () => ({ name: "b" })
+const c = () => ({ name: "c" })
+const d = () => ({ name: "d" })
 
 test("should flatten correctly", () => {
 
   expect(
-    flattenConfiguration({
+    flattenPresets({
       plugins: [ a, b ],
     })
-  ).toEqual([ a, b ])
+  ).toEqual([ { name: "a" }, { name: "b" } ])
 
   expect(
-    flattenConfiguration({
+    flattenPresets({
       presets: [
         () => ({
           plugins: [ a ],
@@ -22,10 +22,10 @@ test("should flatten correctly", () => {
       ],
       plugins: [ b, c ],
     })
-  ).toEqual([ a, b, c ])
+  ).toEqual([ { name: "a" }, { name: "b" }, { name: "c" } ])
 
   expect(
-    flattenConfiguration({
+    flattenPresets({
       presets: [
         () => ({
           presets: [
@@ -39,6 +39,6 @@ test("should flatten correctly", () => {
       plugins: [ c, d ],
 
     })
-  ).toEqual([ a, b, c, d ])
+  ).toEqual([ { name: "a" }, { name: "b" }, { name: "c" }, { name: "d" } ])
 
 })

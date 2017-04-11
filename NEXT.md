@@ -36,8 +36,6 @@ This will run `npm link` for all packages so they are available locally :)
 
 A fucking lot
 
-- Finish & refacto current packages
-  - allow preset (array of plugins)
 - replace main npm scripts workflow for new implementation (break/disable all the things)
   - add stuff in checklist to not forget if necessary
 - check what's missing from the checklist
