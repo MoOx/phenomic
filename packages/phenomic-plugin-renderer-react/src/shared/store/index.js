@@ -1,26 +1,39 @@
+type StateType = Object
+type SubscriberType = Function
+
 const NO_VALUE_EDGE = {
   status: "inactive",
   node: null,
 }
 
-function createStore(state = {}) {
-  let subscribers = []
+export type unsubscribeType = () => void
+export type StoreType = {
+  subscribe: (func: SubscriberType) => unsubscribeType,
+  get: (key: string) => any,
+  set: (key: string, node: any) => void,
+  setAsLoading: (key: string) => any,
+  setAsError: (key: string, node: any) => any,
+  getState: () => StateType,
+}
 
-  function subscribe(func) {
+function createStore(state: StateType = {}): StoreType {
+  let subscribers: Array<SubscriberType> = []
+
+  function subscribe(func: SubscriberType) {
     subscribers = [ ...subscribers, func ]
     return function unsubscribe() {
       subscribers = subscribers.filter(item => item !== func)
     }
   }
 
-  function get(key) {
+  function get(key: string) {
     if (state.hasOwnProperty(key)) {
       return state[key]
     }
     return NO_VALUE_EDGE
   }
 
-  function set(key, node) {
+  function set(key: string, node: any) {
     update({
       [key]: {
         status: "idle",
@@ -29,7 +42,7 @@ function createStore(state = {}) {
     })
   }
 
-  function setAsLoading(key) {
+  function setAsLoading(key: string) {
     update({
       [key]: {
         status: "loading",
@@ -38,7 +51,7 @@ function createStore(state = {}) {
     })
   }
 
-  function setAsError(key, error) {
+  function setAsError(key: string, error: any) {
     update({
       [key]: {
         status: "error",
@@ -48,9 +61,9 @@ function createStore(state = {}) {
     })
   }
 
-  function update(nextState) {
+  function update(nextState: StateType) {
     state = { ...state, ...nextState }
-    subscribers.forEach(func => func())
+    subscribers.forEach((func) => func())
   }
 
   function getState() {
@@ -65,7 +78,6 @@ function createStore(state = {}) {
     setAsError,
     getState,
   }
-
 }
 
 export default createStore

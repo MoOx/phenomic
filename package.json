@@ -116,7 +116,7 @@
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
-    "flow-bin": "^0.38.0",
+    "flow-bin": "^0.42.0",
     "jest": "^19.0.0",
     "jest-ava-api": "^0.1.0",
     "js-beautify": "^1.5.10",

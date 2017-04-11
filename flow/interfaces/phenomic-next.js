@@ -7,15 +7,22 @@ export type PhenomicDB = {
     (
       sub: string | Array<string>,
       config: LevelStreamConfig,
-      filter: ?string,
+      filter?: string,
       filterValue: string
     ) => Promise<*>,
 }
 
-export type PhenomicInputConfig = PhenomicInputPreset & {
+export type PhenomicInputPlugins = {
+  plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
+  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>,
+}
+
+export type PhenomicInputConfig = {
   path?: string,
   outdir?: string,
   port?: number,
+  plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
+  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>,
 }
 
 export type PhenomicContentFile = {
@@ -27,18 +34,22 @@ export type PhenomicContentFile = {
 
 export type PhenomicPlugin = {
   name: string,
-  supportedFileTypes: Array<string>,
-  transform: (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
-  define: (api: express$Application, db: PhenomicDB) => mixed,
-  collect: (file: mixed) => Array<mixed>,
+  // transformer
+  supportedFileTypes?: Array<string>,
+  transform?: (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
+  // api
+  define?: (api: express$Application, db: PhenomicDB) => mixed,
+  // collector
+  collect?: (file: mixed) => Array<mixed>,
+  // bunder
+  buildForPrerendering?: Function,
+  getMiddleware?: Function,
+  // renderer
+  renderHTML?: Function,
+  getRoutes?: Function,
 }
 
 export type PhenomicPlugins = Array<PhenomicPlugin>
-
-export type PhenomicInputPreset = {
-  plugins?: Array<(arg: ?any) => PhenomicPlugin>,
-  presets?: Array<PhenomicInputPreset>,
-}
 
 export type PhenomicPresets = Array<PhenomicPreset>
 
@@ -52,7 +63,7 @@ export type PhenomicConfig = {
 }
 
 export type PhenomicQueryConfig = {
-  collection: string,
+  collection?: string,
   id?: string,
   after?: string,
   by?: string,
@@ -71,5 +82,7 @@ export type PhenomicRoute = {
   collection?: string,
 }
 
-export type PhenomicFetch =
-  (config: PhenomicQueryConfig | string) => Promise<any>
+export type PhenomicFetch = (config: PhenomicQueryConfig) => Promise<any>
+
+export type phenomic$Query = string
+export type phenomic$Queries = Array<phenomic$Query>

@@ -14,11 +14,13 @@ const createErrorHandler = (client: Client) => (error: any) => {
 
 function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
   const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
-    if (Array.isArray(plugin.supportedFileTypes)) {
-      debug(`'${ plugin.name }' want to watch '${ String(plugin.supportedFileTypes) }'`)
-      acc.push(...plugin.supportedFileTypes)
-    }
-    return acc
+    debug(`'${ plugin.name }' want to watch '${ String(plugin.supportedFileTypes) }'`)
+    return [
+      ...acc,
+      ...(plugin && plugin.supportedFileTypes && Array.isArray(plugin.supportedFileTypes))
+      ? plugin.supportedFileTypes
+      : [],
+    ]
   }, [])
   debug("extensions to watch", supportedFileTypes)
   return supportedFileTypes
@@ -31,7 +33,7 @@ type File = {
   type: string,
 }
 
-function createWatcher(config: PhenomicConfig) {
+function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   const client = new watchman.Client()
   const handleError = createErrorHandler(client)
   let subscribers = []
@@ -72,7 +74,7 @@ function createWatcher(config: PhenomicConfig) {
   })
 
   return {
-    onChange(func: (files: Array<File>) => void) {
+    onChange(func: (files: Array<File>) => Promise<void>) {
       subscribers = [ ...subscribers, func ]
       return function unsubscribe() {
         return subscribers = subscribers.filter(item => item !== func)

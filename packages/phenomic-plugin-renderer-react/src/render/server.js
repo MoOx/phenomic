@@ -11,6 +11,8 @@ import createStore from "../shared/store"
 import performQuery from "../shared/performQuery"
 import QueryString from "../shared/QueryString"
 import renderHTML from "../server/renderHTML"
+import type { StoreType } from "../shared/store"
+import type { AppType } from "../createApp"
 
 const debug = require("debug")("phenomic:plugin:react")
 
@@ -24,7 +26,11 @@ function getMatch({ routes, location }) {
   })
 }
 
-function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
+function renderToString(
+  store: StoreType,
+  { renderProps }: { renderProps: Object },
+  renderHTML: Function,
+) {
   const body = ReactDOMServer.renderToString(
     <Provider fetch={ fetch } store={ store }>
       <RouterContext { ...renderProps } />
@@ -36,7 +42,11 @@ function renderToString(store, { renderProps, redirectLocation }, renderHTML) {
   })
 }
 
-async function serverRender(app, fetch, location) {
+async function renderServer(
+  app: AppType,
+  fetch: PhenomicFetch,
+  location: string
+) {
   debug("server renderering")
 
   const routes = createRouteFromReactElement(app.routes)

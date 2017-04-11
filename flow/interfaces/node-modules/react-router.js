@@ -1,17 +1,26 @@
+export type ReactRouterProps = {
+  history: Object,
+  location: Object,
+  params: Object,
+  route: Object,
+  routeParams: Object,
+  routes: Array<Object>,
+}
+
 declare module "react-router" {
   declare interface ReactRouter {
-    IndexRoute: React.Component;
-    Link: React.Component;
-    Redirect: React.Component;
-    IndexRedirect: React.Component;
-    Route: React.Component;
-    Router: React.Component;
+    IndexRoute: Class<React$Component<*,*,*>>;
+    Link: Class<React$Component<*,*,*>>;
+    Redirect: Class<React$Component<*,*,*>>;
+    IndexRedirect: Class<React$Component<*,*,*>>;
+    Route: Class<React$Component<*,*,*>>;
+    Router: Class<React$Component<*,*,*>>;
     browserHistory: any;
     useRouterHistory:
       (historyFactory: Function) => (options: ?Object) => Object;
     match: Function;
-    RouterContext: React.Component;
-    createRoutes: (routes: React$Element) => Array<Object>;
+    RouterContext: Class<React$Component<*,*,*>>;
+    createRoutes: (routes: React$Element<*>) => Array<Object>;
     formatPattern: (pattern: string, params: Object) => string;
     applyRouterMiddleware: Function;
   }
@@ -22,15 +31,6 @@ declare module "react-router/lib/PatternUtils" {
   declare var exports: any;
 }
 
-declare module "history/lib/createBrowserHistory" {
+declare module "react-router/lib/RouteUtils" {
   declare var exports: any;
-}
-
-export type ReactRouterProps = {
-  history: Object,
-  location: Object,
-  params: Object,
-  route: Object,
-  routeParams: Object,
-  routes: Array<Object>,
 }

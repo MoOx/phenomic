@@ -10,7 +10,7 @@ import createServer from "../api"
 
 const debug = require("debug")("phenomic:core:commands:start")
 
-function createBundlerServer(config) {
+function createBundlerServer(config: PhenomicConfig) {
   debug("creating webpack server")
   const server = express()
   const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
@@ -22,19 +22,20 @@ function createBundlerServer(config) {
   return server
 }
 
-function start(config) {
+function start(config: PhenomicConfig) {
   debug("starting phenomic server")
   const phenomicServer = createServer(db, config.plugins)
   const bundlerServer = createBundlerServer(config)
   const renderers = config.plugins.filter((p) => p.getRoutes)
-  const renderer = renderers[0]
+  const renderer: PhenomicPlugin = renderers[0]
   const transformers = config.plugins.filter(item => typeof item.transform === "function")
+
   if (!transformers.length) {
-    throw Error("Phenomic expects at least a transform plugin")
+    throw new Error("Phenomic expects at least a transform plugin")
   }
   const collectors = config.plugins.filter(item => typeof item.collect === "function")
   if (!collectors.length) {
-    throw Error("Phenomic expects at least a collector plugin")
+    throw new Error("Phenomic expects at least a collector plugin")
   }
   const io = socketIO(1415)
   const watcher = createWatcher({
@@ -49,10 +50,17 @@ function start(config) {
     io.emit("change")
   })
   bundlerServer.use("/phenomic", phenomicServer)
+  // @todo change /assets
   bundlerServer.use("/assets", express.static(path.join(process.cwd(), "examples/content")))
+  // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html")
-    res.end(renderer.renderHTML())
+    if (typeof renderer.renderHTML !== "function") {
+      res.end("Phenomic renderer requires a renderHTML function to be exposed")
+    }
+    else {
+      res.end(renderer.renderHTML())
+    }
   })
   bundlerServer.listen(config.port)
   console.log(`✨ Open http://localhost:${ config.port }`)

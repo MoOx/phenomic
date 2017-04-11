@@ -4,4 +4,5 @@
 // without a .babel extension
 require("babel-register")
 
+// $FlowFixMe lib/* are ignored
 require("./lib/bin.js")

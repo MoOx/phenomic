@@ -109,9 +109,10 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     })
 
   // Install the plugins
-  plugins.forEach(plugin => {
+  plugins.forEach((plugin) => {
     if (typeof plugin.define === "function") {
       debug(`installing plugin '${ plugin.name }'`)
+      // $FlowFixMe typeof above is not enough?
       plugin.define(server, db)
     }
     else {

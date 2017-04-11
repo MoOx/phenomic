@@ -7,18 +7,30 @@ const emptyObject = {}
 const defaultGetQueries = () => emptyObject
 const socketServerURL = "http://localhost:1415"
 
-function createContainer(Component, getQueries = defaultGetQueries) {
+type PropsType = Object
 
-  class PhenomicRouteContainer extends React.Component {
+function createContainer(
+  Component: Function,
+  getQueries: Function = defaultGetQueries
+) {
 
-    constructor(props, context) {
+  class PhenomicRouteContainer extends React.Component<void, PropsType, void> {
+
+    static getQueries = getQueries
+
+    static contextTypes = {
+      query: React.PropTypes.func,
+      store: React.PropTypes.object,
+      __prerendering: React.PropTypes.bool,
+    }
+
+    constructor(props: PropsType, context: Object) {
       super(props, context)
       this.computeQueries(props)
       // if we're on the server, let's just run the query
       if (this.context.__prerendering) {
         this.query()
       }
-      this.forceQuery = this.forceQuery.bind(this)
     }
 
     componentDidMount() {
@@ -32,41 +44,48 @@ function createContainer(Component, getQueries = defaultGetQueries) {
       }
     }
 
-    componentWillReceiveProps(props) {
+    componentWillReceiveProps(props: PropsType) {
       this.computeQueries(props)
       this.schedule(() => this.query())
     }
 
     componentWillUnmount() {
-      this.unsubscribe()
+      if (typeof this.unsubscribe === "function") {
+        this.unsubscribe()
+      }
       this.unsubscribe = null
+
       if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")(socketServerURL)
           .removeListener("change", this.forceQuery)
       }
     }
 
-    forceQuery() {
+    unsubscribe: Function | null
+
+    forceQuery = () => {
       this.query(true)
     }
 
-    update() {
+    update = () => {
       this.schedule(() => this.forceUpdate())
     }
 
-    schedule(func) {
+    schedule = (func: Function) => {
       requestAnimationFrame(() => {
-        if (this.unsubscribe) {
+        if (typeof this.unsubscribe === "function") {
           func()
         }
       })
     }
 
-    computeQueries(props) {
+    queries: Object
+
+    computeQueries = (props: PropsType) => {
       this.queries = mapValues(getQueries(props), value => QueryString.encode(value))
     }
 
-    query(force) {
+    query = (force: boolean = false) => {
       const store = this.context.store
       const values = Object.keys(this.queries).map(key => this.queries[key])
       if (force) {
@@ -96,14 +115,6 @@ function createContainer(Component, getQueries = defaultGetQueries) {
         />
       )
     }
-  }
-
-  PhenomicRouteContainer.getQueries = getQueries
-
-  PhenomicRouteContainer.contextTypes = {
-    query: React.PropTypes.func,
-    store: React.PropTypes.object,
-    __prerendering: React.PropTypes.bool,
   }
 
   return PhenomicRouteContainer

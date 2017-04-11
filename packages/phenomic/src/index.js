@@ -50,7 +50,7 @@ const shittyCatch = (error) => {
   }, 1)
 }
 
-function normalizeConfiguration(config: PhenomicInputConfig = {}): PhenomicConfig {
+function normalizeConfiguration(config: PhenomicInputConfig = {}): Promise<PhenomicConfig> {
   const configExplorer = cosmiconfig(pkg.name, { cache: false })
   return configExplorer.load(process.cwd())
     .then((result) => {
