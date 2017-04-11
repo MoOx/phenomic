@@ -2,7 +2,7 @@ import "whatwg-fetch"
 
 import React from "react"
 import { Router, Route, browserHistory } from "react-router"
-import { Renderer } from "phenomic-plugin-renderer-react/lib/client"
+import { createApp } from "phenomic-preset-default/lib/client"
 
 import Header from "./components/Header"
 import Home from "./components/Home"
@@ -16,7 +16,7 @@ import APITagListPage from "./components/APITagListPage"
 
 const Wrapper = (props: Object) => <div><Header />{props.children}</div>
 
-const app = Renderer.createApp(
+export default createApp(() => (
   <Router history={ browserHistory }>
     <Route component={ Wrapper }>
       <Route path="/" component={ Home } />
@@ -33,8 +33,4 @@ const app = Renderer.createApp(
       <Route path="/showcase" component={ ShowcaseList } collection="showcase" />
     </Route>
   </Router>
-)
-
-app.render()
-
-module.exports = app
+))

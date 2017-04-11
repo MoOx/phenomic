@@ -58,9 +58,9 @@ function createFetchFunction(port) {
   }
 }
 
-async function prerenderFileAndDependencies(config, app, fetch, url) {
+async function prerenderFileAndDependencies(config, renderer, app, fetch, url) {
   debug(`'${ url }': prepend file and deps for `)
-  const files = await app.renderServer(app, fetch, url)
+  const files = await renderer.renderServer(app, fetch, url)
   debug(`'${ url }': files & deps collected`)
   return Promise.all(files.map(file => writeFile(path.join(config.outdir, file.path), file.contents)))
 }
@@ -90,7 +90,7 @@ async function build(config) {
   const urls = await resolveURLsToPrerender(renderer.getRoutes(app), fetch)
   debug("urls have been resolved")
   debug(urls)
-  await Promise.all(urls.map(url => prerenderFileAndDependencies(config, app, fetch, url)))
+  await Promise.all(urls.map(url => prerenderFileAndDependencies(config, renderer, app, fetch, url)))
 
   console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms")
   lastStamp = Date.now()

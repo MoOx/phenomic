@@ -1,12 +1,12 @@
 import renderHTML from "./server/renderHTML"
-// import render from "./server/render"
+import renderServer from "./render/server"
 import getRoutes from "./server/getRoutes"
 
 export default function() {
   return {
     name: "phenomic-plugin-renderer-react",
+    renderServer,
     renderHTML,
-    // render,
     getRoutes,
   }
 }
