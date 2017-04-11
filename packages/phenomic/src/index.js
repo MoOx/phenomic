@@ -8,40 +8,10 @@ import flattenConfiguration from "./configuration/flattenConfiguration.js"
 import start from "./commands/start.js"
 import build from "./commands/build.js"
 
-const debug = require("debug")("phenomic:core")
-
 const defaultConfig = {
   path: process.cwd(),
   outdir: path.join(process.cwd(), "dist"),
   port: 3333,
-}
-
-const normalizePlugin = (plugin) => {
-  if (!plugin) {
-    throw new Error(
-      "phenomic: You provided an undefined plugin"
-    )
-  }
-
-  debug("plugin", plugin.name, typeof plugin)
-
-  if (typeof plugin !== "function") {
-    throw new Error(
-      "phenomic: You provided an plugin with type is " +
-      typeof plugin +
-      ". But function is expected instead of " +
-      plugin
-    )
-  }
-
-  // @todo send config here ?
-  const pluginInstance = plugin()
-
-  if (Array.isArray(pluginInstance)) {
-    throw new Error("Array of plugins should be specified in 'presets' section of your configuration")
-  }
-
-  return pluginInstance
 }
 
 const shittyCatch = (error) => {
@@ -61,14 +31,11 @@ function normalizeConfiguration(config: PhenomicInputConfig = {}): Promise<Pheno
           "\nSee https://phenomic.io/docs/usage/configuration/"
         )
       }
-      const normalizedConfig = {
+      return flattenConfiguration({
         ...defaultConfig,
         ...result.config,
         ...config,
-      }
-      normalizedConfig.plugins = flattenConfiguration(normalizedConfig).map(normalizePlugin)
-      delete normalizedConfig.presets
-      return normalizedConfig
+      })
     })
     .catch(shittyCatch)
 }
