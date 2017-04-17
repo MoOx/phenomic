@@ -23,6 +23,7 @@ function createBundlerServer(config: PhenomicConfig) {
 }
 
 function start(config: PhenomicConfig) {
+  process.env.BABEL_ENV = "development"
   debug("starting phenomic server")
   const phenomicServer = createServer(db, config.plugins)
   const bundlerServer = createBundlerServer(config)
