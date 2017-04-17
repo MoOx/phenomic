@@ -7,6 +7,8 @@ import findCacheDir from "find-cache-dir"
 import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
 
+import webpackPromise from "./webpack-promise.js"
+
 const debug = require("debug")("phenomic:plugin:webpack")
 
 const { UglifyJsPlugin } = optimize
@@ -47,7 +49,7 @@ const getWebpackConfig = (config) => {
 export default function() {
   return {
     name: "phenomic-plugin-bundler-webpack",
-    getMiddleware(config) {
+    getMiddleware(config: PhenomicConfig) {
       debug("get middleware")
       const compiler = webpack(getWebpackConfig(config))
       return webpackDevMiddleware(compiler, {
@@ -57,7 +59,7 @@ export default function() {
         // quiet: true,
       })
     },
-    buildForPrerendering(config) {
+    buildForPrerendering(config: PhenomicConfig) {
       debug("build for prerendering")
       const webpackConfig = getWebpackConfig(config)
       const specialConfig = {
@@ -74,37 +76,25 @@ export default function() {
           libraryTarget: "commonjs2",
         },
         plugins: [
-          ...webpackConfig.plugins ? webpackConfig.plugins : [],
           // Remove UglifyJSPlugin from plugin stack
-          ...webpackConfig.plugins.filter(
+          ...webpackConfig.plugins ? webpackConfig.plugins.filter(
             (plugin) => !(plugin instanceof UglifyJsPlugin)
-          ) || [],
+          ) : [],
           // sourcemaps
-          new BannerPlugin(
-            requireSourceMapSupport,
-            { raw: true, entryOnly: false }
-          ),
+          new BannerPlugin({
+            banner: requireSourceMapSupport,
+            raw: true,
+            entryOnly: false,
+          }),
         ],
         // sourcemaps
         devtool: "#source-map",
       }
-      return new Promise((resolve, reject) => {
-        webpack(specialConfig).run(function(error /* , stats*/) {
-          error
-          ? reject(error)
-          : resolve(require(path.join(cacheDir, bundleName)))
-        })
-      })
+      return webpackPromise(specialConfig).then(() => require(path.join(cacheDir, bundleName)).default)
     },
-    build(config) {
+    build(config: PhenomicConfig) {
       debug("build")
-      return new Promise((resolve, reject) => {
-        webpack(getWebpackConfig(config)).run(function(error /* , stats */) {
-          error
-          ? reject(error)
-          : resolve()
-        })
-      })
+      return webpackPromise(getWebpackConfig(config))
     },
   }
 }

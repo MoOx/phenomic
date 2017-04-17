@@ -6,17 +6,22 @@
     "lib"
   ],
   "dependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-preset-react-app": "^2.2.0",
+    "css-loader": "^0.28.0",
     "debug": "^2.6.0",
-    "source-map-support": "^0.4.0"
+    "extract-text-webpack-plugin": "^2.1.0",
+    "source-map-support": "^0.4.0",
+    "style-loader": "^0.16.1"
   },
   "peerDependencies": {
     "phenomic": "^1.0.0-alpha.0",
-    "webpack": "^1.14.0",
-    "webpack-dev-middleware": "^1.8.4"
+    "webpack": "^2.3.0",
+    "webpack-dev-middleware": "^1.10.0"
   },
   "devDependencies": {
     "phenomic": "^1.0.0-alpha.0",
-    "webpack": "^1.14.0",
-    "webpack-dev-middleware": "^1.8.4"
+    "webpack": "^2.3.0",
+    "webpack-dev-middleware": "^1.10.0"
   }
 }
