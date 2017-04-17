@@ -159,7 +159,7 @@
     "postinstall": "npm run transpile && node npm/postinstall.js && npm run repo:init",
     "transpile": "rimraf lib && babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run transpile",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix .",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests src themes",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
