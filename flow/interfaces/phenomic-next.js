@@ -82,7 +82,8 @@ export type PhenomicRoute = {
   collection?: string,
 }
 
-export type PhenomicFetch = (config: PhenomicQueryConfig) => Promise<any>
+// @todo why this inconsistency?
+export type PhenomicFetch = IsomorphicFetch | (config: PhenomicQueryConfig) => Promise<any>
 
 export type phenomic$Query = string
 export type phenomic$Queries = Array<phenomic$Query>

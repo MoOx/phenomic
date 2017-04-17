@@ -8,7 +8,9 @@ const resolveURLsForDynamicParams = async function(fetch: PhenomicFetch, route: 
     return route
   }
   debug(`fetching collection '${ route.collection }' for route '${ route.path }'`)
+  // @todo flow stuff
   const collection = await fetch(createQuery(
+    // $FlowFixMe see todo
     typeof route.collection === "string"
     ? { collection: route.collection }
     : route.collection
