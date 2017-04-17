@@ -71,42 +71,45 @@ async function build(config) {
   const port = await getPort()
   const runningServer = phenomicServer.listen(port)
   debug("server ready")
-  const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
-  const bundler = bundlers[0]
 
-  // Build webpack
-  const app = await bundler.buildForPrerendering(config)
-  console.log("📦 Webpack server side done "  + (Date.now() - lastStamp) + "ms")
+  try {
+    const bundlers = config.plugins.filter((p) => p.buildForPrerendering)
+    const bundler = bundlers[0]
 
-  lastStamp = Date.now()
+    // Build webpack
+    const app = await bundler.buildForPrerendering(config)
+    debug("app", app)
+    console.log("📦 Webpack server side done "  + (Date.now() - lastStamp) + "ms")
+    lastStamp = Date.now()
 
-  // Retreive content
-  await getContent(db, config)
-  console.log("📝 Got your content " + (Date.now() - lastStamp) + "ms")
-  lastStamp = Date.now()
-  const fetch = createFetchFunction(port)
-  const renderers = config.plugins.filter((p) => p.getRoutes)
-  const renderer = renderers[0]
-  const urls = await resolveURLsToPrerender(renderer.getRoutes(app), fetch)
-  debug("urls have been resolved")
-  debug(urls)
-  await Promise.all(urls.map(url => prerenderFileAndDependencies(config, renderer, app, fetch, url)))
+    // Retreive content
+    await getContent(db, config)
+    console.log("📝 Got your content " + (Date.now() - lastStamp) + "ms")
+    lastStamp = Date.now()
+    const fetch = createFetchFunction(port)
+    const renderers = config.plugins.filter((p) => p.getRoutes)
+    const renderer = renderers[0]
 
-  console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms")
-  lastStamp = Date.now()
+    const urls = await resolveURLsToPrerender(renderer.getRoutes(app), fetch)
+    debug("urls have been resolved")
+    debug(urls)
+    await Promise.all(urls.map(url => prerenderFileAndDependencies(config, renderer, app, fetch, url)))
 
-  await bundler.build(config)
-  console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms")
-  lastStamp = Date.now()
+    console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms")
+    lastStamp = Date.now()
 
-  runningServer.close()
-  debug("server closed")
+    await bundler.build(config)
+    console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms")
+    lastStamp = Date.now()
+
+    runningServer.close()
+    debug("server closed")
+  }
+  catch (error) {
+    runningServer.close()
+    debug("server closed due to error")
+    throw error
+  }
 }
 
-export default (options: Object) => {
-  build(options)
-  .then(
-    () => {},
-    (error) => console.error(error)
-  )
-}
+export default (options: Object) => build(options)
