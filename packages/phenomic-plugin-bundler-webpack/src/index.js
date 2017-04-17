@@ -22,12 +22,27 @@ const requireSourceMapSupport = `require('${
 
 // const wrap = JSON.stringify
 
-const getWebpackConfig = (config) => {
-  const userWebpackConfig = require(path.join(config.path, "webpack.config.js"))
+const getWebpackConfig = (config: PhenomicConfig) => {
+  let webpackConfig
+  try {
+    webpackConfig = require(path.join(config.path, "webpack.config.js"))(config)
+    debug("webpack.config.js used")
+  }
+  catch (e) {
+    try {
+      webpackConfig = require(path.join(config.path, "webpack.config.babel.js"))(config)
+      debug("webpack.config.babel.js used")
+    }
+    catch (e) {
+      webpackConfig = require(path.join(__dirname, "webpack.config.js"))(config)
+      debug("default webpack config used")
+    }
+  }
+  debug(webpackConfig)
   return {
-    ...userWebpackConfig,
+    ...webpackConfig,
     // plugins: [
-    //   ...(userWebpackConfig.plugins || []),
+    //   ...(webpackConfig.plugins || []),
     //   new DefinePlugin({ "process.env": {
     //     NODE_ENV: wrap(
     //       config.production
