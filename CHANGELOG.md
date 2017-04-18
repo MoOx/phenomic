@@ -1,3 +1,8 @@
+# 0.21.1 - 2017-04-18
+
+- Fixed: hot reload for markdown files on Windows
+  ([#1005](https://github.com/MoOx/phenomic/pull/1005) - @micnigh)
+
 # 0.21.0 - 2017-04-01
 
 tl;dr: drop webpack 1 support and some minor update to the base theme.
