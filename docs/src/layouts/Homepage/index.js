@@ -35,6 +35,8 @@ const Homepage = (props) => (
         <h2>
           { "You can use it to build static" }
           <sup>{ "*" }</sup>
+          { "aka " }
+          <a href="https://jamstack.org/">{"JAMstack"}</a>
           { " websites." }
         </h2>
         <Link
