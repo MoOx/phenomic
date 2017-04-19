@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react"
+import parseDate from "date-fns/parse"
 import { Link } from "phenomic"
 
 import Button from "../../components/Button"
@@ -6,7 +7,7 @@ import Button from "../../components/Button"
 import styles from "./index.css"
 
 const PagePreview = ({ __url, title, date, description }) => {
-  const pageDate = date ? new Date(date) : null
+  const pageDate = date ? parseDate(date) : null
 
   return (
     <div className={ styles.wrapper }>
