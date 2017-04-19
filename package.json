@@ -56,7 +56,9 @@
     "globby": "^6.0.0",
     "gray-matter": "^2.0.0",
     "hard-source-webpack-plugin": "^0.3.8",
+    "husky": "^0.13.3",
     "inquirer": "^1.0.0",
+    "lint-staged": "^3.4.0",
     "loader-utils": "^1.1.0",
     "log-symbols": "^1.0.2",
     "lru-memoize": "^1.0.1",
@@ -68,6 +70,7 @@
     "ora": "^0.3.0",
     "pify": "^2.3.0",
     "portfinder": "^1.0.2",
+    "prettier": "^1.1.0",
     "react-router-scroll": "^0.3.2",
     "redbox-react": "^1.2.2",
     "remark": "^5.0.0",
@@ -184,7 +187,16 @@
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "cleanup": "rimraf yarn.lock docs/yarn.lock themes/phenomic-theme-base/yarn.lock node_modules docs/node_modules themes/phenomic-theme-base/node_modules test-setup",
     "release": "npmpub",
-    "postrelease": "npm run old-docs-deploy"
+    "postrelease": "npm run old-docs-deploy",
+    "#precommit": "setup by husky",
+    "precommit": "lint-staged",
+    "format": "prettier --write --parser=flow --no-semi --trailing-comma=all \"packages/*/*.js\" \"packages/*/!(node_modules)/**/*.js\""
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --parser=flow --no-semi --trailing-comma=all",
+      "git add"
+    ]
   },
   "@todo add babel-plugin-flow-react-proptypes back": "https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/66",
   "babel": {
