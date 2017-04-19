@@ -84,6 +84,16 @@ Then your content will be accessible at
 
 ---
 
+⚠️ Please note that currently there is a bug related to development server
+that prevents accessing custom route that contains `.` character directly while in development mode.
+See [issue #808](https://github.com/MoOx/phenomic/issues/808) for more details.
+However, the custom route that contains `.` character can be accessed by navigating to it through a link.
+It works as expected in production builds.
+
+---
+
+---
+
 ⚠️ **If you need more complex page,
 [you can directly rely on a React component and specify your route in the app router](../usage/routing/)**.
 
