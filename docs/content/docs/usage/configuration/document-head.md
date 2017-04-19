@@ -1,6 +1,6 @@
 ---
 title: How to configure Phenomic pages metadata?
----
+---:heart ;)
 
 The best way to configure page metadata
 (title, description, facebook & twitter meta, external scripts/styles etc) is to
