@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native-web"
+import { View, Text, StyleSheet } from "react-native"
 
 const Hero = () => (
   <View style={styles.hero}>
