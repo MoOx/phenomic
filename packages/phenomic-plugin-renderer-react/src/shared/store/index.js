@@ -20,7 +20,7 @@ function createStore(state: StateType = {}): StoreType {
   let subscribers: Array<SubscriberType> = []
 
   function subscribe(func: SubscriberType) {
-    subscribers = [ ...subscribers, func ]
+    subscribers = [...subscribers, func]
     return function unsubscribe() {
       subscribers = subscribers.filter(item => item !== func)
     }
@@ -63,7 +63,7 @@ function createStore(state: StateType = {}): StoreType {
 
   function update(nextState: StateType) {
     state = { ...state, ...nextState }
-    subscribers.forEach((func) => func())
+    subscribers.forEach(func => func())
   }
 
   function getState() {

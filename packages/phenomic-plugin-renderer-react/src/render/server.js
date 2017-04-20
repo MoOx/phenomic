@@ -18,11 +18,12 @@ const debug = require("debug")("phenomic:plugin:react")
 
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
-    match({ routes, location: `/${ location }` }, (error, redirectLocation, renderProps) => {
-      error
-      ? reject(error)
-      : resolve({ renderProps, redirectLocation })
-    })
+    match(
+      { routes, location: `/${location}` },
+      (error, redirectLocation, renderProps) => {
+        error ? reject(error) : resolve({ renderProps, redirectLocation })
+      },
+    )
   })
 }
 
@@ -32,9 +33,9 @@ function renderToString(
   renderHTML: Function,
 ) {
   const body = ReactDOMServer.renderToString(
-    <Provider fetch={ fetch } store={ store }>
-      <RouterContext { ...renderProps } />
-    </Provider>
+    <Provider fetch={fetch} store={store}>
+      <RouterContext {...renderProps} />
+    </Provider>,
   )
   return renderHTML({
     body,
@@ -45,27 +46,38 @@ function renderToString(
 async function renderServer(
   app: AppType,
   fetch: PhenomicFetch,
-  location: string
+  location: string,
 ) {
   debug("server renderering")
 
   const routes = createRouteFromReactElement(app.routes)
   const store = createStore()
   const { renderProps, redirectLocation } = await getMatch({ routes, location })
-  const containers = renderProps.components.filter(item => item && typeof item.getQueries === "function")
-  await Promise.all(containers.map(item => {
-    const queries = item.getQueries(renderProps)
-    return performQuery(store, fetch, Object.keys(queries).map(key => QueryString.encode(queries[key])))
-  }))
-  const contents = await renderToString(store, { renderProps, redirectLocation }, renderHTML)
+  const containers = renderProps.components.filter(
+    item => item && typeof item.getQueries === "function",
+  )
+  await Promise.all(
+    containers.map(item => {
+      const queries = item.getQueries(renderProps)
+      return performQuery(
+        store,
+        fetch,
+        Object.keys(queries).map(key => QueryString.encode(queries[key])),
+      )
+    }),
+  )
+  const contents = await renderToString(
+    store,
+    { renderProps, redirectLocation },
+    renderHTML,
+  )
   const state = store.getState()
   return [
     { path: path.join(location, "index.html"), contents },
-    ...Object.keys(state)
-      .map(key => ({
-        path: createURL({ root: "phenomic", ...QueryString.decode(key) }),
-        contents: JSON.stringify(state[key].node),
-      })),
+    ...Object.keys(state).map(key => ({
+      path: createURL({ root: "phenomic", ...QueryString.decode(key) }),
+      contents: JSON.stringify(state[key].node),
+    })),
   ]
 }
 

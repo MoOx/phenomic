@@ -6,23 +6,22 @@ const c = () => ({ name: "c" })
 const d = () => ({ name: "d" })
 
 test("should flatten correctly", () => {
-
   expect(
     flattenPresets({
-      plugins: [ a, b ],
-    })
-  ).toEqual([ { name: "a" }, { name: "b" } ])
+      plugins: [a, b],
+    }),
+  ).toEqual([{ name: "a" }, { name: "b" }])
 
   expect(
     flattenPresets({
       presets: [
         () => ({
-          plugins: [ a ],
+          plugins: [a],
         }),
       ],
-      plugins: [ b, c ],
-    })
-  ).toEqual([ { name: "a" }, { name: "b" }, { name: "c" } ])
+      plugins: [b, c],
+    }),
+  ).toEqual([{ name: "a" }, { name: "b" }, { name: "c" }])
 
   expect(
     flattenPresets({
@@ -30,15 +29,13 @@ test("should flatten correctly", () => {
         () => ({
           presets: [
             () => ({
-              plugins: [ a ],
+              plugins: [a],
             }),
           ],
-          plugins: [ b ],
+          plugins: [b],
         }),
       ],
-      plugins: [ c, d ],
-
-    })
-  ).toEqual([ { name: "a" }, { name: "b" }, { name: "c" }, { name: "d" } ])
-
+      plugins: [c, d],
+    }),
+  ).toEqual([{ name: "a" }, { name: "b" }, { name: "c" }, { name: "d" }])
 })

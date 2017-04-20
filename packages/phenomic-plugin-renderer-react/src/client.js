@@ -4,9 +4,4 @@ import createApp from "./createApp.js"
 import createContainer from "./components/Container"
 import Provider from "./components/Provider"
 
-export {
-  createApp,
-  createContainer,
-  Provider,
-  query,
-}
+export { createApp, createContainer, Provider, query }

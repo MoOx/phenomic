@@ -1,7 +1,11 @@
 import QueryString from "./QueryString"
 import type { StoreType } from "./store"
 
-function performQuery(store: StoreType, fetch: PhenomicFetch, queries: phenomic$Queries) {
+function performQuery(
+  store: StoreType,
+  fetch: PhenomicFetch,
+  queries: phenomic$Queries,
+) {
   return Promise.all(
     queries.map(key => {
       store.setAsLoading(key)
@@ -12,7 +16,7 @@ function performQuery(store: StoreType, fetch: PhenomicFetch, queries: phenomic$
         .catch(error => {
           store.setAsError(key, error)
         })
-    })
+    }),
   )
 }
 

@@ -6,26 +6,23 @@ import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 const Home = (props: Object) => (
   <View>
-    {props.isLoading &&
-      <ActivityIndicator />
-    }
+    {props.isLoading && <ActivityIndicator />}
     {!props.isLoading &&
-      <View style={ styles.page }>
+      <View style={styles.page}>
         <Helmet title="API" />
-        <Text style={ styles.title }>
+        <Text style={styles.title}>
           {"API Tag Reference : " + props.params.splat}
         </Text>
-        {props.apis.node.list.map(api =>
-          <View key={ api.id }>
-            <Link to={ `/api/${ api.id }` }>
-              <Text style={ styles.property }>
+        {props.apis.node.list.map(api => (
+          <View key={api.id}>
+            <Link to={`/api/${api.id}`}>
+              <Text style={styles.property}>
                 {api.title}
               </Text>
             </Link>
           </View>
-        )}
-      </View>
-    }
+        ))}
+      </View>}
   </View>
 )
 

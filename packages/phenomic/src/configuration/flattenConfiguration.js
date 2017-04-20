@@ -4,9 +4,7 @@ const debug = require("debug")("phenomic:core:configuration")
 
 const normalizePlugin = (plugin: PhenomicPlugin) => {
   if (!plugin) {
-    throw new Error(
-      "phenomic: You provided an undefined plugin"
-    )
+    throw new Error("phenomic: You provided an undefined plugin")
   }
 
   debug("plugin typeof", typeof plugin)
@@ -14,9 +12,9 @@ const normalizePlugin = (plugin: PhenomicPlugin) => {
   if (typeof plugin !== "function") {
     throw new Error(
       "phenomic: You provided an plugin with type is " +
-      typeof plugin +
-      ". But function is expected instead of " +
-      String(plugin)
+        typeof plugin +
+        ". But function is expected instead of " +
+        String(plugin),
     )
   }
 
@@ -26,7 +24,9 @@ const normalizePlugin = (plugin: PhenomicPlugin) => {
   debug("plugin", pluginInstance.name)
 
   if (Array.isArray(pluginInstance)) {
-    throw new Error("Array of plugins should be specified in 'presets' section of your configuration")
+    throw new Error(
+      "Array of plugins should be specified in 'presets' section of your configuration",
+    )
   }
 
   return pluginInstance
@@ -53,7 +53,7 @@ function flattenPresets(config?: PhenomicInputPlugins = {}): PhenomicPlugins {
   const plugins = [
     ...(config.presets || [])
       .map(normalizeModule)
-      .reduce((acc, preset) => [ ...acc, ...flattenPresets(preset()) ], []),
+      .reduce((acc, preset) => [...acc, ...flattenPresets(preset())], []),
     ...(config.plugins || []).map(normalizeModule).map(normalizePlugin),
   ]
   debug("flattenPresets plugins", plugins)
@@ -61,7 +61,7 @@ function flattenPresets(config?: PhenomicInputPlugins = {}): PhenomicPlugins {
 }
 
 function flattenConfiguration(
-  config: PhenomicInputConfig = {}
+  config: PhenomicInputConfig = {},
 ): PhenomicConfig {
   // @todo ad validation here?
   debug("flattenConfiguration", config)

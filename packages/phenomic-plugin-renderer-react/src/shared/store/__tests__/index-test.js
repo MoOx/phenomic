@@ -1,14 +1,13 @@
 import createStore from ".."
 
 describe("createStore", () => {
-
   it("should create a store with an empty state", () => {
     const store = createStore()
     expect(store.getState()).toMatchSnapshot()
   })
 
   it("should create a store with an filled state", () => {
-    const store = createStore({ "foo": "bar" })
+    const store = createStore({ foo: "bar" })
     expect(store.getState()).toMatchSnapshot()
   })
 
@@ -29,5 +28,4 @@ describe("createStore", () => {
     store.set("bar", "baz")
     expect(subscriber.mock.calls.length).toBe(1)
   })
-
 })

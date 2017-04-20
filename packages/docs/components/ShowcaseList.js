@@ -1,35 +1,39 @@
 import React from "react"
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native-web"
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native-web"
 import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 const ShowcaseList = (props: Object) => (
   <View>
-    {props.isLoading &&
-      <ActivityIndicator />
-    }
+    {props.isLoading && <ActivityIndicator />}
     {!props.isLoading &&
-      <View style={ styles.page }>
-        <Text style={ styles.title }>
+      <View style={styles.page}>
+        <Text style={styles.title}>
           {"Showcase"}
         </Text>
-        <View style={ styles.list }>
-          {props.showcase.node.list.map(site =>
-            <TouchableOpacity style={ styles.item } key={ site.id } href={ site.url }>
+        <View style={styles.list}>
+          {props.showcase.node.list.map(site => (
+            <TouchableOpacity style={styles.item} key={site.id} href={site.url}>
               <View>
                 <Image
-                  source={{ uri: `/assets/showcase/${ site.media.desktop }` }}
-                  style={ styles.image }
+                  source={{ uri: `/assets/showcase/${site.media.desktop}` }}
+                  style={styles.image}
                   resizeMode="contain"
                 />
-                <Text style={ styles.siteName }>
+                <Text style={styles.siteName}>
                   {site.title}
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
+          ))}
         </View>
-      </View>
-    }
+      </View>}
   </View>
 )
 

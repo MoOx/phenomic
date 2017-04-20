@@ -20,7 +20,7 @@ module.exports = (/* config: PhenomicConfig */) => ({
         loader: require.resolve("babel-loader"),
         options: {
           babelrc: false,
-          presets: [ require.resolve("babel-preset-react-app") ],
+          presets: [require.resolve("babel-preset-react-app")],
         },
       },
       {
@@ -35,9 +35,12 @@ module.exports = (/* config: PhenomicConfig */) => ({
   plugins: [
     new ExtractTextPlugin({ filename: "styles.css" }),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
+      "process.env.NODE_ENV": JSON.stringify(
+        process.env.NODE_ENV || "development",
+      ),
     }),
-    process.env.NODE_ENV === "production" && new webpack.optimize.UglifyJsPlugin(),
+    process.env.NODE_ENV === "production" &&
+      new webpack.optimize.UglifyJsPlugin(),
   ].filter(item => item),
 
   resolve: {
@@ -46,9 +49,13 @@ module.exports = (/* config: PhenomicConfig */) => ({
       "react-native": "react-native-web",
 
       // to ensure a single module is used
-      "react": path.resolve(path.join(process.cwd(), "node_modules", "react")),
-      "react-dom": path.resolve(path.join(process.cwd(), "node_modules", "react-dom")),
-      "react-router": path.resolve(path.join(process.cwd(), "node_modules", "react-router")),
+      react: path.resolve(path.join(process.cwd(), "node_modules", "react")),
+      "react-dom": path.resolve(
+        path.join(process.cwd(), "node_modules", "react-dom"),
+      ),
+      "react-router": path.resolve(
+        path.join(process.cwd(), "node_modules", "react-router"),
+      ),
     },
   },
 

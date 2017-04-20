@@ -5,25 +5,22 @@ import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 const ChangelogListPage = (props: Object) => (
   <View>
-    {props.isLoading &&
-      <ActivityIndicator />
-    }
+    {props.isLoading && <ActivityIndicator />}
     {!props.isLoading &&
-      <View style={ styles.page }>
-        <Text style={ styles.title }>
+      <View style={styles.page}>
+        <Text style={styles.title}>
           {"Changelog"}
         </Text>
-        {props.apis.node.list.map(api =>
-          <View key={ api.id }>
-            <Link to={ `/changelog/${ api.id }` }>
-              <Text style={ styles.property }>
+        {props.apis.node.list.map(api => (
+          <View key={api.id}>
+            <Link to={`/changelog/${api.id}`}>
+              <Text style={styles.property}>
                 {api.title}
               </Text>
             </Link>
           </View>
-        )}
-      </View>
-    }
+        ))}
+      </View>}
   </View>
 )
 

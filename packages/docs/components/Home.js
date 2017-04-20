@@ -7,9 +7,7 @@ import Hero from "./Hero"
 
 const Home = () => (
   <View>
-    <Helmet
-      title="Phenomic, a static-site generator"
-    />
+    <Helmet title="Phenomic, a static-site generator" />
     <Hero />
   </View>
 )

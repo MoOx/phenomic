@@ -6,17 +6,12 @@ import MarkdownGenerated from "./MarkdownGenerated"
 
 const Home = (props: Object) => (
   <View>
-    {props.isLoading &&
-      <ActivityIndicator />
-    }
+    {props.isLoading && <ActivityIndicator />}
     {!props.isLoading &&
-      <View style={ styles.page }>
-        <Text style={ styles.title }>{props.page.node.title}</Text>
-        <MarkdownGenerated
-          body={ props.page.node.body }
-        />
-      </View>
-    }
+      <View style={styles.page}>
+        <Text style={styles.title}>{props.page.node.title}</Text>
+        <MarkdownGenerated body={props.page.node.body} />
+      </View>}
   </View>
 )
 

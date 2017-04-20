@@ -2,12 +2,12 @@ import React from "react"
 import { View, Text, StyleSheet } from "react-native-web"
 
 const Hero = () => (
-  <View style={ styles.hero }>
-    <View style={ styles.contents }>
-      <Text style={ styles.title }>
+  <View style={styles.hero}>
+    <View style={styles.contents}>
+      <Text style={styles.title}>
         {"Make your website fast"}
       </Text>
-      <Text style={ styles.text }>
+      <Text style={styles.text}>
         {"A single page application that's statically generated"}
       </Text>
     </View>

@@ -1,7 +1,6 @@
 import QueryString from "../QueryString"
 
 describe("QueryString", () => {
-
   it("should encode", () => {
     expect(QueryString.encode({ a: "1", b: "foo" })).toMatchSnapshot()
   })
@@ -11,7 +10,8 @@ describe("QueryString", () => {
   })
 
   it("should remove leading '?'", () => {
-    expect(QueryString.decode("?a=1&b=foo")).toEqual(QueryString.decode("a=1&b=foo"))
+    expect(QueryString.decode("?a=1&b=foo")).toEqual(
+      QueryString.decode("a=1&b=foo"),
+    )
   })
-
 })
