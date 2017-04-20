@@ -2155,9 +2155,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-i-am-meticulous@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-i-am-meticulous/-/eslint-config-i-am-meticulous-5.0.2.tgz#0096f0727f7db496d8dca4d4fdcb64e54adfa2fb"
+eslint-config-i-am-meticulous@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-i-am-meticulous/-/eslint-config-i-am-meticulous-6.0.1.tgz#337ff3fd3fdd7a5847a747f17a38d8f6ca717c39"
   dependencies:
     eslint-plugin-import "^1.7.0"
 
@@ -2176,9 +2176,11 @@ eslint-module-utils@^2.0.0:
     debug "2.2.0"
     pkg-dir "^1.0.0"
 
-eslint-plugin-flow-vars@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flow-vars/-/eslint-plugin-flow-vars-0.5.0.tgz#a7fb78fd873c86e0e5839df3b3c90d47bc68c6d2"
+eslint-plugin-flowtype@^2.31.0:
+  version "2.31.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.31.0.tgz#c575f7f5f4a8f0b74bd7339c81c4efbe1dd007fb"
+  dependencies:
+    lodash "^4.15.0"
 
 eslint-plugin-import@^1.7.0:
   version "1.16.0"
@@ -2201,7 +2203,7 @@ eslint-plugin-import@^1.7.0:
     pkg-dir "^1.0.0"
     pkg-up "^1.0.0"
 
-eslint-plugin-import@^2.0.0:
+eslint-plugin-import@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.2.0.tgz#72ba306fad305d67c4816348a4699a4229ac8b4e"
   dependencies:
@@ -2216,7 +2218,7 @@ eslint-plugin-import@^2.0.0:
     minimatch "^3.0.3"
     pkg-up "^1.0.0"
 
-eslint-plugin-react@^6.4.0:
+eslint-plugin-react@^6.10.3:
   version "6.10.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.10.3.tgz#c5435beb06774e12c7db2f6abaddcbf900cd3f78"
   dependencies:
