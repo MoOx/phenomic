@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import mapValues from "../shared/mapValues"
 import QueryString from "../shared/QueryString"
@@ -16,9 +17,9 @@ function createContainer(
   class PhenomicRouteContainer extends React.Component<void, PropsType, void> {
     static getQueries = getQueries
     static contextTypes = {
-      query: React.PropTypes.func,
-      store: React.PropTypes.object,
-      __prerendering: React.PropTypes.bool,
+      query: PropTypes.func,
+      store: PropTypes.object,
+      __prerendering: PropTypes.bool,
     }
     constructor(props: PropsType, context: Object) {
       super(props, context)
