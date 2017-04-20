@@ -1906,9 +1906,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-i-am-meticulous@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-i-am-meticulous/-/eslint-config-i-am-meticulous-5.0.2.tgz#0096f0727f7db496d8dca4d4fdcb64e54adfa2fb"
+eslint-config-i-am-meticulous@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-i-am-meticulous/-/eslint-config-i-am-meticulous-6.0.1.tgz#337ff3fd3fdd7a5847a747f17a38d8f6ca717c39"
   dependencies:
     eslint-plugin-import "^1.7.0"
 

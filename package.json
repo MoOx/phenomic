@@ -112,10 +112,10 @@
     "cp-cli": "^1.0.2",
     "cross-env": "^2.0.0",
     "eslint": "^3.7.1",
-    "eslint-config-i-am-meticulous": "^5.0.2",
-    "eslint-plugin-flow-vars": "^0.5.0",
-    "eslint-plugin-import": "^2.0.0",
-    "eslint-plugin-react": "^6.4.0",
+    "eslint-config-i-am-meticulous": "^6.0.1",
+    "eslint-plugin-flowtype": "^2.31.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.10.3",
     "exec-cmd": "^2.0.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
@@ -162,7 +162,7 @@
     "postinstall": "npm run transpile && node npm/postinstall.js && npm run repo:init",
     "transpile": "rimraf lib && babel --ignore __tests__ --copy-files src --out-dir lib",
     "prepublish": "npm run transpile",
-    "lint:js:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests src themes",
+    "lint:js:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:js:flow": "flow check",
     "lint:js": "npm-run-all --parallel lint:js:*",
     "lint": "npm-run-all --parallel lint:*",
@@ -210,8 +210,6 @@
     ]
   },
   "eslintConfig": {
-    "root": true,
-    "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous/react-flow"
     ],
@@ -219,10 +217,6 @@
       "jest": true
     },
     "rules": {
-      "max-len": [
-        2,
-        120
-      ],
       "import/max-dependencies": [
         2,
         {
@@ -235,6 +229,7 @@
   },
   "#eslintConfig/rules/import/no-extraneous-dependencies": "phenomic usage in theme is not specified in package.json (and can't be for now)",
   "#eslintConfig/rules/import/no-unresolved": "deps in docs & theme are installed after the lint step",
+  "#eslintConfig/rules/import/*": "can be removed for v1",
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
