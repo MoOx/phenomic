@@ -1,5 +1,5 @@
 import React from "react"
-import { View } from "react-native-web"
+import { View } from "react-native"
 import Helmet from "react-helmet"
 import { createContainer } from "phenomic-preset-default/lib/client"
 
