@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import performQuery from "../shared/performQuery"
 
@@ -11,9 +12,9 @@ type PropsType = {
 class Provider extends React.Component<void, PropsType, void> {
   props: PropsType
   static childContextTypes = {
-    query: React.PropTypes.func,
-    store: React.PropTypes.object.isRequired,
-    __prerendering: React.PropTypes.bool,
+    query: PropTypes.func,
+    store: PropTypes.object.isRequired,
+    __prerendering: PropTypes.bool,
   }
   getChildContext() {
     return {
