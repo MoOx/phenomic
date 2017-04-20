@@ -11,19 +11,15 @@ type PropsType = Object
 
 function createContainer(
   Component: Function,
-  getQueries: Function = defaultGetQueries
+  getQueries: Function = defaultGetQueries,
 ) {
-
   class PhenomicRouteContainer extends React.Component<void, PropsType, void> {
-
     static getQueries = getQueries
-
     static contextTypes = {
       query: React.PropTypes.func,
       store: React.PropTypes.object,
       __prerendering: React.PropTypes.bool,
     }
-
     constructor(props: PropsType, context: Object) {
       super(props, context)
       this.computeQueries(props)
@@ -39,8 +35,10 @@ function createContainer(
       }
       this.unsubscribe = this.context.store.subscribe(() => this.update())
       if (process.env.NODE_ENV !== "production") {
-        require("socket.io-client")(socketServerURL)
-          .on("change", this.forceQuery)
+        require("socket.io-client")(socketServerURL).on(
+          "change",
+          this.forceQuery,
+        )
       }
     }
 
@@ -56,21 +54,20 @@ function createContainer(
       this.unsubscribe = null
 
       if (process.env.NODE_ENV !== "production") {
-        require("socket.io-client")(socketServerURL)
-          .removeListener("change", this.forceQuery)
+        require("socket.io-client")(socketServerURL).removeListener(
+          "change",
+          this.forceQuery,
+        )
       }
     }
 
     unsubscribe: Function | null
-
     forceQuery = () => {
       this.query(true)
     }
-
     update = () => {
       this.schedule(() => this.forceUpdate())
     }
-
     schedule = (func: Function) => {
       requestAnimationFrame(() => {
         if (typeof this.unsubscribe === "function") {
@@ -78,47 +75,39 @@ function createContainer(
         }
       })
     }
-
     queries: Object
-
     computeQueries = (props: PropsType) => {
-      this.queries = mapValues(getQueries(props), value => QueryString.encode(value))
+      this.queries = mapValues(getQueries(props), value =>
+        QueryString.encode(value),
+      )
     }
-
     query = (force: boolean = false) => {
       const store = this.context.store
       const values = Object.keys(this.queries).map(key => this.queries[key])
       if (force) {
         this.context.query(values)
-      }
-      else {
-        this.context.query(values.filter(item => store.get(item).status !== "idle"))
+      } else {
+        this.context.query(
+          values.filter(item => store.get(item).status !== "idle"),
+        )
       }
     }
-
     render() {
       const store = this.context.store
       const values = Object.keys(this.queries).map(key => this.queries[key])
       const isLoading = values.some(item => !store.get(item).node)
       const hasErrored = values.some(item => store.get(item).status === "error")
-      const props = mapValues(this.queries, (value, key) => store.get(this.queries[key]))
-      if (hasErrored) {
-        return (
-          null
-        )
-      }
-      return (
-        <Component
-          { ...this.props }
-          isLoading={ isLoading }
-          { ...props }
-        />
+      const props = mapValues(this.queries, (value, key) =>
+        store.get(this.queries[key]),
       )
+      if (hasErrored) {
+        return null
+      }
+      return <Component {...this.props} isLoading={isLoading} {...props} />
     }
   }
 
   return PhenomicRouteContainer
-
 }
 
 export default createContainer

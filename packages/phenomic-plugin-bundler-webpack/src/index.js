@@ -14,11 +14,10 @@ const debug = require("debug")("phenomic:plugin:webpack")
 const { UglifyJsPlugin } = optimize
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true })
 const bundleName = "phenomic.node"
-const requireSourceMapSupport = `require('${
-  require.resolve("source-map-support/register")
+const requireSourceMapSupport = `require('${require
+  .resolve("source-map-support/register")
   // windows support
-  .replace(/\\/g, "/")
-}');`
+  .replace(/\\/g, "/")}');`
 
 // const wrap = JSON.stringify
 
@@ -27,13 +26,14 @@ const getWebpackConfig = (config: PhenomicConfig) => {
   try {
     webpackConfig = require(path.join(config.path, "webpack.config.js"))(config)
     debug("webpack.config.js used")
-  }
-  catch (e) {
+  } catch (e) {
     try {
-      webpackConfig = require(path.join(config.path, "webpack.config.babel.js"))(config)
+      webpackConfig = require(path.join(
+        config.path,
+        "webpack.config.babel.js",
+      ))(config)
       debug("webpack.config.babel.js used")
-    }
-    catch (e) {
+    } catch (e) {
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(config)
       debug("default webpack config used")
     }
@@ -92,9 +92,11 @@ export default function() {
         },
         plugins: [
           // Remove UglifyJSPlugin from plugin stack
-          ...webpackConfig.plugins ? webpackConfig.plugins.filter(
-            (plugin) => !(plugin instanceof UglifyJsPlugin)
-          ) : [],
+          ...(webpackConfig.plugins
+            ? webpackConfig.plugins.filter(
+                plugin => !(plugin instanceof UglifyJsPlugin),
+              )
+            : []),
           // sourcemaps
           new BannerPlugin({
             banner: requireSourceMapSupport,
@@ -105,7 +107,9 @@ export default function() {
         // sourcemaps
         devtool: "#source-map",
       }
-      return webpackPromise(specialConfig).then(() => require(path.join(cacheDir, bundleName)).default)
+      return webpackPromise(specialConfig).then(
+        () => require(path.join(cacheDir, bundleName)).default,
+      )
     },
     build(config: PhenomicConfig) {
       debug("build")

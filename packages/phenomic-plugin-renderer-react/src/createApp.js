@@ -4,7 +4,7 @@ export type AppType = {
   routes: React$Element<any>,
 }
 
-export default (routes: () => React$Element<any>): AppType  => {
+export default (routes: () => React$Element<any>): AppType => {
   if (typeof window !== "undefined") {
     render(routes)
   }

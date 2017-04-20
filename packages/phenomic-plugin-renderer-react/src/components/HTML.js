@@ -12,7 +12,7 @@ const HTML = (props: Object) => (
     <body>
       <div
         dangerouslySetInnerHTML={{
-          __html: `<div id="PhenomicRoot">${ props.body || "" }</div>`,
+          __html: `<div id="PhenomicRoot">${props.body || ""}</div>`,
         }}
       />
       {props.state &&
@@ -22,8 +22,7 @@ const HTML = (props: Object) => (
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(props.state),
           }}
-        />
-      }
+        />}
       <script src="/bundle.js" async />
     </body>
   </html>

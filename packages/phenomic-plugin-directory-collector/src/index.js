@@ -8,7 +8,7 @@ function getKey(name, json) {
   }
   return path.join(
     path.dirname(name).split(path.sep).slice(1).join(path.sep),
-    name.endsWith("index.md") ? "" : path.basename(name, ".md")
+    name.endsWith("index.md") ? "" : path.basename(name, ".md"),
   )
 }
 
@@ -25,14 +25,14 @@ function formatDate(dateString) {
 function getSortedKey(name, json) {
   const key = getKey(name, json)
   if (typeof json.date === "string") {
-    return `${ formatDate(json.date) }-${ key }`
+    return `${formatDate(json.date)}-${key}`
   }
   return key
 }
 
 function getAuthors(json) {
   if (typeof json.data.author === "string") {
-    return [ json.data.author ]
+    return [json.data.author]
   }
   if (Array.isArray(json.data.authors)) {
     return json.data.authors
@@ -54,28 +54,28 @@ export default function() {
       const pathSegments = name.split(path.sep)
       const collectionName = pathSegments[0]
       const key = getKey(name, json.data)
-      debug(`collecting ${ key } for collection '${ collectionName }'`)
+      debug(`collecting ${key} for collection '${collectionName}'`)
       const sortedKey = getSortedKey(name, json.data)
       return Promise.all([
         // full resource, not sorted
-        db.put([ collectionName ], key, { ...json, id: key }),
+        db.put([collectionName], key, { ...json, id: key }),
         // sorted list
-        db.put([ collectionName, "default" ], sortedKey, { id: key }),
+        db.put([collectionName, "default"], sortedKey, { id: key }),
         // sorted list, filtered by authors
         ...getAuthors(json).map(author => {
           return Promise.all([
-            db.put([ collectionName, "authors", author ], sortedKey, { id: key }),
-            db.put([ "authors", collectionName ], author, { id: author }),
+            db.put([collectionName, "authors", author], sortedKey, { id: key }),
+            db.put(["authors", collectionName], author, { id: author }),
           ])
         }),
         ...getTags(json).map(tag => {
           return Promise.all([
             // sorted list, filtered by tags
-            db.put([ collectionName, "tags", tag ], sortedKey, { id: key }),
+            db.put([collectionName, "tags", tag], sortedKey, { id: key }),
             // global tag list
-            db.put([ "tags" ], tag, { id: tag }),
-            db.put([ "tags", "default" ], tag, { id: tag }),
-            db.put([ "tags", "collection", collectionName ], tag, { id: tag }),
+            db.put(["tags"], tag, { id: tag }),
+            db.put(["tags", "default"], tag, { id: tag }),
+            db.put(["tags", "collection", collectionName], tag, { id: tag }),
           ])
         }),
       ])

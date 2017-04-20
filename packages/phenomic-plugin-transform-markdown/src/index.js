@@ -8,7 +8,7 @@ import marked from "marked"
 const debug = require("debug")("phenomic:plugin:transform-markdown")
 
 function transformMarkdownFile(file: string, contents: Buffer) {
-  debug(`transforming ${ file }`)
+  debug(`transforming ${file}`)
 
   const front = frontMatter(contents)
   const partial = {
@@ -17,18 +17,13 @@ function transformMarkdownFile(file: string, contents: Buffer) {
   }
   const data = {
     ...partial,
-    body: (
-      // @todo replace marked by remark
-      marked(
-        front.body,
-        {
-          highlight(code /* , language */) {
-            // $FlowFixMe highlight.js going to be replace
-            return require("highlight.js").highlightAuto(code).value
-          },
-        }
-      )
-    ),
+    // @todo replace marked by remark
+    body: marked(front.body, {
+      highlight(code /* , language */) {
+        // $FlowFixMe highlight.js going to be replace
+        return require("highlight.js").highlightAuto(code).value
+      },
+    }),
   }
   return {
     data,
@@ -39,7 +34,7 @@ function transformMarkdownFile(file: string, contents: Buffer) {
 export default function() {
   return {
     name: "phenomic-plugin-transform-markdown",
-    supportedFileTypes: [ "md", "markdown" ],
+    supportedFileTypes: ["md", "markdown"],
     transform: transformMarkdownFile,
   }
 }

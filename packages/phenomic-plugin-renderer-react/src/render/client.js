@@ -18,19 +18,16 @@ function render(routes: () => React$Element<any>) {
 
   const initialStateNode = document.getElementById("Hydration")
   const store = createStore(
-    initialStateNode && initialStateNode.textContent ?
-      JSON.parse(initialStateNode.textContent) :
-      undefined
+    initialStateNode && initialStateNode.textContent
+      ? JSON.parse(initialStateNode.textContent)
+      : undefined,
   )
 
   ReactDOM.render(
-    <Provider
-      fetch={ createFetchFunction() }
-      store={ store }
-    >
-      { routes }
+    <Provider fetch={createFetchFunction()} store={store}>
+      {routes}
     </Provider>,
-    document.getElementById("PhenomicRoot")
+    document.getElementById("PhenomicRoot"),
   )
 }
 

@@ -2,7 +2,9 @@ const QueryString = {
   encode(object: Object) {
     return Object.keys(object)
       .filter(key => object[key] !== null && object[key] !== undefined)
-      .map((key) => `${ encodeURIComponent(key) }=${ encodeURIComponent(object[key]) }`)
+      .map(
+        key => `${encodeURIComponent(key)}=${encodeURIComponent(object[key])}`,
+      )
       .join("&")
   },
   decode(string: string) {
@@ -11,7 +13,7 @@ const QueryString = {
     }
     const params = string.split("&")
     return params.reduce((acc, param) => {
-      const [ key, value ] = param.split("=")
+      const [key, value] = param.split("=")
       acc[decodeURIComponent(key)] = decodeURIComponent(value)
       return acc
     }, {})

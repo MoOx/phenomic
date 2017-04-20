@@ -20,30 +20,33 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   debug("creating server")
   const server = express()
 
-  server.get(
-    "/",
-    async function(req: express$Request, res: express$Response) {
-      debug("get api version")
-      res.json({
-        engine: "phenomic",
-        version: pkg.version,
-      })
+  server.get("/", async function(req: express$Request, res: express$Response) {
+    debug("get api version")
+    res.json({
+      engine: "phenomic",
+      version: pkg.version,
     })
+  })
 
-  server.get(
-    "/:collection/by-:filter/:value/:sort.json",
-    async function(req: express$Request, res: express$Response) {
-      debug(req.url, JSON.stringify(req.params))
-      try {
-        const reverse = req.params.sort === "desc"
-        const list = await db.getList(req.params.collection, { reverse }, req.params.filter, req.params.value)
-        res.json(connect(list))
-      }
-      catch (error) {
-        console.error(error)
-        res.status(404).end()
-      }
-    })
+  server.get("/:collection/by-:filter/:value/:sort.json", async function(
+    req: express$Request,
+    res: express$Response,
+  ) {
+    debug(req.url, JSON.stringify(req.params))
+    try {
+      const reverse = req.params.sort === "desc"
+      const list = await db.getList(
+        req.params.collection,
+        { reverse },
+        req.params.filter,
+        req.params.value,
+      )
+      res.json(connect(list))
+    } catch (error) {
+      console.error(error)
+      res.status(404).end()
+    }
+  })
 
   server.get(
     "/:collection/by-:filter/:value/:sort/limit-:limit.json",
@@ -58,15 +61,16 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             limit: limit + 1,
             reverse,
           },
-          req.params.filter, req.params.value
+          req.params.filter,
+          req.params.value,
         )
         res.json(connect(list, limit))
-      }
-      catch (error) {
+      } catch (error) {
         console.error(error)
         res.status(404).end()
       }
-    })
+    },
+  )
 
   server.get(
     "/:collection/by-:filter/:value/:sort/limit-:limit/after-:after.json",
@@ -84,39 +88,38 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             reverse,
           },
           req.params.filter,
-          req.params.value
+          req.params.value,
         )
         res.json(connect(list, limit))
-      }
-      catch (error) {
+      } catch (error) {
         console.error(error)
         res.status(404).end()
       }
-    })
+    },
+  )
 
-  server.get(
-    "/:collection/item/*.json",
-    async function(req: express$Request, res: express$Response) {
-      debug(req.url, JSON.stringify(req.params))
-      try {
-        const resource = await db.get(req.params.collection, req.params["0"])
-        res.json(resource.value)
-      }
-      catch (error) {
-        console.error(error)
-        res.status(404).end()
-      }
-    })
+  server.get("/:collection/item/*.json", async function(
+    req: express$Request,
+    res: express$Response,
+  ) {
+    debug(req.url, JSON.stringify(req.params))
+    try {
+      const resource = await db.get(req.params.collection, req.params["0"])
+      res.json(resource.value)
+    } catch (error) {
+      console.error(error)
+      res.status(404).end()
+    }
+  })
 
   // Install the plugins
-  plugins.forEach((plugin) => {
+  plugins.forEach(plugin => {
     if (typeof plugin.define === "function") {
-      debug(`installing plugin '${ plugin.name }'`)
+      debug(`installing plugin '${plugin.name}'`)
       // $FlowFixMe typeof above is not enough?
       plugin.define(server, db)
-    }
-    else {
-      debug(`plugin '${ plugin.name }' have no API definition`)
+    } else {
+      debug(`plugin '${plugin.name}' have no API definition`)
     }
   })
 
