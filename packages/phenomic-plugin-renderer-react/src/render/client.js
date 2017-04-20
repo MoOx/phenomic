@@ -25,7 +25,7 @@ function render(routes: () => React$Element<any>) {
 
   ReactDOM.render(
     <Provider fetch={createFetchFunction()} store={store}>
-      {routes}
+      {routes()}
     </Provider>,
     document.getElementById("PhenomicRoot"),
   )
