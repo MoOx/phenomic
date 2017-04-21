@@ -1,4 +1,4 @@
-import QueryString from "./QueryString"
+import { decode } from "./QueryString"
 import type { StoreType } from "./store"
 
 function performQuery(
@@ -9,7 +9,7 @@ function performQuery(
   return Promise.all(
     queries.map(key => {
       store.setAsLoading(key)
-      return fetch(QueryString.decode(key))
+      return fetch(decode(key))
         .then(value => {
           store.set(key, value)
         })

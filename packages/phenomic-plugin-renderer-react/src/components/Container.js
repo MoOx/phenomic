@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import mapValues from "../shared/mapValues"
-import QueryString from "../shared/QueryString"
+import { encode } from "../shared/QueryString"
 
 const emptyObject = {}
 const defaultGetQueries = () => emptyObject
@@ -78,9 +78,7 @@ function createContainer(
     }
     queries: Object
     computeQueries = (props: PropsType) => {
-      this.queries = mapValues(getQueries(props), value =>
-        QueryString.encode(value),
-      )
+      this.queries = mapValues(getQueries(props), encode)
     }
     query = (force: boolean = false) => {
       const store = this.context.store

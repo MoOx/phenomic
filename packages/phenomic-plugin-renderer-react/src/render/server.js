@@ -9,7 +9,7 @@ import createURL from "phenomic-api-client/lib/url"
 import Provider from "../components/Provider"
 import createStore from "../shared/store"
 import performQuery from "../shared/performQuery"
-import QueryString from "../shared/QueryString"
+import { encode, decode } from "../shared/QueryString"
 import renderHTML from "../server/renderHTML"
 import type { StoreType } from "../shared/store"
 import type { AppType } from "../createApp"
@@ -62,7 +62,7 @@ async function renderServer(
       return performQuery(
         store,
         fetch,
-        Object.keys(queries).map(key => QueryString.encode(queries[key])),
+        Object.keys(queries).map(key => encode(queries[key])),
       )
     }),
   )
@@ -75,7 +75,7 @@ async function renderServer(
   return [
     { path: path.join(location, "index.html"), contents },
     ...Object.keys(state).map(key => ({
-      path: createURL({ root: "phenomic", ...QueryString.decode(key) }),
+      path: createURL({ root: "phenomic", ...decode(key) }),
       contents: JSON.stringify(state[key].node),
     })),
   ]
