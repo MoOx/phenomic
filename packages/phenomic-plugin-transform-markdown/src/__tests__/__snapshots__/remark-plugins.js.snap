@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render markdown as react component 1`] = `
+<div>
+  <h2
+    id="test"
+  >
+    <a
+      href="#test"
+    />
+    Test
+  </h2>
+  
+  
+  <p>
+    <a
+      href="href"
+    >
+      link
+    </a>
+  </p>
+  
+  
+  <pre>
+    <code
+      className="hljs js"
+      style={
+        Object {
+          "display": "inline",
+        }
+      }
+    >
+      <span
+        className={
+          Array [
+            "hljs-built_in",
+          ]
+        }
+      >
+        console
+      </span>
+      .log(
+      <span
+        className={
+          Array [
+            "hljs-built_in",
+          ]
+        }
+      >
+        window
+      </span>
+      )
+      
+    </code>
+  </pre>
+</div>
+`;
