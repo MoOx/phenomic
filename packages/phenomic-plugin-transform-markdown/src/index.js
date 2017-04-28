@@ -6,8 +6,13 @@ import remarkPlugins from "./remark-plugins.js"
 
 const debug = require("debug")("phenomic:plugin:transform-markdown")
 
-function transformMarkdownFile(file: string, contents: Buffer) {
-  debug(`transforming ${file}`)
+function transformMarkdownFile({
+  config,
+  file,
+  contents,
+}: { config: PhenomicConfig, file: PhenomicContentFile, contents: Buffer }) {
+  debug(`transforming ${file.fullpath}`)
+  debug(contents)
 
   const front = frontMatterParser(contents.toString())
   const partial = {
@@ -22,13 +27,13 @@ function transformMarkdownFile(file: string, contents: Buffer) {
   return {
     data: {
       ...partial,
-      body: remarkPlugins(front.content).contents,
+      body: remarkPlugins(config, front.content).contents,
     },
     partial,
   }
 }
 
-export default function() {
+export default function(): PhenomicPlugin {
   return {
     name: "phenomic-plugin-transform-markdown",
     supportedFileTypes: ["md", "markdown"],

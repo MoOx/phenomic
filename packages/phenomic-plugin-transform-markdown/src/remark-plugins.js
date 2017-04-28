@@ -1,50 +1,69 @@
 // https://github.com/wooorm/remark
 import remark from "remark"
+// https://github.com/wooorm/remark-toc
+import toc from "remark-toc"
 // https://github.com/wooorm/remark-slug
 import slug from "remark-slug"
 // https://github.com/ben-eb/remark-autolink-headings
 import autoLinkHeadings from "remark-autolink-headings"
-// https://github.com/wooorm/remark-toc
-import toc from "remark-toc"
+// https://github.com/wooorm/remark-html
+import html from "remark-html"
 // https://github.com/mapbox/remark-react
 import reactRenderer from "remark-react"
-// https://github.com/bebraw/remark-react-lowlight
-import RemarkLowlight from "remark-react-lowlight"
 // for code highlight
-import merge from "deepmerge"
+import deepmerge from "deepmerge"
 import sanitizeGhSchema from "hast-util-sanitize/lib/github.json"
 
-import languages from "./common-languages.js"
+export default (config: PhenomicConfig, body: string) => {
+  const remarkInstance = remark().use(toc).use(slug).use(autoLinkHeadings, {
+    // @todo find how to make this options works with remark-react
+    content: {
+      type: "text",
+      value: "#",
+    },
+    linkProperties: {
+      className: "phenomic-HeadingAnchor",
+    },
+  })
 
-export default (body: string) =>
-  remark()
-    .use(slug)
-    .use(autoLinkHeadings, {
-      // @todo find how to make this options works with remark-react
-      content: {
-        type: "text",
-        value: "#",
-      },
-      linkProperties: {
-        className: "phenomic-HeadingAnchor",
-      },
-    })
-    .use(toc)
-    .use(reactRenderer, {
-      sanitize: merge(sanitizeGhSchema, {
+  const useReact = config.plugins.find(
+    p => p.name === "phenomic-plugin-renderer-react",
+  )
+
+  if (!useReact) {
+    remarkInstance.use(html)
+  } else {
+    remarkInstance.use(reactRenderer, {
+      sanitize: deepmerge(sanitizeGhSchema, {
         // remove user-content from github.json to remark-slug work as expected
         clobberPrefix: "",
         // allow code to have className
-        attributes: {
-          code: ["className"],
-          a: ["className"],
-        },
+        attributes: { "*": ["className"] },
       }),
-      remarkReactComponents: {
-        code: RemarkLowlight(languages),
+      // we cannot rely on components from here as we are serializing this as
+      // json
+      // remarkReactComponents: {
+      //   code: RemarkLowlight(languages),
+      // },
+      createElement: (component, props, children) => {
+        // here we optimize structure just a little to have to smallest json
+        // possible
+        return {
+          ...(!children
+            ? {}
+            : Array.isArray(children) && children.length === 0
+                ? {}
+                : Array.isArray(children) && children.length === 1
+                    ? { c: children[0] }
+                    : { c: children }),
+          ...(!props
+            ? {}
+            : Object.keys(props).length === 0 ? {} : { p: props }),
+          t: component,
+        }
       },
     })
-    // render
-    .processSync(body, {
-      commonmark: true,
-    })
+  }
+
+  return remarkInstance.processSync(body, { commonmark: true })
+}
