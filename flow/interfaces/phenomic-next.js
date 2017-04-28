@@ -3,13 +3,12 @@ export type PhenomicDB = {
   put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,
   get: (sub: string | Array<string>, key: string) => Promise<*>,
   getPartial: (sub: string | Array<string>, key: string) => Promise<*>,
-  getList:
-    (
-      sub: string | Array<string>,
-      config: LevelStreamConfig,
-      filter?: string,
-      filterValue: string
-    ) => Promise<*>,
+  getList: (
+    sub: string | Array<string>,
+    config: LevelStreamConfig,
+    filter?: string,
+    filterValue: string,
+  ) => Promise<*>,
 }
 
 export type PhenomicInputPlugins = {
@@ -36,7 +35,11 @@ export type PhenomicPlugin = {
   name: string,
   // transformer
   supportedFileTypes?: Array<string>,
-  transform?: (file: PhenomicContentFile, fileContents: string) => Promise<Object> | Object,
+  transform?: ({
+    config: PhenomicConfig,
+    file: PhenomicContentFile,
+    contents: Buffer,
+  }) => Promise<Object> | Object,
   // api
   define?: (api: express$Application, db: PhenomicDB) => mixed,
   // collector
@@ -68,22 +71,22 @@ export type PhenomicQueryConfig = {
   after?: string,
   by?: string,
   value?: string,
-  limit?: number
+  limit?: number,
 }
 
 export type PhenomicRoute = {
   path: string,
   params?: { [key: string]: any },
-  getQueries:
-    (props: { params: { [key: string]: any }})
-    =>
-    { [key: string]: PhenomicQueryConfig }
-  ,
+  getQueries: (props: { params: { [key: string]: any } }) => {
+    [key: string]: PhenomicQueryConfig,
+  },
   collection?: string,
 }
 
 // @todo why this inconsistency?
-export type PhenomicFetch = IsomorphicFetch | (config: PhenomicQueryConfig) => Promise<any>
+export type PhenomicFetch =
+  | IsomorphicFetch
+  | ((config: PhenomicQueryConfig) => Promise<any>)
 
 export type phenomic$Query = string
 export type phenomic$Queries = Array<phenomic$Query>
