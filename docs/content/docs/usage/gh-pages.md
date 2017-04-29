@@ -190,7 +190,7 @@ With only `repo` or `public_repo` scopes.
 *Note: replace `{YOU/YOUR_REPO}` and `{YOUR_TOKEN}`.*
 
 ```sh
-yarn i -g travis-encrypt
+yarn global add travis-encrypt
 travis-encrypt --add --repo {YOU/YOUR_REPO} GITHUB_TOKEN={YOUR_TOKEN}
 ```
 
