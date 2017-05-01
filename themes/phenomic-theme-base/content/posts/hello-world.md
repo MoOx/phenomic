@@ -1,5 +1,5 @@
 ---
-title: Welcome back to the future of static website!
+title: Welcome back to the future of static websites!
 date: 2016-02-14
 layout: Post
 # hero credit: https://www.flickr.com/photos/igotz/15669216853/
