@@ -73,13 +73,13 @@ Now we will be at the right place so we can grab Phenomic & launch the setup.
 Right after that, we will grab required dependencies & you are good to go!
 
 ```cmd
-npm install phenomic && .\node_modules\.bin\phenomic setup
+npm install phenomic && ./node_modules/.bin/phenomic setup
 npm install && npm start
 ```
 _or with `yarn`_
 
 ```cmd
-yarn add phenomic && .\node_modules\.bin\phenomic setup
+yarn add phenomic && ./node_modules/.bin/phenomic setup
 yarn install && yarn start
 ```
 
