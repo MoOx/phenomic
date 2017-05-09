@@ -113,7 +113,7 @@
     "jest": "^19.0.0",
     "jest-ava-api": "^0.1.0",
     "js-beautify": "^1.5.10",
-    "jsdom": "^9.2.0",
+    "jsdom": "^9.3.0",
     "lnfs": "^3.0.0",
     "npm-run-all": "^3.0.0",
     "npmpub": "^3.0.0",
