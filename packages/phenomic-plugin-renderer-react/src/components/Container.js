@@ -100,6 +100,10 @@ function createContainer(
         store.get(this.queries[key]),
       )
       if (hasErrored) {
+        console.error(
+          "An item is in error state",
+          values.find(item => store.get(item).status === "error"),
+        )
         return null
       }
       return <Component {...this.props} isLoading={isLoading} {...props} />
