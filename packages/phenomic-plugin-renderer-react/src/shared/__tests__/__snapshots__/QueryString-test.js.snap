@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`QueryString should decode 1`] = `
+exports[`should decode query string 1`] = `
 Object {
   "a": "1",
   "b": "foo",
 }
 `;
 
-exports[`QueryString should encode 1`] = `"a=1&b=foo"`;
+exports[`should encode query string 1`] = `"a=1&b=foo"`;

@@ -14,7 +14,7 @@ import reactRenderer from "remark-react"
 import deepmerge from "deepmerge"
 import sanitizeGhSchema from "hast-util-sanitize/lib/github.json"
 
-export default (config: PhenomicConfig, body: string) => {
+export default (config?: PhenomicConfig, body: string) => {
   const remarkInstance = remark().use(toc).use(slug).use(autoLinkHeadings, {
     // @todo find how to make this options works with remark-react
     content: {
@@ -26,9 +26,10 @@ export default (config: PhenomicConfig, body: string) => {
     },
   })
 
-  const useReact = config.plugins.find(
-    p => p.name === "phenomic-plugin-renderer-react",
-  )
+  const useReact =
+    config &&
+    config.plugins &&
+    config.plugins.find(p => p.name === "phenomic-plugin-renderer-react")
 
   if (!useReact) {
     remarkInstance.use(html)

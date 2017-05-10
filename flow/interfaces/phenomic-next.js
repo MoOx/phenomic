@@ -36,7 +36,7 @@ export type PhenomicPlugin = {
   // transformer
   supportedFileTypes?: Array<string>,
   transform?: ({
-    config: PhenomicConfig,
+    config?: PhenomicConfig,
     file: PhenomicContentFile,
     contents: Buffer,
   }) => Promise<Object> | Object,
@@ -87,6 +87,5 @@ export type PhenomicRoute = {
 export type PhenomicFetch =
   | IsomorphicFetch
   | ((config: PhenomicQueryConfig) => Promise<any>)
-
 export type phenomic$Query = string
 export type phenomic$Queries = Array<phenomic$Query>

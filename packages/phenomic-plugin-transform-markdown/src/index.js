@@ -10,7 +10,7 @@ function transformMarkdownFile({
   config,
   file,
   contents,
-}: { config: PhenomicConfig, file: PhenomicContentFile, contents: Buffer }) {
+}: { config?: PhenomicConfig, file: PhenomicContentFile, contents: Buffer }) {
   debug(`transforming ${file.fullpath}`)
   debug(contents)
 

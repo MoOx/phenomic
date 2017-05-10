@@ -2,11 +2,14 @@ import path from "path"
 
 const debug = require("debug")("phenomic:plugin:transform-json")
 
-function transformJSONFile(file: Object, contents: string) {
+function transformJSONFile({
+  file,
+  contents,
+}: { file: PhenomicContentFile, contents: Buffer }) {
   debug(`transforming ${file.name}`)
 
   const data = {
-    ...JSON.parse(contents),
+    ...JSON.parse(contents.toString()),
     path: path.basename(file.name, ".json"),
   }
   const {
@@ -22,7 +25,7 @@ function transformJSONFile(file: Object, contents: string) {
   }
 }
 
-export default function() {
+export default function(): PhenomicPlugin {
   return {
     name: "phenomic-plugin-transform-json",
     supportedFileTypes: ["json"],

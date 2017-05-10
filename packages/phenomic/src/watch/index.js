@@ -30,13 +30,6 @@ function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
   return supportedFileTypes
 }
 
-type FileType = {
-  name: string,
-  fullpath: string,
-  exists: boolean,
-  type: string,
-}
-
 function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   const client = new watchman.Client()
   const handleError = createErrorHandler(client)
@@ -86,7 +79,7 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   )
 
   return {
-    onChange(func: (files: Array<FileType>) => Promise<void>) {
+    onChange(func: (files: Array<PhenomicContentFile>) => Promise<void>) {
       subscribers = [...subscribers, func]
       return function unsubscribe() {
         return (subscribers = subscribers.filter(item => item !== func))

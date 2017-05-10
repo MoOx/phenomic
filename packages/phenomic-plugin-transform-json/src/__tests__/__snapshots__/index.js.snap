@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should transform json as... json 1`] = `
+Object {
+  "data": Object {
+    "body": "I am supposed to be huge",
+    "path": "file",
+    "test": "a",
+    "test2": "b",
+  },
+  "partial": Object {
+    "path": "file",
+    "test": "a",
+    "test2": "b",
+  },
+}
+`;
