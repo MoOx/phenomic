@@ -7,25 +7,33 @@ const debug = require("debug")("phenomic:core:injection")
 const defaultTransformPlugin: PhenomicPlugin = {
   name: "phenomic-plugin-default-transform",
   supportedFileTypes: [],
-  transform(file, fileContents) {
+  transform({ contents }) {
     return {
       partial: null,
       data: {
-        body: fileContents,
+        body: contents,
       },
     }
   },
 }
 
-async function processFile(
+async function processFile({
+  config,
+  db,
+  file,
+  transformers,
+  collectors,
+  isProduction = false,
+}: {
+  config: PhenomicConfig,
   db: PhenomicDB,
   file: PhenomicContentFile,
   transformers: PhenomicPlugins,
   collectors: PhenomicPlugins,
-  isProduction: boolean = false,
-) {
+  isProduction?: boolean,
+}) {
   debug(`processing ${file.name}`)
-  const fileContents = await readFile(file.fullpath)
+  const contents = await readFile(file.fullpath)
   const transformPlugin = transformers.find(
     (plugin: PhenomicPlugin) =>
       Array.isArray(plugin.supportedFileTypes) &&
@@ -36,7 +44,7 @@ async function processFile(
   if (typeof plugin.transform !== "function") {
     throw new Error("transform plugin must implement a transform() method")
   }
-  const parsed = await plugin.transform(file, fileContents)
+  const parsed = await plugin.transform({ config, file, contents })
 
   debug(`${file.name} processed`)
   // Don't show drafts in production

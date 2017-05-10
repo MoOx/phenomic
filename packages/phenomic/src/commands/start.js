@@ -49,11 +49,19 @@ function start(config: PhenomicConfig) {
   })
 
   watcher.onChange(async function(files) {
-    debug("watcher changed")
-    await db.destroy()
-    await Promise.all(
-      files.map(file => processFile(db, file, transformers, collectors)),
-    )
+    debug("watcher onChange event")
+    try {
+      await db.destroy()
+      await Promise.all(
+        files.map(file =>
+          processFile({ config, db, file, transformers, collectors }),
+        ),
+      )
+    } catch (e) {
+      setTimeout(() => {
+        throw e
+      }, 1)
+    }
     io.emit("change")
   })
   bundlerServer.use("/phenomic", phenomicServer)

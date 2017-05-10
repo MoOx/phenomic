@@ -18,7 +18,7 @@ console.log("⚡️ Hey! Let's get on with it")
 let lastStamp = Date.now()
 debug("cleaning dist")
 rimraf.sync("dist")
-async function getContent(db, config) {
+async function getContent(db, config: PhenomicConfig) {
   debug("getting content")
   const transformers = config.plugins.filter(
     item => typeof item.transform === "function",
@@ -38,14 +38,21 @@ async function getContent(db, config) {
       path: path.join(config.path, "content"),
       plugins: config.plugins,
     })
-    watcher.onChange(async function(files: Array<Object>) {
+    watcher.onChange(async function(files) {
       debug("watcher changed")
       watcher.close()
       await db.destroy()
       try {
         await Promise.all(
           files.map(file =>
-            processFile(db, file, transformers, collectors, true),
+            processFile({
+              config,
+              db,
+              file,
+              transformers,
+              collectors,
+              isProduction: true,
+            }),
           ),
         )
         resolve()
