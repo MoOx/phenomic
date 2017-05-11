@@ -46,7 +46,7 @@
 
 > Modern website generator based on the React and Webpack ecosystem.
 
-![Developer experience preview](docs/content/assets/phenomic-demo.gif)
+![Developer experience preview](docs/public/phenomic-demo.gif)
 
 ---
 
