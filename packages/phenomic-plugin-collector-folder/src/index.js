@@ -7,7 +7,13 @@ function getKey(name, json) {
     return json.path
   }
   return path.join(
-    path.dirname(name).split(path.sep).slice(1).join(path.sep),
+    path
+      .dirname(name)
+      // remove first folder (used for collection key)
+      .split(path.sep)
+      .slice(1)
+      .join(path.sep),
+    // remove (index).md for key
     name.endsWith("index.md") ? "" : path.basename(name, ".md"),
   )
 }

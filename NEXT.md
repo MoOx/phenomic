@@ -53,7 +53,7 @@ From https://github.com/MoOx/phenomic/issues/925#issuecomment-271502547
 Note that stuff can be missing
 
 - [ ] provide alternative to wathman [like jest](https://github.com/facebook/jest/blob/10e492754fd9f2f0280c625f15800fb8f3347558/packages/jest-haste-map/src/index.js#L536)
-- [ ] markdown files can specify their own routes
+- [ ] collector-folder only clean (index).md for filename as key. We should have a generic thing or ignore more stuff (eg: .json etc)
 - [ ] pages can be a react components
 - [ ] internal links from markdown are not doing full page load, but caught and leveraging phenomic optimistic loading (note that “internal” but not unknown links (eg: /project/static-but-not-handled-by-phenomic.html) are not caught. (see `src/_utils/catch-links`)
 - [ ] url + pathname for the website is defined once via the full website url (http://example.com/root/)
