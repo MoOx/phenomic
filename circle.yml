@@ -2,20 +2,10 @@ machine:
   node:
     version: 6
 
-  environment:
-    # stick to npm
-    PHENOMIC_TEST_WITH_YARN: false
-
 dependencies:
   override:
-    - npm prune
     - npm install
-
-  cache_directories:
-    - docs/node_modules
-    - themes/phenomic-theme-base/node_modules
-    - test-setup/node_modules
 
 test:
   override:
-    - npm test && cd docs && npm run build
+    - npm test

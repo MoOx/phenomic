@@ -14,12 +14,6 @@
 .*/dist/.*
 .*/docs/.*
 .*\.md
-<PROJECT_ROOT>/scripts
-<PROJECT_ROOT>/npm
-<PROJECT_ROOT>/e2e-tests
-<PROJECT_ROOT>/themes
-# 1.0 won't use the code in src
-<PROJECT_ROOT>/src
 
 [options]
 all=true

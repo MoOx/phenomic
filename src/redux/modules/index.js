@@ -1,1 +1,0 @@
-export pages from "./pages"

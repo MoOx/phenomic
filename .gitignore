@@ -11,7 +11,6 @@ coverage
 
 # build
 lib
-.tmp
 
 # tests results
 **/__tests__/_output*
@@ -22,10 +21,6 @@ lib
 **/docs/**/*.pxm
 **/docs/node_modules
 **/docs/content/assets/showcases/*
-
-# phenomic-theme-base files to work on it
-themes/phenomic-theme-base/dist
-test-setup
 
 # logo
 logo/*.png
