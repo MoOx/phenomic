@@ -1,5 +1,5 @@
 {
-  "name": "phenomic-plugin-directory-collector",
+  "name": "phenomic-plugin-collector-folder",
   "version": "1.0.0-alpha.0",
   "main": "lib/index.js",
   "files": [
