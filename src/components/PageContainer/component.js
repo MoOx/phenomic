@@ -22,6 +22,7 @@ type Props = {
   getPage: Function,
   setPageNotFound: Function,
   logger: Object,
+  location: Object,
 }
 
 type Context = {
@@ -279,6 +280,7 @@ class PageContainer extends Component<DefaultProps, Props, void> {
           // head will be overwritten by "page"
           // (since page contains a head when loaded)
           head={ partialPageHead }
+          location={ props.location }
           { ...page }
         />
       )
