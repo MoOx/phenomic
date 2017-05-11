@@ -10,7 +10,9 @@ const defaultOpts = {
 
 function description(text, opts = {}) {
   opts = { ...defaultOpts, ...opts }
-
+  // remove image tags from markdown
+  text = text.replace(/\!\[.*?\)/g, '')
+  
   if (opts.pruneLength === 0) {
     console.warn(
       "You defined 'description.pruneLength' of phenomic loader " +
@@ -20,7 +22,7 @@ function description(text, opts = {}) {
 
     opts.pruneLength = defaultOpts.pruneLength
   }
-
+  
   return prune(
     remark()
       .use(stripMd)
