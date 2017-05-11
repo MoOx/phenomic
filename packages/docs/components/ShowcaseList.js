@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
-} from "react-native"
+} from "react-native-web"
 import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 const ShowcaseList = (props: Object) => (
