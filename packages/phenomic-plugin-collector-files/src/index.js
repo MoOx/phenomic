@@ -55,7 +55,7 @@ function getTags(json) {
 
 export default function() {
   return {
-    name: "phenomic-plugin-collector-folder",
+    name: "phenomic-plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: any) {
       const pathSegments = name.split(path.sep)
       const collectionName = pathSegments[0]
