@@ -285,7 +285,7 @@ const Home =  ({ posts }) => (
     <ul>
       { posts && posts.node && posts.list &&
         posts.node.list.map((post) => (
-          <li>
+          <li key={post.id}>
             <Link to={ `/blog/${ post.id }`}>{ post.title || post.id }</Link>
           </li>
         ))
@@ -313,7 +313,7 @@ Let's modify our file with a ``title`` property
 ```md
 ---
 title: "First post"
---- 
+---
 
 # This is a [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) file
 
@@ -325,6 +325,84 @@ Keep in mind that this front-matter can contains all kind of informations like
 date, authors name, tags, image reference etc.
 By default some keys are automatically interpreted as way to query your content.
 This allows you to query posts for a single author, a specific tag and even order by date.
+
+---
+
+# @TODO
+Just to prepare our posts list to accept future posts, let's order the query by date.
+We just need to add some parameter
+
+```js
+const HomeContainer = createContainer(Home, (props) => ({
+  posts: query({ collection: "posts", sortBy: "date" }),
+}))
+```
+
+---
+
+## Pagination
+
+When you will start having a lot of content, you might want to add a pagination.
+From a developer perspective, it very straight forward to enable pagination on
+a query.
+Let's continue with our list of posts by adding more parameters
+
+```js
+export default createContainer(Home, props => ({
+  posts: query({ collection: "blog", limit: 5  }),
+}))
+```
+
+Here we just added a ``limit`` parameter. That's enough to limit the number of
+item but won't help to handle next pages.
+
+We decided to solves pagination problem with a single parameter: ``after``.
+This parameter is a hash that is pointing to specific place in the collection.
+
+Before adding it in the query, we need to actually create a link to access next page!
+Let's add a link in our Home, after our list of posts
+
+```js
+  {
+    posts.node && posts.node.hasNextPage &&
+    <Link to={ `/after/${ posts.node.next }`}>Older posts</Link>
+  }
+```
+
+This link will look like ``http://localhost:3333/after/MjAxNC0wNS0yMC1zdWR3ZWItMjAxNA==``
+
+We now have to add be able to read it from the router so we can pass it to the query.
+So we will add a route in the router:
+
+```js
+export default createApp(() => (
+  <Router history={ browserHistory }>
+    <Route path="/" component={ HomeContainer } />
+    <Route path="/after/:after" component={ HomeContainer } />
+    <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
+  </Router>
+))
+```
+
+One more thing is to be done now that we have the url understood by react-router:
+we need to tell ``after`` to our query.
+Let's modify the query like this:
+
+```js
+export default createContainer(Home, props => ({
+  posts: query({ collection: "blog", limit: 5, after: props.params.after  }),
+}))
+```
+
+With this we should now have the url working. And now you have a pagination that
+will never die.
+What does this mean? Think about this url `/page/2`. If you want to share it, 
+content my have changed if new posts are added right? But with our approach,
+using a hash, we have url that never changes and that will always return the same
+result with the same query. That involves we will generate under the hood all
+possible pages, but that's Phenomic job!
+
+## 
 
 --- 
 
