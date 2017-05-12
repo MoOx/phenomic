@@ -44,11 +44,15 @@ async function processFile({
   if (typeof plugin.transform !== "function") {
     throw new Error("transform plugin must implement a transform() method")
   }
-  const parsed = await plugin.transform({ config, file, contents })
+  const parsed: PhenomicTransformResult = await plugin.transform({
+    config,
+    file,
+    contents,
+  })
 
   debug(`${file.name} processed`)
   // Don't show drafts in production
-  if (isProduction && parsed.draft) {
+  if (isProduction && parsed.data.draft) {
     debug(`${file.name} skipped because it's a draft`)
     return
   }
