@@ -28,13 +28,13 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     })
   })
 
-  server.get("/:collection/by-:filter/:value/:sort.json", async function(
+  server.get("/:collection/by-:filter/:value/:order.json", async function(
     req: express$Request,
     res: express$Response,
   ) {
     debug(req.url, JSON.stringify(req.params))
     try {
-      const reverse = req.params.sort === "desc"
+      const reverse = req.params.order === "desc"
       const list = await db.getList(
         req.params.collection,
         { reverse },
@@ -49,12 +49,12 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   })
 
   server.get(
-    "/:collection/by-:filter/:value/:sort/limit-:limit.json",
+    "/:collection/by-:filter/:value/:order/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params))
       try {
         const limit = parseInt(req.params.limit)
-        const reverse = req.params.sort === "desc"
+        const reverse = req.params.order === "desc"
         const list = await db.getList(
           req.params.collection,
           {
@@ -73,13 +73,13 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   )
 
   server.get(
-    "/:collection/by-:filter/:value/:sort/limit-:limit/after-:after.json",
+    "/:collection/by-:filter/:value/:order/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params))
       try {
         const limit = parseInt(req.params.limit)
         const lt = decode(req.params.after)
-        const reverse = req.params.sort === "desc"
+        const reverse = req.params.order === "desc"
         const list = await db.getList(
           req.params.collection,
           {
