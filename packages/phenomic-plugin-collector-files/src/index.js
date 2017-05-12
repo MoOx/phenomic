@@ -53,6 +53,29 @@ export function getTags(json: PhenomicTransformResult) {
   return []
 }
 
+const dateLength = "YYYY-MM-DD".length
+export function injectDateFromFilename(
+  name: string,
+  json: PhenomicTransformResult,
+): PhenomicTransformResult {
+  try {
+    const date = formatDate(name.slice(0, dateLength))
+    return {
+      data: {
+        date,
+        ...json.data,
+      },
+      partial: {
+        date,
+        ...json.data,
+      },
+    }
+  } catch (e) {
+    // date is not valid
+  }
+  return json
+}
+
 export default function() {
   return {
     name: "phenomic-plugin-collector-files",
@@ -62,9 +85,10 @@ export default function() {
       const key = getKey(name, json)
       debug(`collecting ${key} for collection '${collectionName}'`)
       const sortedKey = getSortedKey(name, json)
+      const adjustedJSON = injectDateFromFilename(name, json)
       return Promise.all([
         // full resource, not sorted
-        db.put([collectionName], key, { ...json, id: key }),
+        db.put([collectionName], key, { ...adjustedJSON, id: key }),
         // sorted list
         db.put([collectionName, "default"], sortedKey, { id: key }),
         // sorted list, filtered by authors

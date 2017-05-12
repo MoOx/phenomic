@@ -46,3 +46,13 @@ it("should be able to generate tag list", () => {
     "test2",
   ])
 })
+
+it("should be able to inject date from filename in data", () => {
+  expect(
+    injectDateFromFilename("2010-01-13-test.md", { partial: {}, data: {} }),
+  ).toEqual({ partial: { date: "2010-01-13" }, data: { date: "2010-01-13" } })
+  expect(injectDateFromFilename("test.md", { partial: {}, data: {} })).toEqual({
+    partial: {},
+    data: {},
+  })
+})
