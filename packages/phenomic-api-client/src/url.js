@@ -3,7 +3,7 @@ function postfix(url) {
 }
 
 function url(config: Object): string {
-  const root = config.root || "/"
+  const root = config.root || ""
   if (typeof config === "string") {
     return [root, config].join("/")
   }
@@ -15,8 +15,8 @@ function url(config: Object): string {
       root,
       config.collection,
       `by-${config.by}`,
-      config.value,
-      config.order,
+      config.value || "1",
+      config.order || "desc",
       ...(config.limit ? [`limit-${config.limit}`] : []),
       ...(config.limit && config.after ? [`after-${config.after}`] : []),
     ].join("/"),
