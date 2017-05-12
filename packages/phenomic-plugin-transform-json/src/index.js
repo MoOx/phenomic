@@ -5,7 +5,10 @@ const debug = require("debug")("phenomic:plugin:transform-json")
 function transformJSONFile({
   file,
   contents,
-}: { file: PhenomicContentFile, contents: Buffer }) {
+}: {
+  file: PhenomicContentFile,
+  contents: Buffer,
+}): PhenomicTransformResult {
   debug(`transforming ${file.name}`)
 
   const data = {

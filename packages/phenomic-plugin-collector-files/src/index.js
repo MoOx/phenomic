@@ -2,9 +2,9 @@ import path from "path"
 
 const debug = require("debug")("phenomic:plugin:collector-files")
 
-export function getKey(name: string, json: Object) {
-  if (json.path) {
-    return json.path
+export function getKey(name: string, json: PhenomicTransformResult): string {
+  if (json.data.path) {
+    return json.data.path
   }
   return path.join(
     path
@@ -28,15 +28,15 @@ export function formatDate(dateString: string) {
  * as level sorts by name (YYYY-MM-DD does the trick).
  * If not, we just use alphabetical order.
  */
-export function getSortedKey(name: string, json: Object) {
+export function getSortedKey(name: string, json: PhenomicTransformResult) {
   const key = getKey(name, json)
-  if (typeof json.date === "string") {
-    return `${formatDate(json.date)}-${key}`
+  if (typeof json.data.date === "string") {
+    return `${formatDate(json.data.date)}-${key}`
   }
   return key
 }
 
-export function getAuthors(json: Object) {
+export function getAuthors(json: PhenomicTransformResult) {
   if (typeof json.data.author === "string") {
     return [json.data.author]
   }
@@ -46,7 +46,7 @@ export function getAuthors(json: Object) {
   return []
 }
 
-export function getTags(json: Object) {
+export function getTags(json: PhenomicTransformResult) {
   if (Array.isArray(json.data.tags)) {
     return json.data.tags
   }
@@ -56,12 +56,12 @@ export function getTags(json: Object) {
 export default function() {
   return {
     name: "phenomic-plugin-collector-files",
-    collect(db: PhenomicDB, name: string, json: any) {
+    collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
       const pathSegments = name.split(path.sep)
       const collectionName = pathSegments[0]
-      const key = getKey(name, json.data)
+      const key = getKey(name, json)
       debug(`collecting ${key} for collection '${collectionName}'`)
-      const sortedKey = getSortedKey(name, json.data)
+      const sortedKey = getSortedKey(name, json)
       return Promise.all([
         // full resource, not sorted
         db.put([collectionName], key, { ...json, id: key }),

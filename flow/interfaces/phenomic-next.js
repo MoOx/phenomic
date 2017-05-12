@@ -31,6 +31,11 @@ export type PhenomicContentFile = {
   type: string,
 }
 
+type PhenomicTransformResult = {
+  data: Object,
+  partial: Object,
+}
+
 export type PhenomicPlugin = {
   name: string,
   // transformer
@@ -39,7 +44,7 @@ export type PhenomicPlugin = {
     config?: PhenomicConfig,
     file: PhenomicContentFile,
     contents: Buffer,
-  }) => Promise<Object> | Object,
+  }) => Promise<PhenomicTransformResult> | PhenomicTransformResult,
   // api
   define?: (api: express$Application, db: PhenomicDB) => mixed,
   // collector
