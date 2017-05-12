@@ -1,6 +1,6 @@
 import path from "path"
 
-const debug = require("debug")("phenomic:plugin:directory-collector")
+const debug = require("debug")("phenomic:plugin:collector-files")
 
 export function getKey(name: string, json: Object) {
   if (json.path) {
