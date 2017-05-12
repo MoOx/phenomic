@@ -19,7 +19,7 @@ DEBUG=phenomic:* npm start
 Each time you modify `packages/*/src/**/*.js` you will need to run
 
 ```console
-npm run repo:transpile
+npm run transpile
 ```
 
 For now no easy way to watch (passing --watch will block the first babel transpilation step, so only a single package, that's not what you want)
@@ -27,30 +27,12 @@ For now no easy way to watch (passing --watch will block the first babel transpi
 # use it locally
 
 ```console
-npm run repo:link
+npm run link
 ```
 
 This will run `npm link` for all packages so they are available locally :)
 
-# what's todo
-
-A fucking lot
-
-- replace main npm scripts workflow for new implementation (break/disable all the things)
-  - add stuff in checklist to not forget if necessary
-- check what's missing from the checklist
-  - do what's missing that we still want (check) + provide migration doc
-    - implement missing thing
-    - remove from old codebase the thing
-  - or release notes for removed stuff (~~delete from list like that~~)
-- review docs & homepage
-- RELEASE!
-
 ## checklist
-
-From https://github.com/MoOx/phenomic/issues/925#issuecomment-271502547
-
-Note that stuff can be missing
 
 - [ ] provide alternative to wathman [like jest](https://github.com/facebook/jest/blob/10e492754fd9f2f0280c625f15800fb8f3347558/packages/jest-haste-map/src/index.js#L536)
 - [ ] collector-files only clean (index).md for filename as key. We should have a generic thing or ignore more stuff (eg: .json etc)
