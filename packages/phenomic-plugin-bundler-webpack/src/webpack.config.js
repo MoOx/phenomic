@@ -5,7 +5,11 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 module.exports = (/* config: PhenomicConfig */) => ({
   entry: {
-    bundle: "./App.js",
+    bundle: [
+      process.env.NODE_ENV !== "production" &&
+        require.resolve("webpack/hot/dev-server"),
+      "./App.js",
+    ].filter(item => item),
   },
   output: {
     publicPath: "/",
@@ -39,6 +43,8 @@ module.exports = (/* config: PhenomicConfig */) => ({
         process.env.NODE_ENV || "development",
       ),
     }),
+    process.env.NODE_ENV !== "production" &&
+      new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&
       new webpack.optimize.UglifyJsPlugin(),
   ].filter(item => item),
