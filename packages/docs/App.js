@@ -4,6 +4,8 @@ import React from "react"
 import { Router, Route, browserHistory } from "react-router"
 import { createApp } from "phenomic-preset-default/lib/client"
 
+import "./defaults.css"
+
 import Header from "./components/Header"
 import Home from "./components/Home"
 import DocPage from "./components/DocPage"
