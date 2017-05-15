@@ -15,10 +15,10 @@ function createBundlerServer(config: PhenomicConfig) {
   const server = express()
   const bundlers = config.plugins.filter(p => p.buildForPrerendering)
   const bundler = bundlers[0]
-  if (!bundler || !bundler.getMiddleware) {
+  if (!bundler || !bundler.getMiddlewares) {
     throw new Error("At least a bundler plugin should be used")
   }
-  server.use(bundler.getMiddleware(config))
+  bundler.getMiddlewares(config).forEach(middleware => server.use(middleware))
   return server
 }
 

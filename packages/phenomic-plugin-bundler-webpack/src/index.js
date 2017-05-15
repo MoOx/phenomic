@@ -64,15 +64,17 @@ const getWebpackConfig = (config: PhenomicConfig) => {
 export default function() {
   return {
     name: "phenomic-plugin-bundler-webpack",
-    getMiddleware(config: PhenomicConfig) {
-      debug("get middleware")
+    getMiddlewares(config: PhenomicConfig) {
+      debug("get middlewares")
       const compiler = webpack(getWebpackConfig(config))
-      return webpackDevMiddleware(compiler, {
-        stats: { chunkModules: false, assets: false },
-        // @todo add this and output ourself a nice message for build status
-        // noInfo: true,
-        // quiet: true,
-      })
+      return [
+        webpackDevMiddleware(compiler, {
+          stats: { chunkModules: false, assets: false },
+          // @todo add this and output ourself a nice message for build status
+          // noInfo: true,
+          // quiet: true,
+        }),
+      ]
     },
     buildForPrerendering(config: PhenomicConfig) {
       debug("build for prerendering")

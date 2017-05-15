@@ -51,7 +51,7 @@ export type PhenomicPlugin = {
   collect?: (file: mixed) => Array<mixed>,
   // bunder
   buildForPrerendering?: Function,
-  getMiddleware?: Function,
+  getMiddlewares?: (config: PhenomicConfig) => Array<express$Middleware>,
   // renderer
   getRoutes?: Function,
   renderServer?: Function,
