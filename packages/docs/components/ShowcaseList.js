@@ -22,7 +22,7 @@ const ShowcaseList = (props: Object) => (
             <TouchableOpacity style={styles.item} key={site.id} href={site.url}>
               <View>
                 <Image
-                  source={{ uri: `/assets/showcase/${site.media.desktop}` }}
+                  source={{ uri: `/assets/showcase/${site.id}-large.png` }}
                   style={styles.image}
                   resizeMode="contain"
                 />
