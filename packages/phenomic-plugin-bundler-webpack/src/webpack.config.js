@@ -7,7 +7,7 @@ module.exports = (/* config: PhenomicConfig */) => ({
   entry: {
     bundle: [
       process.env.NODE_ENV !== "production" &&
-        require.resolve("webpack/hot/dev-server"),
+        require.resolve("webpack-hot-middleware/client"),
       "./App.js",
     ].filter(item => item),
   },

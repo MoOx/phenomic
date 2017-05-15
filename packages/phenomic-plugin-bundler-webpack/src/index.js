@@ -6,6 +6,7 @@ import findCacheDir from "find-cache-dir"
 // import webpack, { BannerPlugin, optimize, DefinePlugin } from "webpack"
 import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
+import webpackHotMiddleware from "webpack-hot-middleware"
 
 import webpackPromise from "./webpack-promise.js"
 
@@ -73,6 +74,11 @@ export default function() {
           // @todo add this and output ourself a nice message for build status
           // noInfo: true,
           // quiet: true,
+        }),
+        webpackHotMiddleware(compiler, {
+          reload: true,
+          // skip hot middleware logs if !verbose
+          // log: config.verbose ? undefined : () => {},
         }),
       ]
     },
