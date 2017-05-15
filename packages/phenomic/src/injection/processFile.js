@@ -23,7 +23,6 @@ async function processFile({
   file,
   transformers,
   collectors,
-  isProduction = false,
 }: {
   config: PhenomicConfig,
   db: PhenomicDB,
@@ -52,7 +51,7 @@ async function processFile({
 
   debug(`${file.name} processed`)
   // Don't show drafts in production
-  if (isProduction && parsed.data.draft) {
+  if (process.env.NODE_ENV === "production" && parsed.data.draft) {
     debug(`${file.name} skipped because it's a draft`)
     return
   }
