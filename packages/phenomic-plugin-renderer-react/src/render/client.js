@@ -1,12 +1,15 @@
 import "isomorphic-fetch"
 import React from "react"
 import ReactDOM from "react-dom"
+import { AppContainer } from "react-hot-loader"
 import createURL from "phenomic-api-client/lib/url"
 
 import Provider from "../components/Provider"
 import createStore from "../shared/store"
 
 const debug = require("debug")("phenomic:plugin:react")
+
+let store
 
 function render(routes: () => React$Element<any>) {
   debug("client rendering")
@@ -17,16 +20,20 @@ function render(routes: () => React$Element<any>) {
   }
 
   const initialStateNode = document.getElementById("Hydration")
-  const store = createStore(
-    initialStateNode && initialStateNode.textContent
-      ? JSON.parse(initialStateNode.textContent)
-      : undefined,
-  )
+  store =
+    store ||
+    createStore(
+      initialStateNode && initialStateNode.textContent
+        ? JSON.parse(initialStateNode.textContent)
+        : undefined,
+    )
 
   ReactDOM.render(
-    <Provider fetch={createFetchFunction()} store={store}>
-      {routes()}
-    </Provider>,
+    <AppContainer>
+      <Provider fetch={createFetchFunction()} store={store}>
+        {routes()}
+      </Provider>
+    </AppContainer>,
     document.getElementById("PhenomicRoot"),
   )
 }

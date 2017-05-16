@@ -20,6 +20,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.10.3",
     "flow-bin": "^0.42.0",
+    "git-exec-and-restage": "^1.0.1",
     "husky": "^0.13.3",
     "jest": "^19.0.0",
     "lerna": "2.0.0-beta.32",
@@ -54,8 +55,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write --parser=flow --no-semi --trailing-comma=all",
-      "git add"
+      "git-exec-and-restage prettier --write --parser=flow --no-semi --trailing-comma=all"
     ]
   },
   "babel": {

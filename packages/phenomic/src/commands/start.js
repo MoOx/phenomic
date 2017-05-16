@@ -15,15 +15,17 @@ function createBundlerServer(config: PhenomicConfig) {
   const server = express()
   const bundlers = config.plugins.filter(p => p.buildForPrerendering)
   const bundler = bundlers[0]
-  if (!bundler || !bundler.getMiddleware) {
+  if (!bundler || !bundler.getMiddlewares) {
     throw new Error("At least a bundler plugin should be used")
   }
-  server.use(bundler.getMiddleware(config))
+  bundler.getMiddlewares(config).forEach(middleware => server.use(middleware))
   return server
 }
 
 function start(config: PhenomicConfig) {
-  process.env.BABEL_ENV = "development"
+  process.env.NODE_ENV = process.env.NODE_ENV || "development"
+  process.env.BABEL_ENV = process.env.BABEL_ENV || "development"
+  // process.env.PHENOMIC_ENV = "development"
   debug("starting phenomic server")
   const phenomicServer = createServer(db, config.plugins)
   const bundlerServer = createBundlerServer(config)

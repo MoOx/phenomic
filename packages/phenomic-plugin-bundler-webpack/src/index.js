@@ -6,6 +6,7 @@ import findCacheDir from "find-cache-dir"
 // import webpack, { BannerPlugin, optimize, DefinePlugin } from "webpack"
 import webpack, { BannerPlugin, optimize } from "webpack"
 import webpackDevMiddleware from "webpack-dev-middleware"
+import webpackHotMiddleware from "webpack-hot-middleware"
 
 import webpackPromise from "./webpack-promise.js"
 
@@ -19,7 +20,7 @@ const requireSourceMapSupport = `require('${require
   // windows support
   .replace(/\\/g, "/")}');`
 
-// const wrap = JSON.stringify
+const wrap = JSON.stringify
 
 const getWebpackConfig = (config: PhenomicConfig) => {
   let webpackConfig
@@ -41,38 +42,34 @@ const getWebpackConfig = (config: PhenomicConfig) => {
   debug(webpackConfig)
   return {
     ...webpackConfig,
-    // plugins: [
-    //   ...(webpackConfig.plugins || []),
-    //   new DefinePlugin({ "process.env": {
-    //     NODE_ENV: wrap(
-    //       config.production
-    //       ? "production"
-    //       : process.env.NODE_ENV
-    //     ),
-    //
-    //     PHENOMIC_USER_PATHNAME: wrap(process.env.PHENOMIC_USER_PATHNAME),
-    //     PHENOMIC_USER_URL: wrap(url.format(config.baseUrl)),
-    //     PHENOMIC_NAME: wrap(pkg.name[0].toUpperCase() + pkg.name.slice(1)),
-    //     PHENOMIC_VERSION: wrap(pkg.version),
-    //     PHENOMIC_HOMEPAGE: wrap(pkg.homepage),
-    //     PHENOMIC_REPOSITORY: wrap(pkg.repository),
-    //   } }),
-    // ],
+    plugins: [
+      ...(webpackConfig.plugins || []),
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": wrap(process.env.NODE_ENV),
+      }),
+    ],
   }
 }
 
 export default function() {
   return {
     name: "phenomic-plugin-bundler-webpack",
-    getMiddleware(config: PhenomicConfig) {
-      debug("get middleware")
+    getMiddlewares(config: PhenomicConfig) {
+      debug("get middlewares")
       const compiler = webpack(getWebpackConfig(config))
-      return webpackDevMiddleware(compiler, {
-        stats: { chunkModules: false, assets: false },
-        // @todo add this and output ourself a nice message for build status
-        // noInfo: true,
-        // quiet: true,
-      })
+      return [
+        webpackDevMiddleware(compiler, {
+          stats: { chunkModules: false, assets: false },
+          // @todo add this and output ourself a nice message for build status
+          // noInfo: true,
+          // quiet: true,
+        }),
+        webpackHotMiddleware(compiler, {
+          reload: true,
+          // skip hot middleware logs if !verbose
+          // log: config.verbose ? undefined : () => {},
+        }),
+      ]
     },
     buildForPrerendering(config: PhenomicConfig) {
       debug("build for prerendering")

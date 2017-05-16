@@ -5,7 +5,13 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 
 module.exports = (/* config: PhenomicConfig */) => ({
   entry: {
-    bundle: "./App.js",
+    bundle: [
+      process.env.NODE_ENV !== "production" &&
+        require.resolve("webpack-hot-middleware/client"),
+      process.env.NODE_ENV !== "production" &&
+        require.resolve("react-hot-loader/patch"),
+      "./App.js",
+    ].filter(item => item),
   },
   output: {
     publicPath: "/",
@@ -20,7 +26,8 @@ module.exports = (/* config: PhenomicConfig */) => ({
         loader: require.resolve("babel-loader"),
         options: {
           babelrc: false,
-          presets: [require.resolve("babel-preset-react-app")],
+          presets: [require.resolve("babel-preset-phenomic")],
+          plugins: [require.resolve("react-hot-loader/babel")],
         },
       },
       {
@@ -33,12 +40,12 @@ module.exports = (/* config: PhenomicConfig */) => ({
     ],
   },
   plugins: [
-    new ExtractTextPlugin({ filename: "styles.css" }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(
-        process.env.NODE_ENV || "development",
-      ),
+    new ExtractTextPlugin({
+      filename: "styles.css",
+      disable: process.env.NODE_ENV !== "production",
     }),
+    process.env.NODE_ENV !== "production" &&
+      new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&
       new webpack.optimize.UglifyJsPlugin(),
   ].filter(item => item),

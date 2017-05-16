@@ -402,7 +402,52 @@ using a hash, we have url that never changes and that will always return the sam
 result with the same query. That involves we will generate under the hood all
 possible pages, but that's Phenomic job!
 
-## 
+---
+
+## Hot loading
+
+You might be interested by hot loading, which allow you to edit your code and
+get instant feedback in your browser.
+By default, CSS changes will already be instantly hot loaded.
+But you might also want to tweak your React components in real time.
+In order to do that, you have to edit a little your `App.js`:
+
+Replace this
+
+```js
+import { createApp } from "phenomic-preset-default/lib/client"
+
+// ...
+
+export default createApp(() => (
+  <Router history={ browserHistory }>
+    {/* ... */}
+  </Router>
+))
+```
+
+By the following code:
+
+```js
+import { createApp, renderApp } from "phenomic-preset-default/lib/client"
+
+// ...
+
+const routes = () => (
+  <Router history={ browserHistory }>
+    {/* ... */}
+  </Router>
+))
+
+export default createApp(routes)
+
+if (module.hot) {
+  module.hot.accept(() => renderApp(routes))
+}
+```
+
+``phenomic-plugin-bundler-webpack`` and ``phenomic-plugin-renderer-react`` have
+``react-hot-loader@3.x`` requirements so everything should works like a charm.
 
 --- 
 

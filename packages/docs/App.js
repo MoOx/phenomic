@@ -2,7 +2,9 @@ import "whatwg-fetch"
 
 import React from "react"
 import { Router, Route, browserHistory } from "react-router"
-import { createApp } from "phenomic-preset-default/lib/client"
+import { createApp, renderApp } from "phenomic-preset-default/lib/client"
+
+import "./defaults.css"
 
 import Header from "./components/Header"
 import Home from "./components/Home"
@@ -16,7 +18,8 @@ import APITagListPage from "./components/APITagListPage"
 
 const Wrapper = (props: Object) => <div><Header />{props.children}</div>
 
-export default createApp(() => (
+// eslint-disable-next-line react/no-multi-comp
+const routes = () => (
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
@@ -33,4 +36,10 @@ export default createApp(() => (
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
     </Route>
   </Router>
-))
+)
+
+export default createApp(routes)
+
+if (module.hot) {
+  module.hot.accept(() => renderApp(routes))
+}
