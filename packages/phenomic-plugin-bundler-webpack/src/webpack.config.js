@@ -8,6 +8,8 @@ module.exports = (/* config: PhenomicConfig */) => ({
     bundle: [
       process.env.NODE_ENV !== "production" &&
         require.resolve("webpack-hot-middleware/client"),
+      process.env.NODE_ENV !== "production" &&
+        require.resolve("react-hot-loader/patch"),
       "./App.js",
     ].filter(item => item),
   },
@@ -25,6 +27,7 @@ module.exports = (/* config: PhenomicConfig */) => ({
         options: {
           babelrc: false,
           presets: [require.resolve("babel-preset-phenomic")],
+          plugins: [require.resolve("react-hot-loader/babel")],
         },
       },
       {

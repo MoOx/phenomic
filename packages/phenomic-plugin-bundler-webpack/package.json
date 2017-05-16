@@ -13,6 +13,7 @@
     "debug": "^2.6.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "find-cache-dir": "^0.1.1",
+    "react-hot-loader": "^3.0.0-beta.7",
     "source-map-support": "^0.4.0",
     "style-loader": "^0.16.1",
     "webpack-hot-middleware": "^2.18.0"
