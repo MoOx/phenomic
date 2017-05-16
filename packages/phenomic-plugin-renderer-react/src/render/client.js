@@ -1,6 +1,7 @@
 import "isomorphic-fetch"
 import React from "react"
 import ReactDOM from "react-dom"
+import { AppContainer } from "react-hot-loader"
 import createURL from "phenomic-api-client/lib/url"
 
 import Provider from "../components/Provider"
@@ -24,9 +25,11 @@ function render(routes: () => React$Element<any>) {
   )
 
   ReactDOM.render(
-    <Provider fetch={createFetchFunction()} store={store}>
-      {routes()}
-    </Provider>,
+    <AppContainer>
+      <Provider fetch={createFetchFunction()} store={store}>
+        {routes()}
+      </Provider>
+    </AppContainer>,
     document.getElementById("PhenomicRoot"),
   )
 }
