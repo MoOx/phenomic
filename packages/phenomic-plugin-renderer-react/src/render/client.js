@@ -9,6 +9,8 @@ import createStore from "../shared/store"
 
 const debug = require("debug")("phenomic:plugin:react")
 
+let store
+
 function render(routes: () => React$Element<any>) {
   debug("client rendering")
 
@@ -18,11 +20,13 @@ function render(routes: () => React$Element<any>) {
   }
 
   const initialStateNode = document.getElementById("Hydration")
-  const store = createStore(
-    initialStateNode && initialStateNode.textContent
-      ? JSON.parse(initialStateNode.textContent)
-      : undefined,
-  )
+  store =
+    store ||
+    createStore(
+      initialStateNode && initialStateNode.textContent
+        ? JSON.parse(initialStateNode.textContent)
+        : undefined,
+    )
 
   ReactDOM.render(
     <AppContainer>
