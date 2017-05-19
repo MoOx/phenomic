@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-// https://github.com/flowtype/flow-typed/tree/master/definitions/npm/react-helmet_v3.x.x
+// https://github.com/flowtype/flow-typed/tree/master/definitions/npm/react-helmet_v5.x.x
 
 declare module "react-helmet" {
   declare type Props = {
@@ -13,25 +13,31 @@ declare module "react-helmet" {
     script?: Array<Object>,
     noscript?: Array<Object>,
     style?: Array<Object>,
-    onChangeClientState?: (newState: Object, addedTags: Object, removeTags: Object) => void | mixed,
-  };
+    onChangeClientState?: (
+      newState: Object,
+      addedTags: Object,
+      removeTags: Object,
+    ) => void | mixed,
+  }
   declare interface HeadAttribute {
-    toString(): string;
-    toComponent(): React$Element<*>;
+    toString(): string,
+    toComponent(): React$Element<*>,
   }
   declare interface Head {
-    htmlAttributes: HeadAttribute;
-    title: HeadAttribute;
-    base: HeadAttribute;
-    meta: HeadAttribute;
-    link: HeadAttribute;
-    script: HeadAttribute;
-    style: HeadAttribute;
+    base: HeadAttribute,
+    bodyAttributes: HeadAttribute,
+    htmlAttributes: HeadAttribute,
+    link: HeadAttribute,
+    meta: HeadAttribute,
+    noscript: HeadAttribute,
+    script: HeadAttribute,
+    style: HeadAttribute,
+    title: HeadAttribute,
   }
 
   declare class Helmet extends React$Component {
-    static rewind(): Head;
-    props: Props;
+    static renderStatic(): Head,
+    props: Props,
   }
-  declare var exports: typeof Helmet;
+  declare var exports: typeof Helmet
 }

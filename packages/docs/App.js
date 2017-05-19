@@ -1,11 +1,14 @@
 import "whatwg-fetch"
 
 import React from "react"
+import { View } from "react-native-web"
+import Head from "react-helmet"
 import { Router, Route, browserHistory } from "react-router"
 import { createApp, renderApp } from "phenomic-preset-default/lib/client"
 
 import "./defaults.css"
 
+import Html from "./Html"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import DocPage from "./components/DocPage"
@@ -16,7 +19,16 @@ import ChangelogListPage from "./components/ChangelogListPage"
 import ShowcaseList from "./components/ShowcaseList"
 import APITagListPage from "./components/APITagListPage"
 
-const Wrapper = (props: Object) => <div><Header />{props.children}</div>
+const Wrapper = (props: Object) => (
+  <View>
+    <Head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </Head>
+    <Header />
+    {props.children}
+  </View>
+)
 
 // eslint-disable-next-line react/no-multi-comp
 const routes = () => (
@@ -38,7 +50,7 @@ const routes = () => (
   </Router>
 )
 
-export default createApp(routes)
+export default createApp(routes, Html)
 
 if (module.hot) {
   module.hot.accept(() => renderApp(routes))

@@ -13,7 +13,7 @@
     "phenomic-preset-default": "^1.0.0-alpha.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-helmet": "^3.2.3",
+    "react-helmet": "^5.0.0",
     "react-native-web": "^0.0.84",
     "react-router": "^3.0.0",
     "whatwg-fetch": "^2.0.3"

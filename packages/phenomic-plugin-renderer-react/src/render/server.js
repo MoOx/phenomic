@@ -30,17 +30,21 @@ function getMatch({ routes, location }) {
 function renderToString(
   store: StoreType,
   { renderProps }: { renderProps: Object },
-  renderHTML: Function,
+  renderHTML,
+  Html,
 ) {
   const body = ReactDOMServer.renderToString(
     <Provider fetch={fetch} store={store}>
       <RouterContext {...renderProps} />
     </Provider>,
   )
-  return renderHTML({
-    body,
-    state: store.getState(),
-  })
+  return renderHTML(
+    {
+      body,
+      state: store.getState(),
+    },
+    Html,
+  )
 }
 
 async function renderServer(
@@ -70,6 +74,7 @@ async function renderServer(
     store,
     { renderProps, redirectLocation },
     renderHTML,
+    app.Html,
   )
   const state = store.getState()
   return [

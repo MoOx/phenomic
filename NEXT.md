@@ -49,7 +49,6 @@ This will run `npm link` for all packages so they are available locally :)
 - [ ] dev server handle occupied ports - [ ] if default phenomic ports is not free, we should ask user to double check and offer to use another one (like CRA)
 - [ ] react-router scroll mess is handled (see src/client/should-update-scroll.js)
 - [ ] glamor & aphrodite should be handled or VERY easy to enable
-- [ ] react-helmet should be handled (upgraded)
 - [ ] Link handle / & /index.html as a same url for activeState
 - [ ] Link should handle local and external link (so you can reference a dynamic value (eg from front-matter) using Link - [ ] see src/components/Link)
 - [ ] optimistic loading/layout & shit (see src/components/PageContainer) - [ ] big deal here
