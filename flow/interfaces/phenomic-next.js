@@ -36,6 +36,19 @@ type PhenomicTransformResult = {
   partial: Object,
 }
 
+type PhenomicHtmlPropsType = {
+  body: React$Element<*>,
+  state?: React$Element<*>,
+  script: React$Element<*>,
+}
+
+type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>
+
+type PhenomicPluginRenderHTMLType = (
+  props?: { body?: string, state?: Object },
+  html?: PhenomicHtmlType,
+) => string
+
 export type PhenomicPlugin = {
   name: string,
   // transformer
@@ -55,6 +68,7 @@ export type PhenomicPlugin = {
   // renderer
   getRoutes?: Function,
   renderServer?: Function,
+  renderHTML?: PhenomicPluginRenderHTMLType,
 }
 
 export type PhenomicPlugins = Array<PhenomicPlugin>

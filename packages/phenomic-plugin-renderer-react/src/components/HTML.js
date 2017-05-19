@@ -1,14 +1,6 @@
 import React from "react"
 
-export type HtmlType = (props: PropsType) => React$Element<*>
-
-type PropsType = {
-  body: React$Element<*>,
-  state?: React$Element<*>,
-  script: React$Element<*>,
-}
-
-const Html = (props: PropsType) => (
+const Html = (props: PhenomicHtmlPropsType) => (
   <html>
     <head>
       <meta charSet="utf-8" />
