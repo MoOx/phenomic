@@ -6,9 +6,9 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 module.exports = (/* config: PhenomicConfig */) => ({
   entry: {
     bundle: [
-      process.env.NODE_ENV !== "production" &&
+      process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("webpack-hot-middleware/client"),
-      process.env.NODE_ENV !== "production" &&
+      process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("react-hot-loader/patch"),
       "./App.js",
     ].filter(item => item),
@@ -42,9 +42,9 @@ module.exports = (/* config: PhenomicConfig */) => ({
   plugins: [
     new ExtractTextPlugin({
       filename: "styles.css",
-      disable: process.env.NODE_ENV !== "production",
+      disable: process.env.PHENOMIC_ENV !== "static",
     }),
-    process.env.NODE_ENV !== "production" &&
+    process.env.PHENOMIC_ENV !== "static" &&
       new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&
       new webpack.optimize.UglifyJsPlugin(),

@@ -85,7 +85,7 @@ async function prerenderFileAndDependencies(config, renderer, app, fetch, url) {
 async function build(config) {
   process.env.NODE_ENV = process.env.NODE_ENV || "production"
   process.env.BABEL_ENV = process.env.BABEL_ENV || "production"
-  // process.env.PHENOMIC_ENV = "static"
+  process.env.PHENOMIC_ENV = "static"
   debug("building")
   const phenomicServer = createServer(db, config.plugins)
   const port = await getPort()
