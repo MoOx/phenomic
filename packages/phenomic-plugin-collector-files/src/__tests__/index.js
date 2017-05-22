@@ -2,7 +2,8 @@ import {
   getKey,
   getSortedKey,
   getAuthors,
-  getTags,
+  getFields,
+  getFieldValue,
   injectDateFromFilename,
 } from ".."
 
@@ -40,11 +41,32 @@ it("should be able to generate authors list", () => {
   ).toEqual(["test", "test2"])
 })
 
-it("should be able to generate tag list", () => {
-  expect(getTags({ partial: {}, data: { tags: ["test", "test2"] } })).toEqual([
-    "test",
-    "test2",
-  ])
+it("should be able to get arbitrary fields", () => {
+  expect(
+    getFields({ partial: {}, data: { tags: ["test", "test2"] } }),
+  ).toEqual(["tags"])
+})
+
+it("should be able to generate fields lists from arrays", () => {
+  expect(
+    getFieldValue({ partial: {}, data: { tags: ["test", "test2"] } }, "tags"),
+  ).toEqual(["test", "test2"])
+})
+
+it("should be able to generate fields lists from strings", () => {
+  expect(
+    getFieldValue({ partial: {}, data: { tags: "test" } }, "tags"),
+  ).toEqual(["test"])
+})
+
+it("should be able to generate fields lists from numbers", () => {
+  expect(getFieldValue({ partial: {}, data: { tags: 2 } }, "tags")).toEqual([2])
+})
+
+it("should be able to generate fields lists from booleans", () => {
+  expect(
+    getFieldValue({ partial: {}, data: { tags: false } }, "tags"),
+  ).toEqual([false])
 })
 
 it("should be able to inject date from filename in data", () => {
