@@ -36,19 +36,28 @@ export function getSortedKey(name: string, json: PhenomicTransformResult) {
   return key
 }
 
+export function getFields(json: PhenomicTransformResult) {
+  const keys = Object.keys(json.data)
+  return keys.filter(key => key !== "author" && key !== "authors")
+}
+
+export function getFieldValue(json: PhenomicTransformResult, key: string) {
+  if (Array.isArray(json.data[key])) {
+    return json.data[key]
+  }
+  const type = typeof json.data[key]
+  if (type === "string" || type === "number" || type === "boolean") {
+    return [json.data[key]]
+  }
+  return []
+}
+
 export function getAuthors(json: PhenomicTransformResult) {
   if (typeof json.data.author === "string") {
     return [json.data.author]
   }
   if (Array.isArray(json.data.authors)) {
     return json.data.authors
-  }
-  return []
-}
-
-export function getTags(json: PhenomicTransformResult) {
-  if (Array.isArray(json.data.tags)) {
-    return json.data.tags
   }
   return []
 }
@@ -98,15 +107,19 @@ export default function() {
             db.put(["authors", collectionName], author, { id: author }),
           ])
         }),
-        ...getTags(json).map(tag => {
-          return Promise.all([
-            // sorted list, filtered by tags
-            db.put([collectionName, "tags", tag], sortedKey, { id: key }),
-            // global tag list
-            db.put(["tags"], tag, { id: tag }),
-            db.put(["tags", "default"], tag, { id: tag }),
-            db.put(["tags", "collection", collectionName], tag, { id: tag }),
-          ])
+        ...getFields(json).map(type => {
+          return getFieldValue(json, type).map(value =>
+            Promise.all([
+              // sorted list, filtered by tags
+              db.put([collectionName, type, value], sortedKey, { id: key }),
+              // global tag list
+              db.put([type], value, { id: value }),
+              db.put([type, "default"], value, { id: value }),
+              db.put([type, "collection", collectionName], value, {
+                id: value,
+              }),
+            ]),
+          )
         }),
       ])
     },
