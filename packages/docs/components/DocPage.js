@@ -3,17 +3,24 @@ import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
 import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 import MarkdownGenerated from "./MarkdownGenerated"
+import PageError from "./PageError"
 
-const Home = (props: Object) => (
-  <View>
-    {props.isLoading && <ActivityIndicator />}
-    {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>{props.page.node.title}</Text>
-        <MarkdownGenerated body={props.page.node.body} />
-      </View>}
-  </View>
-)
+const DocPage = (props: Object) => {
+  if (props.hasError) {
+    return <PageError error={props.page.error} />
+  }
+
+  return (
+    <View>
+      {props.isLoading && <ActivityIndicator />}
+      {!props.isLoading &&
+        <View style={styles.page}>
+          <Text style={styles.title}>{props.page.node.title}</Text>
+          <MarkdownGenerated body={props.page.node.body} />
+        </View>}
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   page: {
@@ -28,7 +35,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default createContainer(Home, props => ({
+export default createContainer(DocPage, props => ({
   page: query({
     collection: "docs",
     id: props.params.splat,

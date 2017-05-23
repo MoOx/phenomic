@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native-web"
+import { Link } from "react-router"
 import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 const ShowcaseList = (props: Object) => (
@@ -33,6 +34,11 @@ const ShowcaseList = (props: Object) => (
             </TouchableOpacity>
           ))}
         </View>
+        {props.showcase.node &&
+          props.showcase.node.hasNextPage &&
+          <Link to={`/showcase/after/${props.showcase.node.next}`}>
+            {"More projects"}
+          </Link>}
       </View>}
   </View>
 )
@@ -50,6 +56,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   item: {
     width: "50%",
@@ -67,8 +74,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default createContainer(ShowcaseList, () => ({
+export default createContainer(ShowcaseList, props => ({
   showcase: query({
     collection: "showcase",
+    limit: 10,
+    after: props.params.after,
   }),
 }))

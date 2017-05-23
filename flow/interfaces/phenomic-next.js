@@ -96,10 +96,12 @@ export type PhenomicQueryConfig = {
 export type PhenomicRoute = {
   path: string,
   params?: { [key: string]: any },
-  getQueries: (props: { params: { [key: string]: any } }) => {
-    [key: string]: PhenomicQueryConfig,
+  component: {
+    getQueries?: (props: { params: { [key: string]: any } }) => {
+      [key: string]: PhenomicQueryConfig,
+    },
   },
-  collection?: string,
+  collection?: string | PhenomicQueryConfig,
 }
 
 // @todo why this inconsistency?

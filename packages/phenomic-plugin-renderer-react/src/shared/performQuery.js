@@ -3,19 +3,17 @@ import type { StoreType } from "./store"
 
 function performQuery(
   store: StoreType,
-  fetch: PhenomicFetch,
+  phenomicFetch: PhenomicFetch,
   queries: phenomic$Queries,
 ) {
   return Promise.all(
     queries.map(key => {
       store.setAsLoading(key)
-      return fetch(decode(key))
+      return phenomicFetch(decode(key))
         .then(value => {
           store.set(key, value)
         })
-        .catch(error => {
-          store.setAsError(key, error)
-        })
+        .catch(error => store.setAsError(key, error))
     }),
   )
 }

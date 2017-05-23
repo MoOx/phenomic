@@ -104,7 +104,7 @@ function createContainer(
           "An item is in error state",
           values.find(item => store.get(item).status === "error"),
         )
-        return null
+        return <Component {...this.props} hasError {...props} />
       }
       return <Component {...this.props} isLoading={isLoading} {...props} />
     }

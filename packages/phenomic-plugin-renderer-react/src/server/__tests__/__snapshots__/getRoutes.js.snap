@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should resolve URLs based on routes 1`] = `
+Array [
+  Object {
+    "component": [Function],
+    "path": "/",
+  },
+  Object {
+    "collection": "docs",
+    "component": [Function],
+    "path": "/docs/*",
+  },
+  Object {
+    "component": [Function],
+    "path": "/*",
+  },
+]
+`;

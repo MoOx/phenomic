@@ -18,6 +18,7 @@ import ChangelogPage from "./components/ChangelogPage"
 import ChangelogListPage from "./components/ChangelogListPage"
 import ShowcaseList from "./components/ShowcaseList"
 import APITagListPage from "./components/APITagListPage"
+import PageError from "./components/PageError"
 
 const Wrapper = (props: Object) => (
   <View>
@@ -46,6 +47,12 @@ const routes = () => (
       <Route path="/changelog/*" component={ChangelogPage} collection="page" />
       <Route path="/docs/*" component={DocPage} collection="docs" />
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
+      <Route
+        path="/showcase/after/:after"
+        component={ShowcaseList}
+        collection="showcase"
+      />
+      <Route path="*" component={PageError} />
     </Route>
   </Router>
 )

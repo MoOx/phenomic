@@ -3,25 +3,20 @@ import createQuery from "phenomic-api-client/lib/query"
 const debug = require("debug")("phenomic:core:prerender:resolve")
 
 const resolveURLsForDynamicParams = async function(
-  fetch: PhenomicFetch,
+  phenomicFetch: PhenomicFetch,
   route: PhenomicRoute,
 ) {
-  if (
-    typeof route.collection !== "string" && typeof route.collection !== "object"
-  ) {
+  const collectionConfig = typeof route.collection === "string"
+    ? { collection: route.collection }
+    : route.collection
+  if (!collectionConfig) {
     debug("no valid collection", route.collection)
     return route
   }
-  debug(`fetching collection '${route.collection}' for route '${route.path}'`)
-  // @todo flow stuff
-  const collection = await fetch(
-    createQuery(
-      // $FlowFixMe see todo
-      typeof route.collection === "string"
-        ? { collection: route.collection }
-        : route.collection,
-    ),
+  debug(
+    `fetching collection '${collectionConfig.collection ? collectionConfig.collection : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`,
   )
+  const collection = await phenomicFetch(createQuery(collectionConfig))
   debug(`collection fetched. ${collection.list.length} items`)
   const path = route.path || "*"
   return collection.list.map(item => {
@@ -46,19 +41,19 @@ const findPaginatedQuery = function(queries) {
 const resolveNextURLsInPagination = async function(
   path: string,
   query: PhenomicQueryConfig,
-  fetch: PhenomicFetch,
+  phenomicFetch: PhenomicFetch,
   urls: Array<string> = [],
 ) {
   urls = [
     ...urls,
     path.replace("/:after?", query.after ? "/" + query.after : ""),
   ]
-  const nextPage = await fetch(createQuery(query))
+  const nextPage = await phenomicFetch(createQuery(query))
   if (nextPage.hasNextPage) {
     return resolveNextURLsInPagination(
       path,
       { ...query, after: nextPage.next },
-      fetch,
+      phenomicFetch,
       urls,
     )
   } else {
@@ -73,11 +68,13 @@ const resolvePaginatedURLs = async function(
   if (!route.paginated) {
     return route.path
   }
-  if (!route.getQueries) {
+  if (!route.component.getQueries) {
     return route.path
   }
   const initialRouteParams: Object = route.params || {}
-  const initialRouteQuery = route.getQueries({ params: initialRouteParams })
+  const initialRouteQuery = route.component.getQueries({
+    params: initialRouteParams,
+  })
   const query = findPaginatedQuery(initialRouteQuery)
   if (!query) {
     return route.path

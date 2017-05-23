@@ -79,6 +79,10 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
       try {
         const limit = parseInt(req.params.limit)
         const lt = decode(req.params.after)
+        // @todo check lt validity (exist?); otherwise, trigger an error (404?)
+        // cause during dev all "lt" are responding 200, even random values
+        // but in production, it's not the case as only known values are
+        // generated as endpoints
         const reverse = req.params.order === "desc"
         const list = await db.getList(
           req.params.collection,

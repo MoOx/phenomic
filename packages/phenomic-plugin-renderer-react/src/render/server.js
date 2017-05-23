@@ -1,5 +1,6 @@
 import path from "path"
 
+import color from "chalk"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import { match, RouterContext } from "react-router"
@@ -70,12 +71,22 @@ async function renderServer(
       )
     }),
   )
-  const contents = await renderToString(
-    store,
-    { renderProps, redirectLocation },
-    renderHTML,
-    app.Html,
-  )
+  let contents
+  try {
+    contents = await renderToString(
+      store,
+      { renderProps, redirectLocation },
+      renderHTML,
+      app.Html,
+    )
+  } catch (err) {
+    console.error()
+    console.error(
+      `${color.red("An error occured when Phenomic tried to render")} ${color.yellow(location)}`,
+    )
+    console.error()
+    throw err
+  }
   const state = store.getState()
   return [
     { path: path.join(location, "index.html"), contents },

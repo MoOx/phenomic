@@ -1,4 +1,5 @@
 import "isomorphic-fetch"
+import jsonFetch from "simple-json-fetch"
 import React from "react"
 import ReactDOM from "react-dom"
 import { AppContainer } from "react-hot-loader"
@@ -16,7 +17,9 @@ function render(routes: () => React$Element<any>) {
 
   function createFetchFunction() {
     return (config: PhenomicQueryConfig) =>
-      fetch(createURL({ ...config, root: "/phenomic" })).then(res => res.json())
+      jsonFetch(createURL({ ...config, root: "/phenomic" })).then(
+        res => res.json,
+      )
   }
 
   const initialStateNode = document.getElementById("Hydration")

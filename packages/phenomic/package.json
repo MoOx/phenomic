@@ -20,6 +20,7 @@
     "path-to-regexp": "^1.7.0",
     "phenomic-api-client": "^1.0.0-alpha.0",
     "rimraf": "^2.5.4",
+    "simple-json-fetch": "^1.0.1",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2"
   },

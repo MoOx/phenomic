@@ -1,6 +1,7 @@
 import path from "path"
 
 import "isomorphic-fetch"
+import jsonFetch from "simple-json-fetch"
 import getPort from "get-port"
 import createURL from "phenomic-api-client/lib/url"
 import rimraf from "rimraf"
@@ -61,20 +62,29 @@ async function getContent(db, config: PhenomicConfig) {
     })
   })
 }
-function createFetchFunction(port) {
+function createFetchFunction(port: number) {
   debug("creating fetch function")
-  return config => {
-    return fetch(
+  return (config: PhenomicQueryConfig) => {
+    return jsonFetch(
       createURL({
         ...config,
         root: `http://localhost:${port}`,
       }),
-    ).then(res => res.json())
+    ).then(res => res.json)
   }
 }
-async function prerenderFileAndDependencies(config, renderer, app, fetch, url) {
+async function prerenderFileAndDependencies(
+  config,
+  renderer,
+  app,
+  phenomicFetch,
+  url,
+) {
   debug(`'${url}': prepend file and deps for `)
-  const files = await renderer.renderServer(app, fetch, url)
+  if (!renderer || !renderer.renderServer) {
+    throw new Error("a renderer is required (plugin implementing renderServer)")
+  }
+  const files = await renderer.renderServer(app, phenomicFetch, url)
   debug(`'${url}': files & deps collected`)
   return Promise.all(
     files.map(file =>
@@ -103,15 +113,21 @@ async function build(config) {
     await getContent(db, config)
     console.log("📝 Got your content " + (Date.now() - lastStamp) + "ms")
     lastStamp = Date.now()
-    const fetch = createFetchFunction(port)
-    const renderers = config.plugins.filter(p => p.getRoutes)
+    const phenomicFetch = createFetchFunction(port)
+    const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes)
     const renderer = renderers[0]
-    const urls = await resolveURLsToPrerender(renderer.getRoutes(app), fetch)
+    if (!renderer || !renderer.getRoutes) {
+      throw new Error("a renderer is required (plugin implementing getRoutes)")
+    }
+    const urls = await resolveURLsToPrerender(
+      renderer.getRoutes(app),
+      phenomicFetch,
+    )
     debug("urls have been resolved")
     debug(urls)
     await Promise.all(
       urls.map(url =>
-        prerenderFileAndDependencies(config, renderer, app, fetch, url),
+        prerenderFileAndDependencies(config, renderer, app, phenomicFetch, url),
       ),
     )
     console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms")

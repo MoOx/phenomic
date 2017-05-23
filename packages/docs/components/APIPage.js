@@ -4,54 +4,61 @@ import { Link } from "react-router"
 import { createContainer, query } from "phenomic-preset-default/lib/client"
 
 import MarkdownGenerated from "./MarkdownGenerated"
+import PageError from "./PageError"
 
-const Home = (props: Object) => (
-  <View>
-    <View style={styles.page}>
-      <View style={styles.column}>
-        <Text style={styles.menuTitle}>
-          {"API Reference"}
-        </Text>
-        {props.apis.status === "loading" && <ActivityIndicator />}
-        {props.apis.status === "idle" &&
-          props.apis.node.list.map(api => (
-            <View key={api.id}>
-              <Link to={`/api/${api.id}`}>
-                <Text style={styles.property}>
-                  {api.title}
-                </Text>
-              </Link>
-            </View>
-          ))}
-        <Text style={styles.menuTitle}>
-          {"Tags"}
-        </Text>
-        {props.tags.status === "loading" && <ActivityIndicator />}
-        {props.tags.status === "idle" &&
-          props.tags.node.list.map(tag => (
-            <View key={tag.id}>
-              <Link to={`/api/tag/${tag.id}`}>
-                <Text style={styles.property}>
-                  {tag.id}
-                </Text>
-              </Link>
-            </View>
-          ))}
-      </View>
-      <View>
-        <Text style={styles.title}>{props.page.title}</Text>
-        {props.page.status === "loading" && <ActivityIndicator />}
-        {props.page.status === "idle" &&
-          <View>
-            <Text style={styles.title}>
-              {props.page.node.title}
-            </Text>
-            <MarkdownGenerated body={props.page.node.body} />
-          </View>}
+const APIPage = (props: Object) => {
+  if (props.hasError) {
+    return <PageError error={props.page.error} />
+  }
+
+  return (
+    <View>
+      <View style={styles.page}>
+        <View style={styles.column}>
+          <Text style={styles.menuTitle}>
+            {"API Reference"}
+          </Text>
+          {props.apis.status === "loading" && <ActivityIndicator />}
+          {props.apis.status === "idle" &&
+            props.apis.node.list.map(api => (
+              <View key={api.id}>
+                <Link to={`/api/${api.id}`}>
+                  <Text style={styles.property}>
+                    {api.title}
+                  </Text>
+                </Link>
+              </View>
+            ))}
+          <Text style={styles.menuTitle}>
+            {"Tags"}
+          </Text>
+          {props.tags.status === "loading" && <ActivityIndicator />}
+          {props.tags.status === "idle" &&
+            props.tags.node.list.map(tag => (
+              <View key={tag.id}>
+                <Link to={`/api/tag/${tag.id}`}>
+                  <Text style={styles.property}>
+                    {tag.id}
+                  </Text>
+                </Link>
+              </View>
+            ))}
+        </View>
+        <View>
+          <Text style={styles.title}>{props.page.title}</Text>
+          {props.page.status === "loading" && <ActivityIndicator />}
+          {props.page.status === "idle" &&
+            <View>
+              <Text style={styles.title}>
+                {props.page.node.title}
+              </Text>
+              <MarkdownGenerated body={props.page.node.body} />
+            </View>}
+        </View>
       </View>
     </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   menuTitle: {
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default createContainer(Home, props => ({
+export default createContainer(APIPage, props => ({
   apis: query({
     collection: "api",
   }),

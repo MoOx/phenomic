@@ -1,3 +1,4 @@
+import urlJoin from "url-join"
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
 
 import type { AppType } from "../createApp"
@@ -12,7 +13,7 @@ function flattenRoutes(routes, path = "") {
       ...route,
       path: (route.path || "").startsWith("/")
         ? route.path
-        : path + "/" + (route.path || ""),
+        : route.path ? urlJoin(path, route.path) : path,
     }
     if (route.childRoutes) {
       acc.push(...flattenRoutes(nextRoute.childRoutes, nextRoute.path))
@@ -26,10 +27,8 @@ function flattenRoutes(routes, path = "") {
 function getRoutes(app: AppType) {
   const routes = createRouteFromReactElement(app.routes)
   const flatRoutes = flattenRoutes(routes.childRoutes)
-  return flatRoutes.map(item => ({
-    ...item,
-    getQuery: item.component.getQueries,
-  }))
+  debug(flatRoutes)
+  return flatRoutes
 }
 
 export default getRoutes
