@@ -113,10 +113,11 @@ export default function() {
               // sorted list, filtered by tags
               db.put([collectionName, type, value], sortedKey, { id: key }),
               // global tag list
-              db.put([type], value, { id: value }),
-              db.put([type, "default"], value, { id: value }),
+              db.put([type], value, { id: value, partial: value }),
+              db.put([type, "default"], value, { id: value, partial: value }),
               db.put([type, "collection", collectionName], value, {
                 id: value,
+                partial: value,
               }),
             ]),
           )

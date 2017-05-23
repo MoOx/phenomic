@@ -112,7 +112,12 @@ const db = {
         if (error) {
           reject(error)
         } else {
-          resolve({ id: key, ...data.partial })
+          const type = typeof data.partial
+          if (type === "string" || type === "number" || type === "boolean") {
+            resolve(data.partial)
+          } else {
+            resolve({ id: key, ...data.partial })
+          }
         }
       })
     })
