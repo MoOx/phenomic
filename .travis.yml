@@ -9,26 +9,15 @@ matrix:
 
 # cache node modules
 cache:
+  yarn: true
   directories:
-    # Yarn
-    - $HOME/.yarn-cache
+    - "node_modules"
 
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
+  # Install Watchman dependency
   - git clone --depth=1 --branch=v4.7.0 https://github.com/facebook/watchman.git
   - pushd watchman && ./autogen.sh && ./configure --without-python && make && sudo make install && popd
 
 install: yarn
 
 after_success: yarn run coverage
-
-# for Yarn, to build some native deps
-env:
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
