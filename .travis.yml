@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - '6'
+  - '7'
 
 # fail asap when there is a failure
 matrix:
