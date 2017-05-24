@@ -1,8 +1,8 @@
 # http://www.appveyor.com/docs/appveyor-yml
-
 environment:
   matrix:
     - nodejs_version: '6'
+  DEBUG: phenomic:*
 
 version: "{build}"
 build: off
