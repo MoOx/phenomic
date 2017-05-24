@@ -26,10 +26,10 @@ export type PhenomicInputConfig = {
 
 export type PhenomicContentFile = {
   name: string,
-  fullpath: string,
-  exists: boolean,
-  type: string
-};
+  fullpath: string
+  // exists: boolean,
+  // type: string
+}
 
 type PhenomicTransformResult = {
   data: Object,
