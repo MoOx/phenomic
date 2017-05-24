@@ -61,8 +61,12 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
     debug("watcher: ready")
     ready = true
     if (closeMe) {
+      debug("watcher: will close")
       // close but not like NOW because leveldb might crash (no idea why)
-      setTimeout(() => watcher.close(), 1000)
+      setTimeout(() => {
+        debug("watcher: closed after being ready")
+        watcher.close()
+      }, 1000)
     }
   })
   watcher.on("change", (filepath, root, stat) => {
@@ -102,6 +106,7 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
       // we should probably not use a watcher for static build
       // but I am lazy and will refactor later
       if (!ready) {
+        debug("watcher: will close after being ready")
         closeMe = true
         return
       }
