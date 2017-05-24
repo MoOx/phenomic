@@ -59,7 +59,6 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
 
   watcher.on("ready", () => {
     debug("watcher: ready")
-    subscribers.forEach(func => func(files))
     ready = true
     if (closeMe) {
       // close but not like NOW because leveldb might crash (no idea why)
