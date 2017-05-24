@@ -10,8 +10,6 @@ matrix:
 # cache node modules
 cache:
   yarn: true
-  directories:
-    - "node_modules"
 
 before_install:
   # Install Watchman dependency
