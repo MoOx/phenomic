@@ -9,3 +9,7 @@ dependencies:
 test:
   override:
     - npm test
+
+machine:
+  environment:
+    DEBUG: phenomic:*

@@ -1,16 +1,25 @@
 import path from "path";
 
-import watchman from "fb-watchman";
-import type { Client } from "fb-watchman";
+import sane from "sane"
+import globby from "globby"
 
-const debug = require("debug")("phenomic:core:watch");
+const execSync = require("child_process").execSync
 
-const createErrorHandler = (client: Client) => (error: any) => {
-  if (error) {
-    client.end();
-    throw error;
+const canUseWatchman = ((): boolean => {
+  try {
+    execSync("watchman --version", { stdio: ["ignore"] })
+    return true
+  } catch (e) {
+    return false
   }
-};
+})()
+
+const debug = require("debug")("phenomic:core:watch")
+
+const toFile = (root, filepath) => ({
+  name: filepath,
+  fullpath: path.join(root, filepath),
+})
 
 function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
   const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
@@ -31,65 +40,79 @@ function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
 }
 
 function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
-  const client = new watchman.Client();
-  const handleError = createErrorHandler(client);
-  let subscribers = [];
-  const files = {};
-  client.capabilityCheck(
-    { optional: [], required: ["relative_root"] },
-    error => {
-      handleError(error);
-      client.command(["watch-project", config.path], (error, response) => {
-        handleError(error);
-        const subcription = {
-          expression: [
-            "anyof",
-            ...getExtensionsToWatch(config.plugins).map((extension: string) => [
-              "match",
-              `*.${extension}`
-            ])
-          ],
-          fields: ["name", "exists", "type"],
-          relative_root: response.relative_path
-        };
+  const exts = getExtensionsToWatch(config.plugins).map(
+    (extension: string) => `**/*.${extension}`,
+  )
+  debug("path:", config.path)
+  debug("extensions:", exts)
+  const watcher = sane(config.path, {
+    watchman: canUseWatchman,
+    glob: exts,
+  })
+  let subscribers = []
+  let ready = false
+  let closeMe = false
+  const files: Array<PhenomicContentFile> = globby
+    .sync(exts, { cwd: config.path })
+    .map(file => toFile(config.path, file))
+  debug("files", files.map(file => file.name))
 
-        client.command(
-          ["subscribe", response.watch, "files", subcription],
-          handleError
-        );
-
-        client.on("subscription", event => {
-          event.files.forEach(file => {
-            if (files[file.name] && !file.exists) {
-              delete files[file.name];
-            } else {
-              files[file.name] = {
-                name: file.name,
-                fullpath: path.join(config.path, file.name),
-                exists: file.exists,
-                type: file.type
-              };
-            }
-          });
-          const arrayOfFiles = Object.keys(files).map(key => files[key]);
-          subscribers.forEach(func => func(arrayOfFiles));
-        });
-      });
+  watcher.on("ready", () => {
+    debug("watcher: ready")
+    ready = true
+    if (closeMe) {
+      debug("watcher: will close")
+      // close but not like NOW because leveldb might crash (no idea why)
+      setTimeout(() => {
+        debug("watcher: closed after being ready")
+        watcher.close()
+      }, 1000)
     }
-  );
+  })
+  watcher.on("change", (filepath, root, stat) => {
+    debug("watcher: file changed", filepath, root, stat)
+    subscribers.forEach(func => func(files))
+  })
+  watcher.on("add", (filepath, root, stat) => {
+    debug("watcher: file added", filepath, root, stat)
+    files.push(toFile(config.path, filepath))
+    subscribers.forEach(func => func(files))
+  })
+  watcher.on("delete", (filepath, root) => {
+    debug("watcher: file deleted", filepath, root)
+    const index = files.find(
+      (file: PhenomicContentFile) => file.name === filepath,
+    )
+    if (index) {
+      delete files[files.indexOf(index)]
+    }
+    subscribers.forEach(func => func(files))
+  })
 
   return {
     onChange(func: (files: Array<PhenomicContentFile>) => Promise<void>) {
-      subscribers = [...subscribers, func];
+      debug("watcher#onChange")
+      func(files)
+      subscribers = [...subscribers, func]
       return function unsubscribe() {
         return (subscribers = subscribers.filter(item => item !== func));
       };
     },
     close() {
-      subscribers = [];
-      client.end();
-    }
-  };
+      debug("watcher#closed")
+      subscribers = []
+      // sane can be "slow" to say "I am ready"
+      // and during static build, we close the watcher directly
+      // we should probably not use a watcher for static build
+      // but I am lazy and will refactor later
+      if (!ready) {
+        debug("watcher: will close after being ready")
+        closeMe = true
+        return
+      }
+      watcher.close()
+    },
+  }
 }
 
 export default createWatcher;

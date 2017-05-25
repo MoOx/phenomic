@@ -6,6 +6,8 @@ export function getKey(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
     return json.data.path;
   }
+  // normalize windows path
+  name = name.replace(/(\/|\\)+/g, path.sep)
   return path.join(
     path
       .dirname(name)
