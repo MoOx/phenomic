@@ -134,10 +134,24 @@ const db = {
         .createReadStream(wrapStreamConfig(config))
         .on("data", async function(data) {
           array.push(
-            db.getPartial(sub, data.value.id).then(value => ({
-              ...value,
-              key: data.key
-            }))
+            db.getPartial(sub, data.value.id).then(value => {
+              const type = typeof value;
+              if (
+                type === "string" ||
+                type === "number" ||
+                type === "boolean" ||
+                Array.isArray(value)
+              ) {
+                return {
+                  key: data.key,
+                  value
+                };
+              }
+              return {
+                ...value,
+                key: data.key
+              };
+            })
           );
         })
         .on("end", async function() {

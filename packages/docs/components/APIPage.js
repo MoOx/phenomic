@@ -36,9 +36,9 @@ const APIPage = (props: Object) => {
           {props.tags.status === "idle" &&
             props.tags.node.list.map(tag => (
               <View key={tag.id}>
-                <Link to={`/api/tag/${tag.id}`}>
+                <Link to={`/api/tag/${tag.key}`}>
                   <Text style={styles.property}>
-                    {tag.id}
+                    {tag.value}
                   </Text>
                 </Link>
               </View>
