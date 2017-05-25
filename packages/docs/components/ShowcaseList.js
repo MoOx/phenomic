@@ -34,11 +34,28 @@ const ShowcaseList = (props: Object) => (
             </TouchableOpacity>
           ))}
         </View>
-        {props.showcase.node &&
-          props.showcase.node.hasNextPage &&
-          <Link to={`/showcase/after/${props.showcase.node.next}`}>
-            {"More projects"}
-          </Link>}
+        <View style={styles.paginationRow}>
+          <View style={styles.paginationColumn}>
+            {props.showcase.node &&
+              props.showcase.node.hasPreviousPage &&
+              <Link
+                to={
+                  props.showcase.node.previousPageIsFirst
+                    ? `/showcase`
+                    : `/showcase/after/${props.showcase.node.previous}`
+                }
+              >
+                {"Previous"}
+              </Link>}
+          </View>
+          <View style={styles.paginationColumn}>
+            {props.showcase.node &&
+              props.showcase.node.hasNextPage &&
+              <Link to={`/showcase/after/${props.showcase.node.next}`}>
+                {"Next"}
+              </Link>}
+          </View>
+        </View>
       </View>}
   </View>
 );
@@ -71,6 +88,15 @@ const styles = StyleSheet.create({
   siteName: {
     fontWeight: "700",
     fontSize: 18
+  },
+  paginationRow: {
+    flexDirection: "row"
+  },
+  paginationColumn: {
+    width: "50%",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
