@@ -101,8 +101,5 @@
     "testPathIgnorePatterns": [
       "/_output/"
     ]
-  },
-  "dependencies": {
-    "global": "^4.3.2"
   }
 }
