@@ -6,7 +6,7 @@ import getPort from "get-port";
 import createURL from "phenomic-api-client/lib/url";
 import rimraf from "rimraf";
 
-import createWatcher from "../watch";
+import { oneShot } from "../watch";
 import processFile from "../injection/processFile";
 import createServer from "../api";
 import writeFile from "../utils/writeFile";
@@ -33,34 +33,22 @@ async function getContent(db, config: PhenomicConfig) {
   if (!collectors.length) {
     throw Error("Phenomic expects at least a collector plugin");
   }
-  return new Promise((resolve, reject) => {
-    debug("watcher created");
-    const watcher = createWatcher({
-      path: path.join(config.path, "content"),
-      plugins: config.plugins
-    });
-    watcher.onChange(async function(files) {
-      debug("watcher changed");
-      watcher.close();
-      await db.destroy();
-      try {
-        await Promise.all(
-          files.map(file =>
-            processFile({
-              config,
-              db,
-              file,
-              transformers,
-              collectors
-            })
-          )
-        );
-        resolve();
-      } catch (error) {
-        reject(error);
-      }
-    });
+  const files = oneShot({
+    path: path.join(config.path, "content"),
+    plugins: config.plugins
   });
+  await db.destroy();
+  await Promise.all(
+    files.map(file =>
+      processFile({
+        config,
+        db,
+        file,
+        transformers,
+        collectors
+      })
+    )
+  );
 }
 function createFetchFunction(port: number) {
   debug("creating fetch function");
