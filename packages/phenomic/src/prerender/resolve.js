@@ -13,6 +13,11 @@ const resolveURLsForDynamicParams = async function(
     debug("no valid collection", route.collection);
     return route;
   }
+  // If the path doesn't contain any kind of parameter, no need to
+  // iterate over the collection
+  if (!route.path.includes("*") || !route.path.includes(":")) {
+    return route;
+  }
   debug(
     `fetching collection '${collectionConfig.collection ? collectionConfig.collection : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
   );
