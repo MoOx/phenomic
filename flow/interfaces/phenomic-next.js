@@ -29,7 +29,7 @@ export type PhenomicContentFile = {
   fullpath: string
   // exists: boolean,
   // type: string
-}
+};
 
 type PhenomicTransformResult = {
   data: Object,

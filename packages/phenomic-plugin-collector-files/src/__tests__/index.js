@@ -15,11 +15,11 @@ it("should be able to generate keys", () => {
   // @todo handle this case
   expect(getKey("test/index.md", { partial: {}, data: {} })).toEqual(".");
   expect(getKey("test/test/index.md", { partial: {}, data: {} })).toEqual(
-    "test",
-  )
+    "test"
+  );
   expect(
-    getKey("test\\test\\index.md", { partial: {}, data: {} }, "\\"),
-  ).toEqual("test")
+    getKey("test\\test\\index.md", { partial: {}, data: {} }, "\\")
+  ).toEqual("test");
 
   expect(getKey("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
     "yep"
