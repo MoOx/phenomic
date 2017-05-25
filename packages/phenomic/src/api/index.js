@@ -13,11 +13,13 @@ const connect = (list, limit, previousList = []) => {
   return {
     hasPreviousPage,
     previousPageIsFirst: previousList.length <= limit,
-    previous: hasPreviousPage
+    previous: hasPreviousPage && previousList[previousList.length - 2]
       ? encode(previousList[previousList.length - 2].key)
       : null,
     hasNextPage,
-    next: hasNextPage ? encode(list[list.length - 1].key) : null,
+    next: hasNextPage && list[list.length - 1]
+      ? encode(list[list.length - 1].key)
+      : null,
     list: list.slice(0, limit)
   };
 };
