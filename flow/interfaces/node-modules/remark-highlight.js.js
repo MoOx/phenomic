@@ -1,3 +1,3 @@
 declare module "remark-highlight.js" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

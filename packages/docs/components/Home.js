@@ -1,9 +1,9 @@
-import React from "react"
-import { View } from "react-native-web"
-import Head from "react-helmet"
-import { createContainer } from "phenomic-preset-default/lib/client"
+import React from "react";
+import { View } from "react-native-web";
+import Head from "react-helmet";
+import { createContainer } from "phenomic-preset-default/lib/client";
 
-import Hero from "./Hero"
+import Hero from "./Hero";
 
 const Home = () => (
   <View>
@@ -12,6 +12,6 @@ const Home = () => (
     </Head>
     <Hero />
   </View>
-)
+);
 
-export default createContainer(Home)
+export default createContainer(Home);

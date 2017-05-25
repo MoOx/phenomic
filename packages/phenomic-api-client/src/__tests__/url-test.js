@@ -1,31 +1,40 @@
-import url from "../url"
+import url from "../url";
 
 it("should build url for single item", () => {
   expect(
     url({
       collection: "posts",
-      id: "test",
-    }),
-  ).toMatchSnapshot()
-})
+      id: "test"
+    })
+  ).toMatchSnapshot();
+});
 
 it("should build url for items by date", () => {
   expect(
     url({
       collection: "posts",
-      by: "date",
-    }),
-  ).toMatchSnapshot()
-})
+      by: "date"
+    })
+  ).toMatchSnapshot();
+});
 
 it("should build url for specific tag", () => {
   expect(
     url({
       collection: "posts",
       by: "tag",
+      value: "test"
+    })
+  ).toMatchSnapshot();
+
+  expect(
+    url({
+      collection: "posts",
+      by: "tag",
       value: "test",
-    }),
-  ).toMatchSnapshot()
+      order: "asc"
+    })
+  ).toMatchSnapshot();
 
   expect(
     url({
@@ -33,8 +42,9 @@ it("should build url for specific tag", () => {
       by: "tag",
       value: "test",
       order: "asc",
-    }),
-  ).toMatchSnapshot()
+      limit: 10
+    })
+  ).toMatchSnapshot();
 
   expect(
     url({
@@ -43,19 +53,9 @@ it("should build url for specific tag", () => {
       value: "test",
       order: "asc",
       limit: 10,
-    }),
-  ).toMatchSnapshot()
-
-  expect(
-    url({
-      collection: "posts",
-      by: "tag",
-      value: "test",
-      order: "asc",
-      limit: 10,
-      after: "BASE64",
-    }),
-  ).toMatchSnapshot()
+      after: "BASE64"
+    })
+  ).toMatchSnapshot();
 
   expect(
     url({
@@ -65,7 +65,7 @@ it("should build url for specific tag", () => {
       value: "test",
       order: "asc",
       limit: 10,
-      after: "BASE64",
-    }),
-  ).toMatchSnapshot()
-})
+      after: "BASE64"
+    })
+  ).toMatchSnapshot();
+});

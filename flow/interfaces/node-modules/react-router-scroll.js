@@ -3,12 +3,11 @@ type useScroll = (
     prevRouterProps: Object | null,
     routerProps: Object
   ) => boolean | Array<number>
-) => Function
+) => Function;
 
 declare module "react-router-scroll" {
   declare var exports: useScroll;
 }
-
 declare module "react-router-scroll/lib/useScroll" {
-  declare var exports: useScroll
+  declare var exports: useScroll;
 }

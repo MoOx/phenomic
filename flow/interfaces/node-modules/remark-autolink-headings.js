@@ -1,3 +1,3 @@
 declare module "remark-autolink-headings" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

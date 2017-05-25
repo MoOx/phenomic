@@ -1,7 +1,7 @@
-import React from "react"
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
-import { Link } from "react-router"
-import { createContainer, query } from "phenomic-preset-default/lib/client"
+import React from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { Link } from "react-router";
+import { createContainer, query } from "phenomic-preset-default/lib/client";
 
 const ChangelogListPage = (props: Object) => (
   <View>
@@ -22,29 +22,29 @@ const ChangelogListPage = (props: Object) => (
         ))}
       </View>}
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   page: {
     padding: 10,
     maxWidth: 800,
     width: "100%",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   title: {
     fontSize: 40,
-    fontWeight: "900",
+    fontWeight: "900"
   },
   property: {
     backgroundColor: "#fafafa",
     borderRadius: 2,
     fontFamily: "monospace",
-    fontSize: 20,
-  },
-})
+    fontSize: 20
+  }
+});
 
 export default createContainer(ChangelogListPage, () => ({
   apis: query({
-    collection: "changelog",
-  }),
-}))
+    collection: "changelog"
+  })
+}));

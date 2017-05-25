@@ -1,19 +1,19 @@
-import render from "./render/client"
+import render from "./render/client";
 
 export type AppType = {
   routes: React$Element<any>,
-  Html?: (props: PhenomicHtmlPropsType) => React$Element<*>,
-}
+  Html?: (props: PhenomicHtmlPropsType) => React$Element<*>
+};
 
 export default (
   routes: () => React$Element<any>,
-  Html?: PhenomicHtmlType,
+  Html?: PhenomicHtmlType
 ): AppType => {
   if (typeof window !== "undefined") {
-    render(routes)
+    render(routes);
   }
   return {
     routes: routes(),
-    Html,
-  }
-}
+    Html
+  };
+};

@@ -1,24 +1,24 @@
-import "whatwg-fetch"
+import "whatwg-fetch";
 
-import React from "react"
-import { View } from "react-native-web"
-import Head from "react-helmet"
-import { Router, Route, browserHistory } from "react-router"
-import { createApp, renderApp } from "phenomic-preset-default/lib/client"
+import React from "react";
+import { View } from "react-native-web";
+import Head from "react-helmet";
+import { Router, Route, browserHistory } from "react-router";
+import { createApp, renderApp } from "phenomic-preset-default/lib/client";
 
-import "./defaults.css"
+import "./defaults.css";
 
-import Html from "./Html"
-import Header from "./components/Header"
-import Home from "./components/Home"
-import DocPage from "./components/DocPage"
-import APIPage from "./components/APIPage"
-import APIListPage from "./components/APIListPage"
-import ChangelogPage from "./components/ChangelogPage"
-import ChangelogListPage from "./components/ChangelogListPage"
-import ShowcaseList from "./components/ShowcaseList"
-import APITagListPage from "./components/APITagListPage"
-import PageError from "./components/PageError"
+import Html from "./Html";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import DocPage from "./components/DocPage";
+import APIPage from "./components/APIPage";
+import APIListPage from "./components/APIListPage";
+import ChangelogPage from "./components/ChangelogPage";
+import ChangelogListPage from "./components/ChangelogListPage";
+import ShowcaseList from "./components/ShowcaseList";
+import APITagListPage from "./components/APITagListPage";
+import PageError from "./components/PageError";
 
 const Wrapper = (props: Object) => (
   <View>
@@ -29,7 +29,7 @@ const Wrapper = (props: Object) => (
     <Header />
     {props.children}
   </View>
-)
+);
 
 // eslint-disable-next-line react/no-multi-comp
 const routes = () => (
@@ -55,10 +55,10 @@ const routes = () => (
       <Route path="*" component={PageError} />
     </Route>
   </Router>
-)
+);
 
-export default createApp(routes, Html)
+export default createApp(routes, Html);
 
 if (module.hot) {
-  module.hot.accept(() => renderApp(routes))
+  module.hot.accept(() => renderApp(routes));
 }

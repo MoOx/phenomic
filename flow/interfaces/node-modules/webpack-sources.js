@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-type SourceType = Object
+type SourceType = Object;
 
-type RawSourceType = (s: string) => SourceType
+type RawSourceType = (s: string) => SourceType;
 
 declare module "webpack-sources" {
-  declare var RawSource: RawSourceType
+  declare var RawSource: RawSourceType;
 }

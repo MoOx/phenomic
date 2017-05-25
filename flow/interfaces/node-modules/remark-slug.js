@@ -1,3 +1,3 @@
 declare module "remark-slug" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

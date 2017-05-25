@@ -1,34 +1,34 @@
-import urlJoin from "url-join"
-import { createRouteFromReactElement } from "react-router/lib/RouteUtils"
+import urlJoin from "url-join";
+import { createRouteFromReactElement } from "react-router/lib/RouteUtils";
 
-import type { AppType } from "../createApp"
+import type { AppType } from "../createApp";
 
-const debug = require("debug")("phenomic:plugin:react")
+const debug = require("debug")("phenomic:plugin:react");
 
 function flattenRoutes(routes, path = "") {
-  debug("flattenRoutes")
+  debug("flattenRoutes");
 
   return routes.reduce((acc, route) => {
     const nextRoute = {
       ...route,
       path: (route.path || "").startsWith("/")
         ? route.path
-        : route.path ? urlJoin(path, route.path) : path,
-    }
+        : route.path ? urlJoin(path, route.path) : path
+    };
     if (route.childRoutes) {
-      acc.push(...flattenRoutes(nextRoute.childRoutes, nextRoute.path))
+      acc.push(...flattenRoutes(nextRoute.childRoutes, nextRoute.path));
     } else {
-      acc.push(nextRoute)
+      acc.push(nextRoute);
     }
-    return acc
-  }, [])
+    return acc;
+  }, []);
 }
 
 function getRoutes(app: AppType) {
-  const routes = createRouteFromReactElement(app.routes)
-  const flatRoutes = flattenRoutes(routes.childRoutes)
-  debug(flatRoutes)
-  return flatRoutes
+  const routes = createRouteFromReactElement(app.routes);
+  const flatRoutes = flattenRoutes(routes.childRoutes);
+  debug(flatRoutes);
+  return flatRoutes;
 }
 
-export default getRoutes
+export default getRoutes;

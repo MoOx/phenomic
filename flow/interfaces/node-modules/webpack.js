@@ -4,10 +4,10 @@ type WebpackInstance = {
   options: Object,
   emitError: Function,
   emitFile: Function,
-  resourcePath: string,
-}
+  resourcePath: string
+};
 
 declare module "webpack" {
-  declare function webpack(options: Object, callback: Function): void
-  declare var exports: webpack
+  declare function webpack(options: Object, callback: Function): void;
+  declare var exports: webpack;
 }

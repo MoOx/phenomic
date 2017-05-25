@@ -4,7 +4,7 @@ declare module "fs-promise" {
 
   declare interface fsPromise {
     writeFile: writeFile,
-    mkdirs: mkdirs,
+    mkdirs: mkdirs
   }
   declare var exports: fsPromise;
 }

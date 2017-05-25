@@ -1,3 +1,3 @@
 declare module "strip-markdown" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const Html = (props: PhenomicHtmlPropsType) => (
   <html>
@@ -12,6 +12,6 @@ const Html = (props: PhenomicHtmlPropsType) => (
       {props.script}
     </body>
   </html>
-)
+);
 
-export default Html
+export default Html;

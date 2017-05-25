@@ -1,4 +1,4 @@
-type chalkFunction = (log: string) => string
+type chalkFunction = (log: string) => string;
 
 declare module "chalk" {
   declare var exports: {
@@ -28,6 +28,6 @@ declare module "chalk" {
     bgBlue: chalkFunction,
     bgMagenta: chalkFunction,
     bgCyan: chalkFunction,
-    bgWhite: chalkFunction,
-  }
+    bgWhite: chalkFunction
+  };
 }

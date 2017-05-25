@@ -1,6 +1,6 @@
 declare module "react-hot-loader" {
   declare interface ReactHotLoader {
-    AppContainer: Class<React$Component<*, *, *>>,
+    AppContainer: Class<React$Component<*, *, *>>
   }
-  declare var exports: ReactHotLoader
+  declare var exports: ReactHotLoader;
 }

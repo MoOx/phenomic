@@ -1,34 +1,34 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
-import performQuery from "../shared/performQuery"
+import performQuery from "../shared/performQuery";
 
 type PropsType = {
   children?: React$Element<any>,
   fetch: PhenomicFetch,
   store: Object,
-  __prerendering?: boolean,
-}
+  __prerendering?: boolean
+};
 class Provider extends React.Component<void, PropsType, void> {
-  props: PropsType
+  props: PropsType;
   static childContextTypes = {
     query: PropTypes.func,
     store: PropTypes.object.isRequired,
-    __prerendering: PropTypes.bool,
-  }
+    __prerendering: PropTypes.bool
+  };
   getChildContext() {
     return {
       store: this.props.store,
       query: this.query,
-      __prerendering: !!this.props.__prerendering,
-    }
+      __prerendering: !!this.props.__prerendering
+    };
   }
   query = (queries: Array<any>) => {
-    performQuery(this.props.store, this.props.fetch, queries)
-  }
+    performQuery(this.props.store, this.props.fetch, queries);
+  };
   render() {
-    return React.Children.only(this.props.children)
+    return React.Children.only(this.props.children);
   }
 }
 
-export default Provider
+export default Provider;

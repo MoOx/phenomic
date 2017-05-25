@@ -1,15 +1,24 @@
 type oraColors =
-  "black" | "red" | "green" | "yellow" | "blue" |
-  "magenta" | "cyan" | "white" | "gray"
+  | "black"
+  | "red"
+  | "green"
+  | "yellow"
+  | "blue"
+  | "magenta"
+  | "cyan"
+  | "white"
+  | "gray";
 
-type oraOptions = string | {
-  text: string,
-  spinner: string | Object,
-  color: oraColors,
-  interval: number,
-  stream: Object,
-  enabled: boolean,
-}
+type oraOptions =
+  | string
+  | {
+      text: string,
+      spinner: string | Object,
+      color: oraColors,
+      interval: number,
+      stream: Object,
+      enabled: boolean
+    };
 
 type oraInstance = {
   start: () => oraInstance,
@@ -24,9 +33,9 @@ type oraInstance = {
   color: string,
   stream: {
     // @todo add more about WritableStream
-    write: Function,
+    write: Function
   }
-}
+};
 declare module "ora" {
-  declare var exports: (options?: oraOptions) => oraInstance
+  declare var exports: (options?: oraOptions) => oraInstance;
 }

@@ -16,12 +16,12 @@ declare module "react-helmet" {
     onChangeClientState?: (
       newState: Object,
       addedTags: Object,
-      removeTags: Object,
-    ) => void | mixed,
-  }
+      removeTags: Object
+    ) => void | mixed
+  };
   declare interface HeadAttribute {
     toString(): string,
-    toComponent(): React$Element<*>,
+    toComponent(): React$Element<*>
   }
   declare interface Head {
     base: HeadAttribute,
@@ -32,12 +32,12 @@ declare module "react-helmet" {
     noscript: HeadAttribute,
     script: HeadAttribute,
     style: HeadAttribute,
-    title: HeadAttribute,
+    title: HeadAttribute
   }
 
   declare class Helmet extends React$Component {
     static renderStatic(): Head,
-    props: Props,
+    props: Props
   }
-  declare var exports: typeof Helmet
+  declare var exports: typeof Helmet;
 }

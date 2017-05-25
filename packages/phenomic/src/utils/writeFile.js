@@ -1,23 +1,23 @@
-import path from "path"
-import fs from "fs"
+import path from "path";
+import fs from "fs";
 
-import mkdirp from "mkdirp"
+import mkdirp from "mkdirp";
 
 const writeFile = (filepath: string, data: string) =>
   new Promise((resolve, reject) => {
     mkdirp(path.dirname(filepath), error => {
       if (error) {
-        reject(error)
-        return
+        reject(error);
+        return;
       }
       fs.writeFile(filepath, data, error => {
         if (error) {
-          reject(error)
+          reject(error);
         } else {
-          resolve()
+          resolve();
         }
-      })
-    })
-  })
+      });
+    });
+  });
 
-export default writeFile
+export default writeFile;

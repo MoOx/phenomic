@@ -1,10 +1,10 @@
-import path from "path"
+import path from "path";
 
-const debug = require("debug")("phenomic:plugin:collector-files")
+const debug = require("debug")("phenomic:plugin:collector-files");
 
 export function getKey(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
-    return json.data.path
+    return json.data.path;
   }
   return path.join(
     path
@@ -14,13 +14,13 @@ export function getKey(name: string, json: PhenomicTransformResult): string {
       .slice(1)
       .join(path.sep),
     // remove (index).md for key
-    name.endsWith("index.md") ? "" : path.basename(name, ".md"),
-  )
+    name.endsWith("index.md") ? "" : path.basename(name, ".md")
+  );
 }
 
 export function formatDate(dateString: string) {
-  const date = new Date(dateString).toISOString()
-  return date.substring(0, date.indexOf("T"))
+  const date = new Date(dateString).toISOString();
+  return date.substring(0, date.indexOf("T"));
 }
 
 /**
@@ -29,72 +29,72 @@ export function formatDate(dateString: string) {
  * If not, we just use alphabetical order.
  */
 export function getSortedKey(name: string, json: PhenomicTransformResult) {
-  const key = getKey(name, json)
+  const key = getKey(name, json);
   if (typeof json.data.date === "string") {
-    return `${formatDate(json.data.date)}-${key}`
+    return `${formatDate(json.data.date)}-${key}`;
   }
-  return key
+  return key;
 }
 
 export function getFields(json: PhenomicTransformResult) {
-  const keys = Object.keys(json.data)
-  return keys.filter(key => key !== "author" && key !== "authors")
+  const keys = Object.keys(json.data);
+  return keys.filter(key => key !== "author" && key !== "authors");
 }
 
 export function getFieldValue(json: PhenomicTransformResult, key: string) {
   if (Array.isArray(json.data[key])) {
-    return json.data[key]
+    return json.data[key];
   }
-  const type = typeof json.data[key]
+  const type = typeof json.data[key];
   if (type === "string" || type === "number" || type === "boolean") {
-    return [json.data[key]]
+    return [json.data[key]];
   }
-  return []
+  return [];
 }
 
 export function getAuthors(json: PhenomicTransformResult) {
   if (typeof json.data.author === "string") {
-    return [json.data.author]
+    return [json.data.author];
   }
   if (Array.isArray(json.data.authors)) {
-    return json.data.authors
+    return json.data.authors;
   }
-  return []
+  return [];
 }
 
-const dateLength = "YYYY-MM-DD".length
+const dateLength = "YYYY-MM-DD".length;
 export function injectDateFromFilename(
   name: string,
-  json: PhenomicTransformResult,
+  json: PhenomicTransformResult
 ): PhenomicTransformResult {
   try {
-    const date = formatDate(name.slice(0, dateLength))
+    const date = formatDate(name.slice(0, dateLength));
     return {
       data: {
         date,
-        ...json.data,
+        ...json.data
       },
       partial: {
         date,
-        ...json.data,
-      },
-    }
+        ...json.data
+      }
+    };
   } catch (e) {
     // date is not valid
   }
-  return json
+  return json;
 }
 
 export default function() {
   return {
     name: "phenomic-plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
-      const pathSegments = name.split(path.sep)
-      const collectionName = pathSegments[0]
-      const key = getKey(name, json)
-      debug(`collecting ${key} for collection '${collectionName}'`)
-      const sortedKey = getSortedKey(name, json)
-      const adjustedJSON = injectDateFromFilename(name, json)
+      const pathSegments = name.split(path.sep);
+      const collectionName = pathSegments[0];
+      const key = getKey(name, json);
+      debug(`collecting ${key} for collection '${collectionName}'`);
+      const sortedKey = getSortedKey(name, json);
+      const adjustedJSON = injectDateFromFilename(name, json);
       return Promise.all([
         // full resource, not sorted
         db.put([collectionName], key, { ...adjustedJSON, id: key }),
@@ -104,8 +104,8 @@ export default function() {
         ...getAuthors(json).map(author => {
           return Promise.all([
             db.put([collectionName, "authors", author], sortedKey, { id: key }),
-            db.put(["authors", collectionName], author, { id: author }),
-          ])
+            db.put(["authors", collectionName], author, { id: author })
+          ]);
         }),
         ...getFields(json).map(type => {
           return getFieldValue(json, type).map(value =>
@@ -117,12 +117,12 @@ export default function() {
               db.put([type, "default"], value, { id: value, partial: value }),
               db.put([type, "collection", collectionName], value, {
                 id: value,
-                partial: value,
-              }),
-            ]),
-          )
-        }),
-      ])
-    },
-  }
+                partial: value
+              })
+            ])
+          );
+        })
+      ]);
+    }
+  };
 }

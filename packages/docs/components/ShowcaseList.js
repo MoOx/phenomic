@@ -1,14 +1,14 @@
-import React from "react"
+import React from "react";
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
   ActivityIndicator,
-  StyleSheet,
-} from "react-native-web"
-import { Link } from "react-router"
-import { createContainer, query } from "phenomic-preset-default/lib/client"
+  StyleSheet
+} from "react-native-web";
+import { Link } from "react-router";
+import { createContainer, query } from "phenomic-preset-default/lib/client";
 
 const ShowcaseList = (props: Object) => (
   <View>
@@ -41,43 +41,43 @@ const ShowcaseList = (props: Object) => (
           </Link>}
       </View>}
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   page: {
     padding: 10,
     maxWidth: 800,
     width: "100%",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   title: {
     fontSize: 40,
-    fontWeight: "900",
+    fontWeight: "900"
   },
   list: {
     flexDirection: "row",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   item: {
     width: "50%",
-    padding: 10,
+    padding: 10
   },
   image: {
     width: 300,
     height: 200,
     maxWidth: "100%",
-    minWidth: "100%",
+    minWidth: "100%"
   },
   siteName: {
     fontWeight: "700",
-    fontSize: 18,
-  },
-})
+    fontSize: 18
+  }
+});
 
 export default createContainer(ShowcaseList, props => ({
   showcase: query({
     collection: "showcase",
     limit: 10,
-    after: props.params.after,
-  }),
-}))
+    after: props.params.after
+  })
+}));

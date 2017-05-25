@@ -1,16 +1,16 @@
-import React from "react"
+import React from "react";
 
-import getRoutes from "../getRoutes"
+import getRoutes from "../getRoutes";
 
-const noop = () => {}
+const noop = () => {};
 it("should resolve URLs based on routes", async () => {
-  const Router = noop
-  const Route = noop
-  const browserHistory = noop
-  const Wrapper = noop
-  const Home = noop
-  const DocPage = noop
-  const PageError = noop
+  const Router = noop;
+  const Route = noop;
+  const browserHistory = noop;
+  const Wrapper = noop;
+  const Home = noop;
+  const DocPage = noop;
+  const PageError = noop;
 
   expect(
     await getRoutes({
@@ -22,7 +22,7 @@ it("should resolve URLs based on routes", async () => {
             <Route path="*" component={PageError} />
           </Route>
         </Router>
-      ),
-    }),
-  ).toMatchSnapshot()
-})
+      )
+    })
+  ).toMatchSnapshot();
+});

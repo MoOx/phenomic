@@ -3,16 +3,16 @@
 /* eslint-disable react/no-unused-prop-types */
 // because it's a bit dumb
 
-import React from "react"
+import React from "react";
 // @todo add Phenomic Link
 // import Link from "./Link.js"
 
-type ComponentType = string | Class<React.Component<*, *, *>> | Function
+type ComponentType = string | Class<React.Component<*, *, *>> | Function;
 
 type OptionsType = {
   components: { [key: string]: ComponentType },
-  DefaultComponent: ComponentType,
-}
+  DefaultComponent: ComponentType
+};
 
 type ItemType =
   | string
@@ -27,47 +27,50 @@ type ItemType =
       // note that eslint-disable is not working as it remove, after being found
       // errors and warnings
       // c: ItemType | Array<ItemType>,
-      c: Object,
-    }
+      c: Object
+    };
 
 type PropsType = {
   children: string | ItemType,
-  options: OptionsType,
-}
+  options: OptionsType
+};
 
 const defaultOptions: OptionsType = {
   components: {
     // a: Link
   },
-  DefaultComponent: "div",
-}
+  DefaultComponent: "div"
+};
 
 const render = (item: ItemType, options: OptionsType) => {
   if (!item) {
-    return
+    return;
   }
   if (typeof item === "object") {
     const {
       t: Tag = options.DefaultComponent,
       p: props = {},
-      c: children,
-    } = item
+      c: children
+    } = item;
     return (
       <Tag {...props}>
         {Array.isArray(children)
           ? children.map((child: ItemType) => render(child, options))
           : render(children, options)}
       </Tag>
-    )
+    );
   }
-  return item
-}
+  return item;
+};
 
 const BodyRenderer = (props: PropsType) => {
   if (typeof props.children === "string") {
-    return <div dangerouslySetInnerHTML={{ __html: props.children }} />
+    return <div dangerouslySetInnerHTML={{ __html: props.children }} />;
   }
-  return render(props.children, { ...defaultOptions, ...(props.options || {}) })
-}
+  return render(props.children, {
+    ...defaultOptions,
+    ...(props.options || {})
+  });
+};
 
-export default BodyRenderer
+export default BodyRenderer;

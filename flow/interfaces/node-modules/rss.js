@@ -1,3 +1,3 @@
 declare module "rss" {
-  declare var exports: any
+  declare var exports: any;
 }

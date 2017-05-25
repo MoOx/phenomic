@@ -1,8 +1,8 @@
-import RSS from "rss"
+import RSS from "rss";
 
-const oneYear = 1000 * 60 * 60 * 24 * 365
+const oneYear = 1000 * 60 * 60 * 24 * 365;
 
-const debug = require("debug")("phenomic:plugin:rss-feed")
+const debug = require("debug")("phenomic:plugin:rss-feed");
 
 export default function() {
   // @todo fix this ROOT url thing
@@ -12,21 +12,21 @@ export default function() {
     async build(fetch: PhenomicFetch, writeFile: Function) {
       // @todo handle this fetch
       // $FlowFixMe handle this fetch
-      const feed = fetch("/feed.xml")
-      return writeFile("feed.xml", feed)
+      const feed = fetch("/feed.xml");
+      return writeFile("feed.xml", feed);
     },
     define(serverAPI: express$Application) {
       // $FlowFixMe flow is lost with async function for express
       serverAPI.get("/feed.xml", async function(req, res) {
-        debug(req.url)
+        debug(req.url);
         const rss = new RSS({
           // feed_url: ROOT,
-          feed_url: "HTTP://TODO-ROOT/",
-        })
-        const posts = await req.db.getList({ collection: "posts" })
+          feed_url: "HTTP://TODO-ROOT/"
+        });
+        const posts = await req.db.getList({ collection: "posts" });
         const postsFromLastYear = posts.filter(
-          post => Date.now() - new Date(post.date).getTime() < oneYear,
-        )
+          post => Date.now() - new Date(post.date).getTime() < oneYear
+        );
         postsFromLastYear.forEach(post => {
           rss.item({
             title: post.title,
@@ -35,11 +35,11 @@ export default function() {
             description: post.content,
             categories: post.tags,
             author: post.author,
-            date: post.date,
-          })
-        })
-        res.type("xml").send(rss.xml())
-      })
-    },
-  }
+            date: post.date
+          });
+        });
+        res.type("xml").send(rss.xml());
+      });
+    }
+  };
 }

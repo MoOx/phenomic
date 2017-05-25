@@ -1,19 +1,19 @@
-import db from ".."
+import db from "..";
 
 describe("db", () => {
   beforeEach(() => {
     // $FlowFixMe whatever
-    jest.resetModuleRegistry()
-  })
+    jest.resetModuleRegistry();
+  });
 
   it("should be able to put & get a value", () => {
     return db
       .put("foo", "bar", { data: { title: "bar" } })
       .then(() => db.get("foo", "bar"))
-      .then(value => expect(value).toMatchSnapshot())
-  })
+      .then(value => expect(value).toMatchSnapshot());
+  });
 
   it("should throw when value isn't there", () => {
-    return db.get("foo", "baz").catch(error => expect(error).toMatchSnapshot())
-  })
-})
+    return db.get("foo", "baz").catch(error => expect(error).toMatchSnapshot());
+  });
+});

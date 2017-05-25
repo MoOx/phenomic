@@ -1,77 +1,77 @@
-import path from "path"
+import path from "path";
 
-const debug = require("debug")("phenomic:core:configuration")
+const debug = require("debug")("phenomic:core:configuration");
 
 const normalizePlugin = (plugin: PhenomicPlugin) => {
   if (!plugin) {
-    throw new Error("phenomic: You provided an undefined plugin")
+    throw new Error("phenomic: You provided an undefined plugin");
   }
 
-  debug("plugin typeof", typeof plugin)
+  debug("plugin typeof", typeof plugin);
 
   if (typeof plugin !== "function") {
     throw new Error(
       "phenomic: You provided an plugin with type is " +
         typeof plugin +
         ". But function is expected instead of " +
-        String(plugin),
-    )
+        String(plugin)
+    );
   }
 
   // @todo send config here ?
-  const pluginInstance = plugin()
+  const pluginInstance = plugin();
 
-  debug("plugin", pluginInstance.name)
+  debug("plugin", pluginInstance.name);
 
   if (Array.isArray(pluginInstance)) {
     throw new Error(
-      "Array of plugins should be specified in 'presets' section of your configuration",
-    )
+      "Array of plugins should be specified in 'presets' section of your configuration"
+    );
   }
 
-  return pluginInstance
-}
+  return pluginInstance;
+};
 
 const normalizeModule = (module: any) => {
   if (typeof module === "string") {
     // $FlowFixMe yeah yeah, I know what I am doing flow
-    module = require(path.resolve(path.join("node_modules", module)))
+    module = require(path.resolve(path.join("node_modules", module)));
   }
 
   // for es6 transpiled code
   if (module && typeof module.default === "function") {
-    module = module.default
+    module = module.default;
   }
 
-  debug("normalizeModule", module)
+  debug("normalizeModule", module);
 
-  return module
-}
+  return module;
+};
 
 function flattenPresets(config?: PhenomicInputPlugins = {}): PhenomicPlugins {
-  debug("flattenPresets", config)
+  debug("flattenPresets", config);
   const plugins = [
     ...(config.presets || [])
       .map(normalizeModule)
       .reduce((acc, preset) => [...acc, ...flattenPresets(preset())], []),
-    ...(config.plugins || []).map(normalizeModule).map(normalizePlugin),
-  ]
-  debug("flattenPresets plugins", plugins)
-  return plugins
+    ...(config.plugins || []).map(normalizeModule).map(normalizePlugin)
+  ];
+  debug("flattenPresets plugins", plugins);
+  return plugins;
 }
 
 function flattenConfiguration(
-  config: PhenomicInputConfig = {},
+  config: PhenomicInputConfig = {}
 ): PhenomicConfig {
   // @todo ad validation here?
-  debug("flattenConfiguration", config)
+  debug("flattenConfiguration", config);
   return {
     path: config.path || "",
     outdir: config.outdir || "",
     port: config.port || 8080,
-    plugins: flattenPresets(config),
-  }
+    plugins: flattenPresets(config)
+  };
 }
 
-export { flattenPresets }
-export default flattenConfiguration
+export { flattenPresets };
+export default flattenConfiguration;

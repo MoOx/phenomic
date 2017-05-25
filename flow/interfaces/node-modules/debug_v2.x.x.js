@@ -5,7 +5,7 @@ declare module "debug" {
     (err: Error, ...args: Array<mixed>): void,
     enabled: boolean,
     log: () => {},
-    namespace: string;
+    namespace: string
   };
 
   declare function exports(namespace: string): Debugger;

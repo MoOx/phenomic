@@ -3,6 +3,6 @@ declare module "log-symbols" {
     info: string,
     success: string,
     warning: string,
-    error: string,
-  }
+    error: string
+  };
 }

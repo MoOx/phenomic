@@ -1,8 +1,8 @@
-import transformMarkdown from "../index.js"
+import transformMarkdown from "../index.js";
 
 it("should transform markdown as html", () => {
-  const plugin = transformMarkdown()
-  expect(typeof plugin.transform === "function").toBe(true)
+  const plugin = transformMarkdown();
+  expect(typeof plugin.transform === "function").toBe(true);
   expect(
     plugin.transform &&
       plugin.transform({
@@ -10,15 +10,15 @@ it("should transform markdown as html", () => {
           name: "file.json",
           fullpath: "/test/file.json",
           exists: true,
-          type: "wat",
+          type: "wat"
         },
         contents: new Buffer(
           `---
 test: a
 test2: b
 ---
-` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```",
-        ),
-      }),
-  ).toMatchSnapshot()
-})
+` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```"
+        )
+      })
+  ).toMatchSnapshot();
+});
