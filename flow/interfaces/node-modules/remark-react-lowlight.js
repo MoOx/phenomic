@@ -1,3 +1,3 @@
 declare module "remark-react-lowlight" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

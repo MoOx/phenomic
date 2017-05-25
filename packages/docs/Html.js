@@ -1,14 +1,14 @@
-import React from "react"
-import Head from "react-helmet"
+import React from "react";
+import Head from "react-helmet";
 
 export type HtmlPropsType = {
   body: React$Element<*>,
   state?: React$Element<*>,
-  script: React$Element<*>,
-}
+  script: React$Element<*>
+};
 
 const Html = (props: HtmlPropsType) => {
-  const helmet = Head.renderStatic()
+  const helmet = Head.renderStatic();
   return (
     <html {...helmet.htmlAttributes.toComponent()}>
       <head>
@@ -26,7 +26,7 @@ const Html = (props: HtmlPropsType) => {
         {props.script}
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default Html
+export default Html;

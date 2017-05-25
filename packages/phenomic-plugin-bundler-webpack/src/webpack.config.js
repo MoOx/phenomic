@@ -1,7 +1,7 @@
-import path from "path"
+import path from "path";
 
-import webpack from "webpack"
-import ExtractTextPlugin from "extract-text-webpack-plugin"
+import webpack from "webpack";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 module.exports = (/* config: PhenomicConfig */) => ({
   entry: {
@@ -10,13 +10,13 @@ module.exports = (/* config: PhenomicConfig */) => ({
         require.resolve("webpack-hot-middleware/client"),
       process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("react-hot-loader/patch"),
-      "./App.js",
-    ].filter(item => item),
+      "./App.js"
+    ].filter(item => item)
   },
   output: {
     publicPath: "/",
     path: path.join(process.cwd(), "dist"),
-    filename: "[name].js",
+    filename: "[name].js"
   },
   module: {
     rules: [
@@ -27,27 +27,27 @@ module.exports = (/* config: PhenomicConfig */) => ({
         options: {
           babelrc: false,
           presets: [require.resolve("babel-preset-phenomic")],
-          plugins: [require.resolve("react-hot-loader/babel")],
-        },
+          plugins: [require.resolve("react-hot-loader/babel")]
+        }
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: require.resolve("style-loader"),
-          use: require.resolve("css-loader"),
-        }),
-      },
-    ],
+          use: require.resolve("css-loader")
+        })
+      }
+    ]
   },
   plugins: [
     new ExtractTextPlugin({
       filename: "styles.css",
-      disable: process.env.PHENOMIC_ENV !== "static",
+      disable: process.env.PHENOMIC_ENV !== "static"
     }),
     process.env.PHENOMIC_ENV !== "static" &&
       new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin()
   ].filter(item => item),
 
   resolve: {
@@ -58,12 +58,12 @@ module.exports = (/* config: PhenomicConfig */) => ({
       // to ensure a single module is used
       react: path.resolve(path.join(process.cwd(), "node_modules", "react")),
       "react-dom": path.resolve(
-        path.join(process.cwd(), "node_modules", "react-dom"),
+        path.join(process.cwd(), "node_modules", "react-dom")
       ),
       "react-router": path.resolve(
-        path.join(process.cwd(), "node_modules", "react-router"),
-      ),
-    },
+        path.join(process.cwd(), "node_modules", "react-router")
+      )
+    }
   },
 
   // eslint-disable-next-line max-len
@@ -71,6 +71,6 @@ module.exports = (/* config: PhenomicConfig */) => ({
   node: {
     fs: "empty",
     net: "empty",
-    tls: "empty",
-  },
-})
+    tls: "empty"
+  }
+});

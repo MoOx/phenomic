@@ -1,13 +1,13 @@
-import React from "react"
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
-import { createContainer, query } from "phenomic-preset-default/lib/client"
+import React from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { createContainer, query } from "phenomic-preset-default/lib/client";
 
-import MarkdownGenerated from "./MarkdownGenerated"
-import PageError from "./PageError"
+import MarkdownGenerated from "./MarkdownGenerated";
+import PageError from "./PageError";
 
 const DocPage = (props: Object) => {
   if (props.hasError) {
-    return <PageError error={props.page.error} />
+    return <PageError error={props.page.error} />;
   }
 
   return (
@@ -19,25 +19,25 @@ const DocPage = (props: Object) => {
           <MarkdownGenerated body={props.page.node.body} />
         </View>}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   page: {
     padding: 10,
     maxWidth: 800,
     width: "100%",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   title: {
     fontSize: 40,
-    fontWeight: "900",
-  },
-})
+    fontWeight: "900"
+  }
+});
 
 export default createContainer(DocPage, props => ({
   page: query({
     collection: "docs",
-    id: props.params.splat,
-  }),
-}))
+    id: props.params.splat
+  })
+}));

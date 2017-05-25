@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOMServer from "react-dom/server"
+import React from "react";
+import ReactDOMServer from "react-dom/server";
 
-import DefaultHtml from "../components/HTML"
+import DefaultHtml from "../components/HTML";
 
 const renderHTML: PhenomicPluginRenderHTMLType = (
   props = {},
-  Html = DefaultHtml,
+  Html = DefaultHtml
 ) => {
   const html = (
     <Html
       body={
         <div
           dangerouslySetInnerHTML={{
-            __html: `<div id="PhenomicRoot">${props.body || ""}</div>`,
+            __html: `<div id="PhenomicRoot">${props.body || ""}</div>`
           }}
         />
       }
@@ -22,14 +22,14 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
             id="Hydration"
             type="text/json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(props.state),
+              __html: JSON.stringify(props.state)
             }}
           />
       }
       script={<script src="/bundle.js" async />}
     />
-  )
-  return `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(html)}`
-}
+  );
+  return `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(html)}`;
+};
 
-export default renderHTML
+export default renderHTML;

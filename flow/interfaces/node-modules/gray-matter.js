@@ -1,9 +1,9 @@
 type GrayMatterResult = {
   orig: string,
   data: Object,
-  content: string,
-}
+  content: string
+};
 
 declare module "gray-matter" {
-  declare var exports: (string: string) => GrayMatterResult
+  declare var exports: (string: string) => GrayMatterResult;
 }

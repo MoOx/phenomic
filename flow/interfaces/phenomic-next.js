@@ -7,47 +7,47 @@ export type PhenomicDB = {
     sub: string | Array<string>,
     config: LevelStreamConfig,
     filter?: string,
-    filterValue: string,
-  ) => Promise<*>,
-}
+    filterValue: string
+  ) => Promise<*>
+};
 
 export type PhenomicInputPlugins = {
   plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
-  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>,
-}
+  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>
+};
 
 export type PhenomicInputConfig = {
   path?: string,
   outdir?: string,
   port?: number,
   plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
-  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>,
-}
+  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>
+};
 
 export type PhenomicContentFile = {
   name: string,
   fullpath: string,
   exists: boolean,
-  type: string,
-}
+  type: string
+};
 
 type PhenomicTransformResult = {
   data: Object,
-  partial: Object,
-}
+  partial: Object
+};
 
 type PhenomicHtmlPropsType = {
   body: React$Element<*>,
   state?: React$Element<*>,
-  script: React$Element<*>,
-}
+  script: React$Element<*>
+};
 
-type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>
+type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
 
 type PhenomicPluginRenderHTMLType = (
   props?: { body?: string, state?: Object },
-  html?: PhenomicHtmlType,
-) => string
+  html?: PhenomicHtmlType
+) => string;
 
 export type PhenomicPlugin = {
   name: string,
@@ -56,7 +56,7 @@ export type PhenomicPlugin = {
   transform?: ({
     config?: PhenomicConfig,
     file: PhenomicContentFile,
-    contents: Buffer,
+    contents: Buffer
   }) => Promise<PhenomicTransformResult> | PhenomicTransformResult,
   // api
   define?: (api: express$Application, db: PhenomicDB) => mixed,
@@ -68,21 +68,21 @@ export type PhenomicPlugin = {
   // renderer
   getRoutes?: Function,
   renderServer?: Function,
-  renderHTML?: PhenomicPluginRenderHTMLType,
-}
+  renderHTML?: PhenomicPluginRenderHTMLType
+};
 
-export type PhenomicPlugins = Array<PhenomicPlugin>
+export type PhenomicPlugins = Array<PhenomicPlugin>;
 
-export type PhenomicPresets = Array<PhenomicPreset>
+export type PhenomicPresets = Array<PhenomicPreset>;
 
-export type PhenomicExtensions = PhenomicPreset
+export type PhenomicExtensions = PhenomicPreset;
 
 export type PhenomicConfig = {
   path: string,
   outdir: string,
   port: number,
-  plugins: Array<PhenomicPlugin>,
-}
+  plugins: Array<PhenomicPlugin>
+};
 
 export type PhenomicQueryConfig = {
   collection?: string,
@@ -90,23 +90,23 @@ export type PhenomicQueryConfig = {
   after?: string,
   by?: string,
   value?: string,
-  limit?: number,
-}
+  limit?: number
+};
 
 export type PhenomicRoute = {
   path: string,
   params?: { [key: string]: any },
   component: {
     getQueries?: (props: { params: { [key: string]: any } }) => {
-      [key: string]: PhenomicQueryConfig,
-    },
+      [key: string]: PhenomicQueryConfig
+    }
   },
-  collection?: string | PhenomicQueryConfig,
-}
+  collection?: string | PhenomicQueryConfig
+};
 
 // @todo why this inconsistency?
 export type PhenomicFetch =
   | IsomorphicFetch
-  | ((config: PhenomicQueryConfig) => Promise<any>)
-export type phenomic$Query = string
-export type phenomic$Queries = Array<phenomic$Query>
+  | ((config: PhenomicQueryConfig) => Promise<any>);
+export type phenomic$Query = string;
+export type phenomic$Queries = Array<phenomic$Query>;

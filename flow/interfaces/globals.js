@@ -1,6 +1,6 @@
 declare var window: {
-  location: Object,
-}
+  location: Object
+};
 
 export type Url = {
   href: string,
@@ -14,5 +14,5 @@ export type Url = {
   search?: string,
   path?: string,
   query?: Object,
-  hash?: string,
-}
+  hash?: string
+};

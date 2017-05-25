@@ -1,3 +1,3 @@
 declare module "sitemap" {
-  declare var exports: () => void
+  declare var exports: () => void;
 }

@@ -4,7 +4,7 @@ declare module "fs-extra" {
 
   declare interface fsExtra {
     emptyDirSync: emptyDirSync,
-    copySync: copySync,
+    copySync: copySync
   }
   declare var exports: fsExtra;
 }

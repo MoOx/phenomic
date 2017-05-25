@@ -13,6 +13,6 @@ export default function() {
       })
       .toXML((error, xml) => error ? reject(error) : resolve(xml))
       */
-    },
-  }
+    }
+  };
 }

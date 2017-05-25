@@ -1,3 +1,3 @@
 declare module "lodash.flatten" {
-  declare var exports: Function
+  declare var exports: Function;
 }

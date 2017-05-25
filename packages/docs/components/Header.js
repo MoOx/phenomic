@@ -1,6 +1,6 @@
-import React from "react"
-import { View, Text, StyleSheet } from "react-native-web"
-import { Link } from "react-router"
+import React from "react";
+import { View, Text, StyleSheet } from "react-native-web";
+import { Link } from "react-router";
 
 const Header = () => (
   <View style={styles.header}>
@@ -45,7 +45,7 @@ const Header = () => (
       </View>
     </View>
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   header: {
@@ -56,28 +56,28 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   text: {
     color: "#fff",
     fontSize: 30,
     fontFamily: "Scandia",
-    fontWeight: "700",
+    fontWeight: "700"
   },
   link: {
-    color: "#fff",
+    color: "#fff"
   },
   linkBold: {
-    fontWeight: "700",
+    fontWeight: "700"
   },
   linkContainer: {
     borderRadius: 2,
-    overflow: "hidden",
+    overflow: "hidden"
   },
   nav: {
     flexDirection: "row",
-    alignItems: "center",
-  },
-})
+    alignItems: "center"
+  }
+});
 
-export default Header
+export default Header;

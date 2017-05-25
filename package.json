@@ -26,7 +26,7 @@
     "lerna": "2.0.0-beta.32",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
-    "prettier": "^1.1.0",
+    "prettier": "^1.3.1",
     "rimraf": "^2.4.2"
   },
   "scripts": {
@@ -37,7 +37,7 @@
     "transpile": "lerna --ignore \"docs\" exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "postinstall": "lerna bootstrap && npm run -s transpile",
     "prepublish": "npm run -s clean && npm run -s transpile",
-    "format": "prettier --write --parser=flow --no-semi --trailing-comma=all \"*.js\" \"!(node_modules)/*.js\" \"!(node_modules)/**/*.js\"",
+    "format": "prettier --write --parser=flow \"*.js\" \"!(node_modules)/*.js\" \"!(node_modules)/**/*.js\"",
     "link": "lerna --ignore \"docs\" exec -- npm link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:flow": "flow check",
@@ -55,7 +55,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "git-exec-and-restage prettier --write --parser=flow --no-semi --trailing-comma=all"
+      "git-exec-and-restage prettier --write --parser=flow"
     ]
   },
   "babel": {
@@ -101,5 +101,8 @@
     "testPathIgnorePatterns": [
       "/_output/"
     ]
+  },
+  "dependencies": {
+    "global": "^4.3.2"
   }
 }

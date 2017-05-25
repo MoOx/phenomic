@@ -1,15 +1,15 @@
-type NodeObjectHashConfig  = {
+type NodeObjectHashConfig = {
   coerce?: string,
   sort?: boolean,
   alg?: string,
-  enc?: string,
-}
+  enc?: string
+};
 
 declare function hash(obj: Object): string;
 
 type NodeObjectHashInstance = {
-  hash: hash,
-}
+  hash: hash
+};
 
 declare module "node-object-hash" {
   declare function exports(

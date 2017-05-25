@@ -1,29 +1,29 @@
-import path from "path"
+import path from "path";
 
-import cosmiconfig from "cosmiconfig"
+import cosmiconfig from "cosmiconfig";
 
-import pkg from "../package.json"
+import pkg from "../package.json";
 
-import flattenConfiguration from "./configuration/flattenConfiguration.js"
-import start from "./commands/start.js"
-import build from "./commands/build.js"
+import flattenConfiguration from "./configuration/flattenConfiguration.js";
+import start from "./commands/start.js";
+import build from "./commands/build.js";
 
 const defaultConfig = {
   path: process.cwd(),
   outdir: path.join(process.cwd(), "dist"),
-  port: 3333,
-}
+  port: 3333
+};
 
 const shittyCatch = error => {
   setTimeout(() => {
-    throw error
-  }, 1)
-}
+    throw error;
+  }, 1);
+};
 
 function normalizeConfiguration(
-  config: PhenomicInputConfig = {},
+  config: PhenomicInputConfig = {}
 ): Promise<PhenomicConfig> {
-  const configExplorer = cosmiconfig(pkg.name, { cache: false })
+  const configExplorer = cosmiconfig(pkg.name, { cache: false });
   return configExplorer
     .load(process.cwd())
     .then(result => {
@@ -31,23 +31,23 @@ function normalizeConfiguration(
         throw new Error(
           "No configuration file found. Please add a 'phenomic' section in package.json or " +
             "create a file named .phenomicrc(.json|.yaml)? or phenomic.config.js." +
-            "\nSee https://phenomic.io/docs/usage/configuration/",
-        )
+            "\nSee https://phenomic.io/docs/usage/configuration/"
+        );
       }
       return flattenConfiguration({
         ...defaultConfig,
         ...result.config,
-        ...config,
-      })
+        ...config
+      });
     })
-    .catch(shittyCatch)
+    .catch(shittyCatch);
 }
 
 export default {
   start(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(start).catch(shittyCatch)
+    normalizeConfiguration(config).then(start).catch(shittyCatch);
   },
   build(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(build).catch(shittyCatch)
-  },
-}
+    normalizeConfiguration(config).then(build).catch(shittyCatch);
+  }
+};

@@ -1,8 +1,8 @@
 export type PromiseAction = {
   types: Array<string>,
   page: string,
-  promise: Promise<any>,
-}
+  promise: Promise<any>
+};
 
 export type PhenomicCollectionItem = {
   head: Object,
@@ -10,17 +10,17 @@ export type PhenomicCollectionItem = {
   __filename: string,
   __url: string,
   __resourceUrl: string,
-  __dataUrl: string,
-}
+  __dataUrl: string
+};
 
-export type PhenomicCollection = Array<PhenomicCollectionItem>
+export type PhenomicCollection = Array<PhenomicCollectionItem>;
 
-export type PhenomicMinifiedCollection = Array<Object>
+export type PhenomicMinifiedCollection = Array<Object>;
 
 export type PhenomicAssetsConfig = {
   route: string,
-  path: string,
-}
+  path: string
+};
 
 export type PhenomicOfflineConfig = {
   serviceWorker: boolean,
@@ -29,9 +29,9 @@ export type PhenomicOfflineConfig = {
     onInstall?: Array<string>,
     afterInstall?: Array<string>,
     onDemand?: Array<string>,
-    excludes?: Array<string>,
-  },
-}
+    excludes?: Array<string>
+  }
+};
 
 // Configs generated from configurator
 export type PhenomicOldConfig = {
@@ -57,8 +57,8 @@ export type PhenomicOldConfig = {
   webpackConfig?: WebpackConfig,
   webpackConfigBrowser?: WebpackConfig,
   webpackConfigNode?: WebpackConfig,
-  cache?: boolean,
-}
+  cache?: boolean
+};
 
 export type PhenomicStaticConfig = PhenomicOldConfig & {
   // private
@@ -67,22 +67,22 @@ export type PhenomicStaticConfig = PhenomicOldConfig & {
   // user
   metadata: Object,
   routes: Object,
-  store: Object,
-}
+  store: Object
+};
 
-export type PhenomicLoaderOptions = Object
+export type PhenomicLoaderOptions = Object;
 
 export type PhenomicLoaderPluginInput = {
   frontMatter: GrayMatterResult,
   result: PhenomicCollectionItem,
-  options: PhenomicLoaderOptions,
-}
+  options: PhenomicLoaderOptions
+};
 
 export type PhenomicLoaderPlugin = (
   obj: PhenomicLoaderPluginInput
-) => PhenomicCollectionItem
+) => PhenomicCollectionItem;
 
 export type PhenomicAssetsFiles = {
   css: Array<string>,
   js: Array<string>
-}
+};

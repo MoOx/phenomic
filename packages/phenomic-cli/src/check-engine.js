@@ -1,28 +1,28 @@
-import { execSync } from "child_process"
+import { execSync } from "child_process";
 
-import semver from "semver"
-import colors from "chalk"
-import pkg from "phenomic/package.json"
+import semver from "semver";
+import colors from "chalk";
+import pkg from "phenomic/package.json";
 
-const platformSuffix = process.platform === "win32" ? ".cmd" : ""
-const npm = "npm" + platformSuffix
-const yarn = "yarn" + platformSuffix
+const platformSuffix = process.platform === "win32" ? ".cmd" : "";
+const npm = "npm" + platformSuffix;
+const yarn = "yarn" + platformSuffix;
 
 export default function checkVersion(
   nodeVersion?: string,
   npmVersion?: string,
-  yarnVersion?: string | boolean,
+  yarnVersion?: string | boolean
 ) {
-  const requirements = pkg.engines
-  nodeVersion = nodeVersion || process.version
-  npmVersion = npmVersion || execSync(npm + " --version").toString().trim()
+  const requirements = pkg.engines;
+  nodeVersion = nodeVersion || process.version;
+  npmVersion = npmVersion || execSync(npm + " --version").toString().trim();
   try {
     yarnVersion = yarnVersion !== undefined
       ? yarnVersion
-      : execSync(yarn + " --version").toString().trim()
+      : execSync(yarn + " --version").toString().trim();
   } catch (e) {
     // nothing, assuming yarn does not exist
-    yarnVersion = false
+    yarnVersion = false;
   }
 
   if (
@@ -54,12 +54,12 @@ export default function checkVersion(
         "\n\n" +
         colors.yellow("See 'Setup' instruction in documentation.") +
         " " +
-        "https://phenomic.io/docs/setup/",
-    )
+        "https://phenomic.io/docs/setup/"
+    );
     if (process.env.TESTING) {
-      throw new Error(errorMessage)
+      throw new Error(errorMessage);
     }
-    console.error(errorMessage)
-    process.exit(1)
+    console.error(errorMessage);
+    process.exit(1);
   }
 }

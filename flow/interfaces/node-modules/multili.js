@@ -1,3 +1,3 @@
 declare module "multili" {
-  declare var exports: (string) => string
+  declare var exports: string => string;
 }

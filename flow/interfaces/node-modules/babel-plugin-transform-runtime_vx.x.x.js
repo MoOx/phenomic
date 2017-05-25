@@ -15,25 +15,26 @@
 
 declare module "babel-plugin-transform-runtime" {
   declare module.exports: any;
-}
 
-/**
+  /**
  * We include stubs for each file inside this npm package in case you need to
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+}
 declare module "babel-plugin-transform-runtime/lib/definitions" {
   declare module.exports: any;
 }
-
 declare module "babel-plugin-transform-runtime/lib/index" {
   declare module.exports: any;
-}
 
-// Filename aliases
+  // Filename aliases
+}
 declare module "babel-plugin-transform-runtime/lib/definitions.js" {
-  declare module.exports: $Exports<'babel-plugin-transform-runtime/lib/definitions'>;
+  declare module.exports: $Exports<
+    "babel-plugin-transform-runtime/lib/definitions"
+  >;
 }
 declare module "babel-plugin-transform-runtime/lib/index.js" {
-  declare module.exports: $Exports<'babel-plugin-transform-runtime/lib/index'>;
+  declare module.exports: $Exports<"babel-plugin-transform-runtime/lib/index">;
 }

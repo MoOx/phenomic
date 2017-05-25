@@ -1,14 +1,14 @@
-import React from "react"
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web"
-import { Link } from "react-router"
-import { createContainer, query } from "phenomic-preset-default/lib/client"
+import React from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { Link } from "react-router";
+import { createContainer, query } from "phenomic-preset-default/lib/client";
 
-import MarkdownGenerated from "./MarkdownGenerated"
-import PageError from "./PageError"
+import MarkdownGenerated from "./MarkdownGenerated";
+import PageError from "./PageError";
 
 const APIPage = (props: Object) => {
   if (props.hasError) {
-    return <PageError error={props.page.error} />
+    return <PageError error={props.page.error} />;
   }
 
   return (
@@ -57,45 +57,45 @@ const APIPage = (props: Object) => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   menuTitle: {
-    fontWeight: "900",
+    fontWeight: "900"
   },
   page: {
     padding: 10,
     maxWidth: 800,
     width: "100%",
     alignSelf: "center",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   column: {
-    width: "30%",
+    width: "30%"
   },
   title: {
     fontSize: 40,
-    fontWeight: "900",
+    fontWeight: "900"
   },
   property: {
     backgroundColor: "#fafafa",
     borderRadius: 2,
-    fontFamily: "monospace",
-  },
-})
+    fontFamily: "monospace"
+  }
+});
 
 export default createContainer(APIPage, props => ({
   apis: query({
-    collection: "api",
+    collection: "api"
   }),
   tags: query({
     collection: "tags",
     by: "collection",
-    value: "api",
+    value: "api"
   }),
   page: query({
     collection: "api",
-    id: props.params.splat,
-  }),
-}))
+    id: props.params.splat
+  })
+}));

@@ -1,5 +1,5 @@
-import React from "react"
-import { View, Text, StyleSheet } from "react-native-web"
+import React from "react";
+import { View, Text, StyleSheet } from "react-native-web";
 
 const Hero = () => (
   <View style={styles.hero}>
@@ -12,7 +12,7 @@ const Hero = () => (
       </Text>
     </View>
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   hero: {
@@ -20,23 +20,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#2A2A2A",
     paddingLeft: 10,
     paddingRight: 10,
-    justifyContent: "center",
+    justifyContent: "center"
   },
   contents: {
     maxWidth: 800,
     width: "100%",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   title: {
     fontSize: 24,
     fontWeight: "700",
-    color: "#fff",
+    color: "#fff"
   },
   text: {
     fontSize: 24,
     fontWeight: "300",
-    color: "#fff",
-  },
-})
+    color: "#fff"
+  }
+});
 
-export default Hero
+export default Hero;

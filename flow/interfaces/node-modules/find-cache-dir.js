@@ -3,10 +3,10 @@ type findCacheDirOptions = {
   files: Array<string>,
   cwd: string,
   create: boolean,
-  thunk: boolean,
-}
+  thunk: boolean
+};
 
 declare module "find-cache-dir" {
-  declare function findCacheDir(options: findCacheDirOptions): string
-  declare var exports: findCacheDir
+  declare function findCacheDir(options: findCacheDirOptions): string;
+  declare var exports: findCacheDir;
 }
