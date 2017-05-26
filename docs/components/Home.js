@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native-web";
 import Head from "react-helmet";
-import { createContainer } from "phenomic-preset-default/lib/client";
+import { createContainer } from "phenomic-preset-react-app/lib/client";
 
 import Hero from "./Hero";
 

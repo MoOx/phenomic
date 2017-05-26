@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
 import { Link } from "react-router";
-import { createContainer, query } from "phenomic-preset-default/lib/client";
+import { createContainer, query } from "phenomic-preset-react-app/lib/client";
 
 import MarkdownGenerated from "./MarkdownGenerated";
 import PageError from "./PageError";

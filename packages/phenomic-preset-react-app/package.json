@@ -1,5 +1,5 @@
 {
-  "name": "phenomic-preset-default",
+  "name": "phenomic-preset-react-app",
   "version": "1.0.0-alpha.0",
   "main": "lib/index.js",
   "files": [

@@ -1,4 +1,4 @@
-# phenomic-preset-default
+# phenomic-preset-react-app
 
 Phenomic default preset:
 
