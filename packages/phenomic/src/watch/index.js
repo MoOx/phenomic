@@ -21,11 +21,13 @@ const toFile = (root, filepath) => ({
   fullpath: path.join(root, filepath)
 });
 
-function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
+function reduceExtensions(plugins: PhenomicPlugins): Array<string> {
   const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
-    debug(
-      `'${plugin.name}' want to watch '${String(plugin.supportedFileTypes)}'`
-    );
+    if (plugin.supportedFileTypes) {
+      debug(
+        `'${plugin.name}' want to support '${String(plugin.supportedFileTypes)}'`
+      );
+    }
     return [
       ...acc,
       ...(plugin &&
@@ -39,21 +41,36 @@ function getExtensionsToWatch(plugins: PhenomicPlugins): Array<string> {
   return supportedFileTypes;
 }
 
-function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
-  const exts = getExtensionsToWatch(config.plugins).map(
+function getGlobPattern(plugins: PhenomicPlugins): Array<string> {
+  return reduceExtensions(plugins).map(
     (extension: string) => `**/*.${extension}`
   );
+}
+
+function glob(path, patterns) {
+  return globby.sync(patterns, { cwd: path }).map(file => toFile(path, file));
+}
+
+export function oneShot(config: {
+  path: string,
+  plugins: PhenomicPlugins
+}): Array<PhenomicContentFile> {
+  return glob(config.path, getGlobPattern(config.plugins));
+}
+
+function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
+  const patterns = getGlobPattern(config.plugins);
   debug("path:", config.path);
-  debug("extensions:", exts);
+  debug("extensions:", patterns);
   const watcher = sane(config.path, {
     watchman: canUseWatchman,
-    glob: exts
+    glob: patterns
   });
   let subscribers = [];
   let ready = false;
   let closeMe = false;
   const files: Array<PhenomicContentFile> = globby
-    .sync(exts, { cwd: config.path })
+    .sync(patterns, { cwd: config.path })
     .map(file => toFile(config.path, file));
   debug("files", files.map(file => file.name));
 

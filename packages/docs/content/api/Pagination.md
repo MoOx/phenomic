@@ -10,7 +10,7 @@ tags:
 ### At route definition
 
 ```javascript
-<Match pattern="/your/route/:after?" paginated />
+<Match pattern="/your/route/:after" paginated />
 ```
 
 ### In your queries

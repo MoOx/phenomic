@@ -51,6 +51,7 @@ const routes = () => (
         path="/showcase/after/:after"
         component={ShowcaseList}
         collection="showcase"
+        paginated
       />
       <Route path="*" component={PageError} />
     </Route>
