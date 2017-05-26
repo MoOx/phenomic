@@ -23,6 +23,7 @@ const resolveURLsForDynamicParams = async function(
   debug(
     `fetching collection '${collectionConfig.collection ? collectionConfig.collection : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
   );
+  // @todo memoize for perfs and avoid uncessary call
   const collection = await phenomicFetch(createQuery(collectionConfig));
   debug(`collection fetched. ${collection.list.length} items`);
   const path = route.path || "*";
@@ -96,7 +97,8 @@ const flatten = (array: Array<any>) => {
       ? flattenedArray.push(...flatten(item))
       : flattenedArray.push(item);
   });
-  return flattenedArray;
+  // array unique
+  return [...new Set(flattenedArray)];
 };
 
 const normalizePath = (path: string) => path.replace(/^\//, "");
