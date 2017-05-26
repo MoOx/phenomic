@@ -1,4 +1,4 @@
-# phenomic-plugin-sitemap
+# @phenomic/plugin-sitemap
 
 Phenomic plugin to generate sitemap.
 

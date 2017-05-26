@@ -1,4 +1,4 @@
-# phenomic-plugin-transform-markdown
+# @phenomic/plugin-transform-markdown
 
 Phenomic plugin to transform markdown resources.
 

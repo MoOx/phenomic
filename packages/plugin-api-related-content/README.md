@@ -1,4 +1,4 @@
-# phenomic-plugin-api-related-content
+# @phenomic/plugin-api-related-content
 
 Phenomic plugin to generate related content API for resources.
 

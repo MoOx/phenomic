@@ -1,4 +1,4 @@
-# phenomic-plugin-bundler-webpack
+# @phenomic/plugin-bundler-webpack
 
 Phenomic plugin that allow you to use webpack to bundler you website/app.
 

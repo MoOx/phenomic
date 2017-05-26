@@ -1,4 +1,4 @@
-# phenomic-plugin-collector-files
+# @phenomic/plugin-collector-files
 
 Phenomic plugin to collect resources from files.
 

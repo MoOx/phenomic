@@ -1,4 +1,4 @@
-# phenomic-plugin-rss-feed
+# @phenomic/plugin-rss-feed
 
 Phenomic plugin to generate RSS feed.
 

@@ -1,4 +1,4 @@
-# phenomic-cli
+# @phenomic/cli
 
 Phenomic CLI.
 

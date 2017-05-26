@@ -1,4 +1,4 @@
-# phenomic-plugin-transform-json
+# @phenomic/plugin-transform-json
 
 Phenomic plugin to transform JSON resources.
 

@@ -1,4 +1,4 @@
-# phenomic
+# @phenomic/core
 
 Phenomic core package.
 

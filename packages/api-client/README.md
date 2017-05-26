@@ -1,4 +1,4 @@
-# phenomic-api-client
+# @phenomic/api-client
 
 Phenomic API client that allow you to make queries to retrieve resources.
 

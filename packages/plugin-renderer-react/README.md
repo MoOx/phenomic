@@ -1,4 +1,4 @@
-# phenomic-plugin-renderer-react
+# @phenomic/plugin-renderer-react
 
 Phenomic plugin that allow you to use React to render your website/app.
 
