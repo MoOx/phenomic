@@ -6,8 +6,8 @@
     "lib"
   ],
   "dependencies": {
+    "@phenomic/babel-preset": "^1.0.0-alpha.0",
     "babel-loader": "^6.4.1",
-    "babel-preset-phenomic": "^1.0.0-alpha.0",
     "chalk": "^1.1.3",
     "css-loader": "^0.28.0",
     "debug": "^2.6.0",

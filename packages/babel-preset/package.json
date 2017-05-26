@@ -1,5 +1,5 @@
 {
-  "name": "babel-preset-phenomic",
+  "name": "@phenomic/babel-preset",
   "main": "lib/index.js",
   "version": "1.0.0-alpha.0",
   "files": [
