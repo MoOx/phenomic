@@ -14,6 +14,7 @@ cache:
     - $HOME/.yarn-cache
 
 env:
+  global:
   - DEBUG: phenomic:*
 
 before_install:
