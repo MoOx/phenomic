@@ -54,7 +54,7 @@ const resolveNextURLsInPagination = async function(
 ) {
   urls = [
     ...urls,
-    path.replace("/:after?", query.after ? "/" + query.after : "")
+    path.replace("/:after", query.after ? "/" + query.after : "")
   ];
   debug(path, query.after);
   const nextPage = await phenomicFetch(createQuery(query));
