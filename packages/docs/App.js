@@ -48,9 +48,10 @@ const routes = () => (
       <Route path="/docs/*" component={DocPage} collection="docs" />
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
       <Route
-        path="/showcase/after/:after"
+        path="/showcase/after/:after?"
         component={ShowcaseList}
         collection="showcase"
+        paginated
       />
       <Route path="*" component={PageError} />
     </Route>
