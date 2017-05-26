@@ -9,8 +9,15 @@ const resolveURLsForDynamicParams = async function(
   const collectionConfig = typeof route.collection === "string"
     ? { collection: route.collection }
     : route.collection;
+  debug("route", route.path);
   if (!collectionConfig) {
     debug("no valid collection", route.collection);
+    return route;
+  }
+  // If the path doesn't contain any kind of parameter, no need to
+  // iterate over the collection
+  if (!route.path.includes("*") && !route.path.includes(":")) {
+    debug("not a dynamic route");
     return route;
   }
   debug(
