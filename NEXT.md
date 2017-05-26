@@ -8,7 +8,7 @@ you need (for now) [watchman](https://facebook.github.io/watchman/).
 
 ```
 npm install
-cd packages/docs
+cd docs
 DEBUG=phenomic:* npm start
 ```
 
