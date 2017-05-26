@@ -30,8 +30,8 @@ const resolveURLsForDynamicParams = async function(
   return collection.list.map(item => {
     return {
       ...route,
-      path: path.replace(/\*/, item.id),
-      params: { splat: item.id }
+      path: path.replace(/\*/, item.key),
+      params: { splat: item.key }
     };
   });
 };
@@ -56,8 +56,10 @@ const resolveNextURLsInPagination = async function(
     ...urls,
     path.replace("/:after?", query.after ? "/" + query.after : "")
   ];
+  debug(path, query.after);
   const nextPage = await phenomicFetch(createQuery(query));
   if (nextPage.hasNextPage) {
+    debug(path, "have a next page");
     return resolveNextURLsInPagination(
       path,
       { ...query, after: nextPage.next },
@@ -74,9 +76,11 @@ const resolvePaginatedURLs = async function(
   route: PhenomicRoute
 ) {
   if (!route.paginated) {
+    debug(route.path, "is not paginated");
     return route.path;
   }
   if (!route.component.getQueries) {
+    debug(route.path, "is paginated but have no queries");
     return route.path;
   }
   const initialRouteParams: Object = route.params || {};
@@ -85,6 +89,7 @@ const resolvePaginatedURLs = async function(
   });
   const query = findPaginatedQuery(initialRouteQuery);
   if (!query) {
+    debug(route.path, "is paginated with queries, but no :after param found");
     return route.path;
   }
   return resolveNextURLsInPagination(route.path, query, fetch);
