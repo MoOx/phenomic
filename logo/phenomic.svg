@@ -76,8 +76,8 @@
     <g id="Phenomic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="logo-with-text-on-white" transform="translate(-552.000000, -147.000000)">
             <g id="Group-2" transform="translate(523.000000, 132.000000)">
-                <g id="Phenomic-full-logo-with-path-Copy" transform="translate(29.000000, 15.000000)">
-                    <g id="Phenomic-Logo" transform="translate(432.459873, 0.432501)">
+                <g id="@phenomic/full-logo-with-path-Copy" transform="translate(29.000000, 15.000000)">
+                    <g id="@phenomic/Logo" transform="translate(432.459873, 0.432501)">
                         <polygon id="Shape" fill-opacity="0.02" fill="#000000" points="5.51177079 56.6899552 96.8034278 109.428695 188.40666 56.6899552 188.40666 163.289536 96.9903731 216.215293 4.32778343 162.603808"></polygon>
                         <g id="Shape">
                             <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>

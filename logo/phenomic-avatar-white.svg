@@ -53,7 +53,7 @@
         <g id="logo-on-background" transform="translate(-2.000000, -1.000000)">
             <rect id="bg-avatar-dark" fill="url(#linearGradient-1)" x="1" y="0" width="512" height="512"></rect>
             <g id="Group-3">
-                <g id="Phenomic-Logo" transform="translate(74.000000, 50.000000)">
+                <g id="@phenomic/Logo" transform="translate(74.000000, 50.000000)">
                     <polygon id="Shape" fill-opacity="0.02" fill="#000000" points="10.2753374 105.684441 180.466119 204.002816 351.237756 105.684441 351.237756 304.413072 180.814632 403.080094 8.06808494 303.134701"></polygon>
                     <g id="Shape">
                         <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>

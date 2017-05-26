@@ -1,5 +1,5 @@
 import React from "react";
-import { BodyRenderer } from "phenomic-preset-react-app/lib/client";
+import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 
 require("./markdownGenerated.css");
 

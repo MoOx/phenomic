@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
 import { Link } from "react-router";
 import Head from "react-helmet";
-import { createContainer, query } from "phenomic-preset-react-app/lib/client";
+import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 const Home = (props: Object) => (
   <View>

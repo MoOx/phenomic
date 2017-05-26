@@ -4,7 +4,7 @@ import React from "react";
 import { View } from "react-native-web";
 import Head from "react-helmet";
 import { Router, Route, browserHistory } from "react-router";
-import { createApp, renderApp } from "phenomic-preset-react-app/lib/client";
+import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 
 import "./defaults.css";
 

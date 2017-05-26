@@ -47,9 +47,9 @@ to generate your website/app.
 {
   "private": true,
   "devDependencies": {
-    "phenomic": "^1.0.0",
-    "phenomic-cli": "^1.0.0",
-    "phenomic-preset-react-app": "^1.0.0",
+    "@phenomic/core": "^1.0.0",
+    "@phenomic/cli": "^1.0.0",
+    "@phenomic/preset-react-app": "^1.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^3.0.0",
@@ -70,7 +70,7 @@ To do so, we are going to add a ``phenomic`` section in our ``package.json``
   ...
   "phenomic": {
     "presets": [
-      "phenomic-preset-react-app"
+      "@phenomic/preset-react-app"
     ]
   }
 }
@@ -83,9 +83,9 @@ To do so, we are going to add a ``phenomic`` section in our ``package.json``
 {
   "private": true,
   "devDependencies": {
-    "phenomic": "^1.0.0",
-    "phenomic-cli": "^1.0.0",
-    "phenomic-preset-react-app": "^1.0.0",
+    "@phenomic/core": "^1.0.0",
+    "@phenomic/cli": "^1.0.0",
+    "@phenomic/preset-react-app": "^1.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^3.0.0",
@@ -93,7 +93,7 @@ To do so, we are going to add a ``phenomic`` section in our ``package.json``
   },
   "phenomic": {
     "presets": [
-      "phenomic-preset-react-app"
+      "@phenomic/preset-react-app"
     ]
   }
 }
@@ -110,7 +110,7 @@ Let's create a file ``App.js``
 import "whatwg-fetch"
 import React from "react"
 import { Router, Route, browserHistory } from "react-router"
-import { createApp } from "phenomic-preset-react-app/lib/client"
+import { createApp } from "@phenomic/preset-react-app/lib/client"
 
 const Home = () => (
   <div>
@@ -151,9 +151,9 @@ Let's add this commands into some scripts of the ``package.json``
 {
   "private": true,
   "devDependencies": {
-    "phenomic": "^1.0.0",
-    "phenomic-cli": "^1.0.0",
-    "phenomic-preset-react-app": "^1.0.0",
+    "@phenomic/core": "^1.0.0",
+    "@phenomic/cli": "^1.0.0",
+    "@phenomic/preset-react-app": "^1.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^3.0.0",
@@ -161,7 +161,7 @@ Let's add this commands into some scripts of the ``package.json``
   },
   "phenomic": {
     "presets": [
-      "phenomic-preset-react-app"
+      "@phenomic/preset-react-app"
     ]
   },
   "scripts": {
@@ -211,7 +211,7 @@ export default createApp(() => (
 We also need to create a ``BlogPostContainer`` component to render the posts.
 
 ```js
-import { createContainer, query, BodyRenderer } from "phenomic-preset-react-app/lib/client"
+import { createContainer, query, BodyRenderer } from "@phenomic/preset-react-app/lib/client"
 
 const BlogPost = ({ page }) => (
   <div>
@@ -415,7 +415,7 @@ In order to do that, you have to edit a little your `App.js`:
 Replace this
 
 ```js
-import { createApp } from "phenomic-preset-react-app/lib/client"
+import { createApp } from "@phenomic/preset-react-app/lib/client"
 
 // ...
 
@@ -429,7 +429,7 @@ export default createApp(() => (
 By the following code:
 
 ```js
-import { createApp, renderApp } from "phenomic-preset-react-app/lib/client"
+import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client"
 
 // ...
 

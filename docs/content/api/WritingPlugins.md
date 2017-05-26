@@ -9,7 +9,7 @@ A plugin should export a function exporting an object containing methods :
 
 ```javascript
 const plugin = {
-  name: "phenomic-plugin-NAME",
+  name: "@phenomic/plugin-NAME",
   supportedFileTypes: [ "json" ],
   transform(file, contents) {
     // should return an object of shape `{ partial, data }`
@@ -18,7 +18,7 @@ const plugin = {
 }
 
 const plugin = {
-  name: "phenomic-plugin-NAME",
+  name: "@phenomic/plugin-NAME",
   define(api, db) {
     api.get("/:collection/item/*.json", async function (req, res) {
       try {
@@ -33,7 +33,7 @@ const plugin = {
 }
 
 const plugin = {
-  name: "phenomic-plugin-NAME",
+  name: "@phenomic/plugin-NAME",
   build() {
 
   },

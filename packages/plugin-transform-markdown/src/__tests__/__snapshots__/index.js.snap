@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should transform markdown as html 1`] = `
+Object {
+  "data": Object {
+    "body": "<h2 id=\\"test\\"><a href=\\"#test\\" class=\\"@phenomic/HeadingAnchor\\">#</a>Test</h2>
+<p><a href=\\"href\\">link</a></p>
+<pre><code class=\\"language-js\\">console.log(window)
+</code></pre>
+",
+    "test": "a",
+    "test2": "b",
+  },
+  "partial": Object {
+    "test": "a",
+    "test2": "b",
+  },
+}
+`;

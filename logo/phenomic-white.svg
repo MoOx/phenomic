@@ -80,8 +80,8 @@
     <g id="Phenomic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="logo-with-text-on-background" transform="translate(-523.000000, -132.000000)">
             <use id="bg-cover-dark" stroke="#979797" mask="url(#mask-3)" stroke-width="2" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
-            <g id="Phenomic-full-logo-with-path" transform="translate(552.000000, 146.000000)">
-                <g id="Phenomic-Logo" transform="translate(432.459873, 0.432501)">
+            <g id="@phenomic/full-logo-with-path" transform="translate(552.000000, 146.000000)">
+                <g id="@phenomic/Logo" transform="translate(432.459873, 0.432501)">
                     <polygon id="Shape" fill-opacity="0.02" fill="#000000" points="5.51177079 56.6899552 96.8034278 109.428695 188.40666 56.6899552 188.40666 163.289536 96.9903731 216.215293 4.32778343 162.603808"></polygon>
                     <g id="Shape">
                         <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>

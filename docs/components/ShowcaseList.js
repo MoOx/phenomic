@@ -8,7 +8,7 @@ import {
   StyleSheet
 } from "react-native-web";
 import { Link } from "react-router";
-import { createContainer, query } from "phenomic-preset-react-app/lib/client";
+import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 const ShowcaseList = (props: Object) => (
   <View>

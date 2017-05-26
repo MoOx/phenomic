@@ -55,7 +55,7 @@
                 <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
             </g>
             <g id="Group" transform="translate(74.000000, 51.000000)">
-                <g id="Phenomic-Logo">
+                <g id="@phenomic/Logo">
                     <polygon id="Shape" fill-opacity="0.02" fill="#000000" points="10.2753374 105.684441 180.466119 204.002816 351.237756 105.684441 351.237756 304.413072 180.814632 403.080094 8.06808494 303.134701"></polygon>
                     <g id="Shape">
                         <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>

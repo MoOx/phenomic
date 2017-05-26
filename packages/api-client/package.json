@@ -1,0 +1,12 @@
+{
+  "name": "@phenomic/api-client",
+  "version": "1.0.0-alpha.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "debug": "^2.6.0",
+    "invariant": "^2.2.2"
+  }
+}
