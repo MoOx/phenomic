@@ -102,8 +102,8 @@ const flatten = (array: Array<any>) => {
       ? flattenedArray.push(...flatten(item))
       : flattenedArray.push(item);
   });
-  // array unique
-  return [...new Set(flattenedArray)];
+
+  return flattenedArray;
 };
 
 const normalizePath = (path: string) => path.replace(/^\//, "");
@@ -115,10 +115,22 @@ const resolveURLsToPrerender = async function(
   const dynamicRoutes = await Promise.all(
     routes.map(route => resolveURLsForDynamicParams(fetch, route))
   );
+  const flattenedDynamicRoutes = flatten(dynamicRoutes);
+  const filtredDynamicRoutes = flattenedDynamicRoutes.filter(url => {
+    if (url.path && url.path.includes("*") && !url.collection) {
+      debug(
+        `${url.path} is including a '*' but it has not been resolved: url is skipped`
+      );
+      return false;
+    }
+    return true;
+  });
   const paginatedURLs = await Promise.all(
-    flatten(dynamicRoutes).map(route => resolvePaginatedURLs(fetch, route))
+    filtredDynamicRoutes.map(route => resolvePaginatedURLs(fetch, route))
   );
-  return flatten(paginatedURLs).map(normalizePath);
+  const normalizedURLs = flatten(paginatedURLs).map(normalizePath);
+  const uniqsNormalizedPath = [...new Set(normalizedURLs)];
+  return uniqsNormalizedPath;
 };
 
 export default resolveURLsToPrerender;
