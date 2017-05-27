@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet } from "react-primitives";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
-import MarkdownGenerated from "./MarkdownGenerated";
-import PageError from "./PageError";
+import ActivityIndicator from "../ActivityIndicator";
+import MarkdownGenerated from "../MarkdownGenerated";
+import PageError from "../PageError";
 
 const DocPage = (props: Object) => {
   if (props.hasError) {

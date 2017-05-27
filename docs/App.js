@@ -1,15 +1,13 @@
 import "whatwg-fetch";
 
 import React from "react";
-import { View } from "react-native-web";
-import Head from "react-helmet";
 import { Router, Route, browserHistory } from "react-router";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 
 import "./defaults.css";
 
 import Html from "./Html";
-import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
 import DocPage from "./components/DocPage";
 import APIPage from "./components/APIPage";
@@ -19,17 +17,6 @@ import ChangelogListPage from "./components/ChangelogListPage";
 import ShowcaseList from "./components/ShowcaseList";
 import APITagListPage from "./components/APITagListPage";
 import PageError from "./components/PageError";
-
-const Wrapper = (props: Object) => (
-  <View>
-    <Head>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </Head>
-    <Header />
-    {props.children}
-  </View>
-);
 
 // eslint-disable-next-line react/no-multi-comp
 const routes = () => (

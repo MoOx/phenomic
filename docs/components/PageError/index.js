@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native-web";
+import { View } from "react-primitives";
 import Head from "react-helmet";
 
 const PageError = ({ error }: { error: Object }) => {

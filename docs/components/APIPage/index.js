@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
-import MarkdownGenerated from "./MarkdownGenerated";
-import PageError from "./PageError";
+import ActivityIndicator from "../ActivityIndicator";
+import MarkdownGenerated from "../MarkdownGenerated";
+import PageError from "../PageError";
 
 const APIPage = (props: Object) => {
   if (props.hasError) {

@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "docs",
-  "version": "0.0.0",
   "scripts": {
     "start": "phenomic start",
     "build": "phenomic build",
@@ -14,7 +13,7 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^5.0.0",
-    "react-native-web": "^0.0.84",
+    "react-primitives": "^0.4.2",
     "react-router": "^3.0.0",
     "whatwg-fetch": "^2.0.3"
   },

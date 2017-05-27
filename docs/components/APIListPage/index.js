@@ -1,17 +1,17 @@
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
-import Head from "react-helmet";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
-const Home = (props: Object) => (
+import ActivityIndicator from "../ActivityIndicator";
+
+const APIListPage = (props: Object) => (
   <View>
     {props.isLoading && <ActivityIndicator />}
     {!props.isLoading &&
       <View style={styles.page}>
-        <Head><title>{"API"}</title></Head>
         <Text style={styles.title}>
-          {"API Tag Reference : " + props.params.splat}
+          {"API Reference"}
         </Text>
         {props.apis.node.list.map(api => (
           <View key={api.id}>
@@ -44,10 +44,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createContainer(Home, props => ({
+export default createContainer(APIListPage, () => ({
   apis: query({
-    collection: "api",
-    by: "tags",
-    value: props.params.splat
+    collection: "api"
   })
 }));

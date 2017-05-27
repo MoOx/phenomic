@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-  StyleSheet
-} from "react-native-web";
+import { View, Text, Image, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+
+import ActivityIndicator from "../ActivityIndicator";
 
 const ShowcaseList = (props: Object) => (
   <View>
@@ -20,7 +15,7 @@ const ShowcaseList = (props: Object) => (
         </Text>
         <View style={styles.list}>
           {props.showcase.node.list.map(site => (
-            <TouchableOpacity style={styles.item} key={site.id} href={site.url}>
+            <Link style={styles.item} key={site.id} href={site.url}>
               <View>
                 <Image
                   source={{ uri: `/assets/showcase/${site.id}-large.png` }}
@@ -31,7 +26,7 @@ const ShowcaseList = (props: Object) => (
                   {site.title}
                 </Text>
               </View>
-            </TouchableOpacity>
+            </Link>
           ))}
         </View>
         <View style={styles.paginationRow}>

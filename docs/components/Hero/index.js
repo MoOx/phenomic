@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet } from "react-primitives";
 
 const Hero = () => (
   <View style={styles.hero}>
@@ -17,7 +17,6 @@ const Hero = () => (
 const styles = StyleSheet.create({
   hero: {
     height: 400,
-    backgroundColor: "#2A2A2A",
     paddingLeft: 10,
     paddingRight: 10,
     justifyContent: "center"

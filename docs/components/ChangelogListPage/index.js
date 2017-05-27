@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+
+import ActivityIndicator from "../ActivityIndicator";
 
 const ChangelogListPage = (props: Object) => (
   <View>
