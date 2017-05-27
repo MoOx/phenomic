@@ -5,9 +5,9 @@ import { Link as RouterLink } from "react-router";
 const Link = (props: Object) => {
   const injectedProps = {
     style: props.style,
-    className: props.className,
+    className: props.className || "",
     activeStyle: props.activeStyle,
-    activeClassName: props.activeClassName
+    activeClassName: props.activeClassName || ""
   };
   if (typeof injectedProps.style === "number") {
     injectedProps.className +=

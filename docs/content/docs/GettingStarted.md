@@ -30,7 +30,7 @@ The default preset we are going to use will work with React and Webpack.
 ```console
 npm install --save-dev whatwg-fetch
 npm install --save-dev react react-dom react-router
-npm install --save-dev phenomic phenomic-cli phenomic-preset-react-app
+npm install --save-dev @phenomic/core @phenomic/cli @phenomic/preset-react-app
 ```
 
 This lines will install you a simple ``fetch()`` polyfill ([for compatibility](http://caniuse.com/#search=fetch))

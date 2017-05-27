@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
-import { Link } from "react-router";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
+import Link from "../Link";
 import ActivityIndicator from "../ActivityIndicator";
 
 const ShowcaseList = (props: Object) => (
