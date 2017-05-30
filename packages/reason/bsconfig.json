@@ -1,0 +1,15 @@
+{
+  "name": "PhenomicReason",
+  "version": "1.0.0",
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ],
+  "reason": {
+    "react-jsx": true
+  },
+  "bs-dependencies": [
+    "reason-react"
+  ]
+}
