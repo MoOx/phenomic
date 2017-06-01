@@ -41,6 +41,7 @@
     "transpile": "lerna --ignore \"docs\" exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "postinstall": "lerna bootstrap && npm run -s transpile",
     "prepublish": "npm run -s clean && npm run -s transpile",
+    "publish": "lerna publish",
     "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
     "link": "lerna --ignore \"docs\" exec -- npm link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",

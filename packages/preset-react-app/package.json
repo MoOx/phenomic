@@ -1,6 +1,9 @@
 {
   "name": "@phenomic/preset-react-app",
   "version": "1.0.0-alpha.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
