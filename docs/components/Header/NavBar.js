@@ -13,7 +13,7 @@ const HeaderNavBar = () => (
       </Link>
       <Spacer small />
       <Link
-        to="http://github.com/MoOx/phenomic/releases"
+        to="http://github.com/phenomic/phenomic/releases"
         style={styles.version}
       >
         {"v" + version}

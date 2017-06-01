@@ -1,7 +1,7 @@
 {
   "name": "@phenomic/preset-react-app",
   "version": "1.0.0-alpha.0",
-  "repository": "https://github.com/MoOx/phenomic.git",
+  "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": [

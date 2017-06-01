@@ -1,29 +1,29 @@
 <p align="center">
   <a href="https://phenomic.io">
-    <img alt="babel" src="https://rawgit.com/MoOx/phenomic/master/logo/phenomic.svg" width="600">
+    <img alt="babel" src="https://rawgit.com/phenomic/phenomic/master/logo/phenomic.svg" width="600">
   </a>
 </p>
 
 <p align="center">
-<a title="Unix/Yarn Build status" href="https://travis-ci.org/MoOx/phenomic">
-  <img src="https://img.shields.io/travis/MoOx/phenomic/master.svg?label=unix%2Fyarn%20build" />
+<a title="Unix/Yarn Build status" href="https://travis-ci.org/phenomic/phenomic">
+  <img src="https://img.shields.io/travis/phenomic/phenomic/master.svg?label=unix%2Fyarn%20build" />
 </a>
-<a title="Unix/npm Build status" href="https://circleci.com/gh/MoOx/phenomic">
-  <img src="https://img.shields.io/circleci/project/github/MoOx/phenomic/master.svg?label=unix%2Fnpm%20build" />
+<a title="Unix/npm Build status" href="https://circleci.com/gh/phenomic/phenomic">
+  <img src="https://img.shields.io/circleci/project/github/phenomic/phenomic/master.svg?label=unix%2Fnpm%20build" />
 </a>
 <a title="Windows Build status" href="https://ci.appveyor.com/project/MoOx/phenomic/branch/master">
   <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />
 </a>
-<a title="Code Coverage" href="https://coveralls.io/github/MoOx/phenomic">
-  <img src="https://img.shields.io/coveralls/MoOx/phenomic/master.svg" />
+<a title="Code Coverage" href="https://coveralls.io/github/phenomic/phenomic">
+  <img src="https://img.shields.io/coveralls/phenomic/phenomic/master.svg" />
 </a>
-<a title="Version" href="https://github.com/MoOx/phenomic/blob/master/CHANGELOG.md">
+<a title="Version" href="https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md">
   <img src="https://img.shields.io/npm/v/phenomic.svg" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://gitter.im/MoOx/phenomic">
+<a href="https://gitter.im/phenomic/phenomic">
   💬 Support Chat
 </a>
 |
@@ -31,7 +31,7 @@
   Twitter
 </a>
 |
-<a href="https://github.com/MoOx/phenomic">
+<a href="https://github.com/phenomic/phenomic">
   GitHub
 </a>
 |
@@ -68,7 +68,7 @@
 
 ---
 
-### 💬 [Community support chat](https://gitter.im/MoOx/phenomic)
+### 💬 [Community support chat](https://gitter.im/phenomic/phenomic)
 
 ### 🚨 [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
 
@@ -81,7 +81,7 @@
 ## CONTRIBUTING
 
 * ⇄ Pull/Merge requests and ★ Stars are always welcome.
-* For bugs and feature requests, please [create an issue](https://github.com/MoOx/phenomic/issues/new).
+* For bugs and feature requests, please [create an issue](https://github.com/phenomic/phenomic/issues/new).
 * Pull requests must be accompanied by passing automated tests (`npm test`).
 
 
@@ -123,7 +123,7 @@
 
 ## Sponsors
 
-Does your company use Phenomic?  Ask your manager or marketing team if your company would be interested in supporting our project.  Support will allow the maintainers to dedicate more time for maintenance and new features for everyone.  Also, your company's logo will show [on GitHub](https://github.com/MoOx/phenomic#readme)--who doesn't want a little extra exposure?  [Here's the info](https://opencollective.com/phenomic#sponsor).
+Does your company use Phenomic?  Ask your manager or marketing team if your company would be interested in supporting our project.  Support will allow the maintainers to dedicate more time for maintenance and new features for everyone.  Also, your company's logo will show [on GitHub](https://github.com/phenomic/phenomic#readme)--who doesn't want a little extra exposure?  [Here's the info](https://opencollective.com/phenomic#sponsor).
 
 <a href="https://opencollective.com/phenomic/sponsor/0/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/0/avatar"></a>
 <a href="https://opencollective.com/phenomic/sponsor/1/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/1/avatar"></a>

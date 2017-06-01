@@ -1,10 +1,13 @@
 {
   "private": true,
   "name": "phenomic",
-  "author": "Maxime Thirouin",
-  "license": "MIT",
+  "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
-  "repository": "https://github.com/MoOx/phenomic.git",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
