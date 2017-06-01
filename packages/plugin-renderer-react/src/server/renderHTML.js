@@ -11,9 +11,8 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
     <Html
       body={
         <div
-          dangerouslySetInnerHTML={{
-            __html: `<div id="PhenomicRoot">${props.body || ""}</div>`
-          }}
+          id="PhenomicRoot"
+          dangerouslySetInnerHTML={{ __html: props.body || "" }}
         />
       }
       state={
