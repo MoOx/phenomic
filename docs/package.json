@@ -2,6 +2,7 @@
   "private": true,
   "name": "docs",
   "scripts": {
+    "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "start": "phenomic start",
     "build": "phenomic build",
     "test": "npm run build"
@@ -17,9 +18,27 @@
     "react-router": "^3.0.0",
     "whatwg-fetch": "^2.0.3"
   },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "gray-matter": "^2.1.1",
+    "image-optim": "^3.0.0",
+    "mkdirp": "^0.5.1",
+    "nightmare": "^2.10.0",
+    "png-jpg": "0.0.2"
+  },
   "phenomic": {
     "presets": [
       "@phenomic/preset-react-app"
     ]
+  },
+  "screenshotsSize": {
+    "large": {
+      "width": 1366,
+      "height": 768
+    },
+    "small": {
+      "width": 360,
+      "height": 640
+    }
   }
 }
