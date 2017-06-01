@@ -9,37 +9,25 @@ import "./defaults.css";
 import Html from "./Html";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
-import DocPage from "./components/DocPage";
-import APIPage from "./components/APIPage";
-import APIListPage from "./components/APIListPage";
-import ChangelogPage from "./components/ChangelogPage";
-import ChangelogListPage from "./components/ChangelogListPage";
+import DocPage from "./components/Page/Doc";
+import ShowcasePage from "./components/Page/Showcase";
 import ShowcaseList from "./components/ShowcaseList";
-import APITagListPage from "./components/APITagListPage";
 import PageError from "./components/PageError";
 
-// eslint-disable-next-line react/no-multi-comp
 const routes = () => (
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
-      <Route path="/api" component={APIListPage} />
-      <Route
-        path="/api/tag/*"
-        component={APITagListPage}
-        collection={{ collection: "tags", by: "collection", value: "api" }}
-      />
-      <Route path="/api/*" component={APIPage} collection="api" />
-      <Route path="/changelog" component={ChangelogListPage} />
-      <Route path="/changelog/*" component={ChangelogPage} collection="page" />
       <Route path="/docs/*" component={DocPage} collection="docs" />
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
+      {/*
       <Route
         path="/showcase/after/:after"
         component={ShowcaseList}
         collection="showcase"
         paginated
       />
+      */}
       <Route path="*" component={PageError} />
     </Route>
   </Router>

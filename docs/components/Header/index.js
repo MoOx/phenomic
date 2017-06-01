@@ -1,84 +1,36 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-primitives";
+import Head from "react-helmet";
 
-import Link from "../Link";
+import BodyContainer from "../BodyContainer";
+import BackgroundGradient from "../BackgroundGradient";
 
-const Header = () => (
-  <View style={styles.header}>
-    <Link to="/" style={{ textDecoration: "none" }}>
-      <Text style={styles.text}>
-        {"Phenomic"}
-      </Text>
-    </Link>
-    <View style={styles.nav}>
-      <Link
-        to="/docs/getting-started"
-        style={styles.link}
-        activeStyle={styles.linkActive}
-      >
-        <Text style={styles.linkText}>
-          {"Getting started"}
-        </Text>
-      </Link>
-      <Link
-        to="/docs/usage/"
-        style={styles.link}
-        activeStyle={styles.linkActive}
-      >
-        <Text style={styles.linkText}>
-          {"Usage"}
-        </Text>
-      </Link>
-      <Link
-        to="/docs/plugins"
-        style={styles.link}
-        activeStyle={styles.linkActive}
-      >
-        <Text style={styles.linkText}>
-          {"Plugins"}
-        </Text>
-      </Link>
-      <Link to="/showcase" style={styles.link} activeStyle={styles.linkActive}>
-        <Text style={[styles.linkText, styles.linkBold]}>
-          {"Showcase"}
-        </Text>
-      </Link>
-    </View>
-  </View>
+import HeaderNavBar from "./NavBar";
+
+const Header = (props: Object) => (
+  <BackgroundGradient name="blueGreen" style={props.style}>
+    <HeaderNavBar />
+    <BodyContainer style={styles.hero}>
+      <Head><title>{props.headTitle || props.title}</title></Head>
+      {/* @todo h1 or shit */}
+      <Text style={styles.heroText}>{props.title}</Text>
+      {props.children && <View style={styles.children}>{props.children}</View>}
+    </BodyContainer>
+  </BackgroundGradient>
 );
 
 const styles = StyleSheet.create({
-  header: {
-    height: 80,
-    paddingLeft: 10,
-    paddingRight: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexWrap: "wrap"
+  hero: {
+    paddingTop: 40,
+    paddingBottom: 60
   },
-  text: {
+  heroText: {
     color: "#fff",
-    fontSize: 30,
-    fontWeight: "700"
+    fontSize: 48,
+    fontWeight: "200",
+    textAlign: "center"
   },
-  link: {
-    textDecorationLine: "none",
-    padding: 10
-  },
-  linkActive: {
-    backgroundColor: "rgba(0, 0, 0, 0.1)"
-  },
-  linkText: {
-    color: "#fff"
-  },
-  linkBold: {
-    fontWeight: "700"
-  },
-  nav: {
-    flexDirection: "row",
-    alignItems: "center"
-  }
+  children: {}
 });
 
 export default Header;
