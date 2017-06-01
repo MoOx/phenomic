@@ -18,6 +18,11 @@ const routes = () => (
       <Route path="/" component={Home} />
       <Route path="/docs/*" component={DocPage} collection="docs" />
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
+      <Route
+        path="/showcase/tag/:tag"
+        component={ShowcaseList}
+        collection="showcase"
+      />
       {/*
       <Route
         path="/showcase/after/:after"
@@ -26,6 +31,11 @@ const routes = () => (
         paginated
       />
       */}
+      <Route
+        path="/showcase/*"
+        component={ShowcasePage}
+        collection="showcase"
+      />
       <Route path="*" component={PageError} />
     </Route>
   </Router>

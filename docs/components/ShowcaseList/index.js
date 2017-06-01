@@ -4,86 +4,247 @@ import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 import Link from "../Link";
 import ActivityIndicator from "../ActivityIndicator";
+import Header from "../Header";
+import BodyContainer from "../BodyContainer";
+import urlToSlug from "../../modules/url-to-slug";
+import { screenshotsSize } from "../../package.json";
+
+const prepareList = list => {
+  let phenomicDocs;
+  const newList = list
+    .filter(site => site.showcaseTags)
+    .sort((a, b) => {
+      if (a.curated && !b.curated) {
+        return -1;
+      }
+
+      // more tags first
+      if (a.showcaseTags.length < b.showcaseTags.length) {
+        return 1;
+      }
+      if (a.showcaseTags.length > b.showcaseTags.length) {
+        return -1;
+      }
+
+      // blog last
+      if (
+        a.showcaseTags.indexOf("blog") === -1 &&
+        b.showcaseTags.indexOf("blog") > -1
+      ) {
+        return -1;
+      }
+
+      return 0;
+    })
+    .filter(item => {
+      if (item.title !== "Phenomic docs") {
+        return true;
+      }
+      phenomicDocs = item;
+      return false;
+    });
+  if (phenomicDocs) newList.push(phenomicDocs);
+  return newList;
+};
 
 const ShowcaseList = (props: Object) => (
-  <View>
-    {props.isLoading && <ActivityIndicator />}
-    {!props.isLoading &&
-      <View style={styles.page}>
-        <Text style={styles.title}>
-          {"Showcase"}
-        </Text>
-        <View style={styles.list}>
-          {props.showcase.node.list.map(site => (
-            <Link style={styles.item} key={site.id} href={site.url}>
-              <View>
-                <Image
-                  source={{ uri: `/assets/showcase/${site.id}-large.png` }}
-                  style={styles.image}
-                  resizeMode="contain"
-                />
-                <Text style={styles.siteName}>
-                  {site.title}
-                </Text>
+  <View style={styles.page}>
+    <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
+    <BodyContainer>
+      {props.isLoading && <ActivityIndicator />}
+      {!props.isLoading &&
+        <View>
+          <Link to={"/showcase/submit/"} style={styles.addYourOwn}>
+            {"Submit your website!"}
+          </Link>
+          {props.params &&
+            props.params.tag &&
+            <View style={styles.currentFilter}>
+              <Text style={styles.filterMessage}>
+                {"You are currently viewing projects that match "}
+                <em>{props.params.tag}</em>
+                {" tag. "}
+                <Link to={"/showcase/"} style={styles.filterMessageLink}>
+                  {"View all."}
+                </Link>
+              </Text>
+            </View>}
+          <View style={styles.list}>
+            {prepareList(props.showcase.node.list).map(item => (
+              <View style={styles.item} key={item.id}>
+                <View style={styles.row}>
+                  <Text style={styles.itemName}>{item.title}</Text>
+                  <Text>{" "}</Text>
+                  {item.source &&
+                    <Link style={styles.itemLinkSource} to={item.source}>
+                      {"(Source)"}
+                    </Link>}
+                </View>
+                <View style={styles.tags}>
+                  {item.showcaseTags &&
+                    item.showcaseTags.map(tag => (
+                      <Link
+                        key={tag}
+                        to={`/showcase/tag/${tag}/`}
+                        style={styles.itemTag}
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                </View>
+                <Link to={item.url}>
+                  <View style={styles.imageContainerLarge}>
+                    <Image
+                      source={{
+                        uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
+                      }}
+                      style={styles.imageLarge}
+                      resizeMode="cover"
+                    />
+                  </View>
+                  <View style={styles.imageContainerSmall}>
+                    <Image
+                      source={{
+                        uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`
+                      }}
+                      style={styles.imageSmall}
+                      resizeMode="cover"
+                    />
+                  </View>
+                </Link>
               </View>
-            </Link>
-          ))}
-        </View>
-        <View style={styles.paginationRow}>
-          <View style={styles.paginationColumn}>
-            {props.showcase.node &&
-              props.showcase.node.hasPreviousPage &&
-              <Link
-                to={
-                  props.showcase.node.previousPageIsFirst
-                    ? `/showcase`
-                    : `/showcase/after/${props.showcase.node.previous}`
-                }
-              >
-                {"Previous"}
-              </Link>}
+            ))}
           </View>
-          <View style={styles.paginationColumn}>
-            {props.showcase.node &&
-              props.showcase.node.hasNextPage &&
-              <Link to={`/showcase/after/${props.showcase.node.next}`}>
-                {"Next"}
-              </Link>}
+          {/*
+          <View style={styles.paginationRow}>
+            <View style={styles.paginationColumn}>
+              {props.showcase.node &&
+                props.showcase.node.hasPreviousPage &&
+                <Link
+                  to={
+                    props.showcase.node.previousPageIsFirst
+                      ? `/showcase`
+                      : `/showcase/after/${props.showcase.node.previous}`
+                  }
+                >
+                  {"Previous"}
+                </Link>}
+            </View>
+            <View style={styles.paginationColumn}>
+              {props.showcase.node &&
+                props.showcase.node.hasNextPage &&
+                <Link to={`/showcase/after/${props.showcase.node.next}`}>
+                  {"Next"}
+                </Link>}
+            </View>
           </View>
-        </View>
-      </View>}
+          */}
+        </View>}
+    </BodyContainer>
   </View>
 );
 
 const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
   page: {
-    padding: 10,
-    maxWidth: 800,
-    width: "100%",
-    alignSelf: "center"
+    paddingTop: 10,
+    paddingBottom: 10
   },
   title: {
     fontSize: 40,
     fontWeight: "900"
+  },
+  addYourOwn: {
+    position: "absolute",
+    right: 20,
+    top: -30,
+    fontSize: 14,
+    color: "#fff",
+    opacity: 0.6
+  },
+  currentFilter: {
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  filterMessage: {
+    padding: 10,
+    color: "#4078c0",
+    backgroundColor: "#e6f1f6",
+    borderRadius: 3
+  },
+  filterMessageLink: {
+    color: "#4078c0",
+    fontWeight: "bold"
   },
   list: {
     flexDirection: "row",
     flexWrap: "wrap"
   },
   item: {
+    position: "relative",
     width: "50%",
-    padding: 10
+    padding: 20
   },
-  image: {
-    width: 300,
-    height: 200,
-    maxWidth: "100%",
-    minWidth: "100%"
+  imageContainerLarge: {},
+  imageLarge: {
+    flex: 1,
+    paddingBottom: 100 *
+      screenshotsSize.large.height /
+      screenshotsSize.large.width +
+      "%",
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,.1)",
+    borderRadius: 4
   },
-  siteName: {
+  imageContainerSmall: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    width: "20%"
+  },
+  imageSmall: {
+    flex: 1,
+    width: "100%",
+    paddingBottom: 100 *
+      screenshotsSize.small.height /
+      screenshotsSize.small.width +
+      "%",
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,.1)",
+    borderRadius: 4
+  },
+  itemName: {
     fontWeight: "700",
-    fontSize: 18
+    fontSize: 18,
+    lineHeight: 18 * 2,
+    color: "#424345"
   },
+  itemLinkSource: {
+    fontSize: 12,
+    textDecorationLine: "none",
+    color: "#006df4",
+    opacity: 0.4
+  },
+  tags: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginRight: -10
+  },
+  itemTag: {
+    fontSize: 12,
+    lineHeight: 24,
+    margin: 10,
+    paddingLeft: 6,
+    paddingRight: 6,
+    color: "#08b09b",
+    backgroundColor: "#fff",
+    borderRadius: 3
+  }
+  /*
   paginationRow: {
     flexDirection: "row"
   },
@@ -93,12 +254,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   }
+  */
 });
 
 export default createContainer(ShowcaseList, props => ({
   showcase: query({
     collection: "showcase",
-    limit: 10,
-    after: props.params.after
+    // by: "showcaseTags",
+    ...(props.params.tag
+      ? {
+          by: "showcaseTags",
+          value: props.params.tag
+        }
+      : {})
+    // order: "asc",
+    // limit: 10,
+    // after: props.params.after
   })
 }));
