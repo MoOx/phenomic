@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-primitives";
 
 import Link from "../Link";
 import Spacer from "../Spacer";
+import { version } from "../../../lerna.json";
 
 const HeaderNavBar = () => (
   <View style={styles.header}>
@@ -11,6 +12,12 @@ const HeaderNavBar = () => (
         <Text>{"Phenomic"}</Text>
       </Link>
       <Spacer small />
+      <Link
+        to="http://github.com/MoOx/phenomic/releases"
+        style={styles.version}
+      >
+        {"v" + version}
+      </Link>
     </View>
     <View style={styles.nav}>
       <Link
@@ -39,17 +46,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 80,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 20
   },
   row: {
     flexDirection: "row",
-    alignItems: "baseline",
+    alignItems: "baseline"
   },
   text: {
     color: "#fff",
     fontSize: 30,
     fontWeight: "700",
+    textDecorationLine: "none"
+  },
+  version: {
     textDecorationLine: "none",
+    color: "#fff",
+    opacity: 0.2,
+    fontSize: 12
   },
   link: {
     textDecorationLine: "none",
