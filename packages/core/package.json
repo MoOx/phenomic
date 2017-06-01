@@ -1,6 +1,21 @@
 {
   "name": "@phenomic/core",
   "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic"
+  ],
+  "description": "Phenomic core package",
   "main": "lib/index.js",
   "files": [
     "lib"

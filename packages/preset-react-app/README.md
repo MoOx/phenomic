@@ -1,6 +1,6 @@
 # @phenomic/preset-react-app
 
-Phenomic React preset:
+> Phenomic React app preset
 
 - renderer: react (``@phenomic/plugin-renderer-react``)
 - bundler: webpack (``@phenomic/plugin-bundler-webpack``)

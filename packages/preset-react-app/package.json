@@ -1,6 +1,27 @@
 {
   "name": "@phenomic/preset-react-app",
   "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "phenomic-preset",
+    "react",
+    "webpack",
+    "markdown",
+    "json"
+  ],
+  "description": "Phenomic React app preset",
   "main": "lib/index.js",
   "files": [
     "lib"

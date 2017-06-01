@@ -1,6 +1,25 @@
 {
   "name": "@phenomic/plugin-renderer-react",
   "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "phenomic-plugin-renderer",
+    "renderer",
+    "react"
+  ],
+  "description": "Phenomic plugin that allow you to use React to render your website/app",
   "main": "lib/index.js",
   "files": [
     "lib"

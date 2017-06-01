@@ -1,4 +1,6 @@
-# Phenomic Reason
+# @phenomic/reason
+
+> Phenomic Reason bindings
 
 ## Installation
 

@@ -1,6 +1,6 @@
 {
-  "name": "PhenomicReason",
-  "version": "1.0.0",
+  "name": "@phenomic/reason",
+  "version": "1.0.0-alpha.0",
   "sources": [
     {
       "dir": "src"

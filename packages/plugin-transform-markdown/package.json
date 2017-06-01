@@ -1,6 +1,23 @@
 {
   "name": "@phenomic/plugin-transform-markdown",
   "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "markdown"
+  ],
+  "description": "Phenomic plugin to transform markdown resources",
   "main": "lib/index.js",
   "files": [
     "lib"

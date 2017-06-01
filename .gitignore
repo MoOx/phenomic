@@ -24,3 +24,6 @@ lib
 
 # logo
 logo/*.png
+
+# reason stuff
+packages/reason/.merlin

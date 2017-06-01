@@ -2,6 +2,24 @@
   "private": true,
   "name": "@phenomic/plugin-rss-feed",
   "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "rss",
+    "feed"
+  ],
+  "description": "Phenomic plugin to generate a RSS feed",
   "main": "lib/index.js",
   "files": [
     "lib"

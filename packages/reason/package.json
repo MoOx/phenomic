@@ -1,30 +1,27 @@
 {
   "name": "@phenomic/reason",
-  "version": "1.0.0",
-  "description": "Reason bindings for Phenomic",
-  "main": "index.js",
-  "scripts": {
-    "test": "exit 0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/MoOx/phenomic.git"
-  },
-  "keywords": [
-    "Phenomic",
-    "React",
-    "Reason"
-  ],
-  "author": "bloodyowl <mlbli@me.com>",
+  "version": "1.0.0-alpha.0",
+  "repository": "https://github.com/MoOx/phenomic.git",
+  "homepage": "https://phenomic.io",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MoOx/phenomic/issues"
-  },
-  "homepage": "https://github.com/MoOx/phenomic#readme",
-  "devDependencies": {
-    "bs-platform": "^1.7.4"
-  },
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "react",
+    "reason"
+  ],
+  "description": "Phenomic Reason bindings",
   "dependencies": {
     "reason-react": "^0.1.3"
+  },
+  "devDependencies": {
+    "bs-platform": "^1.7.4"
   }
 }
