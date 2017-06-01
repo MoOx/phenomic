@@ -67,11 +67,8 @@ function start(config: PhenomicConfig) {
     io.emit("change");
   });
   bundlerServer.use("/phenomic", phenomicServer);
-  // @todo change /assets
-  bundlerServer.use(
-    "/assets",
-    express.static(path.join(process.cwd(), "examples/content"))
-  );
+  // @todo change /public
+  bundlerServer.use(express.static(path.join(config.path, "public")));
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html");
