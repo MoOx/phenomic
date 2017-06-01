@@ -11,15 +11,14 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
     <Html
       body={
         <div
-          dangerouslySetInnerHTML={{
-            __html: `<div id="PhenomicRoot">${props.body || ""}</div>`
-          }}
+          id="PhenomicRoot"
+          dangerouslySetInnerHTML={{ __html: props.body || "" }}
         />
       }
       state={
         props.state &&
           <script
-            id="Hydration"
+            id="PhenomicHydration"
             type="text/json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(props.state)

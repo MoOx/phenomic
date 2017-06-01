@@ -51,8 +51,9 @@ module.exports = (/* config: PhenomicConfig */) => ({
   ].filter(item => item),
 
   resolve: {
+    // react-native(-web) | react-primitives
+    extensions: [".web.js", ".js", ".json"],
     alias: {
-      // because it's cool
       "react-native": "react-native-web",
 
       // to ensure a single module is used

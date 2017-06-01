@@ -22,7 +22,7 @@ export default (config?: PhenomicConfig, body: string) => {
       value: "#"
     },
     linkProperties: {
-      className: "@phenomic/HeadingAnchor"
+      className: "phenomic-HeadingAnchor"
     }
   });
 
