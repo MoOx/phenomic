@@ -14,7 +14,7 @@ const Link = (props: Object) => {
       " " + StyleSheet.resolve(injectedProps.style).className;
     injectedProps.style = undefined;
   }
-  if (typeof activeStyle === "number") {
+  if (typeof injectedProps.activeStyle === "number") {
     injectedProps.activeClassName +=
       " " + StyleSheet.resolve(injectedProps.activeStyle).className;
     injectedProps.activeStyle = undefined;
