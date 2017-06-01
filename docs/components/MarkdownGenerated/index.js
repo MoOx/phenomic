@@ -4,7 +4,7 @@ import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 require("./index.css");
 
 const MarkdownGenerated = (props: Object) => (
-  <div className="Markdown">
+  <div className="phenomic-Markdown">
     <BodyRenderer>{props.body}</BodyRenderer>
   </div>
 );
