@@ -22,7 +22,7 @@ function render(routes: () => React$Element<any>) {
       );
   }
 
-  const initialStateNode = document.getElementById("Hydration");
+  const initialStateNode = document.getElementById("PhenomicHydration");
   store =
     store ||
     createStore(
