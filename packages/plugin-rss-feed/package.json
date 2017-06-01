@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@phenomic/plugin-rss-feed",
   "version": "1.0.0-alpha.0",
   "main": "lib/index.js",
