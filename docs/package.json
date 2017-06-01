@@ -8,9 +8,9 @@
     "test": "npm run build"
   },
   "dependencies": {
-    "@phenomic/core": "^1.0.0-alpha.0",
-    "@phenomic/cli": "^1.0.0-alpha.0",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.0",
+    "@phenomic/cli": "^1.0.0-alpha.1",
+    "@phenomic/core": "^1.0.0-alpha.1",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^5.0.0",
@@ -39,5 +39,6 @@
       "width": 360,
       "height": 640
     }
-  }
+  },
+  "version": "1.0.0-alpha.1"
 }
