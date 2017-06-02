@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-renderer-react",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "publishConfig": {
     "access": "public"
   },

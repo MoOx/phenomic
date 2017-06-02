@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-bundler-webpack",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "publishConfig": {
     "access": "public"
   },
@@ -41,12 +41,12 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.1",
+    "@phenomic/core": "^1.0.0-alpha.2",
     "webpack": "^2.3.0",
     "webpack-dev-middleware": "^1.10.0"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.1",
+    "@phenomic/core": "^1.0.0-alpha.2",
     "webpack": "^2.3.0",
     "webpack-dev-middleware": "^1.10.0"
   }

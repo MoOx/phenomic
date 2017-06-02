@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-public-assets",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,7 @@
     "lib"
   ],
   "dependencies": {
-    "fs-extra": "^3.0.1",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "fs-extra": "^3.0.1"
   }
 }

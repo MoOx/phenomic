@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/cli",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,7 @@
     "lib"
   ],
   "dependencies": {
-    "@phenomic/core": "^1.0.0-alpha.1",
+    "@phenomic/core": "^1.0.0-alpha.2",
     "babel-register": "^6.24.0",
     "chalk": "^1.1.3",
     "debug": "^2.6.0",
