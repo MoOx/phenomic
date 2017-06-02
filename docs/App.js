@@ -58,3 +58,11 @@ export default createApp(routes, Html);
 if (module.hot) {
   module.hot.accept(() => renderApp(routes));
 }
+
+// kill previous website ServiceWorker
+if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    for (const registration of registrations)
+      registration.unregister();
+  });
+}
