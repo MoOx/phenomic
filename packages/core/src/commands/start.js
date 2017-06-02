@@ -19,6 +19,10 @@ function createBundlerServer(config: PhenomicConfig) {
     throw new Error("At least a bundler plugin should be used");
   }
   bundler.getMiddlewares(config).forEach(middleware => server.use(middleware));
+  const middlewares = config.plugins.filter(p => p.defineDevMiddleware);
+  middlewares.forEach(middleware =>
+    middleware.defineDevMiddleware(server, config)
+  );
   return server;
 }
 
@@ -67,8 +71,6 @@ function start(config: PhenomicConfig) {
     io.emit("change");
   });
   bundlerServer.use("/phenomic", phenomicServer);
-  // @todo change /public
-  bundlerServer.use(express.static(path.join(config.path, "public")));
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html");

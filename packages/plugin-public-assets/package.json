@@ -1,0 +1,35 @@
+{
+  "name": "@phenomic/plugin-public-assets",
+  "version": "1.0.0-alpha.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/phenomic/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "phenomic-plugin-public-assets",
+    "public",
+    "assets"
+  ],
+  "description": "Phenomic plugin to copy a public directory to dist",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "debug": "^2.6.0",
+    "fs-extra": "^3.0.1",
+    "express": "^4.14.0"
+  }
+}

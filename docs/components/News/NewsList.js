@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
 export default createContainer(NewsList, props => ({
   news: query({
     collection: "news",
-    after: props.params.after
+    limit: 10,
+    ...(props.params.after ? { after: props.params.after } : null)
   })
 }));

@@ -4,6 +4,7 @@ import collectorFiles from "@phenomic/plugin-collector-files";
 import transformMarkdown from "@phenomic/plugin-transform-markdown";
 import transformJson from "@phenomic/plugin-transform-json";
 import apiRelatedContent from "@phenomic/plugin-api-related-content";
+import publicAssets from "@phenomic/plugin-public-assets";
 
 export default function() {
   return {
@@ -13,7 +14,8 @@ export default function() {
       transformMarkdown,
       transformJson,
       collectorFiles,
-      apiRelatedContent
+      apiRelatedContent,
+      publicAssets
     ]
   };
 }

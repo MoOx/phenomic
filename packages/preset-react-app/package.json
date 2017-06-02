@@ -35,6 +35,7 @@
     "@phenomic/plugin-collector-files": "^1.0.0-alpha.1",
     "@phenomic/plugin-renderer-react": "^1.0.0-alpha.1",
     "@phenomic/plugin-transform-json": "^1.0.0-alpha.1",
-    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.1"
+    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.1",
+    "@phenomic/plugin-public-assets": "^1.0.0-alpha.1"
   }
 }

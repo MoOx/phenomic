@@ -122,6 +122,11 @@ async function build(config) {
     );
     console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
+    await Promise.all(
+      config.plugins
+        .filter(plugin => plugin.beforeBuild)
+        .map(plugin => plugin.beforeBuild(config))
+    );
     await bundler.build(config);
     console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
