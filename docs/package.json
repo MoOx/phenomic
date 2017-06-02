@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "docs",
+  "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "start": "phenomic start",
@@ -24,7 +25,8 @@
     "image-optim": "^3.0.0",
     "mkdirp": "^0.5.1",
     "nightmare": "^2.10.0",
-    "png-jpg": "0.0.2"
+    "png-jpg": "0.0.2",
+    "rimraf": "^2.6.1"
   },
   "phenomic": {
     "presets": [
