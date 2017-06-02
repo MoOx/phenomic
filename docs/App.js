@@ -7,6 +7,7 @@ import "./defaults.css";
 import Html from "./Html";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
+import GettingStarted from "./components/GettingStarted";
 import DocPage from "./components/Page/Doc";
 import ShowcasePage from "./components/Page/Showcase";
 import ShowcaseList from "./components/ShowcaseList";
@@ -16,6 +17,7 @@ const routes = () => (
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
+      <Route path="/docs/getting-started" component={GettingStarted} />
       <Route path="/docs/*" component={DocPage} collection="docs" />
       <Route path="/showcase" component={ShowcaseList} collection="showcase" />
       <Route
