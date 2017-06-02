@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-<a href="https://gitter.im/phenomic/phenomic">
+<a href="https://gitter.im/MoOx/phenomic">
   💬 Support Chat
 </a>
 |
@@ -44,37 +44,9 @@
 </a>
 </p>
 
-> Modern website generator based on the React and Webpack ecosystem.
+> Modular website compiler
 
-![Developer experience preview](docs/public/phenomic-demo.gif)
-
----
-
-### ❓ [What is Phenomic?](https://phenomic.io/)
-
-### 🚀 [How to setup Phenomic?](https://phenomic.io/docs/setup/)
-
-### 🤔 [How to get started with Phenomic?](https://phenomic.io/docs/getting-started/)
-
-### 🛠 [Usage documentation](https://phenomic.io/docs/usage/)
-
-### ⁉️ [FAQ](https://phenomic.io/docs/faq/)
-
----
-
-### 👀 [Who is using Phenomic?](https://phenomic.io/showcase/)
-
-### 😍 [I am using Phenomic and I like it!](https://phenomic.io/showcase/submit/)
-
----
-
-### 💬 [Community support chat](https://gitter.im/phenomic/phenomic)
-
-### 🚨 [Follow @Phenomic_app on Twitter for latest news!](https://twitter.com/Phenomic_app)
-
----
-
-🍭 For offline documentation, please check [`phenomic/docs/content`](docs/content).
+## ➡ More details at [phenomic.io](https://phenomic.io/)
 
 ---
 
