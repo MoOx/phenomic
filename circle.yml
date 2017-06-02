@@ -2,14 +2,6 @@ machine:
   node:
     version: 6
 
-dependencies:
-  override:
-    - npm install
-
-test:
-  override:
-    - npm test
-
 machine:
   environment:
     DEBUG: phenomic:*
