@@ -1,12 +1,10 @@
 import React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
-import { Link } from "react-router";
 import { View, StyleSheet } from "react-primitives";
 
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import ActivityIndicator from "../ActivityIndicator";
-import MarkdownGenerated from "../MarkdownGenerated";
 import PageError from "../PageError";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -45,6 +43,8 @@ const styles = StyleSheet.create({
 
 export default createContainer(NewsList, props => ({
   news: query({
-    collection: "news"
+    collection: "news",
+    limit: 10,
+    ...(props.params.after ? { after: props.params.after } : null)
   })
 }));
