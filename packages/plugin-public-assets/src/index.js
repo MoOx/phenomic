@@ -1,6 +1,7 @@
-const debug = require("debug")("phenomic:plugin:public-assets");
-const express = require("express");
-const path = require("path");
+import path from "path";
+
+import express from "express";
+import fsExtra from "fs-extra";
 
 export default function() {
   return {
@@ -10,7 +11,6 @@ export default function() {
     },
     beforeBuild(config: PhenomicConfig) {
       return new Promise((resolve, reject) => {
-        const fsExtra = require("fs-extra");
         fsExtra.copy(path.join(config.path, "public"), config.outdir, err => {
           if (err) {
             reject(err);
