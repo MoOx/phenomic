@@ -16,13 +16,19 @@ const BackgroundGradient = (props: PropsType) => (
 
 const colors = {
   blue: "#006BF6",
-  green: "#10E951"
+  green: "#10E951",
+  darkGrey: "#2A2A2A",
+  darkerGrey: "#121212"
 };
 
 const gradients = {
   blueGreen: {
     backgroundColor: colors.blue,
     background: `linear-gradient(to bottom right, ${colors.blue}, ${colors.green})`
+  },
+  darkGrey: {
+    backgroundColor: colors.darkGrey,
+    background: `linear-gradient(to bottom right, ${colors.darkGrey}, ${colors.darkerGrey})`
   }
 };
 

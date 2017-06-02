@@ -2,9 +2,12 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
+import Flex from "../Flex";
 import Link from "../Link";
+import Spacer from "../Spacer";
 import ActivityIndicator from "../ActivityIndicator";
 import Header from "../Header";
+import Footer from "../Footer";
 import BodyContainer from "../BodyContainer";
 import urlToSlug from "../../modules/url-to-slug";
 import { screenshotsSize } from "../../package.json";
@@ -48,9 +51,9 @@ const prepareList = list => {
 };
 
 const ShowcaseList = (props: Object) => (
-  <View style={styles.page}>
+  <Flex>
     <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
-    <BodyContainer>
+    <BodyContainer style={styles.page}>
       {props.isLoading && <ActivityIndicator />}
       {!props.isLoading &&
         <View>
@@ -141,7 +144,9 @@ const ShowcaseList = (props: Object) => (
           */}
         </View>}
     </BodyContainer>
-  </View>
+    <Spacer large />
+    <Footer />
+  </Flex>
 );
 
 const styles = StyleSheet.create({
@@ -152,10 +157,6 @@ const styles = StyleSheet.create({
   page: {
     paddingTop: 10,
     paddingBottom: 10
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: "900"
   },
   addYourOwn: {
     position: "absolute",

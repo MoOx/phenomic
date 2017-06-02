@@ -1,10 +1,12 @@
 import React from "react";
-import { View } from "react-primitives";
 
+import Flex from "../Flex";
+import Spacer from "../Spacer";
 import ActivityIndicator from "../ActivityIndicator";
 import MarkdownGenerated from "../MarkdownGenerated";
 import PageError from "../PageError";
 import Header from "../Header";
+import Footer from "../Footer";
 import BodyContainer from "../BodyContainer";
 
 const Page = (props: Object) => {
@@ -13,13 +15,15 @@ const Page = (props: Object) => {
   }
 
   return (
-    <View>
+    <Flex>
       <Header title={props.page && props.page.node && props.page.node.title} />
       <BodyContainer>
         {props.isLoading && <ActivityIndicator />}
         {!props.isLoading && <MarkdownGenerated body={props.page.node.body} />}
       </BodyContainer>
-    </View>
+      <Spacer large />
+      <Footer />
+    </Flex>
   );
 };
 

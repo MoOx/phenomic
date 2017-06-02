@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from "react-primitives";
 
 import Link from "../Link";
 import Spacer from "../Spacer";
-import { version } from "../../../lerna.json";
 
 const HeaderNavBar = () => (
   <View style={styles.header}>
@@ -12,12 +11,6 @@ const HeaderNavBar = () => (
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link>
       <Spacer small />
-      <Link
-        to="http://github.com/phenomic/phenomic/releases"
-        style={styles.version}
-      >
-        {"v" + version}
-      </Link>
     </View>
     <View style={styles.nav}>
       <Link

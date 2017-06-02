@@ -14,19 +14,22 @@ const Spacer = (props: PropsType) => (
     ]}
   />
 );
+Spacer.small = 10;
+Spacer.default = 20;
+Spacer.large = 40;
 
 const styles = StyleSheet.create({
   container: {
-    width: 20,
-    height: 20
+    width: Spacer.default,
+    height: Spacer.default
   },
   small: {
-    width: 10,
-    height: 10
+    width: Spacer.small,
+    height: Spacer.small
   },
   large: {
-    width: 40,
-    height: 40
+    width: Spacer.large,
+    height: Spacer.large
   }
 });
 

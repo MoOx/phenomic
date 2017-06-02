@@ -2,7 +2,8 @@ html, body {
   height: 100%;
 }
 
-* { box-sizing: border-box }
+html {box-sizing: border-box}
+*, *:before, *:after {box-sizing: inherit}
 
 #PhenomicRoot {
   display: flex;
