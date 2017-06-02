@@ -23,6 +23,7 @@
     "eslint-plugin-flowtype": "^2.31.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-react-native": "^2.3.2",
     "flow-bin": "^0.47.0",
     "git-exec-and-restage": "^1.0.1",
     "husky": "^0.13.3",
@@ -75,7 +76,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint-config-i-am-meticulous/react-flow"
+      "eslint-config-i-am-meticulous/react-flow",
+      "eslint-config-i-am-meticulous/react-native"
     ],
     "env": {
       "jest": true
