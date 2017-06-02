@@ -1,17 +1,5 @@
 language: node_js
-
-node_js:
-  - '7'
-
-# fail asap when there is a failure
-matrix:
-  fast_finish: true
-
-# cache node modules
-cache:
-  directories:
-    # Yarn
-    - $HOME/.yarn-cache
+node_js: 8
 
 env:
   global:
