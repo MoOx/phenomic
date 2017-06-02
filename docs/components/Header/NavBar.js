@@ -29,12 +29,17 @@ const HeaderNavBar = () => (
           {"Getting started"}
         </Text>
       </Link>
+      <Link to="/news" style={styles.link} activeStyle={styles.linkActive}>
+        <Text style={[styles.linkText]}>
+          {"News"}
+        </Text>
+      </Link>
       <Link to="/showcase" style={styles.link} activeStyle={styles.linkActive}>
         <Text style={[styles.linkText, styles.linkBold]}>
           {"Showcase"}
         </Text>
       </Link>
-      <Text>{" | "}</Text>
+      <Text style={styles.pipe}>{" | "}</Text>
       <Link href="https://github.com/phenomic/phenomic" style={styles.link}>
         <Text style={styles.linkText}>
           {"GitHub"}
@@ -60,13 +65,15 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 80,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingHorizontal: 20,
+    paddingVertical: 10
   },
   row: {
     flexDirection: "row",
-    alignItems: "baseline"
+    alignItems: "baseline",
+    justifyContent: "center",
+    paddingVertical: 10,
+    flewGrow: 1
   },
   text: {
     color: "#fff",
@@ -95,7 +102,13 @@ const styles = StyleSheet.create({
   },
   nav: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    flexWrap: "wrap",
+    maxWidth: "100%",
+    paddingVertical: 10
+  },
+  pipe: {
+    color: "rgba(255, 255, 255, 0.5)"
   }
 });
 

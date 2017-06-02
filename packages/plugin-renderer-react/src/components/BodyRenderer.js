@@ -42,7 +42,7 @@ const defaultOptions: OptionsType = {
   DefaultComponent: "div"
 };
 
-const render = (item: ItemType, options: OptionsType) => {
+const render = (item: ItemType, options: OptionsType, key: ?any) => {
   if (!item) {
     return;
   }
@@ -53,9 +53,9 @@ const render = (item: ItemType, options: OptionsType) => {
       c: children
     } = item;
     return (
-      <Tag {...props}>
+      <Tag {...props} key={key}>
         {Array.isArray(children)
-          ? children.map((child: ItemType) => render(child, options))
+          ? children.map((child: ItemType, key) => render(child, options, key))
           : render(children, options)}
       </Tag>
     );

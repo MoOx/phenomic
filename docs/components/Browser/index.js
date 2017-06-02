@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#171D23"
   },
   contentContainer: {
-    flex: 1,
-    background: "#fff"
+    flexGrow: 1,
+    backgroundColor: "#fff"
   }
 });
 

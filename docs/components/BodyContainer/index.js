@@ -8,6 +8,7 @@ const BodyContainer = (props: Object) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
     maxWidth: 900,
     marginLeft: "auto",
     marginRight: "auto"

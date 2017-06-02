@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    alignItems: "baseline"
+    alignItems: "baseline",
+    maxWidth: "100%"
   },
   text: {
     color: "#fff",
@@ -88,7 +89,9 @@ const styles = StyleSheet.create({
   },
   nav: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    flexWrap: "wrap",
+    maxWidth: "100%"
   }
 });
 

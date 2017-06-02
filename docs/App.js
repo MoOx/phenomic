@@ -12,6 +12,8 @@ import DocPage from "./components/Page/Doc";
 import ShowcasePage from "./components/Page/Showcase";
 import ShowcaseList from "./components/ShowcaseList";
 import PageError from "./components/PageError";
+import NewsItem from "./components/News/NewsItem";
+import NewsList from "./components/News/NewsList";
 
 const routes = () => (
   <Router history={browserHistory}>
@@ -38,6 +40,9 @@ const routes = () => (
         component={ShowcasePage}
         collection="showcase"
       />
+      <Route path="/news/*" component={NewsItem} collection="news" />
+      <Route path="/news" component={NewsList} collection="news" />
+      <Route path="/news/after/:after" component={NewsList} collection="news" />
       <Route path="*" component={PageError} />
     </Route>
   </Router>

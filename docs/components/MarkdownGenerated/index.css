@@ -31,6 +31,10 @@
   opacity: 1;
 }
 
+.phenomic-Markdown {
+  line-height: 1.5;
+}
+
 .phenomic-Markdown pre {
   background: #fafafa;
   padding: 10px;

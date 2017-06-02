@@ -8,6 +8,7 @@ import Flex from "../Flex";
 import Spacer from "../Spacer";
 import BodyContainer from "../BodyContainer";
 import BackgroundGradient from "../BackgroundGradient";
+import FeatureBlock from "./FeatureBlock";
 
 import InputOutput from "./InputOutput";
 import CodeExample from "./CodeExample";
@@ -35,30 +36,38 @@ const Home = () => (
       </Text>
       <Spacer />
       <View style={styles.row}>
-        <BackgroundGradient start="#4100FE" end="#3BD9F0" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Write once, read everywere"}</Text>
-          <Text style={styles.boxText}>
-            {"No server runtime, no database, your pages are generated before"}
-          </Text>
-        </BackgroundGradient>
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#3023AE"
+            end="#C96DD8"
+            title={"Write once, read everywere"}
+            description={
+              "No server runtime, no database, your pages are generated before"
+            }
+          />
+        </View>
         <Spacer large />
-        <BackgroundGradient start="#10E951" end="#006BF6" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Documents built as an app"}</Text>
-          <Text style={styles.boxText}>
-            {
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#4100FE"
+            end="#3BD9F0"
+            title={"Documents built as an app"}
+            description={
               "Once a user has loaded their entry point, they only download the minimal set of data to get to the next page"
             }
-          </Text>
-        </BackgroundGradient>
+          />
+        </View>
         <Spacer large />
-        <BackgroundGradient start="#006BF6" end="#46BCC5" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Offline capabilities"}</Text>
-          <Text style={styles.boxText}>
-            {
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#AE8023"
+            end="#FFF506"
+            title={"Offline capabilities"}
+            description={
               "Phenomic conceptually separates your shell from your data. You can create an offline-first experience"
             }
-          </Text>
-        </BackgroundGradient>
+          />
+        </View>
       </View>
       <Spacer />
       <Text
@@ -87,28 +96,38 @@ const Home = () => (
       </Text>
       <Spacer />
       <View style={styles.row}>
-        <BackgroundGradient start="#4100FE" end="#3BD9F0" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Small API surface"}</Text>
-          <Text style={styles.boxText}>
-            {"Phenomic has a very simple core."}
-          </Text>
-        </BackgroundGradient>
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#B4ED50"
+            end="#429321"
+            title={"Small API surface"}
+            description={"Phenomic has a very simple core."}
+          />
+        </View>
+
         <Spacer large />
-        <BackgroundGradient start="#10E951" end="#006BF6" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Extenstible"}</Text>
-          <Text style={styles.boxText}>
-            {"You can write your own plugins to bring any feature, really!"}
-          </Text>
-        </BackgroundGradient>
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#03689F"
+            end="#51F5F2"
+            title={"Extenstible"}
+            description={
+              "You can write your own plugins to bring any feature, really!"
+            }
+          />
+        </View>
         <Spacer large />
-        <BackgroundGradient start="#006BF6" end="#46BCC5" style={styles.box}>
-          <Text style={styles.boxTitle}>{"Hot reload"}</Text>
-          <Text style={styles.boxText}>
-            {
+        <View style={styles.box}>
+          <FeatureBlock
+            start="#9F031B"
+            end="#F5515F"
+            title={"Hot reload"}
+            description={
               "Your shell and your data can both refresh on the fly. No more ⌘ + R!"
             }
-          </Text>
-        </BackgroundGradient>
+          />
+        </View>
+
       </View>
     </BodyContainer>
     <Spacer large />
@@ -124,23 +143,14 @@ const styles = StyleSheet.create({
     marginTop: -160
   },
   row: {
-    flexDirection: "row"
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
   box: {
-    width: "33%",
-    borderRadius: 6
-  },
-  boxTitle: {
-    padding: 10,
-    paddingBottom: 0,
-    fontSize: 24,
-    color: "#fff",
-    textAlign: "center"
-  },
-  boxText: {
-    color: "#fff",
-    padding: 20,
-    fontSize: 14
+    width: 272,
+    flexShrink: 1,
+    minWidth: 240,
+    paddingVertical: 10
   }
 });
 
