@@ -15,7 +15,7 @@ const Wrapper = (props: Object) => (
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "#eff7f7"
+    backgroundColor: "#F2F5F8"
   }
 });
 

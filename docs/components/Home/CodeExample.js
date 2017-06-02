@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   itemTitle: {
-    fontSize: 18
-    // color: "#fff"
+    fontSize: 18,
+    color: "#6B6B6B"
   },
   itemSubTitle: {
-    fontSize: 12
-    // color: "#fff"
+    fontSize: 12,
+    color: "#6B6B6B"
   }
 });
 

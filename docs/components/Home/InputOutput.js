@@ -3,15 +3,24 @@ import { StyleSheet, View, Text } from "react-primitives";
 
 /* eslint-disable react-native/no-inline-styles */
 
+import Flex from "../Flex";
 import Browser from "../Browser";
 import Spacer from "../Spacer";
 
 const CodeExample = () => (
   <View>
     <View style={styles.row}>
-      <View>
+      <Flex style={{ width: 250 }}>
+        <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
+          {"Choose your favorites technologies"}
+        </Text>
         <View
-          style={{ backgroundColor: "#12171C", padding: 10, borderRadius: 6 }}
+          style={{
+            backgroundColor: "#12171C",
+            padding: Spacer.default,
+            borderRadius: 6,
+            boxShadow: "0 4px 10px rgba(0,0,0,.4)"
+          }}
         >
           <View style={{ flexDirection: "row" }}>
             <View
@@ -40,7 +49,7 @@ const CodeExample = () => (
               <img src="/assets/react.svg" width="96" />
             </View>
           </View>
-          <Spacer small />
+          <Spacer />
           <View style={{ flexDirection: "row" }}>
             <View
               style={{
@@ -78,8 +87,8 @@ const CodeExample = () => (
             </View>
           </View>
         </View>
-      </View>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      </Flex>
+      <Flex style={{ justifyContent: "center", alignItems: "center" }}>
         <View
           style={{
             backgroundColor: "#fff",
@@ -93,9 +102,12 @@ const CodeExample = () => (
         >
           <Text style={{ color: "#4990E2", fontSize: 36 }}>{"→"}</Text>
         </View>
-      </View>
-      <View>
-        <Browser style={{ width: 300 }}>
+      </Flex>
+      <Flex style={{ width: 250 }}>
+        <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
+          {"Get a website"}
+        </Text>
+        <Browser style={{ boxShadow: "0 4px 10px rgba(0,0,0,.4)" }}>
           <Text
             style={{
               backgroundColor: "#553A81",
@@ -133,7 +145,7 @@ const CodeExample = () => (
             </View>
           </View>
         </Browser>
-      </View>
+      </Flex>
     </View>
   </View>
 );

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-primitives";
+import { StyleSheet } from "react-primitives";
 
 import BodyContainer from "../BodyContainer";
 import BackgroundGradient from "../BackgroundGradient";
@@ -7,7 +7,7 @@ import BackgroundGradient from "../BackgroundGradient";
 import FooterNavBar from "./NavBar";
 
 const Footer = (props: Object) => (
-  <BackgroundGradient name="darkGrey" style={props.style}>
+  <BackgroundGradient style={props.style} start="#2A2A2A" end="#121212">
     <BodyContainer style={styles.hero}>
       <FooterNavBar />
     </BodyContainer>

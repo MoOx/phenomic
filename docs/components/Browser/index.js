@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-primitives";
 
 /* eslint-disable react-native/no-inline-styles */
 
-const Editor = (props: Object) => (
+const Browser = (props: Object) => (
   <View style={[props.style, styles.editor]}>
     <View style={styles.header}>
       <View style={[styles.bullet, { backgroundColor: "#FC4948" }]} />
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Editor;
+export default Browser;
