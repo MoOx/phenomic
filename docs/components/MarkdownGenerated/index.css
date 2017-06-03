@@ -11,12 +11,11 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -30px;
+  left: -32px;
   text-align: center;
   padding-left: 10px;
   padding-right: 10px;
   width: 20px;
-  line-height: 20px;
   text-decoration: none;
   opacity: 0.1;
   transition: opacity 0.2s;
