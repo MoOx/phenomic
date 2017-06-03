@@ -26,7 +26,7 @@ const Html = (props: HtmlPropsType) => {
         {helmet.base.toComponent()}
         {helmet.title.toComponent()}
         {helmet.meta.toComponent()}
-        <link href="/styles.css" />
+        <link rel="stylesheet" href="/styles.css" />
         <style id="react-native-stylesheet-static">{staticStyles}</style>
         <style id="react-native-stylesheet-static">{mainStyles}</style>
         {helmet.link.toComponent()}
