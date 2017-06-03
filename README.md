@@ -14,9 +14,6 @@
 <a title="Windows Build status" href="https://ci.appveyor.com/project/MoOx/phenomic/branch/master">
   <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />
 </a>
-<a title="Code Coverage" href="https://coveralls.io/github/phenomic/phenomic">
-  <img src="https://img.shields.io/coveralls/phenomic/phenomic/master.svg" />
-</a>
 <a title="Version" href="https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md">
   <img src="https://img.shields.io/npm/v/phenomic.svg" />
 </a>

@@ -15,7 +15,6 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "coveralls": "^2.11.8",
     "cross-env": "^2.0.0",
     "eslint": "^3.7.1",
     "eslint-config-i-am-meticulous": "^6.0.1",
@@ -54,8 +53,7 @@
     "docs:deploy": "cd docs && npm run deploy",
     "pretest": "npm run -s transpile && npm run -s lint",
     "test": "npm run -s tests",
-    "posttest": "npm run -s docs:test",
-    "coverage": "cat ./coverage/lcov.info | coveralls"
+    "posttest": "npm run -s docs:test"
   },
   "lint-staged": {
     "*.js": [
