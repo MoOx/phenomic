@@ -20,6 +20,6 @@ Therefore we decided to make a simple core API and put the specifics in plugins.
 
 Today we're officially releasing the first alpha of our 1.0.0 API, and we'd be really grateful for your feedback while we finalise the last details and the docs.
 
-You can have a look on this website source and learn how to get started.
+You can have a look on [this website source](https://github.com/phenomic/phenomic/tree/master/docs) and [learn how to get started](/docs/getting-started).
 
 We hope you'll like this release!
