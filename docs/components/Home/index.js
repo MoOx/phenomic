@@ -110,7 +110,7 @@ const Home = () => (
           <FeatureBlock
             start="#03689F"
             end="#51F5F2"
-            title={"Extenstible"}
+            title={"Extensible"}
             description={
               "You can write your own plugins to bring any feature, really!"
             }
