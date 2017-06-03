@@ -18,7 +18,7 @@ const GettingStarted = () => (
       <View style={styles.logos}>
         <Link
           style={styles.logo}
-          href="https://github.com/phenomic/phenomic/blob/master/packages/preset-react-app/docs/getting-started/index.md"
+          href="https://github.com/phenomic/phenomic/blob/master/packages/preset-react-app/docs/getting-started/README.md"
         >
           <View style={styles.img}>
             <img src="/assets/react.svg" width="128" />
