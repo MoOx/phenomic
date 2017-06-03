@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />
 </a>
 <a title="Version" href="https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md">
-  <img src="https://img.shields.io/npm/v/phenomic.svg" />
+  <img src="https://img.shields.io/npm/v/@phenomic/core.svg" />
 </a>
 </p>
 
