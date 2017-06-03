@@ -4,9 +4,12 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
+    "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
     "start": "phenomic start",
     "build": "phenomic build",
-    "test": "npm run build"
+    "pretest": "npm run -s showcase-screenshots",
+    "test": "npm run -s build",
+    "predeploy": "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
@@ -24,6 +27,7 @@
     "babel-cli": "^6.24.1",
     "gray-matter": "^2.1.1",
     "image-optim": "^3.0.0",
+    "imageoptim-cli": "^1.14.9",
     "mkdirp": "^0.5.1",
     "nightmare": "^2.10.0",
     "png-jpg": "0.0.2",
