@@ -1,51 +1,50 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-primitives";
 
+import BackgroundGradient from "../BackgroundGradient";
+
 type PropsType = {
   start: string,
   end: string,
   direction?: string,
-  style: any,
-  children?: React$Element<any>
+  title: string,
+  description: string
 };
 const FeatureBlock = (props: PropsType) => (
-  <div style={{ width: "100%", flexGrow: 1 }}>
-    <div
-      style={{
-        ...rawStyles,
-        ...makeGradient(props.start, props.end, props.direction),
-        borderRadius: 6
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          padding: 10,
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <View style={styles.title}>
-          <Text style={styles.titleText}>{props.title}</Text>
-        </View>
-        <View style={styles.description}>
-          <Text style={styles.descriptionText}>{props.description}</Text>
-        </View>
-      </div>
-    </div>
-  </div>
+  <BackgroundGradient
+    start={props.start}
+    end={props.end}
+    direction={props.direction}
+    style={styles.container}
+  >
+    <View style={styles.stretch}>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{props.title}</Text>
+      </View>
+      <View style={styles.description}>
+        <Text style={styles.descriptionText}>{props.description}</Text>
+      </View>
+    </View>
+  </BackgroundGradient>
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    borderRadius: 6,
+    paddingBottom: "80%"
+  },
+  stretch: {
+    ...StyleSheet.absoluteFillObject,
+    padding: 20,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
   title: {
-    flexBasis: "25%"
+    flexBasis: "35%"
   },
   description: {
-    flexBasis: "75%"
+    flexBasis: "65%"
   },
   titleText: {
     padding: 10,
@@ -60,17 +59,6 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 16
   }
-});
-const rawStyles = {
-  display: "block",
-  paddingBottom: "100%",
-  borderRadius: 10,
-  position: "relative"
-};
-
-const makeGradient = (start, end, direction = "to bottom right") => ({
-  backgroundColor: start,
-  backgroundImage: `linear-gradient(${direction}, ${start}, ${end})`
 });
 
 export default FeatureBlock;
