@@ -12,7 +12,7 @@ const CodeExample = () => (
     <View style={styles.row}>
       <Flex style={{ width: 250 }}>
         <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
-          {"Choose your favorites technologies"}
+          {"Choose your favorite technologies"}
         </Text>
         <View
           style={{
