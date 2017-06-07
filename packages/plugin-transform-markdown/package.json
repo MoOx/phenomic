@@ -39,7 +39,11 @@
     "remark-slug": "^4.2.2",
     "remark-toc": "^4.0.0"
   },
+  "peerDependencies": {
+    "@phenomic/core": "^1.0.0-alpha.2"
+  },
   "devDependencies": {
+    "@phenomic/core": "^1.0.0-alpha.2",
     "react-test-renderer": "^15.5.4"
   }
 }
