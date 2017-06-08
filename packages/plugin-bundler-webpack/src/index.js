@@ -58,7 +58,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
 export default function() {
   return {
     name: "@phenomic/plugin-bundler-webpack",
-    getMiddlewares(config: PhenomicConfig) {
+    addDevServerMiddlewares(config: PhenomicConfig) {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
       return [

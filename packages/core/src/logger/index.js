@@ -8,7 +8,7 @@ const ERROR = "error";
 
 // from log-symbols
 type TypeType = "info" | "success" | "warning" | "error" | null;
-type WriterType = (msg: string) => void;
+type WriterType = false | ((msg: string) => void);
 
 const log = (
   sender: string,

@@ -6,23 +6,26 @@ import socketIO from "socket.io";
 import createWatcher from "../watch";
 import processFile from "../injection/processFile";
 import db from "../db";
-import createServer from "../api";
+import createAPIServer from "../api";
 
 const debug = require("debug")("phenomic:core:commands:start");
 
-function createBundlerServer(config: PhenomicConfig) {
-  debug("creating webpack server");
+function createDevServer(config: PhenomicConfig) {
+  debug("creating dev server");
   const server = express();
-  const bundlers = config.plugins.filter(p => p.buildForPrerendering);
-  const bundler = bundlers[0];
-  if (!bundler || !bundler.getMiddlewares) {
-    throw new Error("At least a bundler plugin should be used");
-  }
-  bundler.getMiddlewares(config).forEach(middleware => server.use(middleware));
-  const middlewares = config.plugins.filter(p => p.defineDevMiddleware);
-  middlewares.forEach(middleware =>
-    middleware.defineDevMiddleware(server, config)
-  );
+  config.plugins.forEach(async plugin => {
+    if (plugin.addDevServerMiddlewares) {
+      const middlewares = plugin.addDevServerMiddlewares(config);
+      middlewares.forEach(async m => {
+        if (m.then && typeof m.then) {
+          const resolved = await m;
+          if (resolved) server.use(resolved);
+        } else {
+          server.use(m);
+        }
+      });
+    }
+  });
   return server;
 }
 
@@ -31,8 +34,8 @@ function start(config: PhenomicConfig) {
   process.env.BABEL_ENV = process.env.BABEL_ENV || "development";
   process.env.PHENOMIC_ENV = "development";
   debug("starting phenomic server");
-  const phenomicServer = createServer(db, config.plugins);
-  const bundlerServer = createBundlerServer(config);
+  const phenomicServer = createAPIServer(db, config.plugins);
+  const bundlerServer = createDevServer(config);
   const renderers = config.plugins.filter(p => p.getRoutes);
   const renderer: PhenomicPlugin = renderers[0];
   const transformers = config.plugins.filter(
@@ -83,4 +86,5 @@ function start(config: PhenomicConfig) {
   bundlerServer.listen(config.port);
   console.log(`✨ Open http://localhost:${config.port}`);
 }
+
 export default start;

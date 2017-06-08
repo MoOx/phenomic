@@ -64,11 +64,14 @@ export type PhenomicPlugin = {
   collect?: (db: PhenomicDB, fileName: string, parsed: Object) => Array<mixed>,
   // bunder
   buildForPrerendering?: Function,
-  getMiddlewares?: (config: PhenomicConfig) => Array<express$Middleware>,
   // renderer
   getRoutes?: Function,
   renderServer?: Function,
-  renderHTML?: PhenomicPluginRenderHTMLType
+  renderHTML?: PhenomicPluginRenderHTMLType,
+  // common
+  addDevServerMiddlewares?: (
+    config: PhenomicConfig
+  ) => Array<express$Middleware | Promise<express$Middleware>>
 };
 
 export type PhenomicPlugins = Array<PhenomicPlugin>;
