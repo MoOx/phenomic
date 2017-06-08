@@ -49,7 +49,7 @@ export function getFields(json: PhenomicTransformResult) {
 
 function isLiteral(value) {
   const type = typeof value;
-  return value === "string" || value === "number" || value === "boolean";
+  return type === "string" || type === "number" || type === "boolean";
 }
 
 function isArrayOfLiterals(array) {
