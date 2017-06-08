@@ -19,9 +19,7 @@ module BodyRenderer = {
     };
   let render {props} => {
     let tree = PhenomicContent.jsTreeToReason props.body;
-    <div style=(ReactDOMRe.Style.make fontFamily::"sans-serif" ())>
-      (renderChild tree)
-    </div>
+    <div> (renderChild tree) </div>
   };
 };
 
