@@ -12,8 +12,14 @@ import createServer from "../api";
 import writeFile from "../utils/writeFile";
 import resolveURLsToPrerender from "../prerender/resolve";
 import db from "../db";
+import log from "../utils/log";
+import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:build");
+
+const content = "content";
+const getContentPath = (config: PhenomicConfig) =>
+  getPath(path.join(config.path, content));
 
 console.log("⚡️ Hey! Let's get on with it");
 let lastStamp = Date.now();
@@ -33,22 +39,30 @@ async function getContent(db, config: PhenomicConfig) {
   if (!collectors.length) {
     throw Error("Phenomic expects at least a collector plugin");
   }
-  const files = oneShot({
-    path: path.join(config.path, "content"),
-    plugins: config.plugins
-  });
-  await db.destroy();
-  await Promise.all(
-    files.map(file =>
-      processFile({
-        config,
-        db,
-        file,
-        transformers,
-        collectors
-      })
-    )
-  );
+
+  try {
+    const contentPath = await getContentPath(config);
+    const files = oneShot({
+      path: contentPath,
+      plugins: config.plugins
+    });
+    await db.destroy();
+    await Promise.all(
+      files.map(file =>
+        processFile({
+          config,
+          db,
+          file,
+          transformers,
+          collectors
+        })
+      )
+    );
+  } catch (e) {
+    log.warn(
+      `no '${content}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+    );
+  }
 }
 function createFetchFunction(port: number) {
   debug("creating fetch function");

@@ -7,8 +7,14 @@ import createWatcher from "../watch";
 import processFile from "../injection/processFile";
 import db from "../db";
 import createAPIServer from "../api";
+import log from "../utils/log";
+import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:start");
+
+const contentFolder = "content";
+const getContentPath = (config: PhenomicConfig) =>
+  getPath(path.join(config.path, contentFolder));
 
 function createDevServer(config: PhenomicConfig) {
   debug("creating dev server");
@@ -29,7 +35,7 @@ function createDevServer(config: PhenomicConfig) {
   return server;
 }
 
-function start(config: PhenomicConfig) {
+async function start(config: PhenomicConfig) {
   process.env.NODE_ENV = process.env.NODE_ENV || "development";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "development";
   process.env.PHENOMIC_ENV = "development";
@@ -52,27 +58,36 @@ function start(config: PhenomicConfig) {
     throw new Error("Phenomic expects at least a collector plugin");
   }
   const io = socketIO(1415);
-  const watcher = createWatcher({
-    path: path.join(config.path, "content"),
-    plugins: config.plugins
-  });
 
-  watcher.onChange(async function(files) {
-    debug("watcher onChange event");
-    try {
-      await db.destroy();
-      await Promise.all(
-        files.map(file =>
-          processFile({ config, db, file, transformers, collectors })
-        )
-      );
-    } catch (e) {
-      setTimeout(() => {
-        throw e;
-      }, 1);
-    }
-    io.emit("change");
-  });
+  try {
+    const content = await getContentPath(config);
+    const watcher = createWatcher({
+      path: content,
+      plugins: config.plugins
+    });
+
+    watcher.onChange(async function(files) {
+      debug("watcher onChange event");
+      try {
+        await db.destroy();
+        await Promise.all(
+          files.map(file =>
+            processFile({ config, db, file, transformers, collectors })
+          )
+        );
+      } catch (e) {
+        setTimeout(() => {
+          throw e;
+        }, 1);
+      }
+      io.emit("change");
+    });
+  } catch (e) {
+    log.warn(
+      `no '${contentFolder}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+    );
+  }
+
   bundlerServer.use("/phenomic", phenomicServer);
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
