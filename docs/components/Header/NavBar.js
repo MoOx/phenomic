@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: "baseline",
     justifyContent: "center",
     paddingVertical: 10,
-    flewGrow: 1
+    flexGrow: 1
   },
   text: {
     color: "#fff",
