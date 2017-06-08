@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BodyRenderer accepts a map for components 1`] = `
+"<View className=\\"test\\">
+  <Link href=\\"http://test\\">
+    Link
+  </Link>
+</View>"
+`;
+
+exports[`BodyRenderer tells you when pass undefined 1`] = `null`;
+
+exports[`BodyRenderer works with phenomic json body 1`] = `
+"<p className=\\"test\\">
+  <a href=\\"http://test\\">
+    Link
+  </a>
+</p>"
+`;
+
+exports[`BodyRenderer works with raw html 1`] = `
+"<div
+  dangerouslySetInnerHTML={{
+    __html: '<h1>Test</h1'
+  }}
+ />"
+`;
