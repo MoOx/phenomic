@@ -61,7 +61,7 @@ export type PhenomicPlugin = {
   // api
   define?: (api: express$Application, db: PhenomicDB) => mixed,
   // collector
-  collect?: (file: mixed) => Array<mixed>,
+  collect?: (db: PhenomicDB, fileName: string, parsed: Object) => Array<mixed>,
   // bunder
   buildForPrerendering?: Function,
   getMiddlewares?: (config: PhenomicConfig) => Array<express$Middleware>,

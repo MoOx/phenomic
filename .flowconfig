@@ -1,28 +1,26 @@
 [version]
-0.47.0
+^0.47.0
 
 [libs]
 ./flow/interfaces/
 
 [ignore]
 .*/node_modules/.*
-.*/docs/node_modules/.*
-.*/test-setup/.*
 .*/lib/.*
 .*/coverage/.*
 .*/__tests__/_output/.*
 .*/dist/.*
-.*/docs/.*
-.*\.md
 # for CI
 .*/watchman/.*
+
+; please remove me when you have time to kill
+<PROJECT_ROOT>/docs/.*
 
 [options]
 all=true
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
-module.file_ext=.json
 
-# packages/phenomic-*
-module.name_mapper='^phenomic\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/phenomic\1/src/\2'
-module.name_mapper='^phenomic\([a-z-]*\)$' -> '<PROJECT_ROOT>/packages/phenomic\1/src'
+# packages/*
+module.name_mapper='^@phenomic\/\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
+module.name_mapper='^@phenomic\/\([a-z-]*\)$' -> '<PROJECT_ROOT>/packages/\1/src'
