@@ -20,6 +20,8 @@
 all=true
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
+# for Windows compat with json files
+module.file_ext=.json
 
 # packages/*
 module.name_mapper='^@phenomic\/\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
