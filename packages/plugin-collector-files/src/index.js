@@ -43,12 +43,20 @@ export function getFields(json: PhenomicTransformResult) {
   return keys.filter(key => key !== "author" && key !== "authors");
 }
 
+function isLiteral(value) {
+  const type = typeof value;
+  return value === "string" || value === "number" || value === "boolean";
+}
+
+function isArrayOfLiterals(array) {
+  return Array.isArray(array) && array.every(isLiteral);
+}
+
 export function getFieldValue(json: PhenomicTransformResult, key: string) {
-  if (Array.isArray(json.data[key])) {
+  if (isArrayOfLiterals(json.data[key])) {
     return json.data[key];
   }
-  const type = typeof json.data[key];
-  if (type === "string" || type === "number" || type === "boolean") {
+  if (isLiteral(json.data[key])) {
     return [json.data[key]];
   }
   return [];
