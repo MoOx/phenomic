@@ -30,6 +30,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     );
     debug("webpack.config.js used");
   } catch (e) {
+    debug("webpack.config.js is failing", e.toString());
     try {
       webpackConfig = require(path.join(
         config.path,
@@ -37,6 +38,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
       ))(config);
       debug("webpack.config.babel.js used");
     } catch (e) {
+      debug("webpack.config..babel.js is failing", e.toString());
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(
         config
       );
