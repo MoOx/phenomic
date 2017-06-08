@@ -26,7 +26,7 @@
     "flow-bin": "^0.47.0",
     "git-exec-and-restage": "^1.0.1",
     "husky": "^0.13.3",
-    "jest": "^19.0.0",
+    "jest": "^20.0.0",
     "lerna": "^2.0.0-rc.5",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
