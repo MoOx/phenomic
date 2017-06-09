@@ -1,16 +1,9 @@
-import path from "path";
-
 import cosmiconfig from "cosmiconfig";
 
+import defaultConfig from "./defaultConfig.js";
 import flattenConfiguration from "./configuration/flattenConfiguration.js";
 import start from "./commands/start.js";
 import build from "./commands/build.js";
-
-const defaultConfig = {
-  path: process.cwd(),
-  outdir: path.join(process.cwd(), "dist"),
-  port: 3333
-};
 
 const shittyCatch = error => {
   setTimeout(() => {

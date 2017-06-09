@@ -3,9 +3,10 @@ import path from "path";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
-module.exports = (/* config: PhenomicConfig */) => ({
+const nodeModules = path.join(process.cwd(), "node_modules");
+module.exports = (config: PhenomicConfig) => ({
   entry: {
-    bundle: [
+    [config.bundleName]: [
       process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("webpack-hot-middleware/client"),
       process.env.PHENOMIC_ENV !== "static" &&
@@ -14,7 +15,7 @@ module.exports = (/* config: PhenomicConfig */) => ({
     ].filter(item => item)
   },
   output: {
-    publicPath: "/",
+    publicPath: "/", // @todo make this dynamic
     path: path.join(process.cwd(), "dist"),
     filename: "[name].js"
   },
@@ -57,13 +58,9 @@ module.exports = (/* config: PhenomicConfig */) => ({
       "react-native": "react-native-web",
 
       // to ensure a single module is used
-      react: path.resolve(path.join(process.cwd(), "node_modules", "react")),
-      "react-dom": path.resolve(
-        path.join(process.cwd(), "node_modules", "react-dom")
-      ),
-      "react-router": path.resolve(
-        path.join(process.cwd(), "node_modules", "react-router")
-      )
+      react: path.resolve(path.join(nodeModules, "react")),
+      "react-dom": path.resolve(path.join(nodeModules, "react-dom")),
+      "react-router": path.resolve(path.join(nodeModules, "react-router"))
     }
   },
 

@@ -95,7 +95,7 @@ async function start(config: PhenomicConfig) {
     if (typeof renderer.renderHTML !== "function") {
       res.end("Phenomic renderer requires a renderHTML function to be exposed");
     } else {
-      res.end(renderer.renderHTML());
+      res.end(renderer.renderHTML(config));
     }
   });
   bundlerServer.listen(config.port);

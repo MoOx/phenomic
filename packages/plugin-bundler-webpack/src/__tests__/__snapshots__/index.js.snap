@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate array 1`] = `
+[Error: @phenomic/plugin-bundler-webpack expects an entry named 'phenomic.main' in your webpack config.
+Your current entry is of type 'array'.
+
+Please use an object like this:
+
+  entry: {
+    "phenomic.main": ["something.js","App.js"],
+  }
+
+]
+`;
+
+exports[`validate nothing 1`] = `
+[Error: @phenomic/plugin-bundler-webpack expects an entry named 'phenomic.main' in your webpack config.
+Your current entry is of type 'undefined'.
+
+Please use an object like this:
+
+  entry: {
+    "phenomic.main": [
+      process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),
+      process.env.PHENOMIC_ENV !== "static" && require.resolve("react-hot-loader/patch"),
+      "./App.js"
+    ].filter(item => item),
+  }
+
+]
+`;
+
+exports[`validate object without key 1`] = `
+[Error: @phenomic/plugin-bundler-webpack expects an entry named 'phenomic.main' in your webpack config.
+Your current entries keys are 'stuff,thing'.
+
+Please use an object like this:
+
+  entry: {
+    "phenomic.main": [
+      process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),
+      process.env.PHENOMIC_ENV !== "static" && require.resolve("react-hot-loader/patch"),
+      "./App.js"
+    ].filter(item => item),
+  }
+
+]
+`;
+
+exports[`validate string 1`] = `
+[Error: @phenomic/plugin-bundler-webpack expects an entry named 'phenomic.main' in your webpack config.
+Your current entry is of type 'string'.
+
+Please use an object like this:
+
+  entry: {
+    "phenomic.main": "App.js",
+  }
+
+]
+`;
