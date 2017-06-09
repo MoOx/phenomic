@@ -7,7 +7,7 @@ import { version } from "../../../lerna.json";
 
 const HeaderNavBar = () => (
   <View style={styles.header}>
-    <View style={styles.row}>
+    <View style={styles.logo}>
       <Link to="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link>
@@ -68,12 +68,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10
   },
-  row: {
+  logo: {
     flexDirection: "row",
     alignItems: "baseline",
     justifyContent: "center",
-    paddingVertical: 10,
-    flexGrow: 1
+    paddingVertical: 10
   },
   text: {
     color: "#fff",
