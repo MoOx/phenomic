@@ -21,10 +21,7 @@ const content = "content";
 const getContentPath = (config: PhenomicConfig) =>
   getPath(path.join(config.path, content));
 
-console.log("⚡️ Hey! Let's get on with it");
 let lastStamp = Date.now();
-debug("cleaning dist");
-rimraf.sync("dist");
 async function getContent(db, config: PhenomicConfig) {
   debug("getting content");
   const transformers = config.plugins.filter(
@@ -97,6 +94,10 @@ async function prerenderFileAndDependencies(
   );
 }
 async function build(config) {
+  console.log("⚡️ Hey! Let's get on with it");
+  debug("cleaning dist");
+  rimraf.sync("dist");
+
   process.env.NODE_ENV = process.env.NODE_ENV || "production";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "production";
   process.env.PHENOMIC_ENV = "static";
