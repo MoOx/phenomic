@@ -9,12 +9,12 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
 import webpackPromise from "./webpack-promise.js";
+import validate from "./validate.js";
 
 const debug = require("debug")("phenomic:plugin:webpack");
 
 const { UglifyJsPlugin } = optimize;
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true });
-const bundleName = "phenomic.node";
 const requireSourceMapSupport = `require('${require
   .resolve("source-map-support/register")
   // windows support
@@ -30,6 +30,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     );
     debug("webpack.config.js used");
   } catch (e) {
+    debug("webpack.config.js is failing", e.toString());
     try {
       webpackConfig = require(path.join(
         config.path,
@@ -37,12 +38,14 @@ const getWebpackConfig = (config: PhenomicConfig) => {
       ))(config);
       debug("webpack.config.babel.js used");
     } catch (e) {
+      debug("webpack.config.babel.js is failing", e.toString());
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(
         config
       );
       debug("default webpack config used");
     }
   }
+  validate(webpackConfig, config);
   debug(webpackConfig);
   return {
     ...webpackConfig,
@@ -58,7 +61,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
 export default function() {
   return {
     name: "@phenomic/plugin-bundler-webpack",
-    getMiddlewares(config: PhenomicConfig) {
+    addDevServerMiddlewares(config: PhenomicConfig) {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
       return [
@@ -80,12 +83,14 @@ export default function() {
       const webpackConfig = getWebpackConfig(config);
       const specialConfig = {
         ...webpackConfig,
-        target: "node",
+        // only keep the entry we are going to use
         entry: {
-          [bundleName]: path.join(config.path, "App.js")
+          [config.bundleName]: webpackConfig.entry[config.bundleName]
         },
+        // adjust some config details to be node focused
+        target: "node",
         output: {
-          publicPath: "/",
+          publicPath: "/", // @todo make this dynamic
           path: cacheDir,
           filename: "[name].js",
           library: "app",
@@ -109,7 +114,7 @@ export default function() {
         devtool: "#source-map"
       };
       return webpackPromise(specialConfig).then(
-        () => require(path.join(cacheDir, bundleName)).default
+        () => require(path.join(cacheDir, config.bundleName)).default
       );
     },
     build(config: PhenomicConfig) {

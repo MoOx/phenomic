@@ -29,6 +29,7 @@ function getMatch({ routes, location }) {
 }
 
 function renderToString(
+  config: PhenomicConfig,
   store: StoreType,
   { renderProps }: { renderProps: Object },
   renderHTML,
@@ -40,6 +41,7 @@ function renderToString(
     </Provider>
   );
   return renderHTML(
+    config,
     {
       body,
       state: store.getState()
@@ -49,6 +51,7 @@ function renderToString(
 }
 
 async function renderServer(
+  config: PhenomicConfig,
   app: AppType,
   fetch: PhenomicFetch,
   location: string
@@ -77,6 +80,7 @@ async function renderServer(
   let contents;
   try {
     contents = await renderToString(
+      config,
       store,
       { renderProps, redirectLocation },
       renderHTML,

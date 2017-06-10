@@ -95,7 +95,7 @@ const ShowcaseList = (props: Object) => (
                       </Link>
                     ))}
                 </View>
-                <Link to={item.url}>
+                <Link href={item.url}>
                   <View style={styles.imageContainerLarge}>
                     <Image
                       source={{

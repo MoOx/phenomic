@@ -10,21 +10,18 @@ test("should not throw when sastifies", () => {
 
 test("should throw when node version doesn't sastify", () => {
   expect(() => checkEngine("3.0.0", "2.0.0", false)).toThrow(
-    // $FlowFixMe interface is incorrect
     /node version is 3.0.0/
   );
 });
 
 test("should throw when npm version doesn't sastify", () => {
   expect(() => checkEngine("4.2.0", "2.0.0", false)).toThrow(
-    // $FlowFixMe interface is incorrect
     /npm version is 2.0.0/
   );
 });
 
 test("should throw when both node and npm version doesn't sastify", () => {
   expect(() => checkEngine("3.0.0", "2.0.0", false)).toThrow(
-    // $FlowFixMe interface is incorrect
     /node version is 3.0.0 (.*) npm version is 2.0.0/
   );
 });

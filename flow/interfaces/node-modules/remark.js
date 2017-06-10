@@ -1,8 +1,8 @@
 declare module "remark" {
   declare interface remarkInstance {
-    use: (plugin: Function) => remarkInstance,
-    process: (s: string) => remarkResult,
-    processSync: (s: string) => Object
+    use: (plugin: Function, options?: Object) => remarkInstance,
+    process: (s: string, options?: Object) => remarkResult,
+    processSync: (s: string, options?: Object) => Object
   }
   declare interface remarkResult {
     toString: () => string

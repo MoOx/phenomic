@@ -10,8 +10,8 @@ import React from "react";
 type ComponentType = string | Class<React.Component<*, *, *>> | Function;
 
 type OptionsType = {
-  components: { [key: string]: ComponentType },
-  DefaultComponent: ComponentType
+  components?: { [key: string]: ComponentType },
+  DefaultComponent?: ComponentType
 };
 
 type ItemType =
@@ -30,47 +30,55 @@ type ItemType =
       c: Object
     };
 
-type PropsType = {
-  children: string | ItemType,
-  options: OptionsType
+type PropsType = OptionsType & {
+  children?: string | ItemType
 };
 
 const defaultOptions: OptionsType = {
   components: {
     // a: Link
-  },
-  DefaultComponent: "div"
+  }
 };
 
 const render = (item: ItemType, options: OptionsType, key: ?any) => {
   if (!item) {
     return;
   }
-  if (typeof item === "object") {
-    const {
-      t: Tag = options.DefaultComponent,
-      p: props = {},
-      c: children
-    } = item;
-    return (
-      <Tag {...props} key={key}>
-        {Array.isArray(children)
-          ? children.map((child: ItemType, key) => render(child, options, key))
-          : render(children, options)}
-      </Tag>
-    );
+  if (typeof item === "string") {
+    return item;
   }
-  return item;
+  const { p: props = {}, c: children } = item;
+  const Tag =
+    (options.components && item.t && options.components[item.t]) ||
+    item.t ||
+    options.DefaultComponent ||
+    "div";
+  return (
+    <Tag {...props} key={key}>
+      {Array.isArray(children)
+        ? children.map((child: ItemType, key) => render(child, options, key))
+        : render(children, options)}
+    </Tag>
+  );
 };
 
-const BodyRenderer = (props: PropsType) => {
-  if (typeof props.children === "string") {
-    return <div dangerouslySetInnerHTML={{ __html: props.children }} />;
+const BodyRenderer = ({ children, ...props }: PropsType) => {
+  if (typeof children === "undefined") {
+    console.error(
+      "@phenomic/plugin-renderer-react: BodyRenderer expects at least a child"
+    );
+    return null;
   }
-  return render(props.children, {
+  if (typeof children === "string") {
+    return <div dangerouslySetInnerHTML={{ __html: children }} />;
+  }
+  const r = render(children, {
     ...defaultOptions,
-    ...(props.options || {})
+    ...(props || {})
   });
+  return typeof r === "string"
+    ? <props.DefaultComponent>{r}</props.DefaultComponent>
+    : r;
 };
 
 export default BodyRenderer;

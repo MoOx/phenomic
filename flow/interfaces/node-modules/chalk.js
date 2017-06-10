@@ -1,33 +1,33 @@
-type chalkFunction = (log: string) => string;
+type chalkFunctionType = (log: string, ...args?: Array<any>) => string;
 
 declare module "chalk" {
   declare var exports: {
-    reset: chalkFunction,
-    bold: chalkFunction,
-    dim: chalkFunction,
-    italic: chalkFunction,
-    underline: chalkFunction,
-    inverse: chalkFunction,
-    hidden: chalkFunction,
-    strikethrough: chalkFunction,
+    reset: chalkFunctionType,
+    bold: chalkFunctionType,
+    dim: chalkFunctionType,
+    italic: chalkFunctionType,
+    underline: chalkFunctionType,
+    inverse: chalkFunctionType,
+    hidden: chalkFunctionType,
+    strikethrough: chalkFunctionType,
 
-    black: chalkFunction,
-    red: chalkFunction,
-    green: chalkFunction,
-    yellow: chalkFunction,
-    blue: chalkFunction,
-    magenta: chalkFunction,
-    cyan: chalkFunction,
-    white: chalkFunction,
-    gray: chalkFunction,
+    black: chalkFunctionType,
+    red: chalkFunctionType,
+    green: chalkFunctionType,
+    yellow: chalkFunctionType,
+    blue: chalkFunctionType,
+    magenta: chalkFunctionType,
+    cyan: chalkFunctionType,
+    white: chalkFunctionType,
+    gray: chalkFunctionType,
 
-    bgBlack: chalkFunction,
-    bgRed: chalkFunction,
-    bgGreen: chalkFunction,
-    bgYellow: chalkFunction,
-    bgBlue: chalkFunction,
-    bgMagenta: chalkFunction,
-    bgCyan: chalkFunction,
-    bgWhite: chalkFunction
+    bgBlack: chalkFunctionType,
+    bgRed: chalkFunctionType,
+    bgGreen: chalkFunctionType,
+    bgYellow: chalkFunctionType,
+    bgBlue: chalkFunctionType,
+    bgMagenta: chalkFunctionType,
+    bgCyan: chalkFunctionType,
+    bgWhite: chalkFunctionType
   };
 }

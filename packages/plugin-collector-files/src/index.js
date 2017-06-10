@@ -2,12 +2,16 @@ import path from "path";
 
 const debug = require("debug")("phenomic:plugin:collector-files");
 
+function normalizeWindowsPath(value: string) {
+  return value.replace(/(\/|\\)+/g, path.sep);
+}
+
 export function getKey(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
     return json.data.path;
   }
   // normalize windows path
-  name = name.replace(/(\/|\\)+/g, path.sep);
+  name = normalizeWindowsPath(name);
   return path.join(
     path
       .dirname(name)
@@ -43,12 +47,20 @@ export function getFields(json: PhenomicTransformResult) {
   return keys.filter(key => key !== "author" && key !== "authors");
 }
 
+function isLiteral(value) {
+  const type = typeof value;
+  return type === "string" || type === "number" || type === "boolean";
+}
+
+function isArrayOfLiterals(array) {
+  return Array.isArray(array) && array.every(isLiteral);
+}
+
 export function getFieldValue(json: PhenomicTransformResult, key: string) {
-  if (Array.isArray(json.data[key])) {
+  if (isArrayOfLiterals(json.data[key])) {
     return json.data[key];
   }
-  const type = typeof json.data[key];
-  if (type === "string" || type === "number" || type === "boolean") {
+  if (isLiteral(json.data[key])) {
     return [json.data[key]];
   }
   return [];
@@ -91,6 +103,7 @@ export default function() {
   return {
     name: "@phenomic/plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
+      name = normalizeWindowsPath(name);
       const pathSegments = name.split(path.sep);
       const collectionName = pathSegments[0];
       const key = getKey(name, json);
