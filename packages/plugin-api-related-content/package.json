@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-api-related-content",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "publishConfig": {
     "access": "public"
   },
@@ -33,9 +33,9 @@
     "lodash.flatten": "^4.4.0"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.2"
+    "@phenomic/core": "^1.0.0-alpha.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.2"
+    "@phenomic/core": "^1.0.0-alpha.3"
   }
 }

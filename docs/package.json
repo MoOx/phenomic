@@ -13,9 +13,9 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.2",
-    "@phenomic/core": "^1.0.0-alpha.2",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.2",
+    "@phenomic/cli": "^1.0.0-alpha.3",
+    "@phenomic/core": "^1.0.0-alpha.3",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.3",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-google-analytics": "^0.2.0",
@@ -48,5 +48,5 @@
       "height": 640
     }
   },
-  "version": "1.0.0-alpha.2"
+  "version": "1.0.0-alpha.3"
 }
