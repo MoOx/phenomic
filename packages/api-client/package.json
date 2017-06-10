@@ -30,11 +30,5 @@
   "dependencies": {
     "debug": "^2.6.0",
     "invariant": "^2.2.2"
-  },
-  "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3"
-  },
-  "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3"
   }
 }
