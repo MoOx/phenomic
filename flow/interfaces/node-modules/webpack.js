@@ -1,4 +1,10 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
+// @todo improve this
+
+export type WebpackConfig = Object;
+
+export type WebpackAssetsFiles = { [key: string]: Array<string> };
+
 type WebpackInstance = {
   query: Object,
   options: Object,
