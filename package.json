@@ -20,7 +20,7 @@
     "eslint-config-i-am-meticulous": "^6.0.1",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-flowtype": "^2.31.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-react-native": "^2.3.2",
     "flow-bin": "^0.47.0",
@@ -89,12 +89,14 @@
     "settings": {
       "import/resolver": {
         "webpack": {
-          "resolve": {
-            "extensions": [
-              ".web.js",
-              ".js",
-              ".json"
-            ]
+          "config": {
+            "resolve": {
+              "extensions": [
+                ".web.js",
+                ".js",
+                ".json"
+              ]
+            }
           }
         }
       }
