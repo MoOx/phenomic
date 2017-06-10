@@ -17,9 +17,9 @@ import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:build");
 
-const content = "content";
+const contentFolder = "content";
 const getContentPath = (config: PhenomicConfig) =>
-  getPath(path.join(config.path, content));
+  getPath(path.join(config.path, contentFolder));
 
 let lastStamp = Date.now();
 async function getContent(db, config: PhenomicConfig) {
@@ -57,7 +57,7 @@ async function getContent(db, config: PhenomicConfig) {
     );
   } catch (e) {
     log.warn(
-      `no '${content}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+      `no '${contentFolder}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
   }
 }
