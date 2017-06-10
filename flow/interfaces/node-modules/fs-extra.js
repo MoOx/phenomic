@@ -1,10 +1,8 @@
 declare module "fs-extra" {
-  declare function emptyDirSync(from: string, to: string): void;
-  declare function copySync(from: string, to: string): void;
-
   declare interface fsExtra {
-    emptyDirSync: emptyDirSync,
-    copySync: copySync
+    emptyDirSync: (from: string, to: string) => void,
+    copySync: (from: string, to: string) => void,
+    copy: (from: string, to: string, callback: (err: Error) => void) => void
   }
   declare var exports: fsExtra;
 }

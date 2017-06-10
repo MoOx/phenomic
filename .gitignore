@@ -11,16 +11,15 @@ coverage
 
 # build
 lib
+dist
 
 # tests results
 **/__tests__/_output*
 
 # docs
-**/docs/dist
 **/docs/**/*.mov
 **/docs/**/*.pxm
-**/docs/node_modules
-**/docs/content/assets/showcases/*
+**/docs/public/showcases/entry/*
 
 # logo
 logo/*.png

@@ -4,6 +4,7 @@ import ReactDOMServer from "react-dom/server";
 import DefaultHtml from "../components/HTML";
 
 const renderHTML: PhenomicPluginRenderHTMLType = (
+  config,
   props = {},
   Html = DefaultHtml
 ) => {
@@ -25,7 +26,7 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
             }}
           />
       }
-      script={<script src="/bundle.js" async />}
+      script={<script src={`/${config.bundleName}.js`} async />}
     />
   );
   return `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(html)}`;

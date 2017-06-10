@@ -2,12 +2,16 @@ import path from "path";
 
 const debug = require("debug")("phenomic:plugin:collector-files");
 
+function normalizeWindowsPath(value: string) {
+  return value.replace(/(\/|\\)+/g, path.sep);
+}
+
 export function getKey(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
     return json.data.path;
   }
   // normalize windows path
-  name = name.replace(/(\/|\\)+/g, path.sep);
+  name = normalizeWindowsPath(name);
   return path.join(
     path
       .dirname(name)
@@ -45,7 +49,7 @@ export function getFields(json: PhenomicTransformResult) {
 
 function isLiteral(value) {
   const type = typeof value;
-  return value === "string" || value === "number" || value === "boolean";
+  return type === "string" || type === "number" || type === "boolean";
 }
 
 function isArrayOfLiterals(array) {
@@ -99,6 +103,7 @@ export default function() {
   return {
     name: "@phenomic/plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
+      name = normalizeWindowsPath(name);
       const pathSegments = name.split(path.sep);
       const collectionName = pathSegments[0];
       const key = getKey(name, json);

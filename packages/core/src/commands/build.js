@@ -12,13 +12,16 @@ import createServer from "../api";
 import writeFile from "../utils/writeFile";
 import resolveURLsToPrerender from "../prerender/resolve";
 import db from "../db";
+import log from "../utils/log";
+import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:build");
 
-console.log("⚡️ Hey! Let's get on with it");
+const content = "content";
+const getContentPath = (config: PhenomicConfig) =>
+  getPath(path.join(config.path, content));
+
 let lastStamp = Date.now();
-debug("cleaning dist");
-rimraf.sync("dist");
 async function getContent(db, config: PhenomicConfig) {
   debug("getting content");
   const transformers = config.plugins.filter(
@@ -33,22 +36,30 @@ async function getContent(db, config: PhenomicConfig) {
   if (!collectors.length) {
     throw Error("Phenomic expects at least a collector plugin");
   }
-  const files = oneShot({
-    path: path.join(config.path, "content"),
-    plugins: config.plugins
-  });
-  await db.destroy();
-  await Promise.all(
-    files.map(file =>
-      processFile({
-        config,
-        db,
-        file,
-        transformers,
-        collectors
-      })
-    )
-  );
+
+  try {
+    const contentPath = await getContentPath(config);
+    const files = oneShot({
+      path: contentPath,
+      plugins: config.plugins
+    });
+    await db.destroy();
+    await Promise.all(
+      files.map(file =>
+        processFile({
+          config,
+          db,
+          file,
+          transformers,
+          collectors
+        })
+      )
+    );
+  } catch (e) {
+    log.warn(
+      `no '${content}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+    );
+  }
 }
 function createFetchFunction(port: number) {
   debug("creating fetch function");
@@ -74,7 +85,7 @@ async function prerenderFileAndDependencies(
       "a renderer is required (plugin implementing renderServer)"
     );
   }
-  const files = await renderer.renderServer(app, phenomicFetch, url);
+  const files = await renderer.renderServer(config, app, phenomicFetch, url);
   debug(`'${url}': files & deps collected`);
   return Promise.all(
     files.map(file =>
@@ -83,6 +94,10 @@ async function prerenderFileAndDependencies(
   );
 }
 async function build(config) {
+  console.log("⚡️ Hey! Let's get on with it");
+  debug("cleaning dist");
+  rimraf.sync("dist");
+
   process.env.NODE_ENV = process.env.NODE_ENV || "production";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "production";
   process.env.PHENOMIC_ENV = "static";

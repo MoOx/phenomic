@@ -69,6 +69,7 @@ function flattenConfiguration(
     path: config.path || "",
     outdir: config.outdir || "",
     port: config.port || 8080,
+    bundleName: config.bundleName || "",
     plugins: flattenPresets(config)
   };
 }

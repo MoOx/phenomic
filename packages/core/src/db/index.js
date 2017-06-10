@@ -130,6 +130,7 @@ const db = {
   ) {
     return new Promise((resolve, reject) => {
       const array = [];
+      // $FlowFixMe waaaat? sublevel is level so createReadStream is available
       getSublevel(level, sub, filter, filterValue)
         .createReadStream(wrapStreamConfig(config))
         .on("data", async function(data) {

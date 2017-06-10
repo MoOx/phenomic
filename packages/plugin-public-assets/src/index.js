@@ -1,22 +1,51 @@
 import path from "path";
 
 import express from "express";
-import fsExtra from "fs-extra";
+import fse from "fs-extra";
+import logger from "@phenomic/core/lib/logger";
+import getPath from "@phenomic/core/lib/utils/getPath";
 
-export default function() {
+export type PhenomicPluginPublicAssetsOptionsType = {
+  path: string
+};
+
+const pluginName = "@phenomic/plugin-public-assets";
+const log = logger(pluginName);
+
+const defaultOptions = {
+  path: "public"
+};
+
+export default function(
+  options: PhenomicPluginPublicAssetsOptionsType = defaultOptions
+) {
+  const warnNoPublic = (): void => {
+    log.warn(
+      `No '${options.path}' folder found. Please create this folder if you want static files to be served from the root (eg: favicon.ico).`
+    );
+  };
   return {
-    name: "@phenomic/plugin-public-assets",
-    defineDevMiddleware(server: express$Application, config: PhenomicConfig) {
-      server.use(express.static(path.join(config.path, "public")));
+    name: pluginName,
+    addDevServerMiddlewares(config: PhenomicConfig) {
+      return [
+        getPath(path.join(config.path, options.path)).then(
+          (publicPath: string) => express.static(publicPath),
+          warnNoPublic
+        )
+      ];
     },
     beforeBuild(config: PhenomicConfig) {
       return new Promise((resolve, reject) => {
-        fsExtra.copy(path.join(config.path, "public"), config.outdir, err => {
-          if (err) {
-            reject(err);
-          }
-          resolve();
-        });
+        getPath(
+          path.join(config.path, options.path)
+        ).then((publicPath: string) => {
+          fse.copy(publicPath, config.outdir, err => {
+            if (err) {
+              reject(err);
+            }
+            resolve();
+          });
+        }, warnNoPublic);
       });
     }
   };

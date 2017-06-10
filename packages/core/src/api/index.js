@@ -12,7 +12,7 @@ const connect = (list, limit, previousList = []) => {
   const hasPreviousPage = previousList.length > 0;
   return {
     hasPreviousPage,
-    previousPageIsFirst: previousList.length <= limit,
+    previousPageIsFirst: limit ? previousList.length <= limit : null,
     previous: hasPreviousPage && previousList[previousList.length - 2]
       ? encode(previousList[previousList.length - 2].key)
       : null,

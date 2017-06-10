@@ -20,6 +20,7 @@ export type PhenomicInputConfig = {
   path?: string,
   outdir?: string,
   port?: number,
+  bundleName?: string,
   plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
   presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>
 };
@@ -45,6 +46,7 @@ type PhenomicHtmlPropsType = {
 type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
 
 type PhenomicPluginRenderHTMLType = (
+  config: PhenomicConfig,
   props?: { body?: string, state?: Object },
   html?: PhenomicHtmlType
 ) => string;
@@ -61,14 +63,17 @@ export type PhenomicPlugin = {
   // api
   define?: (api: express$Application, db: PhenomicDB) => mixed,
   // collector
-  collect?: (file: mixed) => Array<mixed>,
+  collect?: (db: PhenomicDB, fileName: string, parsed: Object) => Array<mixed>,
   // bunder
   buildForPrerendering?: Function,
-  getMiddlewares?: (config: PhenomicConfig) => Array<express$Middleware>,
   // renderer
   getRoutes?: Function,
   renderServer?: Function,
-  renderHTML?: PhenomicPluginRenderHTMLType
+  renderHTML?: PhenomicPluginRenderHTMLType,
+  // common
+  addDevServerMiddlewares?: (
+    config: PhenomicConfig
+  ) => Array<express$Middleware | Promise<express$Middleware>>
 };
 
 export type PhenomicPlugins = Array<PhenomicPlugin>;
@@ -81,6 +86,7 @@ export type PhenomicConfig = {
   path: string,
   outdir: string,
   port: number,
+  bundleName: string,
   plugins: Array<PhenomicPlugin>
 };
 
