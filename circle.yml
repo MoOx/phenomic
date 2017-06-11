@@ -3,4 +3,5 @@ machine:
     version: 6
 
   environment:
+    PHENOMIC_NO_YARN: 1
     DEBUG: phenomic:*
