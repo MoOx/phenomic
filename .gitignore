@@ -3,6 +3,9 @@
 # macOS crap
 .DS_Store
 
+# Visual Studio code
+.vscode
+
 # Node.js / npm
 node_modules
 
