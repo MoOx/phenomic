@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 6
+    version: 8
 
   environment:
     PHENOMIC_NO_YARN: 1
