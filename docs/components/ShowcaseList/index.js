@@ -253,16 +253,19 @@ const styles = StyleSheet.create({
   */
 });
 
-export default createContainer(ShowcaseList, props => ({
+export const Component = ShowcaseList;
+
+export default createContainer(ShowcaseList, () => ({
+  showcase: query({
+    collection: "showcase"
+  })
+}));
+
+export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
   showcase: query({
     collection: "showcase",
-    // by: "showcaseTags",
-    ...(props.params.tag
-      ? {
-          by: "showcaseTags",
-          value: props.params.tag
-        }
-      : {})
+    by: "showcaseTags",
+    value: props.params.showcaseTags
     // order: "asc",
     // limit: 10,
     // after: props.params.after
