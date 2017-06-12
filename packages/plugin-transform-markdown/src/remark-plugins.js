@@ -53,10 +53,10 @@ export default (config?: PhenomicConfig, body: string) => {
           ...(!children
             ? {}
             : Array.isArray(children) && children.length === 0
-                ? {}
-                : Array.isArray(children) && children.length === 1
-                    ? { c: children[0] }
-                    : { c: children }),
+              ? {}
+              : Array.isArray(children) && children.length === 1
+                ? { c: children[0] }
+                : { c: children }),
           ...(!props
             ? {}
             : Object.keys(props).length === 0 ? {} : { p: props }),

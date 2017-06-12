@@ -89,7 +89,9 @@ async function renderServer(
   } catch (err) {
     console.error();
     console.error(
-      `${color.red("An error occured when Phenomic tried to render")} ${color.yellow(location)}`
+      `${color.red(
+        "An error occured when Phenomic tried to render"
+      )} ${color.yellow(location)}`
     );
     console.error();
     throw err;

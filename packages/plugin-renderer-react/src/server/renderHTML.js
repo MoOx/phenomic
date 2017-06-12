@@ -18,13 +18,13 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
       }
       state={
         props.state &&
-          <script
-            id="PhenomicHydration"
-            type="text/json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(props.state)
-            }}
-          />
+        <script
+          id="PhenomicHydration"
+          type="text/json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(props.state)
+          }}
+        />
       }
       script={<script src={`/${config.bundleName}.js`} async />}
     />

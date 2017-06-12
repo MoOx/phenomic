@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-primitives";
 import Editor from "../Editor";
 import Spacer from "../Spacer";
 
-const CodeExample = () => (
+const CodeExample = () =>
   <View>
     <View style={styles.row}>
       <View style={styles.item}>
@@ -67,8 +67,7 @@ Done!
 $ # Deploy`}</Editor>
       </View>
     </View>
-  </View>
-);
+  </View>;
 
 const styles = StyleSheet.create({
   row: {

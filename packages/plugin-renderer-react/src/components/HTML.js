@@ -1,6 +1,6 @@
 import React from "react";
 
-const Html = (props: PhenomicHtmlPropsType) => (
+const Html = (props: PhenomicHtmlPropsType) =>
   <html>
     <head>
       <meta charSet="utf-8" />
@@ -11,7 +11,6 @@ const Html = (props: PhenomicHtmlPropsType) => (
       {props.state}
       {props.script}
     </body>
-  </html>
-);
+  </html>;
 
 export default Html;

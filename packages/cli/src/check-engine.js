@@ -26,10 +26,12 @@ export default function checkVersion(
   }
 
   if (
-    !(semver.satisfies(nodeVersion, requirements.node) &&
+    !(
+      semver.satisfies(nodeVersion, requirements.node) &&
       (semver.satisfies(npmVersion, requirements.npm) ||
         (typeof yarnVersion === "string" &&
-          semver.satisfies(yarnVersion, requirements.yarn))))
+          semver.satisfies(yarnVersion, requirements.yarn)))
+    )
   ) {
     const errorMessage = colors.yellow(
       "\n⚠️ " +

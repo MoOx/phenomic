@@ -25,7 +25,9 @@ function reduceExtensions(plugins: PhenomicPlugins): Array<string> {
   const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
     if (plugin.supportedFileTypes) {
       debug(
-        `'${plugin.name}' want to support '${String(plugin.supportedFileTypes)}'`
+        `'${plugin.name}' want to support '${String(
+          plugin.supportedFileTypes
+        )}'`
       );
     }
     return [

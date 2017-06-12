@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-primitives";
 import Link from "../Link";
 import Spacer from "../Spacer";
 
-const HeaderNavBar = () => (
+const HeaderNavBar = () =>
   <View style={styles.header}>
     <View style={styles.row}>
       <Link to="/" style={styles.text}>
@@ -44,8 +44,7 @@ const HeaderNavBar = () => (
         </Text>
       </Link>
     </View>
-  </View>
-);
+  </View>;
 
 const styles = StyleSheet.create({
   header: {

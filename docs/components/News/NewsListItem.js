@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
 
-const NewsListItem = props => (
+const NewsListItem = props =>
   <Link
     to={"/news/" + props.news.id}
     style={{ textDecoration: "none", color: "inherit" }}
@@ -11,8 +11,7 @@ const NewsListItem = props => (
       <Text style={styles.title}>{props.news.title}</Text>
       <Text style={styles.date}>{props.news.date}</Text>
     </View>
-  </Link>
-);
+  </Link>;
 
 const styles = StyleSheet.create({
   container: {

@@ -7,7 +7,7 @@ import Flex from "../Flex";
 import Browser from "../Browser";
 import Spacer from "../Spacer";
 
-const CodeExample = () => (
+const CodeExample = () =>
   <View>
     <View style={styles.row}>
       <Flex style={{ width: 250 }}>
@@ -147,8 +147,7 @@ const CodeExample = () => (
         </Browser>
       </Flex>
     </View>
-  </View>
-);
+  </View>;
 
 const styles = StyleSheet.create({
   row: {

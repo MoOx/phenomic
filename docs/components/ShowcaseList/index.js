@@ -50,7 +50,7 @@ const prepareList = list => {
   return newList;
 };
 
-const ShowcaseList = (props: Object) => (
+const ShowcaseList = (props: Object) =>
   <Flex>
     <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
     <BodyContainer style={styles.page}>
@@ -73,7 +73,7 @@ const ShowcaseList = (props: Object) => (
               </Text>
             </View>}
           <View style={styles.list}>
-            {prepareList(props.showcase.node.list).map(item => (
+            {prepareList(props.showcase.node.list).map(item =>
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
                   <Text style={styles.itemName}>{item.title}</Text>
@@ -85,7 +85,7 @@ const ShowcaseList = (props: Object) => (
                 </View>
                 <View style={styles.tags}>
                   {item.showcaseTags &&
-                    item.showcaseTags.map(tag => (
+                    item.showcaseTags.map(tag =>
                       <Link
                         key={tag}
                         to={`/showcase/tag/${tag}/`}
@@ -93,7 +93,7 @@ const ShowcaseList = (props: Object) => (
                       >
                         {tag}
                       </Link>
-                    ))}
+                    )}
                 </View>
                 <Link href={item.url}>
                   <View style={styles.imageContainerLarge}>
@@ -116,7 +116,7 @@ const ShowcaseList = (props: Object) => (
                   </View>
                 </Link>
               </View>
-            ))}
+            )}
           </View>
           {/*
           <View style={styles.paginationRow}>
@@ -146,8 +146,7 @@ const ShowcaseList = (props: Object) => (
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>
-);
+  </Flex>;
 
 const styles = StyleSheet.create({
   row: {
@@ -193,10 +192,8 @@ const styles = StyleSheet.create({
   imageContainerLarge: {},
   imageLarge: {
     flex: 1,
-    paddingBottom: 100 *
-      screenshotsSize.large.height /
-      screenshotsSize.large.width +
-      "%",
+    paddingBottom:
+      100 * screenshotsSize.large.height / screenshotsSize.large.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
     borderRadius: 4
@@ -210,10 +207,8 @@ const styles = StyleSheet.create({
   imageSmall: {
     flex: 1,
     width: "100%",
-    paddingBottom: 100 *
-      screenshotsSize.small.height /
-      screenshotsSize.small.width +
-      "%",
+    paddingBottom:
+      100 * screenshotsSize.small.height / screenshotsSize.small.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
     borderRadius: 4

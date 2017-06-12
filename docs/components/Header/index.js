@@ -7,7 +7,7 @@ import BackgroundGradient from "../BackgroundGradient";
 
 import HeaderNavBar from "./NavBar";
 
-const Header = (props: Object) => (
+const Header = (props: Object) =>
   <BackgroundGradient style={props.style} start="#006BF6" end="#10E951">
     <HeaderNavBar />
     <BodyContainer style={styles.hero}>
@@ -16,8 +16,7 @@ const Header = (props: Object) => (
       <Text style={styles.heroText}>{props.title}</Text>
       {props.children && <View style={styles.children}>{props.children}</View>}
     </BodyContainer>
-  </BackgroundGradient>
-);
+  </BackgroundGradient>;
 
 const styles = StyleSheet.create({
   hero: {

@@ -8,7 +8,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import BodyContainer from "../BodyContainer";
 
-const GettingStarted = () => (
+const GettingStarted = () =>
   <Flex>
     <Header title={"Getting started with Phenomic"} />
     <BodyContainer style={styles.page}>
@@ -49,8 +49,7 @@ const GettingStarted = () => (
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>
-);
+  </Flex>;
 
 const styles = StyleSheet.create({
   page: {

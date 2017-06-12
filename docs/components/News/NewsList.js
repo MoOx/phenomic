@@ -23,9 +23,9 @@ const NewsList = (props: Object) => {
         {props.isLoading && <ActivityIndicator />}
         {!props.isLoading &&
           <View style={styles.container}>
-            {props.news.node.list.map(item => (
+            {props.news.node.list.map(item =>
               <NewsListItem key={item.id} news={item} />
-            ))}
+            )}
           </View>}
       </BodyContainer>
       <Spacer large />

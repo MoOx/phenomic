@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-primitives";
 
 /* eslint-disable react-native/no-inline-styles */
 
-const Browser = (props: Object) => (
+const Browser = (props: Object) =>
   <View style={[props.style, styles.editor]}>
     <View style={styles.header}>
       <View style={[styles.bullet, { backgroundColor: "#FC4948" }]} />
@@ -15,8 +15,7 @@ const Browser = (props: Object) => (
         {props.children}
       </View>
     </View>
-  </View>
-);
+  </View>;
 
 const radius = 4;
 const padding = 8;

@@ -15,7 +15,7 @@ import PageError from "./components/PageError";
 import NewsItem from "./components/News/NewsItem";
 import NewsList from "./components/News/NewsList";
 
-const routes = () => (
+const routes = () =>
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
@@ -50,8 +50,7 @@ const routes = () => (
       <Route path="/news/*" component={NewsItem} collection="news" />
       <Route path="*" component={PageError} />
     </Route>
-  </Router>
-);
+  </Router>;
 
 export default createApp(routes, Html);
 
@@ -62,7 +61,6 @@ if (module.hot) {
 // kill previous website ServiceWorker
 if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (const registration of registrations)
-      registration.unregister();
+    for (const registration of registrations) registration.unregister();
   });
 }

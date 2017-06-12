@@ -23,7 +23,9 @@ export default (webpackConfig: Object, config: PhenomicConfig) => {
     const type = typeOf(webpackConfig.entry);
     if (type === "object") {
       // $FlowFixMe here we know we have an object, see typeOf function
-      error += `Your current entries keys are '${Object.keys(webpackConfig.entry)}'.\n`;
+      error += `Your current entries keys are '${Object.keys(
+        webpackConfig.entry
+      )}'.\n`;
     } else {
       error += `Your current entry is of type '${type}'.\n`;
     }

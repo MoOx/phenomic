@@ -13,7 +13,7 @@ import FeatureBlock from "./FeatureBlock";
 import InputOutput from "./InputOutput";
 import CodeExample from "./CodeExample";
 
-const Home = () => (
+const Home = () =>
   <Flex>
     <Header
       headTitle={"Phenomic, a modular website compiler (static site generator)"}
@@ -132,8 +132,7 @@ const Home = () => (
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>
-);
+  </Flex>;
 
 const styles = StyleSheet.create({
   top: {

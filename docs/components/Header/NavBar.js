@@ -5,7 +5,7 @@ import Link from "../Link";
 import Spacer from "../Spacer";
 import { version } from "../../../lerna.json";
 
-const HeaderNavBar = () => (
+const HeaderNavBar = () =>
   <View style={styles.header}>
     <View style={styles.logo}>
       <Link to="/" style={styles.text}>
@@ -56,8 +56,7 @@ const HeaderNavBar = () => (
         </Text>
       </Link>
     </View>
-  </View>
-);
+  </View>;
 
 const styles = StyleSheet.create({
   header: {

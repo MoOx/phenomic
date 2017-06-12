@@ -21,7 +21,9 @@ const resolveURLsForDynamicParams = async function(
     return route;
   }
   debug(
-    `fetching collection '${collectionConfig.collection ? collectionConfig.collection : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
+    `fetching collection '${collectionConfig.collection
+      ? collectionConfig.collection
+      : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
   const collection = await phenomicFetch(createQuery(collectionConfig));
