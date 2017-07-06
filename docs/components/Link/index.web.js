@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-primitives";
+// https://github.com/lelandrichardson/react-primitives/issues/72
+// import { StyleSheet } from "react-primitives";
+import StyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 import { Link as RouterLink } from "react-router";
 
 const Link = (props: Object) => {

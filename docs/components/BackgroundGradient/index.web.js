@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-primitives";
+// https://github.com/lelandrichardson/react-primitives/issues/72
+// import { StyleSheet } from "react-primitives";
+import StyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 
 type PropsType = {
   start: string,
@@ -14,7 +16,7 @@ const BackgroundGradient = (props: PropsType) =>
       ...rawStyles,
       ...makeGradient(props.start, props.end, props.direction)
     }}
-    className={StyleSheet.resolve(props.style).className}
+    className={props.style && StyleSheet.resolve(props.style).className}
   >
     {props.children}
   </div>;
