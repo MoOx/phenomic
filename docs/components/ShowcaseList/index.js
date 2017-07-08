@@ -79,7 +79,7 @@ const ShowcaseList = (props: Object) =>
                   <Text style={styles.itemName}>{item.title}</Text>
                   <Text>{" "}</Text>
                   {item.source &&
-                    <Link style={styles.itemLinkSource} to={item.source}>
+                    <Link style={styles.itemLinkSource} href={item.source}>
                       {"(Source)"}
                     </Link>}
                 </View>
