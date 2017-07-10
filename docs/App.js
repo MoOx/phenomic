@@ -35,6 +35,7 @@ const routes = () =>
       <Route path="/news" component={NewsList} />
       <Route path="/news/after/:after" component={NewsList} paginated />
       <Route path="/news/*" component={NewsItem} />
+      <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
     </Route>
   </Router>;

@@ -97,8 +97,12 @@ async function renderServer(
     throw err;
   }
   const state = store.getState();
+  // don't prepend index.html if location already have .html
+  const filepath = location.match(/\.html$/)
+    ? location
+    : path.join(location, "index.html");
   return [
-    { path: path.join(location, "index.html"), contents },
+    { path: filepath, contents },
     ...Object.keys(state).map(key => ({
       path: createURL({ root: "phenomic", ...decode(key) }),
       contents: JSON.stringify(state[key].node)
