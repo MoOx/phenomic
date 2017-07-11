@@ -36,16 +36,20 @@ export default function(
     },
     beforeBuild(config: PhenomicConfig) {
       return new Promise((resolve, reject) => {
-        getPath(
-          path.join(config.path, options.path)
-        ).then((publicPath: string) => {
-          fse.copy(publicPath, config.outdir, err => {
-            if (err) {
-              reject(err);
-            }
+        getPath(path.join(config.path, options.path)).then(
+          (publicPath: string) => {
+            fse.copy(publicPath, config.outdir, err => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          },
+          () => {
+            warnNoPublic();
             resolve();
-          });
-        }, warnNoPublic);
+          }
+        );
       });
     }
   };
