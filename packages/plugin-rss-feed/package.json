@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@phenomic/plugin-rss-feed",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "publishConfig": {
     "access": "public"
   },
@@ -32,9 +32,9 @@
     "rss": "^1.2.1"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3"
+    "@phenomic/core": "^1.0.0-alpha.4"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3"
+    "@phenomic/core": "^1.0.0-alpha.4"
   }
 }

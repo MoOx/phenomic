@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-markdown",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "publishConfig": {
     "access": "public"
   },
@@ -40,10 +40,10 @@
     "remark-toc": "^4.0.0"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3"
+    "@phenomic/core": "^1.0.0-alpha.4"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.3",
+    "@phenomic/core": "^1.0.0-alpha.4",
     "react-test-renderer": "^15.5.4"
   }
 }
