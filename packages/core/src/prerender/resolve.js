@@ -2,16 +2,50 @@ import createQuery from "@phenomic/api-client/lib/query";
 
 const debug = require("debug")("phenomic:core:prerender:resolve");
 
+const arrayUnique = array => [...new Set(array)];
+
+const getRouteQueries = route => {
+  const initialRouteParams: Object = route.params || {};
+  if (!route.component.getQueries) {
+    debug(route.path, "have no queries");
+    return {};
+  }
+  return route.component.getQueries({
+    params: initialRouteParams
+  });
+};
+
+const getMainCollection = route => {
+  const keys = Object.keys(getRouteQueries(route));
+  const firstKey = keys[0];
+  const firstKeyAsInt = parseInt(keys[0], 10);
+  // parseInt("12.") == "12"
+  if (
+    // $FlowFixMe it's on purpose
+    firstKeyAsInt == firstKey &&
+    String(firstKeyAsInt).length == firstKey.length
+  ) {
+    console.warn(`The main collection used for ${route.path} is ${firstKey}`);
+  }
+  return firstKey;
+};
+
 const resolveURLsForDynamicParams = async function(
   phenomicFetch: PhenomicFetch,
   route: PhenomicRoute
 ) {
-  const collectionConfig = typeof route.collection === "string"
-    ? { collection: route.collection }
-    : route.collection;
+  // deprecate notice
+  // @todo remove for stable v1
+  if (route.collection) {
+    console.error(
+      `${route.path} have an attached parameter 'collection=$route.collection'.\n This parameter is now useless and can be safely removed`
+    );
+  }
+
+  const collectionConfig = { collection: getMainCollection(route) };
   debug("route", route.path);
-  if (!collectionConfig) {
-    debug("no valid collection", route.collection);
+  if (!collectionConfig.collection) {
+    debug("no valid collection detected for", route.path);
     return route;
   }
   // If the path doesn't contain any kind of parameter, no need to
@@ -26,14 +60,39 @@ const resolveURLsForDynamicParams = async function(
       : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
+  const query = getRouteQueries(route);
+  debug(route.path, query);
+  const key =
+    (query[collectionConfig.collection] &&
+      query[collectionConfig.collection].by) ||
+    "key";
   const collection = await phenomicFetch(createQuery(collectionConfig));
-  debug(`collection fetched. ${collection.list.length} items`);
+  debug(route.path, `collection fetched. ${collection.list.length} items`);
   const path = route.path || "*";
-  return collection.list.map(item => {
+  const list = collection.list.reduce((acc, item) => {
+    if (!item[key]) {
+      return acc;
+    }
+    if (Array.isArray(item[key])) {
+      acc = acc.concat(item[key]);
+    } else {
+      acc.push(item[key]);
+    }
+    return acc;
+  }, []);
+  debug(route.path, "list (unique)", arrayUnique(list));
+  return arrayUnique(list).map(value => {
+    let resolvedPath = path.replace(":" + key, value);
+    let params = { [key]: value };
+    // try *
+    if (key === "key" && resolvedPath === path) {
+      resolvedPath = resolvedPath.replace("*", value);
+      params = { splat: value };
+    }
     return {
       ...route,
-      path: path.replace(/\*/, item.key),
-      params: { splat: item.key }
+      path: resolvedPath,
+      params
     };
   });
 };
@@ -81,15 +140,8 @@ const resolvePaginatedURLs = async function(
     debug(route.path, "is not paginated");
     return route.path;
   }
-  if (!route.component.getQueries) {
-    debug(route.path, "is paginated but have no queries");
-    return route.path;
-  }
-  const initialRouteParams: Object = route.params || {};
-  const initialRouteQuery = route.component.getQueries({
-    params: initialRouteParams
-  });
-  const query = findPaginatedQuery(initialRouteQuery);
+
+  const query = findPaginatedQuery(getRouteQueries(route));
   if (!query) {
     debug(route.path, "is paginated with queries, but no :after param found");
     return route.path;

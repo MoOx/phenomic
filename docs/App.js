@@ -10,7 +10,7 @@ import Home from "./components/Home";
 import GettingStarted from "./components/GettingStarted";
 import DocPage from "./components/Page/Doc";
 import ShowcasePage from "./components/Page/Showcase";
-import ShowcaseList from "./components/ShowcaseList";
+import ShowcaseList, { ShowcaseListByTag } from "./components/ShowcaseList";
 import PageError from "./components/PageError";
 import NewsItem from "./components/News/NewsItem";
 import NewsList from "./components/News/NewsList";
@@ -20,13 +20,9 @@ const routes = () =>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
       <Route path="/docs/getting-started" component={GettingStarted} />
-      <Route path="/docs/*" component={DocPage} collection="docs" />
-      <Route path="/showcase" component={ShowcaseList} collection="showcase" />
-      <Route
-        path="/showcase/tag/:tag"
-        component={ShowcaseList}
-        collection="showcase"
-      />
+      <Route path="/docs/*" component={DocPage} />
+      <Route path="/showcase" component={ShowcaseList} />
+      <Route path="/showcase/tag/:showcaseTags" component={ShowcaseListByTag} />
       {/*
       <Route
         path="/showcase/after/:after"
@@ -35,19 +31,11 @@ const routes = () =>
         paginated
       />
       */}
-      <Route
-        path="/showcase/*"
-        component={ShowcasePage}
-        collection="showcase"
-      />
-      <Route path="/news" component={NewsList} collection="news" />
-      <Route
-        path="/news/after/:after"
-        component={NewsList}
-        collection="news"
-        paginated
-      />
-      <Route path="/news/*" component={NewsItem} collection="news" />
+      <Route path="/showcase/*" component={ShowcasePage} />
+      <Route path="/news" component={NewsList} />
+      <Route path="/news/after/:after" component={NewsList} paginated />
+      <Route path="/news/*" component={NewsItem} />
+      <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
     </Route>
   </Router>;

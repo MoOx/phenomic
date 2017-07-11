@@ -18,7 +18,7 @@ function createContainer(
     static getQueries = getQueries;
     static contextTypes = {
       query: PropTypes.func,
-      store: PropTypes.object,
+      phenomic: PropTypes.object,
       __prerendering: PropTypes.bool
     };
     constructor(props: PropsType, context: Object) {
@@ -34,7 +34,7 @@ function createContainer(
       if (!this.context.__prerendering) {
         this.query();
       }
-      this.unsubscribe = this.context.store.subscribe(() => this.update());
+      this.unsubscribe = this.context.phenomic.subscribe(() => this.update());
       if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")(socketServerURL).on(
           "change",
@@ -81,7 +81,7 @@ function createContainer(
       this.queries = mapValues(getQueries(props), encode);
     };
     query = (force: boolean = false) => {
-      const store = this.context.store;
+      const store = this.context.phenomic;
       const values = Object.keys(this.queries).map(key => this.queries[key]);
       if (force) {
         this.context.query(values);
@@ -92,7 +92,7 @@ function createContainer(
       }
     };
     render() {
-      const store = this.context.store;
+      const store = this.context.phenomic;
       const values = Object.keys(this.queries).map(key => this.queries[key]);
       const isLoading = values.some(item => !store.get(item).node);
       const hasErrored = values.some(

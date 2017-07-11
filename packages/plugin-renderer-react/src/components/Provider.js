@@ -13,12 +13,12 @@ class Provider extends React.Component<void, PropsType, void> {
   props: PropsType;
   static childContextTypes = {
     query: PropTypes.func,
-    store: PropTypes.object.isRequired,
+    phenomic: PropTypes.object.isRequired,
     __prerendering: PropTypes.bool
   };
   getChildContext() {
     return {
-      store: this.props.store,
+      phenomic: this.props.store,
       query: this.query,
       __prerendering: !!this.props.__prerendering
     };
