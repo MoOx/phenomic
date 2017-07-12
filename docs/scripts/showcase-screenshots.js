@@ -83,21 +83,26 @@ nightmare
   .end()
   .then(() => {
     console.log("✅ Showcase screenshots cached");
-    screenshots.forEach(({ tmpLocation, location }) => {
-      pngToJpg(
-        {
-          input: tmpLocation,
-          output: location,
-          options: { quality: 90 }
-        },
-        () => {
-          optimizer
-            .optimize(location)
-            // .then(() => console.log(location, "optimized"))
-            .catch(err => console.log("Failed to optimize image", err));
-        }
-      );
-    });
+    // skip file if they already exist
+    try {
+      fs.readFileSync(location);
+    } catch (e) {
+      screenshots.forEach(({ tmpLocation, location }) => {
+        pngToJpg(
+          {
+            input: tmpLocation,
+            output: location,
+            options: { quality: 90 }
+          },
+          () => {
+            optimizer
+              .optimize(location)
+              // .then(() => console.log(location, "optimized"))
+              .catch(err => console.log("Failed to optimize image", err));
+          }
+        );
+      });
+    }
     console.log("ℹ️ Optimizing screenshots...");
     // console.log("✅ Showcase screenshots ready.")
   })
