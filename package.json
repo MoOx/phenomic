@@ -34,7 +34,8 @@
     "npm-run-all": "^3.0.0",
     "prettier": "^1.3.1",
     "prettier-markdown": "^0.1.8",
-    "rimraf": "^2.4.2"
+    "rimraf": "^2.4.2",
+    "bs-platform": "^1.8.1"
   },
   "scripts": {
     "#<git hooks>": "handled by husky",
@@ -43,7 +44,7 @@
     "clean": "lerna exec -- rimraf lib",
     "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "postinstall": "babel-node ./scripts/lerna bootstrap",
-    "prepare": "npm run -s clean && npm run -s transpile",
+    "prepare": "npm run -s clean && npm run -s transpile && cd packages/reason && bsb -make-world && cd ..",
     "publish": "lerna publish",
     "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
     "postformat": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",

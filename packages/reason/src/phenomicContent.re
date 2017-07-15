@@ -9,7 +9,7 @@ and reasonChild =
 
 type jsBody = Js.t {. t : string, p : Js.t {.}, c : array jsBody};
 
-let rec jsTreeToReason (jsChild: jsBody) =>
+let rec jsTreeToReason (jsChild: jsBody) => {
   switch [%bs.raw {| Object.prototype.toString.call(jsChild) |}] {
   | "[object String]" => String (Js.String.make jsChild)
   | "[object Object]" =>
@@ -18,7 +18,8 @@ let rec jsTreeToReason (jsChild: jsBody) =>
     let children = List.map jsTreeToReason (Array.to_list jsChild##c);
     Element tag props children
   | _ => Empty
-  };
+  }
+};
 
 type edge 'a =
   | Idle 'a
@@ -37,7 +38,10 @@ let jsEdgeToReason jsEdge convertNode =>
   | _ => Inactive
   };
 
-type queryConfigItem = {collection: string, id: string};
+type queryConfigItem = {
+  collection: string,
+  id: string
+};
 
 type listConfig = {
   collection: string,
@@ -65,8 +69,7 @@ let query queryConfig =>
   switch queryConfig {
   | Item queryConfigItem =>
     Js.Obj.assign
-      (Js.Obj.empty ())
-      {"collection": queryConfigItem.collection, "id": queryConfigItem.id}
+      (Js.Obj.empty ()) {"collection": queryConfigItem.collection, "id": queryConfigItem.id}
   | List queryConfigList =>
     Js.Obj.assign
       (Js.Obj.empty ())

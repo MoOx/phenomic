@@ -1,0 +1,13 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx '/Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/bs-platform/bin/reactjs_jsx_ppx_2.exe'
+FLG -ppx /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/bs-platform/bin/bsppx.exe
+S /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/bs-platform/lib/ocaml
+B /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -no-alias-deps -color always -w -40+6+7+27+32..39+44+45
+S /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/reason-react/lib/ocaml
+B /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/reason-react/lib/ocaml
+S /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/@phenomic/reason/lib/ocaml
+B /Users/bloodyowl/Development/phenomic/phenomic/examples/reason-react-app/node_modules/@phenomic/reason/lib/ocaml
+S components
+B lib/bs/components
+####BSB GENERATED: NO EDIT}

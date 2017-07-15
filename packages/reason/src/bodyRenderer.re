@@ -6,10 +6,17 @@ let make body::(body: PhenomicContent.jsBody) _children => {
     | PhenomicContent.String string => ReasonReact.stringToElement string
     | PhenomicContent.Element tag originalProps reasonChildren =>
       let props = ReactDOMRe.objToDOMProps originalProps;
-      ReactDOMRe.createElement
-        tag
-        ::props
-        [|ReasonReact.arrayToElement (Array.of_list (List.map renderChild reasonChildren))|]
+      switch tag {
+      | "a" =>
+        <Link toURL=[%bs.raw {| child[1].href |}]>
+          ([%bs.raw {|child[2]|}] |> Array.of_list |> ReasonReact.arrayToElement)
+        </Link>
+      | _ =>
+        ReactDOMRe.createElement
+          tag
+          ::props
+          [|ReasonReact.arrayToElement (Array.of_list (List.map renderChild reasonChildren))|]
+      }
     | PhenomicContent.Empty => ReasonReact.nullElement
     };
   {
