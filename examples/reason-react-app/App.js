@@ -10,8 +10,8 @@ import {
 const {
   wrapReComponent
 } = require("@phenomic/reason/lib/js/src/phenomicRootComponent");
-const Home = require("./lib/js/components/Home");
-const Post = require("./lib/js/components/Post");
+const Home = require("./lib/js/components/home");
+const Post = require("./lib/js/components/post");
 
 export default createApp(() =>
   <Router history={browserHistory}>
