@@ -31,5 +31,11 @@
   },
   "devDependencies": {
     "bs-platform": "^1.8.1"
+  },
+  "scripts": {
+    "reason:cleanup": "bsb -clean-world",
+    "reason:compile": "bsb -make-world",
+    "prepublish": "npm run reason:compile",
+    "dev": "npm run reason -- -w"
   }
 }

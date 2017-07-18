@@ -6,16 +6,21 @@
     "@phenomic/cli": "^1.0.0-alpha.4",
     "@phenomic/preset-react-app": "^1.0.0-alpha.4",
     "@phenomic/reason": "^1.0.0-alpha.4",
+    "bs-platform": "^1.8.1",
+    "npm-run-all": "^4.0.2",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^3.0.0",
-    "bs-platform": "^1.8.1",
     "reason-react": "^0.2.3"
   },
   "scripts": {
-    "reason": "bsb -make-world -w",
-    "start": "phenomic start",
-    "build": "phenomic build"
+    "reason:cleanup": "bsb -clean-world",
+    "reason:compile": "bsb -make-world",
+    "prepublish": "npm run reason:compile",
+    "start": "npm run reason && npm-run-all --parallel start:*",
+    "start:js": "phenomic start",
+    "start:reason": "npm run reason -- -w",
+    "build": "npm run reason && phenomic build"
   },
   "phenomic": {
     "presets": [
