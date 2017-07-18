@@ -25,4 +25,4 @@ dist
 logo/*.png
 
 # reason stuff
-packages/reason/.merlin
+.merlin
