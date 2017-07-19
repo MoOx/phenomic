@@ -2,6 +2,9 @@ import createQuery from "@phenomic/api-client/lib/query";
 
 const debug = require("debug")("phenomic:core:prerender:resolve");
 
+const defaultQueryKey = "default";
+const mainKey = "key";
+
 const arrayUnique = array => [...new Set(array)];
 
 const getRouteQueries = route => {
@@ -62,12 +65,18 @@ const resolveURLsForDynamicParams = async function(
   // @todo memoize for perfs and avoid uncessary call
   const query = getRouteQueries(route);
   debug(route.path, query);
-  const key =
+  let key =
     (query[collectionConfig.collection] &&
       query[collectionConfig.collection].by) ||
-    "key";
+    mainKey;
+  if (key === defaultQueryKey) {
+    key = mainKey;
+  }
   const collection = await phenomicFetch(createQuery(collectionConfig));
-  debug(route.path, `collection fetched. ${collection.list.length} items`);
+  debug(
+    route.path,
+    `collection fetched. ${collection.list.length} items (key: ${key})`
+  );
   const path = route.path || "*";
   const list = collection.list.reduce((acc, item) => {
     if (!item[key]) {
@@ -85,7 +94,7 @@ const resolveURLsForDynamicParams = async function(
     let resolvedPath = path.replace(":" + key, value);
     let params = { [key]: value };
     // try *
-    if (key === "key" && resolvedPath === path) {
+    if (key === mainKey && resolvedPath === path) {
       resolvedPath = resolvedPath.replace("*", value);
       params = { splat: value };
     }
