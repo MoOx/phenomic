@@ -142,7 +142,8 @@ async function build(config) {
         .filter(plugin => plugin.beforeBuild)
         .map(plugin => plugin.beforeBuild(config))
     );
-    await bundler.build(config);
+    const assets = await bundler.build(config);
+    debug("assets", assets);
     console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
     runningServer.close();
