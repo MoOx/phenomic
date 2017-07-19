@@ -26,7 +26,12 @@ const renderHTML: PhenomicPluginRenderHTMLType = (
           }}
         />
       }
-      script={<script src={`/${config.bundleName}.js`} async />}
+      script={
+        <script
+          src={props.script ? `/${props.script}` : `/${config.bundleName}.js`}
+          async
+        />
+      }
     />
   );
   return `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(html)}`;

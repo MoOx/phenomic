@@ -33,7 +33,8 @@ function renderToString(
   store: StoreType,
   { renderProps }: { renderProps: Object },
   renderHTML,
-  Html
+  Html,
+  assets
 ) {
   const body = ReactDOMServer.renderToString(
     <Provider fetch={fetch} store={store}>
@@ -44,7 +45,8 @@ function renderToString(
     config,
     {
       body,
-      state: store.getState()
+      state: store.getState(),
+      script: assets[`${config.bundleName}.js`]
     },
     Html
   );
@@ -53,6 +55,7 @@ function renderToString(
 async function renderServer(
   config: PhenomicConfig,
   app: AppType,
+  assets: phenomicAssets,
   fetch: PhenomicFetch,
   location: string
 ) {
@@ -84,7 +87,8 @@ async function renderServer(
       store,
       { renderProps, redirectLocation },
       renderHTML,
-      app.Html
+      app.Html,
+      assets
     );
   } catch (err) {
     console.error();

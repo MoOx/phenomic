@@ -110,6 +110,8 @@ export type PhenomicRoute = {
   collection?: string | PhenomicQueryConfig
 };
 
+export type phenomicAssets = { [key: string]: string };
+
 // @todo why this inconsistency?
 export type PhenomicFetch =
   | IsomorphicFetch
