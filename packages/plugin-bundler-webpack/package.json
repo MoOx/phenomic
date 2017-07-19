@@ -40,6 +40,7 @@
     "source-map-support": "^0.4.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.0",
+    "webpack-assets-manifest": "^0.7.0",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0"
   },
