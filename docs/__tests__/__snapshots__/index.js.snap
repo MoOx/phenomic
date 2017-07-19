@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should build docs correctly 1`] = `
+Array [
+  "404.html",
+  "docs/getting-started/index.html",
+  "index.html",
+  "news/2017/06/introducing-1.0.0-alpha/index.html",
+  "news/after/:after/index.html",
+  "news/index.html",
+  "showcase/index.html",
+  "showcase/tag/blog/index.html",
+  "showcase/tag/business/index.html",
+  "showcase/tag/community/index.html",
+  "showcase/tag/docs/index.html",
+  "showcase/tag/event/index.html",
+  "showcase/tag/learning/index.html",
+  "showcase/tag/multi-languages/index.html",
+  "showcase/tag/open-source/index.html",
+  "showcase/tag/service/index.html",
+]
+`;
