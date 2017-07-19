@@ -128,7 +128,7 @@ export default function() {
           ...webpackConfig.plugins,
           // sourcemaps
           new WebpackAssetsManifest({
-            done: function(manifest, stats) {
+            done: function(manifest) {
               assetsManifest = manifest.toJSON();
             }
           })
