@@ -50,7 +50,7 @@
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "cross-env TESTING=1 jest --runInBand --coverage packages",
+    "tests": "cross-env jest --runInBand --coverage packages",
     "docs:start": "cd docs && npm start",
     "docs:test": "cd docs && npm test",
     "docs:deploy": "cd docs && npm run deploy",
