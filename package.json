@@ -46,8 +46,10 @@
     "postinstall": "babel-node ./scripts/lerna bootstrap && cd packages/reason && bsb -make-world && cd ..",
     "prepare": "npm run -s clean && npm run -s transpile && cd packages/reason && bsb -make-world && cd ..",
     "publish": "lerna publish",
-    "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
-    "postformat": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
+    "format": "npm run -s format:js && npm run -s format:re",
+    "format:js": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
+    "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
+    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "link": "lerna exec -- npm link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:flow": "flow check",
@@ -67,6 +69,9 @@
     ],
     "*.md": [
       "git-exec-and-restage prettier-markdown"
+    ],
+    "*.re": [
+      "git-exec-and-restage refmt --in-place"
     ]
   },
   "babel": {

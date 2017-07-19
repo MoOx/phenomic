@@ -9,7 +9,7 @@ and reasonChild =
 
 type jsBody = Js.t {. t : string, p : Js.t {.}, c : array jsBody};
 
-let rec jsTreeToReason (jsChild: jsBody) => {
+let rec jsTreeToReason (jsChild: jsBody) =>
   switch [%bs.raw {| Object.prototype.toString.call(jsChild) |}] {
   | "[object String]" => String (Js.String.make jsChild)
   | "[object Object]" =>
@@ -18,8 +18,7 @@ let rec jsTreeToReason (jsChild: jsBody) => {
     let children = List.map jsTreeToReason (Array.to_list jsChild##c);
     Element tag props children
   | _ => Empty
-  }
-};
+  };
 
 type edge 'a =
   | Idle 'a
