@@ -47,7 +47,7 @@ type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
 
 type PhenomicPluginRenderHTMLType = (
   config: PhenomicConfig,
-  props?: { body?: string, state?: Object },
+  props?: { body?: string, state?: Object, script?: string },
   html?: PhenomicHtmlType
 ) => string;
 
