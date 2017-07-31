@@ -7,7 +7,7 @@ import findCacheDir from "find-cache-dir";
 import webpack, { BannerPlugin, optimize } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
-import WebpackAssetsManifest from "webpack-assets-manifest";
+import webpackAssetsManifest from "webpack-assets-manifest";
 
 import webpackPromise from "./webpack-promise.js";
 import validate from "./validate.js";
@@ -127,7 +127,7 @@ export default function() {
         plugins: [
           ...webpackConfig.plugins,
           // sourcemaps
-          new WebpackAssetsManifest({
+          new webpackAssetsManifest({
             done: function(manifest) {
               assetsManifest = manifest.toJSON();
             }
