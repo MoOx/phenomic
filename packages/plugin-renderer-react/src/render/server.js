@@ -34,7 +34,7 @@ function renderToString(
   { renderProps }: { renderProps: Object },
   renderHTML,
   Html,
-  assets
+  assets: phenomicAssets
 ) {
   const body = ReactDOMServer.renderToString(
     <Provider fetch={fetch} store={store}>
