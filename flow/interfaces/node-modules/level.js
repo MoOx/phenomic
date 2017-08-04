@@ -25,7 +25,8 @@ export type Sublevel = Level & SublevelPartial;
 export type LevelStreamConfig = {
   gt?: string,
   lt?: string,
-  limit?: number
+  limit?: number,
+  reverse?: boolean
 };
 
 declare module "levelup" {

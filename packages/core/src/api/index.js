@@ -4,8 +4,8 @@ import pkg from "../../package.json";
 
 const debug = require("debug")("phenomic:core:api");
 
-const encode = text => new Buffer(text).toString("base64");
-const decode = text => new Buffer(text, "base64").toString();
+export const encode = (text: string) => new Buffer(text).toString("base64");
+export const decode = (text: string) => new Buffer(text, "base64").toString();
 
 const connect = (list, limit, previousList = []) => {
   const hasNextPage = limit === undefined ? false : list.length >= limit;
