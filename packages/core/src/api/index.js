@@ -92,7 +92,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
       debug(req.url, JSON.stringify(req.params));
       try {
         const limit = parseInt(req.params.limit);
-        const lte = decode(req.params.after);
+        const after = decode(req.params.after);
         // @todo check lt validity (exist?); otherwise, trigger an error (404?)
         // cause during dev all "lt" are responding 200, even random values
         // but in production, it's not the case as only known values are
@@ -103,7 +103,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.collection,
             {
               limit: limit + 1,
-              lte,
+              [reverse ? "lte" : "gte"]: after,
               reverse
             },
             req.params.filter,
@@ -113,7 +113,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.collection,
             {
               limit: limit + 1,
-              gt: lte,
+              [reverse ? "gt" : "lt"]: after,
               reverse: !reverse
             },
             req.params.filter,
