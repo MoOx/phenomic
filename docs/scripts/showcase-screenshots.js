@@ -11,7 +11,7 @@ import urlToSlug from "../modules/url-to-slug";
 import { screenshotsSize } from "../package.json";
 
 const cacheDir = resolve(__dirname, "..", ".screenshots");
-const showcaseDir = resolve(__dirname, "..", "content", "showcase", "entry");
+const showcaseDir = resolve(__dirname, "..", "content", "showcase-entries");
 const screenshotsLocation = resolve(
   __dirname,
   "..",

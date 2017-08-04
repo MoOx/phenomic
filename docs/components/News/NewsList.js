@@ -45,6 +45,6 @@ export default createContainer(NewsList, props => ({
   news: query({
     collection: "news",
     limit: 10,
-    ...(props.params.after ? { after: props.params.after } : null)
+    after: props.params.after
   })
 }));
