@@ -10,16 +10,22 @@ const decode = text => new Buffer(text, "base64").toString();
 const connect = (list, limit, previousList = []) => {
   const hasNextPage = limit === undefined ? false : list.length >= limit;
   const hasPreviousPage = previousList.length > 0;
+  const previousPageIsFirst = limit ? previousList.length <= limit : undefined;
+  // we are retrieving limit + 1 to know if there is more page or not
+  // so when getting the previous item, we need to check if we want the last
+  // item or the one before (since we added one to the limit)
+  const previousIndex = previousList.length - 1 - (previousPageIsFirst ? 0 : 1);
+  const nextIndex = list.length - 1;
   return {
     hasPreviousPage,
-    previousPageIsFirst: limit ? previousList.length <= limit : null,
-    previous: hasPreviousPage && previousList[previousList.length - 2]
-      ? encode(previousList[previousList.length - 2].key)
-      : null,
+    previousPageIsFirst,
+    previous: hasPreviousPage && previousList[previousIndex]
+      ? encode(previousList[previousIndex].key)
+      : undefined,
     hasNextPage,
-    next: hasNextPage && list[list.length - 1]
-      ? encode(list[list.length - 1].key)
-      : null,
+    next: hasNextPage && list[nextIndex]
+      ? encode(list[nextIndex].key)
+      : undefined,
     list: list.slice(0, limit)
   };
 };
