@@ -110,7 +110,7 @@
     }
   },
   "jest": {
-    "testEnvironment": "node",
+    "testURL": "test://url.tld/path",
     "notify": true,
     "coverageThreshold": {
       "global": {

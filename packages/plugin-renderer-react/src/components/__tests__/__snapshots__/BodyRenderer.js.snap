@@ -12,9 +12,9 @@ exports[`BodyRenderer tells you when pass undefined 1`] = `null`;
 
 exports[`BodyRenderer works with phenomic json body 1`] = `
 "<p className=\\"test\\">
-  <a href=\\"http://test\\">
+  <Link href=\\"http://test\\">
     Link
-  </a>
+  </Link>
 </p>"
 `;
 
