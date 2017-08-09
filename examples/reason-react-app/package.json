@@ -17,9 +17,9 @@
     "reason:cleanup": "bsb -clean-world",
     "reason:compile": "bsb -make-world",
     "prepublish": "npm run reason:compile",
-    "start": "npm run reason && npm-run-all --parallel start:*",
+    "start": "npm run reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
-    "start:reason": "npm run reason -- -w",
+    "start:reason": "npm run reason:compile -- -w",
     "build": "npm run reason && phenomic build"
   },
   "phenomic": {
