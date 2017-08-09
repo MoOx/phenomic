@@ -1,5 +1,5 @@
 external internalQuery : Js.t {..} => Js.t {..} =
-  "query" [@@bs.module "phenomic-plugin-react/lib/client"];
+  "query" [@@bs.module "@phenomic/plugin-renderer-react/lib/client"];
 
 type reasonChildren = list reasonChild
 and reasonChild =
@@ -37,7 +37,10 @@ let jsEdgeToReason jsEdge convertNode =>
   | _ => Inactive
   };
 
-type queryConfigItem = {collection: string, id: string};
+type queryConfigItem = {
+  collection: string,
+  id: string
+};
 
 type listConfig = {
   collection: string,
@@ -65,8 +68,7 @@ let query queryConfig =>
   switch queryConfig {
   | Item queryConfigItem =>
     Js.Obj.assign
-      (Js.Obj.empty ())
-      {"collection": queryConfigItem.collection, "id": queryConfigItem.id}
+      (Js.Obj.empty ()) {"collection": queryConfigItem.collection, "id": queryConfigItem.id}
   | List queryConfigList =>
     Js.Obj.assign
       (Js.Obj.empty ())

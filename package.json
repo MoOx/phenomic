@@ -42,11 +42,15 @@
     "#</git hooks>": "handled by husky",
     "clean": "lerna exec -- rimraf lib",
     "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "postinstall": "babel-node ./scripts/lerna bootstrap",
-    "prepare": "npm run -s clean && npm run -s transpile",
-    "publish": "lerna publish",
-    "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
-    "postformat": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
+    "posttranspile": "cd packages/reason && npm run -s prepare",
+    "bootstrap": "babel-node ./scripts/lerna bootstrap",
+    "prepare": "npm run -s clean && npm run -s bootstrap && npm run -s transpile",
+    "prerelease": "npm run prepare",
+    "release": "lerna publish",
+    "format": "npm run -s format:js && npm run -s format:re",
+    "format:js": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
+    "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
+    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "link": "lerna exec -- npm link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:flow": "flow check",
@@ -66,6 +70,9 @@
     ],
     "*.md": [
       "git-exec-and-restage prettier-markdown"
+    ],
+    "*.re": [
+      "git-exec-and-restage refmt --in-place"
     ]
   },
   "babel": {

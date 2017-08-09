@@ -7,6 +7,10 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
+  "files": [
+    "src",
+    "lib"
+  ],
   "authors": [
     "Maxime Thirouin (MoOx)",
     "bloodyowl <bloodyowl@icloud.com>"
@@ -22,9 +26,16 @@
   ],
   "description": "Phenomic Reason bindings",
   "dependencies": {
-    "reason-react": "^0.2.3"
+    "reason-react": "^0.2.3",
+    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.4"
   },
   "devDependencies": {
     "bs-platform": "^1.8.1"
+  },
+  "scripts": {
+    "reason:cleanup": "bsb -clean-world",
+    "reason:compile": "bsb -make-world",
+    "prepare": "npm run reason:compile",
+    "dev": "npm run reason:compile -- -w"
   }
 }

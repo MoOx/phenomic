@@ -14,7 +14,9 @@ Object {
     Object {
       "c": Array [
         Object {
-          "c": "#",
+          "c": Array [
+            "#",
+          ],
           "p": Object {
             "className": "phenomic-HeadingAnchor",
             "href": "#test",
@@ -31,26 +33,34 @@ Object {
     "
 ",
     Object {
-      "c": Object {
-        "c": "link",
-        "p": Object {
-          "href": "href",
+      "c": Array [
+        Object {
+          "c": Array [
+            "link",
+          ],
+          "p": Object {
+            "href": "href",
+          },
+          "t": "a",
         },
-        "t": "a",
-      },
+      ],
       "t": "p",
     },
     "
 ",
     Object {
-      "c": Object {
-        "c": "console.log(window)
+      "c": Array [
+        Object {
+          "c": Array [
+            "console.log(window)
 ",
-        "p": Object {
-          "className": "language-js",
+          ],
+          "p": Object {
+            "className": "language-js",
+          },
+          "t": "code",
         },
-        "t": "code",
-      },
+      ],
       "t": "pre",
     },
   ],
