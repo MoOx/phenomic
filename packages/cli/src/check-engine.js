@@ -58,7 +58,7 @@ export default function checkVersion(
         " " +
         "https://phenomic.io/docs/setup/"
     );
-    if (process.env.TESTING) {
+    if (process.env.NODE_ENV === "test") {
       throw new Error(errorMessage);
     }
     console.error(errorMessage);

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Html works 1`] = `
+"<html>
+  <head>
+    <meta charSet=\\"utf-8\\" />
+    <meta
+      content=\\"width=device-width, initial-scale=1\\"
+      name=\\"viewport\\"
+    />
+  </head>
+  <body>
+    bodystate/scr/ipt
+  </body>
+</html>"
+`;

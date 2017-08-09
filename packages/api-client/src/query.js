@@ -8,7 +8,9 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
     "A query must at least contain a collection"
   );
   debug("query", config);
-  if (typeof config.id === "string") {
+
+  // note that during static build, we initiate the query with no id
+  if (config.hasOwnProperty("id")) {
     return {
       collection: config.collection,
       id: config.id

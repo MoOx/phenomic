@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@phenomic/example-react-app",
+  "devDependencies": {
+    "@phenomic/core": "^1.0.0-alpha.4",
+    "@phenomic/cli": "^1.0.0-alpha.4",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.4",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-helmet": "^5.0.0",
+    "react-router": "^3.0.0"
+  },
+  "scripts": {
+    "start": "phenomic start",
+    "build": "phenomic build"
+  },
+  "phenomic": {
+    "presets": [
+      "@phenomic/preset-react-app"
+    ]
+  }
+}

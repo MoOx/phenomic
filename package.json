@@ -26,9 +26,10 @@
     "eslint-plugin-react-native": "^2.3.2",
     "flow-bin": "^0.47.0",
     "git-exec-and-restage": "^1.0.1",
+    "globby": "^6.1.0",
     "husky": "^0.13.3",
     "jest": "^20.0.0",
-    "lerna": "^2.0.0-rc.5",
+    "lerna": "^2.0.0",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
     "prettier": "^1.3.1",
@@ -39,24 +40,29 @@
     "#<git hooks>": "handled by husky",
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
-    "clean": "lerna --ignore \"docs\" exec -- rimraf lib",
-    "transpile": "lerna --ignore \"docs\" exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "postinstall": "node ./scripts/lerna bootstrap",
-    "prepare": "npm run -s clean && npm run -s transpile",
-    "publish": "lerna publish",
-    "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
-    "postformat": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
-    "link": "lerna --ignore \"docs\" exec -- npm link",
+    "clean": "lerna exec -- rimraf lib",
+    "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "posttranspile": "cd packages/reason && npm run -s prepare",
+    "bootstrap": "babel-node ./scripts/lerna bootstrap",
+    "prepare": "npm run -s clean && npm run -s bootstrap && npm run -s transpile",
+    "prerelease": "npm run prepare",
+    "release": "lerna publish",
+    "format": "npm run -s format:js && npm run -s format:re",
+    "format:js": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
+    "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
+    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
+    "link": "lerna exec -- npm link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "cross-env TESTING=1 jest --runInBand --coverage packages",
+    "tests": "jest --runInBand --coverage packages",
+    "examples": "babel-node scripts/examples.js",
     "docs:start": "cd docs && npm start",
-    "docs:test": "cd docs && npm test",
+    "docs:test": "cd docs && npm test && jest docs",
     "docs:deploy": "cd docs && npm run deploy",
     "pretest": "npm run -s transpile && npm run -s lint",
     "test": "npm run -s tests",
-    "posttest": "npm run -s docs:test"
+    "posttest": "npm run -s examples && npm run -s docs:test"
   },
   "lint-staged": {
     "*.js": [
@@ -64,6 +70,9 @@
     ],
     "*.md": [
       "git-exec-and-restage prettier-markdown"
+    ],
+    "*.re": [
+      "git-exec-and-restage refmt --in-place"
     ]
   },
   "babel": {
@@ -109,7 +118,7 @@
     }
   },
   "jest": {
-    "testEnvironment": "node",
+    "testURL": "test://url.tld/path",
     "notify": true,
     "coverageThreshold": {
       "global": {

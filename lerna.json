@@ -1,8 +1,17 @@
 {
   "lerna": "2.0.0-rc.5",
   "version": "1.0.0-alpha.4",
+  "commands": {
+    "exec": {
+      "ignore": [
+        "docs",
+        "@phenomic/example-*"
+      ]
+    }
+  },
   "packages": [
     "docs",
+    "examples/*",
     "packages/*"
   ]
 }

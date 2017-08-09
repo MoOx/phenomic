@@ -22,6 +22,8 @@ const requireSourceMapSupport = `require('${require
 
 const wrap = JSON.stringify;
 
+const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
+
 const getWebpackConfig = (config: PhenomicConfig) => {
   let webpackConfig;
   try {
@@ -30,6 +32,9 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     );
     debug("webpack.config.js used");
   } catch (e) {
+    if (!isNotFoundError(e)) {
+      throw e;
+    }
     debug("webpack.config.js is failing", e.toString());
     try {
       webpackConfig = require(path.join(
@@ -38,6 +43,9 @@ const getWebpackConfig = (config: PhenomicConfig) => {
       ))(config);
       debug("webpack.config.babel.js used");
     } catch (e) {
+      if (!isNotFoundError(e)) {
+        throw e;
+      }
       debug("webpack.config.babel.js is failing", e.toString());
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(
         config
