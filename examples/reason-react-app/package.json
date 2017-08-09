@@ -20,7 +20,7 @@
     "start": "npm run reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
     "start:reason": "npm run reason:compile -- -w",
-    "build": "npm run reason && phenomic build"
+    "build": "npm run reason:compile && phenomic build"
   },
   "phenomic": {
     "presets": [
