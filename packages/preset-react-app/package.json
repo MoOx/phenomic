@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/preset-react-app",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "publishConfig": {
     "access": "public"
   },
@@ -30,12 +30,12 @@
     "lib"
   ],
   "dependencies": {
-    "@phenomic/plugin-api-related-content": "^1.0.0-alpha.4",
-    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.4",
-    "@phenomic/plugin-collector-files": "^1.0.0-alpha.4",
-    "@phenomic/plugin-public-assets": "^1.0.0-alpha.4",
-    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.4",
-    "@phenomic/plugin-transform-json": "^1.0.0-alpha.4",
-    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.4"
+    "@phenomic/plugin-api-related-content": "^1.0.0-alpha.5",
+    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.5",
+    "@phenomic/plugin-collector-files": "^1.0.0-alpha.5",
+    "@phenomic/plugin-public-assets": "^1.0.0-alpha.5",
+    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.5",
+    "@phenomic/plugin-transform-json": "^1.0.0-alpha.5",
+    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.5"
   }
 }
