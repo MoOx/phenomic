@@ -42,7 +42,7 @@
     "#</git hooks>": "handled by husky",
     "clean": "lerna exec -- rimraf lib",
     "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "postinstall": "node ./scripts/lerna bootstrap",
+    "postinstall": "babel-node ./scripts/lerna bootstrap",
     "prepare": "npm run -s clean && npm run -s transpile",
     "publish": "lerna publish",
     "format": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
@@ -52,12 +52,13 @@
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "jest --runInBand --coverage packages",
+    "examples": "babel-node scripts/examples.js",
     "docs:start": "cd docs && npm start",
     "docs:test": "cd docs && npm test && jest docs",
     "docs:deploy": "cd docs && npm run deploy",
     "pretest": "npm run -s transpile && npm run -s lint",
     "test": "npm run -s tests",
-    "posttest": "npm run -s docs:test"
+    "posttest": "npm run -s examples && npm run -s docs:test"
   },
   "lint-staged": {
     "*.js": [
