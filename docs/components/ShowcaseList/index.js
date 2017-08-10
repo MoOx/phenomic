@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
+import RNWStyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 import Flex from "../Flex";
@@ -103,7 +104,12 @@ const ShowcaseList = (props: Object) =>
                     )}
                 </View>
                 <Link href={item.url} target="_blank">
-                  <View style={styles.imageContainerLarge}>
+                  <div
+                    className={
+                      RNWStyleSheet.resolve(styles.imageContainerLarge)
+                        .className
+                    }
+                  >
                     <Image
                       source={{
                         uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
@@ -111,8 +117,13 @@ const ShowcaseList = (props: Object) =>
                       style={styles.imageLarge}
                       resizeMode="cover"
                     />
-                  </View>
-                  <View style={styles.imageContainerSmall}>
+                  </div>
+                  <div
+                    className={
+                      RNWStyleSheet.resolve(styles.imageContainerSmall)
+                        .className
+                    }
+                  >
                     <Image
                       source={{
                         uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`
@@ -120,7 +131,7 @@ const ShowcaseList = (props: Object) =>
                       style={styles.imageSmall}
                       resizeMode="cover"
                     />
-                  </View>
+                  </div>
                 </Link>
               </View>
             )}

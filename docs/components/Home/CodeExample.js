@@ -9,7 +9,7 @@ const CodeExample = () =>
     <View style={styles.row}>
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <Text style={styles.number}>{"1"}</Text>
+          <View style={styles.number}><Text>{"1"}</Text></View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Get some content"}</Text>
             <Text style={styles.itemSubTitle}>
@@ -29,7 +29,7 @@ This is an article`}</Editor>
       <Spacer />
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <Text style={styles.number}>{"2"}</Text>
+          <View style={styles.number}><Text>{"2"}</Text></View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Write your templates"}</Text>
             <Text style={styles.itemSubTitle}>
@@ -50,7 +50,7 @@ This is an article`}</Editor>
       <Spacer />
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <Text style={styles.number}>{"3"}</Text>
+          <View style={styles.number}><Text>{"3"}</Text></View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Compile your website"}</Text>
             <Text style={styles.itemSubTitle}>
