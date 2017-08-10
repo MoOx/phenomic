@@ -17,9 +17,9 @@ const Html = (props: HtmlPropsType) => {
         {helmet.title.toComponent()}
         {helmet.meta.toComponent()}
         <link rel="stylesheet" href="/styles.css" />
-        {StyleSheet.getStyleSheets().map(({ id, textContent }) => {
-          <style id={id}>{textContent}</style>;
-        })}
+        {StyleSheet.getStyleSheets().map(({ id, textContent }) =>
+          <style key={id} id={id}>{textContent}</style>
+        )}
         {helmet.link.toComponent()}
         {helmet.style.toComponent()}
         {helmet.script.toComponent()}
