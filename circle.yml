@@ -5,3 +5,8 @@ machine:
   environment:
     PHENOMIC_NO_YARN: 1
     DEBUG: phenomic:*
+
+dependencies:
+  cache_directories:
+    - docs/.screenshots
+    - docs/public/showcase/entry
