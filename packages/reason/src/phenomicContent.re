@@ -74,7 +74,11 @@ let query queryConfig =>
       (Js.Obj.empty ())
       {
         "collection": queryConfigList.collection,
-        "by": Js.Null_undefined.from_opt queryConfigList.by,
+        "by":
+          switch queryConfigList.by {
+          | Some by => Js.Null_undefined.return by
+          | None => Js.Null_undefined.return "default"
+          },
         "value": Js.Null_undefined.from_opt queryConfigList.value,
         "order": Js.Null_undefined.from_opt queryConfigList.order,
         "limit": Js.Null_undefined.from_opt queryConfigList.limit
@@ -84,7 +88,11 @@ let query queryConfig =>
       (Js.Obj.empty ())
       {
         "collection": queryConfigPaginatedList.collection,
-        "by": Js.Null_undefined.from_opt queryConfigPaginatedList.by,
+        "by":
+          switch queryConfigPaginatedList.by {
+          | Some by => Js.Null_undefined.return by
+          | None => Js.Null_undefined.return "default"
+          },
         "value": Js.Null_undefined.from_opt queryConfigPaginatedList.value,
         "order": Js.Null_undefined.from_opt queryConfigPaginatedList.order,
         "limit": Js.Null_undefined.from_opt queryConfigPaginatedList.limit,
