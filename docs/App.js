@@ -5,36 +5,29 @@ import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 import "./defaults.css";
 
 import Html from "./Html";
-import Wrapper from "./components/Wrapper";
-import Home from "./components/Home";
-import GettingStarted from "./components/GettingStarted";
-import DocPage from "./components/Page/Doc";
-import ShowcasePage from "./components/Page/Showcase";
-import ShowcaseList, { ShowcaseListByTag } from "./components/ShowcaseList";
-import PageError from "./components/PageError";
-import NewsItem from "./components/News/NewsItem";
-import NewsList from "./components/News/NewsList";
+
+const {
+  wrapReComponent
+} = require("@phenomic/reason/lib/js/src/phenomicRootComponent");
+
+const Home = require("./lib/js/src/components/home").jsComponent;
+const GettingStarted = require("./lib/js/src/components/gettingStarted")
+  .jsComponent;
+const News = require("./lib/js/src/components/news");
+const Showcase = require("./lib/js/src/components/showcase");
 
 const routes = () =>
   <Router history={browserHistory}>
-    <Route component={Wrapper}>
-      <Route path="/" component={Home} />
-      <Route path="/docs/getting-started" component={GettingStarted} />
-      <Route path="/docs/*" component={DocPage} />
-      <Route path="/showcase" component={ShowcaseList} />
-      <Route path="/showcase/after/:after" component={ShowcaseList} />
-      <Route path="/showcase/tag/:showcaseTags" component={ShowcaseListByTag} />
-      <Route
-        path="/showcase/tag/:showcaseTags/after/:after"
-        component={ShowcaseListByTag}
-      />
-      <Route path="/showcase/*" component={ShowcasePage} />
-      <Route path="/news" component={NewsList} />
-      <Route path="/news/after/:after" component={NewsList} />
-      <Route path="/news/*" component={NewsItem} />
-      <Route path="404.html" component={PageError} />
-      <Route path="*" component={PageError} />
-    </Route>
+    <Route path="/" component={Home} />
+    <Route path="/getting-started" component={GettingStarted} />
+    <Route
+      path="/news"
+      component={wrapReComponent(News.jsComponent, News.queries)}
+    />
+    <Route
+      path="/showcase"
+      component={wrapReComponent(Showcase.jsComponent, Showcase.queries)}
+    />
   </Router>;
 
 export default createApp(routes, Html);
