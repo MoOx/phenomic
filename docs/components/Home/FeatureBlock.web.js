@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   title: {
-    flexBasis: "35%"
+    // flexBasis: "35%"
   },
   description: {
-    flexBasis: "65%"
+    flexGrow: 1
+    // flexBasis: "65%"
   },
   titleText: {
     padding: 10,

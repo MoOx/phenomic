@@ -22,11 +22,11 @@ const padding = 8;
 const bulletSize = 8;
 const styles = StyleSheet.create({
   editor: {
-    flex: 1
+    flexGrow: 1
   },
   header: {
     flexDirection: "row",
-    fontSize: 12,
+    // fontSize: 12,
     borderTopLeftRadius: radius,
     borderTopRightRadius: radius,
     padding: padding,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginRight: bulletSize / 2
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
     borderBottomLeftRadius: radius,
     borderBottomRightRadius: radius,
     padding: 6,

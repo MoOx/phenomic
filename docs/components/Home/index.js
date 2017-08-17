@@ -127,7 +127,6 @@ const Home = () =>
             }
           />
         </View>
-
       </View>
     </BodyContainer>
     <Spacer large />
@@ -149,7 +148,8 @@ const styles = StyleSheet.create({
     width: 272,
     flexShrink: 1,
     minWidth: 240,
-    paddingVertical: 10
+    paddingTop: 10,
+    paddingBottom: 10
   }
 });
 

@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   imageContainerLarge: {},
   imageLarge: {
-    flex: 1,
+    flexGrow: 1,
     paddingBottom:
       100 * screenshotsSize.large.height / screenshotsSize.large.width + "%",
     borderWidth: 1,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     width: "20%"
   },
   imageSmall: {
-    flex: 1,
+    flexGrow: 1,
     width: "100%",
     paddingBottom:
       100 * screenshotsSize.small.height / screenshotsSize.small.width + "%",

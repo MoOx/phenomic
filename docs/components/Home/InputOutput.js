@@ -7,8 +7,8 @@ import Flex from "../Flex";
 import Browser from "../Browser";
 import Spacer from "../Spacer";
 
-const CodeExample = () =>
-  <View>
+const InputOutput = () =>
+  <Flex>
     <View style={styles.row}>
       <Flex style={{ width: 250 }}>
         <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
@@ -119,41 +119,41 @@ const CodeExample = () =>
           >
             {"Fastest website ever"}
           </Text>
-          <View style={{ padding: 20, flex: 1 }}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+          <View style={{ padding: 20, flexGrow: 1 }}>
+            <View style={{ flexDirection: "row", flexGrow: 1 }}>
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
             </View>
             <Spacer small />
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+            <View style={{ flexDirection: "row", flexGrow: 1 }}>
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
             </View>
             <Spacer small />
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+            <View style={{ flexDirection: "row", flexGrow: 1 }}>
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
               <Spacer />
-              <View style={{ flex: 1, backgroundColor: "#E8E9E8" }} />
+              <View style={{ flexGrow: 1, backgroundColor: "#E8E9E8" }} />
             </View>
           </View>
         </Browser>
       </Flex>
     </View>
-  </View>;
+  </Flex>;
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "row"
   }
 });
 
-export default CodeExample;
+export default InputOutput;

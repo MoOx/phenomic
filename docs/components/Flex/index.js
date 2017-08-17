@@ -8,7 +8,7 @@ const Flex = (props: Object) =>
 
 const styles = StyleSheet.create({
   flex: {
-    flex: 1
+    flexGrow: 1
   }
 });
 

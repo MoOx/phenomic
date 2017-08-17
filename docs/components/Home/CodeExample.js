@@ -9,7 +9,9 @@ const CodeExample = () =>
     <View style={styles.row}>
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <View style={styles.number}><Text>{"1"}</Text></View>
+          <View style={styles.number}>
+            <Text style={styles.numberText}>{"1"}</Text>
+          </View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Get some content"}</Text>
             <Text style={styles.itemSubTitle}>
@@ -29,7 +31,9 @@ This is an article`}</Editor>
       <Spacer />
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <View style={styles.number}><Text>{"2"}</Text></View>
+          <View style={styles.number}>
+            <Text style={styles.numberText}>{"2"}</Text>
+          </View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Write your templates"}</Text>
             <Text style={styles.itemSubTitle}>
@@ -50,7 +54,9 @@ This is an article`}</Editor>
       <Spacer />
       <View style={styles.item}>
         <View style={styles.itemHeader}>
-          <View style={styles.number}><Text>{"3"}</Text></View>
+          <View style={styles.number}>
+            <Text style={styles.numberText}>{"3"}</Text>
+          </View>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Compile your website"}</Text>
             <Text style={styles.itemSubTitle}>
@@ -71,21 +77,23 @@ $ # Deploy`}</Editor>
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "row"
   },
   item: {
-    flex: 1
+    flexGrow: 1
   },
   itemHeader: {
     flexDirection: "row",
     paddingBottom: 10
   },
   number: {
-    color: "#fff",
     backgroundColor: "rgba(0,0,0,.3)",
     borderRadius: "50%",
-    width: 40,
+    width: 40
+  },
+  numberText: {
+    color: "#fff",
     lineHeight: 40,
     textAlign: "center"
   },
