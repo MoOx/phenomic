@@ -37,17 +37,36 @@ type PhenomicTransformResult = {
   partial: Object
 };
 
+type ReactCompo = Function;
+
+type PhenomicIntermediateHtmlPropsType = {
+  WrappedApp: ReactCompo,
+  renderAsObject: (
+    app: React$Element<*>
+  ) => {
+    main: string,
+    state?: Object | null,
+    script?: string
+  }
+};
+
 type PhenomicHtmlPropsType = {
-  body: React$Element<*>,
-  state?: React$Element<*>,
-  script: React$Element<*>
+  App: ReactCompo,
+  render: (
+    app: React$Element<*>
+  ) => {
+    Main: ReactCompo,
+    State: ReactCompo,
+    Script: ReactCompo,
+    Body: ReactCompo
+  }
 };
 
 type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
 
 type PhenomicPluginRenderHTMLType = (
   config: PhenomicConfig,
-  props?: { body?: string, state?: Object },
+  props?: PhenomicIntermediateHtmlPropsType,
   html?: PhenomicHtmlType
 ) => string;
 

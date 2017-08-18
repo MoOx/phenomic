@@ -28,23 +28,25 @@ function getMatch({ routes, location }) {
   });
 }
 
-function renderToString(
+function staticRenderToString(
   config: PhenomicConfig,
   store: StoreType,
   { renderProps }: { renderProps: Object },
-  renderHTML,
+  renderHTML: PhenomicPluginRenderHTMLType,
   Html
 ) {
-  const body = ReactDOMServer.renderToString(
-    <Provider fetch={fetch} store={store}>
-      <RouterContext {...renderProps} />
-    </Provider>
-  );
   return renderHTML(
     config,
     {
-      body,
-      state: store.getState()
+      WrappedApp: () =>
+        <Provider fetch={fetch} store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>,
+      renderAsObject: (UserWrappedApp: React$Element<*>) => ({
+        main: ReactDOMServer.renderToString(UserWrappedApp),
+        state: store.getState()
+        // script: ?
+      })
     },
     Html
   );
@@ -79,7 +81,7 @@ async function renderServer(
   );
   let contents;
   try {
-    contents = await renderToString(
+    contents = await staticRenderToString(
       config,
       store,
       { renderProps, redirectLocation },
