@@ -1,3 +1,8 @@
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-no-literals */
+/* eslint-disable react-native/no-inline-styles */
+
 import React from "react";
 import Head from "react-helmet";
 import { Router, Route, browserHistory, Link } from "react-router";
@@ -128,7 +133,8 @@ const Layout = ({ children }) =>
     </footer>
   </div>;
 
-const Html = props => {
+const Html = ({ App, render }) => {
+  const { Body } = render(<App />);
   const helmet = Head.renderStatic();
   return (
     <html {...helmet.htmlAttributes.toComponent()}>
@@ -141,11 +147,7 @@ const Html = props => {
         {helmet.script.toComponent()}
         {helmet.noscript.toComponent()}
       </head>
-      <body {...helmet.bodyAttributes.toComponent()}>
-        {props.body}
-        {props.state}
-        {props.script}
-      </body>
+      <Body {...helmet.bodyAttributes.toComponent()} />
     </html>
   );
 };

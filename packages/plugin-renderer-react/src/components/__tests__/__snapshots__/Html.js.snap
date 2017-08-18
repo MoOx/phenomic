@@ -9,8 +9,6 @@ exports[`Html works 1`] = `
       name=\\"viewport\\"
     />
   </head>
-  <body>
-    bodystate/scr/ipt
-  </body>
+  <Body />
 </html>"
 `;
