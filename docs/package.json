@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "docs",
+  "version": "1.0.0-alpha.5",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
@@ -48,5 +49,9 @@
       "height": 640
     }
   },
-  "version": "1.0.0-alpha.5"
+  "eslintConfig": {
+    "rules": {
+      "react/prop-types": 0
+    }
+  }
 }
