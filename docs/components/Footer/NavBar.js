@@ -67,12 +67,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textDecorationLine: "none"
   },
-  version: {
-    textDecorationLine: "none",
-    color: "#fff",
-    opacity: 0.2,
-    fontSize: 12
-  },
   link: {
     textDecorationLine: "none",
     padding: 10

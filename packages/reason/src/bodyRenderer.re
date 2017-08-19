@@ -1,28 +1,29 @@
-module BodyRenderer = {
-  include ReactRe.Component;
-  let name = "BodyRenderer";
-  type props = {body: PhenomicContent.jsBody};
+let component = ReasonReact.statelessComponent "BodyRenderer";
+
+let make body::(body: PhenomicContent.jsBody) _children => {
   let rec renderChild child =>
     switch child {
-    | PhenomicContent.String string => ReactRe.stringToElement string
+    | PhenomicContent.String string => ReasonReact.stringToElement string
     | PhenomicContent.Element tag originalProps reasonChildren =>
       let props = ReactDOMRe.objToDOMProps originalProps;
-      ReactDOMRe.createElement
-        tag
-        ::props
-        [|
-          ReactRe.arrayToElement (
-            Array.of_list (List.map renderChild reasonChildren)
-          )
-        |]
-    | PhenomicContent.Empty => ReactRe.nullElement
+      switch tag {
+      | "a" =>
+        <Link toURL=[%bs.raw {| child[1].href |}]>
+          ([%bs.raw {|child[2]|}] |> Array.of_list |> ReasonReact.arrayToElement)
+        </Link>
+      | _ =>
+        ReactDOMRe.createElement
+          tag
+          ::props
+          [|ReasonReact.arrayToElement (Array.of_list (List.map renderChild reasonChildren))|]
+      }
+    | PhenomicContent.Empty => ReasonReact.nullElement
     };
-  let render {props} => {
-    let tree = PhenomicContent.jsTreeToReason props.body;
-    <div> (renderChild tree) </div>
-  };
+  {
+    ...component,
+    render: fun _self => {
+      let tree = PhenomicContent.jsTreeToReason body;
+      <div> (renderChild tree) </div>
+    }
+  }
 };
-
-include ReactRe.CreateComponent BodyRenderer;
-
-let createElement ::body => wrapProps {body: body};

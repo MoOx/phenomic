@@ -4,22 +4,28 @@ import pkg from "../../package.json";
 
 const debug = require("debug")("phenomic:core:api");
 
-const encode = text => new Buffer(text).toString("base64");
-const decode = text => new Buffer(text, "base64").toString();
+export const encode = (text: string) => new Buffer(text).toString("base64");
+export const decode = (text: string) => new Buffer(text, "base64").toString();
 
 const connect = (list, limit, previousList = []) => {
   const hasNextPage = limit === undefined ? false : list.length >= limit;
   const hasPreviousPage = previousList.length > 0;
+  const previousPageIsFirst = limit ? previousList.length <= limit : undefined;
+  // we are retrieving limit + 1 to know if there is more page or not
+  // so when getting the previous item, we need to check if we want the last
+  // item or the one before (since we added one to the limit)
+  const previousIndex = previousList.length - 1 - (previousPageIsFirst ? 0 : 1);
+  const nextIndex = list.length - 1;
   return {
     hasPreviousPage,
-    previousPageIsFirst: limit ? previousList.length <= limit : null,
-    previous: hasPreviousPage && previousList[previousList.length - 2]
-      ? encode(previousList[previousList.length - 2].key)
-      : null,
+    previousPageIsFirst,
+    previous: hasPreviousPage && previousList[previousIndex]
+      ? encode(previousList[previousIndex].key)
+      : undefined,
     hasNextPage,
-    next: hasNextPage && list[list.length - 1]
-      ? encode(list[list.length - 1].key)
-      : null,
+    next: hasNextPage && list[nextIndex]
+      ? encode(list[nextIndex].key)
+      : undefined,
     list: list.slice(0, limit)
   };
 };
@@ -86,7 +92,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
       debug(req.url, JSON.stringify(req.params));
       try {
         const limit = parseInt(req.params.limit);
-        const lte = decode(req.params.after);
+        const after = decode(req.params.after);
         // @todo check lt validity (exist?); otherwise, trigger an error (404?)
         // cause during dev all "lt" are responding 200, even random values
         // but in production, it's not the case as only known values are
@@ -97,7 +103,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.collection,
             {
               limit: limit + 1,
-              lte,
+              [reverse ? "lte" : "gte"]: after,
               reverse
             },
             req.params.filter,
@@ -107,7 +113,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.collection,
             {
               limit: limit + 1,
-              gt: lte,
+              [reverse ? "gt" : "lt"]: after,
               reverse: !reverse
             },
             req.params.filter,

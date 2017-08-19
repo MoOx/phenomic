@@ -12,6 +12,8 @@ matrix:
 
 cache:
   - node_modules -> package.json
+  - docs/.screenshots -> docs/content/showcase-entries
+  - docs/public/showcase/entry -> docs/content/showcase-entries
 
 install:
   - ps: Install-Product node $env:nodejs_version x64

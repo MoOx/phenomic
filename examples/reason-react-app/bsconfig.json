@@ -1,0 +1,16 @@
+{
+  "name": "@phenomic/example-reason-react-app",
+  "version": "1.0.0-alpha.0",
+  "sources": [
+    {
+      "dir": "components"
+    }
+  ],
+  "reason": {
+    "react-jsx": 2
+  },
+  "bs-dependencies": [
+    "reason-react",
+    "@phenomic/reason"
+  ]
+}

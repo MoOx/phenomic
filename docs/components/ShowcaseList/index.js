@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
+import RNWStyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 import Flex from "../Flex";
@@ -13,6 +14,8 @@ import urlToSlug from "../../modules/url-to-slug";
 import { screenshotsSize } from "../../package.json";
 
 const prepareList = list => {
+  return list;
+  /*
   let phenomicDocs;
   const newList = list
     .filter(site => site.showcaseTags)
@@ -48,6 +51,7 @@ const prepareList = list => {
     });
   if (phenomicDocs) newList.push(phenomicDocs);
   return newList;
+  */
 };
 
 const ShowcaseList = (props: Object) =>
@@ -61,11 +65,11 @@ const ShowcaseList = (props: Object) =>
             {"Submit your website!"}
           </Link>
           {props.params &&
-            props.params.tag &&
+            props.params.showcaseTags &&
             <View style={styles.currentFilter}>
               <Text style={styles.filterMessage}>
                 {"You are currently viewing projects that match "}
-                <em>{props.params.tag}</em>
+                <em>{props.params.showcaseTags}</em>
                 {" tag. "}
                 <Link to={"/showcase/"} style={styles.filterMessageLink}>
                   {"View all."}
@@ -79,7 +83,11 @@ const ShowcaseList = (props: Object) =>
                   <Text style={styles.itemName}>{item.title}</Text>
                   <Text>{" "}</Text>
                   {item.source &&
-                    <Link style={styles.itemLinkSource} href={item.source}>
+                    <Link
+                      style={styles.itemLinkSource}
+                      href={item.source}
+                      target="_blank"
+                    >
                       {"(Source)"}
                     </Link>}
                 </View>
@@ -95,8 +103,13 @@ const ShowcaseList = (props: Object) =>
                       </Link>
                     )}
                 </View>
-                <Link href={item.url}>
-                  <View style={styles.imageContainerLarge}>
+                <Link href={item.url} target="_blank">
+                  <div
+                    className={
+                      RNWStyleSheet.resolve(styles.imageContainerLarge)
+                        .className
+                    }
+                  >
                     <Image
                       source={{
                         uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
@@ -104,8 +117,13 @@ const ShowcaseList = (props: Object) =>
                       style={styles.imageLarge}
                       resizeMode="cover"
                     />
-                  </View>
-                  <View style={styles.imageContainerSmall}>
+                  </div>
+                  <div
+                    className={
+                      RNWStyleSheet.resolve(styles.imageContainerSmall)
+                        .className
+                    }
+                  >
                     <Image
                       source={{
                         uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`
@@ -113,35 +131,41 @@ const ShowcaseList = (props: Object) =>
                       style={styles.imageSmall}
                       resizeMode="cover"
                     />
-                  </View>
+                  </div>
                 </Link>
               </View>
             )}
           </View>
-          {/*
           <View style={styles.paginationRow}>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
                 props.showcase.node.hasPreviousPage &&
                 <Link
+                  style={styles.link}
                   to={
                     props.showcase.node.previousPageIsFirst
                       ? `/showcase`
-                      : `/showcase/after/${props.showcase.node.previous}`
+                      : `/showcase/${props.params.showcaseTags
+                          ? `tag/${props.params.showcaseTags}/`
+                          : ""}after/${props.showcase.node.previous}`
                   }
                 >
-                  {"Previous"}
+                  {"← Previous"}
                 </Link>}
             </View>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
                 props.showcase.node.hasNextPage &&
-                <Link to={`/showcase/after/${props.showcase.node.next}`}>
-                  {"Next"}
+                <Link
+                  style={styles.link}
+                  to={`/showcase/${props.params.showcaseTags
+                    ? `tag/${props.params.showcaseTags}/`
+                    : ""}after/${props.showcase.node.next}`}
+                >
+                  {"Next →"}
                 </Link>}
             </View>
           </View>
-          */}
         </View>}
     </BodyContainer>
     <Spacer large />
@@ -149,6 +173,9 @@ const ShowcaseList = (props: Object) =>
   </Flex>;
 
 const styles = StyleSheet.create({
+  link: {
+    color: "#006df4"
+  },
   row: {
     flexDirection: "row",
     alignItems: "center"
@@ -191,7 +218,7 @@ const styles = StyleSheet.create({
   },
   imageContainerLarge: {},
   imageLarge: {
-    flex: 1,
+    flexGrow: 1,
     paddingBottom:
       100 * screenshotsSize.large.height / screenshotsSize.large.width + "%",
     borderWidth: 1,
@@ -205,7 +232,7 @@ const styles = StyleSheet.create({
     width: "20%"
   },
   imageSmall: {
-    flex: 1,
+    flexGrow: 1,
     width: "100%",
     paddingBottom:
       100 * screenshotsSize.small.height / screenshotsSize.small.width + "%",
@@ -239,8 +266,7 @@ const styles = StyleSheet.create({
     color: "#08b09b",
     backgroundColor: "#fff",
     borderRadius: 3
-  }
-  /*
+  },
   paginationRow: {
     flexDirection: "row"
   },
@@ -250,24 +276,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   }
-  */
 });
 
-export const Component = ShowcaseList;
+export { ShowcaseList as Component };
 
-export default createContainer(ShowcaseList, () => ({
+export default createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase"
+    collection: "showcase-entries",
+    order: "asc",
+    limit: 10,
+    after: props.params.after
   })
 }));
 
 export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase",
+    collection: "showcase-entries",
     by: "showcaseTags",
-    value: props.params.showcaseTags
-    // order: "asc",
-    // limit: 10,
-    // after: props.params.after
+    value: props.params.showcaseTags,
+    order: "asc",
+    limit: 10,
+    after: props.params.after
   })
 }));

@@ -9,7 +9,7 @@
 
 ---
 
-Check out our [Getting started with Phenomic and ``@phenomic/preset-react-app``](docs/getting-started/)
+Check out our [Getting started with Phenomic and ``@phenomic/preset-react-app``](docs/getting-started/README.md)
 
 ---
 

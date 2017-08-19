@@ -1,8 +1,24 @@
 import createQuery from "@phenomic/api-client/lib/query";
 
+import { encode } from "../api";
+
 const debug = require("debug")("phenomic:core:prerender:resolve");
 
+const defaultQueryKey = "default";
+const mainKey = "id";
+
 const arrayUnique = array => [...new Set(array)];
+
+const flatten = (array: Array<any>) => {
+  const flattenedArray = [];
+  array.forEach(item => {
+    Array.isArray(item)
+      ? flattenedArray.push(...flatten(item))
+      : flattenedArray.push(item);
+  });
+
+  return flattenedArray;
+};
 
 const getRouteQueries = route => {
   const initialRouteParams: Object = route.params || {};
@@ -16,7 +32,8 @@ const getRouteQueries = route => {
 };
 
 const getMainCollection = route => {
-  const keys = Object.keys(getRouteQueries(route));
+  const routeQueries = getRouteQueries(route);
+  const keys = Object.keys(routeQueries);
   const firstKey = keys[0];
   const firstKeyAsInt = parseInt(keys[0], 10);
   // parseInt("12.") == "12"
@@ -27,7 +44,7 @@ const getMainCollection = route => {
   ) {
     console.warn(`The main collection used for ${route.path} is ${firstKey}`);
   }
-  return firstKey;
+  return { key: firstKey, item: routeQueries[firstKey] };
 };
 
 const resolveURLsForDynamicParams = async function(
@@ -36,18 +53,26 @@ const resolveURLsForDynamicParams = async function(
 ) {
   // deprecate notice
   // @todo remove for stable v1
+  if (route.paginated) {
+    console.log(
+      "'paginated' parameter is deprecated. Pagination is now infered from the presence of :after param in the route."
+    );
+  }
   if (route.collection) {
     console.error(
       `${route.path} have an attached parameter 'collection=$route.collection'.\n This parameter is now useless and can be safely removed`
     );
   }
 
-  const collectionConfig = { collection: getMainCollection(route) };
-  debug("route", route.path);
-  if (!collectionConfig.collection) {
+  const mainCollection = getMainCollection(route);
+  if (!mainCollection.item || !mainCollection.item.collection) {
     debug("no valid collection detected for", route.path);
     return route;
   }
+
+  const collectionConfig = { collection: mainCollection.item.collection };
+  debug("route", route.path);
+
   // If the path doesn't contain any kind of parameter, no need to
   // iterate over the collection
   if (!route.path.includes("*") && !route.path.includes(":")) {
@@ -55,19 +80,23 @@ const resolveURLsForDynamicParams = async function(
     return route;
   }
   debug(
-    `fetching collection '${collectionConfig.collection
-      ? collectionConfig.collection
+    `fetching collection '${mainCollection.key
+      ? mainCollection.key
       : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
   const query = getRouteQueries(route);
   debug(route.path, query);
-  const key =
-    (query[collectionConfig.collection] &&
-      query[collectionConfig.collection].by) ||
-    "key";
+  let key =
+    (query[mainCollection.key] && query[mainCollection.key].by) || mainKey;
+  if (key === defaultQueryKey) {
+    key = mainKey;
+  }
   const collection = await phenomicFetch(createQuery(collectionConfig));
-  debug(route.path, `collection fetched. ${collection.list.length} items`);
+  debug(
+    route.path,
+    `collection fetched. ${collection.list.length} items (key: ${key})`
+  );
   const path = route.path || "*";
   const list = collection.list.reduce((acc, item) => {
     if (!item[key]) {
@@ -80,84 +109,67 @@ const resolveURLsForDynamicParams = async function(
     }
     return acc;
   }, []);
-  debug(route.path, "list (unique)", arrayUnique(list));
-  return arrayUnique(list).map(value => {
+  debug(path, "list (unique)", arrayUnique(list));
+  const urlsData = arrayUnique(list).reduce((acc, value) => {
     let resolvedPath = path.replace(":" + key, value);
     let params = { [key]: value };
+
     // try *
-    if (key === "key" && resolvedPath === path) {
+    if (key === mainKey && resolvedPath === path) {
       resolvedPath = resolvedPath.replace("*", value);
+      // react-router splat is considered as the id
       params = { splat: value };
     }
-    return {
-      ...route,
-      path: resolvedPath,
-      params
-    };
-  });
-};
 
-const findPaginatedQuery = function(queries) {
-  const key = Object.keys(queries).find(key =>
-    queries[key].hasOwnProperty("after")
-  );
-  if (!key) {
-    return null;
-  }
-  return queries[key];
-};
+    debug("half resolved path", resolvedPath, params);
 
-const resolveNextURLsInPagination = async function(
-  path: string,
-  query: PhenomicQueryConfig,
-  phenomicFetch: PhenomicFetch,
-  urls: Array<string> = []
-) {
-  urls = [
-    ...urls,
-    path.replace("/:after", query.after ? "/" + query.after : "")
-  ];
-  debug(path, query.after);
-  const nextPage = await phenomicFetch(createQuery(query));
-  if (nextPage.hasNextPage) {
-    debug(path, "have a next page");
-    return resolveNextURLsInPagination(
-      path,
-      { ...query, after: nextPage.next },
-      phenomicFetch,
-      urls
-    );
-  } else {
-    return urls;
-  }
-};
+    if (path !== resolvedPath) {
+      acc.push({
+        ...route,
+        path: resolvedPath,
+        params
+      });
+    }
 
-const resolvePaginatedURLs = async function(
-  fetch: PhenomicFetch,
-  route: PhenomicRoute
-) {
-  if (!route.paginated) {
-    debug(route.path, "is not paginated");
-    return route.path;
-  }
+    return acc;
+  }, []);
 
-  const query = findPaginatedQuery(getRouteQueries(route));
-  if (!query) {
-    debug(route.path, "is paginated with queries, but no :after param found");
-    return route.path;
-  }
-  return resolveNextURLsInPagination(route.path, query, fetch);
-};
+  debug(path, "urls data", urlsData);
 
-const flatten = (array: Array<any>) => {
-  const flattenedArray = [];
-  array.forEach(item => {
-    Array.isArray(item)
-      ? flattenedArray.push(...flatten(item))
-      : flattenedArray.push(item);
-  });
+  // if no data found, we still try to render something
+  const finalUrlsData = urlsData.length ? urlsData : [{ path }];
 
-  return flattenedArray;
+  // try :after with id
+  const reAfter = /:after\b/;
+
+  return finalUrlsData.reduce((acc, routeData) => {
+    if (!routeData.path.match(reAfter)) {
+      acc.push(routeData);
+    } else {
+      collection.list.map(item => {
+        // $FlowFixMe params[key] act as a truthy value
+        if (routeData.params && routeData.params[key]) {
+          if (
+            (Array.isArray(item[key]) &&
+              item[key].includes(routeData.params[key])) ||
+            item[key] === routeData.params[key]
+          ) {
+            acc.push({
+              ...routeData,
+              path: routeData.path.replace(reAfter, encode(item.key))
+            });
+          }
+        } else {
+          acc.push({
+            ...routeData,
+            path: routeData.path.replace(reAfter, encode(item.key))
+          });
+        }
+      });
+    }
+
+    return acc;
+  }, []);
 };
 
 const normalizePath = (path: string) => path.replace(/^\//, "");
@@ -179,10 +191,12 @@ const resolveURLsToPrerender = async function(
     }
     return true;
   });
-  const paginatedURLs = await Promise.all(
-    filtredDynamicRoutes.map(route => resolvePaginatedURLs(fetch, route))
+  // debug("filtred dynamic routes", filtredDynamicRoutes)
+
+  const normalizedURLs = filtredDynamicRoutes.map(routeData =>
+    normalizePath(routeData.path)
   );
-  const normalizedURLs = flatten(paginatedURLs).map(normalizePath);
+  debug("normalize urls", normalizedURLs);
   const uniqsNormalizedPath = [...new Set(normalizedURLs)];
   return uniqsNormalizedPath;
 };

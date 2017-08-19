@@ -4,8 +4,8 @@
 // because it's a bit dumb
 
 import React from "react";
-// @todo add Phenomic Link
-// import Link from "./Link.js"
+
+import Link from "./Link.js";
 
 type ComponentType = string | Class<React.Component<*, *, *>> | Function;
 
@@ -36,7 +36,7 @@ type PropsType = OptionsType & {
 
 const defaultOptions: OptionsType = {
   components: {
-    // a: Link
+    a: Link
   }
 };
 
@@ -74,7 +74,12 @@ const BodyRenderer = ({ children, ...props }: PropsType) => {
   }
   const r = render(children, {
     ...defaultOptions,
-    ...(props || {})
+    ...(props || {}),
+    // force to mix components, as default one (Link) is crucial
+    components: {
+      ...defaultOptions.components,
+      ...(props.components || {})
+    }
   });
   return typeof r === "string"
     ? <props.DefaultComponent>{r}</props.DefaultComponent>

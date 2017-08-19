@@ -7,9 +7,8 @@ import Footer from "../Footer";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import BodyContainer from "../BodyContainer";
-import BackgroundGradient from "../BackgroundGradient";
-import FeatureBlock from "./FeatureBlock";
 
+import FeatureBlock from "./FeatureBlock";
 import InputOutput from "./InputOutput";
 import CodeExample from "./CodeExample";
 
@@ -127,7 +126,6 @@ const Home = () =>
             }
           />
         </View>
-
       </View>
     </BodyContainer>
     <Spacer large />
@@ -149,7 +147,8 @@ const styles = StyleSheet.create({
     width: 272,
     flexShrink: 1,
     minWidth: 240,
-    paddingVertical: 10
+    paddingTop: 10,
+    paddingBottom: 10
   }
 });
 

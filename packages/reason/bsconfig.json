@@ -7,7 +7,7 @@
     }
   ],
   "reason": {
-    "react-jsx": true
+    "react-jsx": 2
   },
   "bs-dependencies": [
     "reason-react"

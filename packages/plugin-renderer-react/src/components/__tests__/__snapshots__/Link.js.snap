@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link activeClassName? 1`] = `
+"<Link
+  activeClassName=\\"activeCx\\"
+  classNames=\\"activeCx\\"
+  style={{}}
+  to=\\"test://url.tld/internal\\"
+>
+  c
+</Link>"
+`;
+
+exports[`Link activeClassName? 2`] = `
+"<Link
+  activeClassName=\\"activeCx\\"
+  style={{}}
+  to=\\"test://url.tld/internal\\"
+>
+  c
+</Link>"
+`;
+
+exports[`Link works with \`\`href\`\` 1`] = `
+"<Link
+  style={{}}
+  to=\\"test://url.tld/b\\"
+>
+  c
+</Link>"
+`;
+
+exports[`Link works with \`\`to\`\` 1`] = `
+"<Link
+  style={{}}
+  to=\\"test://url.tld/b\\"
+>
+  c
+</Link>"
+`;
+
+exports[`Link works with external \`\`href\`\` 1`] = `
+"<a href=\\"http://b.com\\">
+  c
+</a>"
+`;
+
+exports[`Link works with external \`\`href\`\` 2`] = `
+"<a href=\\"http://b.com\\">
+  c
+</a>"
+`;
+
+exports[`Link works with internal \`\`href\`\` 1`] = `
+"<Link
+  style={{}}
+  to=\\"test://url.tld/internal\\"
+>
+  c
+</Link>"
+`;
+
+exports[`Link works with internal \`\`href\`\` 2`] = `
+"<Link
+  style={{}}
+  to=\\"test://url.tld/internal\\"
+>
+  c
+</Link>"
+`;

@@ -17,13 +17,11 @@ const FeatureBlock = (props: PropsType) =>
     direction={props.direction}
     style={styles.container}
   >
-    <View style={styles.stretch}>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>{props.title}</Text>
-      </View>
-      <View style={styles.description}>
-        <Text style={styles.descriptionText}>{props.description}</Text>
-      </View>
+    <View style={styles.title}>
+      <Text style={styles.titleText}>{props.title}</Text>
+    </View>
+    <View style={styles.description}>
+      <Text style={styles.descriptionText}>{props.description}</Text>
     </View>
   </BackgroundGradient>;
 
@@ -31,19 +29,14 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     borderRadius: 6,
-    paddingBottom: "80%"
-  },
-  stretch: {
-    ...StyleSheet.absoluteFillObject,
-    padding: 20,
-    paddingLeft: 10,
-    paddingRight: 10
+    padding: 10
   },
   title: {
-    flexBasis: "35%"
+    // flexBasis: "35%"
   },
   description: {
-    flexBasis: "65%"
+    flexGrow: 1
+    // flexBasis: "65%"
   },
   titleText: {
     padding: 10,

@@ -22,18 +22,15 @@ const routes = () =>
       <Route path="/docs/getting-started" component={GettingStarted} />
       <Route path="/docs/*" component={DocPage} />
       <Route path="/showcase" component={ShowcaseList} />
+      <Route path="/showcase/after/:after" component={ShowcaseList} />
       <Route path="/showcase/tag/:showcaseTags" component={ShowcaseListByTag} />
-      {/*
       <Route
-        path="/showcase/after/:after"
-        component={ShowcaseList}
-        collection="showcase"
-        paginated
+        path="/showcase/tag/:showcaseTags/after/:after"
+        component={ShowcaseListByTag}
       />
-      */}
       <Route path="/showcase/*" component={ShowcasePage} />
       <Route path="/news" component={NewsList} />
-      <Route path="/news/after/:after" component={NewsList} paginated />
+      <Route path="/news/after/:after" component={NewsList} />
       <Route path="/news/*" component={NewsItem} />
       <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
