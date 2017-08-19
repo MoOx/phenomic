@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-primitives";
 
 const devicePixelRatio = typeof window === "undefined"
   ? 1
@@ -12,23 +11,23 @@ class ActivityIndicator extends React.Component {
     size: 24.0,
     color: [200, 200, 200]
   };
-  setCanvasRef = canvas => {
-    if (canvas) {
-      this.canvasContext = canvas.getContext("2d");
-    }
-  };
   componentDidMount() {
     this.tick();
   }
   componentWillUnmount() {
     cancelAnimationFrame(this.frame);
   }
+  setCanvasRef = canvas => {
+    if (canvas) {
+      this.canvasContext = canvas.getContext("2d");
+    }
+  };
   draw() {
-    var context = this.canvasContext;
+    const context = this.canvasContext;
     if (!context) {
       return;
     }
-    var actualSize = this.props.size * devicePixelRatio;
+    const actualSize = this.props.size * devicePixelRatio;
     context.clearRect(0.0, 0.0, actualSize, actualSize);
     context.translate(actualSize / 2.0, actualSize / 2.0);
     context.rotate(0.172665);
@@ -44,7 +43,7 @@ class ActivityIndicator extends React.Component {
     context.beginPath();
     centeredArc(actualSize * 0.5, 0.0, Math.PI, false, context);
     centeredArc(actualSize * 0.3, Math.PI, 0.0, true, context);
-    var gradient = context.createLinearGradient(
+    const gradient = context.createLinearGradient(
       0.0,
       actualSize * 0.5,
       actualSize * 0.75,
@@ -65,6 +64,7 @@ class ActivityIndicator extends React.Component {
       <canvas
         width={actualSize}
         height={actualSize}
+        /* eslint-disable react-native/no-inline-styles */
         style={{
           width: this.props.size,
           height: this.props.size,

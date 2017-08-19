@@ -3,10 +3,7 @@ import { View, Text, StyleSheet } from "react-primitives";
 import { Link } from "react-router";
 
 const NewsListItem = props =>
-  <Link
-    to={"/news/" + props.news.id}
-    style={{ textDecoration: "none", color: "inherit" }}
-  >
+  <Link to={"/news/" + props.news.id} style={rawStyles.link}>
     <View style={styles.container}>
       <Text style={styles.title}>{props.news.title}</Text>
       <Text style={styles.date}>{props.news.date}</Text>
@@ -31,5 +28,9 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
+const rawStyles = {
+  link: { textDecoration: "none", color: "inherit" }
+};
 
 export default NewsListItem;

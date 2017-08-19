@@ -7,9 +7,8 @@ import Footer from "../Footer";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import BodyContainer from "../BodyContainer";
-import BackgroundGradient from "../BackgroundGradient";
-import FeatureBlock from "./FeatureBlock";
 
+import FeatureBlock from "./FeatureBlock";
 import InputOutput from "./InputOutput";
 import CodeExample from "./CodeExample";
 
