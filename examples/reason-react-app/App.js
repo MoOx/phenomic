@@ -1,15 +1,11 @@
 import React from "react";
-import { Router, Route, browserHistory, Link } from "react-router";
-
-import {
-  createApp,
-  query,
-  BodyRenderer
-} from "@phenomic/preset-react-app/lib/client";
+import { Router, Route, browserHistory } from "react-router";
+import { createApp } from "@phenomic/preset-react-app/lib/client";
 
 const {
   wrapReComponent
 } = require("@phenomic/reason/lib/js/src/phenomicRootComponent");
+
 const Home = require("./lib/js/components/home");
 const Post = require("./lib/js/components/post");
 

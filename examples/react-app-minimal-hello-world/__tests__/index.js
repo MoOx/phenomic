@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import globby from "globby";
 
 it("should build example correctly", () => {
