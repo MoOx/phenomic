@@ -53,7 +53,7 @@
     "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
     "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "link": "lerna exec -- npm link",
-    "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
+    "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests examples docs",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "jest --runInBand --coverage packages",
