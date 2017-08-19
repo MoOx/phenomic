@@ -1,8 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-literals */
-/* eslint-disable react-native/no-inline-styles */
-
 import React from "react";
 import Head from "react-helmet";
 import { Router, Route, browserHistory, Link } from "react-router";
