@@ -76,6 +76,7 @@ async function prerenderFileAndDependencies(
   config,
   renderer,
   app,
+  assets,
   phenomicFetch,
   url
 ) {
@@ -85,7 +86,13 @@ async function prerenderFileAndDependencies(
       "a renderer is required (plugin implementing renderServer)"
     );
   }
-  const files = await renderer.renderServer(config, app, phenomicFetch, url);
+  const files = await renderer.renderServer(
+    config,
+    app,
+    assets,
+    phenomicFetch,
+    url
+  );
   debug(`'${url}': files & deps collected`);
   return Promise.all(
     files.map(file =>
@@ -109,6 +116,15 @@ async function build(config) {
   try {
     const bundlers = config.plugins.filter(p => p.buildForPrerendering);
     const bundler = bundlers[0]; // Build webpack
+    await Promise.all(
+      config.plugins
+        .filter(plugin => plugin.beforeBuild)
+        .map(plugin => plugin.beforeBuild(config))
+    );
+    const assets = await bundler.build(config);
+    debug("assets", assets);
+    console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms");
+    lastStamp = Date.now();
     const app = await bundler.buildForPrerendering(config);
     debug("app", app);
     console.log(
@@ -132,18 +148,17 @@ async function build(config) {
     debug(urls);
     await Promise.all(
       urls.map(url =>
-        prerenderFileAndDependencies(config, renderer, app, phenomicFetch, url)
+        prerenderFileAndDependencies(
+          config,
+          renderer,
+          app,
+          assets,
+          phenomicFetch,
+          url
+        )
       )
     );
     console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms");
-    lastStamp = Date.now();
-    await Promise.all(
-      config.plugins
-        .filter(plugin => plugin.beforeBuild)
-        .map(plugin => plugin.beforeBuild(config))
-    );
-    await bundler.build(config);
-    console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
     runningServer.close();
     debug("server closed");

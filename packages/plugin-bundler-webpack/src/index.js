@@ -7,6 +7,7 @@ import findCacheDir from "find-cache-dir";
 import webpack, { BannerPlugin, optimize } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import webpackAssetsManifest from "webpack-assets-manifest";
 
 import webpackPromise from "./webpack-promise.js";
 import validate from "./validate.js";
@@ -127,7 +128,21 @@ export default function() {
     },
     build(config: PhenomicConfig) {
       debug("build");
-      return webpackPromise(getWebpackConfig(config));
+      let assetsManifest = {};
+      const webpackConfig = getWebpackConfig(config);
+      const specialConfig = {
+        ...webpackConfig,
+        plugins: [
+          ...webpackConfig.plugins,
+          // sourcemaps
+          new webpackAssetsManifest({
+            done: function(manifest) {
+              assetsManifest = manifest.toJSON();
+            }
+          })
+        ]
+      };
+      return webpackPromise(specialConfig).then(() => assetsManifest);
     }
   };
 }
