@@ -17,6 +17,8 @@ import type { AppType } from "../createApp";
 
 const debug = require("debug")("phenomic:plugin:react");
 
+const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
+
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
     match(
@@ -82,13 +84,23 @@ async function renderServer(
     })
   );
   let contents;
+  let Html;
+  try {
+    // $FlowFixMe Shushhhh!
+    Html = require(path.join(config.path, "Html.js")).default;
+  } catch (e) {
+    if (!isNotFoundError(e)) {
+      throw e;
+    }
+    debug("Html component cannot be used", e.toString());
+  }
   try {
     contents = await staticRenderToString(
       config,
       store,
       { renderProps, redirectLocation },
       renderHTML,
-      app.Html,
+      Html,
       assets
     );
   } catch (err) {

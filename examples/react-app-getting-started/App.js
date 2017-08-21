@@ -24,7 +24,9 @@ const Home = ({ isLoading, posts }) =>
           posts.node.list &&
           posts.node.list.map(post =>
             <li key={post.id}>
-              <Link to={`/blog/${post.id}/`}>{post.title || post.id}</Link>
+              <Link to={`/blog/${post.id}/`}>
+                {post.title || post.id}
+              </Link>
             </li>
           )}
       </ul>}
@@ -39,8 +41,7 @@ const Home = ({ isLoading, posts }) =>
           }
         >
           Newer posts
-        </Link>}
-      {" "}
+        </Link>}{" "}
       {posts.node &&
         posts.node.hasNextPage &&
         <Link to={`/after/${posts.node.next}/`}>Older posts</Link>}
@@ -57,18 +58,34 @@ const HomeContainer = createContainer(Home, props => ({
 
 const DefaultPostLayout = ({ title, body }) =>
   <article>
-    <Head><title>{title}</title></Head>
-    <h1>{title}</h1>
-    <BodyRenderer>{body}</BodyRenderer>
+    <Head>
+      <title>
+        {title}
+      </title>
+    </Head>
+    <h1>
+      {title}
+    </h1>
+    <BodyRenderer>
+      {body}
+    </BodyRenderer>
   </article>;
 
 const HeroPostLayout = ({ title, body }) =>
   <article>
-    <Head><title>{title}</title></Head>
+    <Head>
+      <title>
+        {title}
+      </title>
+    </Head>
     <div style={{ padding: "4rem", background: "pink", color: "#fff" }}>
-      <h1>{title}</h1>
+      <h1>
+        {title}
+      </h1>
     </div>
-    <BodyRenderer>{body}</BodyRenderer>
+    <BodyRenderer>
+      {body}
+    </BodyRenderer>
   </article>;
 
 const PostLayouts = {
@@ -105,9 +122,13 @@ const PageError = ({ error }) => {
   return (
     <div>
       <Head>
-        <title>{message}</title>
+        <title>
+          {message}
+        </title>
       </Head>
-      <h1>{message}</h1>
+      <h1>
+        {message}
+      </h1>
     </div>
   );
 };
@@ -122,30 +143,13 @@ const Layout = ({ children }) =>
     <header>
       {/* ... */}
     </header>
-    <div>{children}</div>
+    <div>
+      {children}
+    </div>
     <footer>
       {/* ... */}
     </footer>
   </div>;
-
-const Html = ({ App, render }) => {
-  const { Body } = render(<App />);
-  const helmet = Head.renderStatic();
-  return (
-    <html {...helmet.htmlAttributes.toComponent()}>
-      <head>
-        {helmet.base.toComponent()}
-        {helmet.title.toComponent()}
-        {helmet.meta.toComponent()}
-        {helmet.link.toComponent()}
-        {helmet.style.toComponent()}
-        {helmet.script.toComponent()}
-        {helmet.noscript.toComponent()}
-      </head>
-      <Body {...helmet.bodyAttributes.toComponent()} />
-    </html>
-  );
-};
 
 const routes = () =>
   <Router history={browserHistory}>
@@ -155,7 +159,7 @@ const routes = () =>
     <Route path="*" component={PageError} />
   </Router>;
 
-export default createApp(routes, Html);
+export default createApp(routes);
 
 if (module.hot) {
   module.hot.accept(() => renderApp(routes));

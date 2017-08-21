@@ -4,7 +4,6 @@ import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 
 import "./defaults.css";
 
-import Html from "./Html";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
 import GettingStarted from "./components/GettingStarted";
@@ -37,7 +36,7 @@ const routes = () =>
     </Route>
   </Router>;
 
-export default createApp(routes, Html);
+export default createApp(routes);
 
 if (module.hot) {
   module.hot.accept(() => renderApp(routes));
