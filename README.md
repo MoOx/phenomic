@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-<a title="Unix/Yarn Build status" href="https://travis-ci.org/phenomic/phenomic">
-  <img src="https://img.shields.io/travis/phenomic/phenomic/master.svg?label=unix%2Fyarn%20build" />
+<a title="Travis CI Build status" href="https://travis-ci.org/phenomic/phenomic">
+  <img src="https://img.shields.io/travis/phenomic/phenomic/master.svg?label=unix%2Ftravis-ci%20build" />
 </a>
-<a title="Unix/npm Build status" href="https://circleci.com/gh/phenomic/phenomic">
-  <img src="https://img.shields.io/circleci/project/github/phenomic/phenomic/master.svg?label=unix%2Fnpm%20build" />
+<a title="circle Build status" href="https://circleci.com/gh/phenomic/phenomic">
+  <img src="https://img.shields.io/circleci/project/github/phenomic/phenomic/master.svg?label=unix%2Fcircleci%20build" />
 </a>
 <a title="Windows Build status" href="https://ci.appveyor.com/project/MoOx/phenomic/branch/master">
   <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />

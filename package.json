@@ -44,8 +44,7 @@
     "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "posttranspile": "lerna run prepare",
     "watch": "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "bootstrap": "babel-node ./scripts/lerna bootstrap",
-    "prepare": "npm run -s clean && npm run -s bootstrap && npm run -s transpile",
+    "prepare": "npm run -s clean && npm run -s transpile",
     "prerelease": "npm run prepare",
     "release": "lerna publish",
     "format": "npm run -s format:js && npm run -s format:re",
@@ -135,5 +134,10 @@
     "testPathIgnorePatterns": [
       "/_output/"
     ]
-  }
+  },
+  "workspaces": [
+    "docs",
+    "examples/*",
+    "packages/*"
+  ]
 }

@@ -16,7 +16,7 @@
   "scripts": {
     "reason:cleanup": "bsb -clean-world",
     "reason:compile": "bsb -make-world",
-    "prepublish": "npm run reason:compile",
+    "prepare": "npm run reason:compile",
     "start": "npm run reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
     "start:reason": "npm run reason:compile -- -w",

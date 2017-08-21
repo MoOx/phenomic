@@ -1,5 +1,12 @@
 # ⚠️ wip
 
+## Requirements
+
+⚠️ [Yarn](https://yarnpkg.com/) is required for development.
+
+**We currently require yarn version to be >= v1.0.0-20170820.2056.**
+(In order to get some proper fix for Yarn workspaces).
+
 --- 
 
 # To use/modify Phenomic from git locally, you can

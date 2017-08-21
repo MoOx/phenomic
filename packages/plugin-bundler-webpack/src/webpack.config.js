@@ -3,7 +3,6 @@ import path from "path";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
-const nodeModules = path.join(process.cwd(), "node_modules");
 module.exports = (config: PhenomicConfig) => ({
   entry: {
     [config.bundleName]: [
@@ -55,12 +54,7 @@ module.exports = (config: PhenomicConfig) => ({
     // react-native(-web) | react-primitives
     extensions: [".web.js", ".js", ".json"],
     alias: {
-      "react-native": "react-native-web",
-
-      // to ensure a single module is used
-      react: path.resolve(path.join(nodeModules, "react")),
-      "react-dom": path.resolve(path.join(nodeModules, "react-dom")),
-      "react-router": path.resolve(path.join(nodeModules, "react-router"))
+      "react-native": "react-native-web"
     }
   },
 

@@ -1,8 +1,24 @@
 # http://www.appveyor.com/docs/appveyor-yml
 environment:
   matrix:
-    - nodejs_version: '6'
+    - nodejs_version: '8'
+
   DEBUG: phenomic:*
+
+install:
+  - ps: Install-Product node $env:nodejs_version x64
+  - node --version
+  - curl -fsSL -o yarn.js https://nightly.yarnpkg.com/yarn-1.0.0-20170820.2056.js
+  - node ./yarn.js --version
+  - node ./yarn.js install
+
+test_script:
+  - node ./yarn.js run test
+
+cache:
+  - node_modules -> package.json
+  - docs/.screenshots -> docs/content/showcase-entries
+  - docs/public/showcase/entry -> docs/content/showcase-entries
 
 version: "{build}"
 build: off
@@ -10,23 +26,7 @@ deploy: off
 matrix:
   fast_finish: true
 
-cache:
-  - node_modules -> package.json
-  - docs/.screenshots -> docs/content/showcase-entries
-  - docs/public/showcase/entry -> docs/content/showcase-entries
-
-install:
-  - ps: Install-Product node $env:nodejs_version x64
-  - npm set progress=false
-  - npm prune
-  - npm install
-
-test_script:
-  - node --version
-  - npm --version
-  - npm test
-
-# debug
-# https://twitter.com/appveyor/status/708038858793836545
-# on_finish:
-# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+init:
+  # debugging Appveyor build. More info:
+  # https://www.appveyor.com/docs/how-to/rdp-to-build-worker/
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

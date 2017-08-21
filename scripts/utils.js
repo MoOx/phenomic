@@ -1,6 +1,5 @@
 // @flow
 
-const execSync = require("child_process").execSync;
 const spawnSync = require("child_process").spawnSync;
 
 const chalk = require("chalk");
@@ -18,17 +17,4 @@ export const runCommand = (
     error.stack = message;
     throw error;
   }
-};
-
-export const yarnOrNot = () => {
-  if (!process.env.PHENOMIC_NO_YARN) {
-    try {
-      execSync("yarn --version", { stdio: "ignore" });
-      return true;
-    } catch (e) {
-      // false
-    }
-  }
-
-  return false;
 };
