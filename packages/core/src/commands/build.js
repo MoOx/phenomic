@@ -78,9 +78,9 @@ async function prerenderFileAndDependencies(
   app,
   assets,
   phenomicFetch,
-  url
+  location
 ) {
-  debug(`'${url}': prepend file and deps for `);
+  debug(`'${location}': prepend file and deps for `);
   if (!renderer || !renderer.renderServer) {
     throw new Error(
       "a renderer is required (plugin implementing renderServer)"
@@ -90,10 +90,10 @@ async function prerenderFileAndDependencies(
     config,
     app,
     assets,
-    phenomicFetch,
-    url
+    fetch: phenomicFetch,
+    location
   });
-  debug(`'${url}': files & deps collected`);
+  debug(`'${location}': files & deps collected`);
   return Promise.all(
     files.map(file =>
       writeFile(path.join(config.outdir, file.path), file.contents)

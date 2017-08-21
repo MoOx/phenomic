@@ -1,10 +1,6 @@
 import render from "./render/client";
 
-export type AppType = {
-  routes: React$Element<any>
-};
-
-export default (routes: () => React$Element<any>): AppType => {
+export default (routes: () => React$Element<any>): PhenomicAppType => {
   if (typeof window !== "undefined") {
     render(routes);
   }

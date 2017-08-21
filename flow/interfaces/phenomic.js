@@ -39,6 +39,10 @@ type PhenomicTransformResult = {
 
 type ReactCompo = Function;
 
+export type PhenomicAppType = {
+  routes: React$Element<any>
+};
+
 type PhenomicIntermediateHtmlPropsType = {
   WrappedApp: ReactCompo,
   renderAsObject: (
@@ -66,6 +70,14 @@ export type PhenomicHtmlType = (
   props: PhenomicHtmlPropsType
 ) => React$Element<*>;
 
+export type PhenomicPluginRenderServerType = ({
+  config: PhenomicConfig,
+  app: AppType,
+  assets: phenomicAssets,
+  fetch: PhenomicFetch,
+  location: string
+}) => Promise<Array<{ path: string, contents: string }>>;
+
 type PhenomicPluginRenderHTMLType = ({
   config: PhenomicConfig,
   props?: PhenomicIntermediateHtmlPropsType
@@ -88,7 +100,7 @@ export type PhenomicPlugin = {
   buildForPrerendering?: Function,
   // renderer
   getRoutes?: Function,
-  renderServer?: Function,
+  renderServer?: PhenomicPlugiRenderServerType,
   renderHTML?: PhenomicPluginRenderHTMLType,
   // common
   addDevServerMiddlewares?: (

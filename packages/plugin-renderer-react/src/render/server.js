@@ -13,7 +13,6 @@ import performQuery from "../shared/performQuery";
 import { encode, decode } from "../shared/QueryString";
 import renderHTML from "../server/renderHTML";
 import type { StoreType } from "../shared/store";
-import type { AppType } from "../createApp";
 
 const debug = require("debug")("phenomic:plugin:react");
 
@@ -51,19 +50,13 @@ function staticRenderToString(
   });
 }
 
-async function renderServer({
+const renderServer: PhenomicPluginRenderServerType = async ({
   config,
   app,
   assets,
   fetch,
   location
-}: {
-  config: PhenomicConfig,
-  app: AppType,
-  assets: phenomicAssets,
-  fetch: PhenomicFetch,
-  location: string
-}) {
+}) => {
   debug("server renderering");
 
   const routes = createRouteFromReactElement(app.routes);
@@ -116,6 +109,6 @@ async function renderServer({
       contents: JSON.stringify(state[key].node)
     }))
   ];
-}
+};
 
 export default renderServer;

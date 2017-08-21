@@ -1,8 +1,6 @@
 import urlJoin from "url-join";
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils";
 
-import type { AppType } from "../createApp";
-
 const debug = require("debug")("phenomic:plugin:react");
 
 function flattenRoutes(routes, path = "") {
@@ -24,7 +22,7 @@ function flattenRoutes(routes, path = "") {
   }, []);
 }
 
-function getRoutes(app: AppType) {
+function getRoutes(app: PhenomicAppType) {
   const routes = createRouteFromReactElement(app.routes);
   const flatRoutes = flattenRoutes(routes.childRoutes);
   debug(flatRoutes);
