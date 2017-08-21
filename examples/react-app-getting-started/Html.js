@@ -1,7 +1,9 @@
 import React from "react";
 import Head from "react-helmet";
 
-const Html = ({ App, render }) => {
+export default ({ App, render }: PhenomicHtmlPropsType) => {
+  // if needed, you can know if you are in development or in static rendering
+  // const isDev = process.env.PHENOMIC_ENV === "development"
   const { Body } = render(<App />);
   const helmet = Head.renderStatic();
   return (
@@ -19,5 +21,3 @@ const Html = ({ App, render }) => {
     </html>
   );
 };
-
-export default Html;

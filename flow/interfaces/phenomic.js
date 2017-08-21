@@ -50,7 +50,7 @@ type PhenomicIntermediateHtmlPropsType = {
   }
 };
 
-type PhenomicHtmlPropsType = {
+export type PhenomicHtmlPropsType = {
   App: ReactCompo,
   render: (
     app: React$Element<*>
@@ -62,13 +62,14 @@ type PhenomicHtmlPropsType = {
   }
 };
 
-type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
+export type PhenomicHtmlType = (
+  props: PhenomicHtmlPropsType
+) => React$Element<*>;
 
-type PhenomicPluginRenderHTMLType = (
+type PhenomicPluginRenderHTMLType = ({
   config: PhenomicConfig,
-  props?: PhenomicIntermediateHtmlPropsType,
-  html?: PhenomicHtmlType
-) => string;
+  props?: PhenomicIntermediateHtmlPropsType
+}) => string;
 
 export type PhenomicPlugin = {
   name: string,

@@ -17,8 +17,6 @@ import type { AppType } from "../createApp";
 
 const debug = require("debug")("phenomic:plugin:react");
 
-const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
-
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
     match(
@@ -35,12 +33,11 @@ function staticRenderToString(
   store: StoreType,
   { renderProps }: { renderProps: Object },
   renderHTML: PhenomicPluginRenderHTMLType,
-  Html,
   assets: phenomicAssets
 ) {
-  return renderHTML(
+  return renderHTML({
     config,
-    {
+    props: {
       WrappedApp: () =>
         <Provider fetch={fetch} store={store}>
           <RouterContext {...renderProps} />
@@ -50,18 +47,23 @@ function staticRenderToString(
         state: store.getState(),
         script: assets[`${config.bundleName}.js`]
       })
-    },
-    Html
-  );
+    }
+  });
 }
 
-async function renderServer(
+async function renderServer({
+  config,
+  app,
+  assets,
+  fetch,
+  location
+}: {
   config: PhenomicConfig,
   app: AppType,
   assets: phenomicAssets,
   fetch: PhenomicFetch,
   location: string
-) {
+}) {
   debug("server renderering");
 
   const routes = createRouteFromReactElement(app.routes);
@@ -84,23 +86,12 @@ async function renderServer(
     })
   );
   let contents;
-  let Html;
-  try {
-    // $FlowFixMe Shushhhh!
-    Html = require(path.join(config.path, "Html.js")).default;
-  } catch (e) {
-    if (!isNotFoundError(e)) {
-      throw e;
-    }
-    debug("Html component cannot be used", e.toString());
-  }
   try {
     contents = await staticRenderToString(
       config,
       store,
       { renderProps, redirectLocation },
       renderHTML,
-      Html,
       assets
     );
   } catch (err) {

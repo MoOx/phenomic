@@ -86,13 +86,13 @@ async function prerenderFileAndDependencies(
       "a renderer is required (plugin implementing renderServer)"
     );
   }
-  const files = await renderer.renderServer(
+  const files = await renderer.renderServer({
     config,
     app,
     assets,
     phenomicFetch,
     url
-  );
+  });
   debug(`'${url}': files & deps collected`);
   return Promise.all(
     files.map(file =>
