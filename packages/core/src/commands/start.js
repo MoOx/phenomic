@@ -92,10 +92,18 @@ async function start(config: PhenomicConfig) {
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html");
-    if (typeof renderer.renderHTML !== "function") {
-      res.end("Phenomic renderer requires a renderHTML function to be exposed");
+    if (typeof renderer.renderDevServer !== "function") {
+      res.end(
+        "Phenomic renderer requires a 'renderDevServer' function to be exposed"
+      );
     } else {
-      res.end(renderer.renderHTML({ config }));
+      res.end(
+        renderer.renderDevServer({
+          config,
+          assets: res.locals.assets,
+          location: req.originalUrl
+        })
+      );
     }
   });
   bundlerServer.listen(config.port);

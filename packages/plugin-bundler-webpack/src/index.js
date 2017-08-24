@@ -7,7 +7,6 @@ import findCacheDir from "find-cache-dir";
 import webpack, { BannerPlugin, optimize } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
-import webpackAssetsManifest from "webpack-assets-manifest";
 
 import webpackPromise from "./webpack-promise.js";
 import validate from "./validate.js";
@@ -73,7 +72,31 @@ export default function() {
     addDevServerMiddlewares(config: PhenomicConfig) {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
+      let assets = {};
+      compiler.plugin("done", stats => {
+        assets = {};
+        const namedChunks = stats.compilation.namedChunks;
+        Object.keys(namedChunks).forEach(chunkName => {
+          const files = namedChunks[chunkName].files.filter(
+            file => !file.endsWith(".hot-update.js")
+          );
+          if (files.length) {
+            assets = {
+              ...assets,
+              [chunkName]: files.shift()
+            };
+          }
+        });
+      });
       return [
+        (
+          req: express$Request,
+          res: express$Response,
+          next: express$NextFunction
+        ) => {
+          res.locals.assets = assets;
+          next();
+        },
         webpackDevMiddleware(compiler, {
           stats: { chunkModules: false, assets: false }
           // @todo add this and output ourself a nice message for build status
@@ -128,21 +151,9 @@ export default function() {
     },
     build(config: PhenomicConfig) {
       debug("build");
-      let assetsManifest = {};
-      const webpackConfig = getWebpackConfig(config);
-      const specialConfig = {
-        ...webpackConfig,
-        plugins: [
-          ...webpackConfig.plugins,
-          // sourcemaps
-          new webpackAssetsManifest({
-            done: function(manifest) {
-              assetsManifest = manifest.toJSON();
-            }
-          })
-        ]
-      };
-      return webpackPromise(specialConfig).then(() => assetsManifest);
+      return webpackPromise(getWebpackConfig(config)).then(
+        stats => stats.toJson().assetsByChunkName
+      );
     }
   };
 }

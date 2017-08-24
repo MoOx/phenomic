@@ -50,7 +50,7 @@ type PhenomicIntermediateHtmlPropsType = {
   ) => {
     main: string,
     state?: Object | null,
-    script?: string
+    assets: PhenomicAssets
   }
 };
 
@@ -59,10 +59,11 @@ export type PhenomicHtmlPropsType = {
   render: (
     app: React$Element<*>
   ) => {
+    assets: PhenomicAssets,
     Main: ReactCompo,
     State: ReactCompo,
-    Script: ReactCompo,
-    Body: ReactCompo
+    Style: ReactCompo,
+    Script: ReactCompo
   }
 };
 
@@ -70,17 +71,23 @@ export type PhenomicHtmlType = (
   props: PhenomicHtmlPropsType
 ) => React$Element<*>;
 
-export type PhenomicPluginRenderServerType = ({
+export type PhenomicPluginRenderStaticType = ({
   config: PhenomicConfig,
   app: AppType,
-  assets: phenomicAssets,
-  fetch: PhenomicFetch,
+  assets: PhenomicAssets,
+  phenomicFetch: PhenomicFetch,
   location: string
 }) => Promise<Array<{ path: string, contents: string }>>;
 
-type PhenomicPluginRenderHTMLType = ({
+export type PhenomicPluginRenderDevServerType = ({
   config: PhenomicConfig,
-  props?: PhenomicIntermediateHtmlPropsType
+  assets: PhenomicAssets,
+  location: string
+}) => string;
+
+export type PhenomicPluginRenderHTMLType = ({
+  config: PhenomicConfig,
+  props: PhenomicIntermediateHtmlPropsType
 }) => string;
 
 export type PhenomicPlugin = {
@@ -100,8 +107,8 @@ export type PhenomicPlugin = {
   buildForPrerendering?: Function,
   // renderer
   getRoutes?: Function,
-  renderServer?: PhenomicPlugiRenderServerType,
-  renderHTML?: PhenomicPluginRenderHTMLType,
+  renderStatic?: PhenomicPluginRenderStaticType,
+  renderDevServer?: PhenomicPluginRenderDevServerType,
   // common
   addDevServerMiddlewares?: (
     config: PhenomicConfig
@@ -142,7 +149,7 @@ export type PhenomicRoute = {
   collection?: string | PhenomicQueryConfig
 };
 
-export type phenomicAssets = { [key: string]: string };
+export type PhenomicAssets = { [key: string]: string };
 
 // @todo why this inconsistency?
 export type PhenomicFetch =

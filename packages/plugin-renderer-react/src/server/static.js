@@ -11,7 +11,7 @@ import Provider from "../components/Provider";
 import createStore from "../shared/store";
 import performQuery from "../shared/performQuery";
 import { encode, decode } from "../shared/QueryString";
-import renderHTML from "../server/renderHTML";
+import renderHTML from "../renderHTML";
 import type { StoreType } from "../shared/store";
 
 const debug = require("debug")("phenomic:plugin:react");
@@ -32,7 +32,7 @@ function staticRenderToString(
   store: StoreType,
   { renderProps }: { renderProps: Object },
   renderHTML: PhenomicPluginRenderHTMLType,
-  assets: phenomicAssets
+  assets: PhenomicAssets
 ) {
   return renderHTML({
     config,
@@ -44,17 +44,17 @@ function staticRenderToString(
       renderAsObject: (UserWrappedApp: React$Element<*>) => ({
         main: ReactDOMServer.renderToString(UserWrappedApp),
         state: store.getState(),
-        script: assets[`${config.bundleName}.js`]
+        assets
       })
     }
   });
 }
 
-const renderServer: PhenomicPluginRenderServerType = async ({
+const renderStatic: PhenomicPluginRenderStaticType = async ({
   config,
   app,
   assets,
-  fetch,
+  phenomicFetch,
   location
 }) => {
   debug("server renderering");
@@ -73,7 +73,7 @@ const renderServer: PhenomicPluginRenderServerType = async ({
       const queries = item.getQueries(renderProps);
       return performQuery(
         store,
-        fetch,
+        phenomicFetch,
         Object.keys(queries).map(key => encode(queries[key]))
       );
     })
@@ -111,4 +111,4 @@ const renderServer: PhenomicPluginRenderServerType = async ({
   ];
 };
 
-export default renderServer;
+export default renderStatic;

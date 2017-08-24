@@ -72,25 +72,32 @@ function createFetchFunction(port: number) {
     ).then(res => res.json);
   };
 }
-async function prerenderFileAndDependencies(
+async function prerenderFileAndDependencies({
   config,
   renderer,
   app,
   assets,
   phenomicFetch,
   location
-) {
+}: {
+  config: PhenomicConfig,
+  renderer: PhenomicPlugin,
+  app: PhenomicAppType,
+  assets: PhenomicAssets,
+  phenomicFetch: PhenomicFetch,
+  location: string
+}) {
   debug(`'${location}': prepend file and deps for `);
-  if (!renderer || !renderer.renderServer) {
+  if (!renderer || !renderer.renderStatic) {
     throw new Error(
-      "a renderer is required (plugin implementing renderServer)"
+      "a renderer is required (plugin implementing 'renderStatic')"
     );
   }
-  const files = await renderer.renderServer({
+  const files = await renderer.renderStatic({
     config,
     app,
     assets,
-    fetch: phenomicFetch,
+    phenomicFetch,
     location
   });
   debug(`'${location}': files & deps collected`);
@@ -123,16 +130,18 @@ async function build(config) {
     );
     const assets = await bundler.build(config);
     debug("assets", assets);
-    console.log("📦 Webpack built " + (Date.now() - lastStamp) + "ms");
+    console.log(
+      "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms"
+    );
     lastStamp = Date.now();
     const app = await bundler.buildForPrerendering(config);
     debug("app", app);
     console.log(
-      "📦 Webpack server side done " + (Date.now() - lastStamp) + "ms"
+      "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms"
     );
     lastStamp = Date.now(); // Retreive content
     await getContent(db, config);
-    console.log("📝 Got your content " + (Date.now() - lastStamp) + "ms");
+    console.log("📝 Content processed " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
     const phenomicFetch = createFetchFunction(port);
     const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes);
@@ -147,18 +156,18 @@ async function build(config) {
     debug("urls have been resolved");
     debug(urls);
     await Promise.all(
-      urls.map(url =>
-        prerenderFileAndDependencies(
+      urls.map(location =>
+        prerenderFileAndDependencies({
           config,
           renderer,
           app,
           assets,
           phenomicFetch,
-          url
-        )
+          location
+        })
       )
     );
-    console.log("📃 Pre-rendering done " + (Date.now() - lastStamp) + "ms");
+    console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
     runningServer.close();
     debug("server closed");

@@ -3,14 +3,18 @@ import { ServerStyleSheet } from "styled-components";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {
   const sheet = new ServerStyleSheet();
-  const { Body } = render(sheet.collectStyles(<App />));
+  const { Main, State, Script } = render(sheet.collectStyles(<App />));
 
   return (
     <html>
       <head>
         {sheet.getStyleElement()}
       </head>
-      <Body />
+      <body>
+        <Main />
+        <State />
+        <Script />
+      </body>
     </html>
   );
 };

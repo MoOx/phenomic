@@ -94,6 +94,7 @@
       "jest": true
     },
     "rules": {
+      "flowtype/type-id-match": 0,
       "import/max-dependencies": [
         2,
         {
