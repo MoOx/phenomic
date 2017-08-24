@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should build example correctly 1`] = `
+Array [
+  "index.html",
+]
+`;
+
+exports[`should build example correctly 2`] = `Array []`;
+
+exports[`should build example correctly 3`] = `
+".helloWorld {
+  font-size: 40rem
+}
+"
+`;
+
+exports[`should build example correctly 4`] = `Array []`;
