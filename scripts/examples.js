@@ -8,6 +8,8 @@ import { runCommand } from "./utils.js";
 
 console.log(`Building all examples...`);
 
+const args = process.argv.slice(2);
+
 const examplesFolder = __dirname + "/../examples";
 const examples = globby.sync("*/package.json", {
   cwd: examplesFolder
@@ -16,9 +18,9 @@ const examples = globby.sync("*/package.json", {
 examples.forEach(examplePkg => {
   const example = path.dirname(examplePkg);
   console.log("- " + example);
-  runCommand("npm", ["run", "build"], {
+  runCommand("npm", ["run", "build", "--", ...args], {
     cwd: path.join(examplesFolder, example),
     stdio: "ignore"
   });
-  runCommand("jest", ["--bail", "examples/" + example]);
+  runCommand("jest", ["--bail", "examples/" + example, ...args]);
 });

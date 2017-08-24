@@ -19,9 +19,19 @@ it("should build example correctly", () => {
   expect(jsonApiFiles).toMatchSnapshot();
 
   // should have assets
+  const assetsBundlerFiles = files.filter(
+    file =>
+      !htmlFiles.includes(file) &&
+      !jsonApiFiles.includes(file) &&
+      file.startsWith("phenomic")
+  );
+  expect(assetsBundlerFiles.length).toBe(1);
   expect(
     files.filter(
-      file => !htmlFiles.includes(file) && !jsonApiFiles.includes(file)
+      file =>
+        !htmlFiles.includes(file) &&
+        !jsonApiFiles.includes(file) &&
+        !assetsBundlerFiles.includes(file)
     )
   ).toMatchSnapshot();
 });

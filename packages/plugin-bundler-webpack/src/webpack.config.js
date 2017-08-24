@@ -16,7 +16,15 @@ module.exports = (config: PhenomicConfig) => ({
   output: {
     publicPath: "/", // @todo make this dynamic
     path: path.join(process.cwd(), "dist"),
-    filename: "[name].js"
+    ...(process.env.PHENOMIC_ENV !== "static"
+      ? {
+          filename: "phenomic/[name].js",
+          chunkFilename: "phenomic/[name].chunk.js"
+        }
+      : {
+          filename: "phenomic/[name].[chunkhash:8].js",
+          chunkFilename: "phenomic/[name].[chunkhash:8].chunk.js"
+        })
   },
   module: {
     rules: [
@@ -41,7 +49,7 @@ module.exports = (config: PhenomicConfig) => ({
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: "styles.css",
+      filename: "phenomic/[name].[contenthash:8].css",
       disable: process.env.PHENOMIC_ENV !== "static"
     }),
     process.env.PHENOMIC_ENV !== "static" &&

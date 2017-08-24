@@ -9,8 +9,8 @@ const Html = ({ App, render }: PhenomicHtmlPropsType) => {
     <html {...helmet.htmlAttributes.toComponent()}>
       <head>
         {helmet.meta.toComponent()}
-        {helmet.base.toComponent()}
         {helmet.title.toComponent()}
+        {helmet.base.toComponent()}
         <Style />
         {StyleSheet.getStyleSheets().map(({ id, textContent }) =>
           <style key={id} id={id}>

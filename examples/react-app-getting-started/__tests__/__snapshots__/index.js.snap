@@ -35,7 +35,6 @@ Array [
 exports[`should build example correctly 3`] = `
 Array [
   "favicon.ico",
-  "phenomic.main.js",
   "robots.txt",
 ]
 `;
