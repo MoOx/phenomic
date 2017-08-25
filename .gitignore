@@ -5,6 +5,8 @@
 
 # Node.js / npm
 node_modules
+# we rely on yarn.lock
+package-lock.json
 
 # code coverage
 coverage
