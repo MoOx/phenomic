@@ -1,3 +1,8 @@
+# 0.21.2 - 2017-08-25
+
+- Fixed: fix for bad unicode characters in the markdown and `JSON.stringify`
+  ([#1128](https://github.com/MoOx/phenomic/pull/1128) - @revolunet)
+  
 # 0.21.1 - 2017-04-18
 
 - Fixed: hot reload for markdown files on Windows

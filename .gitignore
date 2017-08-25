@@ -27,3 +27,10 @@ test-setup
 
 # logo
 logo/*.png
+
+# lazy us: 1.0 is changing all of this
+examples/*
+package-lock.json
+*.log
+docs/public/*
+.merlin
