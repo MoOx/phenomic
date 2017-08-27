@@ -25,6 +25,8 @@ const renderHTML: PhenomicPluginRenderHTMLType = ({ config, props }) => {
     Html = DefaultHtml;
   }
 
+  const base = "/";
+
   /* eslint-disable react/prop-types */
   return (
     "<!DOCTYPE html>" +
@@ -55,8 +57,9 @@ const renderHTML: PhenomicPluginRenderHTMLType = ({ config, props }) => {
                 }}
               />,
             // eslint-disable-next-line react/no-multi-comp
-            Style: () => (css ? <link rel="stylesheet" href={css} /> : null),
-            Script: () => (js ? <script src={js} async /> : null),
+            Style: () =>
+              css ? <link rel="stylesheet" href={base + css} /> : null,
+            Script: () => (js ? <script src={base + js} async /> : null),
             assets
           };
         }}
