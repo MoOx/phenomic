@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@phenomic/example-react-app-with-styled-components",
+  "name": "@phenomic/example-react-app-styles-with-styled-components",
   "version": "1.0.0-alpha.5",
   "devDependencies": {
     "@phenomic/cli": "^1.0.0-alpha.5",
