@@ -24,6 +24,22 @@ const wrap = JSON.stringify;
 
 const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
 
+const defaultExternals = [
+  // we could consider node_modules as externals deps
+  // and so use something like
+  // /^[A-Za-z0-9-_]/
+  // to not bundle all deps in the static build (for perf)
+  // the problem is that if people rely on node_modules for stuff
+  // like css, this breaks their build.
+
+  // Glamor integration
+  "glamor",
+  "glamor/server",
+
+  // Aprodite integration
+  "aphrodite"
+];
+
 const getWebpackConfig = (config: PhenomicConfig) => {
   let webpackConfig;
   try {
@@ -121,6 +137,8 @@ export default function() {
         },
         // adjust some config details to be node focused
         target: "node",
+        // externals for package/relative name
+        externals: [...(webpackConfig.externals || defaultExternals)],
         output: {
           publicPath: "/", // @todo make this dynamic
           path: cacheDir,
