@@ -37,7 +37,8 @@ const defaultExternals = [
   "glamor/server",
 
   // Aprodite integration
-  "aphrodite"
+  "aphrodite",
+  "aphrodite/no-important"
 ];
 
 const getWebpackConfig = (config: PhenomicConfig) => {
