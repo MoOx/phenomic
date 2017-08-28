@@ -2,19 +2,7 @@
 import path from "path";
 import fs from "fs";
 
-import globby from "globby";
-
 it("should build example correctly", () => {
-  const testFolder = __dirname + "/../dist";
-  const files = globby.sync("**/*", {
-    cwd: testFolder,
-    nodir: true
-  });
-
-  // should have html files
-  const htmlFiles = files.filter(file => file.endsWith(".html"));
-  expect(htmlFiles).toMatchSnapshot();
-
   const file1 = fs.readFileSync(
     path.join(__dirname, "..", "dist", "index.html"),
     { encoding: "utf8" }

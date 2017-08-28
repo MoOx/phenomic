@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should build example correctly 1`] = `
-Array [
-  "2/index.html",
-  "index.html",
-]
-`;
