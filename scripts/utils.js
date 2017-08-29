@@ -9,7 +9,7 @@ export const runCommand = (
   args: Array<string>,
   options: Object = {}
 ) => {
-  console.log(chalk.dim(`$ ${cmd} ${args.join(" ")}\n`));
+  console.log(chalk.dim(`$ ${cmd} ${args.join(" ")}`));
   const result = spawnSync(cmd, args, { stdio: "inherit", ...options });
   if (result.error || result.status !== 0) {
     const message = "Error running command.";

@@ -6,7 +6,7 @@ import globby from "globby";
 
 import { runCommand } from "./utils.js";
 
-console.log(`Building all examples...`);
+console.log(`Building all examples...\n`);
 
 const args = process.argv.slice(2);
 
@@ -14,13 +14,11 @@ const examplesFolder = __dirname + "/../examples";
 const examples = globby.sync("*/package.json", {
   cwd: examplesFolder
 });
-
-examples.forEach(examplePkg => {
+examples.filter(example => example.match(args[0])).forEach(examplePkg => {
   const example = path.dirname(examplePkg);
-  console.log("- " + example);
-  runCommand("npm", ["run", "build", "--", ...args], {
+  console.log("- examples/" + example);
+  runCommand("npm", ["run", "build"], {
     cwd: path.join(examplesFolder, example),
     stdio: "ignore"
   });
-  runCommand("jest", ["--bail", "examples/" + example, ...args]);
 });
