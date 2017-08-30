@@ -21,6 +21,18 @@ const flatten = (array: Array<any>) => {
 };
 
 const getRouteQueries = route => {
+  if (
+    // reference is incorrect? (eg: import { Thing } instead of import Thing)
+    !route.component ||
+    // no export?
+    (Object.keys(route.component).length === 0 &&
+      route.component.constructor === Object)
+  ) {
+    throw new Error(
+      `Route with path '${route.path}' have no component (or an undefined value).\n` +
+        "Check the component reference and its origin. Are the import/export correct?"
+    );
+  }
   const initialRouteParams: Object = route.params || {};
   if (!route.component.getQueries) {
     debug(route.path, "have no queries");
