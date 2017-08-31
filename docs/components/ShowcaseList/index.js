@@ -69,7 +69,9 @@ const ShowcaseList = (props: Object) =>
             <View style={styles.currentFilter}>
               <Text style={styles.filterMessage}>
                 {"You are currently viewing projects that match "}
-                <em>{props.params.showcaseTags}</em>
+                <em>
+                  {props.params.showcaseTags}
+                </em>
                 {" tag. "}
                 <Link to={"/showcase/"} style={styles.filterMessageLink}>
                   {"View all."}
@@ -80,8 +82,10 @@ const ShowcaseList = (props: Object) =>
             {prepareList(props.showcase.node.list).map(item =>
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
-                  <Text style={styles.itemName}>{item.title}</Text>
-                  <Text>{" "}</Text>
+                  <Text style={styles.itemName}>
+                    {item.title}
+                  </Text>
+                  <Text> </Text>
                   {item.source &&
                     <Link
                       style={styles.itemLinkSource}
@@ -104,20 +108,13 @@ const ShowcaseList = (props: Object) =>
                     )}
                 </View>
                 <Link href={item.url} target="_blank">
-                  <div
-                    className={
-                      RNWStyleSheet.resolve(styles.imageContainerLarge)
-                        .className
-                    }
-                  >
-                    <Image
-                      source={{
-                        uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
-                      }}
-                      style={styles.imageLarge}
-                      resizeMode="cover"
-                    />
-                  </div>
+                  <Image
+                    source={{
+                      uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
+                    }}
+                    style={styles.imageLarge}
+                    resizeMode="cover"
+                  />
                   <div
                     className={
                       RNWStyleSheet.resolve(styles.imageContainerSmall)
@@ -185,9 +182,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   addYourOwn: {
+    justifyContent: "flex-end",
     position: "absolute",
     right: 20,
-    top: -30,
+    top: -40,
     fontSize: 14,
     color: "#fff",
     opacity: 0.6
@@ -216,7 +214,6 @@ const styles = StyleSheet.create({
     width: "50%",
     padding: 20
   },
-  imageContainerLarge: {},
   imageLarge: {
     flexGrow: 1,
     paddingBottom:
@@ -227,8 +224,8 @@ const styles = StyleSheet.create({
   },
   imageContainerSmall: {
     position: "absolute",
-    right: 0,
-    bottom: 0,
+    right: -10,
+    bottom: -10,
     width: "20%"
   },
   imageSmall: {
