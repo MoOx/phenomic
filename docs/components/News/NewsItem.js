@@ -1,6 +1,6 @@
 import React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
-import { View, StyleSheet } from "react-primitives";
+import { View, StyleSheet, Text } from "react-primitives";
 
 import Flex from "../Flex";
 import Spacer from "../Spacer";
@@ -23,6 +23,9 @@ const NewsItem = (props: Object) => {
         {props.isLoading && <ActivityIndicator />}
         {!props.isLoading &&
           <View style={styles.body}>
+            <Text style={styles.date}>
+              {new Date(props.news.node.date).toLocaleDateString()}
+            </Text>
             <MarkdownGenerated body={props.news.node.body} />
           </View>}
       </BodyContainer>
@@ -35,8 +38,13 @@ const NewsItem = (props: Object) => {
 const styles = StyleSheet.create({
   body: {
     maxWidth: 600,
-    paddingHorizontal: 10,
+    paddingVertical: 24,
     alignSelf: "center"
+  },
+  date: {
+    color: "rgba(0, 0, 0, 0.25)",
+    fontSize: 14,
+    textAlign: "right"
   }
 });
 
