@@ -7,18 +7,18 @@ export default function() {
     name: "@phenomic/plugin-api-related-content",
     define(serverAPI: express$Application) {
       // $FlowFixMe flow is lost with async function for express
-      serverAPI.get("/related/:collection/limit-:limit/*.json", async function(
+      serverAPI.get("/related/:path/limit-:limit/*.json", async function(
         req,
         res
       ) {
         debug(req.url, JSON.stringify(req.params));
         try {
           const limit = parseInt(res.params.limit);
-          const post = await req.db.get([req.params.collection], req.params[0]);
+          const post = await req.db.get([req.params.path], req.params[0]);
           const lists = await Promise.all([
             ...post.value.tags.map(tag =>
               req.db.getList(
-                req.params.collection,
+                req.params.path,
                 {
                   limit: limit + 1
                 },
@@ -26,7 +26,7 @@ export default function() {
                 tag
               )
             ),
-            req.db.getList(req.params.collection, { limit: limit + 1 })
+            req.db.getList(req.params.path, { limit: limit + 1 })
           ]);
           const flattenedList = flatten(lists);
           const listWithoutCurrentPost = flattenedList.filter(

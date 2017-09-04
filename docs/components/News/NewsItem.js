@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 
 export default createContainer(NewsItem, props => ({
   news: query({
-    collection: "news",
+    path: "news",
     id: props.params.splat
   })
 }));

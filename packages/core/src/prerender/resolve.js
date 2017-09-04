@@ -1,4 +1,4 @@
-import createQuery from "@phenomic/api-client/lib/query";
+import query from "@phenomic/api-client/lib/query";
 
 import { encode } from "../api";
 
@@ -43,7 +43,7 @@ const getRouteQueries = route => {
   });
 };
 
-const getMainCollection = route => {
+const getMainQuery = route => {
   const routeQueries = getRouteQueries(route);
   const keys = Object.keys(routeQueries);
   const firstKey = keys[0];
@@ -54,7 +54,7 @@ const getMainCollection = route => {
     firstKeyAsInt == firstKey &&
     String(firstKeyAsInt).length == firstKey.length
   ) {
-    console.warn(`The main collection used for ${route.path} is ${firstKey}`);
+    console.warn(`The main path used for ${route.path} is ${firstKey}`);
   }
   return { key: firstKey, item: routeQueries[firstKey] };
 };
@@ -72,45 +72,46 @@ const resolveURLsForDynamicParams = async function(
   }
   if (route.collection) {
     console.error(
-      `${route.path} have an attached parameter 'collection=$route.collection'.\n This parameter is now useless and can be safely removed`
+      // $FlowFixMe removed from interface but it's for deprecation that we use it
+      `${route.path} have an attached parameter 'collection=${route.collection}'.\n This parameter is now useless and can be safely removed`
     );
   }
 
-  const mainCollection = getMainCollection(route);
-  if (!mainCollection.item || !mainCollection.item.collection) {
-    debug("no valid collection detected for", route.path);
+  const mainQuery = getMainQuery(route);
+  if (!mainQuery.item || !mainQuery.item.path) {
+    debug("no valid path detected for", route.path);
     return route;
   }
 
-  const collectionConfig = { collection: mainCollection.item.collection };
+  const pathConfig = { path: mainQuery.item.path };
   debug("route", route.path);
 
   // If the path doesn't contain any kind of parameter, no need to
-  // iterate over the collection
+  // iterate over the path
   if (!route.path.includes("*") && !route.path.includes(":")) {
     debug("not a dynamic route");
     return route;
   }
   debug(
-    `fetching collection '${mainCollection.key
-      ? mainCollection.key
-      : Object.keys(collectionConfig).join(",")}' for route '${route.path}'`
+    `fetching path '${mainQuery.key
+      ? mainQuery.key
+      : Object.keys(pathConfig).join(",")}' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
-  const query = getRouteQueries(route);
-  debug(route.path, query);
-  let key =
-    (query[mainCollection.key] && query[mainCollection.key].by) || mainKey;
+  const queries = getRouteQueries(route);
+  debug(route.path, queries);
+  let key = (queries[mainQuery.key] && queries[mainQuery.key].by) || mainKey;
   if (key === defaultQueryKey) {
     key = mainKey;
   }
-  const collection = await phenomicFetch(createQuery(collectionConfig));
+  const queryParams = query(pathConfig);
+  const queryResult = await phenomicFetch(queryParams);
   debug(
     route.path,
-    `collection fetched. ${collection.list.length} items (key: ${key})`
+    `path fetched. ${queryResult.list.length} items (key: ${key})`
   );
   const path = route.path || "*";
-  const list = collection.list.reduce((acc, item) => {
+  const list = queryResult.list.reduce((acc, item) => {
     if (!item[key]) {
       return acc;
     }
@@ -158,7 +159,7 @@ const resolveURLsForDynamicParams = async function(
     if (!routeData.path.match(reAfter)) {
       acc.push(routeData);
     } else {
-      collection.list.map(item => {
+      queryResult.list.map(item => {
         // $FlowFixMe params[key] act as a truthy value
         if (routeData.params && routeData.params[key]) {
           if (
@@ -195,7 +196,7 @@ const resolveURLsToPrerender = async function(
   );
   const flattenedDynamicRoutes = flatten(dynamicRoutes);
   const filtredDynamicRoutes = flattenedDynamicRoutes.filter(url => {
-    if (url.path && url.path.includes("*") && !url.collection) {
+    if (url.path && url.path.includes("*")) {
       debug(
         `${url.path} is including a '*' but it has not been resolved: url is skipped`
       );

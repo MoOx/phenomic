@@ -50,7 +50,7 @@ const Home = ({ isLoading, posts }) =>
 
 const HomeContainer = createContainer(Home, props => ({
   posts: query({
-    collection: "posts",
+    path: "posts",
     limit: 2,
     after: props.params.after
   })
@@ -112,7 +112,7 @@ const BlogPost = ({ hasError, isLoading, page }) => {
 };
 
 const BlogPostContainer = createContainer(BlogPost, props => ({
-  page: query({ collection: "posts", id: props.params.splat })
+  page: query({ path: "posts", id: props.params.splat })
 }));
 
 const PageError = ({ error }) => {

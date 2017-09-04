@@ -82,11 +82,9 @@ const ShowcaseList = (props: Object) =>
             {prepareList(props.showcase.node.list).map(item =>
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
-                  <Text style={styles.itemName}>
-                    {item.title}
-                  </Text>
-                  <Text> </Text>
-                  {item.source &&
+                  <Text style={styles.itemName}>{item.title}</Text>
+                  <Text>{" "}</Text>
+                  {item.source && (
                     <Link
                       style={styles.itemLinkSource}
                       href={item.source}
@@ -279,7 +277,7 @@ export { ShowcaseList as Component };
 
 export default createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase-entries",
+    path: "showcase-entries",
     order: "asc",
     limit: 10,
     after: props.params.after
@@ -288,7 +286,7 @@ export default createContainer(ShowcaseList, props => ({
 
 export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase-entries",
+    path: "showcase-entries",
     by: "showcaseTags",
     value: props.params.showcaseTags,
     order: "asc",

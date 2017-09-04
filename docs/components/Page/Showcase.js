@@ -4,7 +4,7 @@ import Page from "../Page";
 
 export default createContainer(Page, props => ({
   page: query({
-    collection: "showcase",
+    path: "showcase",
     id: props.params.splat
   })
 }));

@@ -130,7 +130,7 @@ export type PhenomicConfig = {
 };
 
 export type PhenomicQueryConfig = {
-  collection?: string,
+  path?: string,
   id?: string,
   after?: string,
   by?: string,
@@ -145,8 +145,7 @@ export type PhenomicRoute = {
     getQueries?: (props: { params: { [key: string]: any } }) => {
       [key: string]: PhenomicQueryConfig
     }
-  },
-  collection?: string | PhenomicQueryConfig
+  }
 };
 
 export type PhenomicAssets = { [key: string]: string };

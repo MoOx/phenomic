@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 export default createContainer(NewsList, props => ({
   news: query({
-    collection: "news",
+    path: "news",
     limit: 10,
     after: props.params.after
   })

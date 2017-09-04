@@ -40,7 +40,7 @@ it("should build docs correctly", () => {
   );
   expect(
     files.includes(
-      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ%3D%3D.json"
     )
   ).toBe(true);
   expect(

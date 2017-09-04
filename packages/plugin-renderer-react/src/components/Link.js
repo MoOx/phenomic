@@ -51,7 +51,7 @@ function Link(props: PropsType, { router }: { router: Object }) {
     origin(toLink) === origin(window.location)
     // we might want to restrict Link to path including the pathname
     // but this will require to preprend pathname to all Links from the
-    // collection, which sucks.
+    // path, which sucks.
     // If people wants to use Link for a same domain, but in the parent path,
     // you will need to includes the entire url, / won't work at it will use
     // the react-router basename defined by Phenomic.
@@ -62,9 +62,9 @@ function Link(props: PropsType, { router }: { router: Object }) {
     const classNames = cx(props.className, {
       [props.activeClassName || ""]:
         router &&
-          (router.isActive({ pathname: url }) ||
-            router.isActive({ pathname: url + "index.html" })) &&
-          Boolean(props.activeClassName)
+        (router.isActive({ pathname: url }) ||
+          router.isActive({ pathname: url + "index.html" })) &&
+        Boolean(props.activeClassName)
     });
     return (
       <RouterLink
