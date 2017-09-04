@@ -49,14 +49,14 @@ it("should build docs correctly", () => {
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase-entries/by-default") &&
+        f.startsWith("phenomic/showcase%2Fentry/by-default") &&
         f.endsWith(".json")
     ).length > 0
   ).toBe(true);
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase-entries/by-showcaseTags") &&
+        f.startsWith("phenomic/showcase%2Fentry/by-showcaseTags") &&
         f.endsWith(".json")
     ).length > 0
   ).toBe(true);

@@ -17,8 +17,8 @@ test_script:
 
 cache:
   - node_modules -> package.json
-  - docs/.screenshots -> docs/content/showcase-entries
-  - docs/public/showcase/entry -> docs/content/showcase-entries
+  - docs/.screenshots -> docs/content/showcase/entry
+  - docs/public/showcase/entry -> docs/content/showcase/entry
 
 version: "{build}"
 build: off

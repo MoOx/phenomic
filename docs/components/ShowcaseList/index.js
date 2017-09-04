@@ -283,7 +283,7 @@ export { ShowcaseList as Component };
 
 export default createContainer(ShowcaseList, props => ({
   showcase: query({
-    path: "showcase-entries",
+    path: "showcase/entry",
     order: "asc",
     limit: 10,
     after: props.params.after
@@ -292,7 +292,7 @@ export default createContainer(ShowcaseList, props => ({
 
 export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
   showcase: query({
-    path: "showcase-entries",
+    path: "showcase/entry",
     by: "showcaseTags",
     value: props.params.showcaseTags,
     order: "asc",

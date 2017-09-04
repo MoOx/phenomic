@@ -135,6 +135,7 @@ export type PhenomicQueryConfig = {
   after?: string,
   by?: string,
   value?: string,
+  order?: string,
   limit?: number
 };
 
