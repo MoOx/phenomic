@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, View } from "react-primitives";
 
-const BodyContainer = (props: Object) =>
-  <View style={[props.style, styles.container]}>{props.children}</View>;
+const BodyContainer = (props: Object) => (
+  <View style={[props.style, styles.container]}>{props.children}</View>
+);
 
 const styles = StyleSheet.create({
   container: {

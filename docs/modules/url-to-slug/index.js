@@ -1,2 +1,5 @@
 export default url =>
-  url.replace(/https?:\/\//, "").replace(/\/$/, "").replace(/\//g, "_");
+  url
+    .replace(/https?:\/\//, "")
+    .replace(/\/$/, "")
+    .replace(/\//g, "_");

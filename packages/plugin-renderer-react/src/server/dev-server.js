@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 
 import renderHTML from "../renderHTML";
 
-const DefaultDevContent = () =>
+const DefaultDevContent = () => (
   /* eslint-disable react-native/no-inline-styles */
   <div
     id="phenomic-DevLoader"
@@ -41,7 +41,8 @@ const DefaultDevContent = () =>
         </code>
       </pre>
     </noscript>
-  </div>;
+  </div>
+);
 /* eslint-enable react-native/no-inline-styles */
 
 const renderDevServer: PhenomicPluginRenderDevServerType = ({

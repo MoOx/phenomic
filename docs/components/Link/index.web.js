@@ -23,7 +23,10 @@ const resolve = (className, style) => {
     return {
       className:
         (className ? className + " " : "") +
-        res.map(r => r.className).filter(x => x).join(" "),
+        res
+          .map(r => r.className)
+          .filter(x => x)
+          .join(" "),
       style: res.reduce((acc, r) => ({ ...acc, ...r.style }), {})
     };
   }

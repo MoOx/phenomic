@@ -21,12 +21,13 @@ const NewsList = (props: Object) => {
       <Header title={"News"} />
       <BodyContainer>
         {props.isLoading && <ActivityIndicator />}
-        {!props.isLoading &&
+        {!props.isLoading && (
           <View style={styles.container}>
-            {props.news.node.list.map(item =>
+            {props.news.node.list.map(item => (
               <NewsListItem key={item.id} news={item} />
-            )}
-          </View>}
+            ))}
+          </View>
+        )}
       </BodyContainer>
       <Spacer large />
       <Footer />

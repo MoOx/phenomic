@@ -4,16 +4,15 @@ import Head from "react-helmet";
 
 import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker";
 
-const Wrapper = (props: Object) =>
+const Wrapper = (props: Object) => (
   <View style={styles.wrapper}>
     <Head>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <GoogleAnalyticsTracker {...props}>
-      {props.children}
-    </GoogleAnalyticsTracker>
-  </View>;
+    <GoogleAnalyticsTracker {...props}>{props.children}</GoogleAnalyticsTracker>
+  </View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {

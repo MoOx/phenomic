@@ -1,8 +1,7 @@
 import React from "react";
 
-const devicePixelRatio = typeof window === "undefined"
-  ? 1
-  : window.devicePixelRatio || 1;
+const devicePixelRatio =
+  typeof window === "undefined" ? 1 : window.devicePixelRatio || 1;
 
 const tupleToColor = (param, alpha) => `rgba(${param.join(",")}, ${alpha})`;
 

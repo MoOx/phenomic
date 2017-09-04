@@ -42,20 +42,22 @@ const renderHTML: PhenomicPluginRenderHTMLType = ({ config, props }) => {
           const css = sets.filter(asset => asset.endsWith(".css")).shift();
           const js = sets.filter(asset => asset.endsWith(".js")).shift();
           return {
-            Main: () =>
+            Main: () => (
               <div
                 id="PhenomicRoot"
                 dangerouslySetInnerHTML={{ __html: main || null }}
-              />,
+              />
+            ),
             State: () =>
-              state &&
-              <script
-                id="PhenomicHydration"
-                type="text/json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify(state)
-                }}
-              />,
+              state && (
+                <script
+                  id="PhenomicHydration"
+                  type="text/json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(state)
+                  }}
+                />
+              ),
             // eslint-disable-next-line react/no-multi-comp
             Style: () =>
               css ? <link rel="stylesheet" href={base + css} /> : null,

@@ -10,9 +10,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
   return (
     <html>
       <head>
-        <style data-aphrodite>
-          {css.content}
-        </style>
+        <style data-aphrodite>{css.content}</style>
       </head>
       <body>
         <Main />

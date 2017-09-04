@@ -7,7 +7,7 @@ import Flex from "../Flex";
 import Browser from "../Browser";
 import Spacer from "../Spacer";
 
-const InputOutput = () =>
+const InputOutput = () => (
   <Flex>
     <View style={styles.row}>
       <Flex style={{ width: 250 }}>
@@ -147,7 +147,8 @@ const InputOutput = () =>
         </Browser>
       </Flex>
     </View>
-  </Flex>;
+  </Flex>
+);
 
 const styles = StyleSheet.create({
   row: {

@@ -14,7 +14,7 @@ import PageError from "./components/PageError";
 import NewsItem from "./components/News/NewsItem";
 import NewsList from "./components/News/NewsList";
 
-const routes = () =>
+const routes = () => (
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
@@ -34,7 +34,8 @@ const routes = () =>
       <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
     </Route>
-  </Router>;
+  </Router>
+);
 
 export default createApp(routes);
 

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route
       path="/"
@@ -31,4 +31,4 @@ export default createApp(() =>
       component={() => <h1 className={css(styles.title2)}>Hello again!</h1>}
     />
   </Router>
-);
+));

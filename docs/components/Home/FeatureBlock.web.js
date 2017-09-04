@@ -10,7 +10,7 @@ type PropsType = {
   title: string,
   description: string
 };
-const FeatureBlock = (props: PropsType) =>
+const FeatureBlock = (props: PropsType) => (
   <BackgroundGradient
     start={props.start}
     end={props.end}
@@ -23,7 +23,8 @@ const FeatureBlock = (props: PropsType) =>
     <View style={styles.description}>
       <Text style={styles.descriptionText}>{props.description}</Text>
     </View>
-  </BackgroundGradient>;
+  </BackgroundGradient>
+);
 
 const styles = StyleSheet.create({
   container: {

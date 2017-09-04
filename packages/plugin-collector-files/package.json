@@ -7,10 +7,7 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",
@@ -25,9 +22,7 @@
   ],
   "description": "Phenomic plugin to collect resources from files",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "debug": "^2.6.0"
   },

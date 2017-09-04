@@ -22,7 +22,7 @@ const styles = {
   }
 };
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route
       path="/"
@@ -33,4 +33,4 @@ export default createApp(() =>
       component={Radium(() => <h1 style={styles.title2}>Hello again!</h1>)}
     />
   </Router>
-);
+));

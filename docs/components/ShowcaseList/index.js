@@ -54,32 +54,31 @@ const prepareList = list => {
   */
 };
 
-const ShowcaseList = (props: Object) =>
+const ShowcaseList = (props: Object) => (
   <Flex>
     <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
     <BodyContainer style={styles.page}>
       {props.isLoading && <ActivityIndicator />}
-      {!props.isLoading &&
+      {!props.isLoading && (
         <View>
           <Link to={"/showcase/submit/"} style={styles.addYourOwn}>
             {"Submit your website!"}
           </Link>
           {props.params &&
-            props.params.showcaseTags &&
+          props.params.showcaseTags && (
             <View style={styles.currentFilter}>
               <Text style={styles.filterMessage}>
                 {"You are currently viewing projects that match "}
-                <em>
-                  {props.params.showcaseTags}
-                </em>
+                <em>{props.params.showcaseTags}</em>
                 {" tag. "}
                 <Link to={"/showcase/"} style={styles.filterMessageLink}>
                   {"View all."}
                 </Link>
               </Text>
-            </View>}
+            </View>
+          )}
           <View style={styles.list}>
-            {prepareList(props.showcase.node.list).map(item =>
+            {prepareList(props.showcase.node.list).map(item => (
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
                   <Text style={styles.itemName}>{item.title}</Text>
@@ -91,11 +90,12 @@ const ShowcaseList = (props: Object) =>
                       target="_blank"
                     >
                       {"(Source)"}
-                    </Link>}
+                    </Link>
+                  )}
                 </View>
                 <View style={styles.tags}>
                   {item.showcaseTags &&
-                    item.showcaseTags.map(tag =>
+                    item.showcaseTags.map(tag => (
                       <Link
                         key={tag}
                         to={`/showcase/tag/${tag}/`}
@@ -103,7 +103,7 @@ const ShowcaseList = (props: Object) =>
                       >
                         {tag}
                       </Link>
-                    )}
+                    ))}
                 </View>
                 <Link href={item.url} target="_blank">
                   <Image
@@ -129,28 +129,31 @@ const ShowcaseList = (props: Object) =>
                   </div>
                 </Link>
               </View>
-            )}
+            ))}
           </View>
           <View style={styles.paginationRow}>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasPreviousPage &&
+              props.showcase.node.hasPreviousPage && (
                 <Link
                   style={styles.link}
                   to={
-                    props.showcase.node.previousPageIsFirst
-                      ? `/showcase`
-                      : `/showcase/${props.params.showcaseTags
-                          ? `tag/${props.params.showcaseTags}/`
-                          : ""}after/${props.showcase.node.previous}`
+                    props.showcase.node.previousPageIsFirst ? (
+                      `/showcase`
+                    ) : (
+                      `/showcase/${props.params.showcaseTags
+                        ? `tag/${props.params.showcaseTags}/`
+                        : ""}after/${props.showcase.node.previous}`
+                    )
                   }
                 >
                   {"← Previous"}
-                </Link>}
+                </Link>
+              )}
             </View>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasNextPage &&
+              props.showcase.node.hasNextPage && (
                 <Link
                   style={styles.link}
                   to={`/showcase/${props.params.showcaseTags
@@ -158,14 +161,17 @@ const ShowcaseList = (props: Object) =>
                     : ""}after/${props.showcase.node.next}`}
                 >
                   {"Next →"}
-                </Link>}
+                </Link>
+              )}
             </View>
           </View>
-        </View>}
+        </View>
+      )}
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>;
+  </Flex>
+);
 
 const styles = StyleSheet.create({
   link: {

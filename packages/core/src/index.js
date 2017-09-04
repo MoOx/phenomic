@@ -36,9 +36,13 @@ function normalizeConfiguration(
 
 export default {
   start(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(start).catch(shittyCatch);
+    normalizeConfiguration(config)
+      .then(start)
+      .catch(shittyCatch);
   },
   build(config: PhenomicInputConfig = {}) {
-    normalizeConfiguration(config).then(build).catch(shittyCatch);
+    normalizeConfiguration(config)
+      .then(build)
+      .catch(shittyCatch);
   }
 };

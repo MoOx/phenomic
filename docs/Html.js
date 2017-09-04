@@ -12,11 +12,11 @@ const Html = ({ App, render }: PhenomicHtmlPropsType) => {
         {helmet.title.toComponent()}
         {helmet.base.toComponent()}
         <Style />
-        {StyleSheet.getStyleSheets().map(({ id, textContent }) =>
+        {StyleSheet.getStyleSheets().map(({ id, textContent }) => (
           <style key={id} id={id}>
             {textContent}
           </style>
-        )}
+        ))}
         {helmet.link.toComponent()}
         {helmet.style.toComponent()}
         {helmet.script.toComponent()}

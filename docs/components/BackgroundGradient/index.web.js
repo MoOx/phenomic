@@ -10,7 +10,7 @@ type PropsType = {
   style: any,
   children?: React$Element<any>
 };
-const BackgroundGradient = (props: PropsType) =>
+const BackgroundGradient = (props: PropsType) => (
   <div
     style={{
       ...rawStyles,
@@ -19,7 +19,8 @@ const BackgroundGradient = (props: PropsType) =>
     className={props.style && StyleSheet.resolve(props.style).className}
   >
     {props.children}
-  </div>;
+  </div>
+);
 
 const rawStyles = {
   display: "flex",

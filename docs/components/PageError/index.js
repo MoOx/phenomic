@@ -6,9 +6,8 @@ import Header from "../Header";
 
 const PageError = ({ error }: { error: Object }) => {
   const status = (error && error.status) || 404;
-  const errorText = error && status !== 404
-    ? error.statusText
-    : "Page not found";
+  const errorText =
+    error && status !== 404 ? error.statusText : "Page not found";
 
   return (
     <View>
@@ -17,17 +16,16 @@ const PageError = ({ error }: { error: Object }) => {
         <Text style={styles.oops}>{"Oooops!"}</Text>
         <View style={styles.text}>
           <Text style={styles.title}>
-            <strong>{status}</strong>
-            {" "}
-            {errorText}
+            <strong>{status}</strong> {errorText}
           </Text>
-          {status === 404 &&
+          {status === 404 && (
             <View>
               {"It seems you found a broken link. "}
               {"Sorry about that. "}
               <br />
               {"Do not hesitate to report this page."}
-            </View>}
+            </View>
+          )}
         </View>
       </BodyContainer>
     </View>

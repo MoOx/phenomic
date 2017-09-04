@@ -9,7 +9,7 @@ const {
 const Home = require("./lib/js/components/home");
 const Post = require("./lib/js/components/post");
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route
       path="/"
@@ -20,4 +20,4 @@ export default createApp(() =>
       component={wrapReComponent(Post.jsComponent, Post.queries)}
     />
   </Router>
-);
+));

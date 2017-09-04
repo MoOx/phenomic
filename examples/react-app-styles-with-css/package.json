@@ -15,8 +15,6 @@
     "build": "phenomic build"
   },
   "phenomic": {
-    "presets": [
-      "@phenomic/preset-react-app"
-    ]
+    "presets": ["@phenomic/preset-react-app"]
   }
 }

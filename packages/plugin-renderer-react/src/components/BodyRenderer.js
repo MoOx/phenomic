@@ -55,9 +55,11 @@ const render = (item: ItemType, options: OptionsType, key: ?any) => {
     "div";
   return (
     <Tag {...props} key={key}>
-      {Array.isArray(children)
-        ? children.map((child: ItemType, key) => render(child, options, key))
-        : render(children, options)}
+      {Array.isArray(children) ? (
+        children.map((child: ItemType, key) => render(child, options, key))
+      ) : (
+        render(children, options)
+      )}
     </Tag>
   );
 };
@@ -81,9 +83,11 @@ const BodyRenderer = ({ children, ...props }: PropsType) => {
       ...(props.components || {})
     }
   });
-  return typeof r === "string"
-    ? <props.DefaultComponent>{r}</props.DefaultComponent>
-    : r;
+  return typeof r === "string" ? (
+    <props.DefaultComponent>{r}</props.DefaultComponent>
+  ) : (
+    r
+  );
 };
 
 export default BodyRenderer;

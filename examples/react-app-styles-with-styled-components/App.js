@@ -15,9 +15,9 @@ const Title2 = styled.h1`
   color: blue;
 `;
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route path="/" component={() => <Title>Hello World!</Title>} />
     <Route path="/2" component={() => <Title2>Hello again!</Title2>} />
   </Router>
-);
+));

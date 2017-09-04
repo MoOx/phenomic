@@ -7,9 +7,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
 
   return (
     <html>
-      <head>
-        {sheet.getStyleElement()}
-      </head>
+      <head>{sheet.getStyleElement()}</head>
       <body>
         <Main />
         <State />

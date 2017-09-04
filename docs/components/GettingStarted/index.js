@@ -8,13 +8,11 @@ import Header from "../Header";
 import Footer from "../Footer";
 import BodyContainer from "../BodyContainer";
 
-const GettingStarted = () =>
+const GettingStarted = () => (
   <Flex>
     <Header title={"Getting started with Phenomic"} />
     <BodyContainer style={styles.page}>
-      <View style={styles.row}>
-        {"Start by choosing your ecosystem"}
-      </View>
+      <View style={styles.row}>{"Start by choosing your ecosystem"}</View>
       <View style={styles.logos}>
         <Link
           style={styles.logo}
@@ -23,9 +21,7 @@ const GettingStarted = () =>
           <View style={styles.img}>
             <img src="/assets/react.svg" height="128" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"React"}
-          </Text>
+          <Text style={styles.logoTitle}>{"React"}</Text>
         </Link>
         <Link
           style={styles.logo}
@@ -34,9 +30,7 @@ const GettingStarted = () =>
           <View style={styles.img}>
             <img src="/assets/reason-react.svg" height="128" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"ReasonReact"}
-          </Text>
+          <Text style={styles.logoTitle}>{"ReasonReact"}</Text>
         </Link>
         <Link
           style={styles.logo}
@@ -45,9 +39,7 @@ const GettingStarted = () =>
           <View style={[styles.img, styles.todo]}>
             <img src="/assets/preact.svg" height="128" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"PREACT"}
-          </Text>
+          <Text style={styles.logoTitle}>{"PREACT"}</Text>
         </Link>
         <Link
           style={styles.logo}
@@ -56,9 +48,7 @@ const GettingStarted = () =>
           <View style={[styles.img, styles.todo]}>
             <img src="/assets/Next.js.svg" height="128" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"Next.js"}
-          </Text>
+          <Text style={styles.logoTitle}>{"Next.js"}</Text>
         </Link>
         <Link
           style={styles.logo}
@@ -67,9 +57,7 @@ const GettingStarted = () =>
           <View style={[styles.img, styles.todo]}>
             <img src="/assets/vue.svg" height="96" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"Vue"}
-          </Text>
+          <Text style={styles.logoTitle}>{"Vue"}</Text>
         </Link>
         <Link
           style={styles.logo}
@@ -78,9 +66,7 @@ const GettingStarted = () =>
           <View style={[styles.img, styles.todo]}>
             <img src="/assets/angular.svg" height="128" />
           </View>
-          <Text style={styles.logoTitle}>
-            {"Angular"}
-          </Text>
+          <Text style={styles.logoTitle}>{"Angular"}</Text>
         </Link>
       </View>
       <View style={styles.row}>
@@ -93,7 +79,8 @@ const GettingStarted = () =>
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>;
+  </Flex>
+);
 
 const styles = StyleSheet.create({
   page: {

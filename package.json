@@ -4,11 +4,9 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "devDependencies": {
+    "@dschau/prettier-markdown": "^1.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -32,28 +30,32 @@
     "lerna": "^2.0.0",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
-    "prettier": "^1.3.1",
-    "prettier-markdown": "^0.1.8",
+    "prettier": "^1.6.0",
     "rimraf": "^2.4.2"
   },
   "scripts": {
     "#<git hooks>": "handled by husky",
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
-    "cleanup-node_modules": "rimraf (packages|examples)/*/node_modules docs/node_modules",
+    "cleanup-node_modules":
+      "rimraf (packages|examples)/*/node_modules docs/node_modules",
     "clean": "lerna exec -- rimraf lib",
-    "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "transpile":
+      "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "posttranspile": "lerna run prepare",
-    "watch": "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "watch":
+      "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "prepare": "npm run -s clean && npm run -s transpile",
     "prerelease": "npm run prepare",
     "release": "lerna publish",
-    "format": "npm run -s format:js && npm run -s format:re",
-    "format:js": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
-    "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
-    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
+    "format": "npm run -s format:most && npm run -s format:re",
+    "format:most": "prettier --write \"**/*.{js,json,css}\"",
+    "apostformat:most": "prettier-markdown",
+    "format:re":
+      "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "links": "lerna exec -- npm link",
-    "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests examples docs",
+    "lint:eslint":
+      "eslint --ignore-path .gitignore --fix packages e2e-tests examples docs",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "jest --runInBand --coverage packages",
@@ -67,16 +69,13 @@
     "test": "npm run -s tests",
     "posttest": "npm run -s examples && npm run -s docs:test"
   },
+  "prettier": {
+    "parser": "flow"
+  },
   "lint-staged": {
-    "*.js": [
-      "git-exec-and-restage prettier --write --parser=flow"
-    ],
-    "*.md": [
-      "git-exec-and-restage prettier-markdown"
-    ],
-    "*.re": [
-      "git-exec-and-restage refmt --in-place"
-    ]
+    "*.{js,json,css}": ["git-exec-and-restage prettier --write"],
+    "*.md": ["git-exec-and-restage prettier-markdown"],
+    "*.re": ["git-exec-and-restage refmt --in-place"]
   },
   "babel": {
     "presets": [
@@ -84,9 +83,7 @@
       "babel-preset-stage-1",
       "babel-preset-react"
     ],
-    "plugins": [
-      "babel-plugin-transform-runtime"
-    ]
+    "plugins": ["babel-plugin-transform-runtime"]
   },
   "eslintConfig": {
     "extends": [
@@ -110,11 +107,7 @@
         "webpack": {
           "config": {
             "resolve": {
-              "extensions": [
-                ".web.js",
-                ".js",
-                ".json"
-              ]
+              "extensions": [".web.js", ".js", ".json"]
             }
           }
         }
@@ -132,16 +125,8 @@
         "lines": 65
       }
     },
-    "transformIgnorePatterns": [
-      "node_modules"
-    ],
-    "testPathIgnorePatterns": [
-      "/_output/"
-    ]
+    "transformIgnorePatterns": ["node_modules"],
+    "testPathIgnorePatterns": ["/_output/"]
   },
-  "workspaces": [
-    "docs",
-    "examples/*",
-    "packages/*"
-  ]
+  "workspaces": ["docs", "examples/*", "packages/*"]
 }

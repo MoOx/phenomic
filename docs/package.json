@@ -10,7 +10,8 @@
     "build": "phenomic build",
     "pretest": "npm run -s showcase-screenshots",
     "test": "npm run -s build",
-    "predeploy": "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
+    "predeploy":
+      "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
@@ -35,9 +36,7 @@
     "rimraf": "^2.6.1"
   },
   "phenomic": {
-    "presets": [
-      "@phenomic/preset-react-app"
-    ]
+    "presets": ["@phenomic/preset-react-app"]
   },
   "screenshotsSize": {
     "large": {

@@ -1,7 +1,7 @@
 declare module "yargs" {
   declare type Argv = {
     _: Array<string>,
-    "$0": string,
+    $0: string,
     [key: string]: mixed
   };
 

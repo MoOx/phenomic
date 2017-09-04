@@ -9,7 +9,7 @@ import {
   BodyRenderer
 } from "@phenomic/preset-react-app/lib/client";
 
-const Home = ({ isLoading, posts }) =>
+const Home = ({ isLoading, posts }) => (
   <Layout>
     <Head>
       <title>Hello world</title>
@@ -17,36 +17,40 @@ const Home = ({ isLoading, posts }) =>
     </Head>
     <h1>Home</h1>
     {isLoading && "Loading..."}
-    {!isLoading &&
+    {!isLoading && (
       <ul>
         {posts &&
           posts.node &&
           posts.node.list &&
-          posts.node.list.map(post =>
+          posts.node.list.map(post => (
             <li key={post.id}>
-              <Link to={`/blog/${post.id}/`}>
-                {post.title || post.id}
-              </Link>
+              <Link to={`/blog/${post.id}/`}>{post.title || post.id}</Link>
             </li>
-          )}
-      </ul>}
+          ))}
+      </ul>
+    )}
     <div>
       {posts.node &&
-        posts.node.hasPreviousPage &&
+      posts.node.hasPreviousPage && (
         <Link
           to={
-            posts.node.previousPageIsFirst
-              ? `/`
-              : `/after/${posts.node.previous}/`
+            posts.node.previousPageIsFirst ? (
+              `/`
+            ) : (
+              `/after/${posts.node.previous}/`
+            )
           }
         >
           Newer posts
-        </Link>}{" "}
+        </Link>
+      )}{" "}
       {posts.node &&
-        posts.node.hasNextPage &&
-        <Link to={`/after/${posts.node.next}/`}>Older posts</Link>}
+      posts.node.hasNextPage && (
+        <Link to={`/after/${posts.node.next}/`}>Older posts</Link>
+      )}
     </div>
-  </Layout>;
+  </Layout>
+);
 
 const HomeContainer = createContainer(Home, props => ({
   posts: query({
@@ -56,37 +60,27 @@ const HomeContainer = createContainer(Home, props => ({
   })
 }));
 
-const DefaultPostLayout = ({ title, body }) =>
+const DefaultPostLayout = ({ title, body }) => (
   <article>
     <Head>
-      <title>
-        {title}
-      </title>
+      <title>{title}</title>
     </Head>
-    <h1>
-      {title}
-    </h1>
-    <BodyRenderer>
-      {body}
-    </BodyRenderer>
-  </article>;
+    <h1>{title}</h1>
+    <BodyRenderer>{body}</BodyRenderer>
+  </article>
+);
 
-const HeroPostLayout = ({ title, body }) =>
+const HeroPostLayout = ({ title, body }) => (
   <article>
     <Head>
-      <title>
-        {title}
-      </title>
+      <title>{title}</title>
     </Head>
     <div style={{ padding: "4rem", background: "pink", color: "#fff" }}>
-      <h1>
-        {title}
-      </h1>
+      <h1>{title}</h1>
     </div>
-    <BodyRenderer>
-      {body}
-    </BodyRenderer>
-  </article>;
+    <BodyRenderer>{body}</BodyRenderer>
+  </article>
+);
 
 const PostLayouts = {
   default: DefaultPostLayout,
@@ -122,42 +116,34 @@ const PageError = ({ error }) => {
   return (
     <div>
       <Head>
-        <title>
-          {message}
-        </title>
+        <title>{message}</title>
       </Head>
-      <h1>
-        {message}
-      </h1>
+      <h1>{message}</h1>
     </div>
   );
 };
 
-const Layout = ({ children }) =>
+const Layout = ({ children }) => (
   <div>
     <Head>
       <html lang="en" />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <header>
-      {/* ... */}
-    </header>
-    <div>
-      {children}
-    </div>
-    <footer>
-      {/* ... */}
-    </footer>
-  </div>;
+    <header>{/* ... */}</header>
+    <div>{children}</div>
+    <footer>{/* ... */}</footer>
+  </div>
+);
 
-const routes = () =>
+const routes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={HomeContainer} />
     <Route path="/after/:after" component={HomeContainer} />
     <Route path="/blog/*" component={BlogPostContainer} />
     <Route path="*" component={PageError} />
-  </Router>;
+  </Router>
+);
 
 export default createApp(routes);
 

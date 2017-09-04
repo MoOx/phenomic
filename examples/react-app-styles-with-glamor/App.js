@@ -19,9 +19,9 @@ const title2 = css({
   color: "blue"
 });
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route path="/" component={() => <h1 {...title}>Hello World!</h1>} />
     <Route path="/2" component={() => <h1 {...title2}>Hello again!</h1>} />
   </Router>
-);
+));

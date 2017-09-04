@@ -21,13 +21,14 @@ const NewsItem = (props: Object) => {
       <Header title={props.news && props.news.node && props.news.node.title} />
       <BodyContainer>
         {props.isLoading && <ActivityIndicator />}
-        {!props.isLoading &&
+        {!props.isLoading && (
           <View style={styles.body}>
             <Text style={styles.date}>
               {new Date(props.news.node.date).toLocaleDateString()}
             </Text>
             <MarkdownGenerated body={props.news.node.body} />
-          </View>}
+          </View>
+        )}
       </BodyContainer>
       <Spacer large />
       <Footer />

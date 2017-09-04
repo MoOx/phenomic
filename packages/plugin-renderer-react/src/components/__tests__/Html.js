@@ -5,17 +5,11 @@ import { renderJSX } from "jsx-test-helpers";
 
 import Html from "../HTML";
 
-const App = () =>
-  <div>
-    {"App"}
-  </div>;
+const App = () => <div>{"App"}</div>;
 const render = App => {
   return {
     Main: () => <App />,
-    State: () =>
-      <script type="text/json">
-        {'{st:"ate"}'}
-      </script>,
+    State: () => <script type="text/json">{'{st:"ate"}'}</script>,
     Script: () => <script src="sc/ript" />,
     Style: () => <link src="sc/ript" />,
     assets: {}

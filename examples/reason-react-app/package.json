@@ -23,9 +23,7 @@
     "build": "npm run reason:compile && phenomic build"
   },
   "phenomic": {
-    "presets": [
-      "@phenomic/preset-react-app"
-    ]
+    "presets": ["@phenomic/preset-react-app"]
   },
   "version": "1.0.0-alpha.5"
 }

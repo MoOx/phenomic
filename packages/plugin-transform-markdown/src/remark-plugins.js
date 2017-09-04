@@ -15,16 +15,19 @@ import deepmerge from "deepmerge";
 import sanitizeGhSchema from "hast-util-sanitize/lib/github.json";
 
 export default (config?: PhenomicConfig, body: string) => {
-  const remarkInstance = remark().use(toc).use(slug).use(autoLinkHeadings, {
-    // @todo find how to make this options works with remark-react
-    content: {
-      type: "text",
-      value: "#"
-    },
-    linkProperties: {
-      className: "phenomic-HeadingAnchor"
-    }
-  });
+  const remarkInstance = remark()
+    .use(toc)
+    .use(slug)
+    .use(autoLinkHeadings, {
+      // @todo find how to make this options works with remark-react
+      content: {
+        type: "text",
+        value: "#"
+      },
+      linkProperties: {
+        className: "phenomic-HeadingAnchor"
+      }
+    });
 
   const useReact =
     config &&

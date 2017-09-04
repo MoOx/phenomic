@@ -4,11 +4,11 @@ import { createApp } from "@phenomic/preset-react-app/lib/client";
 
 import "./styles.css";
 
-export default createApp(() =>
+export default createApp(() => (
   <Router history={browserHistory}>
     <Route
       path="/"
       component={() => <div className="helloWorld">Hello world!</div>}
     />
   </Router>
-);
+));

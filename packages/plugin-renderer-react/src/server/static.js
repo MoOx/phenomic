@@ -37,10 +37,11 @@ function staticRenderToString(
   return renderHTML({
     config,
     props: {
-      WrappedApp: () =>
+      WrappedApp: () => (
         <Provider fetch={fetch} store={store}>
           <RouterContext {...renderProps} />
-        </Provider>,
+        </Provider>
+      ),
       renderAsObject: (UserWrappedApp: React$Element<*>) => ({
         main: ReactDOMServer.renderToString(UserWrappedApp),
         state: store.getState(),

@@ -7,10 +7,7 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",
@@ -26,9 +23,7 @@
   ],
   "description": "Phenomic React app preset",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "@phenomic/plugin-api-related-content": "^1.0.0-alpha.5",
     "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.5",

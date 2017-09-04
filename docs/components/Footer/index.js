@@ -6,12 +6,13 @@ import BackgroundGradient from "../BackgroundGradient";
 
 import FooterNavBar from "./NavBar";
 
-const Footer = (props: Object) =>
+const Footer = (props: Object) => (
   <BackgroundGradient style={props.style} start="#2A2A2A" end="#121212">
     <BodyContainer style={styles.hero}>
       <FooterNavBar />
     </BodyContainer>
-  </BackgroundGradient>;
+  </BackgroundGradient>
+);
 
 const styles = StyleSheet.create({
   hero: {
