@@ -40,6 +40,7 @@
     "#<git hooks>": "handled by husky",
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
+    "cleanup-node_modules": "rimraf (packages|examples)/*/node_modules docs/node_modules",
     "clean": "lerna exec -- rimraf lib",
     "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "posttranspile": "lerna run prepare",
