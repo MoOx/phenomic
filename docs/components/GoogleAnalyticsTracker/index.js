@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import * as React from "react";
 import ga from "react-google-analytics";
 
 import Flex from "../Flex";
@@ -9,12 +9,12 @@ const GoogleAnalyticsInitiailizer = ga.Initializer;
 const isProduction = process.env.NODE_ENV === "production";
 const isClient = typeof window !== "undefined";
 
-export default class GoogleAnalyticsTracker extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    location: PropTypes.object.isRequired
-  };
+type Props = {
+  children: React.Node,
+  location: typeof Location
+};
 
+export default class GoogleAnalyticsTracker extends React.Component<Props> {
   componentWillMount() {
     if (isClient) {
       if (isProduction) {

@@ -1,14 +1,18 @@
 export type PhenomicDB = {
-  destroy: () => Promise<*>,
-  put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,
-  get: (sub: string | Array<string>, key: string) => Promise<*>,
-  getPartial: (sub: string | Array<string>, key: string) => Promise<*>,
+  destroy: () => Promise<void>,
+  put: (
+    sub: string | Array<string>,
+    key: string,
+    value: any
+  ) => Promise<Object>,
+  get: (sub: string | Array<string>, key: string) => Promise<Object>,
+  getPartial: (sub: string | Array<string>, key: string) => Promise<void>,
   getList: (
     sub: string | Array<string>,
     config: LevelStreamConfig,
     filter?: string,
     filterValue: string
-  ) => Promise<*>
+  ) => Promise<Array<any>>
 };
 
 export type PhenomicInputPlugins = {
@@ -46,7 +50,7 @@ export type PhenomicAppType = {
 type PhenomicIntermediateHtmlPropsType = {
   WrappedApp: ReactCompo,
   renderAsObject: (
-    app: React$Element<*>
+    app: React$Element<any>
   ) => {
     main: string,
     state?: Object | null,
@@ -57,7 +61,7 @@ type PhenomicIntermediateHtmlPropsType = {
 export type PhenomicHtmlPropsType = {
   App: ReactCompo,
   render: (
-    app: React$Element<*>
+    app: React$Element<any>
   ) => {
     assets: PhenomicAssets,
     Main: ReactCompo,
@@ -69,7 +73,7 @@ export type PhenomicHtmlPropsType = {
 
 export type PhenomicHtmlType = (
   props: PhenomicHtmlPropsType
-) => React$Element<*>;
+) => React$Element<any>;
 
 export type PhenomicPluginRenderStaticType = ({
   config: PhenomicConfig,

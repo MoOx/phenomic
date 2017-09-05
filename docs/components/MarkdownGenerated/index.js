@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 
 require("./index.css");

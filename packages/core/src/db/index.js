@@ -56,7 +56,7 @@ async function getDataRelations(fields) {
 }
 
 const db = {
-  destroy() {
+  destroy(): Promise<void> {
     return new Promise((resolve, reject) => {
       database.close(() => {
         levelDown.destroy(cacheDir, error => {
@@ -71,7 +71,7 @@ const db = {
       });
     });
   },
-  put(sub: string | Array<string>, key: string, value: any) {
+  put(sub: string | Array<string>, key: string, value: any): Promise<Object> {
     return new Promise((resolve, reject) => {
       const data = { ...value, key };
       return getSublevel(level, sub).put(key, data, options, error => {
@@ -84,7 +84,7 @@ const db = {
       });
     });
   },
-  get(sub: string | Array<string>, key: string) {
+  get(sub: string | Array<string>, key: string): Promise<Object> {
     return new Promise((resolve, reject) => {
       return getSublevel(level, sub).get(key, options, async function(
         error,
@@ -106,7 +106,7 @@ const db = {
       });
     });
   },
-  getPartial(sub: string | Array<string>, key: string) {
+  getPartial(sub: string | Array<string>, key: string): Promise<Object> {
     return new Promise((resolve, reject) => {
       return getSublevel(level, sub).get(key, options, (error, data) => {
         if (error) {
@@ -127,7 +127,7 @@ const db = {
     config: LevelStreamConfig,
     filter: string = "default",
     filterValue: string
-  ) {
+  ): Promise<Array<any>> {
     return new Promise((resolve, reject) => {
       const array = [];
       // $FlowFixMe waaaat? sublevel is level so createReadStream is available

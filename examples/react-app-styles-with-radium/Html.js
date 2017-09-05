@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { StyleRoot } from "radium";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {

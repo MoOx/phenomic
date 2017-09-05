@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import { Link as RouterLink } from "react-router";
@@ -16,7 +16,7 @@ type PropsType = {
   activeClassName?: string,
   to?: string,
   href?: string,
-  children?: any
+  children?: React.Node
 };
 
 function Link(props: PropsType, { router }: { router: Object }) {
@@ -79,14 +79,6 @@ function Link(props: PropsType, { router }: { router: Object }) {
 
   return simpleLink;
 }
-
-Link.propTypes = {
-  children: PropTypes.node,
-  to: PropTypes.string,
-  href: PropTypes.string,
-  className: PropTypes.string,
-  activeClassName: PropTypes.string
-};
 
 Link.contextTypes = {
   router: PropTypes.object.isRequired

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 // https://github.com/lelandrichardson/react-primitives/issues/72
 import { StyleSheet } from "react-primitives";
 import StyleSheetRegistry from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line

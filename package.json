@@ -22,7 +22,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-react-native": "^2.3.2",
-    "flow-bin": "^0.47.0",
+    "flow-bin": "^0.54.0",
     "git-exec-and-restage": "^1.0.1",
     "globby": "^6.1.0",
     "husky": "^0.13.3",
@@ -94,6 +94,7 @@
       "jest": true
     },
     "rules": {
+      "import/no-namespace": 0,
       "flowtype/type-id-match": 0,
       "import/max-dependencies": [
         2,

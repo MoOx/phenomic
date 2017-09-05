@@ -9,19 +9,19 @@ export type ReactRouterProps = {
 
 declare module "react-router" {
   declare interface ReactRouter {
-    IndexRoute: Class<React$Component<*, *, *>>,
-    Link: Class<React$Component<*, *, *>>,
-    Redirect: Class<React$Component<*, *, *>>,
-    IndexRedirect: Class<React$Component<*, *, *>>,
-    Route: Class<React$Component<*, *, *>>,
-    Router: Class<React$Component<*, *, *>>,
+    IndexRoute: Class<React$Component<*, *>>,
+    Link: Class<React$Component<*, *>>,
+    Redirect: Class<React$Component<*, *>>,
+    IndexRedirect: Class<React$Component<*, *>>,
+    Route: Class<React$Component<*, *>>,
+    Router: Class<React$Component<*, *>>,
     browserHistory: any,
     useRouterHistory: (
       historyFactory: Function
     ) => (options: ?Object) => Object,
     match: Function,
-    RouterContext: Class<React$Component<*, *, *>>,
-    createRoutes: (routes: React$Element<*>) => Array<Object>,
+    RouterContext: Class<React$Component<*, *>>,
+    createRoutes: (routes: React$Element<any>) => Array<Object>,
     formatPattern: (pattern: string, params: Object) => string,
     applyRouterMiddleware: Function
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { StyleSheetServer } from "aphrodite/no-important";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {

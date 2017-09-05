@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 
-import React from "react";
+import * as React from "react";
 import { render, renderJSX } from "jsx-test-helpers";
 
 import BodyRenderer from "../BodyRenderer";

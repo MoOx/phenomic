@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { StyleSheet, View } from "react-primitives";
 
 const Flex = (props: Object) => (

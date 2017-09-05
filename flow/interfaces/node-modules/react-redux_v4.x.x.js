@@ -6,7 +6,7 @@ type ConnectAll = <
   D,
   P,
   S,
-  C: React$Component<D, P, S>,
+  C: React$Component<P, S>,
   SP,
   DP,
   Dispatch: Function
@@ -23,7 +23,7 @@ type ConnectAll = <
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: Class<C>
-) => Class<React$Component<D, $Diff<$Diff<P, DP>, SP>, S>>;
+) => Class<React$Component<$Diff<$Diff<P, DP>, SP>, S>>;
 
 type ConnectAllStateless = <P, SP, DP, Dispatch: Function>(
   mapStateToProps: (state: Object, ownProps: $Diff<$Diff<P, DP>, SP>) => SP,
@@ -35,13 +35,13 @@ type ConnectAllStateless = <P, SP, DP, Dispatch: Function>(
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: (props: P) => any
-) => Class<React$Component<void, $Diff<$Diff<P, DP>, SP>, void>>;
+) => Class<React$Component<$Diff<$Diff<P, DP>, SP>, void>>;
 
 type ConnectMerged = <
   D,
   P,
   S,
-  C: React$Component<D, P, S>,
+  C: React$Component<P, S>,
   SP,
   DP,
   MP,
@@ -58,7 +58,7 @@ type ConnectMerged = <
     ownProps: $Diff<$Diff<P, MP>, D>
   ) => MP,
   options?: { pure?: boolean, withRef?: boolean }
-) => (component: Class<C>) => Class<React$Component<D, $Diff<P, MP>, S>>;
+) => (component: Class<C>) => Class<React$Component<$Diff<P, MP>, S>>;
 
 type ConnectMergedStateless = <P, SP, DP, MP, Dispatch: Function>(
   mapStateToProps: (state: Object, ownProps: $Diff<P, MP>) => SP,
@@ -67,13 +67,13 @@ type ConnectMergedStateless = <P, SP, DP, MP, Dispatch: Function>(
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: (props: P) => any
-) => Class<React$Component<void, $Diff<P, MP>, void>>;
+) => Class<React$Component<$Diff<P, MP>, void>>;
 
 type ConnectNoState = <
   D,
   P,
   S,
-  C: React$Component<D, P, S>,
+  C: React$Component<P, S>,
   DP,
   Dispatch: Function
 >(
@@ -84,7 +84,7 @@ type ConnectNoState = <
   ) => DP,
   mergeProps: null | void,
   options?: { pure?: boolean, withRef?: boolean }
-) => (component: Class<C>) => Class<React$Component<D, $Diff<P, DP>, S>>;
+) => (component: Class<C>) => Class<React$Component<$Diff<P, DP>, S>>;
 
 type ConnectNoStateStatless = <P, DP, Dispatch: Function>(
   mapStateToProps: null | void,
@@ -93,13 +93,13 @@ type ConnectNoStateStatless = <P, DP, Dispatch: Function>(
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: (props: P) => any
-) => Class<React$Component<void, $Diff<P, DP>, void>>;
+) => Class<React$Component<$Diff<P, DP>, void>>;
 
 type ConnectDispatch = <
   D,
   P,
   S,
-  C: React$Component<D, P, S>,
+  C: React$Component<P, S>,
   SP,
   Dispatch: Function
 >(
@@ -112,7 +112,7 @@ type ConnectDispatch = <
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: Class<C>
-) => Class<React$Component<D, $Diff<$Diff<P, { dispatch: Dispatch }>, SP>, S>>;
+) => Class<React$Component<$Diff<$Diff<P, { dispatch: Dispatch }>, SP>, S>>;
 
 type ConnectDispatchStateless = <P, SP, Dispatch: Function>(
   mapStateToProps: (
@@ -124,23 +124,21 @@ type ConnectDispatchStateless = <P, SP, Dispatch: Function>(
   options?: { pure?: boolean, withRef?: boolean }
 ) => (
   component: (props: P) => any
-) => Class<
-  React$Component<void, $Diff<$Diff<P, { dispatch: Dispatch }>, SP>, void>
->;
+) => Class<React$Component<$Diff<$Diff<P, { dispatch: Dispatch }>, SP>, void>>;
 
 type ConnectDefault = <
   D,
   P,
   S,
-  C: React$Component<D, P, S>,
+  C: React$Component<P, S>,
   Dispatch: Function
 >() => (
   component: Class<C>
-) => Class<React$Component<D, $Diff<P, { dispatch: Dispatch }>, S>>;
+) => Class<React$Component<$Diff<P, { dispatch: Dispatch }>, S>>;
 
 type ConnectDefaultStateless = () => <P>(
   component: (props: P) => any
-) => Class<React$Component<void, $Diff<P, { dispatch: Function }>, void>>;
+) => Class<React$Component<$Diff<P, { dispatch: Function }>, void>>;
 
 declare module "react-redux" {
   declare var exports: {
@@ -154,6 +152,6 @@ declare module "react-redux" {
       ConnectDispatchStateless &
       ConnectDefault &
       ConnectDefaultStateless,
-    Provider: ReactClass<{ store: Object, children?: any }>
+    Provider: React$ComponentType<{ store: Object, children?: any }>
   };
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Head from "react-helmet";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {

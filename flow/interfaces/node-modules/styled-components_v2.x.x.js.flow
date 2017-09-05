@@ -5,8 +5,8 @@ type $npm$styledComponents$NameGenerator = (hash: number) => string;
 
 type $npm$styledComponents$TaggedTemplateLiteral<R> = {| (Array<string>, $npm$styledComponents$Interpolation): R |};
 
-type $npm$styledComponents$ReactComponentFunctional<Props: {}> = Props => React$Element<*>
-type $npm$styledComponents$ReactComponentClass<Props, DefaultProps = *> = Class<React$Component<DefaultProps, Props, *>>
+type $npm$styledComponents$ReactComponentFunctional<Props: {}> = Props => React$Element<any>
+type $npm$styledComponents$ReactComponentClass<Props, DefaultProps = *> = Class<React$Component<Props, *>>
 
 type $npm$styledComponents$ReactComponentUnion<Props> =
   | $npm$styledComponents$ReactComponentFunctional<Props>
@@ -66,7 +66,7 @@ type $npm$styledComponents$ThemeProviderProps = {
   theme: $npm$styledComponents$Theme | ((outerTheme: $npm$styledComponents$Theme) => void)
 };
 
-class Npm$StyledComponents$ThemeProvider extends React$Component {
+class Npm$StyledComponents$ThemeProvider extends React$Component<$npm$styledComponents$ThemeProviderProps> {
   props: $npm$styledComponents$ThemeProviderProps;
 }
 
@@ -74,15 +74,15 @@ type $npm$styledComponents$StyleSheetManagerProps = {
   sheet: mixed
 }
 
-class Npm$StyledComponents$StyleSheetManager extends React$Component {
+class Npm$StyledComponents$StyleSheetManager extends React$Component<$npm$styledComponents$StyleSheetManagerProps> {
   props: $npm$styledComponents$StyleSheetManagerProps;
 }
 
 class Npm$StyledComponents$ServerStyleSheet {
   instance: StyleSheet
-  collectStyles: (children: any) => React$Element<*>
+  collectStyles: (children: any) => React$Element<any>
   getStyleTags: () => string
-  getStyleElement: () => React$Element<*>
+  getStyleElement: () => React$Element<any>
 }
 
 type $npm$styledComponents$StyledComponentsComponentListKeys =

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 import { View, StyleSheet } from "react-primitives";
 

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
 import RNWStyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";

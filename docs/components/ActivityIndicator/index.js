@@ -1,11 +1,16 @@
-import React from "react";
+import * as React from "react";
 
 const devicePixelRatio =
   typeof window === "undefined" ? 1 : window.devicePixelRatio || 1;
 
 const tupleToColor = (param, alpha) => `rgba(${param.join(",")}, ${alpha})`;
 
-class ActivityIndicator extends React.Component {
+type Props = {
+  size: number,
+  color: Array<number, number, number>
+};
+
+class ActivityIndicator extends React.Component<Props> {
   static defaultProps = {
     size: 24.0,
     color: [200, 200, 200]

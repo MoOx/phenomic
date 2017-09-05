@@ -1,7 +1,7 @@
 import path from "path";
 
 import color from "chalk";
-import React from "react";
+import * as React from "react";
 import ReactDOMServer from "react-dom/server";
 import { match, RouterContext } from "react-router";
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils";
@@ -42,7 +42,7 @@ function staticRenderToString(
           <RouterContext {...renderProps} />
         </Provider>
       ),
-      renderAsObject: (UserWrappedApp: React$Element<*>) => ({
+      renderAsObject: (UserWrappedApp: React.Element<any>) => ({
         main: ReactDOMServer.renderToString(UserWrappedApp),
         state: store.getState(),
         assets

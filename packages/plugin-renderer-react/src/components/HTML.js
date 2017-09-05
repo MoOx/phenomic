@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 const Html: PhenomicHtmlType = ({ App, render }: PhenomicHtmlPropsType) => {
   const { Main, State, Script, Style } = render(<App />);

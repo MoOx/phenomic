@@ -1,6 +1,6 @@
 import "isomorphic-fetch";
 import jsonFetch from "simple-json-fetch";
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import createURL from "@phenomic/api-client/lib/url";
@@ -12,7 +12,7 @@ const debug = require("debug")("phenomic:plugin:react");
 
 let store;
 
-export const renderApp = (routes: () => React$Element<any>) => {
+export const renderApp = (routes: () => React.Element<any>) => {
   debug("client rendering");
 
   function createFetchFunction() {
@@ -41,7 +41,7 @@ export const renderApp = (routes: () => React$Element<any>) => {
   );
 };
 
-export default (routes: () => React$Element<any>): PhenomicAppType => {
+export default (routes: () => React.Element<any>): PhenomicAppType => {
   if (typeof window !== "undefined") {
     renderApp(routes);
   }
