@@ -3,7 +3,15 @@ import {
   createApp,
   createContainer,
   query,
-  BodyRenderer
+  BodyRenderer,
+  textRenderer
 } from "@phenomic/plugin-renderer-react/lib/client";
 
-export { renderApp, createApp, createContainer, query, BodyRenderer };
+export {
+  renderApp,
+  createApp,
+  createContainer,
+  query,
+  BodyRenderer,
+  textRenderer
+};

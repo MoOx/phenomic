@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`textRenderer tells you when pass undefined 1`] = `""`;
+
+exports[`textRenderer works with phenomic json body 1`] = `"Link text fat"`;
+
+exports[`textRenderer works with raw html 1`] = `"Test"`;
