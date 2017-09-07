@@ -43,16 +43,35 @@
 
 > Modular website compiler
 
-## ➡ More details at [phenomic.io](https://phenomic.io/)
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
+
+## Install
+
+Check out [phenomic.io/docs/getting-started](https://phenomic.io/docs/getting-started) to find commands line to install
+the version that match your needs.
+
+## Examples
+
+There are plenty of [examples](https://github.com/phenomic/phenomic/tree/master/examples) available. Just take a look!
+
 
 ---
 
-## CONTRIBUTING
+
+➡ **More details at [phenomic.io](https://phenomic.io/)**
+
+
+---
+
+
+## [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
+
+✨ Check out our [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md) guide to get started.
 
 * ⇄ Pull/Merge requests and ★ Stars are always welcome.
 * For bugs and feature requests, please [create an issue](https://github.com/phenomic/phenomic/issues/new).
-* Pull requests must be accompanied by passing automated tests (`npm test`).
-
+* Pull requests must be accompanied by passing automated tests. See [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md) for more information.
+* Donation is a way to contribute. [You can help us via our OpenCollective page](https://opencollective.com/phenomic).
 
 ## Backers
 
@@ -116,5 +135,7 @@ Does your company use Phenomic?  Ask your manager or marketing team if your comp
 <a href="https://opencollective.com/phenomic/sponsor/19/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/19/avatar"></a>
 
 ## [CHANGELOG](CHANGELOG.md)
+
+## [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## [LICENSE](LICENSE)
