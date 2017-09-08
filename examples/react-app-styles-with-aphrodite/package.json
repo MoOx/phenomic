@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-styles-with-aphrodite",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.5",
-    "@phenomic/core": "^1.0.0-alpha.5",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.5",
+    "@phenomic/cli": "^1.0.0-alpha.6",
+    "@phenomic/core": "^1.0.0-alpha.6",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.6",
     "aphrodite": "^1.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",

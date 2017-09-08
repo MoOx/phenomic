@@ -2,10 +2,10 @@
   "private": true,
   "name": "@phenomic/example-reason-react-app",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.5",
-    "@phenomic/core": "^1.0.0-alpha.5",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.5",
-    "@phenomic/reason": "^1.0.0-alpha.5",
+    "@phenomic/cli": "^1.0.0-alpha.6",
+    "@phenomic/core": "^1.0.0-alpha.6",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.6",
+    "@phenomic/reason": "^1.0.0-alpha.6",
     "bs-platform": "^1.8.1",
     "npm-run-all": "^4.0.2",
     "react": "^15.0.0",
@@ -25,5 +25,5 @@
   "phenomic": {
     "presets": ["@phenomic/preset-react-app"]
   },
-  "version": "1.0.0-alpha.5"
+  "version": "1.0.0-alpha.6"
 }
