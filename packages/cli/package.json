@@ -7,26 +7,13 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "cli"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
+  "keywords": ["static", "website", "generator", "compiler", "phenomic", "cli"],
   "description": "Phenomic CLI",
   "bin": {
     "phenomic": "index.js"
   },
-  "files": [
-    "index.js",
-    "lib"
-  ],
+  "files": ["index.js", "lib"],
   "dependencies": {
     "@phenomic/babel-preset": "^1.0.0-alpha.4",
     "@phenomic/core": "^1.0.0-alpha.5",

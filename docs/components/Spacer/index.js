@@ -1,18 +1,19 @@
-import React from "react";
+import * as React from "react";
 import { StyleSheet, View } from "react-primitives";
 
 type PropsType = {
   small?: boolean,
   large?: boolean
 };
-const Spacer = (props: PropsType) =>
+const Spacer = (props: PropsType) => (
   <View
     style={[
       styles.container,
       props.small && styles.small,
       props.large && styles.large
     ]}
-  />;
+  />
+);
 Spacer.small = 10;
 Spacer.default = 20;
 Spacer.large = 40;

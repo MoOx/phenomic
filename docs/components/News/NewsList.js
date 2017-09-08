@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 import { View, StyleSheet } from "react-primitives";
 
@@ -21,12 +21,13 @@ const NewsList = (props: Object) => {
       <Header title={"News"} />
       <BodyContainer>
         {props.isLoading && <ActivityIndicator />}
-        {!props.isLoading &&
+        {!props.isLoading && (
           <View style={styles.container}>
-            {props.news.node.list.map(item =>
+            {props.news.node.list.map(item => (
               <NewsListItem key={item.id} news={item} />
-            )}
-          </View>}
+            ))}
+          </View>
+        )}
       </BodyContainer>
       <Spacer large />
       <Footer />
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
 
 export default createContainer(NewsList, props => ({
   news: query({
-    collection: "news",
+    path: "news",
     limit: 10,
     after: props.params.after
   })

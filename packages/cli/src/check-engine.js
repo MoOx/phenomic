@@ -15,11 +15,18 @@ export default function checkVersion(
 ) {
   const requirements = pkg.engines;
   nodeVersion = nodeVersion || process.version;
-  npmVersion = npmVersion || execSync(npm + " --version").toString().trim();
+  npmVersion =
+    npmVersion ||
+    execSync(npm + " --version")
+      .toString()
+      .trim();
   try {
-    yarnVersion = yarnVersion !== undefined
-      ? yarnVersion
-      : execSync(yarn + " --version").toString().trim();
+    yarnVersion =
+      yarnVersion !== undefined
+        ? yarnVersion
+        : execSync(yarn + " --version")
+            .toString()
+            .trim();
   } catch (e) {
     // nothing, assuming yarn does not exist
     yarnVersion = false;

@@ -1,12 +1,12 @@
-import renderHTML from "./server/renderHTML";
-import renderServer from "./render/server";
+import renderDevServer from "./server/dev-server";
+import renderStatic from "./server/static";
 import getRoutes from "./server/getRoutes";
 
 export default function() {
   return {
     name: "@phenomic/plugin-renderer-react",
-    renderServer,
-    renderHTML,
-    getRoutes
+    getRoutes,
+    renderDevServer,
+    renderStatic
   };
 }

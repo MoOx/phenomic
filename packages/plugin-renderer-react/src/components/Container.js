@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 import mapValues from "../shared/mapValues";
@@ -14,7 +14,7 @@ function createContainer(
   Component: Function,
   getQueries: Function = defaultGetQueries
 ) {
-  class PhenomicRouteContainer extends React.Component<void, PropsType, void> {
+  class PhenomicRouteContainer extends React.Component<PropsType, void> {
     static getQueries = getQueries;
     static contextTypes = {
       query: PropTypes.func,

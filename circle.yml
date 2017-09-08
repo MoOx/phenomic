@@ -3,10 +3,16 @@ machine:
     version: 8
 
   environment:
-    PHENOMIC_NO_YARN: 1
     DEBUG: phenomic:*
 
 dependencies:
+  pre:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --nightly
+
+  override:
+    - yarn
+
   cache_directories:
     - docs/.screenshots
     - docs/public/showcase/entry
+    - ~/.yarn-cache

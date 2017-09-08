@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { View, Text, Image, StyleSheet } from "react-primitives";
 import RNWStyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
@@ -54,18 +54,18 @@ const prepareList = list => {
   */
 };
 
-const ShowcaseList = (props: Object) =>
+const ShowcaseList = (props: Object) => (
   <Flex>
     <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
     <BodyContainer style={styles.page}>
       {props.isLoading && <ActivityIndicator />}
-      {!props.isLoading &&
+      {!props.isLoading && (
         <View>
           <Link to={"/showcase/submit/"} style={styles.addYourOwn}>
             {"Submit your website!"}
           </Link>
           {props.params &&
-            props.params.showcaseTags &&
+          props.params.showcaseTags && (
             <View style={styles.currentFilter}>
               <Text style={styles.filterMessage}>
                 {"You are currently viewing projects that match "}
@@ -75,25 +75,27 @@ const ShowcaseList = (props: Object) =>
                   {"View all."}
                 </Link>
               </Text>
-            </View>}
+            </View>
+          )}
           <View style={styles.list}>
-            {prepareList(props.showcase.node.list).map(item =>
+            {prepareList(props.showcase.node.list).map(item => (
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
                   <Text style={styles.itemName}>{item.title}</Text>
-                  <Text>{" "}</Text>
-                  {item.source &&
+                  <Text>{" "}</Text>
+                  {item.source && (
                     <Link
                       style={styles.itemLinkSource}
                       href={item.source}
                       target="_blank"
                     >
                       {"(Source)"}
-                    </Link>}
+                    </Link>
+                  )}
                 </View>
                 <View style={styles.tags}>
                   {item.showcaseTags &&
-                    item.showcaseTags.map(tag =>
+                    item.showcaseTags.map(tag => (
                       <Link
                         key={tag}
                         to={`/showcase/tag/${tag}/`}
@@ -101,23 +103,16 @@ const ShowcaseList = (props: Object) =>
                       >
                         {tag}
                       </Link>
-                    )}
+                    ))}
                 </View>
                 <Link href={item.url} target="_blank">
-                  <div
-                    className={
-                      RNWStyleSheet.resolve(styles.imageContainerLarge)
-                        .className
-                    }
-                  >
-                    <Image
-                      source={{
-                        uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
-                      }}
-                      style={styles.imageLarge}
-                      resizeMode="cover"
-                    />
-                  </div>
+                  <Image
+                    source={{
+                      uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
+                    }}
+                    style={styles.imageLarge}
+                    resizeMode="cover"
+                  />
                   <div
                     className={
                       RNWStyleSheet.resolve(styles.imageContainerSmall)
@@ -134,28 +129,31 @@ const ShowcaseList = (props: Object) =>
                   </div>
                 </Link>
               </View>
-            )}
+            ))}
           </View>
           <View style={styles.paginationRow}>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasPreviousPage &&
+              props.showcase.node.hasPreviousPage && (
                 <Link
                   style={styles.link}
                   to={
-                    props.showcase.node.previousPageIsFirst
-                      ? `/showcase`
-                      : `/showcase/${props.params.showcaseTags
-                          ? `tag/${props.params.showcaseTags}/`
-                          : ""}after/${props.showcase.node.previous}`
+                    props.showcase.node.previousPageIsFirst ? (
+                      `/showcase`
+                    ) : (
+                      `/showcase/${props.params.showcaseTags
+                        ? `tag/${props.params.showcaseTags}/`
+                        : ""}after/${props.showcase.node.previous}`
+                    )
                   }
                 >
                   {"← Previous"}
-                </Link>}
+                </Link>
+              )}
             </View>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasNextPage &&
+              props.showcase.node.hasNextPage && (
                 <Link
                   style={styles.link}
                   to={`/showcase/${props.params.showcaseTags
@@ -163,14 +161,17 @@ const ShowcaseList = (props: Object) =>
                     : ""}after/${props.showcase.node.next}`}
                 >
                   {"Next →"}
-                </Link>}
+                </Link>
+              )}
             </View>
           </View>
-        </View>}
+        </View>
+      )}
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>;
+  </Flex>
+);
 
 const styles = StyleSheet.create({
   link: {
@@ -185,9 +186,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   addYourOwn: {
+    justifyContent: "flex-end",
     position: "absolute",
     right: 20,
-    top: -30,
+    top: -40,
     fontSize: 14,
     color: "#fff",
     opacity: 0.6
@@ -216,7 +218,6 @@ const styles = StyleSheet.create({
     width: "50%",
     padding: 20
   },
-  imageContainerLarge: {},
   imageLarge: {
     flexGrow: 1,
     paddingBottom:
@@ -227,8 +228,8 @@ const styles = StyleSheet.create({
   },
   imageContainerSmall: {
     position: "absolute",
-    right: 0,
-    bottom: 0,
+    right: -10,
+    bottom: -10,
     width: "20%"
   },
   imageSmall: {
@@ -282,7 +283,7 @@ export { ShowcaseList as Component };
 
 export default createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase-entries",
+    path: "showcase/entry",
     order: "asc",
     limit: 10,
     after: props.params.after
@@ -291,7 +292,7 @@ export default createContainer(ShowcaseList, props => ({
 
 export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
   showcase: query({
-    collection: "showcase-entries",
+    path: "showcase/entry",
     by: "showcaseTags",
     value: props.params.showcaseTags,
     order: "asc",

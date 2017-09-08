@@ -21,7 +21,7 @@ declare module "react-helmet" {
   };
   declare interface HeadAttribute {
     toString(): string,
-    toComponent(): React$Element<*>
+    toComponent(): React$Element<any>
   }
   declare interface Head {
     base: HeadAttribute,
@@ -35,7 +35,7 @@ declare module "react-helmet" {
     title: HeadAttribute
   }
 
-  declare class Helmet extends React$Component {
+  declare class Helmet extends React$Component<Props> {
     static renderStatic(): Head,
     props: Props
   }

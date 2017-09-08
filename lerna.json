@@ -1,17 +1,11 @@
 {
-  "lerna": "2.0.0-rc.5",
+  "lerna": "2.0.0",
   "version": "1.0.0-alpha.5",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "commands": {
     "exec": {
-      "ignore": [
-        "docs",
-        "@phenomic/example-*"
-      ]
+      "ignore": ["docs", "@phenomic/example-*"]
     }
-  },
-  "packages": [
-    "docs",
-    "examples/*",
-    "packages/*"
-  ]
+  }
 }

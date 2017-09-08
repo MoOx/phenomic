@@ -24,6 +24,23 @@ const wrap = JSON.stringify;
 
 const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
 
+const defaultExternals = [
+  // we could consider node_modules as externals deps
+  // and so use something like
+  // /^[A-Za-z0-9-_]/
+  // to not bundle all deps in the static build (for perf)
+  // the problem is that if people rely on node_modules for stuff
+  // like css, this breaks their build.
+
+  // Glamor integration
+  "glamor",
+  "glamor/server",
+
+  // Aprodite integration
+  "aphrodite",
+  "aphrodite/no-important"
+];
+
 const getWebpackConfig = (config: PhenomicConfig) => {
   let webpackConfig;
   try {
@@ -72,7 +89,31 @@ export default function() {
     addDevServerMiddlewares(config: PhenomicConfig) {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
+      let assets = {};
+      compiler.plugin("done", stats => {
+        assets = {};
+        const namedChunks = stats.compilation.namedChunks;
+        Object.keys(namedChunks).forEach(chunkName => {
+          const files = namedChunks[chunkName].files.filter(
+            file => !file.endsWith(".hot-update.js")
+          );
+          if (files.length) {
+            assets = {
+              ...assets,
+              [chunkName]: files.shift()
+            };
+          }
+        });
+      });
       return [
+        (
+          req: express$Request,
+          res: express$Response,
+          next: express$NextFunction
+        ) => {
+          res.locals.assets = assets;
+          next();
+        },
         webpackDevMiddleware(compiler, {
           stats: { chunkModules: false, assets: false }
           // @todo add this and output ourself a nice message for build status
@@ -97,6 +138,8 @@ export default function() {
         },
         // adjust some config details to be node focused
         target: "node",
+        // externals for package/relative name
+        externals: [...(webpackConfig.externals || defaultExternals)],
         output: {
           publicPath: "/", // @todo make this dynamic
           path: cacheDir,
@@ -127,7 +170,9 @@ export default function() {
     },
     build(config: PhenomicConfig) {
       debug("build");
-      return webpackPromise(getWebpackConfig(config));
+      return webpackPromise(getWebpackConfig(config)).then(
+        stats => stats.toJson().assetsByChunkName
+      );
     }
   };
 }

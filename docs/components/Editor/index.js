@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import { StyleSheet, View, Text } from "react-primitives";
 
-const Editor = (props: Object) =>
+const Editor = (props: Object) => (
   <View style={styles.editor}>
     <View style={styles.header}>
       <Text style={styles.headerText}>{props.header}</Text>
@@ -9,7 +9,8 @@ const Editor = (props: Object) =>
     <View style={styles.content}>
       <pre style={rawStyles.contentPre}>{props.children}</pre>
     </View>
-  </View>;
+  </View>
+);
 
 const radius = 4;
 const padding = 8;

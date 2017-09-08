@@ -3,7 +3,7 @@ import fs from "fs";
 
 import mkdirp from "mkdirp";
 
-const writeFile = (filepath: string, data: string) =>
+const writeFile = (filepath: string, data: string): Promise<void> =>
   new Promise((resolve, reject) => {
     mkdirp(path.dirname(filepath), error => {
       if (error) {

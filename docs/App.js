@@ -1,10 +1,9 @@
-import React from "react";
+import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 
 import "./defaults.css";
 
-import Html from "./Html";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
 import GettingStarted from "./components/GettingStarted";
@@ -15,7 +14,7 @@ import PageError from "./components/PageError";
 import NewsItem from "./components/News/NewsItem";
 import NewsList from "./components/News/NewsList";
 
-const routes = () =>
+const routes = () => (
   <Router history={browserHistory}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
@@ -35,9 +34,10 @@ const routes = () =>
       <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
     </Route>
-  </Router>;
+  </Router>
+);
 
-export default createApp(routes, Html);
+export default createApp(routes);
 
 if (module.hot) {
   module.hot.accept(() => renderApp(routes));

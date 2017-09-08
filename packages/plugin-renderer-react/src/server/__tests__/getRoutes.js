@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import getRoutes from "../getRoutes";
 
@@ -18,7 +18,7 @@ it("should resolve URLs based on routes", async () => {
         <Router history={browserHistory}>
           <Route component={Wrapper}>
             <Route path="/" component={Home} />
-            <Route path="/docs/*" component={DocPage} collection="docs" />
+            <Route path="/docs/*" component={DocPage} />
             <Route path="*" component={PageError} />
           </Route>
         </Router>

@@ -4,11 +4,9 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "devDependencies": {
+    "@dschau/prettier-markdown": "^1.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -17,14 +15,14 @@
     "babel-preset-stage-1": "^6.24.1",
     "chalk": "^1.1.3",
     "cross-env": "^2.0.0",
-    "eslint": "^3.7.1",
-    "eslint-config-i-am-meticulous": "^6.0.1",
-    "eslint-import-resolver-webpack": "^0.8.1",
-    "eslint-plugin-flowtype": "^2.31.0",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-react": "^6.10.3",
-    "eslint-plugin-react-native": "^2.3.2",
-    "flow-bin": "^0.47.0",
+    "eslint": "^4.6.1",
+    "eslint-config-i-am-meticulous": "^7.0.1",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-flowtype": "^2.35.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react-native": "^3.1.0",
+    "flow-bin": "^0.54.0",
     "git-exec-and-restage": "^1.0.1",
     "globby": "^6.1.0",
     "husky": "^0.13.3",
@@ -32,31 +30,38 @@
     "lerna": "^2.0.0",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
-    "prettier": "^1.3.1",
-    "prettier-markdown": "^0.1.8",
+    "prettier": "^1.6.0",
     "rimraf": "^2.4.2"
   },
   "scripts": {
     "#<git hooks>": "handled by husky",
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
+    "cleanup-node_modules":
+      "rimraf (packages|examples)/*/node_modules docs/node_modules",
     "clean": "lerna exec -- rimraf lib",
-    "transpile": "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "posttranspile": "cd packages/reason && npm run -s prepare",
-    "bootstrap": "babel-node ./scripts/lerna bootstrap",
-    "prepare": "npm run -s clean && npm run -s bootstrap && npm run -s transpile",
+    "transpile":
+      "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "posttranspile": "lerna run prepare",
+    "watch":
+      "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "prepare": "npm run -s clean && npm run -s transpile",
     "prerelease": "npm run prepare",
     "release": "lerna publish",
-    "format": "npm run -s format:js && npm run -s format:re",
-    "format:js": "find . -name \"*.js\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier --write --parser=flow",
-    "postformat:js": "find . -name \"*.md\" | grep -v \"node_modules\\|lib\\|dist\\|coverage\" | xargs prettier-markdown",
-    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
-    "link": "lerna exec -- npm link",
-    "lint:eslint": "eslint --ignore-path .gitignore --fix packages e2e-tests",
+    "format": "npm run -s format:most && npm run -s format:re",
+    "format:most": "prettier --write \"**/*.{js,json,css}\"",
+    "apostformat:most": "prettier-markdown",
+    "format:re":
+      "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
+    "links": "lerna exec -- npm link",
+    "lint:eslint":
+      "eslint --ignore-path .gitignore --fix packages e2e-tests examples docs",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "jest --runInBand --coverage packages",
-    "examples": "babel-node scripts/examples.js",
+    "examples:build": "babel-node scripts/examples.js",
+    "examples:tests": "jest --bail examples",
+    "examples": "npm run -s examples:build && npm run -s examples:tests",
     "docs:start": "cd docs && npm start",
     "docs:test": "cd docs && npm test && jest docs",
     "docs:deploy": "cd docs && npm run deploy",
@@ -64,16 +69,13 @@
     "test": "npm run -s tests",
     "posttest": "npm run -s examples && npm run -s docs:test"
   },
+  "prettier": {
+    "parser": "flow"
+  },
   "lint-staged": {
-    "*.js": [
-      "git-exec-and-restage prettier --write --parser=flow"
-    ],
-    "*.md": [
-      "git-exec-and-restage prettier-markdown"
-    ],
-    "*.re": [
-      "git-exec-and-restage refmt --in-place"
-    ]
+    "*.{js,json,css}": ["git-exec-and-restage prettier --write"],
+    "*.md": ["git-exec-and-restage prettier-markdown"],
+    "*.re": ["git-exec-and-restage refmt --in-place"]
   },
   "babel": {
     "presets": [
@@ -81,9 +83,7 @@
       "babel-preset-stage-1",
       "babel-preset-react"
     ],
-    "plugins": [
-      "babel-plugin-transform-runtime"
-    ]
+    "plugins": ["babel-plugin-transform-runtime"]
   },
   "eslintConfig": {
     "extends": [
@@ -94,6 +94,8 @@
       "jest": true
     },
     "rules": {
+      "import/no-namespace": 0,
+      "flowtype/type-id-match": 0,
       "import/max-dependencies": [
         2,
         {
@@ -106,11 +108,7 @@
         "webpack": {
           "config": {
             "resolve": {
-              "extensions": [
-                ".web.js",
-                ".js",
-                ".json"
-              ]
+              "extensions": [".web.js", ".js", ".json"]
             }
           }
         }
@@ -128,11 +126,8 @@
         "lines": 65
       }
     },
-    "transformIgnorePatterns": [
-      "node_modules"
-    ],
-    "testPathIgnorePatterns": [
-      "/_output/"
-    ]
-  }
+    "transformIgnorePatterns": ["node_modules"],
+    "testPathIgnorePatterns": ["/_output/"]
+  },
+  "workspaces": ["docs", "examples/*", "packages/*"]
 }

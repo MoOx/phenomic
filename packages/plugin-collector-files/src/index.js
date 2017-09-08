@@ -8,20 +8,19 @@ function normalizeWindowsPath(value: string) {
 
 export function getKey(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
+    debug(`key for '${name}' is '${json.data.path}' (from json)`);
     return json.data.path;
   }
   // normalize windows path
   name = normalizeWindowsPath(name);
-  return path.join(
-    path
-      .dirname(name)
-      // remove first folder (used for collection key)
-      .split(path.sep)
-      .slice(1)
-      .join(path.sep),
-    // remove (index).md for key
-    name.endsWith("index.md") ? "" : path.basename(name, ".md")
-  );
+  // remove (index).md,json etc, for key
+  const key = name
+    // remove extension for prettier keys
+    .replace(/.(md|json)$/, "")
+    // remove index too
+    .replace(/\/index$/, "");
+  debug(`key for '${name}' is '${key}' (automatically computed)`);
+  return key;
 }
 
 export function formatDate(dateString: string) {
@@ -34,8 +33,7 @@ export function formatDate(dateString: string) {
  * as level sorts by name (YYYY-MM-DD does the trick).
  * If not, we just use alphabetical order.
  */
-export function getSortedKey(name: string, json: PhenomicTransformResult) {
-  const key = getKey(name, json);
+export function makeSortedKey(key: string, json: PhenomicTransformResult) {
   if (typeof json.data.date === "string") {
     return `${formatDate(json.data.date)}-${key}`;
   }
@@ -77,26 +75,28 @@ export function getAuthors(json: PhenomicTransformResult) {
 }
 
 const dateLength = "YYYY-MM-DD".length;
-export function injectDateFromFilename(
+export function injectData(
   name: string,
   json: PhenomicTransformResult
 ): PhenomicTransformResult {
+  let date;
   try {
-    const date = formatDate(name.slice(0, dateLength));
-    return {
-      data: {
-        date,
-        ...json.data
-      },
-      partial: {
-        date,
-        ...json.data
-      }
-    };
+    date = formatDate(name.slice(0, dateLength));
   } catch (e) {
     // date is not valid
   }
-  return json;
+  return {
+    data: {
+      date,
+      filename: name,
+      ...json.data
+    },
+    partial: {
+      date,
+      filename: name,
+      ...json.data
+    }
+  };
 }
 
 export default function() {
@@ -104,40 +104,58 @@ export default function() {
     name: "@phenomic/plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
       name = normalizeWindowsPath(name);
-      const pathSegments = name.split(path.sep);
-      const collectionName = pathSegments[0];
       const key = getKey(name, json);
-      debug(`collecting ${key} for collection '${collectionName}'`);
-      const sortedKey = getSortedKey(name, json);
-      const adjustedJSON = injectDateFromFilename(name, json);
-      return Promise.all([
-        // full resource, not sorted
-        db.put([collectionName], key, { ...adjustedJSON, id: key }),
-        // sorted list
-        db.put([collectionName, "default"], sortedKey, { id: key }),
-        // sorted list, filtered by authors
-        ...getAuthors(json).map(author => {
+      const adjustedJSON = injectData(name, json);
+      const pathSegments = name.split(path.sep);
+      const allPaths = pathSegments.reduce((acc, v) => {
+        acc.push(acc.length > 0 ? acc[acc.length - 1] + "/" + v : v);
+        return acc;
+      }, []);
+      return Promise.all(
+        allPaths.map(pathName => {
+          const relativeKey = key.replace(pathName + "/", "");
+          const sortedKey = makeSortedKey(relativeKey, json);
+          debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
-            db.put([collectionName, "authors", author], sortedKey, { id: key }),
-            db.put(["authors", collectionName], author, { id: author })
+            // full resource, not sorted
+            db.put([pathName], relativeKey, {
+              ...adjustedJSON,
+              id: relativeKey
+            }),
+            // sorted list
+            db.put([pathName, "default"], sortedKey, { id: relativeKey }),
+            // sorted list, filtered by authors
+            ...getAuthors(json).map(author => {
+              return Promise.all([
+                db.put([pathName, "authors", author], sortedKey, {
+                  id: relativeKey
+                }),
+                db.put(["authors", pathName], author, { id: author })
+              ]);
+            }),
+            ...getFields(json).map(type => {
+              return getFieldValue(json, type).map(value =>
+                Promise.all([
+                  // sorted list, filtered by tags
+                  db.put([pathName, type, value], sortedKey, {
+                    id: relativeKey
+                  }),
+                  // global tag list
+                  db.put([type], value, { id: value, partial: value }),
+                  db.put([type, "default"], value, {
+                    id: value,
+                    partial: value
+                  }),
+                  db.put([type, "path", pathName], value, {
+                    id: value,
+                    partial: value
+                  })
+                ])
+              );
+            })
           ]);
-        }),
-        ...getFields(json).map(type => {
-          return getFieldValue(json, type).map(value =>
-            Promise.all([
-              // sorted list, filtered by tags
-              db.put([collectionName, type, value], sortedKey, { id: key }),
-              // global tag list
-              db.put([type], value, { id: value, partial: value }),
-              db.put([type, "default"], value, { id: value, partial: value }),
-              db.put([type, "collection", collectionName], value, {
-                id: value,
-                partial: value
-              })
-            ])
-          );
         })
-      ]);
+      );
     }
   };
 }

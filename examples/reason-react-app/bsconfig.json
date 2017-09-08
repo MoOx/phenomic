@@ -9,8 +9,5 @@
   "reason": {
     "react-jsx": 2
   },
-  "bs-dependencies": [
-    "reason-react",
-    "@phenomic/reason"
-  ]
+  "bs-dependencies": ["reason-react", "@phenomic/reason"]
 }

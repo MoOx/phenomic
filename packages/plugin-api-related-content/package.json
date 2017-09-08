@@ -7,10 +7,7 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",
@@ -23,11 +20,10 @@
     "related",
     "related content"
   ],
-  "description": "Phenomic plugin to generate related content API for resources",
+  "description":
+    "Phenomic plugin to generate related content API for resources",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "debug": "^2.6.0",
     "lodash.flatten": "^4.4.0"

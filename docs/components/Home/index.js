@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { StyleSheet, Text, View } from "react-primitives";
 import { createContainer } from "@phenomic/preset-react-app/lib/client";
 
@@ -7,13 +7,12 @@ import Footer from "../Footer";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import BodyContainer from "../BodyContainer";
-import BackgroundGradient from "../BackgroundGradient";
-import FeatureBlock from "./FeatureBlock";
 
+import FeatureBlock from "./FeatureBlock";
 import InputOutput from "./InputOutput";
 import CodeExample from "./CodeExample";
 
-const Home = () =>
+const Home = () => (
   <Flex>
     <Header
       headTitle={"Phenomic, a modular website compiler (static site generator)"}
@@ -131,7 +130,8 @@ const Home = () =>
     </BodyContainer>
     <Spacer large />
     <Footer />
-  </Flex>;
+  </Flex>
+);
 
 const styles = StyleSheet.create({
   top: {

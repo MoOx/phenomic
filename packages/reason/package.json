@@ -7,14 +7,8 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "files": [
-    "src",
-    "lib"
-  ],
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "files": ["src", "lib"],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",

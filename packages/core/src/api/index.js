@@ -19,13 +19,13 @@ const connect = (list, limit, previousList = []) => {
   return {
     hasPreviousPage,
     previousPageIsFirst,
-    previous: hasPreviousPage && previousList[previousIndex]
-      ? encode(previousList[previousIndex].key)
-      : undefined,
+    previous:
+      hasPreviousPage && previousList[previousIndex]
+        ? encode(previousList[previousIndex].key)
+        : undefined,
     hasNextPage,
-    next: hasNextPage && list[nextIndex]
-      ? encode(list[nextIndex].key)
-      : undefined,
+    next:
+      hasNextPage && list[nextIndex] ? encode(list[nextIndex].key) : undefined,
     list: list.slice(0, limit)
   };
 };
@@ -42,7 +42,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     });
   });
 
-  server.get("/:collection/by-:filter/:value/:order.json", async function(
+  server.get("/:path/by-:filter/:value/:order.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -50,7 +50,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     try {
       const reverse = req.params.order === "desc";
       const list = await db.getList(
-        req.params.collection,
+        req.params.path,
         { reverse },
         req.params.filter,
         req.params.value
@@ -63,14 +63,14 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   });
 
   server.get(
-    "/:collection/by-:filter/:value/:order/limit-:limit.json",
+    "/:path/by-:filter/:value/:order/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
         const limit = parseInt(req.params.limit);
         const reverse = req.params.order === "desc";
         const list = await db.getList(
-          req.params.collection,
+          req.params.path,
           {
             limit: limit + 1,
             reverse
@@ -87,7 +87,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   );
 
   server.get(
-    "/:collection/by-:filter/:value/:order/limit-:limit/after-:after.json",
+    "/:path/by-:filter/:value/:order/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -100,7 +100,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
         const reverse = req.params.order === "desc";
         const [list, previousList] = await Promise.all([
           db.getList(
-            req.params.collection,
+            req.params.path,
             {
               limit: limit + 1,
               [reverse ? "lte" : "gte"]: after,
@@ -110,7 +110,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.value
           ),
           db.getList(
-            req.params.collection,
+            req.params.path,
             {
               limit: limit + 1,
               [reverse ? "gt" : "lt"]: after,
@@ -128,13 +128,13 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   );
 
-  server.get("/:collection/item/*.json", async function(
+  server.get("/:path/item/*.json", async function(
     req: express$Request,
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
-      const resource = await db.get(req.params.collection, req.params["0"]);
+      const resource = await db.get(req.params.path, req.params["0"]);
       res.json(resource.value);
     } catch (error) {
       console.error(error);

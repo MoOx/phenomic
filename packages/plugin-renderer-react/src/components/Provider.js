@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 import performQuery from "../shared/performQuery";
 
 type PropsType = {
-  children?: React$Element<any>,
+  children?: React.Node,
   fetch: PhenomicFetch,
   store: Object,
   __prerendering?: boolean
 };
-class Provider extends React.Component<void, PropsType, void> {
+class Provider extends React.Component<PropsType, void> {
   props: PropsType;
   static childContextTypes = {
     query: PropTypes.func,

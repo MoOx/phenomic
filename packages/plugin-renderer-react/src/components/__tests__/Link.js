@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 
-import React from "react";
+import * as React from "react";
 import { renderJSX } from "jsx-test-helpers";
 
 import Link from "../Link";
@@ -30,13 +30,23 @@ test("Link works with internal ``href``", () => {
 
 test("Link activeClassName?", () => {
   expect(
-    renderJSX(<Link href="/internal" activeClassName="activeCx">{"c"}</Link>, {
-      router: { isActive: () => true }
-    })
+    renderJSX(
+      <Link href="/internal" activeClassName="activeCx">
+        {"c"}
+      </Link>,
+      {
+        router: { isActive: () => true }
+      }
+    )
   ).toMatchSnapshot();
   expect(
-    renderJSX(<Link href="/internal" activeClassName="activeCx">{"c"}</Link>, {
-      router: { isActive: () => false }
-    })
+    renderJSX(
+      <Link href="/internal" activeClassName="activeCx">
+        {"c"}
+      </Link>,
+      {
+        router: { isActive: () => false }
+      }
+    )
   ).toMatchSnapshot();
 });

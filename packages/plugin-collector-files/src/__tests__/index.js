@@ -1,10 +1,10 @@
 import {
   getKey,
-  getSortedKey,
+  makeSortedKey,
   getAuthors,
   getFields,
   getFieldValue,
-  injectDateFromFilename
+  injectData
 } from "..";
 
 it("should be able to generate keys", () => {
@@ -13,12 +13,12 @@ it("should be able to generate keys", () => {
   expect(getKey("test.md", { partial: {}, data: {} })).toEqual("test");
 
   // @todo handle this case
-  expect(getKey("test/index.md", { partial: {}, data: {} })).toEqual(".");
+  expect(getKey("test/index.md", { partial: {}, data: {} })).toEqual("test");
   expect(getKey("test/test/index.md", { partial: {}, data: {} })).toEqual(
-    "test"
+    "test/test"
   );
   expect(getKey("test\\test\\index.md", { partial: {}, data: {} })).toEqual(
-    "test"
+    "test/test"
   );
 
   expect(getKey("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
@@ -27,10 +27,10 @@ it("should be able to generate keys", () => {
 });
 
 it("should be able to generate sort keys", () => {
-  expect(getSortedKey("test.md", { partial: {}, data: {} })).toEqual("test");
+  expect(makeSortedKey("test", { partial: {}, data: {} })).toEqual("test");
 
   expect(
-    getSortedKey("test.md", { partial: {}, data: { date: "2010-01-01" } })
+    makeSortedKey("test", { partial: {}, data: { date: "2010-01-01" } })
   ).toEqual("2010-01-01-test");
 });
 
@@ -75,11 +75,22 @@ it("should be able to generate fields lists from booleans", () => {
 });
 
 it("should be able to inject date from filename in data", () => {
-  expect(
-    injectDateFromFilename("2010-01-13-test.md", { partial: {}, data: {} })
-  ).toEqual({ partial: { date: "2010-01-13" }, data: { date: "2010-01-13" } });
-  expect(injectDateFromFilename("test.md", { partial: {}, data: {} })).toEqual({
-    partial: {},
-    data: {}
+  expect(injectData("2010-01-13-test.md", { partial: {}, data: {} })).toEqual({
+    partial: {
+      date: "2010-01-13",
+      filename: "2010-01-13-test.md"
+    },
+    data: {
+      date: "2010-01-13",
+      filename: "2010-01-13-test.md"
+    }
+  });
+  expect(injectData("test.md", { partial: {}, data: {} })).toEqual({
+    partial: {
+      filename: "test.md"
+    },
+    data: {
+      filename: "test.md"
+    }
   });
 });

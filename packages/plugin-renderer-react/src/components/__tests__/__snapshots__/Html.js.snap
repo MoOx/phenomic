@@ -8,9 +8,12 @@ exports[`Html works 1`] = `
       content=\\"width=device-width, initial-scale=1\\"
       name=\\"viewport\\"
     />
+    <Style />
   </head>
   <body>
-    bodystate/scr/ipt
+    <Main />
+    <State />
+    <Script />
   </body>
 </html>"
 `;

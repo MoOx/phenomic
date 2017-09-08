@@ -3,7 +3,7 @@ import url from "../url";
 it("should build url for single item", () => {
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       id: "test"
     })
   ).toMatchSnapshot();
@@ -12,7 +12,7 @@ it("should build url for single item", () => {
 it("should build url for items by date", () => {
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       by: "date"
     })
   ).toMatchSnapshot();
@@ -21,7 +21,7 @@ it("should build url for items by date", () => {
 it("should build url for specific tag", () => {
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       by: "tag",
       value: "test"
     })
@@ -29,7 +29,7 @@ it("should build url for specific tag", () => {
 
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       by: "tag",
       value: "test",
       order: "asc"
@@ -38,7 +38,7 @@ it("should build url for specific tag", () => {
 
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       by: "tag",
       value: "test",
       order: "asc",
@@ -48,7 +48,7 @@ it("should build url for specific tag", () => {
 
   expect(
     url({
-      collection: "posts",
+      path: "posts",
       by: "tag",
       value: "test",
       order: "asc",
@@ -60,7 +60,7 @@ it("should build url for specific tag", () => {
   expect(
     url({
       root: "local",
-      collection: "posts",
+      path: "posts",
       by: "tag",
       value: "test",
       order: "asc",

@@ -33,8 +33,8 @@ function reduceExtensions(plugins: PhenomicPlugins): Array<string> {
     return [
       ...acc,
       ...(plugin &&
-        plugin.supportedFileTypes &&
-        Array.isArray(plugin.supportedFileTypes)
+      plugin.supportedFileTypes &&
+      Array.isArray(plugin.supportedFileTypes)
         ? plugin.supportedFileTypes
         : [])
     ];

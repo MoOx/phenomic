@@ -1,14 +1,18 @@
 export type PhenomicDB = {
-  destroy: () => Promise<*>,
-  put: (sub: string | Array<string>, key: string, value: any) => Promise<*>,
-  get: (sub: string | Array<string>, key: string) => Promise<*>,
-  getPartial: (sub: string | Array<string>, key: string) => Promise<*>,
+  destroy: () => Promise<void>,
+  put: (
+    sub: string | Array<string>,
+    key: string,
+    value: any
+  ) => Promise<Object>,
+  get: (sub: string | Array<string>, key: string) => Promise<Object>,
+  getPartial: (sub: string | Array<string>, key: string) => Promise<void>,
   getList: (
     sub: string | Array<string>,
     config: LevelStreamConfig,
     filter?: string,
     filterValue: string
-  ) => Promise<*>
+  ) => Promise<Array<any>>
 };
 
 export type PhenomicInputPlugins = {
@@ -37,19 +41,58 @@ type PhenomicTransformResult = {
   partial: Object
 };
 
-type PhenomicHtmlPropsType = {
-  body: React$Element<*>,
-  state?: React$Element<*>,
-  script: React$Element<*>
+type ReactCompo = Function;
+
+export type PhenomicAppType = {
+  routes: React$Element<any>
 };
 
-type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Element<*>;
+type PhenomicIntermediateHtmlPropsType = {
+  WrappedApp: ReactCompo,
+  renderAsObject: (
+    app: React$Element<any>
+  ) => {
+    main: string,
+    state?: Object | null,
+    assets: PhenomicAssets
+  }
+};
 
-type PhenomicPluginRenderHTMLType = (
+export type PhenomicHtmlPropsType = {
+  App: ReactCompo,
+  render: (
+    app: React$Element<any>
+  ) => {
+    assets: PhenomicAssets,
+    Main: ReactCompo,
+    State: ReactCompo,
+    Style: ReactCompo,
+    Script: ReactCompo
+  }
+};
+
+export type PhenomicHtmlType = (
+  props: PhenomicHtmlPropsType
+) => React$Element<any>;
+
+export type PhenomicPluginRenderStaticType = ({
   config: PhenomicConfig,
-  props?: { body?: string, state?: Object },
-  html?: PhenomicHtmlType
-) => string;
+  app: AppType,
+  assets: PhenomicAssets,
+  phenomicFetch: PhenomicFetch,
+  location: string
+}) => Promise<Array<{ path: string, contents: string }>>;
+
+export type PhenomicPluginRenderDevServerType = ({
+  config: PhenomicConfig,
+  assets: PhenomicAssets,
+  location: string
+}) => string;
+
+export type PhenomicPluginRenderHTMLType = ({
+  config: PhenomicConfig,
+  props: PhenomicIntermediateHtmlPropsType
+}) => string;
 
 export type PhenomicPlugin = {
   name: string,
@@ -68,8 +111,8 @@ export type PhenomicPlugin = {
   buildForPrerendering?: Function,
   // renderer
   getRoutes?: Function,
-  renderServer?: Function,
-  renderHTML?: PhenomicPluginRenderHTMLType,
+  renderStatic?: PhenomicPluginRenderStaticType,
+  renderDevServer?: PhenomicPluginRenderDevServerType,
   // common
   addDevServerMiddlewares?: (
     config: PhenomicConfig
@@ -91,11 +134,12 @@ export type PhenomicConfig = {
 };
 
 export type PhenomicQueryConfig = {
-  collection?: string,
+  path?: string,
   id?: string,
   after?: string,
   by?: string,
   value?: string,
+  order?: string,
   limit?: number
 };
 
@@ -106,9 +150,10 @@ export type PhenomicRoute = {
     getQueries?: (props: { params: { [key: string]: any } }) => {
       [key: string]: PhenomicQueryConfig
     }
-  },
-  collection?: string | PhenomicQueryConfig
+  }
 };
+
+export type PhenomicAssets = { [key: string]: string };
 
 // @todo why this inconsistency?
 export type PhenomicFetch =

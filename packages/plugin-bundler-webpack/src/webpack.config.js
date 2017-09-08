@@ -3,7 +3,6 @@ import path from "path";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
-const nodeModules = path.join(process.cwd(), "node_modules");
 module.exports = (config: PhenomicConfig) => ({
   entry: {
     [config.bundleName]: [
@@ -17,7 +16,15 @@ module.exports = (config: PhenomicConfig) => ({
   output: {
     publicPath: "/", // @todo make this dynamic
     path: path.join(process.cwd(), "dist"),
-    filename: "[name].js"
+    ...(process.env.PHENOMIC_ENV !== "static"
+      ? {
+          filename: "phenomic/[name].js",
+          chunkFilename: "phenomic/[name].chunk.js"
+        }
+      : {
+          filename: "phenomic/[name].[chunkhash:8].js",
+          chunkFilename: "phenomic/[name].[chunkhash:8].chunk.js"
+        })
   },
   module: {
     rules: [
@@ -42,7 +49,7 @@ module.exports = (config: PhenomicConfig) => ({
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: "styles.css",
+      filename: "phenomic/[name].[contenthash:8].css",
       disable: process.env.PHENOMIC_ENV !== "static"
     }),
     process.env.PHENOMIC_ENV !== "static" &&
@@ -55,12 +62,7 @@ module.exports = (config: PhenomicConfig) => ({
     // react-native(-web) | react-primitives
     extensions: [".web.js", ".js", ".json"],
     alias: {
-      "react-native": "react-native-web",
-
-      // to ensure a single module is used
-      react: path.resolve(path.join(nodeModules, "react")),
-      "react-dom": path.resolve(path.join(nodeModules, "react-dom")),
-      "react-router": path.resolve(path.join(nodeModules, "react-router"))
+      "react-native": "react-native-web"
     }
   },
 

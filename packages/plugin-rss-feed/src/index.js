@@ -23,7 +23,7 @@ export default function() {
           // feed_url: ROOT,
           feed_url: "HTTP://TODO-ROOT/"
         });
-        const posts = await req.db.getList({ collection: "posts" });
+        const posts = await req.db.getList({ path: "posts" });
         const postsFromLastYear = posts.filter(
           post => Date.now() - new Date(post.date).getTime() < oneYear
         );

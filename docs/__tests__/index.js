@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import globby from "globby";
 
 it("should build docs correctly", () => {
@@ -39,7 +40,7 @@ it("should build docs correctly", () => {
   );
   expect(
     files.includes(
-      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ%3D%3D.json"
     )
   ).toBe(true);
   expect(
@@ -48,14 +49,14 @@ it("should build docs correctly", () => {
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase-entries/by-default") &&
+        f.startsWith("phenomic/showcase%2Fentry/by-default") &&
         f.endsWith(".json")
     ).length > 0
   ).toBe(true);
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase-entries/by-showcaseTags") &&
+        f.startsWith("phenomic/showcase%2Fentry/by-showcaseTags") &&
         f.endsWith(".json")
     ).length > 0
   ).toBe(true);

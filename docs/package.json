@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "docs",
+  "version": "1.0.0-alpha.5",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
@@ -9,7 +10,8 @@
     "build": "phenomic build",
     "pretest": "npm run -s showcase-screenshots",
     "test": "npm run -s build",
-    "predeploy": "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
+    "predeploy":
+      "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
@@ -34,9 +36,7 @@
     "rimraf": "^2.6.1"
   },
   "phenomic": {
-    "presets": [
-      "@phenomic/preset-react-app"
-    ]
+    "presets": ["@phenomic/preset-react-app"]
   },
   "screenshotsSize": {
     "large": {
@@ -48,5 +48,9 @@
       "height": 640
     }
   },
-  "version": "1.0.0-alpha.5"
+  "eslintConfig": {
+    "rules": {
+      "react/prop-types": 0
+    }
+  }
 }

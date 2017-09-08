@@ -22,8 +22,4 @@ Array [
 ]
 `;
 
-exports[`should build example correctly 3`] = `
-Array [
-  "phenomic.main.js",
-]
-`;
+exports[`should build example correctly 3`] = `Array []`;

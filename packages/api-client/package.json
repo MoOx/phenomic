@@ -7,10 +7,7 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",
@@ -22,11 +19,10 @@
     "renderer",
     "react"
   ],
-  "description": "Phenomic API client that allow you to make queries to retrieve resources",
+  "description":
+    "Phenomic API client that allow you to make queries to retrieve resources",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "debug": "^2.6.0",
     "invariant": "^2.2.2"

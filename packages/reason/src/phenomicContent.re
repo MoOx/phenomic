@@ -38,12 +38,12 @@ let jsEdgeToReason jsEdge convertNode =>
   };
 
 type queryConfigItem = {
-  collection: string,
+  path: string,
   id: string
 };
 
 type listConfig = {
-  collection: string,
+  path: string,
   by: option string,
   value: option string,
   order: option string,
@@ -51,7 +51,7 @@ type listConfig = {
 };
 
 type paginatedListConfig = {
-  collection: string,
+  path: string,
   by: option string,
   value: option string,
   order: option string,
@@ -67,13 +67,12 @@ type queryConfig =
 let query queryConfig =>
   switch queryConfig {
   | Item queryConfigItem =>
-    Js.Obj.assign
-      (Js.Obj.empty ()) {"collection": queryConfigItem.collection, "id": queryConfigItem.id}
+    Js.Obj.assign (Js.Obj.empty ()) {"path": queryConfigItem.path, "id": queryConfigItem.id}
   | List queryConfigList =>
     Js.Obj.assign
       (Js.Obj.empty ())
       {
-        "collection": queryConfigList.collection,
+        "path": queryConfigList.path,
         "by": Js.Null_undefined.from_opt queryConfigList.by,
         "value": Js.Null_undefined.from_opt queryConfigList.value,
         "order": Js.Null_undefined.from_opt queryConfigList.order,
@@ -83,7 +82,7 @@ let query queryConfig =>
     Js.Obj.assign
       (Js.Obj.empty ())
       {
-        "collection": queryConfigPaginatedList.collection,
+        "path": queryConfigPaginatedList.path,
         "by": Js.Null_undefined.from_opt queryConfigPaginatedList.by,
         "value": Js.Null_undefined.from_opt queryConfigPaginatedList.value,
         "order": Js.Null_undefined.from_opt queryConfigPaginatedList.order,

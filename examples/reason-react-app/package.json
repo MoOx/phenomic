@@ -16,16 +16,14 @@
   "scripts": {
     "reason:cleanup": "bsb -clean-world",
     "reason:compile": "bsb -make-world",
-    "prepublish": "npm run reason:compile",
+    "prepare": "npm run reason:compile",
     "start": "npm run reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
     "start:reason": "npm run reason:compile -- -w",
     "build": "npm run reason:compile && phenomic build"
   },
   "phenomic": {
-    "presets": [
-      "@phenomic/preset-react-app"
-    ]
+    "presets": ["@phenomic/preset-react-app"]
   },
   "version": "1.0.0-alpha.5"
 }

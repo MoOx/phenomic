@@ -1,11 +1,11 @@
-import React from "react";
+import * as React from "react";
 import { View, Text, StyleSheet } from "react-primitives";
 
 import Link from "../Link";
 import Spacer from "../Spacer";
 import { version } from "../../../lerna.json";
 
-const HeaderNavBar = () =>
+const HeaderNavBar = () => (
   <View style={styles.header}>
     <View style={styles.logo}>
       <Link to="/" style={styles.text}>
@@ -25,38 +25,27 @@ const HeaderNavBar = () =>
         style={styles.link}
         activeStyle={styles.linkActive}
       >
-        <Text style={styles.linkText}>
-          {"Getting started"}
-        </Text>
+        <Text style={styles.linkText}>{"Getting started"}</Text>
       </Link>
       <Link to="/news" style={styles.link} activeStyle={styles.linkActive}>
-        <Text style={[styles.linkText]}>
-          {"News"}
-        </Text>
+        <Text style={[styles.linkText]}>{"News"}</Text>
       </Link>
       <Link to="/showcase" style={styles.link} activeStyle={styles.linkActive}>
-        <Text style={[styles.linkText, styles.linkBold]}>
-          {"Showcase"}
-        </Text>
+        <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
       </Link>
       <Text style={styles.pipe}>{" | "}</Text>
       <Link href="https://github.com/phenomic/phenomic" style={styles.link}>
-        <Text style={styles.linkText}>
-          {"GitHub"}
-        </Text>
+        <Text style={styles.linkText}>{"GitHub"}</Text>
       </Link>
       <Link href="https://twitter.com/Phenomic_app" style={styles.link}>
-        <Text style={styles.linkText}>
-          {"Twitter"}
-        </Text>
+        <Text style={styles.linkText}>{"Twitter"}</Text>
       </Link>
       <Link href="https://gitter.im/MoOx/phenomic" style={styles.link}>
-        <Text style={styles.linkText}>
-          {"Chat"}
-        </Text>
+        <Text style={styles.linkText}>{"Chat"}</Text>
       </Link>
     </View>
-  </View>;
+  </View>
+);
 
 const styles = StyleSheet.create({
   header: {

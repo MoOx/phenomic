@@ -1,5 +1,3 @@
-import path from "path";
-
 const debug = require("debug")("phenomic:core:configuration");
 
 const normalizePlugin = (plugin: PhenomicPlugin) => {
@@ -35,7 +33,7 @@ const normalizePlugin = (plugin: PhenomicPlugin) => {
 const normalizeModule = (module: any) => {
   if (typeof module === "string") {
     // $FlowFixMe yeah yeah, I know what I am doing flow
-    module = require(path.resolve(path.join("node_modules", module)));
+    module = require(require.resolve(module));
   }
 
   // for es6 transpiled code

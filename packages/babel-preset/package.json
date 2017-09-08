@@ -7,10 +7,7 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": [
-    "Maxime Thirouin (MoOx)",
-    "bloodyowl <bloodyowl@icloud.com>"
-  ],
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
     "static",
     "website",
@@ -24,9 +21,7 @@
   ],
   "description": "Babel preset, recommended for Phenomic",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "babel-preset-react-app": "^1.0.0"
   }

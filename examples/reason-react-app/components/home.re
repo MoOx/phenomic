@@ -52,7 +52,7 @@ let jsComponent =
 let queries _ => {
   let posts =
     PhenomicContent.query (
-      List {collection: "posts", by: Some "default", value: None, order: None, limit: None}
+      List {path: "posts", by: Some "default", value: None, order: None, limit: None}
     );
   {"posts": posts}
 };

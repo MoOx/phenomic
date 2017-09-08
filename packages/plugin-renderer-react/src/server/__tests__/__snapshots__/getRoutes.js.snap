@@ -7,7 +7,6 @@ Array [
     "path": "/",
   },
   Object {
-    "collection": "docs",
     "component": [Function],
     "path": "/docs/*",
   },

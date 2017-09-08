@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 
-import React from "react";
+import * as React from "react";
 import { render, renderJSX } from "jsx-test-helpers";
 
 import BodyRenderer from "../BodyRenderer";
@@ -43,7 +43,11 @@ test("BodyRenderer accepts a map for components", () => {
       return <div>{props.children}</div>;
     },
     a: function Link(props: Object) {
-      return <a href={props.href} className="auto">{props.children}</a>;
+      return (
+        <a href={props.href} className="auto">
+          {props.children}
+        </a>
+      );
     }
   };
   expect(

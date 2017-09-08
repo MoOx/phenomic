@@ -33,6 +33,6 @@ let jsComponent =
     (fun jsProps => make post::(PhenomicContent.jsEdgeToReason jsProps##post jsPostToReason));
 
 let queries props => {
-  let post = PhenomicContent.query (Item {collection: "posts", id: props##params##splat});
+  let post = PhenomicContent.query (Item {path: "posts", id: props##params##splat});
   {"post": post}
 };

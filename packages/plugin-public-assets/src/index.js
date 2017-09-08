@@ -34,7 +34,7 @@ export default function(
         )
       ];
     },
-    beforeBuild(config: PhenomicConfig) {
+    beforeBuild(config: PhenomicConfig): Promise<void> {
       return new Promise((resolve, reject) => {
         getPath(path.join(config.path, options.path)).then(
           (publicPath: string) => {

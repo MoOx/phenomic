@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should build example correctly 1`] = `
+Array [
+  "after/MjAxNy0wMS0wMi1zZWNvbmQtcG9zdA==/index.html",
+  "after/MjAxNy0wMS0wMS1maXJzdC1wb3N0/index.html",
+  "after/MjAxNy0wMS0wMy10aGlyZC1wb3N0/index.html",
+  "after/MjAxNy0wMS0wNC1mb3VydGgtcG9zdA==/index.html",
+  "after/MjAxNy0wMS0wNS1maWZ0aC1wb3N0/index.html",
+  "blog/fifth-post/index.html",
+  "blog/first-post/index.html",
+  "blog/fourth-post/index.html",
+  "blog/second-post/index.html",
+  "blog/third-post/index.html",
+  "index.html",
+]
+`;
+
+exports[`should build example correctly 2`] = `
+Array [
+  "phenomic/posts/by-default/1/desc/limit-2.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMi1zZWNvbmQtcG9zdA%3D%3D.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMS1maXJzdC1wb3N0.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMy10aGlyZC1wb3N0.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wNC1mb3VydGgtcG9zdA%3D%3D.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wNS1maWZ0aC1wb3N0.json",
+  "phenomic/posts/item/fifth-post.json",
+  "phenomic/posts/item/first-post.json",
+  "phenomic/posts/item/fourth-post.json",
+  "phenomic/posts/item/second-post.json",
+  "phenomic/posts/item/third-post.json",
+]
+`;
+
+exports[`should build example correctly 3`] = `
+Array [
+  "favicon.ico",
+  "robots.txt",
+]
+`;
