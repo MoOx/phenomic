@@ -12,10 +12,12 @@ const Html = ({ App, render }: PhenomicHtmlPropsType) => {
         {helmet.title.toComponent()}
         {helmet.base.toComponent()}
         <Style />
-        {StyleSheet.getStyleSheets().map(({ id, textContent }) => (
-          <style key={id} id={id}>
-            {textContent}
-          </style>
+        {StyleSheet.getStyleSheets().map(({ id, textContent }, i) => (
+          <style
+            key={i}
+            id={id}
+            dangerouslySetInnerHTML={{ __html: textContent }}
+          />
         ))}
         {helmet.link.toComponent()}
         {helmet.style.toComponent()}

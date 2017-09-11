@@ -3336,9 +3336,21 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.12, fbjs@^0.8.14, fbjs@^0.8.5, fbjs@^0.8.9:
+fbjs@^0.8.12, fbjs@^0.8.5, fbjs@^0.8.9:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.14.tgz#d1dbe2be254c35a91e09f31f9cd50a40b2a0ed1c"
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.9"
+
+fbjs@^0.8.14:
+  version "0.8.15"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.15.tgz#4f0695fdfcc16c37c0b07facec8cb4c4091685b9"
   dependencies:
     core-js "^1.0.0"
     isomorphic-fetch "^2.1.1"
@@ -7287,8 +7299,8 @@ react-html-attributes@^1.3.0:
     html-element-attributes "^1.0.0"
 
 react-native-web@0.0.x:
-  version "0.0.120"
-  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.0.120.tgz#bab2ae75dab913d25f1db32cb5ebe68bec90333e"
+  version "0.0.121"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.0.121.tgz#095ecb78169b9133587927f9d9b6d90d5af96b23"
   dependencies:
     animated "^0.2.0"
     array-find-index "^1.0.2"
