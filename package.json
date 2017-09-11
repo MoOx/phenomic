@@ -65,7 +65,7 @@
     "docs:start": "cd docs && npm start",
     "docs:test": "cd docs && npm test && jest docs",
     "docs:deploy": "cd docs && npm run deploy",
-    "pretest": "npm run -s transpile && npm run -s lint",
+    "pretest": "npm run -s transpile",
     "test": "npm run -s tests",
     "posttest": "npm run -s examples && npm run -s docs:test"
   },
