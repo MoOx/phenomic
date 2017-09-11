@@ -6,16 +6,15 @@ environment:
   DEBUG: phenomic:*
 
 install:
-  - ps: Install-Product node $env:nodejs_version x64
-  - node --version
-  - curl -fsSL -o yarn.js https://nightly.yarnpkg.com/yarn-1.0.0-20170820.2056.js
-  - node ./yarn.js --version
-  - node ./yarn.js install
+  - choco install yarn
+  - yarn --version
+  - yarn
 
 test_script:
-  - node ./yarn.js run test
+  - yarn test
 
 cache:
+  - "%LOCALAPPDATA%\\Yarn"
   - node_modules -> package.json
   - docs/.screenshots -> docs/content/showcase/entry
   - docs/public/showcase/entry -> docs/content/showcase/entry

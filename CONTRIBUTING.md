@@ -55,8 +55,7 @@ The core team will be monitoring for pull requests and reviewing changes.
    ```sh
    yarn --version
    ```
-   ⚠️ **We currently require yarn version to be >= v1.0.0-20170820.2056.**
-   (In order to get some proper fix for Yarn workspaces).
+   ⚠️ **We currently require yarn >= v1.0.0**
 
 3. Run `yarn`.
     This will install all dependencies and prepare the repository to be ready for serious shit.

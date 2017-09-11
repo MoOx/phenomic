@@ -5,7 +5,7 @@ import checkEngine from "../check-engine";
 test("should not throw when sastifies", () => {
   expect(() => checkEngine("6.0.0", "3.0.0", false)).not.toThrow();
 
-  expect(() => checkEngine("6.0.0", "2.0.0", "0.16.0")).not.toThrow();
+  expect(() => checkEngine("6.0.0", "2.0.0", "1.0.1")).not.toThrow();
 });
 
 test("should throw when node version doesn't sastify", () => {
