@@ -43,8 +43,6 @@
 
 > Modular website compiler
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
-
 ## Install
 
 Check out [phenomic.io/docs/getting-started](https://phenomic.io/docs/getting-started) to find commands line to install
@@ -57,12 +55,13 @@ There are plenty of [examples](https://github.com/phenomic/phenomic/tree/master/
 
 ---
 
-
 ➡ **More details at [phenomic.io](https://phenomic.io/)**
-
 
 ---
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
+
+---
 
 ## [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
 
@@ -75,7 +74,7 @@ There are plenty of [examples](https://github.com/phenomic/phenomic/tree/master/
 
 ## Backers
 
-[Become a backer]((https://opencollective.com/phenomic#backer)) and show your support for our open source project.
+[Become a backer](https://opencollective.com/phenomic#backer) and show your support for our open source project.
 
 <a href="https://opencollective.com/phenomic/backer/0/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/0/avatar"></a>
 <a href="https://opencollective.com/phenomic/backer/1/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/1/avatar"></a>
