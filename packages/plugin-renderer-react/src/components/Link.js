@@ -59,7 +59,7 @@ function Link(props: PropsType, { router }: { router: Object }) {
     // toLink.pathname.includes(process.env.PHENOMIC_USER_PATHNAME)
     // toLink.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
   ) {
-    const classNames = cx(props.className, {
+    const className = cx(props.className, {
       [props.activeClassName || ""]:
         router &&
         (router.isActive({ pathname: url }) ||
@@ -72,7 +72,7 @@ function Link(props: PropsType, { router }: { router: Object }) {
         // react-router seems to be pretty dumb with relative links...
         // this way we have a proper link
         to={toLink.href}
-        {...(classNames ? { classNames } : {})}
+        {...(className ? { className } : {})}
       />
     );
   }

@@ -3,7 +3,7 @@
 exports[`Link activeClassName? 1`] = `
 "<Link
   activeClassName=\\"activeCx\\"
-  classNames=\\"activeCx\\"
+  className=\\"activeCx\\"
   style={{}}
   to=\\"test://url.tld/internal\\"
 >
