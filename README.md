@@ -52,10 +52,9 @@ the version that match your needs.
 
 There are plenty of [examples](https://github.com/phenomic/phenomic/tree/master/examples) available. Just take a look!
 
+## Documentation
 
----
-
-➡ **More details at [phenomic.io](https://phenomic.io/)**
+The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 
 ---
 
