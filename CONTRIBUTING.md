@@ -121,7 +121,7 @@ Then run your project via ``yarn start``, and don't forget to restart dev server
 
 ### Where to Find Known Issues
 
-We are using [GitHub Issues]((https://github.com/phenomic/phenomic/issues) for our public bugs.
+We are using [GitHub Issues](https://github.com/phenomic/phenomic/issues) for our public bugs.
 We will keep a close eye on this and try to make it clear when we have a work in progress.
 **Before filing a new issue, try to make sure your problem doesn't already exist.**
 
@@ -138,12 +138,12 @@ If you find a security issue, please first contact us directly before opening a 
 
 ## How to Get in Touch
 
-* Chat - [#phenomic](https://gitter.im/MoOx/phenomic) on Gitter.
+* Chat - [#phenomic](https://gitter.im/phenomic/phenomic) on Gitter.
 * Email - contact (at) phenomic (dot) io
 
 ## Code Conventions
 
-* [Prettier](https://prettier.io) is used t avoid bikeshedding on quotes or semicolons.
+* [Prettier](https://prettier.io) is used to avoid bikeshedding on quotes or semicolons.
 * [Eslint](http://eslint.org) is used to help to keep the codebase clean, with a [strong config](https://github.com/MoOx/eslint-config-i-am-meticulous).
 * Prefer ES6 syntax when possible.
 * Use [Flow types](http://flowtype.org/).
