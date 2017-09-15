@@ -55,7 +55,10 @@ const renderDevServer: PhenomicPluginRenderDevServerType = ({
     props: {
       WrappedApp: DefaultDevContent,
       renderAsObject: UserWrappedApp => ({
-        main: ReactDOMServer.renderToString(UserWrappedApp),
+        main:
+          process.env.PHENOMIC_ENV === "static"
+            ? ReactDOMServer.renderToString(UserWrappedApp)
+            : ReactDOMServer.renderToStaticMarkup(UserWrappedApp),
         state: null,
         assets
       })
