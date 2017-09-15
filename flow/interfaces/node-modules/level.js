@@ -30,7 +30,7 @@ export type LevelStreamConfig = {
 };
 
 declare module "levelup" {
-  declare function exports(location: string): Level;
+  declare function exports(location: string, (err: Error) => void): Level;
 }
 declare module "leveldown" {
   declare var exports: {

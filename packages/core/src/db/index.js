@@ -3,9 +3,22 @@ import levelUp from "levelup";
 import levelDown from "leveldown";
 import subLevel from "level-sublevel";
 
+import log from "../utils/log.js";
+
 const cacheDir = findCacheDir({ name: "phenomic/db", create: true });
 
-const database = levelUp(cacheDir);
+const database = levelUp(cacheDir, err => {
+  if (err && err.message.startsWith("IO error: lock")) {
+    log.error(
+      "Cannot create a Phenomic database. " +
+        "Another one is probably is running." +
+        "\n" +
+        "Check that you don't have a development server running in the background" +
+        " and try again."
+    );
+    process.exit(1);
+  }
+});
 const level = subLevel(database);
 const options = { valueEncoding: "json" };
 const wrapStreamConfig = config => Object.assign({}, config, options);
