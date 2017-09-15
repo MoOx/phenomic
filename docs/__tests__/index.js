@@ -1,63 +1,68 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import globby from "globby";
 
-it("should build docs correctly", () => {
-  const testFolder = __dirname + "/../dist";
-  const files = globby.sync("**/*", {
-    cwd: testFolder,
-    nodir: true
-  });
+const testFolder = __dirname + "/../dist";
+const files = globby.sync("**/*", {
+  cwd: testFolder,
+  nodir: true
+});
 
-  expect(files.includes("404.html")).toBe(true);
-  expect(files.includes("index.html")).toBe(true);
-  expect(files.filter(f => f.startsWith("docs/")).length > 0).toBe(true);
+it("should have basic pages", () => {
+  expect(files.includes("404.html")).toBeTruthy();
+  expect(files.includes("index.html")).toBeTruthy();
+  expect(files.filter(f => f.startsWith("docs/"))).toMatchSnapshot();
+  expect(files.includes("news/index.html")).toBeTruthy();
+  expect(files.includes("showcase/index.html")).toBeTruthy();
+});
 
-  expect(files.includes("news/index.html")).toBe(true);
-  expect(files.filter(f => f.startsWith("news/after/")).length > 0).toBe(true);
-
-  expect(files.includes("showcase/index.html")).toBe(true);
-  expect(files.filter(f => f.startsWith("showcase/after/")).length > 0).toBe(
-    true
+it("should have some generated pages for pagination", () => {
+  expect(files.filter(f => f.startsWith("news/after/")).length).toBeGreaterThan(
+    0
   );
+  expect(
+    files.filter(f => f.startsWith("showcase/after/")).length
+  ).toBeGreaterThan(0);
+});
+
+it("should have some generated pages for metadata and pagination", () => {
   // random tag pages
-  expect(files.includes("showcase/tag/blog/index.html")).toBe(true);
+  expect(files.includes("showcase/tag/blog/index.html")).toBeTruthy();
   expect(
-    files.filter(f => f.startsWith("showcase/tag/blog/after/")).length > 0
-  ).toBe(true);
-  expect(files.includes("showcase/tag/open-source/index.html")).toBe(true);
+    files.filter(f => f.startsWith("showcase/tag/blog/after/")).length
+  ).toBeGreaterThan(0);
+  expect(files.includes("showcase/tag/open-source/index.html")).toBeTruthy();
   expect(
-    files.filter(f => f.startsWith("showcase/tag/open-source/after/")).length >
-      0
-  ).toBe(true);
+    files.filter(f => f.startsWith("showcase/tag/open-source/after/")).length
+  ).toBeGreaterThan(0);
+});
 
-  // api json files
+it("should have api files", () => {
   expect(
-    files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length >
-      0
-  ).toBe(true);
-  expect(files.includes("phenomic/news/by-default/1/desc/limit-10.json")).toBe(
-    true
-  );
+    files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length
+  ).toBeGreaterThan(0);
+  expect(
+    files.includes("phenomic/news/by-default/1/desc/limit-10.json")
+  ).toBeTruthy();
   expect(
     files.includes(
-      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ%3D%3D.json"
+      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
     )
-  ).toBe(true);
+  ).toBeTruthy();
   expect(
     files.includes("phenomic/news/item/2017/06/introducing-1.0.0-alpha.json")
-  );
+  ).toBeTruthy();
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase%2Fentry/by-default") &&
+        f.startsWith("phenomic/showcase/entry/by-default") &&
         f.endsWith(".json")
-    ).length > 0
-  ).toBe(true);
+    ).length
+  ).toBeGreaterThan(0);
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase%2Fentry/by-showcaseTags") &&
+        f.startsWith("phenomic/showcase/entry/by-showcaseTags") &&
         f.endsWith(".json")
-    ).length > 0
-  ).toBe(true);
+    ).length
+  ).toBeGreaterThan(0);
 });
