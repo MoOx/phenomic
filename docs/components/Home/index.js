@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-primitives";
+import { StyleSheet, Text, View } from "react-native-web";
 import { createContainer } from "@phenomic/preset-react-app/lib/client";
 
 import Header from "../Header";

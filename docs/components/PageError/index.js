@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-primitives";
+import { StyleSheet, View, Text } from "react-native-web";
 
 import BodyContainer from "../BodyContainer";
 import Header from "../Header";

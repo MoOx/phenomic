@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-primitives";
+import { StyleSheet, View } from "react-native-web";
 import Head from "react-helmet";
 
 import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker";

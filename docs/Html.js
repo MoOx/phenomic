@@ -1,6 +1,6 @@
 import * as React from "react";
 import Head from "react-helmet";
-import { StyleSheet } from "react-primitives";
+import { StyleSheet } from "react-native-web";
 
 const Html = ({ App, render }: PhenomicHtmlPropsType) => {
   const { Main, State, Script, Style } = render(<App />);

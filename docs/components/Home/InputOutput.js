@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-primitives";
+import { StyleSheet, View, Text } from "react-native-web";
 
 /* eslint-disable react-native/no-inline-styles */
 
@@ -112,8 +112,8 @@ const InputOutput = () => (
             style={{
               backgroundColor: "#553A81",
               color: "#fff",
-              fontSize: "10",
-              padding: "10",
+              fontSize: 10,
+              padding: 10,
               textAlign: "center"
             }}
           >

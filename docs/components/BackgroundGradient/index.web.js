@@ -1,7 +1,5 @@
 import * as React from "react";
-// https://github.com/lelandrichardson/react-primitives/issues/72
-// import { StyleSheet } from "react-primitives";
-import StyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
+import { createElement } from "react-native-web";
 
 type PropsType = {
   start: string,
@@ -10,16 +8,18 @@ type PropsType = {
   style: any,
   children?: React.Node
 };
+const Div = props => createElement("div", props);
+// eslint-disable-next-line react/no-multi-comp
 const BackgroundGradient = (props: PropsType) => (
-  <div
-    style={{
-      ...rawStyles,
-      ...makeGradient(props.start, props.end, props.direction)
-    }}
-    className={props.style && StyleSheet.resolve(props.style).className}
+  <Div
+    style={[
+      rawStyles,
+      makeGradient(props.start, props.end, props.direction),
+      props.style
+    ]}
   >
     {props.children}
-  </div>
+  </Div>
 );
 
 const rawStyles = {

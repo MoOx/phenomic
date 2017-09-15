@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-primitives";
+import { StyleSheet, View } from "react-native-web";
 
 /* eslint-disable react-native/no-inline-styles */
 

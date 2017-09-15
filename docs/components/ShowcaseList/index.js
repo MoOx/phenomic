@@ -1,6 +1,5 @@
 import * as React from "react";
-import { View, Text, Image, StyleSheet } from "react-primitives";
-import RNWStyleSheet from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
+import { View, Text, Image, StyleSheet, createElement } from "react-native-web";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
 
 import Flex from "../Flex";
@@ -54,6 +53,8 @@ const prepareList = list => {
   */
 };
 
+const Div = props => createElement("div", props);
+// eslint-disable-next-line react/no-multi-comp
 const ShowcaseList = (props: Object) => (
   <Flex>
     <Header headTitle={"Phenomic Showcase "} title={"Who's using Phenomic?"} />
@@ -113,12 +114,7 @@ const ShowcaseList = (props: Object) => (
                     style={styles.imageLarge}
                     resizeMode="cover"
                   />
-                  <div
-                    className={
-                      RNWStyleSheet.resolve(styles.imageContainerSmall)
-                        .className
-                    }
-                  >
+                  <Div style={styles.imageContainerSmall}>
                     <Image
                       source={{
                         uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`
@@ -126,7 +122,7 @@ const ShowcaseList = (props: Object) => (
                       style={styles.imageSmall}
                       resizeMode="cover"
                     />
-                  </div>
+                  </Div>
                 </Link>
               </View>
             ))}

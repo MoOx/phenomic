@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-primitives";
+import { StyleSheet, View } from "react-native-web";
 
 const Flex = (props: Object) => (
   <View style={[props.style, styles.flex]}>{props.children}</View>

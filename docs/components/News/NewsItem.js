@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
-import { View, StyleSheet, Text } from "react-primitives";
+import { View, StyleSheet, Text } from "react-native-web";
 
 import Flex from "../Flex";
 import Spacer from "../Spacer";

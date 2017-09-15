@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet } from "react-primitives";
+import { StyleSheet } from "react-native-web";
 
 import BodyContainer from "../BodyContainer";
 import BackgroundGradient from "../BackgroundGradient";

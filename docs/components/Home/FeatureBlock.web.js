@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-primitives";
+import { StyleSheet, Text, View } from "react-native-web";
 
 import BackgroundGradient from "../BackgroundGradient";
 

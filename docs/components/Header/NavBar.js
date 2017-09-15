@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-primitives";
+import { View, Text, StyleSheet } from "react-native-web";
 
 import Link from "../Link";
 import Spacer from "../Spacer";

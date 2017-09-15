@@ -1,44 +1,36 @@
 import * as React from "react";
-// https://github.com/lelandrichardson/react-primitives/issues/72
-import { StyleSheet } from "react-primitives";
-import StyleSheetRegistry from "react-native-web/dist/apis/StyleSheet/registry.js"; // eslint-disable-line
-import { Link as RouterLink } from "react-router";
+import { StyleSheet, Text } from "react-native-web";
+// eslint-disable-next-line
+import PropTypes from "prop-types";
+// eslint-disable-next-line
+import {
+  isActive,
+  handlePress,
+  handleKeyDown
+} from "@phenomic/plugin-renderer-react/lib/components/Link.js";
 
-const Link = (props: Object) => {
-  const injectedProps = resolve(props.className, [props.style, styles.link]);
-  const activeInjectedProps = resolve(props.activeClassName, props.activeStyle);
-  return (
-    <RouterLink
-      {...props}
-      {...injectedProps}
-      activeStyle={activeInjectedProps.style}
-      activeClassName={activeInjectedProps.className}
-    />
-  );
+type PropsType = {
+  style?: any,
+  activeStyle?: any,
+  to: string
 };
 
-const resolve = (className, style) => {
-  if (Array.isArray(style)) {
-    const res = style.map(s => resolve(className, s));
-    return {
-      className:
-        (className ? className + " " : "") +
-        res
-          .map(r => r.className)
-          .filter(x => x)
-          .join(" "),
-      style: res.reduce((acc, r) => ({ ...acc, ...r.style }), {})
-    };
-  }
-  if (typeof style === "number") {
-    return {
-      className:
-        (className ? className + " " : "") +
-        StyleSheetRegistry.resolve(style).className,
-      style: {}
-    };
-  }
-  return { style };
+const Link = (
+  { style, activeStyle, to, ...props }: PropsType,
+  context: Object
+) => (
+  <Text
+    accessibilityRole="link"
+    {...props}
+    style={[styles.link, style, isActive(to, context) && activeStyle]}
+    href={to}
+    onPress={handlePress(to, props)}
+    onKeyDown={handleKeyDown(to, props)}
+  />
+);
+
+Link.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

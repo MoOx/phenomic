@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-primitives";
+import { StyleSheet, View, Text } from "react-native-web";
 
 const Editor = (props: Object) => (
   <View style={styles.editor}>
