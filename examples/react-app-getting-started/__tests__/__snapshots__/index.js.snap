@@ -19,10 +19,10 @@ Array [
 exports[`should build example correctly 2`] = `
 Array [
   "phenomic/posts/by-default/1/desc/limit-2.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMi1zZWNvbmQtcG9zdA%3D%3D.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMi1zZWNvbmQtcG9zdA==.json",
   "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMS1maXJzdC1wb3N0.json",
   "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wMy10aGlyZC1wb3N0.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wNC1mb3VydGgtcG9zdA%3D%3D.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wNC1mb3VydGgtcG9zdA==.json",
   "phenomic/posts/by-default/1/desc/limit-2/after-MjAxNy0wMS0wNS1maWZ0aC1wb3N0.json",
   "phenomic/posts/item/fifth-post.json",
   "phenomic/posts/item/first-post.json",

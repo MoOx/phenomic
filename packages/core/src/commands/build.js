@@ -103,7 +103,10 @@ async function prerenderFileAndDependencies({
   debug(`'${location}': files & deps collected`);
   return Promise.all(
     files.map(file =>
-      writeFile(path.join(config.outdir, file.path), file.contents)
+      writeFile(
+        path.join(config.outdir, decodeURIComponent(file.path)),
+        file.contents
+      )
     )
   );
 }
