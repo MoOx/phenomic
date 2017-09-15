@@ -7,20 +7,24 @@ import Spacer from "../Spacer";
 const HeaderNavBar = () => (
   <View style={styles.header}>
     <View style={styles.row}>
-      <Link to="/" style={styles.text}>
+      <Link href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link>
       <Spacer small />
     </View>
     <View style={styles.nav}>
       <Link
-        to="/docs/getting-started"
+        href="/docs/getting-started"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Getting started"}</Text>
       </Link>
-      <Link to="/showcase" style={styles.link} activeStyle={styles.linkActive}>
+      <Link
+        href="/showcase"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
       </Link>
       <Text>{" | "}</Text>

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native-web";
 import { Link } from "react-router";
 
 const NewsListItem = props => (
-  <Link to={"/news/" + props.news.id} style={rawStyles.link}>
+  <Link href={"/news/" + props.news.id} style={rawStyles.link}>
     <View style={styles.container}>
       <Text style={styles.title}>{props.news.title}</Text>
       <Text style={styles.date}>

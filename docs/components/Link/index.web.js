@@ -12,20 +12,20 @@ import {
 type PropsType = {
   style?: any,
   activeStyle?: any,
-  to: string
+  href: string
 };
 
 const Link = (
-  { style, activeStyle, to, ...props }: PropsType,
+  { style, activeStyle, href, ...props }: PropsType,
   context: Object
 ) => (
   <Text
     accessibilityRole="link"
     {...props}
-    style={[styles.link, style, isActive(to, context) && activeStyle]}
-    href={to}
-    onPress={handlePress(to, props)}
-    onKeyDown={handleKeyDown(to, props)}
+    style={[styles.link, style, isActive(href, context) && activeStyle]}
+    href={href}
+    onPress={handlePress(href, props)}
+    onKeyDown={handleKeyDown(href, props)}
   />
 );
 

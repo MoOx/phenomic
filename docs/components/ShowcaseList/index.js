@@ -62,7 +62,7 @@ const ShowcaseList = (props: Object) => (
       {props.isLoading && <ActivityIndicator />}
       {!props.isLoading && (
         <View>
-          <Link to={"/showcase/submit/"} style={styles.addYourOwn}>
+          <Link href={"/showcase/submit/"} style={styles.addYourOwn}>
             {"Submit your website!"}
           </Link>
           {props.params &&
@@ -72,7 +72,7 @@ const ShowcaseList = (props: Object) => (
                 {"You are currently viewing projects that match "}
                 <em>{props.params.showcaseTags}</em>
                 {" tag. "}
-                <Link to={"/showcase/"} style={styles.filterMessageLink}>
+                <Link href={"/showcase/"} style={styles.filterMessageLink}>
                   {"View all."}
                 </Link>
               </Text>
@@ -99,14 +99,14 @@ const ShowcaseList = (props: Object) => (
                     item.showcaseTags.map(tag => (
                       <Link
                         key={tag}
-                        to={`/showcase/tag/${tag}/`}
+                        href={`/showcase/tag/${tag}/`}
                         style={styles.itemTag}
                       >
                         {tag}
                       </Link>
                     ))}
                 </View>
-                <Link href={item.url} target="_blank">
+                <a href={item.url} target="_blank">
                   <Image
                     source={{
                       uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
@@ -123,7 +123,7 @@ const ShowcaseList = (props: Object) => (
                       resizeMode="cover"
                     />
                   </Div>
-                </Link>
+                </a>
               </View>
             ))}
           </View>
@@ -133,7 +133,7 @@ const ShowcaseList = (props: Object) => (
               props.showcase.node.hasPreviousPage && (
                 <Link
                   style={styles.link}
-                  to={
+                  href={
                     props.showcase.node.previousPageIsFirst ? (
                       `/showcase`
                     ) : (
@@ -152,7 +152,7 @@ const ShowcaseList = (props: Object) => (
               props.showcase.node.hasNextPage && (
                 <Link
                   style={styles.link}
-                  to={`/showcase/${props.params.showcaseTags
+                  href={`/showcase/${props.params.showcaseTags
                     ? `tag/${props.params.showcaseTags}/`
                     : ""}after/${props.showcase.node.next}`}
                 >

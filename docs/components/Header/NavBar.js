@@ -8,7 +8,7 @@ import { version } from "../../../lerna.json";
 const HeaderNavBar = () => (
   <View style={styles.header}>
     <View style={styles.logo}>
-      <Link to="/" style={styles.text}>
+      <Link href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link>
       <Spacer small />
@@ -21,16 +21,20 @@ const HeaderNavBar = () => (
     </View>
     <View style={styles.nav}>
       <Link
-        to="/docs/getting-started"
+        href="/docs/getting-started"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Getting started"}</Text>
       </Link>
-      <Link to="/news" style={styles.link} activeStyle={styles.linkActive}>
+      <Link href="/news" style={styles.link} activeStyle={styles.linkActive}>
         <Text style={[styles.linkText]}>{"News"}</Text>
       </Link>
-      <Link to="/showcase" style={styles.link} activeStyle={styles.linkActive}>
+      <Link
+        href="/showcase"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
       </Link>
       <Text style={styles.pipe}>{" | "}</Text>
