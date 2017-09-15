@@ -38,7 +38,9 @@ const defaultExternals = [
 
   // Aprodite integration
   "aphrodite",
-  "aphrodite/no-important"
+  "aphrodite/no-important",
+
+  "react-native-web"
 ];
 
 const getWebpackConfig = (config: PhenomicConfig) => {
