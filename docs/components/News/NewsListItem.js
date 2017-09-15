@@ -1,9 +1,10 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
-import { Link } from "react-router";
+
+import Link from "../Link";
 
 const NewsListItem = props => (
-  <Link href={"/news/" + props.news.id} style={rawStyles.link}>
+  <Link href={"/news/" + props.news.id} style={styles.link}>
     <View style={styles.container}>
       <Text style={styles.title}>{props.news.title}</Text>
       <Text style={styles.date}>
@@ -14,6 +15,12 @@ const NewsListItem = props => (
 );
 
 const styles = StyleSheet.create({
+  link: {
+    display: "flex",
+    flexDirection: "column",
+    textDecorationLine: "none",
+    color: "inherit"
+  },
   container: {
     paddingVertical: 20,
     paddingHorizontal: 10,
@@ -32,9 +39,5 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-
-const rawStyles = {
-  link: { textDecoration: "none", color: "inherit" }
-};
 
 export default NewsListItem;

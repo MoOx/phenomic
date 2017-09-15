@@ -1,6 +1,5 @@
 import * as React from "react";
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
-import { View, StyleSheet } from "react-native-web";
 
 import Flex from "../Flex";
 import Spacer from "../Spacer";
@@ -21,26 +20,16 @@ const NewsList = (props: Object) => {
       <Header title={"News"} />
       <BodyContainer>
         {props.isLoading && <ActivityIndicator />}
-        {!props.isLoading && (
-          <View style={styles.container}>
-            {props.news.node.list.map(item => (
-              <NewsListItem key={item.id} news={item} />
-            ))}
-          </View>
-        )}
+        {!props.isLoading &&
+          props.news.node.list.map(item => (
+            <NewsListItem key={item.id} news={item} />
+          ))}
       </BodyContainer>
       <Spacer large />
       <Footer />
     </Flex>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    alignItems: "stretch"
-  }
-});
 
 export default createContainer(NewsList, props => ({
   news: query({
