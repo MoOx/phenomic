@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createElement } from "react-native-web";
+import { StyleSheet, createElement } from "react-native-web";
 
 type PropsType = {
   start: string,
@@ -13,7 +13,7 @@ const Div = props => createElement("div", props);
 const BackgroundGradient = (props: PropsType) => (
   <Div
     style={[
-      rawStyles,
+      styles.container,
       makeGradient(props.start, props.end, props.direction),
       props.style
     ]}
@@ -22,10 +22,12 @@ const BackgroundGradient = (props: PropsType) => (
   </Div>
 );
 
-const rawStyles = {
-  display: "flex",
-  flexDirection: "column"
-};
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "column"
+  }
+});
 
 const makeGradient = (start, end, direction = "to bottom right") => ({
   backgroundColor: start,
