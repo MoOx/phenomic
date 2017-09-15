@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-minimal-hello-world",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.6",
-    "@phenomic/core": "^1.0.0-alpha.6",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.6",
+    "@phenomic/cli": "^1.0.0-alpha.7",
+    "@phenomic/core": "^1.0.0-alpha.7",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.7",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^3.0.0"
