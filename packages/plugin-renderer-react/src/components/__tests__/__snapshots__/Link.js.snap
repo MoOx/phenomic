@@ -1,42 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link activeClassName? 1`] = `
-"<Link
+"<a
   activeClassName=\\"activeCx\\"
   className=\\"activeCx\\"
+  href=\\"test://url.tld/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/internal\\"
 >
   c
-</Link>"
+</a>"
 `;
 
 exports[`Link activeClassName? 2`] = `
-"<Link
+"<a
   activeClassName=\\"activeCx\\"
+  href=\\"test://url.tld/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/internal\\"
 >
   c
-</Link>"
+</a>"
 `;
 
 exports[`Link works with \`\`href\`\` 1`] = `
-"<Link
+"<a
+  href=\\"test://url.tld/b\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/b\\"
 >
   c
-</Link>"
+</a>"
 `;
 
 exports[`Link works with \`\`to\`\` 1`] = `
-"<Link
+"<a
+  href=\\"test://url.tld/b\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/b\\"
 >
   c
-</Link>"
+</a>"
 `;
 
 exports[`Link works with external \`\`href\`\` 1`] = `
@@ -52,19 +60,23 @@ exports[`Link works with external \`\`href\`\` 2`] = `
 `;
 
 exports[`Link works with internal \`\`href\`\` 1`] = `
-"<Link
+"<a
+  href=\\"test://url.tld/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/internal\\"
 >
   c
-</Link>"
+</a>"
 `;
 
 exports[`Link works with internal \`\`href\`\` 2`] = `
-"<Link
+"<a
+  href=\\"test://url.tld/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
   style={{}}
-  to=\\"test://url.tld/internal\\"
 >
   c
-</Link>"
+</a>"
 `;
