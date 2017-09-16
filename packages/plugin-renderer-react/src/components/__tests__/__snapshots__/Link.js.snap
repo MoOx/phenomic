@@ -4,10 +4,9 @@ exports[`Link activeClassName? 1`] = `
 "<a
   activeClassName=\\"activeCx\\"
   className=\\"activeCx\\"
-  href=\\"test://url.tld/internal\\"
+  href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
 >
   c
 </a>"
@@ -16,10 +15,38 @@ exports[`Link activeClassName? 1`] = `
 exports[`Link activeClassName? 2`] = `
 "<a
   activeClassName=\\"activeCx\\"
-  href=\\"test://url.tld/internal\\"
+  href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
+>
+  c
+</a>"
+`;
+
+exports[`Link activeStyle? 1`] = `
+"<a
+  activeStyle={{
+    color: 'blue'
+  }}
+  href=\\"/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
+  style={{
+    color: 'blue'
+  }}
+>
+  c
+</a>"
+`;
+
+exports[`Link activeStyle? 2`] = `
+"<a
+  activeStyle={{
+    color: 'blue'
+  }}
+  href=\\"/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
 >
   c
 </a>"
@@ -27,10 +54,9 @@ exports[`Link activeClassName? 2`] = `
 
 exports[`Link works with \`\`href\`\` 1`] = `
 "<a
-  href=\\"test://url.tld/b\\"
+  href=\\"/b\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
 >
   c
 </a>"
@@ -38,23 +64,30 @@ exports[`Link works with \`\`href\`\` 1`] = `
 
 exports[`Link works with \`\`to\`\` 1`] = `
 "<a
-  href=\\"test://url.tld/b\\"
+  href=\\"/b\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
 >
   c
 </a>"
 `;
 
 exports[`Link works with external \`\`href\`\` 1`] = `
-"<a href=\\"http://b.com\\">
+"<a
+  href=\\"http://b.com\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
+>
   c
 </a>"
 `;
 
 exports[`Link works with external \`\`href\`\` 2`] = `
-"<a href=\\"http://b.com\\">
+"<a
+  href=\\"http://b.com\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
+>
   c
 </a>"
 `;
@@ -64,7 +97,6 @@ exports[`Link works with internal \`\`href\`\` 1`] = `
   href=\\"test://url.tld/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
 >
   c
 </a>"
@@ -72,10 +104,9 @@ exports[`Link works with internal \`\`href\`\` 1`] = `
 
 exports[`Link works with internal \`\`href\`\` 2`] = `
 "<a
-  href=\\"test://url.tld/internal\\"
+  href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
-  style={{}}
 >
   c
 </a>"

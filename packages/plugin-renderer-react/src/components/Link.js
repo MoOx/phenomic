@@ -21,42 +21,71 @@ type PropsType = {
   children?: React.Node
 };
 
-const shouldIgnoreEvent = (event: SyntheticEvent<*>) =>
+const isSameOrigin = (url: HTMLAnchorElement) =>
+  // ignore url not from the same domain
+  // @todo handle sub-folder, see
+  // https://github.com/phenomic/phenomic/issues/1124
+  origin(url) === origin(window.location);
+
+const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
   // If target prop is set (e.g. to "_blank"), let browser handle link.
   event.currentTarget.target ||
   event.defaultPrevented ||
   // modifier pressed
   (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey || false);
 
-const goToUrl = (event: SyntheticEvent<*>, url: string) => {
-  event.preventDefault();
-  browserHistory.push(url);
+const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>) => {
+  if (isSameOrigin(event.currentTarget)) {
+    event.preventDefault();
+    // extract to get only interesting parts
+    const { pathname, search, hash } = event.currentTarget;
+    browserHistory.push({ pathname, search, hash });
+  }
 };
 
-export const isActive = (url: string, { router }: Object) =>
-  router &&
-  router.isActive &&
-  (router.isActive({ pathname: url }) ||
-    router.isActive({ pathname: url + "index.html" }));
-
-export const handlePress = (url: string, props?: Object) => (
-  event: SyntheticMouseEvent<HTMLElement>
+export const handleEvent = (
+  props?: Object,
+  test?: (event: SyntheticEvent<HTMLAnchorElement>, props?: Object) => boolean
+) => (
+  event:
+    | SyntheticMouseEvent<HTMLAnchorElement>
+    | SyntheticKeyboardEvent<HTMLAnchorElement>
 ) => {
+  props && props.onPress && props.onPress(event);
   props && props.onClick && props.onClick(event);
   !shouldIgnoreEvent(event) &&
-    // left click
-    event.button === 0 &&
-    goToUrl(event, url);
+    (test ? test(event, props) : true) &&
+    goToUrl(event);
 };
 
-export const handleKeyDown = (url: string, props?: Object) => (
-  event: SyntheticKeyboardEvent<HTMLElement>
-) => {
-  props && props.onKeyDown && props.onKeyDown(event);
-  !shouldIgnoreEvent(event) &&
-    // enter key
-    event.keyCode === 13 &&
-    goToUrl(event, url);
+export const handleClick = (props?: Object) =>
+  handleEvent(
+    props,
+    // $FlowFixMe left click
+    (event: SyntheticMouseEvent<HTMLAnchorElement>) => event.button === 0
+  );
+
+export const handleKeyDown = (props?: Object) =>
+  handleEvent(
+    props,
+    // $FlowFixMe  enter key
+    (event: SyntheticKeyboardEvent<HTMLAnchorElement>) => event.keyCode === 13
+  );
+
+export const isActive = (url: string, { router }: Object) => {
+  let urlObj = { pathname: url };
+  // trick to normalize url when possible, by the browser
+  // (eg: relative links are "resolved")
+  if (typeof document !== "undefined") {
+    const link = document.createElement("a");
+    link.href = url;
+    if (isSameOrigin(link)) {
+      urlObj = { pathname: link.pathname };
+      // now 'urlObj' is absolute
+    }
+  }
+
+  return router && router.isActive && router.isActive(urlObj);
 };
 
 function Link(props: PropsType, context: Object) {
@@ -64,60 +93,21 @@ function Link(props: PropsType, context: Object) {
   const { to, href, ...otherProps } = props;
   const url = props.to || props.href || "";
 
-  const simpleLink = <a {...otherProps} href={url} />;
-
-  // static rendering
-  if (typeof document === "undefined") {
-    return simpleLink;
-  }
-
-  const toLink = document.createElement("a");
-  toLink.href = url;
-
-  const isLocal =
-    // jsdom have url data directly into "url" property, so just in case
-    // it's like that on some browsers...
-    origin(toLink) === origin(window.location);
-  // we might want to restrict Link to path including the pathname
-  // but this will require to preprend pathname to all Links from the
-  // path, which sucks.
-  // If people wants to use Link for a same domain, but in the parent path,
-  // you will need to includes the entire url, / won't work at it will use
-  // the react-router basename defined by Phenomic.
-  // &&
-  // toLink.pathname.includes(process.env.PHENOMIC_USER_PATHNAME)
-  // toLink.pathname.indexOf(process.env.PHENOMIC_USER_PATHNAME) > -1
-  // @todo handle properly use base only
-  // in v0.x we were relying on the base url
-  // if (
-  //   // parent absolute url with the same domain
-  //   // should not be Link
-  //   url.indexOf("://") > -1 //&&
-  //   url.indexOf(process.env.PHENOMIC_USER_URL) === -1
-  // ) {
-  //   return simpleLink;
-  // }
-
-  if (!isLocal) {
-    return simpleLink;
-  }
-
   const isUrlActive = isActive(url, context);
   const className = cx(props.className, isUrlActive && props.activeClassName);
-
+  const style = {
+    ...props.style,
+    ...(isUrlActive ? props.activeStyle : {})
+  };
   return (
     <a
       {...otherProps}
-      href={toLink.href}
-      onClick={handlePress(toLink.href, props)}
-      onKeyDown={handleKeyDown(toLink.href, props)}
-      // @todo handle onKeyPress for keyboard navigation
+      href={url}
+      onClick={handleClick(props)}
+      onKeyDown={handleKeyDown(props)}
+      // weird syntax to avoid undefined/empty object/strings
       // for now, it's falling back to normal links
-      style={{
-        ...props.style,
-        ...(isActive && props.activeStyle)
-      }}
-      // weird syntax to avoid undefined/empty classname
+      {...(Object.keys(style).length ? { style } : {})}
       {...(className ? { className } : {})}
     />
   );

@@ -50,3 +50,26 @@ test("Link activeClassName?", () => {
     )
   ).toMatchSnapshot();
 });
+
+test("Link activeStyle?", () => {
+  expect(
+    renderJSX(
+      <Link href="/internal" activeStyle={{ color: "blue" }}>
+        {"c"}
+      </Link>,
+      {
+        router: { isActive: () => true }
+      }
+    )
+  ).toMatchSnapshot();
+  expect(
+    renderJSX(
+      <Link href="/internal" activeStyle={{ color: "blue" }}>
+        {"c"}
+      </Link>,
+      {
+        router: { isActive: () => false }
+      }
+    )
+  ).toMatchSnapshot();
+});
