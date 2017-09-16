@@ -8,7 +8,7 @@ export const encode = (text: string) => new Buffer(text).toString("base64");
 export const decode = (text: string) => new Buffer(text, "base64").toString();
 
 const connect = (list, limit, previousList = []) => {
-  const hasNextPage = limit === undefined ? false : list.length >= limit;
+  const hasNextPage = limit === undefined ? false : list.length > limit;
   const hasPreviousPage = previousList.length > 0;
   const previousPageIsFirst = limit ? previousList.length <= limit : undefined;
   // we are retrieving limit + 1 to know if there is more page or not
