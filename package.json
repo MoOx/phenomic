@@ -120,10 +120,10 @@
     "notify": true,
     "coverageThreshold": {
       "global": {
-        "statements": 65,
+        "statements": 75,
         "branches": 65,
-        "functions": 65,
-        "lines": 65
+        "functions": 75,
+        "lines": 75
       }
     },
     "transformIgnorePatterns": ["node_modules"],
