@@ -8,45 +8,58 @@ import { version } from "../../../lerna.json";
 const HeaderNavBar = () => (
   <View style={styles.header}>
     <View style={styles.logo}>
-      <Link href="/" style={styles.text}>
+      <Link.TouchableOpacity href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
-      </Link>
+      </Link.TouchableOpacity>
       <Spacer small />
-      <Link
+      <Link.TouchableOpacity
         href="https://github.com/phenomic/phenomic/releases"
         style={styles.version}
       >
         {"v" + version}
-      </Link>
+      </Link.TouchableOpacity>
     </View>
     <View style={styles.nav}>
-      <Link
+      <Link.TouchableOpacity
         href="/docs/getting-started"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Getting started"}</Text>
-      </Link>
-      <Link href="/news" style={styles.link} activeStyle={styles.linkActive}>
+      </Link.TouchableOpacity>
+      <Link.TouchableOpacity
+        href="/news"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
         <Text style={[styles.linkText]}>{"News"}</Text>
-      </Link>
-      <Link
+      </Link.TouchableOpacity>
+      <Link.TouchableOpacity
         href="/showcase"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
-      </Link>
+      </Link.TouchableOpacity>
       <Text style={styles.pipe}>{" | "}</Text>
-      <Link href="https://github.com/phenomic/phenomic" style={styles.link}>
+      <Link.TouchableOpacity
+        href="https://github.com/phenomic/phenomic"
+        style={styles.link}
+      >
         <Text style={styles.linkText}>{"GitHub"}</Text>
-      </Link>
-      <Link href="https://twitter.com/Phenomic_app" style={styles.link}>
+      </Link.TouchableOpacity>
+      <Link.TouchableOpacity
+        href="https://twitter.com/Phenomic_app"
+        style={styles.link}
+      >
         <Text style={styles.linkText}>{"Twitter"}</Text>
-      </Link>
-      <Link href="https://gitter.im/MoOx/phenomic" style={styles.link}>
+      </Link.TouchableOpacity>
+      <Link.TouchableOpacity
+        href="https://gitter.im/MoOx/phenomic"
+        style={styles.link}
+      >
         <Text style={styles.linkText}>{"Chat"}</Text>
-      </Link>
+      </Link.TouchableOpacity>
     </View>
   </View>
 );

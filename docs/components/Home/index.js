@@ -7,6 +7,7 @@ import Footer from "../Footer";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import BodyContainer from "../BodyContainer";
+import Link from "../Link";
 
 import FeatureBlock from "./FeatureBlock";
 import InputOutput from "./InputOutput";
@@ -20,18 +21,17 @@ const Home = () => (
       style={styles.top}
     />
     <BodyContainer style={styles.gettingStarted}>
-      <InputOutput />
-      <Spacer />
-      <Text
-        // eslint-disable-next-line
-        style={{
-          color: "#6B6B6B",
-          fontSize: 36,
-          textAlign: "center",
-          padding: 60
-        }}
+      <Link.Block
+        href="/docs/getting-started"
+        blockProps={{ activeOpacity: 0.8, focusedOpacity: 0.8 }}
       >
-        {"Phenomic compiles your website to make it as fast as possible"}
+        <InputOutput />
+      </Link.Block>
+      <Spacer />
+      <Text style={styles.subtitle}>
+        <Link.TouchableOpacity href="/docs/getting-started">
+          {"Phenomic compiles your website to make it as fast as possible"}
+        </Link.TouchableOpacity>
       </Text>
       <Spacer />
       <View style={styles.row}>
@@ -69,29 +69,17 @@ const Home = () => (
         </View>
       </View>
       <Spacer />
-      <Text
-        // eslint-disable-next-line
-        style={{
-          color: "#6B6B6B",
-          fontSize: 36,
-          textAlign: "center",
-          padding: 60
-        }}
-      >
-        {"Get running in seconds"}
+      <Text style={styles.subtitle}>
+        <Link.TouchableOpacity href="/docs/getting-started">
+          {"Get running in seconds"}
+        </Link.TouchableOpacity>
       </Text>
       <CodeExample />
       <Spacer />
-      <Text
-        // eslint-disable-next-line
-        style={{
-          color: "#6B6B6B",
-          fontSize: 36,
-          textAlign: "center",
-          padding: 60
-        }}
-      >
-        {"Developers experience matters"}
+      <Text style={styles.subtitle}>
+        <Link.TouchableOpacity href="/docs/getting-started">
+          {"Developers experience matters"}
+        </Link.TouchableOpacity>
       </Text>
       <Spacer />
       <View style={styles.row}>
@@ -163,6 +151,12 @@ const styles = StyleSheet.create({
     minWidth: 240,
     paddingTop: 10,
     paddingBottom: 10
+  },
+  subtitle: {
+    color: "#6B6B6B",
+    fontSize: 36,
+    textAlign: "center",
+    padding: 60
   }
 });
 

@@ -4,14 +4,14 @@ import { View, Text, StyleSheet } from "react-native-web";
 import Link from "../Link";
 
 const NewsListItem = props => (
-  <Link href={"/news/" + props.news.id} style={styles.link}>
+  <Link.TouchableOpacity href={"/news/" + props.news.id} style={styles.link}>
     <View style={styles.container}>
       <Text style={styles.title}>{props.news.title}</Text>
       <Text style={styles.date}>
         {new Date(props.news.date).toLocaleDateString()}
       </Text>
     </View>
-  </Link>
+  </Link.TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

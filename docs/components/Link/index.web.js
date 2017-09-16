@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 // eslint-disable-next-line
 import {
   isActive,
-  handlePress,
-  handleKeyDown
+  handleEvent
 } from "@phenomic/plugin-renderer-react/lib/components/Link.js";
 
 type PropsType = {
@@ -19,20 +18,41 @@ const Link = (
   { style, activeStyle, href, ...props }: PropsType,
   context: Object
 ) => (
-  <TouchableOpacity>
-    <Text
-      accessibilityRole="link"
-      {...props}
-      style={[style, isActive(href, context) && activeStyle]}
-      href={href}
-      onPress={handlePress(href, props)}
-      onKeyDown={handleKeyDown(href, props)}
-    />
-  </TouchableOpacity>
+  <Text
+    {...props}
+    accessibilityRole="link"
+    style={[style, isActive(href, context) && activeStyle]}
+    href={href}
+    onPress={handleEvent(props)}
+  />
 );
 
 Link.contextTypes = {
   router: PropTypes.object.isRequired
 };
+
+// @todo using TouchableOpacity make the external links unusable with keyboard
+// https://github.com/necolas/react-native-web/issues/643
+
+/* eslint-disable */
+Link.Block = ({ BlockComponent, blockProps, ...props }: PropsType) => (
+  <BlockComponent
+    {...blockProps}
+    style={[blockProps.style, { flexGrow: 1 }]}
+    accessible={false}
+  >
+    <Link {...props} style={[props.style, { display: "flex" }]} />
+  </BlockComponent>
+);
+Link.Block.defaultProps = {
+  BlockComponent: TouchableOpacity
+};
+
+Link.TouchableOpacity = (props: PropsType) => (
+  <TouchableOpacity accessible={false}>
+    <Link {...props} />
+  </TouchableOpacity>
+);
+/* eslint-enable */
 
 export default Link;
