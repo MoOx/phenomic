@@ -51,6 +51,7 @@ test("Link activeClassName?", () => {
   ).toMatchSnapshot();
 });
 
+/* eslint-disable react-native/no-inline-styles */
 test("Link activeStyle?", () => {
   expect(
     renderJSX(
@@ -73,3 +74,4 @@ test("Link activeStyle?", () => {
     )
   ).toMatchSnapshot();
 });
+/* eslint-enable react-native/no-inline-styles */
