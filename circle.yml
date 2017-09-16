@@ -12,12 +12,7 @@ dependencies:
     - docs/public/showcase/entry
     - ~/.cache/yarn
   pre:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --1.0.1
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
   override:
     - yarn --version
     - yarn
-
-test:
-  override:
-    - yarn run lint
-    - yarn test

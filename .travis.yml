@@ -7,7 +7,7 @@ env:
 
 before_install:
   # Install Yarn
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.0.1
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
   # Install Watchman dependency
   - git clone --depth=1 --branch=v4.7.0 https://github.com/facebook/watchman.git
@@ -19,3 +19,6 @@ cache:
     - node_modules
     - docs/.screenshots
     - docs/public/showcase/entry
+
+script:
+  - yarn run test-without-lint
