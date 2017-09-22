@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render markdown as html 1`] = `
+"<h2 id=\\"test\\"><a aria-hidden=\\"true\\" href=\\"#test\\"><span class=\\"icon icon-link\\"></span></a>Test</h2>
+<p><a href=\\"href\\">link</a></p>
+<pre><code class=\\"hljs language-js\\"><span class=\\"hljs-built_in\\">console</span>.log(<span class=\\"hljs-built_in\\">window</span>)
+</code></pre>
+<p><button>Random Html</button>
+<button>Random react like stuff</button></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align=\\"left\\">Left-aligned</th><th align=\\"center\\">Center-aligned</th><th align=\\"right\\">Right-aligned</th></tr></thead><tbody><tr><td align=\\"left\\">left one</td><td align=\\"center\\">center one</td><td align=\\"right\\">right one</td></tr><tr><td align=\\"left\\">left two</td><td align=\\"center\\">center two</td><td align=\\"right\\">right two</td></tr></tbody></table>"
+`;
+
+exports[`should render markdown as json (react component) 1`] = `
+Object {
+  "c": Array [
+    Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            Object {
+              "p": Object {
+                "className": "icon icon-link",
+              },
+              "t": "span",
+            },
+          ],
+          "p": Object {
+            "aria-hidden": true,
+            "href": "#test",
+          },
+          "t": "a",
+        },
+        "Test",
+      ],
+      "p": Object {
+        "id": "test",
+      },
+      "t": "h2",
+    },
+    "
+",
+    Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            "link",
+          ],
+          "p": Object {
+            "href": "href",
+          },
+          "t": "a",
+        },
+      ],
+      "t": "p",
+    },
+    "
+",
+    Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                "console",
+              ],
+              "p": Object {
+                "className": "hljs-built_in",
+              },
+              "t": "span",
+            },
+            ".log(",
+            Object {
+              "c": Array [
+                "window",
+              ],
+              "p": Object {
+                "className": "hljs-built_in",
+              },
+              "t": "span",
+            },
+            ")
+",
+          ],
+          "p": Object {
+            "className": "hljs language-js",
+          },
+          "t": "code",
+        },
+      ],
+      "t": "pre",
+    },
+    "
+",
+    Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            "Random Html",
+          ],
+          "t": "button",
+        },
+        "
+",
+        Object {
+          "c": Array [
+            "Random react like stuff",
+          ],
+          "t": "button",
+        },
+      ],
+      "t": "p",
+    },
+    "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+",
+    Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                Object {
+                  "c": Array [
+                    "Left-aligned",
+                  ],
+                  "p": Object {
+                    "align": "left",
+                  },
+                  "t": "th",
+                },
+                Object {
+                  "c": Array [
+                    "Center-aligned",
+                  ],
+                  "p": Object {
+                    "align": "center",
+                  },
+                  "t": "th",
+                },
+                Object {
+                  "c": Array [
+                    "Right-aligned",
+                  ],
+                  "p": Object {
+                    "align": "right",
+                  },
+                  "t": "th",
+                },
+              ],
+              "t": "tr",
+            },
+          ],
+          "t": "thead",
+        },
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                Object {
+                  "c": Array [
+                    "left one",
+                  ],
+                  "p": Object {
+                    "align": "left",
+                  },
+                  "t": "td",
+                },
+                Object {
+                  "c": Array [
+                    "center one",
+                  ],
+                  "p": Object {
+                    "align": "center",
+                  },
+                  "t": "td",
+                },
+                Object {
+                  "c": Array [
+                    "right one",
+                  ],
+                  "p": Object {
+                    "align": "right",
+                  },
+                  "t": "td",
+                },
+              ],
+              "t": "tr",
+            },
+            Object {
+              "c": Array [
+                Object {
+                  "c": Array [
+                    "left two",
+                  ],
+                  "p": Object {
+                    "align": "left",
+                  },
+                  "t": "td",
+                },
+                Object {
+                  "c": Array [
+                    "center two",
+                  ],
+                  "p": Object {
+                    "align": "center",
+                  },
+                  "t": "td",
+                },
+                Object {
+                  "c": Array [
+                    "right two",
+                  ],
+                  "p": Object {
+                    "align": "right",
+                  },
+                  "t": "td",
+                },
+              ],
+              "t": "tr",
+            },
+          ],
+          "t": "tbody",
+        },
+      ],
+      "t": "table",
+    },
+  ],
+  "t": "div",
+}
+`;

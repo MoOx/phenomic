@@ -1,9 +1,23 @@
 import defaultConfig from "@phenomic/core/lib/defaultConfig.js";
 
-import remarkPlugins from "../remark-plugins.js";
+import remarkPlugins from "../transformer.js";
+
+const input = `## Test
+[link](href)
+\`\`\`js
+console.log(window)
+\`\`\`
+
+<button>Random Html</button>
+<Button>Random react like stuff</Button>
+
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| left one     | center one     | right one     |
+| left two     | center two     | right two     |
+`;
 
 it("should render markdown as json (react component)", () => {
-  const input = "## Test\n[link](href)\n```js\nconsole.log(window)\n```";
   const md = remarkPlugins(
     {
       ...defaultConfig,
@@ -15,7 +29,6 @@ it("should render markdown as json (react component)", () => {
 });
 
 it("should render markdown as html", () => {
-  const input = "## Test\n[link](href)\n```js\nconsole.log(window)\n```";
   const md = remarkPlugins(defaultConfig, input).contents;
   expect(md).toMatchSnapshot();
 });

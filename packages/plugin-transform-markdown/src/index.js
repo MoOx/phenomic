@@ -2,7 +2,7 @@ import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";
 import frontMatterParser from "gray-matter";
 
-import remarkPlugins from "./remark-plugins.js";
+import remarkPlugins from "./transformer.js";
 
 const debug = require("debug")("phenomic:plugin:transform-markdown");
 
