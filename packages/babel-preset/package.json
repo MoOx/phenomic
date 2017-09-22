@@ -23,6 +23,6 @@
   "main": "lib/index.js",
   "files": ["lib"],
   "dependencies": {
-    "babel-preset-react-app": "^1.0.0"
+    "babel-preset-react-app": "^3.0.2"
   }
 }
