@@ -35,12 +35,10 @@ const defaultExternals = [
   // @todo find a better way than a whitelist
 
   // Glamor integration
-  "glamor",
-  "glamor/server",
+  /^glamor(\/.*)?/,
 
   // Aprodite integration
-  "aphrodite",
-  "aphrodite/no-important",
+  /^aphrodite(\/.*)?/,
 
   "react-native-web",
 
