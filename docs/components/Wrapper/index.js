@@ -2,15 +2,13 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 import Head from "react-helmet";
 
-import GoogleAnalyticsTracker from "../GoogleAnalyticsTracker";
-
 const Wrapper = (props: Object) => (
   <View style={styles.wrapper}>
     <Head>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <GoogleAnalyticsTracker {...props}>{props.children}</GoogleAnalyticsTracker>
+    {props.children}
   </View>
 );
 

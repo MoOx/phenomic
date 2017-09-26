@@ -43,6 +43,6 @@
   },
   "devDependencies": {
     "@phenomic/core": "^1.0.0-alpha.8",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^16.0.0"
   }
 }

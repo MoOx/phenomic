@@ -57,7 +57,9 @@ const GettingStarted = () => (
   <Flex>
     <Header title={"Getting started with Phenomic"} />
     <BodyContainer style={styles.page}>
-      <View style={styles.row}>{"Start by choosing your ecosystem"}</View>
+      <View style={styles.row}>
+        <Text>{"Start by choosing your ecosystem"}</Text>
+      </View>
       <View style={styles.logos}>
         {items.map((item, i) => (
           <Link.Block

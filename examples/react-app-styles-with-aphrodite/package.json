@@ -7,9 +7,9 @@
     "@phenomic/core": "^1.0.0-alpha.8",
     "@phenomic/preset-react-app": "^1.0.0-alpha.8",
     "aphrodite": "^1.0.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "react-router": "^3.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^3.2.0"
   },
   "scripts": {
     "start": "phenomic start",

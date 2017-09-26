@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
+import GA from "react-ga";
 
 import "./defaults.css";
 
@@ -14,8 +15,19 @@ import PageError from "./components/PageError";
 import NewsItem from "./components/News/NewsItem";
 import NewsList from "./components/News/NewsList";
 
+// Google Analytics
+const isProduction = process.env.NODE_ENV === "production";
+isProduction && GA.initialize("UA-76349880-1");
+const pageView = isProduction
+  ? () => {
+      const url = window.location.pathname + window.location.search;
+      GA.set({ page: url });
+      GA.pageview(url);
+    }
+  : () => console.info("New pageview", window.location.href);
+
 const routes = () => (
-  <Router history={browserHistory}>
+  <Router history={browserHistory} onUpdate={pageView}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
       <Route path="/docs/getting-started" component={GettingStarted} />

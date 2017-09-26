@@ -8,9 +8,9 @@
     "@phenomic/reason": "^1.0.0-alpha.8",
     "bs-platform": "^1.9.2",
     "npm-run-all": "^4.0.2",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "react-router": "^3.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^3.2.0",
     "reason-react": "^0.2.4"
   },
   "scripts": {
