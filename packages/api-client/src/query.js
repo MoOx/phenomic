@@ -12,8 +12,8 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
   // note that during static build, we initiate the query with no id
   if (config.hasOwnProperty("id")) {
     return {
-      path: config.path && encodeURIComponent(config.path),
-      id: config.id && encodeURIComponent(config.id)
+      path: config.path,
+      id: config.id
     };
   }
   return {
