@@ -1,5 +1,5 @@
 external internalQuery : Js.t {..} => Js.t {..} =
-  "query" [@@bs.module "@phenomic/plugin-renderer-react/lib/client"];
+  "query" [@@bs.module "@phenomic/api-client/lib/query"];
 
 type reasonChildren = list reasonChild
 and reasonChild =
