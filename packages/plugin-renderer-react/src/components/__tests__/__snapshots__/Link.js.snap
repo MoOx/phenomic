@@ -2,7 +2,6 @@
 
 exports[`Link activeClassName? 1`] = `
 "<a
-  activeClassName=\\"activeCx\\"
   className=\\"activeCx\\"
   href=\\"/internal\\"
   onClick={function noRefCheck() {}}
@@ -14,7 +13,6 @@ exports[`Link activeClassName? 1`] = `
 
 exports[`Link activeClassName? 2`] = `
 "<a
-  activeClassName=\\"activeCx\\"
   href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
@@ -25,9 +23,6 @@ exports[`Link activeClassName? 2`] = `
 
 exports[`Link activeStyle? 1`] = `
 "<a
-  activeStyle={{
-    color: 'blue'
-  }}
   href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
@@ -41,9 +36,6 @@ exports[`Link activeStyle? 1`] = `
 
 exports[`Link activeStyle? 2`] = `
 "<a
-  activeStyle={{
-    color: 'blue'
-  }}
   href=\\"/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}

@@ -5,16 +5,20 @@ let make body::(body: PhenomicContent.jsBody) _children => {
     switch child {
     | PhenomicContent.String string => ReasonReact.stringToElement string
     | PhenomicContent.Element tag originalProps reasonChildren =>
-      let props = ReactDOMRe.objToDOMProps originalProps;
       switch tag {
       | "a" =>
-        <Link toURL=[%bs.raw {| child[1].href |}]>
-          ([%bs.raw {|child[2]|}] |> Array.of_list |> ReasonReact.arrayToElement)
+        <Link
+          toURL=[%bs.raw {| child[1].href |}]
+          style=[%bs.raw {| child[1].style |}]
+          activeStyle=[%bs.raw {| child[1].activeStyle |}]
+          className=[%bs.raw {| child[1].className |}]
+          activeClassName=[%bs.raw {| child[1].activeClassName |}]>
+          (ReasonReact.arrayToElement (Array.of_list (List.map renderChild reasonChildren)))
         </Link>
       | _ =>
         ReactDOMRe.createElement
           tag
-          ::props
+          props::(ReactDOMRe.objToDOMProps originalProps)
           [|ReasonReact.arrayToElement (Array.of_list (List.map renderChild reasonChildren))|]
       }
     | PhenomicContent.Empty => ReasonReact.nullElement
