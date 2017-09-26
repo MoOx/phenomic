@@ -89,15 +89,22 @@ export const isActive = (url: string, { router }: Object) => {
 };
 
 function Link(props: PropsType, context: Object) {
-  // eslint-disable-next-line no-unused-vars
-  const { to, href, ...otherProps } = props;
-  const url = props.to || props.href || "";
+  const {
+    to,
+    href,
+    style,
+    activeStyle,
+    className,
+    activeClassName,
+    ...otherProps
+  } = props;
+  const url = to || href || "";
 
   const isUrlActive = isActive(url, context);
-  const className = cx(props.className, isUrlActive && props.activeClassName);
-  const style = {
-    ...props.style,
-    ...(isUrlActive ? props.activeStyle : {})
+  const computedClassName = cx(className, isUrlActive && activeClassName);
+  const computedStyle = {
+    ...style,
+    ...(isUrlActive ? activeStyle : {})
   };
   return (
     <a
@@ -107,8 +114,8 @@ function Link(props: PropsType, context: Object) {
       onKeyDown={handleKeyDown(props)}
       // weird syntax to avoid undefined/empty object/strings
       // for now, it's falling back to normal links
-      {...(Object.keys(style).length ? { style } : {})}
-      {...(className ? { className } : {})}
+      {...(Object.keys(computedStyle).length ? { style: computedStyle } : {})}
+      {...(computedClassName ? { className: computedClassName } : {})}
     />
   );
 }
