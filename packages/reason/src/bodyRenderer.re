@@ -8,7 +8,7 @@ let make body::(body: PhenomicContent.jsBody) _children => {
       switch tag {
       | "a" =>
         <Link
-          toURL=[%bs.raw {| child[1].href |}]
+          href=[%bs.raw {| child[1].href |}]
           style=[%bs.raw {| child[1].style |}]
           activeStyle=[%bs.raw {| child[1].activeStyle |}]
           className=[%bs.raw {| child[1].className |}]

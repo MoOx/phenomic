@@ -22,7 +22,7 @@ let make ::posts => {
               List.map (
                 fun item =>
                   <li key=item.id>
-                    <Link toURL=("blog/" ^ item.id ^ "/")>
+                    <Link href=("blog/" ^ item.id ^ "/")>
                       (ReasonReact.stringToElement item.title)
                     </Link>
                   </li>
