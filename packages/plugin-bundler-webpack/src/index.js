@@ -31,6 +31,8 @@ const defaultExternals = [
   // to not bundle all deps in the static build (for perf)
   // the problem is that if people rely on node_modules for stuff
   // like css, this breaks their build.
+  //
+  // @todo find a better way than a whitelist
 
   // Glamor integration
   "glamor",
@@ -40,7 +42,9 @@ const defaultExternals = [
   "aphrodite",
   "aphrodite/no-important",
 
-  "react-native-web"
+  "react-native-web",
+
+  "react-helmet"
 ];
 
 const getWebpackConfig = (config: PhenomicConfig) => {

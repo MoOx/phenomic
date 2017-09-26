@@ -1,4 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import path from "path";
+import fs from "fs";
+
 import globby from "globby";
 
 it("should build example correctly", () => {
@@ -34,4 +37,11 @@ it("should build example correctly", () => {
         !assetsBundlerFiles.includes(file)
     )
   ).toMatchSnapshot();
+
+  const file1 = fs.readFileSync(
+    path.join(__dirname, "..", "dist", "index.html"),
+    { encoding: "utf8" }
+  );
+  expect(file1).toContain("Fifth post");
+  expect(file1).toContain('<title data-react-helmet="true">Hello world');
 });
