@@ -20,10 +20,12 @@ const PageError = ({ error }: { error: Object }) => {
           </Text>
           {status === 404 && (
             <View>
-              {"It seems you found a broken link. "}
-              {"Sorry about that. "}
-              <br />
-              {"Do not hesitate to report this page."}
+              <Text>
+                {"It seems you found a broken link. "}
+                {"Sorry about that. "}
+                <br />
+                {"Do not hesitate to report this page."}
+              </Text>
             </View>
           )}
         </View>
