@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/core",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.10",
   "publishConfig": {
     "access": "public"
   },
@@ -13,7 +13,7 @@
   "main": "lib/index.js",
   "files": ["lib"],
   "dependencies": {
-    "@phenomic/api-client": "^1.0.0-alpha.6",
+    "@phenomic/api-client": "^1.0.0-alpha.10",
     "chalk": "^1.1.3",
     "cosmiconfig": "^2.1.1",
     "debug": "^2.6.0",
