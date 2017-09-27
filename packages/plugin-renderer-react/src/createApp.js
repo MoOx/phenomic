@@ -10,6 +10,13 @@ import createStore from "./shared/store";
 
 const debug = require("debug")("phenomic:plugin:react");
 
+const render =
+  typeof document !== "undefined" &&
+  !document.querySelector("#phenomic-DevLoader") &&
+  ReactDOM.hydrate
+    ? ReactDOM.hydrate
+    : ReactDOM.render;
+
 let store;
 
 export const renderApp = (routes: () => React.Element<any>) => {
@@ -31,7 +38,7 @@ export const renderApp = (routes: () => React.Element<any>) => {
         : undefined
     );
 
-  ReactDOM.render(
+  render(
     <AppContainer>
       <Provider fetch={createFetchFunction()} store={store}>
         {routes()}
