@@ -29,7 +29,7 @@
     "chalk": "^1.1.3",
     "css-loader": "^0.28.0",
     "debug": "^2.6.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "find-cache-dir": "^0.1.1",
     "multili": "^1.1.0",
     "react-hot-loader": "^3.0.0-beta.7",
