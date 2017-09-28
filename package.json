@@ -31,15 +31,15 @@
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
     "prettier": "^1.6.0",
-    "rimraf": "^2.4.2"
+    "trash-cli": "^1.4.0"
   },
   "scripts": {
     "#<git hooks>": "handled by husky",
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
     "cleanup-node_modules":
-      "rimraf (packages|examples)/*/node_modules docs/node_modules",
-    "clean": "lerna exec -- rimraf lib",
+      "trash node_modules packages/*/node_modules examples/*/node_modules docs/node_modules",
+    "clean": "trash packages/*/lib",
     "transpile":
       "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
     "posttranspile": "lerna run prepare",
@@ -129,5 +129,8 @@
     "transformIgnorePatterns": ["node_modules"],
     "testPathIgnorePatterns": ["/_output/"]
   },
-  "workspaces": ["docs", "examples/*", "packages/*"]
+  "workspaces": ["docs", "examples/*", "packages/*"],
+  "dependencies": {
+    "trash-cli": "^1.4.0"
+  }
 }
