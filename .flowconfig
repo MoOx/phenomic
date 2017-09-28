@@ -1,5 +1,5 @@
 [version]
-^0.54.0
+^0.55.0
 
 [libs]
 ./flow/interfaces/
@@ -30,4 +30,5 @@ module.file_ext=.json
 
 # packages/*
 module.name_mapper='^@phenomic\/\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
+module.name_mapper='^@phenomic\/\([a-z-]+\)\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/\2'
 module.name_mapper='^@phenomic\/\([a-z-]+\)$' -> '<PROJECT_ROOT>/packages/\1/src'
