@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-styles-with-glamor",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.10",
+    "@phenomic/cli": "^1.0.0-alpha.11",
     "@phenomic/core": "^1.0.0-alpha.10",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.10",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.11",
     "glamor": "^2.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

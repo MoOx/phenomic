@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/preset-react-app",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "publishConfig": {
     "access": "public"
   },
@@ -26,7 +26,7 @@
   "files": ["lib"],
   "dependencies": {
     "@phenomic/plugin-api-related-content": "^1.0.0-alpha.10",
-    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.10",
+    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.11",
     "@phenomic/plugin-collector-files": "^1.0.0-alpha.10",
     "@phenomic/plugin-public-assets": "^1.0.0-alpha.10",
     "@phenomic/plugin-renderer-react": "^1.0.0-alpha.10",
