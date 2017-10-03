@@ -1,5 +1,6 @@
 import path from "path";
 
+import logSymbols from "log-symbols";
 import "isomorphic-fetch";
 import jsonFetch from "simple-json-fetch";
 import getPort from "get-port";
@@ -158,6 +159,11 @@ async function build(config) {
     );
     debug("urls have been resolved");
     debug(urls);
+    if (urls.length === 0) {
+      console.log(
+        `${logSymbols.warning} No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
+      );
+    }
     await Promise.all(
       urls.map(location =>
         prerenderFileAndDependencies({
