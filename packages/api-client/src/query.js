@@ -1,12 +1,6 @@
-import invariant from "invariant";
-
 const debug = require("debug")("phenomic:api-client");
 
 function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
-  invariant(
-    typeof config.path === "string",
-    "A query must at least contain a path"
-  );
   debug("query", config);
 
   // note that during static build, we initiate the query with no id
