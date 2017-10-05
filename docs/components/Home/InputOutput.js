@@ -106,7 +106,11 @@ const InputOutput = () => (
       <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
         {"Get a website"}
       </Text>
-      <Browser style={{ boxShadow: "0 4px 10px rgba(0,0,0,.4)" }}>
+      <Browser
+        style={{
+          borderRadius: 100,
+          boxShadow: "0 4px 10px rgba(0,0,0,.4)"
+        }}>
         <Text
           style={{
             backgroundColor: "#553A81",
