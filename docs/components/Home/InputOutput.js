@@ -14,12 +14,14 @@ const InputOutput = () => (
         {"Choose your favorite technologies"}
       </Text>
       <View
-        style={{
-          backgroundColor: "#12171C",
-          padding: Spacer.default,
-          borderRadius: 6,
-          boxShadow: "0 4px 10px rgba(0,0,0,.4)"
-        }}
+        style={[
+          {
+            backgroundColor: "#12171C",
+            padding: Spacer.default,
+            borderRadius: 6
+          },
+          styles.shadow
+        ]}
       >
         <View style={{ flexDirection: "row" }}>
           <View
@@ -106,7 +108,7 @@ const InputOutput = () => (
       <Text style={{ color: "#fff", textAlign: "center", padding: 10 }}>
         {"Get a website"}
       </Text>
-      <Browser style={{ boxShadow: "0 4px 10px rgba(0,0,0,.4)" }}>
+      <Browser style={styles.shadow}>
         <Text
           style={{
             backgroundColor: "#553A81",
@@ -152,6 +154,9 @@ const styles = StyleSheet.create({
   row: {
     flexGrow: 1,
     flexDirection: "row"
+  },
+  shadow: {
+    filter: "drop-shadow(0 4px 10px rgba(0,0,0,.4))"
   }
 });
 
