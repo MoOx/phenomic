@@ -84,39 +84,49 @@ const db = {
       });
     });
   },
-  put(sub: string | Array<string>, key: string, value: any): Promise<Object> {
+  put(
+    sub: null | string | Array<string>,
+    key: string,
+    value: any
+  ): Promise<Object> {
     return new Promise((resolve, reject) => {
       const data = { ...value, key };
-      return getSublevel(level, sub).put(key, data, options, error => {
-        if (error) {
-          reject(error);
-          return;
-        } else {
-          resolve(data);
+      return (sub ? getSublevel(level, sub) : level).put(
+        key,
+        data,
+        options,
+        error => {
+          if (error) {
+            reject(error);
+            return;
+          } else {
+            resolve(data);
+          }
         }
-      });
+      );
     });
   },
-  get(sub: string | Array<string>, key: string): Promise<Object> {
+  get(sub: null | string | Array<string>, key: string): Promise<Object> {
     return new Promise((resolve, reject) => {
-      return getSublevel(level, sub).get(key, options, async function(
-        error,
-        data
-      ) {
-        if (error) {
-          reject(error);
-        } else {
-          const { body, ...metadata } = data.data;
-          const relatedData = await getDataRelations(metadata);
-          resolve({
-            key: key,
-            value: {
-              ...relatedData,
-              body
-            }
-          });
+      return (sub ? getSublevel(level, sub) : level).get(
+        key,
+        options,
+        async function(error, data) {
+          if (error) {
+            reject(error);
+          } else {
+            const { body, ...metadata } = data.data;
+            const relatedData = await getDataRelations(metadata);
+            resolve({
+              key: key,
+              value: {
+                ...relatedData,
+                body
+              }
+            });
+          }
         }
-      });
+      );
     });
   },
   getPartial(sub: string | Array<string>, key: string): Promise<Object> {

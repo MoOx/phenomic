@@ -142,6 +142,20 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
+  server.get("/item/*.json", async function(
+    req: express$Request,
+    res: express$Response
+  ) {
+    debug(req.url, JSON.stringify(req.params));
+    try {
+      const resource = await db.get(null, req.params["0"]);
+      res.json(resource.value);
+    } catch (error) {
+      console.error(error);
+      res.status(404).end();
+    }
+  });
+
   // Install the plugins
   plugins.forEach(plugin => {
     if (typeof plugin.define === "function") {
