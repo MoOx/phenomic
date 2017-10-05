@@ -3,19 +3,28 @@ function postfix(url) {
 }
 
 const protect = encodeURIComponent;
+const urlify = (pieces: Array<?string>): string =>
+  pieces.filter(piece => typeof piece !== "undefined").join("/");
 
 function url(config: Object): string {
   const root = config.root || "";
   if (typeof config === "string") {
-    return [root, config].join("/");
+    return urlify([root, config]);
   }
   if (typeof config.id === "string") {
-    return postfix([root, config.path, "item", config.id].join("/"));
+    return postfix(
+      urlify([
+        root,
+        config.path ? protect(config.path) : undefined,
+        "item",
+        config.id
+      ])
+    );
   }
   return postfix(
-    [
+    urlify([
       root,
-      protect(config.path),
+      config.path ? protect(config.path) : undefined,
       `by-${protect(config.by)}`,
       protect(config.value || "1"),
       protect(config.order || "desc"),
@@ -23,7 +32,7 @@ function url(config: Object): string {
       ...(config.limit && config.after
         ? [`after-${protect(config.after)}`]
         : [])
-    ].join("/")
+    ])
   );
 }
 
