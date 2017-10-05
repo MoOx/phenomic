@@ -84,7 +84,11 @@ const db = {
       });
     });
   },
-  put(sub?: string | Array<string>, key: string, value: any): Promise<Object> {
+  put(
+    sub: null | string | Array<string>,
+    key: string,
+    value: any
+  ): Promise<Object> {
     return new Promise((resolve, reject) => {
       const data = { ...value, key };
       return (sub ? getSublevel(level, sub) : level).put(
@@ -102,7 +106,7 @@ const db = {
       );
     });
   },
-  get(sub?: string | Array<string>, key: string): Promise<Object> {
+  get(sub: null | string | Array<string>, key: string): Promise<Object> {
     return new Promise((resolve, reject) => {
       return (sub ? getSublevel(level, sub) : level).get(
         key,

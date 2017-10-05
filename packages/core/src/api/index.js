@@ -148,7 +148,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
-      const resource = await db.get(undefined, req.params["0"]);
+      const resource = await db.get(null, req.params["0"]);
       res.json(resource.value);
     } catch (error) {
       console.error(error);

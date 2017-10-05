@@ -118,7 +118,7 @@ export default function() {
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
             // full resource, not sorted
-            db.put(undefined, key, {
+            db.put(null, key, {
               ...adjustedJSON,
               id: key
             }),
