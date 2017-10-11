@@ -6,6 +6,8 @@ import autoLinkHeadings from "rehype-autolink-headings";
 import highlight from "rehype-highlight";
 import html from "rehype-stringify";
 import rehype2react from "rehype-react";
+import deburr from "lodash.deburr";
+import kebabCase from "lodash.kebabcase";
 
 const defaultOptions = {
   safe: "secure",
@@ -56,18 +58,19 @@ function processAsciidoc(text) {
     ...doc.attributes.$$smap,
     body: ad.convert(text, defaultOptions)
   };
-  data.date = new Date(
-    (doc.getAttribute("date") ||
-      doc.getAttribute("revdate") ||
-      doc.getAttribute("localdate") ||
-      doc.getAttribute("docdate")
-    ).replace(/-/g, "/")
-  );
+
+  data.date =
+    doc.getAttribute("date") || doc.getAttribute("revdate") || undefined;
   data.title = doc.getAttribute("doctitle");
   data.layout = doc.getAttribute("layout");
   data.showdate = doc.getAttribute("nodate", true);
-  data.tags = doc.getAttribute("tags", "").split(",");
+  data.tags = doc.getAttribute("tags");
+  data.tags = data.tags
+    ? data.tags.split(",").map(tag => kebabCase(deburr(tag)))
+    : [];
+
   envAttributes.map(key => delete data[key]);
+
   return data;
 }
 

@@ -17,7 +17,7 @@ it("should transform asciidoc as html", () => {
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First draft
 :tags: phenomic, documentation, test, déjà vu
-
+:iconsdir: /path/to/icons
 Test of Asciidoc.js transformer for Phenomic.
 
 == Heading
