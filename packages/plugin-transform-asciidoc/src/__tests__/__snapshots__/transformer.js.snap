@@ -14,7 +14,9 @@ Object {
   "backend-html5-doctype-article": "",
   "basebackend-html": "",
   "basebackend-html-doctype-article": "",
-  "body": "<div id=\\"preamble\\">
+  "caution-caption": "Caution",
+  "chapter-refsig": "Chapter",
+  "contents": "<div id=\\"preamble\\">
 <div class=\\"sectionbody\\">
 <div class=\\"paragraph\\">
 <p>Test of Asciidoc.js transformer for Phenomic.</p>
@@ -42,8 +44,6 @@ Object {
 </div>
 </div>
 </div>",
-  "caution-caption": "Caution",
-  "chapter-refsig": "Chapter",
   "date": "2017-10-05",
   "doctitle": "Hello, AsciiDoc!",
   "doctype-article": "",
@@ -54,7 +54,7 @@ Object {
   "firstname": "Ezra",
   "header_footer": "false",
   "iconfont-remote": "",
-  "iconsdir": "images/icons",
+  "iconsdir": "/path/to/icons",
   "important-caption": "Important",
   "last-update-label": "Last updated",
   "lastname": "Lalonde",
@@ -91,4 +91,241 @@ Object {
 }
 `;
 
-exports[`should render asciidoc as json (react component) 1`] = `undefined`;
+exports[`should render asciidoc as json (react component) 1`] = `
+Object {
+  "c": Array [
+    Object {
+      "c": Array [
+        "
+",
+        Object {
+          "c": Array [
+            "
+",
+            Object {
+              "c": Array [
+                "
+",
+                Object {
+                  "c": Array [
+                    "Test of Asciidoc.js transformer for Phenomic.",
+                  ],
+                  "t": "p",
+                },
+                "
+",
+              ],
+              "p": Object {
+                "className": "paragraph",
+              },
+              "t": "div",
+            },
+            "
+",
+          ],
+          "p": Object {
+            "className": "sectionbody",
+          },
+          "t": "div",
+        },
+        "
+",
+      ],
+      "p": Object {
+        "id": "preamble",
+      },
+      "t": "div",
+    },
+    "
+",
+    Object {
+      "c": Array [
+        "
+",
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                Object {
+                  "p": Object {
+                    "className": "icon icon-link",
+                  },
+                  "t": "span",
+                },
+              ],
+              "p": Object {
+                "aria-hidden": true,
+                "href": "#_heading",
+              },
+              "t": "a",
+            },
+            "Heading",
+          ],
+          "p": Object {
+            "id": "_heading",
+          },
+          "t": "h2",
+        },
+        "
+",
+        Object {
+          "c": Array [
+            "
+",
+            Object {
+              "c": Array [
+                "
+",
+                Object {
+                  "c": Array [
+                    "
+",
+                    Object {
+                      "c": Array [
+                        "
+",
+                        Object {
+                          "c": Array [
+                            "item 1",
+                          ],
+                          "t": "p",
+                        },
+                        "
+",
+                      ],
+                      "t": "li",
+                    },
+                    "
+",
+                    Object {
+                      "c": Array [
+                        "
+",
+                        Object {
+                          "c": Array [
+                            "item 2",
+                          ],
+                          "t": "p",
+                        },
+                        "
+",
+                      ],
+                      "t": "li",
+                    },
+                    "
+",
+                  ],
+                  "t": "ul",
+                },
+                "
+",
+              ],
+              "p": Object {
+                "className": "ulist",
+              },
+              "t": "div",
+            },
+            "
+",
+            Object {
+              "c": Array [
+                "
+",
+                Object {
+                  "c": Array [
+                    "
+",
+                    Object {
+                      "c": Array [
+                        Object {
+                          "c": Array [
+                            Object {
+                              "c": Array [
+                                "const",
+                              ],
+                              "p": Object {
+                                "className": "hljs-keyword",
+                              },
+                              "t": "span",
+                            },
+                            " name = ",
+                            Object {
+                              "c": Array [
+                                "\\"Ezra\\"",
+                              ],
+                              "p": Object {
+                                "className": "hljs-string",
+                              },
+                              "t": "span",
+                            },
+                            "
+",
+                            Object {
+                              "c": Array [
+                                "console",
+                              ],
+                              "p": Object {
+                                "className": "hljs-built_in",
+                              },
+                              "t": "span",
+                            },
+                            ".log(",
+                            Object {
+                              "c": Array [
+                                "\`Hello, nodejs!\`",
+                              ],
+                              "p": Object {
+                                "className": "hljs-string",
+                              },
+                              "t": "span",
+                            },
+                            ")",
+                          ],
+                          "p": Object {
+                            "className": "hljs language-javascript",
+                            "data-lang": "javascript",
+                          },
+                          "t": "code",
+                        },
+                      ],
+                      "p": Object {
+                        "className": "highlight",
+                      },
+                      "t": "pre",
+                    },
+                    "
+",
+                  ],
+                  "p": Object {
+                    "className": "content",
+                  },
+                  "t": "div",
+                },
+                "
+",
+              ],
+              "p": Object {
+                "className": "listingblock",
+              },
+              "t": "div",
+            },
+            "
+",
+          ],
+          "p": Object {
+            "className": "sectionbody",
+          },
+          "t": "div",
+        },
+        "
+",
+      ],
+      "p": Object {
+        "className": "sect1",
+      },
+      "t": "div",
+    },
+  ],
+  "t": "div",
+}
+`;

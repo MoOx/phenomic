@@ -56,7 +56,7 @@ function processAsciidoc(text) {
   const doc = ad.load(text, defaultOptions);
   let data = {
     ...doc.attributes.$$smap,
-    body: ad.convert(text, defaultOptions)
+    contents: ad.convert(text, defaultOptions)
   };
 
   data.date =
@@ -103,6 +103,6 @@ export default (config?: PhenomicConfig, contents: string) => {
     processor.use(rehype2react, { createElement });
   }
 
-  data.body = processor.processSync(data.body).contents;
+  data.contents = processor.processSync(data.contents).contents;
   return data;
 };

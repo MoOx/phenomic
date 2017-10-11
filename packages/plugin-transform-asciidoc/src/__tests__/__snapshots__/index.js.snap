@@ -14,7 +14,9 @@ Object {
   "backend-html5-doctype-article": "",
   "basebackend-html": "",
   "basebackend-html-doctype-article": "",
-  "body": "<div id=\\"preamble\\">
+  "caution-caption": "Caution",
+  "chapter-refsig": "Chapter",
+  "contents": "<div id=\\"preamble\\">
 <div class=\\"sectionbody\\">
 <div class=\\"paragraph\\">
 <p>Test of Asciidoc.js transformer for Phenomic.</p>
@@ -42,8 +44,6 @@ Object {
 </div>
 </div>
 </div>",
-  "caution-caption": "Caution",
-  "chapter-refsig": "Chapter",
   "date": "2017-10-05",
   "doctitle": "Hello, AsciiDoc!",
   "doctype-article": "",
