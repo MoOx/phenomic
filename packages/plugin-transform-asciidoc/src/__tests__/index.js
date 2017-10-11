@@ -27,7 +27,7 @@ Test of Asciidoc.js transformer for Phenomic.
 
 [source,javascript]
 const name = "Ezra"
-console.log(\`Hello, ${name}!\`)
+console.log(\`Hello, \${name}!\`)
 `)
       })
   ).toMatchSnapshot();

@@ -54,7 +54,7 @@ const envAttributes = [
 function processAsciidoc(text) {
   const ad = asciidoctor();
   const doc = ad.load(text, defaultOptions);
-  let data = {
+  const data = {
     ...doc.attributes.$$smap,
     contents: ad.convert(text, defaultOptions)
   };
@@ -83,7 +83,7 @@ const createElement = (component, props, children) => {
   };
 };
 
-export default (config?: PhenomicConfig, contents: string) => {
+export default (config?: PhenomicConfig, contents: Buffer) => {
   const data = processAsciidoc(contents);
 
   const processor = unified()

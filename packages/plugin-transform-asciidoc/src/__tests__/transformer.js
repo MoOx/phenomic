@@ -2,7 +2,7 @@ import defaultConfig from "@phenomic/core/lib/defaultConfig.js";
 
 import transformer from "../transformer.js";
 
-const input = `
+const input = new Buffer(`
 = Hello, AsciiDoc!
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First Draft
@@ -18,8 +18,8 @@ Test of Asciidoc.js transformer for Phenomic.
 
 [source,javascript]
 const name = "Ezra"
-console.log(\`Hello, ${name}!\`)
-`;
+console.log(\`Hello, \${name}!\`)
+`);
 
 it("should render asciidoc as json (react component)", () => {
   const adoc = transformer(
@@ -40,10 +40,10 @@ it("should render asciidoc as html", () => {
 it("should have tags", () => {
   const adoc = transformer(
     defaultConfig,
-    `
+    new Buffer(`
 = Title
 :tags: phenomic, documentation, test, déjà vu
-  `
+  `)
   );
   expect(adoc.tags).toEqual(["phenomic", "documentation", "test", "deja-vu"]);
 });
@@ -51,9 +51,9 @@ it("should have tags", () => {
 it("should not have tags", () => {
   const adoc = transformer(
     defaultConfig,
-    `
+    new Buffer(`
 = Title
-  `
+  `)
   );
   expect(adoc.tags).toEqual([]);
 });
@@ -61,12 +61,12 @@ it("should not have tags", () => {
 it("should use explicit date attribute for date", () => {
   const adoc = transformer(
     defaultConfig,
-    `
+    new Buffer(`
 = Title
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First Draft
 :date: 2011-12-25
-  `
+  `)
   );
   expect(adoc.date).toBe("2011-12-25");
 });
@@ -74,11 +74,11 @@ v1.0, 2017-10-05: First Draft
 it("should use revdate for date", () => {
   const adoc = transformer(
     defaultConfig,
-    `
+    new Buffer(`
 = Title
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First Draft
-  `
+  `)
   );
   expect(adoc.date).toBe("2017-10-05");
 });
@@ -86,9 +86,9 @@ v1.0, 2017-10-05: First Draft
 it("should use have no date attribute", () => {
   const adoc = transformer(
     defaultConfig,
-    `
+    new Buffer(`
 = Title
-  `
+  `)
   );
   expect(adoc.date).toBe(undefined);
 });

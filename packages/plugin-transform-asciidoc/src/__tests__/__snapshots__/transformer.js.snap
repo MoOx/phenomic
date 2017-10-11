@@ -39,7 +39,7 @@ Object {
 <div class=\\"listingblock\\">
 <div class=\\"content\\">
 <pre class=\\"highlight\\"><code class=\\"hljs language-javascript\\" data-lang=\\"javascript\\"><span class=\\"hljs-keyword\\">const</span> name = <span class=\\"hljs-string\\">\\"Ezra\\"</span>
-<span class=\\"hljs-built_in\\">console</span>.log(<span class=\\"hljs-string\\">\`Hello, nodejs!\`</span>)</code></pre>
+<span class=\\"hljs-built_in\\">console</span>.log(<span class=\\"hljs-string\\">\`Hello, <span class=\\"hljs-subst\\">\${name}</span>!\`</span>)</code></pre>
 </div>
 </div>
 </div>
@@ -272,7 +272,17 @@ Object {
                             ".log(",
                             Object {
                               "c": Array [
-                                "\`Hello, nodejs!\`",
+                                "\`Hello, ",
+                                Object {
+                                  "c": Array [
+                                    "\${name}",
+                                  ],
+                                  "p": Object {
+                                    "className": "hljs-subst",
+                                  },
+                                  "t": "span",
+                                },
+                                "!\`",
                               ],
                               "p": Object {
                                 "className": "hljs-string",
