@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/cli",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "publishConfig": {
     "access": "public"
   },
@@ -15,7 +15,7 @@
   },
   "files": ["index.js", "lib"],
   "dependencies": {
-    "@phenomic/core": "^1.0.0-alpha.10",
+    "@phenomic/core": "^1.0.0-alpha.12",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.0",
     "babel-register": "^6.24.0",
@@ -25,9 +25,9 @@
     "yargs": "^7.0.2"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.10"
+    "@phenomic/core": "^1.0.0-alpha.12"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.10"
+    "@phenomic/core": "^1.0.0-alpha.12"
   }
 }

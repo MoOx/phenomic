@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.11",
-    "@phenomic/core": "^1.0.0-alpha.10",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.11",
+    "@phenomic/cli": "^1.0.0-alpha.12",
+    "@phenomic/core": "^1.0.0-alpha.12",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.12",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.0.0",
