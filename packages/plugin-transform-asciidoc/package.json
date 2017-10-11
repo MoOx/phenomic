@@ -1,0 +1,46 @@
+{
+  "name": "@phenomic/plugin-transform-asciidoc",
+  "version": "1.0.0-alpha.10",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/phenomic/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": ["Ezra Lalonde"],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "asciidoc",
+    "asciidoctor"
+  ],
+  "description": "Phenomic plugin to transform asciidoc resources",
+  "main": "lib/index.js",
+  "files": ["lib"],
+  "dependencies": {
+    "asciidoctor.js": "^1.5.6-preview.3",
+    "debug": "^2.6.0",
+    "lodash.deburr": "^4.1.0",
+    "lodash.kebabcase": "^4.1.1",
+    "react": "^16.0.0",
+    "rehype-autolink-headings": "^2.0.0",
+    "rehype-highlight": "^2.0.1",
+    "rehype-parse": "^4.0.0",
+    "rehype-raw": "^2.0.0",
+    "rehype-react": "^3.0.0",
+    "rehype-slug": "^2.0.0",
+    "rehype-stringify": "^3.0.0",
+    "unified": "^6.1.5"
+  },
+  "peerDependencies": {
+    "@phenomic/core": "^1.0.0-alpha.10"
+  },
+  "devDependencies": {
+    "@phenomic/core": "^1.0.0-alpha.10",
+    "react-test-renderer": "^16.0.0"
+  }
+}

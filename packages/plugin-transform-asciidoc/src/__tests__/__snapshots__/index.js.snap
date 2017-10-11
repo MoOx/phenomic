@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should transform asciidoc as html 1`] = `
+Object {
+  "appendix-caption": "Appendix",
+  "appendix-refsig": "Appendix",
+  "attribute-missing": "skip",
+  "attribute-undefined": "drop-line",
+  "author": "Ezra Lalonde",
+  "authorcount": 1,
+  "authorinitials": "EL",
+  "authors": "Ezra Lalonde",
+  "backend-html5": "",
+  "backend-html5-doctype-article": "",
+  "basebackend-html": "",
+  "basebackend-html-doctype-article": "",
+  "caution-caption": "Caution",
+  "chapter-refsig": "Chapter",
+  "contents": "<div id=\\"preamble\\">
+<div class=\\"sectionbody\\">
+<div class=\\"paragraph\\">
+<p>Test of Asciidoc.js transformer for Phenomic.</p>
+</div>
+</div>
+</div>
+<div class=\\"sect1\\">
+<h2 id=\\"_heading\\"><a aria-hidden=\\"true\\" href=\\"#_heading\\"><span class=\\"icon icon-link\\"></span></a>Heading</h2>
+<div class=\\"sectionbody\\">
+<div class=\\"ulist\\">
+<ul>
+<li>
+<p>item 1</p>
+</li>
+<li>
+<p>item 2</p>
+</li>
+</ul>
+</div>
+<div class=\\"listingblock\\">
+<div class=\\"content\\">
+<pre class=\\"highlight\\"><code class=\\"hljs language-javascript\\" data-lang=\\"javascript\\"><span class=\\"hljs-keyword\\">const</span> name = <span class=\\"hljs-string\\">\\"Ezra\\"</span>
+<span class=\\"hljs-built_in\\">console</span>.log(<span class=\\"hljs-string\\">\`Hello, nodejs!\`</span>)</code></pre>
+</div>
+</div>
+</div>
+</div>",
+  "date": "2017-10-05",
+  "doctitle": "Hello, AsciiDoc!",
+  "doctype-article": "",
+  "email": "ezra@usefuliftrue.com",
+  "example-caption": "Example",
+  "figure-caption": "Figure",
+  "filetype-html": "",
+  "firstname": "Ezra",
+  "header_footer": "false",
+  "iconfont-remote": "",
+  "iconsdir": "/path/to/icons",
+  "important-caption": "Important",
+  "last-update-label": "Last updated",
+  "lastname": "Lalonde",
+  "layout": undefined,
+  "manname-title": "NAME",
+  "max-attribute-value-size": 4096,
+  "max-include-depth": 64,
+  "note-caption": "Note",
+  "notitle": "",
+  "prewrap": "",
+  "revdate": "2017-10-05",
+  "revnumber": "1.0",
+  "revremark": "First draft",
+  "sectids": "",
+  "section-refsig": "Section",
+  "showdate": true,
+  "stylesdir": ".",
+  "stylesheet": "",
+  "table-caption": "Table",
+  "tags": Array [
+    "phenomic",
+    "documentation",
+    "test",
+    "deja-vu",
+  ],
+  "tip-caption": "Tip",
+  "title": "Hello, AsciiDoc!",
+  "toc-placement": "auto",
+  "toc-title": "Table of Contents",
+  "untitled-label": "Untitled",
+  "version-label": "Version",
+  "warning-caption": "Warning",
+  "webfonts": "",
+}
+`;
