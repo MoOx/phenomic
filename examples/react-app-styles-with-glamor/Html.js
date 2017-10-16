@@ -1,10 +1,9 @@
 import * as React from "react";
-import { renderStatic } from "glamor/server";
+import { renderStaticOptimized } from "glamor/server";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {
-  const { html: { Main, State, Script }, css, ids } = renderStatic(() =>
-    render(<App />)
-  );
+  const { html, Main, State, Script } = render(<App />);
+  const { css, ids } = renderStaticOptimized(() => html);
 
   return (
     <html>
