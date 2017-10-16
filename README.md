@@ -17,6 +17,9 @@
 <a title="Version" href="https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md">
   <img src="https://img.shields.io/npm/v/@phenomic/core.svg" />
 </a>
+<a href="https://snyk.io/test/github/phenomic/phenomic">
+  <img src="https://snyk.io/test/github/phenomic/phenomic/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/phenomic/phenomic" style="max-width:100%;">
+</a>
 </p>
 
 <p align="center">
