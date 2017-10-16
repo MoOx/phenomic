@@ -64,6 +64,7 @@ export type PhenomicHtmlPropsType = {
     app: React$Element<any>
   ) => {
     assets: PhenomicAssets,
+    html: string,
     Main: ReactCompo,
     State: ReactCompo,
     Style: ReactCompo,

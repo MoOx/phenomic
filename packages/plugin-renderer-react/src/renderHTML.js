@@ -42,10 +42,11 @@ const renderHTML: PhenomicPluginRenderHTMLType = ({ config, props }) => {
           const css = sets.filter(asset => asset.endsWith(".css")).shift();
           const js = sets.filter(asset => asset.endsWith(".js")).shift();
           return {
-            Main: () => (
+            html: main,
+            Main: ({ html = main }) => (
               <div
                 id="PhenomicRoot"
-                dangerouslySetInnerHTML={{ __html: main || null }}
+                dangerouslySetInnerHTML={{ __html: html || null }}
               />
             ),
             State: () =>
