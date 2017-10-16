@@ -136,6 +136,61 @@ If you find a security issue, please first contact us directly before opening a 
 
 ---
 
+## Releasing
+
+Update necessary ``bsconfig.json`` (eg: ``packages/reason/bsconfig.json``)
+version number and stage the file in git (so release script gets it).
+
+```
+yarn release
+```
+
+The command will guide you.
+
+Once it's done, go to https://github.com/phenomic/phenomic/releases.
+Click on the new created tag and ``Edit tag`` to create release notes.
+
+The way to create notes is easy.
+Just go to https://github.com/phenomic/phenomic/commits/master
+and sort interesting commits (since last release) in the template below
+that you will use as notes:
+
+```
+# 🎉 No breaking changes 🎉
+or
+# 💥 Includes _Breaking changes_
+
+Blah blah
+
+## 💥 Breaking changes
+
+* [``@phenomic/PLUGIN_NAMEEEE``: AWESOME_MESSAGE](https://github.com/phenomic/phenomic/commit/HASSSSHHHHHHHHHHH),
+  by @DOERRRRR, reported|requested by @REPORTERRRRR (in [#XXXXXXX](https://github.com/phenomic/phenomic/issues/XXXXXXX))
+
+
+## 🐛 Bugfixes
+
+...
+
+##  👍 Improvements
+
+...
+
+## 🔥 New plugins
+
+...
+
+## ✨ New features
+
+...
+
+## 🌟 New Examples
+
+...
+```
+
+---
+
 ## How to Get in Touch
 
 * Chat - [#phenomic](https://gitter.im/phenomic/phenomic) on Gitter.
