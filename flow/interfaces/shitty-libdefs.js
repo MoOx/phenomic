@@ -28,3 +28,13 @@ declare module "rehype-stringify" {
 declare module "rehype-react" {
   declare var exports: any;
 }
+
+declare module "emotion" {
+  declare var exports: any;
+}
+declare module "emotion-server" {
+  declare var exports: any;
+}
+declare module "react-emotion" {
+  declare var exports: any;
+}
