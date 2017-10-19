@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-styles-with-radium",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.12",
-    "@phenomic/core": "^1.0.0-alpha.12",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.12",
+    "@phenomic/cli": "^1.0.0-alpha.13",
+    "@phenomic/core": "^1.0.0-alpha.13",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.13",
     "radium": "^0.19.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

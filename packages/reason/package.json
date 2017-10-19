@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/reason",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,7 @@
   "description": "Phenomic Reason bindings",
   "dependencies": {
     "@phenomic/api-client": "^1.0.0-alpha.12",
-    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.12",
+    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.13",
     "reason-react": "^0.2.4"
   },
   "devDependencies": {
