@@ -70,7 +70,7 @@ function createFetchFunction(port: number) {
         ...config,
         root: `http://localhost:${port}`
       })
-    ).then(res => res.json, err => err.error);
+    ).then(res => res.json);
   };
 }
 async function prerenderFileAndDependencies({
