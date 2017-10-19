@@ -6,6 +6,7 @@ import jsonFetch from "simple-json-fetch";
 import getPort from "get-port";
 import createURL from "@phenomic/api-client/lib/url";
 import rimraf from "rimraf";
+import pMap from "p-map";
 
 import { oneShot } from "../watch";
 import processFile from "../injection/processFile";
@@ -101,7 +102,7 @@ async function prerenderFileAndDependencies({
     phenomicFetch,
     location
   });
-  debug(`'${location}': files & deps collected`);
+  debug(`'${location}': files & deps collected`, files);
   return Promise.all(
     files.map(file =>
       writeFile(
@@ -164,8 +165,9 @@ async function build(config) {
         `${logSymbols.warning} No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
       );
     }
-    await Promise.all(
-      urls.map(location =>
+    await pMap(
+      urls,
+      location =>
         prerenderFileAndDependencies({
           config,
           renderer,
@@ -173,8 +175,8 @@ async function build(config) {
           assets,
           phenomicFetch,
           location
-        })
-      )
+        }),
+      { concurrency: 50 }
     );
     console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
