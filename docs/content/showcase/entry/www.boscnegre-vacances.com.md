@@ -7,4 +7,6 @@ showcaseTags:
   - business
   - multi-languages
 ---
-Official wesite of Bosc-Nègre, an holiday village with 23 charming cottages in the "Perigord Noir". (Dordogne, France)
+
+Official wesite of Bosc-Nègre, an holiday village with 23 charming cottages in
+the "Perigord Noir". (Dordogne, France)

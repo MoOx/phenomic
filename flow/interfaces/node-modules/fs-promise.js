@@ -3,8 +3,8 @@ declare module "fs-promise" {
   declare function mkdirs(path: string): Promise<any>;
 
   declare interface fsPromise {
-    writeFile: writeFile,
-    mkdirs: mkdirs
+    writeFile: writeFile;
+    mkdirs: mkdirs;
   }
   declare var exports: fsPromise;
 }

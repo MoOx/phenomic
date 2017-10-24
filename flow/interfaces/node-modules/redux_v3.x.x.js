@@ -32,15 +32,15 @@ declare module "redux" {
     bindActionCreators<actionCreators: ActionCreatorOrObjectOfACs>(
       actionCreators: actionCreators,
       dispatch: Dispatch
-    ): actionCreators,
-    combineReducers(reducers: Reducers): Reducer<any, any>,
+    ): actionCreators;
+    combineReducers(reducers: Reducers): Reducer<any, any>;
     createStore(
       reducer: Reducer<any, any>,
       initialState?: State,
       enhancer?: StoreEnhancer
-    ): Store,
-    applyMiddleware(...middlewares: Array<Middleware>): StoreEnhancer,
-    compose(...functions: Array<Function | StoreEnhancer>): Function
+    ): Store;
+    applyMiddleware(...middlewares: Array<Middleware>): StoreEnhancer;
+    compose(...functions: Array<Function | StoreEnhancer>): Function;
   }
   declare var exports: Redux;
 }

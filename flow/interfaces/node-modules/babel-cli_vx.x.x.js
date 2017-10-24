@@ -17,10 +17,10 @@ declare module "babel-cli" {
   declare module.exports: any;
 
   /**
- * We include stubs for each file inside this npm package in case you need to
- * require those files directly. Feel free to delete any files that aren't
- * needed.
- */
+   * We include stubs for each file inside this npm package in case you need to
+   * require those files directly. Feel free to delete any files that aren't
+   * needed.
+   */
 }
 declare module "babel-cli/bin/babel-doctor" {
   declare module.exports: any;

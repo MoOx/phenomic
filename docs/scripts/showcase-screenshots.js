@@ -56,13 +56,11 @@ const screenshots = list.reduce((screenshots, { url }) => {
   ];
 }, []);
 
-const nightmare = Nightmare(
-  {
-    // waitTimeout: 30000,
-    // gotoTimeout: 30000,
-    // loadTimeout: 30000,
-  }
-);
+const nightmare = Nightmare({
+  // waitTimeout: 30000,
+  // gotoTimeout: 30000,
+  // loadTimeout: 30000,
+});
 let prevUrl;
 screenshots.forEach(({ url, tmpLocation, width, height }) => {
   try {

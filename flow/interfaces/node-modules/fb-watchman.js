@@ -17,16 +17,16 @@ export type WatchEvent = {
 
 declare module "fb-watchman" {
   declare class Client {
-    capabilityCheck(config: Object, callback: (error: any) => void): void,
+    capabilityCheck(config: Object, callback: (error: any) => void): void;
     command(
       config: ["watch-project", string],
       callback: (error: any, response: CommandResponse) => void
-    ): void,
+    ): void;
     command(
       config: ["subscribe", Watch, "files", Subscription],
       callback: (error: any) => void
-    ): void,
-    on(eventName: string, callback: (event: WatchEvent) => void): void,
-    end(): void
+    ): void;
+    on(eventName: string, callback: (event: WatchEvent) => void): void;
+    end(): void;
   }
 }

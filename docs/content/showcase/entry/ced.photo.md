@@ -6,4 +6,5 @@ showcaseTags:
   - blog
   - business
 ---
+
 Ced.photo is a portfolio of a french passionate photographer and videomaker.

@@ -2,10 +2,9 @@ import * as React from "react";
 import { StyleSheetServer } from "aphrodite/no-important";
 
 export default ({ App, render }: PhenomicHtmlPropsType) => {
-  const {
-    html: { Main, State, Script },
-    css
-  } = StyleSheetServer.renderStatic(() => render(<App />));
+  const { html: { Main, State, Script }, css } = StyleSheetServer.renderStatic(
+    () => render(<App />)
+  );
 
   return (
     <html>

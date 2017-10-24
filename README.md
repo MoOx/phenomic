@@ -48,35 +48,46 @@
 
 ## Install
 
-Check out [phenomic.io/docs/getting-started](https://phenomic.io/docs/getting-started) to find commands line to install
-the version that match your needs.
+Check out
+[phenomic.io/docs/getting-started](https://phenomic.io/docs/getting-started) to
+find commands line to install the version that match your needs.
 
 ## Examples
 
-There are plenty of [examples](https://github.com/phenomic/phenomic/tree/master/examples) available. Just take a look!
+There are plenty of
+[examples](https://github.com/phenomic/phenomic/tree/master/examples) available.
+Just take a look!
 
 ## Documentation
 
 The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 
----
+- - -
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>
+<img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
 
----
+- - -
 
 ## [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
 
-✨ Check out our [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md) guide to get started.
+✨ Check out our
+[CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
+guide to get started.
 
 * ⇄ Pull/Merge requests and ★ Stars are always welcome.
-* For bugs and feature requests, please [create an issue](https://github.com/phenomic/phenomic/issues/new).
-* Pull requests must be accompanied by passing automated tests. See [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md) for more information.
-* Donation is a way to contribute. [You can help us via our OpenCollective page](https://opencollective.com/phenomic).
+* For bugs and feature requests, please [create an
+  issue](https://github.com/phenomic/phenomic/issues/new).
+* Pull requests must be accompanied by passing automated tests. See
+  [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
+  for more information.
+* Donation is a way to contribute. [You can help us via our OpenCollective
+  page](https://opencollective.com/phenomic).
 
 ## Backers
 
-[Become a backer](https://opencollective.com/phenomic#backer) and show your support for our open source project.
+[Become a backer](https://opencollective.com/phenomic#backer) and show your
+support for our open source project.
 
 <a href="https://opencollective.com/phenomic/backer/0/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/0/avatar"></a>
 <a href="https://opencollective.com/phenomic/backer/1/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/1/avatar"></a>
@@ -109,10 +120,14 @@ The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 <a href="https://opencollective.com/phenomic/backer/28/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/28/avatar"></a>
 <a href="https://opencollective.com/phenomic/backer/29/website" target="_blank"><img src="https://opencollective.com/phenomic/backer/29/avatar"></a>
 
-
 ## Sponsors
 
-Does your company use Phenomic?  Ask your manager or marketing team if your company would be interested in supporting our project.  Support will allow the maintainers to dedicate more time for maintenance and new features for everyone.  Also, your company's logo will show [on GitHub](https://github.com/phenomic/phenomic#readme)--who doesn't want a little extra exposure?  [Here's the info](https://opencollective.com/phenomic#sponsor).
+Does your company use Phenomic? Ask your manager or marketing team if your
+company would be interested in supporting our project. Support will allow the
+maintainers to dedicate more time for maintenance and new features for everyone.
+Also, your company's logo will show [on
+GitHub](https://github.com/phenomic/phenomic#readme)--who doesn't want a little
+extra exposure? [Here's the info](https://opencollective.com/phenomic#sponsor).
 
 <a href="https://opencollective.com/phenomic/sponsor/0/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/0/avatar"></a>
 <a href="https://opencollective.com/phenomic/sponsor/1/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/1/avatar"></a>

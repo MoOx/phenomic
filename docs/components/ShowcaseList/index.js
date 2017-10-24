@@ -66,18 +66,18 @@ const ShowcaseList = (props: Object) => (
             {"Submit your website!"}
           </Link>
           {props.params &&
-          props.params.showcaseTags && (
-            <View style={styles.currentFilter}>
-              <Text style={styles.filterMessage}>
-                {"You are currently viewing projects that match "}
-                <em>{props.params.showcaseTags}</em>
-                {" tag. "}
-                <Link href={"/showcase/"} style={styles.filterMessageLink}>
-                  {"View all."}
-                </Link>
-              </Text>
-            </View>
-          )}
+            props.params.showcaseTags && (
+              <View style={styles.currentFilter}>
+                <Text style={styles.filterMessage}>
+                  {"You are currently viewing projects that match "}
+                  <em>{props.params.showcaseTags}</em>
+                  {" tag. "}
+                  <Link href={"/showcase/"} style={styles.filterMessageLink}>
+                    {"View all."}
+                  </Link>
+                </Text>
+              </View>
+            )}
           <View style={styles.list}>
             {prepareList(props.showcase.node.list).map(item => (
               <View style={styles.item} key={item.id}>
@@ -130,35 +130,33 @@ const ShowcaseList = (props: Object) => (
           <View style={styles.paginationRow}>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-              props.showcase.node.hasPreviousPage && (
-                <Link
-                  style={styles.link}
-                  href={
-                    props.showcase.node.previousPageIsFirst ? (
-                      `/showcase`
-                    ) : (
-                      `/showcase/${props.params.showcaseTags
-                        ? `tag/${props.params.showcaseTags}/`
-                        : ""}after/${props.showcase.node.previous}`
-                    )
-                  }
-                >
-                  {"← Previous"}
-                </Link>
-              )}
+                props.showcase.node.hasPreviousPage && (
+                  <Link
+                    style={styles.link}
+                    href={
+                      props.showcase.node.previousPageIsFirst
+                        ? `/showcase`
+                        : `/showcase/${props.params.showcaseTags
+                            ? `tag/${props.params.showcaseTags}/`
+                            : ""}after/${props.showcase.node.previous}`
+                    }
+                  >
+                    {"← Previous"}
+                  </Link>
+                )}
             </View>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-              props.showcase.node.hasNextPage && (
-                <Link
-                  style={styles.link}
-                  href={`/showcase/${props.params.showcaseTags
-                    ? `tag/${props.params.showcaseTags}/`
-                    : ""}after/${props.showcase.node.next}`}
-                >
-                  {"Next →"}
-                </Link>
-              )}
+                props.showcase.node.hasNextPage && (
+                  <Link
+                    style={styles.link}
+                    href={`/showcase/${props.params.showcaseTags
+                      ? `tag/${props.params.showcaseTags}/`
+                      : ""}after/${props.showcase.node.next}`}
+                  >
+                    {"Next →"}
+                  </Link>
+                )}
             </View>
           </View>
         </View>

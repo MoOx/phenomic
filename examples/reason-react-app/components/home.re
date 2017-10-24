@@ -18,15 +18,17 @@ let make ::posts => {
         | Idle posts =>
           <ul>
             (
-              posts |>
-              List.map (
-                fun item =>
-                  <li key=item.id>
-                    <Link href=("blog/" ^ item.id ^ "/")>
-                      (ReasonReact.stringToElement item.title)
-                    </Link>
-                  </li>
-              ) |> Array.of_list |> ReasonReact.arrayToElement
+              posts
+              |> List.map (
+                   fun item =>
+                     <li key=item.id>
+                       <Link href=("blog/" ^ item.id ^ "/")>
+                         (ReasonReact.stringToElement item.title)
+                       </Link>
+                     </li>
+                 )
+              |> Array.of_list
+              |> ReasonReact.arrayToElement
             )
           </ul>
         }

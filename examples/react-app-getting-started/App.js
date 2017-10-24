@@ -32,23 +32,21 @@ const Home = ({ isLoading, posts }) => (
     )}
     <div>
       {posts.node &&
-      posts.node.hasPreviousPage && (
-        <Link
-          to={
-            posts.node.previousPageIsFirst ? (
-              `/`
-            ) : (
-              `/after/${posts.node.previous}/`
-            )
-          }
-        >
-          Newer posts
-        </Link>
-      )}{" "}
+        posts.node.hasPreviousPage && (
+          <Link
+            to={
+              posts.node.previousPageIsFirst
+                ? `/`
+                : `/after/${posts.node.previous}/`
+            }
+          >
+            Newer posts
+          </Link>
+        )}{" "}
       {posts.node &&
-      posts.node.hasNextPage && (
-        <Link to={`/after/${posts.node.next}/`}>Older posts</Link>
-      )}
+        posts.node.hasNextPage && (
+          <Link to={`/after/${posts.node.next}/`}>Older posts</Link>
+        )}
     </div>
   </Layout>
 );

@@ -45,9 +45,9 @@ it("should be able to generate authors list", () => {
 });
 
 it("should be able to get arbitrary fields", () => {
-  expect(
-    getFields({ partial: {}, data: { tags: ["test", "test2"] } })
-  ).toEqual(["tags"]);
+  expect(getFields({ partial: {}, data: { tags: ["test", "test2"] } })).toEqual(
+    ["tags"]
+  );
 });
 
 it("should be able to generate fields lists from arrays", () => {
@@ -69,9 +69,9 @@ it("should be able to generate fields lists from numbers", () => {
 });
 
 it("should be able to generate fields lists from booleans", () => {
-  expect(
-    getFieldValue({ partial: {}, data: { tags: false } }, "tags")
-  ).toEqual([false]);
+  expect(getFieldValue({ partial: {}, data: { tags: false } }, "tags")).toEqual(
+    [false]
+  );
 });
 
 it("should be able to inject date from filename in data", () => {

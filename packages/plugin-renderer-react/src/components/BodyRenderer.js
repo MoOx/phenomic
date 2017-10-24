@@ -53,11 +53,9 @@ const render = (item: ItemType, options: OptionsType, key: ?any) => {
 
   return (
     <Tag {...props} key={key}>
-      {Array.isArray(children) ? (
-        children.map((child: ItemType, key) => render(child, options, key))
-      ) : (
-        render(children, options)
-      )}
+      {Array.isArray(children)
+        ? children.map((child: ItemType, key) => render(child, options, key))
+        : render(children, options)}
     </Tag>
   );
 };

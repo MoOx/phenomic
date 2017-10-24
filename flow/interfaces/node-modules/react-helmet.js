@@ -20,24 +20,24 @@ declare module "react-helmet" {
     ) => void | mixed
   };
   declare interface HeadAttribute {
-    toString(): string,
-    toComponent(): React$Element<any>
+    toString(): string;
+    toComponent(): React$Element<any>;
   }
   declare interface Head {
-    base: HeadAttribute,
-    bodyAttributes: HeadAttribute,
-    htmlAttributes: HeadAttribute,
-    link: HeadAttribute,
-    meta: HeadAttribute,
-    noscript: HeadAttribute,
-    script: HeadAttribute,
-    style: HeadAttribute,
-    title: HeadAttribute
+    base: HeadAttribute;
+    bodyAttributes: HeadAttribute;
+    htmlAttributes: HeadAttribute;
+    link: HeadAttribute;
+    meta: HeadAttribute;
+    noscript: HeadAttribute;
+    script: HeadAttribute;
+    style: HeadAttribute;
+    title: HeadAttribute;
   }
 
   declare class Helmet extends React$Component<Props> {
-    static renderStatic(): Head,
-    props: Props
+    static renderStatic(): Head;
+    props: Props;
   }
   declare var exports: typeof Helmet;
 }

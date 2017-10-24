@@ -48,8 +48,8 @@ declare module "offline-plugin/runtime" {
   };
 
   declare interface offlinePluginRuntime {
-    applyUpdate: () => void,
-    install: (options?: offlinePluginRuntimeInstallOptions) => void
+    applyUpdate: () => void;
+    install: (options?: offlinePluginRuntimeInstallOptions) => void;
   }
 
   declare var exports: offlinePluginRuntime;
