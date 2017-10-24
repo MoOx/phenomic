@@ -6,7 +6,6 @@
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "devDependencies": {
-    "@dschau/prettier-markdown": "^1.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -30,7 +29,8 @@
     "lerna": "^2.0.0",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
-    "prettier": "^1.6.0",
+    "prettier":
+      "https://github.com/prettier/prettier.git#c0aaa0fa523a0cd4cf112fa5e53efe35a62c454b",
     "trash-cli": "^1.4.0"
   },
   "scripts": {
@@ -49,8 +49,7 @@
     "prerelease": "npm run prepare",
     "release": "lerna publish",
     "format": "npm run -s format:most && npm run -s format:re",
-    "format:most": "prettier --write \"**/*.{js,json,css}\"",
-    "apostformat:most": "prettier-markdown",
+    "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
     "format:re":
       "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "links": "lerna exec -- npm link",
@@ -73,8 +72,7 @@
     "parser": "flow"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["git-exec-and-restage prettier --write"],
-    "*.md": ["git-exec-and-restage prettier-markdown"],
+    "*.{js,json,css,md}": ["git-exec-and-restage prettier --write"],
     "*.re": ["git-exec-and-restage refmt --in-place"]
   },
   "babel": {
