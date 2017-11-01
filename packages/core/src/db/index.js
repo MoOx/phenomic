@@ -108,7 +108,7 @@ const db = {
     return new Promise(resolve => {
       const item = getSublevel(sub).find(item => item.key === key);
       if (!item) {
-        return resolve({ key });
+        return resolve(key);
       }
       const type = typeof item.partial;
       if (type === "string" || type === "number" || type === "boolean") {
