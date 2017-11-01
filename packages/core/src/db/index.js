@@ -1,8 +1,3 @@
-import log from "../utils/log.js";
-
-const options = { valueEncoding: "json" };
-const wrapStreamConfig = config => Object.assign({}, config, options);
-
 const emptyDatabase = {
   subs: {}
 };
@@ -77,7 +72,7 @@ class NotFoundError extends Error {
 
 const db = {
   destroy(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       database = emptyDatabase;
       resolve();
     });
@@ -87,7 +82,7 @@ const db = {
     key: string,
     value: any
   ): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const data = { ...value, key };
       return resolve(addToSublevel(sub, data));
     });
@@ -110,7 +105,7 @@ const db = {
     });
   },
   getPartial(sub: string | Array<string>, key: string): Promise<mixed> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const item = getSublevel(sub).find(item => item.key === key);
       if (!item) {
         return resolve({ key });
@@ -129,7 +124,7 @@ const db = {
     filter: string = "default",
     filterValue: string
   ): Promise<Array<any>> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       let collection = getSublevel(sub, filter, filterValue);
       if (config.reverse) {
         collection.concat().reverse();
