@@ -127,7 +127,7 @@ const db = {
     return new Promise(resolve => {
       let collection = getSublevel(sub, filter, filterValue);
       if (config.reverse) {
-        collection.concat().reverse();
+        collection = collection.concat().reverse();
       }
       if (config.gt) {
         collection = collection.filter(item => item.key > config.gt);
