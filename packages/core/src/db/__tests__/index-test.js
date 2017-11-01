@@ -18,7 +18,7 @@ describe("db", () => {
       db.put("bar", "baz", { data: { title: "baz" } }),
       db.put("bar", "foo", { data: { title: "foo" } })
     ])
-      .then(() => db.getList("bar", {}))
+      .then(() => db.getList("bar", {}, "default", 1))
       .then(value => expect(value).toMatchSnapshot());
   });
 
@@ -27,7 +27,7 @@ describe("db", () => {
       db.put("bar2", "baz", { data: { title: "baz" } }),
       db.put("bar2", "foo", { data: { title: "foo" } })
     ])
-      .then(() => db.getList("bar2", { reverse: true }))
+      .then(() => db.getList("bar2", { reverse: true }, "default", 1))
       .then(value => expect(value).toMatchSnapshot());
   });
 
@@ -36,7 +36,7 @@ describe("db", () => {
       db.put("bar3", "baz", { data: { title: "baz" } }),
       db.put("bar3", "foo", { data: { title: "foo" } })
     ])
-      .then(() => db.getList("bar3", { gt: "c" }))
+      .then(() => db.getList("bar3", { gt: "c" }, "default", 1))
       .then(value => expect(value).toMatchSnapshot());
   });
 
@@ -45,7 +45,7 @@ describe("db", () => {
       db.put("bar4", "baz", { data: { title: "baz" } }),
       db.put("bar4", "foo", { data: { title: "foo" } })
     ])
-      .then(() => db.getList("bar4", { lt: "c" }))
+      .then(() => db.getList("bar4", { lt: "c" }, "default", 1))
       .then(value => expect(value).toMatchSnapshot());
   });
 
@@ -54,7 +54,7 @@ describe("db", () => {
       db.put("bar5", "baz", { data: { title: "baz" } }),
       db.put("bar5", "foo", { data: { title: "foo" } })
     ])
-      .then(() => db.getList("bar5", { limit: 1 }))
+      .then(() => db.getList("bar5", { limit: 1 }, "default", 1))
       .then(value => expect(value).toMatchSnapshot());
   });
 
