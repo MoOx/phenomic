@@ -6,7 +6,7 @@
     "@phenomic/core": "^1.0.0-alpha.13",
     "@phenomic/preset-react-app": "^1.0.0-alpha.13",
     "@phenomic/reason": "^1.0.0-alpha.13",
-    "bs-platform": "^1.9.2",
+    "bs-platform": "^2.0.0",
     "npm-run-all": "^4.0.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

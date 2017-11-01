@@ -1,4 +1,5 @@
-external createContainer : ReasonReact.reactClass => Js.t {..} => ReasonReact.reactClass =
-  "createContainer" [@@bs.module "@phenomic/plugin-renderer-react/lib/client"];
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+external createContainer : (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  "createContainer";
 
-let wrapReComponent comp queries => createContainer comp queries;
+let wrapReComponent = (comp, queries) => createContainer(comp, queries);
