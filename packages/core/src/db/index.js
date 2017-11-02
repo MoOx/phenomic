@@ -1,3 +1,5 @@
+const glue = "$$";
+const nullSub = "__null__";
 const emptyDatabase = {
   subs: {}
 };
@@ -10,9 +12,9 @@ function getSublevel(
   filterValue: ?string
 ) {
   if (!Array.isArray(sub)) {
-    sub = [sub === null ? "__null__" : sub];
+    sub = [sub === null ? nullSub : sub];
   }
-  let db = database.subs[sub.join("$$")] || [];
+  let db = database.subs[sub.join(glue)] || [];
   if (filter) {
     if (filter !== "default" && filterValue) {
       db = db.filter(item => item[filter] === filterValue);
@@ -23,9 +25,9 @@ function getSublevel(
 
 function addToSublevel(sub: null | string | Array<string>, value: Object) {
   if (!Array.isArray(sub)) {
-    sub = [sub === null ? "__null__" : sub];
+    sub = [sub === null ? nullSub : sub];
   }
-  const subname = sub.join("$$");
+  const subname = sub.join(glue);
   const db = database.subs[subname] || [];
   database = {
     ...database,
