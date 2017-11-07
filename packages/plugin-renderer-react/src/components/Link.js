@@ -36,9 +36,11 @@ const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
 
 const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>) => {
   if (isSameOrigin(event.currentTarget)) {
-    event.preventDefault();
     // extract to get only interesting parts
     const { pathname, search, hash } = event.currentTarget;
+    if (!hash) {
+      event.preventDefault();
+    }
     browserHistory.push({ pathname, search, hash });
   }
 };
