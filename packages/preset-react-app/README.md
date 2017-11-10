@@ -8,11 +8,11 @@
 * transformers: markdown and JSON (`@phenomic/plugin-transform-markdown` +
   `@phenomic/plugin-transform-json`)
 
-- - -
+---
 
-Check out our [Getting started with Phenomic and
-`@phenomic/preset-react-app`](docs/getting-started/README.md)
+Check out our
+[Getting started with Phenomic and `@phenomic/preset-react-app`](docs/getting-started/README.md)
 
-- - -
+---
 
 ➡ More details at [phenomic.io](https://phenomic.io/)

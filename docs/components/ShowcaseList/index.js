@@ -136,9 +136,11 @@ const ShowcaseList = (props: Object) => (
                     href={
                       props.showcase.node.previousPageIsFirst
                         ? `/showcase`
-                        : `/showcase/${props.params.showcaseTags
-                            ? `tag/${props.params.showcaseTags}/`
-                            : ""}after/${props.showcase.node.previous}`
+                        : `/showcase/${
+                            props.params.showcaseTags
+                              ? `tag/${props.params.showcaseTags}/`
+                              : ""
+                          }after/${props.showcase.node.previous}`
                     }
                   >
                     {"← Previous"}
@@ -150,9 +152,11 @@ const ShowcaseList = (props: Object) => (
                 props.showcase.node.hasNextPage && (
                   <Link
                     style={styles.link}
-                    href={`/showcase/${props.params.showcaseTags
-                      ? `tag/${props.params.showcaseTags}/`
-                      : ""}after/${props.showcase.node.next}`}
+                    href={`/showcase/${
+                      props.params.showcaseTags
+                        ? `tag/${props.params.showcaseTags}/`
+                        : ""
+                    }after/${props.showcase.node.next}`}
                   >
                     {"Next →"}
                   </Link>

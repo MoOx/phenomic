@@ -6,11 +6,11 @@ From opening a bug report to creating a pull request: every contribution is
 appreciated and welcome. This document is here to answer most questions when it
 comes to contribute to this project.
 
-If you have any questions not answered by this document, [contact us on our
-chat](https://gitter.im/MoOx/phenomic) or [open an
-issue](https://github.com/phenomic/phenomic/issues/new)
+If you have any questions not answered by this document,
+[contact us on our chat](https://gitter.im/MoOx/phenomic) or
+[open an issue](https://github.com/phenomic/phenomic/issues/new)
 
-- - -
+---
 
 ## [Code of Conduct](CODE_OF_CONDUCT.md)
 
@@ -18,7 +18,7 @@ Phenomic has adopted a Code of Conduct that we expect project participants to
 adhere to. Please read [the full text](CODE_OF_CONDUCT.md) so that you can
 understand what actions will and will not be tolerated.
 
-- - -
+---
 
 ## Support Phenomic
 
@@ -30,7 +30,7 @@ work on it. To help us, you can back us via our OpenCollective page.
 All donations are huge for us. Even 1$ is enough to make the entire team &
 community happy.
 
-- - -
+---
 
 ### Workflow and Pull Requests
 
@@ -52,8 +52,8 @@ _Before_ submitting a pull request, please make sure the following is done…
    Note: Replace `<your_username>` with your GitHub username
 
 2. Phenomic uses [Yarn](https://yarnpkg.com/) for running development scripts.
-   If you haven't already done so, please [install
-   yarn](https://yarnpkg.com/en/docs/install).
+   If you haven't already done so, please
+   [install yarn](https://yarnpkg.com/en/docs/install).
 
    To check your version of Yarn and ensure it's installed you can type:
 
@@ -128,7 +128,7 @@ yarn link @phenomic/core @phenomic/preset-react-app ...
 Then run your project via `yarn start`, and don't forget to restart dev server
 if necessary (if you change the code of Phenomic itself).
 
-- - -
+---
 
 ## Bugs
 
@@ -142,15 +142,15 @@ problem doesn't already exist.**
 ### Reporting New Issues
 
 The best way to get your bug fixed is to provide a reduced test case. Please
-provide a public repository with a runnable example. Then feel free to [open an
-issue](https://github.com/phenomic/phenomic/issues/new).
+provide a public repository with a runnable example. Then feel free to
+[open an issue](https://github.com/phenomic/phenomic/issues/new).
 
 #### Security Bugs
 
 If you find a security issue, please first contact us directly before opening a
 public issue.
 
-- - -
+---
 
 ## Releasing
 
@@ -204,7 +204,7 @@ Blah blah
 ...
 ```
 
-- - -
+---
 
 ## How to Get in Touch
 

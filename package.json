@@ -30,8 +30,7 @@
     "lerna": "^2.0.0",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
-    "prettier":
-      "https://github.com/prettier/prettier.git#c0aaa0fa523a0cd4cf112fa5e53efe35a62c454b",
+    "prettier": "^1.8.0",
     "trash-cli": "^1.4.0"
   },
   "scripts": {
@@ -69,9 +68,7 @@
     "test-without-lint": "npm run -s tests",
     "posttest": "npm run -s examples && npm run -s docs:test"
   },
-  "prettier": {
-    "parser": "flow"
-  },
+
   "lint-staged": {
     "*.{js,json,css,md}": ["git-exec-and-restage prettier --write"],
     "*.re": ["git-exec-and-restage refmt --in-place"]

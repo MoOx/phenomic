@@ -9,10 +9,10 @@ those as you like._
 
 🚀 **So wow, such power!**
 
-- - -
+---
 
-See [the raw markdown
-file](https://raw.githubusercontent.com/phenomic/phenomic/master/examples/react-app-markdown-with-custom-components/content/index.md)
-and the [components
-map](https://github.com/phenomic/phenomic/blob/master/examples/react-app-markdown-with-custom-components/App.js)
+See
+[the raw markdown file](https://raw.githubusercontent.com/phenomic/phenomic/master/examples/react-app-markdown-with-custom-components/content/index.md)
+and the
+[components map](https://github.com/phenomic/phenomic/blob/master/examples/react-app-markdown-with-custom-components/App.js)
 to get an idea of the power this feature unlocks.

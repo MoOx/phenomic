@@ -13,7 +13,9 @@ const typeOf = value => {
 
 export default (webpackConfig: Object, config: PhenomicConfig) => {
   if (!webpackConfig.entry || !webpackConfig.entry[config.bundleName]) {
-    let error = `@phenomic/plugin-bundler-webpack expects an entry named '${config.bundleName}' in your webpack config.\n`;
+    let error = `@phenomic/plugin-bundler-webpack expects an entry named '${
+      config.bundleName
+    }' in your webpack config.\n`;
     // be careful about the indentation here
     let adviceCode = `[
             process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),

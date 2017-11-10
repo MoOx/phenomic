@@ -86,7 +86,9 @@ async function start(config: PhenomicConfig) {
     });
   } catch (e) {
     log.warn(
-      `no '${contentFolder}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+      `no '${
+        contentFolder
+      }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
   }
 
@@ -113,9 +115,9 @@ async function start(config: PhenomicConfig) {
       const existingProcess = getProcessForPort(err.port);
       log(
         chalk.yellow(
-          `Something is already running on port ${err.port}. ${existingProcess
-            ? `Probably:\n${existingProcess}\n`
-            : ""}`
+          `Something is already running on port ${err.port}. ${
+            existingProcess ? `Probably:\n${existingProcess}\n` : ""
+          }`
         )
       );
     } else {

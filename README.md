@@ -62,12 +62,12 @@ Just take a look!
 
 The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 
-- - -
+---
 
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic'>
 <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6RNUx3a3Vj2k5iApeppsc9L9/phenomic/phenomic.svg' /></a>
 
-- - -
+---
 
 ## [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
 
@@ -76,13 +76,13 @@ The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 guide to get started.
 
 * ⇄ Pull/Merge requests and ★ Stars are always welcome.
-* For bugs and feature requests, please [create an
-  issue](https://github.com/phenomic/phenomic/issues/new).
+* For bugs and feature requests, please
+  [create an issue](https://github.com/phenomic/phenomic/issues/new).
 * Pull requests must be accompanied by passing automated tests. See
   [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
   for more information.
-* Donation is a way to contribute. [You can help us via our OpenCollective
-  page](https://opencollective.com/phenomic).
+* Donation is a way to contribute.
+  [You can help us via our OpenCollective page](https://opencollective.com/phenomic).
 
 ## Backers
 
@@ -125,9 +125,10 @@ support for our open source project.
 Does your company use Phenomic? Ask your manager or marketing team if your
 company would be interested in supporting our project. Support will allow the
 maintainers to dedicate more time for maintenance and new features for everyone.
-Also, your company's logo will show [on
-GitHub](https://github.com/phenomic/phenomic#readme)--who doesn't want a little
-extra exposure? [Here's the info](https://opencollective.com/phenomic#sponsor).
+Also, your company's logo will show
+[on GitHub](https://github.com/phenomic/phenomic#readme)--who doesn't want a
+little extra exposure?
+[Here's the info](https://opencollective.com/phenomic#sponsor).
 
 <a href="https://opencollective.com/phenomic/sponsor/0/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/0/avatar"></a>
 <a href="https://opencollective.com/phenomic/sponsor/1/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/1/avatar"></a>

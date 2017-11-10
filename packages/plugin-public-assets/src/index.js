@@ -21,7 +21,9 @@ export default function(
 ) {
   const warnNoPublic = (): void => {
     log.warn(
-      `No '${options.path}' folder found. Please create this folder if you want static files to be served from the root (eg: favicon.ico).`
+      `No '${
+        options.path
+      }' folder found. Please create this folder if you want static files to be served from the root (eg: favicon.ico).`
     );
   };
   return {

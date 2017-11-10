@@ -2,13 +2,13 @@
 title: Submit a website/app made with Phenomic to the Showcase
 ---
 
-To submit your site, you just need to [create a text
-file](https://github.com/phenomic/phenomic/new/master/docs/content/showcase/entry/).
+To submit your site, you just need to
+[create a text file](https://github.com/phenomic/phenomic/new/master/docs/content/showcase/entry/).
 🚀 Screenshots will be taken automatically!
 
-You should be able to submit this file as a [pull
-request](https://help.github.com/articles/creating-a-pull-request/) via GitHub
-interface.
+You should be able to submit this file as a
+[pull request](https://help.github.com/articles/creating-a-pull-request/) via
+GitHub interface.
 
 Please name the file as the domain of you website. If your website is in a
 folder, replace `/` by 2 underscores (`__`).
