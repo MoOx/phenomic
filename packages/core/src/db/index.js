@@ -11,7 +11,7 @@ const database = levelUp(cacheDir, err => {
   if (err && err.message.startsWith("IO error: lock")) {
     log.error(
       "Cannot create a Phenomic database. " +
-        "Another one is probably is running." +
+        "Another one is probably running." +
         "\n" +
         "Check that you don't have a development server running in the background" +
         " and try again."
