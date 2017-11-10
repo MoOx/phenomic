@@ -1,6 +1,6 @@
 // @flow
 
-const spawnSync = require("child_process").spawnSync;
+const spawnSync = require("cross-spawn").sync;
 
 const chalk = require("chalk");
 
@@ -14,7 +14,7 @@ export const runCommand = (
   if (result.error || result.status !== 0) {
     const message = "Error running command.";
     const error = new Error(message);
-    error.stack = message;
+    error.stack = result.error;
     throw error;
   }
 };
