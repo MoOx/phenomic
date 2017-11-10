@@ -3,7 +3,7 @@ import path from "path";
 const debug = require("debug")("phenomic:plugin:collector-files");
 
 function normalizeWindowsPath(value: string) {
-  return value.replace(/(\/|\\)+/g, path.sep);
+  return value.replace(/(\/|\\)+/g, "/");
 }
 
 export function getKey(name: string, json: PhenomicTransformResult): string {
