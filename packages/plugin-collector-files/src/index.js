@@ -1,9 +1,8 @@
-import path from "path";
-
 const debug = require("debug")("phenomic:plugin:collector-files");
 
+const sep = "/";
 function normalizeWindowsPath(value: string) {
-  return value.replace(/(\/|\\)+/g, "/");
+  return value.replace(/(\/|\\)+/g, sep);
 }
 
 export function getKey(name: string, json: PhenomicTransformResult): string {
@@ -106,14 +105,14 @@ export default function() {
       name = normalizeWindowsPath(name);
       const key = getKey(name, json);
       const adjustedJSON = injectData(name, json);
-      const pathSegments = name.split(path.sep);
+      const pathSegments = name.split(sep);
       const allPaths = pathSegments.reduce((acc, v) => {
-        acc.push(acc.length > 0 ? acc[acc.length - 1] + "/" + v : v);
+        acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);
         return acc;
       }, []);
       return Promise.all(
         allPaths.map(pathName => {
-          const relativeKey = key.replace(pathName + "/", "");
+          const relativeKey = key.replace(pathName + sep, "");
           const sortedKey = makeSortedKey(relativeKey, json);
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
