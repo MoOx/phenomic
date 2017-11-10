@@ -44,6 +44,17 @@ module.exports = (config: PhenomicConfig) => ({
           fallback: require.resolve("style-loader"),
           use: require.resolve("css-loader")
         })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: require.resolve("file-loader"),
+            options: {
+              name: "phenomic/fonts/[name].[hash:8].[ext]"
+            }
+          }
+        ]
       }
     ]
   },
