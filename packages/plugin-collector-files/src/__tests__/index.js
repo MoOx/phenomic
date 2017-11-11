@@ -4,7 +4,8 @@ import {
   getAuthors,
   getFields,
   getFieldValue,
-  injectData
+  injectData,
+  parsePath
 } from "..";
 
 it("should be able to generate keys", () => {
@@ -92,5 +93,12 @@ it("should be able to inject date from filename in data", () => {
     data: {
       filename: "test.md"
     }
+  });
+});
+
+it("should be able to parse filepath", () => {
+  expect(parsePath("posts/november/2017-11-11-test.md")).toEqual({
+    filename: "2017-11-11-test.md",
+    allPaths: ["posts", "posts/november", "posts/november/2017-11-11-test.md"]
   });
 });

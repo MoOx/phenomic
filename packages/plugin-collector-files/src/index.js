@@ -98,18 +98,24 @@ export function injectData(
   };
 }
 
+export function parsePath(name: string) {
+  const pathSegments = name.split(sep);
+  const allPaths = pathSegments.reduce((acc, v) => {
+    acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);
+    return acc;
+  }, []);
+  const filename = pathSegments[pathSegments.length - 1];
+  return { filename, allPaths };
+}
+
 export default function() {
   return {
     name: "@phenomic/plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
       name = normalizeWindowsPath(name);
       const key = getKey(name, json);
-      const adjustedJSON = injectData(name, json);
-      const pathSegments = name.split(sep);
-      const allPaths = pathSegments.reduce((acc, v) => {
-        acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);
-        return acc;
-      }, []);
+      const { filename, allPaths } = parsePath(name);
+      const adjustedJSON = injectData(filename, json);
       return Promise.all(
         allPaths.map(pathName => {
           const relativeKey = key.replace(pathName + sep, "");
