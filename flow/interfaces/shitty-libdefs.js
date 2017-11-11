@@ -41,3 +41,11 @@ declare module "react-emotion" {
 declare module "p-map" {
   declare var exports: any;
 }
+
+declare module "react-dev-utils" {
+  declare var exports: any;
+}
+
+declare module "react-dev-utils/getProcessForPort" {
+  declare var exports: any;
+}

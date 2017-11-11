@@ -12,6 +12,7 @@ install:
 
 test_script:
   - yarn test-without-lint
+  - yarn posttest
 
 cache:
   - "%LOCALAPPDATA%\\Yarn"

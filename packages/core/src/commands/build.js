@@ -59,7 +59,9 @@ async function getContent(db, config: PhenomicConfig) {
     );
   } catch (e) {
     log.warn(
-      `no '${contentFolder}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+      `no '${
+        contentFolder
+      }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
   }
 }
@@ -162,7 +164,9 @@ async function build(config) {
     debug(urls);
     if (urls.length === 0) {
       console.log(
-        `${logSymbols.warning} No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
+        `${
+          logSymbols.warning
+        } No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
       );
     }
     await pMap(

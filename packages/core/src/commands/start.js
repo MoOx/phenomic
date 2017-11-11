@@ -2,6 +2,8 @@ import path from "path";
 
 import express from "express";
 import socketIO from "socket.io";
+import getProcessForPort from "react-dev-utils/getProcessForPort";
+import chalk from "chalk";
 
 import createWatcher from "../watch";
 import processFile from "../injection/processFile";
@@ -84,7 +86,9 @@ async function start(config: PhenomicConfig) {
     });
   } catch (e) {
     log.warn(
-      `no '${contentFolder}' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
+      `no '${
+        contentFolder
+      }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
   }
 
@@ -106,7 +110,21 @@ async function start(config: PhenomicConfig) {
       );
     }
   });
-  bundlerServer.listen(config.port);
+  bundlerServer.listen(config.port).on("error", err => {
+    if (err.errno === "EADDRINUSE") {
+      const existingProcess = getProcessForPort(err.port);
+      log(
+        chalk.yellow(
+          `Something is already running on port ${err.port}. ${
+            existingProcess ? `Probably:\n${existingProcess}\n` : ""
+          }`
+        )
+      );
+    } else {
+      log(err);
+    }
+    process.exit(1);
+  });
   console.log(`✨ Open http://localhost:${config.port}`);
 }
 

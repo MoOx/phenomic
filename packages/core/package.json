@@ -29,6 +29,7 @@
     "mkdirp": "^0.5.1",
     "p-map": "^1.2.0",
     "path-to-regexp": "^1.7.0",
+    "react-dev-utils": "^4.2.1",
     "rimraf": "^2.5.4",
     "sane": "^1.7.0",
     "simple-json-fetch": "^1.0.1",

@@ -29,7 +29,9 @@ const getRouteQueries = route => {
       route.component.constructor === Object)
   ) {
     throw new Error(
-      `Route with path '${route.path}' have no component (or an undefined value).\n` +
+      `Route with path '${
+        route.path
+      }' have no component (or an undefined value).\n` +
         "Check the component reference and its origin. Are the import/export correct?"
     );
   }
@@ -73,7 +75,9 @@ const resolveURLsForDynamicParams = async function(
   if (route.collection) {
     console.error(
       // $FlowFixMe removed from interface but it's for deprecation that we use it
-      `${route.path} have an attached parameter 'collection=${route.collection}'.\n This parameter is now useless and can be safely removed`
+      `${route.path} have an attached parameter 'collection=${
+        route.collection
+      }'.\n This parameter is now useless and can be safely removed`
     );
   }
 
@@ -93,9 +97,9 @@ const resolveURLsForDynamicParams = async function(
     return route;
   }
   debug(
-    `fetching path '${mainQuery.key
-      ? mainQuery.key
-      : Object.keys(pathConfig).join(",")}' for route '${route.path}'`
+    `fetching path '${
+      mainQuery.key ? mainQuery.key : Object.keys(pathConfig).join(",")
+    }' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
   const queries = getRouteQueries(route);
@@ -198,7 +202,9 @@ const resolveURLsToPrerender = async function(
   const filtredDynamicRoutes = flattenedDynamicRoutes.filter(url => {
     if (url.path && url.path.includes("*")) {
       debug(
-        `${url.path} is including a '*' but it has not been resolved: url is skipped`
+        `${
+          url.path
+        } is including a '*' but it has not been resolved: url is skipped`
       );
       return false;
     }
