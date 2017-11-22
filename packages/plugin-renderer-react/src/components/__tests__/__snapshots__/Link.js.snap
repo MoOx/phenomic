@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link activeClassName? 1`] = `
-"<linkComponent
+"<LinkComponent
   activeClassName=\\"activeCx\\"
   href=\\"/internal\\"
   to=\\"/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link activeClassName? 2`] = `
-"<linkComponent
+"<LinkComponent
   activeClassName=\\"activeCx\\"
   href=\\"/internal\\"
   to=\\"/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link activeStyle? 1`] = `
-"<linkComponent
+"<LinkComponent
   activeStyle={{
     color: 'blue'
   }}
@@ -29,11 +29,11 @@ exports[`Link activeStyle? 1`] = `
   to=\\"/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link activeStyle? 2`] = `
-"<linkComponent
+"<LinkComponent
   activeStyle={{
     color: 'blue'
   }}
@@ -41,56 +41,56 @@ exports[`Link activeStyle? 2`] = `
   to=\\"/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with \`\`href\`\` 1`] = `
-"<linkComponent
+"<LinkComponent
   href=\\"/b\\"
   to=\\"/b\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with \`\`to\`\` 1`] = `
-"<linkComponent to=\\"/b\\">
+"<LinkComponent to=\\"/b\\">
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with external \`\`href\`\` 1`] = `
-"<linkComponent
+"<LinkComponent
   href=\\"http://b.com\\"
   to=\\"http://b.com\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with external \`\`href\`\` 2`] = `
-"<linkComponent
+"<LinkComponent
   href=\\"http://b.com\\"
   to=\\"http://b.com\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with internal \`\`href\`\` 1`] = `
-"<linkComponent
+"<LinkComponent
   href=\\"test://url.tld/internal\\"
   to=\\"test://url.tld/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;
 
 exports[`Link works with internal \`\`href\`\` 2`] = `
-"<linkComponent
+"<LinkComponent
   href=\\"/internal\\"
   to=\\"/internal\\"
 >
   c
-</linkComponent>"
+</LinkComponent>"
 `;

@@ -12,7 +12,7 @@ function Link(props, context) {
   if (url.indexOf("#") === 0) {
     url = window.location.pathname + url;
   }
-  var linkComponent = compose(
+  const LinkComponent = compose(
     withContext(
       {
         router: PropTypes.object.isRequired
@@ -22,8 +22,9 @@ function Link(props, context) {
       })
     )
   )(HashLink);
+  LinkComponent.displayName = "LinkComponent";
 
-  return <linkComponent {...props} to={url} />;
+  return <LinkComponent {...props} to={url} />;
 }
 
 Link.contextTypes = {
