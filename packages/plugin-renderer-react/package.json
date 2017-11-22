@@ -31,6 +31,7 @@
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.8",
     "react-hot-loader": "^3.0.0-beta.7",
+    "react-router-dom": "^4.2.2",
     "react-router-hash-link": "^1.1.1",
     "recompose": "^0.26.0",
     "simple-json-fetch": "^1.0.1",
