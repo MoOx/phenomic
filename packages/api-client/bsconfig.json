@@ -1,0 +1,12 @@
+{
+  "name": "@phenomic/api-client",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

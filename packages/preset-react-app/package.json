@@ -32,5 +32,14 @@
     "@phenomic/plugin-renderer-react": "^1.0.0-alpha.13",
     "@phenomic/plugin-transform-json": "^1.0.0-alpha.13",
     "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.13"
+  },
+  "devDependencies": {
+    "bs-platform": "^2.1.0"
+  },
+  "scripts": {
+    "reason:cleanup": "bsb -clean-world",
+    "reason:compile": "bsb -make-world",
+    "prepare": "npm run reason:compile",
+    "dev": "npm run reason:compile -- -w"
   }
 }

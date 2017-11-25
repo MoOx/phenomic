@@ -1,30 +1,30 @@
-let component = ReasonReact.statelessComponent "Home";
+let component = ReasonReact.statelessComponent("Home");
 
 type post = {
   id: string,
   title: string
 };
 
-let make ::posts => {
+let make = (~posts) => {
   ...component,
-  render: fun _self =>
+  render: (_self) =>
     <div>
-      <h1> (ReasonReact.stringToElement "Home") </h1>
+      <h1> (ReasonReact.stringToElement("Home")) </h1>
       (
-        switch (posts: PhenomicContent.edge (list post)) {
+        switch (posts: PhenomicPresetReactApp.edge(list(post))) {
         | Inactive
-        | Loading => ReasonReact.stringToElement "Loading ..."
-        | Errored => ReasonReact.stringToElement "An error occured"
-        | Idle posts =>
+        | Loading => ReasonReact.stringToElement("Loading ...")
+        | Errored => ReasonReact.stringToElement("An error occured")
+        | Idle(posts) =>
           <ul>
             (
               posts
-              |> List.map (
-                   fun item =>
+              |> List.map(
+                   (item) =>
                      <li key=item.id>
-                       <Link href=("blog/" ^ item.id ^ "/")>
-                         (ReasonReact.stringToElement item.title)
-                       </Link>
+                       <PhenomicPresetReactApp.Link href=("blog/" ++ (item.id ++ "/"))>
+                         (ReasonReact.stringToElement(item.title))
+                       </PhenomicPresetReactApp.Link>
                      </li>
                  )
               |> Array.of_list
@@ -36,25 +36,25 @@ let make ::posts => {
     </div>
 };
 
-let jsPostToReason jsProps => {id: jsProps##id, title: jsProps##title};
+let jsPostToReason = (jsProps) => {id: jsProps##id, title: jsProps##title};
 
 let jsComponent =
-  ReasonReact.wrapReasonForJs
-    ::component
-    (
-      fun jsProps =>
-        make
-          posts::(
-            PhenomicContent.jsEdgeToReason
-              jsProps##posts
-              (fun posts => posts##list |> Array.map jsPostToReason |> Array.to_list)
+  ReasonReact.wrapReasonForJs(
+    ~component,
+    (jsProps) =>
+      make(
+        ~posts=
+          PhenomicPresetReactApp.jsEdgeToReason(
+            jsProps##posts,
+            (posts) => posts##list |> Array.map(jsPostToReason) |> Array.to_list
           )
-    );
+      )
+  );
 
-let queries _ => {
+let queries = (_) => {
   let posts =
-    PhenomicContent.query (
-      List {path: "posts", by: Some "default", value: None, order: None, limit: None}
+    PhenomicPresetReactApp.query(
+      List({path: "posts", by: Some("default"), value: None, order: None, limit: None})
     );
   {"posts": posts}
 };

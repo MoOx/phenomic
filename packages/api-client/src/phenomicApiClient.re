@@ -1,46 +1,6 @@
 [@bs.module "@phenomic/api-client/lib/query"] external internalQuery : Js.t({..}) => Js.t({..}) =
   "query";
 
-type reasonChildren = list(reasonChild)
-and reasonChild =
-  | String(string)
-  | Element(string, Js.t({.}), reasonChildren)
-  | Empty;
-
-type jsBody = {. "t": string, "p": Js.t({.}), "c": Js.Null_undefined.t(array(jsBody))};
-
-let rec jsTreeToReason = (jsChild: jsBody) =>
-  switch [%bs.raw {| Object.prototype.toString.call(jsChild) |}] {
-  | "[object String]" => String(Js.String.make(jsChild))
-  | "[object Object]" =>
-    let tag = Js.String.make(jsChild##t);
-    let props = jsChild##p;
-    let children =
-      switch (Js.Null_undefined.to_opt(jsChild##c)) {
-      | Some(c) => List.map(jsTreeToReason, Array.to_list(c))
-      | None => []
-      };
-    Element(tag, props, children)
-  | _ => Empty
-  };
-
-type edge('a) =
-  | Idle('a)
-  | Loading
-  | Inactive
-  | Errored;
-
-type jsEdge('a) = {. "status": string, "node": 'a};
-
-let jsEdgeToReason = (jsEdge, convertNode) =>
-  switch jsEdge##status {
-  | "loading" => Loading
-  | "errored" => Errored
-  | "idle" => Idle(convertNode(jsEdge##node))
-  | "inactive"
-  | _ => Inactive
-  };
-
 type queryConfigItem = {
   path: string,
   id: string
