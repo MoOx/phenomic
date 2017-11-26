@@ -9,5 +9,10 @@
       "dir": "components"
     }
   ],
-  "bs-dependencies": ["reason-react", "@phenomic/preset-react-app"]
+  "bs-dependencies": [
+    "reason-react",
+    "@phenomic/preset-react-app",
+    "@phenomic/plugin-renderer-react",
+    "@phenomic/api-client"
+  ]
 }
