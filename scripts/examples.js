@@ -18,7 +18,7 @@ examples.filter(example => example.match(args[0])).forEach(examplePkg => {
   const example = path.dirname(examplePkg);
   console.log("- examples/" + example);
   runCommand("npm", ["run", "build"], {
-    cwd: path.join(examplesFolder, example),
-    stdio: "ignore"
+    cwd: path.join(examplesFolder, example)
+    // stdio: "ignore"
   });
 });

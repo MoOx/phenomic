@@ -1,7 +1,6 @@
 // @flow
 
 const spawnSync = require("cross-spawn").sync;
-
 const chalk = require("chalk");
 
 export const runCommand = (
