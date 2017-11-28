@@ -6,7 +6,8 @@ environment:
   DEBUG: phenomic:*
 
 install:
-  - choco install yarn
+  - ps: Install-Product node $env:nodejs_version x64
+  - node --version
   - yarn --version
   - yarn
 
