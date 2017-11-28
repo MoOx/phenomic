@@ -1,6 +1,5 @@
 import {
   getKey,
-  makeSortedKey,
   getAuthors,
   getFields,
   getFieldValue,
@@ -25,14 +24,6 @@ it("should be able to generate keys", () => {
   expect(getKey("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
     "yep"
   );
-});
-
-it("should be able to generate sort keys", () => {
-  expect(makeSortedKey("test", { partial: {}, data: {} })).toEqual("test");
-
-  expect(
-    makeSortedKey("test", { partial: {}, data: { date: "2010-01-01" } })
-  ).toEqual("2010-01-01-test");
 });
 
 it("should be able to generate authors list", () => {
