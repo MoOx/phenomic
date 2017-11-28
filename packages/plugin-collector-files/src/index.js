@@ -27,18 +27,6 @@ export function formatDate(dateString: string) {
   return date.substring(0, date.indexOf("T"));
 }
 
-/**
- * If a date is present, we use it in order to naturally sort the items in db
- * as level sorts by name (YYYY-MM-DD does the trick).
- * If not, we just use alphabetical order.
- */
-export function makeSortedKey(key: string, json: PhenomicTransformResult) {
-  if (typeof json.data.date === "string") {
-    return `${formatDate(json.data.date)}-${key}`;
-  }
-  return key;
-}
-
 export function getFields(json: PhenomicTransformResult) {
   const keys = Object.keys(json.data);
   return keys.filter(key => key !== "author" && key !== "authors");
@@ -119,7 +107,7 @@ export default function() {
       return Promise.all(
         allPaths.map(pathName => {
           const relativeKey = key.replace(pathName + sep, "");
-          const sortedKey = makeSortedKey(relativeKey, json);
+          const sortedKey = relativeKey;
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
             // full resource, not sorted

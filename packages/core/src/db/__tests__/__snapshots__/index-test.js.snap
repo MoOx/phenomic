@@ -1,5 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`db should be able to get a list 1`] = `
+Array [
+  Object {
+    "key": "baz",
+  },
+  Object {
+    "key": "foo",
+  },
+]
+`;
+
+exports[`db should be able to get a list after some value 1`] = `
+Array [
+  Object {
+    "key": "foo",
+  },
+]
+`;
+
+exports[`db should be able to get a list before some value 1`] = `
+Array [
+  Object {
+    "key": "baz",
+  },
+]
+`;
+
+exports[`db should be able to get a list with a limited count 1`] = `
+Array [
+  Object {
+    "key": "baz",
+  },
+]
+`;
+
+exports[`db should be able to get a reversed list 1`] = `
+Array [
+  Object {
+    "key": "foo",
+  },
+  Object {
+    "key": "baz",
+  },
+]
+`;
+
 exports[`db should be able to put & get a value 1`] = `
 Object {
   "key": "bar",
