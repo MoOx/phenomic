@@ -1,13 +1,18 @@
 {
   "name": "@phenomic/example-reason-react-app",
-  "version": "1.0.0-alpha.0",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
   "sources": [
     {
       "dir": "components"
     }
   ],
-  "reason": {
-    "react-jsx": 2
-  },
-  "bs-dependencies": ["reason-react", "@phenomic/reason"]
+  "bs-dependencies": [
+    "reason-react",
+    "@phenomic/preset-react-app",
+    "@phenomic/plugin-renderer-react",
+    "@phenomic/api-client"
+  ]
 }

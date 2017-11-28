@@ -27,7 +27,7 @@
     "globby": "^6.1.0",
     "husky": "^0.13.3",
     "jest": "^21.0.0",
-    "lerna": "^2.0.0",
+    "lerna": "^2.5.1",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
     "prettier": "^1.8.0",
@@ -45,10 +45,10 @@
     "posttranspile": "lerna run prepare",
     "watch":
       "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
-    "prepare": "npm run -s clean && npm run -s transpile",
-    "prerelease": "npm run prepare",
+    "prepare": "yarn clean && yarn transpile",
+    "prerelease": "yarn prepare",
     "release": "lerna publish",
-    "format": "npm run -s format:most && npm run -s format:re",
+    "format": "yarn format:most && yarn format:re",
     "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
     "format:re":
       "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
@@ -60,13 +60,13 @@
     "tests": "jest --runInBand --coverage packages",
     "examples:build": "babel-node scripts/examples.js",
     "examples:tests": "jest --bail examples",
-    "examples": "npm run -s examples:build && npm run -s examples:tests",
+    "examples": "yarn examples:build && yarn examples:tests",
     "docs:start": "cd docs && npm start",
     "docs:test": "cd docs && npm test && jest docs",
-    "docs:deploy": "cd docs && npm run deploy",
-    "test": "npm run -s lint && npm run -s tests",
-    "test-without-lint": "npm run -s tests",
-    "posttest": "npm run -s examples && npm run -s docs:test"
+    "docs:deploy": "cd docs && yarn deploy",
+    "test": "yarn lint && yarn tests",
+    "test-without-lint": "yarn tests",
+    "posttest": "yarn examples && yarn docs:test"
   },
 
   "lint-staged": {

@@ -1,0 +1,17 @@
+{
+  "name": "@phenomic/preset-react-app",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ],
+  "bs-dependencies": [
+    "reason-react",
+    "@phenomic/api-client",
+    "@phenomic/plugin-renderer-react"
+  ]
+}

@@ -1,38 +1,39 @@
-let component = ReasonReact.statelessComponent "Home";
+let component = ReasonReact.statelessComponent("Home");
 
 type post = {
   id: string,
   title: string,
-  body: PhenomicContent.jsBody
+  body: PhenomicPresetReactApp.BodyRenderer.jsBody
 };
 
-let make ::post => {
+let make = (~post) => {
   ...component,
-  render: fun _self =>
+  render: (_self) =>
     <div>
       (
-        switch (post: PhenomicContent.edge post) {
+        switch (post: PhenomicPresetReactApp.edge(post)) {
         | Inactive
-        | Loading => ReasonReact.stringToElement "Loading ..."
-        | Errored => ReasonReact.stringToElement "An error occured"
-        | Idle post =>
+        | Loading => ReasonReact.stringToElement("Loading ...")
+        | Errored => ReasonReact.stringToElement("An error occured")
+        | Idle(post) =>
           <div>
-            <h1> (ReasonReact.stringToElement post.title) </h1>
-            <BodyRenderer body=post.body />
+            <h1> (ReasonReact.stringToElement(post.title)) </h1>
+            <PhenomicPresetReactApp.BodyRenderer body=post.body />
           </div>
         }
       )
     </div>
 };
 
-let jsPostToReason jsProps => {id: jsProps##id, title: jsProps##title, body: jsProps##body};
+let jsPostToReason = (jsProps) => {id: jsProps##id, title: jsProps##title, body: jsProps##body};
 
 let jsComponent =
-  ReasonReact.wrapReasonForJs
-    ::component
-    (fun jsProps => make post::(PhenomicContent.jsEdgeToReason jsProps##post jsPostToReason));
+  ReasonReact.wrapReasonForJs(
+    ~component,
+    (jsProps) => make(~post=PhenomicPresetReactApp.jsEdgeToReason(jsProps##post, jsPostToReason))
+  );
 
-let queries props => {
-  let post = PhenomicContent.query (Item {path: "posts", id: props##params##splat});
+let queries = (props) => {
+  let post = PhenomicPresetReactApp.query(Item({path: "posts", id: props##params##splat}));
   {"post": post}
 };

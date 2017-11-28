@@ -1,0 +1,13 @@
+{
+  "name": "@phenomic/plugin-renderer-react",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ],
+  "bs-dependencies": ["reason-react"]
+}
