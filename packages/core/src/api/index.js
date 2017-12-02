@@ -103,7 +103,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.path,
             {
               limit: limit + 1,
-              [reverse ? "lte" : "gte"]: after,
+              gte: after,
               reverse
             },
             req.params.filter,
@@ -113,7 +113,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
             req.params.path,
             {
               limit: limit + 1,
-              [reverse ? "gt" : "lt"]: after,
+              gt: after,
               reverse: !reverse
             },
             req.params.filter,

@@ -6,6 +6,19 @@ const emptyDatabase = {
 
 let database = emptyDatabase;
 
+function sortBy(sort = "date") {
+  return (a, b) => {
+    a = a.data[sort];
+    b = b.data[sort];
+    if (!a && !b) return 0;
+    if (!a) return -1;
+    if (!b) return 1;
+    if (b > a) return -1;
+    if (a > b) return 1;
+    return 0;
+  };
+}
+
 function getSublevel(
   sub: null | string | Array<string>,
   filter: ?string,
@@ -128,15 +141,22 @@ const db = {
   ): Promise<Array<any>> {
     return new Promise(resolve => {
       let collection = getSublevel(sub, filter, filterValue);
+      collection.sort(sortBy());
       if (config.reverse) {
         collection = collection.concat().reverse();
       }
-      if (config.gt) {
-        collection = collection.filter(item => item.key > config.gt);
-      } else {
-        if (config.lt) {
-          collection = collection.filter(item => item.key < config.lt);
-        }
+      if (config.gte) {
+        const index = collection.findIndex(item => item.key === config.gte);
+        collection = index > -1 ? collection.slice(index) : collection;
+      } else if (config.gt) {
+        const index = collection.findIndex(item => item.key === config.gt);
+        collection = index > -1 ? collection.slice(index + 1) : collection;
+      } else if (config.lte) {
+        const index = collection.findIndex(item => item.key === config.lte);
+        collection = index > -1 ? collection.slice(0, index + 1) : collection;
+      } else if (config.lt) {
+        const index = collection.findIndex(item => item.key === config.lt);
+        collection = index > -1 ? collection.slice(0, index) : collection;
       }
       if (typeof config.limit === "number") {
         collection = collection.slice(

@@ -42,6 +42,18 @@ it("should build example correctly", () => {
     path.join(__dirname, "..", "dist", "index.html"),
     { encoding: "utf8" }
   );
-  // expect(file1).toContain("Fifth post");
+  expect(file1).toContain("Fifth post");
   expect(file1).toContain('<title data-react-helmet="true">Hello world');
+  const file2 = fs.readFileSync(
+    path.join(
+      __dirname,
+      "..",
+      "dist",
+      "after",
+      "dGhpcmQtcG9zdA==",
+      "index.html"
+    ),
+    { encoding: "utf8" }
+  );
+  expect(file2).toContain("Third post");
 });

@@ -24,7 +24,9 @@ export type Sublevel = Level & SublevelPartial;
 
 export type LevelStreamConfig = {
   gt?: string,
+  gte?: string,
   lt?: string,
+  lte?: string,
   limit?: number,
   reverse?: boolean
 };

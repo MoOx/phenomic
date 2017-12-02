@@ -11,10 +11,32 @@ Array [
 ]
 `;
 
+exports[`db should be able to get a list after (starting) some value 1`] = `
+Array [
+  Object {
+    "key": "eoo",
+  },
+  Object {
+    "key": "foo",
+  },
+]
+`;
+
 exports[`db should be able to get a list after some value 1`] = `
 Array [
   Object {
     "key": "foo",
+  },
+]
+`;
+
+exports[`db should be able to get a list before (starting) some value 1`] = `
+Array [
+  Object {
+    "key": "baz",
+  },
+  Object {
+    "key": "eoo",
   },
 ]
 `;
