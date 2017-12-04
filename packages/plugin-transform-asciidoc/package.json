@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-asciidoc",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.14",
   "publishConfig": {
     "access": "public"
   },
@@ -37,10 +37,10 @@
     "unified": "^6.1.5"
   },
   "peerDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.13"
+    "@phenomic/core": "^1.0.0-alpha.14"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-alpha.13",
+    "@phenomic/core": "^1.0.0-alpha.14",
     "react-test-renderer": "^16.0.0"
   }
 }
