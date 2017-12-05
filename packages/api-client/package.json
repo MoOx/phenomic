@@ -22,7 +22,7 @@
   "description":
     "Phenomic API client that allow you to make queries to retrieve resources",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "bsconfig.json"],
   "dependencies": {
     "debug": "^2.6.0"
   },
