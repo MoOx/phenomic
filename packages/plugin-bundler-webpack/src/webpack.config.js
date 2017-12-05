@@ -67,5 +67,7 @@ module.exports = (config: PhenomicConfig) => ({
         disable: !isStatic
       });
     }
+
+    return plugin;
   })
 });
