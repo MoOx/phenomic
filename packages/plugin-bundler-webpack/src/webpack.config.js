@@ -59,7 +59,7 @@ module.exports = (config: PhenomicConfig) => {
               if (rule.test && rule.test.toString() === "/\\.css$/") {
                 return {
                   ...rule,
-                  loader: ExtractTextPlugin.extract({
+                  [isProduction ? "loader" : "use"]: ExtractTextPlugin.extract({
                     fallback: {
                       loader: require.resolve("style-loader"),
                       options: {
@@ -109,10 +109,7 @@ module.exports = (config: PhenomicConfig) => {
     plugins: baseConfig.plugins
       .map(plugin => {
         if (plugin instanceof ExtractTextPlugin) {
-          return new ExtractTextPlugin({
-            filename: "phenomic/[name].[contenthash:8].css",
-            disable: !isStatic
-          });
+          return null;
         }
 
         if (plugin instanceof HtmlWebpackPlugin) {
@@ -121,6 +118,12 @@ module.exports = (config: PhenomicConfig) => {
 
         return plugin;
       })
+      .concat([
+        new ExtractTextPlugin({
+          filename: "phenomic/[name].[contenthash:8].css",
+          disable: !isStatic
+        })
+      ])
       .filter(Boolean)
   };
 };
