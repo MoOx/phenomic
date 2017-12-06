@@ -23,7 +23,7 @@ module.exports = (config: PhenomicConfig) => {
     },
     output: {
       ...baseConfig.output,
-      publichPath: "/",
+      publicPath: "/",
       path: path.isAbsolute(config.outdir)
         ? config.outdir
         : path.join(process.cwd(), config.outdir),
