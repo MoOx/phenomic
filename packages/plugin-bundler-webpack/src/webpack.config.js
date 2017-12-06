@@ -2,6 +2,7 @@ import path from "path";
 
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 module.exports = (config: PhenomicConfig) => {
   const isStatic = process.env.PHENOMIC_ENV === "static";
@@ -61,15 +62,21 @@ module.exports = (config: PhenomicConfig) => {
         return rule;
       })
     },
-    plugins: baseConfig.plugins.map(plugin => {
-      if (plugin instanceof ExtractTextPlugin) {
-        return new ExtractTextPlugin({
-          filename: "phenomic/[name].[contenthash:8].css",
-          disable: !isStatic
-        });
-      }
+    plugins: baseConfig.plugins
+      .map(plugin => {
+        if (plugin instanceof ExtractTextPlugin) {
+          return new ExtractTextPlugin({
+            filename: "phenomic/[name].[contenthash:8].css",
+            disable: !isStatic
+          });
+        }
 
-      return plugin;
-    })
+        if (plugin instanceof HtmlWebpackPlugin) {
+          return null;
+        }
+
+        return plugin;
+      })
+      .filter(Boolean)
   };
 };
