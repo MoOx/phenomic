@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-styles-with-glamorous",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.15",
-    "@phenomic/core": "^1.0.0-alpha.15",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.15",
+    "@phenomic/cli": "^1.0.0-alpha.16",
+    "@phenomic/core": "^1.0.0-alpha.16",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.16",
     "glamor": "^2.0.0",
     "glamorous": "^4.0.0",
     "react": "^16.0.0",
