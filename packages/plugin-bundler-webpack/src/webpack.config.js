@@ -3,6 +3,7 @@ import path from "path";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import autoprefixer from "autoprefixer";
 
 module.exports = (config: PhenomicConfig) => {
   const isStatic = process.env.PHENOMIC_ENV === "static";
@@ -51,6 +52,48 @@ module.exports = (config: PhenomicConfig) => {
                     presets: ["@phenomic/babel-preset"],
                     plugins: ["react-hot-loader/babel"]
                   }
+                };
+              }
+
+              if (rule.test && rule.test.toString() === "/\\.css$/") {
+                return {
+                  ...rule,
+                  loader: ExtractTextPlugin.extract({
+                    fallback: {
+                      loader: require.resolve("style-loader"),
+                      options: {
+                        hmr: !isStatic
+                      }
+                    },
+                    use: [
+                      {
+                        loader: require.resolve("css-loader"),
+                        options: {
+                          importLoaders: 1,
+                          minimize: isProduction,
+                          sourcemap: true
+                        }
+                      },
+                      {
+                        loader: require.resolve("postcss-loader"),
+                        options: {
+                          ident: "postcss",
+                          plugins: () => [
+                            require("postcss-flexbugs-fixes"),
+                            autoprefixer({
+                              browsers: [
+                                ">1%",
+                                "last 4 versions",
+                                "Firefox ESR",
+                                "not ie < 9"
+                              ],
+                              flexbox: "no-2009"
+                            })
+                          ]
+                        }
+                      }
+                    ]
+                  })
                 };
               }
 
