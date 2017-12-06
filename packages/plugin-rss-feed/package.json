@@ -21,7 +21,7 @@
   ],
   "description": "Phenomic plugin to generate a RSS feed",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
     "debug": "^2.6.0",
     "rss": "^1.2.1"

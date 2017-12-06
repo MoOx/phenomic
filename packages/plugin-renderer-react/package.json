@@ -22,7 +22,7 @@
   "description":
     "Phenomic plugin that allow you to use React to render your website/app",
   "main": "lib/index.js",
-  "files": ["lib", "bsconfig.json"],
+  "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
   "dependencies": {
     "@phenomic/api-client": "^1.0.0-alpha.16",
     "chalk": "^1.1.3",

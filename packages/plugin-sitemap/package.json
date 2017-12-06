@@ -20,5 +20,5 @@
   ],
   "description": "Phenomic plugin to generate a sitemap",
   "main": "lib/index.js",
-  "files": ["lib"]
+  "files": ["lib", "src", "!**/__tests__"]
 }

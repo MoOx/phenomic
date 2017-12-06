@@ -21,7 +21,7 @@
   ],
   "description": "Babel preset, recommended for Phenomic",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
     "babel-preset-react-app": "^3.0.2"
   }

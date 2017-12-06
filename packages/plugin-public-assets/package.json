@@ -21,7 +21,7 @@
   ],
   "description": "Phenomic plugin to copy a public directory to dist",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
     "express": "^4.14.0",
     "fs-extra": "^3.0.1"

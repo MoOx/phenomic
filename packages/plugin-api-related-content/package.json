@@ -23,7 +23,7 @@
   "description":
     "Phenomic plugin to generate related content API for resources",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
     "debug": "^2.6.0",
     "lodash.flatten": "^4.4.0"

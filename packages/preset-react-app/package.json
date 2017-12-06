@@ -23,7 +23,7 @@
   ],
   "description": "Phenomic React app preset",
   "main": "lib/index.js",
-  "files": ["lib", "bsconfig.json"],
+  "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
   "dependencies": {
     "@phenomic/plugin-api-related-content": "^1.0.0-alpha.16",
     "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.16",

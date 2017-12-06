@@ -22,7 +22,7 @@
   ],
   "description": "Phenomic plugin to collect resources from files",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
     "debug": "^2.6.0"
   },
