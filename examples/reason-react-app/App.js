@@ -21,3 +21,7 @@ export default createApp(() => (
     />
   </Router>
 ));
+
+if (module.hot) {
+  module.hot.accept(() => renderApp(routes));
+}
