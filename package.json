@@ -48,6 +48,7 @@
     "prepare": "yarn clean && yarn transpile",
     "prerelease": "yarn prepare",
     "release": "lerna publish",
+    "postrelease": "yarn docs:deploy",
     "format": "yarn format:most && yarn format:re",
     "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
     "format:re":
