@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
-import { createApp } from "@phenomic/preset-react-app/lib/client";
+import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 
 const {
   createContainer
@@ -9,7 +9,7 @@ const {
 const Home = require("./lib/js/components/home");
 const Post = require("./lib/js/components/post");
 
-export default createApp(() => (
+const routes = () => (
   <Router history={browserHistory}>
     <Route
       path="/"
@@ -20,7 +20,9 @@ export default createApp(() => (
       component={createContainer(Post.jsComponent, Post.queries)}
     />
   </Router>
-));
+);
+
+export default createApp(routes);
 
 if (module.hot) {
   module.hot.accept(() => renderApp(routes));
