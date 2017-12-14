@@ -20,15 +20,46 @@ understand what actions will and will not be tolerated.
 
 ---
 
-## Support Phenomic
+## Financial contributions
 
-One way to help us to move forward with Phenomic is to ensure we have time to
-work on it. To help us, you can back us via our OpenCollective page.
+We also welcome financial contributions in full transparency on our
+[open collective](https://opencollective.com/phenomic). Anyone can file an
+expense. If the expense makes sense for the development of the community, it
+will be "merged" in the ledger of our open collective by the core contributors
+and the person who filed the expense will be reimbursed.
 
 ➡️ [opencollective.com/phenomic](https://opencollective.com/phenomic)
 
-All donations are huge for us. Even 1$ is enough to make the entire team &
-community happy.
+### Credits
+
+#### Contributors
+
+Thank you to all the people who have already contributed to phenomic!
+<a href="graphs/contributors"><img src="https://opencollective.com/phenomic/contributors.svg?width=890" /></a>
+
+#### Backers
+
+Thank you to all our backers!
+[[Become a backer](https://opencollective.com/phenomic#backer)]
+
+<a href="https://opencollective.com/phenomic#backers" target="_blank"><img src="https://opencollective.com/phenomic/backers.svg?width=890"></a>
+
+#### Sponsors
+
+Thank you to all our sponsors! (please ask your company to also support this
+open source project by
+[becoming a sponsor](https://opencollective.com/phenomic#sponsor))
+
+<a href="https://opencollective.com/phenomic/sponsor/0/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/1/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/2/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/3/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/4/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/5/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/6/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/7/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/8/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/phenomic/sponsor/9/website" target="_blank"><img src="https://opencollective.com/phenomic/sponsor/9/avatar.svg"></a>
 
 ---
 
