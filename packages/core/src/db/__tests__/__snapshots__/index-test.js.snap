@@ -57,6 +57,17 @@ Array [
 ]
 `;
 
+exports[`db should be able to get a list with a specific query 1`] = `
+Array [
+  Object {
+    "key": "bar",
+  },
+  Object {
+    "key": "foo",
+  },
+]
+`;
+
 exports[`db should be able to get a reversed list 1`] = `
 Array [
   Object {

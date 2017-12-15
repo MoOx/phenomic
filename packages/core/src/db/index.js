@@ -28,10 +28,13 @@ function getSublevel(
     sub = [sub === null ? nullSub : sub];
   }
   let db = database.subs[sub.join(glue)] || [];
-  if (filter) {
-    if (filter !== "default" && filterValue) {
-      db = db.filter(item => item[filter] === filterValue);
-    }
+  if (filter && filterValue && filter !== "default") {
+    db = db.filter(item => {
+      if (Array.isArray(item.data[filter])) {
+        return item.data[filter].indexOf(filterValue) > -1;
+      }
+      return item.data[filter] === filterValue;
+    });
   }
   return db;
 }

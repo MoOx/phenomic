@@ -92,4 +92,15 @@ describe("db", () => {
   it("should throw when value isn't there", () => {
     return db.get("foo", "baz").catch(error => expect(error).toMatchSnapshot());
   });
+
+  it("should be able to get a list with a specific query", () => {
+    i++;
+    return Promise.all([
+      db.put("bar" + i, "foo", { data: { title: "foo", tags: ["a", "b"] } }),
+      db.put("bar" + i, "bar", { data: { title: "bar", tags: ["a", "c"] } }),
+      db.put("bar" + i, "baz", { data: { title: "baz", tags: ["b", "c"] } })
+    ])
+      .then(() => db.getList("bar" + i, {}, "tags", "a"))
+      .then(value => expect(value).toMatchSnapshot());
+  });
 });
