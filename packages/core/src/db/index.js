@@ -86,6 +86,7 @@ class NotFoundError extends Error {
 }
 
 const db = {
+  getDatabase: () => database,
   destroy(): Promise<void> {
     return new Promise(resolve => {
       database = emptyDatabase;

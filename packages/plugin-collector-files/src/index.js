@@ -104,17 +104,17 @@ export default function() {
       const key = getKey(name, json);
       const { filename, allPaths } = parsePath(name);
       const adjustedJSON = injectData(filename, json);
+      // full resource, not sorted
+      db.put(null, key, {
+        ...adjustedJSON,
+        id: key
+      });
       return Promise.all(
         allPaths.map(pathName => {
           const relativeKey = key.replace(pathName + sep, "");
           const sortedKey = relativeKey;
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
-            // full resource, not sorted
-            db.put(null, key, {
-              ...adjustedJSON,
-              id: key
-            }),
             db.put([pathName], relativeKey, {
               ...adjustedJSON,
               id: relativeKey
