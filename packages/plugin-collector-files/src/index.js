@@ -81,7 +81,7 @@ export function injectData(
     partial: {
       date,
       filename: name,
-      ...json.data
+      ...json.partial
     }
   };
 }

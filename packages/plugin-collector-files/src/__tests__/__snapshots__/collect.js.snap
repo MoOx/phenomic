@@ -19,12 +19,6 @@ Object {
         "id": "news/2017/06/introducing-1.0.0-alpha",
         "key": "news/2017/06/introducing-1.0.0-alpha",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Hi there. Alpha blah blah.",
-            ],
-            "t": "div",
-          },
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
           "title": "Introducing Phenomic 1.0.0 first alpha",
@@ -50,9 +44,6 @@ Object {
         "id": "showcase/entry/acrowithbrian.com",
         "key": "showcase/entry/acrowithbrian.com",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "acrowithbrian.com.md",
           "showcaseTags": Array [
@@ -84,9 +75,6 @@ Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
         "key": "showcase/entry/anthonydugois.com__polynomic",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
           "showcaseTags": Array [
@@ -119,12 +107,6 @@ Object {
         "id": "showcase/entry/ced.photo",
         "key": "showcase/entry/ced.photo",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Ced.photo is a ....",
-            ],
-            "t": "p",
-          },
           "date": undefined,
           "filename": "ced.photo.md",
           "showcaseTags": Array [
@@ -148,9 +130,6 @@ Object {
         "id": "showcase/submit",
         "key": "showcase/submit",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "submit.md",
           "title": "Submit a website/app made with Phenomic to the Showcase",
@@ -245,12 +224,6 @@ Object {
         "id": "2017/06/introducing-1.0.0-alpha",
         "key": "2017/06/introducing-1.0.0-alpha",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Hi there. Alpha blah blah.",
-            ],
-            "t": "div",
-          },
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
           "title": "Introducing Phenomic 1.0.0 first alpha",
@@ -291,12 +264,6 @@ Object {
         "id": "06/introducing-1.0.0-alpha",
         "key": "06/introducing-1.0.0-alpha",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Hi there. Alpha blah blah.",
-            ],
-            "t": "div",
-          },
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
           "title": "Introducing Phenomic 1.0.0 first alpha",
@@ -337,12 +304,6 @@ Object {
         "id": "introducing-1.0.0-alpha",
         "key": "introducing-1.0.0-alpha",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Hi there. Alpha blah blah.",
-            ],
-            "t": "div",
-          },
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
           "title": "Introducing Phenomic 1.0.0 first alpha",
@@ -383,12 +344,6 @@ Object {
         "id": "news/2017/06/introducing-1.0.0-alpha",
         "key": "news/2017/06/introducing-1.0.0-alpha",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Hi there. Alpha blah blah.",
-            ],
-            "t": "div",
-          },
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
           "title": "Introducing Phenomic 1.0.0 first alpha",
@@ -434,9 +389,6 @@ Object {
         "id": "entry/acrowithbrian.com",
         "key": "entry/acrowithbrian.com",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "acrowithbrian.com.md",
           "showcaseTags": Array [
@@ -468,9 +420,6 @@ Object {
         "id": "entry/anthonydugois.com__polynomic",
         "key": "entry/anthonydugois.com__polynomic",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
           "showcaseTags": Array [
@@ -503,12 +452,6 @@ Object {
         "id": "entry/ced.photo",
         "key": "entry/ced.photo",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Ced.photo is a ....",
-            ],
-            "t": "p",
-          },
           "date": undefined,
           "filename": "ced.photo.md",
           "showcaseTags": Array [
@@ -532,9 +475,6 @@ Object {
         "id": "submit",
         "key": "submit",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "submit.md",
           "title": "Submit a website/app made with Phenomic to the Showcase",
@@ -684,9 +624,6 @@ Object {
         "id": "acrowithbrian.com",
         "key": "acrowithbrian.com",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "acrowithbrian.com.md",
           "showcaseTags": Array [
@@ -718,9 +655,6 @@ Object {
         "id": "anthonydugois.com__polynomic",
         "key": "anthonydugois.com__polynomic",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
           "showcaseTags": Array [
@@ -753,12 +687,6 @@ Object {
         "id": "ced.photo",
         "key": "ced.photo",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Ced.photo is a ....",
-            ],
-            "t": "p",
-          },
           "date": undefined,
           "filename": "ced.photo.md",
           "showcaseTags": Array [
@@ -904,9 +832,6 @@ Object {
         "id": "showcase/entry/acrowithbrian.com",
         "key": "showcase/entry/acrowithbrian.com",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "acrowithbrian.com.md",
           "showcaseTags": Array [
@@ -988,9 +913,6 @@ Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
         "key": "showcase/entry/anthonydugois.com__polynomic",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
           "showcaseTags": Array [
@@ -1061,12 +983,6 @@ Object {
         "id": "showcase/entry/ced.photo",
         "key": "showcase/entry/ced.photo",
         "partial": Object {
-          "body": Object {
-            "c": Array [
-              "Ced.photo is a ....",
-            ],
-            "t": "p",
-          },
           "date": undefined,
           "filename": "ced.photo.md",
           "showcaseTags": Array [
@@ -1128,9 +1044,6 @@ Object {
         "id": "showcase/submit",
         "key": "showcase/submit",
         "partial": Object {
-          "body": Object {
-            "t": "div",
-          },
           "date": undefined,
           "filename": "submit.md",
           "title": "Submit a website/app made with Phenomic to the Showcase",
