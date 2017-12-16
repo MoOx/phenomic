@@ -124,7 +124,7 @@
       }
     },
     "transformIgnorePatterns": ["node_modules"],
-    "testPathIgnorePatterns": ["/_output/"]
+    "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
   },
   "workspaces": ["docs", "examples/*", "packages/*"],
   "dependencies": {
