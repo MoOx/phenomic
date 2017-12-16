@@ -4,9 +4,11 @@ exports[`db should be able to get a list 1`] = `
 Array [
   Object {
     "id": "baz",
+    "title": "title-baz",
   },
   Object {
     "id": "foo",
+    "title": "title-foo",
   },
 ]
 `;
@@ -15,9 +17,11 @@ exports[`db should be able to get a list after (starting) some value 1`] = `
 Array [
   Object {
     "id": "eoo",
+    "title": "title-eoo",
   },
   Object {
     "id": "foo",
+    "title": "title-foo",
   },
 ]
 `;
@@ -26,6 +30,7 @@ exports[`db should be able to get a list after some value 1`] = `
 Array [
   Object {
     "id": "foo",
+    "title": "title-foo",
   },
 ]
 `;
@@ -34,9 +39,11 @@ exports[`db should be able to get a list before (starting) some value 1`] = `
 Array [
   Object {
     "id": "baz",
+    "title": "title-baz",
   },
   Object {
     "id": "eoo",
+    "title": "title-eoo",
   },
 ]
 `;
@@ -45,6 +52,7 @@ exports[`db should be able to get a list before some value 1`] = `
 Array [
   Object {
     "id": "baz",
+    "title": "title-baz",
   },
 ]
 `;
@@ -53,6 +61,7 @@ exports[`db should be able to get a list with a limited count 1`] = `
 Array [
   Object {
     "id": "baz",
+    "title": "title-baz",
   },
 ]
 `;
@@ -61,9 +70,11 @@ exports[`db should be able to get a list with a specific query 1`] = `
 Array [
   Object {
     "id": "bar",
+    "title": "title-bar",
   },
   Object {
     "id": "foo",
+    "title": "title-foo",
   },
 ]
 `;
@@ -72,11 +83,27 @@ exports[`db should be able to get a reversed list 1`] = `
 Array [
   Object {
     "id": "foo",
+    "title": "title-foo",
   },
   Object {
     "id": "baz",
+    "title": "title-baz",
   },
 ]
+`;
+
+exports[`db should be able to get an item with relations 1`] = `
+Object {
+  "id": "foo",
+  "value": Object {
+    "authors1": Array [
+      Object {
+        "id": "foo",
+        "name": "foo-name",
+      },
+    ],
+  },
+}
 `;
 
 exports[`db should be able to put & get a value 1`] = `
