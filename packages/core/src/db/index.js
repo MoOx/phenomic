@@ -118,7 +118,7 @@ const db = {
         key: key,
         value: {
           ...relatedData,
-          body
+          ...(body ? { body } : {})
         }
       });
     });
