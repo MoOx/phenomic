@@ -39,7 +39,7 @@ const Home = () => (
           <FeatureBlock
             start="#3023AE"
             end="#C96DD8"
-            title={"Write once, read everywere"}
+            title={"Write once, read everywhere"}
             description={
               "No server runtime, no database, your pages are generated before"
             }
