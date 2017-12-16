@@ -21,11 +21,11 @@ const connect = (list, limit, previousList = []) => {
     previousPageIsFirst,
     previous:
       hasPreviousPage && previousList[previousIndex]
-        ? encode(previousList[previousIndex].key)
+        ? encode(previousList[previousIndex].id)
         : undefined,
     hasNextPage,
     next:
-      hasNextPage && list[nextIndex] ? encode(list[nextIndex].key) : undefined,
+      hasNextPage && list[nextIndex] ? encode(list[nextIndex].id) : undefined,
     list: list.slice(0, limit)
   };
 };

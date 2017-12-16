@@ -49,34 +49,32 @@ function addToSublevel(sub: null | string | Array<string>, value: Object) {
     ...database,
     subs: {
       ...database.subs,
-      [subname]: [value, ...db].sort((a, b) => (b.key > a.key ? -1 : 1))
+      [subname]: [value, ...db].sort((a, b) => (b.id > a.id ? -1 : 1))
     }
   };
 }
 
-async function getDataRelation(fieldName, keys) {
+async function getDataRelation(fieldName, ids) {
   let partial = null;
   try {
-    if (Array.isArray(keys)) {
-      partial = await Promise.all(
-        keys.map(key => db.getPartial(fieldName, key))
-      );
+    if (Array.isArray(ids)) {
+      partial = await Promise.all(ids.map(id => db.getPartial(fieldName, id)));
     } else {
-      partial = await db.getPartial(fieldName, keys);
+      partial = await db.getPartial(fieldName, ids);
     }
     return partial;
   } catch (error) {
-    return keys;
+    return ids;
   }
 }
 
 async function getDataRelations(fields) {
-  const keys = Object.keys(fields);
+  const ids = Object.keys(fields);
   const resolvedValues = await Promise.all(
-    keys.map(key => getDataRelation(key, fields[key]))
+    ids.map(id => getDataRelation(id, fields[id]))
   );
-  return keys.reduce((resolvedFields, key, index) => {
-    resolvedFields[key] = resolvedValues[index];
+  return ids.reduce((resolvedFields, id, index) => {
+    resolvedFields[id] = resolvedValues[index];
     return resolvedFields;
   }, {});
 }
@@ -98,24 +96,24 @@ const db = {
   },
   put(
     sub: null | string | Array<string>,
-    key: string,
+    id: string,
     value: any
   ): Promise<any> {
     return new Promise(resolve => {
-      const data = { ...value, key };
+      const data = { ...value, id };
       return resolve(addToSublevel(sub, data));
     });
   },
-  get(sub: null | string | Array<string>, key: string): Promise<Object> {
+  get(sub: null | string | Array<string>, id: string): Promise<Object> {
     return new Promise(async (resolve, reject) => {
-      const item = getSublevel(sub).find(item => item.key === key);
+      const item = getSublevel(sub).find(item => item.id === id);
       if (!item) {
         return reject(new NotFoundError("Key not found in database"));
       }
       const { body, ...metadata } = item.data;
       const relatedData = await getDataRelations(metadata);
       resolve({
-        key: key,
+        id: id,
         value: {
           ...relatedData,
           ...(body ? { body } : {})
@@ -123,17 +121,18 @@ const db = {
       });
     });
   },
-  getPartial(sub: string | Array<string>, key: string): Promise<mixed> {
+  getPartial(sub: string | Array<string>, id: string): Promise<mixed> {
     return new Promise(resolve => {
-      const item = getSublevel(sub).find(item => item.key === key);
+      const item = getSublevel(sub).find(item => item.id === id);
+
       if (!item) {
-        return resolve(key);
+        return resolve(id);
       }
       const type = typeof item.partial;
       if (type === "string" || type === "number" || type === "boolean") {
         resolve(item.partial);
       } else {
-        resolve({ id: key, ...item.partial });
+        resolve({ id, ...item.partial });
       }
     });
   },
@@ -150,16 +149,16 @@ const db = {
         collection = collection.concat().reverse();
       }
       if (config.gte) {
-        const index = collection.findIndex(item => item.key === config.gte);
+        const index = collection.findIndex(item => item.id === config.gte);
         collection = index > -1 ? collection.slice(index) : collection;
       } else if (config.gt) {
-        const index = collection.findIndex(item => item.key === config.gt);
+        const index = collection.findIndex(item => item.id === config.gt);
         collection = index > -1 ? collection.slice(index + 1) : collection;
       } else if (config.lte) {
-        const index = collection.findIndex(item => item.key === config.lte);
+        const index = collection.findIndex(item => item.id === config.lte);
         collection = index > -1 ? collection.slice(0, index + 1) : collection;
       } else if (config.lt) {
-        const index = collection.findIndex(item => item.key === config.lt);
+        const index = collection.findIndex(item => item.id === config.lt);
         collection = index > -1 ? collection.slice(0, index) : collection;
       }
       if (typeof config.limit === "number") {
@@ -168,6 +167,7 @@ const db = {
           Math.min(config.limit, collection.length)
         );
       }
+
       Promise.all(
         collection.map(item =>
           db.getPartial(sub, item.id).then(value => {
@@ -179,13 +179,13 @@ const db = {
               Array.isArray(value)
             ) {
               return {
-                key: item.key,
+                id: item.id,
                 value
               };
             }
             return {
               ...value,
-              key: item.key
+              id: item.id
             };
           })
         )

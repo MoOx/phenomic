@@ -47,18 +47,18 @@ const getRouteQueries = route => {
 
 const getMainQuery = route => {
   const routeQueries = getRouteQueries(route);
-  const keys = Object.keys(routeQueries);
-  const firstKey = keys[0];
-  const firstKeyAsInt = parseInt(keys[0], 10);
+  const ids = Object.keys(routeQueries);
+  const firstId = ids[0];
+  const firstIdAsInt = parseInt(ids[0], 10);
   // parseInt("12.") == "12"
   if (
     // $FlowFixMe it's on purpose
-    firstKeyAsInt == firstKey &&
-    String(firstKeyAsInt).length == firstKey.length
+    firstIdAsInt == firstId &&
+    String(firstIdAsInt).length == firstId.length
   ) {
-    console.warn(`The main path used for ${route.path} is ${firstKey}`);
+    console.warn(`The main path used for ${route.path} is ${firstId}`);
   }
-  return { key: firstKey, item: routeQueries[firstKey] };
+  return { id: firstId, item: routeQueries[firstId] };
 };
 
 const resolveURLsForDynamicParams = async function(
@@ -98,41 +98,41 @@ const resolveURLsForDynamicParams = async function(
   }
   debug(
     `fetching path '${
-      mainQuery.key ? mainQuery.key : Object.keys(pathConfig).join(",")
+      mainQuery.id ? mainQuery.id : Object.keys(pathConfig).join(",")
     }' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
   const queries = getRouteQueries(route);
   debug(route.path, queries);
-  let key = (queries[mainQuery.key] && queries[mainQuery.key].by) || mainKey;
-  if (key === defaultQueryKey) {
-    key = mainKey;
+  let id = (queries[mainQuery.id] && queries[mainQuery.id].by) || mainKey;
+  if (id === defaultQueryKey) {
+    id = mainKey;
   }
   const queryParams = query(pathConfig);
   const queryResult = await phenomicFetch(queryParams);
   debug(
     route.path,
-    `path fetched. ${queryResult.list.length} items (key: ${key})`
+    `path fetched. ${queryResult.list.length} items (id: ${id})`
   );
   const path = route.path || "*";
   const list = queryResult.list.reduce((acc, item) => {
-    if (!item[key]) {
+    if (!item[id]) {
       return acc;
     }
-    if (Array.isArray(item[key])) {
-      acc = acc.concat(item[key]);
+    if (Array.isArray(item[id])) {
+      acc = acc.concat(item[id]);
     } else {
-      acc.push(item[key]);
+      acc.push(item[id]);
     }
     return acc;
   }, []);
   debug(path, "list (unique)", arrayUnique(list));
   const urlsData = arrayUnique(list).reduce((acc, value) => {
-    let resolvedPath = path.replace(":" + key, value);
-    let params = { [key]: value };
+    let resolvedPath = path.replace(":" + id, value);
+    let params = { [id]: value };
 
     // try *
-    if (key === mainKey && resolvedPath === path) {
+    if (id === mainKey && resolvedPath === path) {
       resolvedPath = resolvedPath.replace("*", value);
       // react-router splat is considered as the id
       params = { splat: value };
@@ -164,22 +164,22 @@ const resolveURLsForDynamicParams = async function(
       acc.push(routeData);
     } else {
       queryResult.list.map(item => {
-        // $FlowFixMe params[key] act as a truthy value
-        if (routeData.params && routeData.params[key]) {
+        // $FlowFixMe params[id] act as a truthy value
+        if (routeData.params && routeData.params[id]) {
           if (
-            (Array.isArray(item[key]) &&
-              item[key].includes(routeData.params[key])) ||
-            item[key] === routeData.params[key]
+            (Array.isArray(item[id]) &&
+              item[id].includes(routeData.params[id])) ||
+            item[id] === routeData.params[id]
           ) {
             acc.push({
               ...routeData,
-              path: routeData.path.replace(reAfter, encode(item.key))
+              path: routeData.path.replace(reAfter, encode(item.id))
             });
           }
         } else {
           acc.push({
             ...routeData,
-            path: routeData.path.replace(reAfter, encode(item.key))
+            path: routeData.path.replace(reAfter, encode(item.id))
           });
         }
       });

@@ -17,7 +17,6 @@ Object {
           "title": "Introducing Phenomic 1.0.0 first alpha",
         },
         "id": "news/2017/06/introducing-1.0.0-alpha",
-        "key": "news/2017/06/introducing-1.0.0-alpha",
         "partial": Object {
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
@@ -42,7 +41,6 @@ Object {
           "url": "https://www.acrowithbrian.com/",
         },
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
         "partial": Object {
           "date": undefined,
           "filename": "acrowithbrian.com.md",
@@ -73,7 +71,6 @@ Object {
           "url": "http://anthonydugois.com/polynomic/",
         },
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
         "partial": Object {
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
@@ -105,7 +102,6 @@ Object {
           "url": "https://www.ced.photo",
         },
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
         "partial": Object {
           "date": undefined,
           "filename": "ced.photo.md",
@@ -128,7 +124,6 @@ Object {
           "title": "Submit a website/app made with Phenomic to the Showcase",
         },
         "id": "showcase/submit",
-        "key": "showcase/submit",
         "partial": Object {
           "date": undefined,
           "filename": "submit.md",
@@ -139,72 +134,60 @@ Object {
     "date": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
     "date$$default": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
     "date$$path$$news": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
     "date$$path$$news/2017": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
     "date$$path$$news/2017/06": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
     "date$$path$$news/2017/06/introducing-1.0.0-alpha.md": Array [
       Object {
         "id": "2017-06-02T00:00:00.000Z",
-        "key": "2017-06-02T00:00:00.000Z",
         "partial": "2017-06-02T00:00:00.000Z",
       },
     ],
@@ -222,7 +205,6 @@ Object {
           "title": "Introducing Phenomic 1.0.0 first alpha",
         },
         "id": "2017/06/introducing-1.0.0-alpha",
-        "key": "2017/06/introducing-1.0.0-alpha",
         "partial": Object {
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
@@ -233,19 +215,16 @@ Object {
     "news$$date$$2017-06-02T00:00:00.000Z": Array [
       Object {
         "id": "2017/06/introducing-1.0.0-alpha",
-        "key": "2017/06/introducing-1.0.0-alpha",
       },
     ],
     "news$$default": Array [
       Object {
         "id": "2017/06/introducing-1.0.0-alpha",
-        "key": "2017/06/introducing-1.0.0-alpha",
       },
     ],
     "news$$title$$Introducing Phenomic 1.0.0 first alpha": Array [
       Object {
         "id": "2017/06/introducing-1.0.0-alpha",
-        "key": "2017/06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017": Array [
@@ -262,7 +241,6 @@ Object {
           "title": "Introducing Phenomic 1.0.0 first alpha",
         },
         "id": "06/introducing-1.0.0-alpha",
-        "key": "06/introducing-1.0.0-alpha",
         "partial": Object {
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
@@ -273,19 +251,16 @@ Object {
     "news/2017$$date$$2017-06-02T00:00:00.000Z": Array [
       Object {
         "id": "06/introducing-1.0.0-alpha",
-        "key": "06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017$$default": Array [
       Object {
         "id": "06/introducing-1.0.0-alpha",
-        "key": "06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017$$title$$Introducing Phenomic 1.0.0 first alpha": Array [
       Object {
         "id": "06/introducing-1.0.0-alpha",
-        "key": "06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06": Array [
@@ -302,7 +277,6 @@ Object {
           "title": "Introducing Phenomic 1.0.0 first alpha",
         },
         "id": "introducing-1.0.0-alpha",
-        "key": "introducing-1.0.0-alpha",
         "partial": Object {
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
@@ -313,19 +287,16 @@ Object {
     "news/2017/06$$date$$2017-06-02T00:00:00.000Z": Array [
       Object {
         "id": "introducing-1.0.0-alpha",
-        "key": "introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06$$default": Array [
       Object {
         "id": "introducing-1.0.0-alpha",
-        "key": "introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06$$title$$Introducing Phenomic 1.0.0 first alpha": Array [
       Object {
         "id": "introducing-1.0.0-alpha",
-        "key": "introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06/introducing-1.0.0-alpha.md": Array [
@@ -342,7 +313,6 @@ Object {
           "title": "Introducing Phenomic 1.0.0 first alpha",
         },
         "id": "news/2017/06/introducing-1.0.0-alpha",
-        "key": "news/2017/06/introducing-1.0.0-alpha",
         "partial": Object {
           "date": "2017-06-02T00:00:00.000Z",
           "filename": "introducing-1.0.0-alpha.md",
@@ -353,19 +323,16 @@ Object {
     "news/2017/06/introducing-1.0.0-alpha.md$$date$$2017-06-02T00:00:00.000Z": Array [
       Object {
         "id": "news/2017/06/introducing-1.0.0-alpha",
-        "key": "news/2017/06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06/introducing-1.0.0-alpha.md$$default": Array [
       Object {
         "id": "news/2017/06/introducing-1.0.0-alpha",
-        "key": "news/2017/06/introducing-1.0.0-alpha",
       },
     ],
     "news/2017/06/introducing-1.0.0-alpha.md$$title$$Introducing Phenomic 1.0.0 first alpha": Array [
       Object {
         "id": "news/2017/06/introducing-1.0.0-alpha",
-        "key": "news/2017/06/introducing-1.0.0-alpha",
       },
     ],
     "showcase": Array [
@@ -387,7 +354,6 @@ Object {
           "url": "https://www.acrowithbrian.com/",
         },
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
         "partial": Object {
           "date": undefined,
           "filename": "acrowithbrian.com.md",
@@ -418,7 +384,6 @@ Object {
           "url": "http://anthonydugois.com/polynomic/",
         },
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
         "partial": Object {
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
@@ -450,7 +415,6 @@ Object {
           "url": "https://www.ced.photo",
         },
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
         "partial": Object {
           "date": undefined,
           "filename": "ced.photo.md",
@@ -473,7 +437,6 @@ Object {
           "title": "Submit a website/app made with Phenomic to the Showcase",
         },
         "id": "submit",
-        "key": "submit",
         "partial": Object {
           "date": undefined,
           "filename": "submit.md",
@@ -484,123 +447,101 @@ Object {
     "showcase$$default": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
       Object {
         "id": "submit",
-        "key": "submit",
       },
     ],
     "showcase$$showcaseTags$$blog": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
     ],
     "showcase$$showcaseTags$$business": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
     ],
     "showcase$$showcaseTags$$docs": Array [
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase$$showcaseTags$$event": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
     ],
     "showcase$$showcaseTags$$learning": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
     ],
     "showcase$$showcaseTags$$open-source": Array [
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase$$source$$https://github.com/anthonydugois/polynomic": Array [
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase$$source$$https://github.com/brianrc/acrowithbrian-site": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
     ],
     "showcase$$source$$https://github.com/xuopled/ced.photo": Array [
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
     ],
     "showcase$$title$$Brian Cruikshank Acro": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
     ],
     "showcase$$title$$CeD photo": Array [
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
     ],
     "showcase$$title$$Polynomic": Array [
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase$$title$$Submit a website/app made with Phenomic to the Showcase": Array [
       Object {
         "id": "submit",
-        "key": "submit",
       },
     ],
     "showcase$$url$$http://anthonydugois.com/polynomic/": Array [
       Object {
         "id": "entry/anthonydugois.com__polynomic",
-        "key": "entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase$$url$$https://www.acrowithbrian.com/": Array [
       Object {
         "id": "entry/acrowithbrian.com",
-        "key": "entry/acrowithbrian.com",
       },
     ],
     "showcase$$url$$https://www.ced.photo": Array [
       Object {
         "id": "entry/ced.photo",
-        "key": "entry/ced.photo",
       },
     ],
     "showcase/entry": Array [
@@ -622,7 +563,6 @@ Object {
           "url": "https://www.acrowithbrian.com/",
         },
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
         "partial": Object {
           "date": undefined,
           "filename": "acrowithbrian.com.md",
@@ -653,7 +593,6 @@ Object {
           "url": "http://anthonydugois.com/polynomic/",
         },
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
         "partial": Object {
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
@@ -685,7 +624,6 @@ Object {
           "url": "https://www.ced.photo",
         },
         "id": "ced.photo",
-        "key": "ced.photo",
         "partial": Object {
           "date": undefined,
           "filename": "ced.photo.md",
@@ -702,113 +640,93 @@ Object {
     "showcase/entry$$default": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry$$showcaseTags$$blog": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry$$showcaseTags$$business": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry$$showcaseTags$$docs": Array [
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry$$showcaseTags$$event": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
     ],
     "showcase/entry$$showcaseTags$$learning": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
     ],
     "showcase/entry$$showcaseTags$$open-source": Array [
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry$$source$$https://github.com/anthonydugois/polynomic": Array [
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry$$source$$https://github.com/brianrc/acrowithbrian-site": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
     ],
     "showcase/entry$$source$$https://github.com/xuopled/ced.photo": Array [
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry$$title$$Brian Cruikshank Acro": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
     ],
     "showcase/entry$$title$$CeD photo": Array [
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry$$title$$Polynomic": Array [
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry$$url$$http://anthonydugois.com/polynomic/": Array [
       Object {
         "id": "anthonydugois.com__polynomic",
-        "key": "anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry$$url$$https://www.acrowithbrian.com/": Array [
       Object {
         "id": "acrowithbrian.com",
-        "key": "acrowithbrian.com",
       },
     ],
     "showcase/entry$$url$$https://www.ced.photo": Array [
       Object {
         "id": "ced.photo",
-        "key": "ced.photo",
       },
     ],
     "showcase/entry/acrowithbrian.com.md": Array [
@@ -830,7 +748,6 @@ Object {
           "url": "https://www.acrowithbrian.com/",
         },
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
         "partial": Object {
           "date": undefined,
           "filename": "acrowithbrian.com.md",
@@ -849,49 +766,41 @@ Object {
     "showcase/entry/acrowithbrian.com.md$$default": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$showcaseTags$$blog": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$showcaseTags$$business": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$showcaseTags$$event": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$showcaseTags$$learning": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$source$$https://github.com/brianrc/acrowithbrian-site": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$title$$Brian Cruikshank Acro": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/acrowithbrian.com.md$$url$$https://www.acrowithbrian.com/": Array [
       Object {
         "id": "showcase/entry/acrowithbrian.com",
-        "key": "showcase/entry/acrowithbrian.com",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md": Array [
@@ -911,7 +820,6 @@ Object {
           "url": "http://anthonydugois.com/polynomic/",
         },
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
         "partial": Object {
           "date": undefined,
           "filename": "anthonydugois.com__polynomic.md",
@@ -928,37 +836,31 @@ Object {
     "showcase/entry/anthonydugois.com__polynomic.md$$default": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md$$showcaseTags$$docs": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md$$showcaseTags$$open-source": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md$$source$$https://github.com/anthonydugois/polynomic": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md$$title$$Polynomic": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/anthonydugois.com__polynomic.md$$url$$http://anthonydugois.com/polynomic/": Array [
       Object {
         "id": "showcase/entry/anthonydugois.com__polynomic",
-        "key": "showcase/entry/anthonydugois.com__polynomic",
       },
     ],
     "showcase/entry/ced.photo.md": Array [
@@ -981,7 +883,6 @@ Object {
           "url": "https://www.ced.photo",
         },
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
         "partial": Object {
           "date": undefined,
           "filename": "ced.photo.md",
@@ -998,37 +899,31 @@ Object {
     "showcase/entry/ced.photo.md$$default": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/entry/ced.photo.md$$showcaseTags$$blog": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/entry/ced.photo.md$$showcaseTags$$business": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/entry/ced.photo.md$$source$$https://github.com/xuopled/ced.photo": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/entry/ced.photo.md$$title$$CeD photo": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/entry/ced.photo.md$$url$$https://www.ced.photo": Array [
       Object {
         "id": "showcase/entry/ced.photo",
-        "key": "showcase/entry/ced.photo",
       },
     ],
     "showcase/submit.md": Array [
@@ -1042,7 +937,6 @@ Object {
           "title": "Submit a website/app made with Phenomic to the Showcase",
         },
         "id": "showcase/submit",
-        "key": "showcase/submit",
         "partial": Object {
           "date": undefined,
           "filename": "submit.md",
@@ -1053,933 +947,760 @@ Object {
     "showcase/submit.md$$default": Array [
       Object {
         "id": "showcase/submit",
-        "key": "showcase/submit",
       },
     ],
     "showcase/submit.md$$title$$Submit a website/app made with Phenomic to the Showcase": Array [
       Object {
         "id": "showcase/submit",
-        "key": "showcase/submit",
       },
     ],
     "showcaseTags": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
     ],
     "showcaseTags$$default": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
     ],
     "showcaseTags$$path$$showcase": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
     ],
     "showcaseTags$$path$$showcase/entry": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
     ],
     "showcaseTags$$path$$showcase/entry/acrowithbrian.com.md": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
       Object {
         "id": "event",
-        "key": "event",
         "partial": "event",
       },
       Object {
         "id": "learning",
-        "key": "learning",
         "partial": "learning",
       },
     ],
     "showcaseTags$$path$$showcase/entry/anthonydugois.com__polynomic.md": Array [
       Object {
         "id": "docs",
-        "key": "docs",
         "partial": "docs",
       },
       Object {
         "id": "open-source",
-        "key": "open-source",
         "partial": "open-source",
       },
     ],
     "showcaseTags$$path$$showcase/entry/ced.photo.md": Array [
       Object {
         "id": "blog",
-        "key": "blog",
         "partial": "blog",
       },
       Object {
         "id": "business",
-        "key": "business",
         "partial": "business",
       },
     ],
     "source": Array [
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
     ],
     "source$$default": Array [
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
     ],
     "source$$path$$showcase": Array [
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
     ],
     "source$$path$$showcase/entry": Array [
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
     ],
     "source$$path$$showcase/entry/acrowithbrian.com.md": Array [
       Object {
         "id": "https://github.com/brianrc/acrowithbrian-site",
-        "key": "https://github.com/brianrc/acrowithbrian-site",
         "partial": "https://github.com/brianrc/acrowithbrian-site",
       },
     ],
     "source$$path$$showcase/entry/anthonydugois.com__polynomic.md": Array [
       Object {
         "id": "https://github.com/anthonydugois/polynomic",
-        "key": "https://github.com/anthonydugois/polynomic",
         "partial": "https://github.com/anthonydugois/polynomic",
       },
     ],
     "source$$path$$showcase/entry/ced.photo.md": Array [
       Object {
         "id": "https://github.com/xuopled/ced.photo",
-        "key": "https://github.com/xuopled/ced.photo",
         "partial": "https://github.com/xuopled/ced.photo",
       },
     ],
     "title": Array [
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
     ],
     "title$$default": Array [
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
     ],
     "title$$path$$news": Array [
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
     ],
     "title$$path$$news/2017": Array [
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
     ],
     "title$$path$$news/2017/06": Array [
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
     ],
     "title$$path$$news/2017/06/introducing-1.0.0-alpha.md": Array [
       Object {
         "id": "Introducing Phenomic 1.0.0 first alpha",
-        "key": "Introducing Phenomic 1.0.0 first alpha",
         "partial": "Introducing Phenomic 1.0.0 first alpha",
       },
     ],
     "title$$path$$showcase": Array [
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
     ],
     "title$$path$$showcase/entry": Array [
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
     ],
     "title$$path$$showcase/entry/acrowithbrian.com.md": Array [
       Object {
         "id": "Brian Cruikshank Acro",
-        "key": "Brian Cruikshank Acro",
         "partial": "Brian Cruikshank Acro",
       },
     ],
     "title$$path$$showcase/entry/anthonydugois.com__polynomic.md": Array [
       Object {
         "id": "Polynomic",
-        "key": "Polynomic",
         "partial": "Polynomic",
       },
     ],
     "title$$path$$showcase/entry/ced.photo.md": Array [
       Object {
         "id": "CeD photo",
-        "key": "CeD photo",
         "partial": "CeD photo",
       },
     ],
     "title$$path$$showcase/submit.md": Array [
       Object {
         "id": "Submit a website/app made with Phenomic to the Showcase",
-        "key": "Submit a website/app made with Phenomic to the Showcase",
         "partial": "Submit a website/app made with Phenomic to the Showcase",
       },
     ],
     "url": Array [
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
     ],
     "url$$default": Array [
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
     ],
     "url$$path$$showcase": Array [
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
     ],
     "url$$path$$showcase/entry": Array [
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
     ],
     "url$$path$$showcase/entry/acrowithbrian.com.md": Array [
       Object {
         "id": "https://www.acrowithbrian.com/",
-        "key": "https://www.acrowithbrian.com/",
         "partial": "https://www.acrowithbrian.com/",
       },
     ],
     "url$$path$$showcase/entry/anthonydugois.com__polynomic.md": Array [
       Object {
         "id": "http://anthonydugois.com/polynomic/",
-        "key": "http://anthonydugois.com/polynomic/",
         "partial": "http://anthonydugois.com/polynomic/",
       },
     ],
     "url$$path$$showcase/entry/ced.photo.md": Array [
       Object {
         "id": "https://www.ced.photo",
-        "key": "https://www.ced.photo",
         "partial": "https://www.ced.photo",
       },
     ],
