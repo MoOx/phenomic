@@ -22,7 +22,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "~7.3.0",
     "eslint-plugin-react-native": "^3.1.0",
-    "flow-bin": "^0.55.0",
+    "flow-bin": "^0.61.0",
     "git-exec-and-restage": "^1.0.1",
     "globby": "^6.1.0",
     "husky": "^0.13.3",

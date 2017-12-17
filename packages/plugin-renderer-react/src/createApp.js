@@ -38,13 +38,23 @@ export const renderApp = (routes: () => React.Element<any>) => {
         : undefined
     );
 
+  let root = document.getElementById("PhenomicRoot");
+  if (!root) {
+    root = document.createElement("div");
+    root.id = "PhenomicRoot";
+    if (!document.body) {
+      throw new Error("Rendering the app without a body element is impossible");
+    }
+    document.body.appendChild(root);
+  }
+
   render(
     <AppContainer>
       <Provider fetch={createFetchFunction()} store={store}>
         {routes()}
       </Provider>
     </AppContainer>,
-    document.getElementById("PhenomicRoot")
+    root
   );
 };
 
