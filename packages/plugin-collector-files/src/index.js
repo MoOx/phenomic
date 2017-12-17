@@ -27,11 +27,6 @@ export function formatDate(dateString: string) {
   return date.substring(0, date.indexOf("T"));
 }
 
-export function getFields(json: PhenomicTransformResult) {
-  const keys = Object.keys(json.data);
-  return keys.filter(key => key !== "author" && key !== "authors");
-}
-
 function isLiteral(value) {
   const type = typeof value;
   return type === "string" || type === "number" || type === "boolean";
@@ -47,16 +42,6 @@ export function getFieldValue(json: PhenomicTransformResult, key: string) {
   }
   if (isLiteral(json.data[key])) {
     return [json.data[key]];
-  }
-  return [];
-}
-
-export function getAuthors(json: PhenomicTransformResult) {
-  if (typeof json.data.author === "string") {
-    return [json.data.author];
-  }
-  if (Array.isArray(json.data.authors)) {
-    return json.data.authors;
   }
   return [];
 }
@@ -121,16 +106,7 @@ export default function() {
             }),
             // sorted list
             db.put([pathName, "default"], sortedKey, { id: relativeKey }),
-            // sorted list, filtered by authors
-            ...getAuthors(json).map(author => {
-              return Promise.all([
-                db.put([pathName, "authors", author], sortedKey, {
-                  id: relativeKey
-                }),
-                db.put(["authors", pathName], author, { id: author })
-              ]);
-            }),
-            ...getFields(json).map(type => {
+            ...Object.keys(json.data).map(type => {
               return getFieldValue(json, type).map(value =>
                 Promise.all([
                   // sorted list, filtered by tags

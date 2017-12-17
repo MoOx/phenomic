@@ -1,11 +1,4 @@
-import {
-  getKey,
-  getAuthors,
-  getFields,
-  getFieldValue,
-  injectData,
-  parsePath
-} from "..";
+import { getKey, getFieldValue, injectData, parsePath } from "..";
 
 it("should be able to generate keys", () => {
   expect(getKey("test", { partial: {}, data: {} })).toEqual("test");
@@ -23,22 +16,6 @@ it("should be able to generate keys", () => {
 
   expect(getKey("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
     "yep"
-  );
-});
-
-it("should be able to generate authors list", () => {
-  expect(getAuthors({ partial: {}, data: { author: "test" } })).toEqual([
-    "test"
-  ]);
-
-  expect(
-    getAuthors({ partial: {}, data: { authors: ["test", "test2"] } })
-  ).toEqual(["test", "test2"]);
-});
-
-it("should be able to get arbitrary fields", () => {
-  expect(getFields({ partial: {}, data: { tags: ["test", "test2"] } })).toEqual(
-    ["tags"]
   );
 });
 
