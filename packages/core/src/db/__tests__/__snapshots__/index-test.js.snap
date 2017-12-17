@@ -115,4 +115,4 @@ Object {
 }
 `;
 
-exports[`db should throw when value isn't there 1`] = `[NotFoundError: Key not found in database]`;
+exports[`db should throw when value isn't there 1`] = `[NotFoundError: ID not found in database]`;

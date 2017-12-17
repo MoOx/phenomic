@@ -108,12 +108,12 @@ const db = {
     return new Promise(async (resolve, reject) => {
       const item = getSublevel(sub).find(item => item.id === id);
       if (!item) {
-        return reject(new NotFoundError("Key not found in database"));
+        return reject(new NotFoundError("ID not found in database"));
       }
       const { body, ...metadata } = item.data;
       const relatedData = await getDataRelations(metadata);
       resolve({
-        id: id,
+        id,
         value: {
           ...relatedData,
           ...(body ? { body } : {})

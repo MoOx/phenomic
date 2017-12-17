@@ -5,21 +5,21 @@ function normalizeWindowsPath(value: string) {
   return value.replace(/(\/|\\)+/g, sep);
 }
 
-export function getKey(name: string, json: PhenomicTransformResult): string {
+export function getId(name: string, json: PhenomicTransformResult): string {
   if (json.data.path) {
-    debug(`key for '${name}' is '${json.data.path}' (from json)`);
+    debug(`id for '${name}' is '${json.data.path}' (from json)`);
     return json.data.path;
   }
   // normalize windows path
   name = normalizeWindowsPath(name);
-  // remove (index).md,json etc, for key
-  const key = name
+  // remove (index).md,json etc, for id
+  const id = name
     // remove extension for prettier keys
     .replace(/.(md|json)$/, "")
     // remove index too
     .replace(/\/index$/, "");
-  debug(`key for '${name}' is '${key}' (automatically computed)`);
-  return key;
+  debug(`id for '${name}' is '${id}' (automatically computed)`);
+  return id;
 }
 
 export function formatDate(dateString: string) {
@@ -36,12 +36,12 @@ function isArrayOfLiterals(array) {
   return Array.isArray(array) && array.every(isLiteral);
 }
 
-export function getFieldValue(json: PhenomicTransformResult, key: string) {
-  if (isArrayOfLiterals(json.data[key])) {
-    return json.data[key];
+export function getFieldValue(json: PhenomicTransformResult, id: string) {
+  if (isArrayOfLiterals(json.data[id])) {
+    return json.data[id];
   }
-  if (isLiteral(json.data[key])) {
-    return [json.data[key]];
+  if (isLiteral(json.data[id])) {
+    return [json.data[id]];
   }
   return [];
 }
@@ -86,43 +86,29 @@ export default function() {
     name: "@phenomic/plugin-collector-files",
     collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
       name = normalizeWindowsPath(name);
-      const key = getKey(name, json);
+      const id = getId(name, json);
       const { filename, allPaths } = parsePath(name);
       const adjustedJSON = injectData(filename, json);
       // full resource, not sorted
-      db.put(null, key, {
-        ...adjustedJSON,
-        id: key
-      });
+      db.put(null, id, adjustedJSON);
       return Promise.all(
         allPaths.map(pathName => {
-          const relativeKey = key.replace(pathName + sep, "");
+          const relativeKey = id.replace(pathName + sep, "");
           const sortedKey = relativeKey;
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
-            db.put([pathName], relativeKey, {
-              ...adjustedJSON,
-              id: relativeKey
-            }),
+            db.put([pathName], relativeKey, adjustedJSON),
             // sorted list
-            db.put([pathName, "default"], sortedKey, { id: relativeKey }),
+            db.put([pathName, "default"], sortedKey, {}),
             ...Object.keys(json.data).map(type => {
               return getFieldValue(json, type).map(value =>
                 Promise.all([
                   // sorted list, filtered by tags
-                  db.put([pathName, type, value], sortedKey, {
-                    id: relativeKey
-                  }),
+                  db.put([pathName, type, value], sortedKey),
                   // global tag list
-                  db.put([type], value, { id: value, partial: value }),
-                  db.put([type, "default"], value, {
-                    id: value,
-                    partial: value
-                  }),
-                  db.put([type, "path", pathName], value, {
-                    id: value,
-                    partial: value
-                  })
+                  db.put([type], value, { partial: value }),
+                  db.put([type, "default"], value, { partial: value }),
+                  db.put([type, "path", pathName], value, { partial: value })
                 ])
               );
             })

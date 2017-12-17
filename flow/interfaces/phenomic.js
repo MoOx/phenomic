@@ -2,11 +2,11 @@ export type PhenomicDB = {
   destroy: () => Promise<void>,
   put: (
     sub: null | string | Array<string>,
-    key: string,
+    id: string,
     value: any
   ) => Promise<Object>,
-  get: (sub: null | string | Array<string>, key: string) => Promise<Object>,
-  getPartial: (sub: string | Array<string>, key: string) => Promise<void>,
+  get: (sub: null | string | Array<string>, id: string) => Promise<Object>,
+  getPartial: (sub: string | Array<string>, id: string) => Promise<void>,
   getList: (
     sub: string | Array<string>,
     config: LevelStreamConfig,

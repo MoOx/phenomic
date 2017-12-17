@@ -1,20 +1,20 @@
-import { getKey, getFieldValue, injectData, parsePath } from "..";
+import { getId, getFieldValue, injectData, parsePath } from "..";
 
 it("should be able to generate keys", () => {
-  expect(getKey("test", { partial: {}, data: {} })).toEqual("test");
+  expect(getId("test", { partial: {}, data: {} })).toEqual("test");
 
-  expect(getKey("test.md", { partial: {}, data: {} })).toEqual("test");
+  expect(getId("test.md", { partial: {}, data: {} })).toEqual("test");
 
   // @todo handle this case
-  expect(getKey("test/index.md", { partial: {}, data: {} })).toEqual("test");
-  expect(getKey("test/test/index.md", { partial: {}, data: {} })).toEqual(
+  expect(getId("test/index.md", { partial: {}, data: {} })).toEqual("test");
+  expect(getId("test/test/index.md", { partial: {}, data: {} })).toEqual(
     "test/test"
   );
-  expect(getKey("test\\test\\index.md", { partial: {}, data: {} })).toEqual(
+  expect(getId("test\\test\\index.md", { partial: {}, data: {} })).toEqual(
     "test/test"
   );
 
-  expect(getKey("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
+  expect(getId("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
     "yep"
   );
 });
