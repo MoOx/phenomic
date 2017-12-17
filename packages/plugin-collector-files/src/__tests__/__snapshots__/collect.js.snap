@@ -3,9 +3,18 @@
 exports[`should collect everything 1`] = `
 Array [
   Object {
-    "filename": "open-source.md",
-    "id": "showcaseTags/open-source",
-    "name": "Open Source",
+    "bio": "bloodyowl short bio",
+    "body": "bloodyowl long bio",
+    "filename": "bloodyowl.json",
+    "id": "authors/bloodyowl",
+    "name": "bloodyowl",
+  },
+  Object {
+    "bio": "moox short bio",
+    "body": "moox long bio",
+    "filename": "moox.json",
+    "id": "authors/moox",
+    "name": "moox",
   },
   Object {
     "filename": "acrowithbrian.com.md",
@@ -48,23 +57,14 @@ Array [
     "title": "Submit a website/app made with Phenomic to the Showcase",
   },
   Object {
-    "bio": "moox short bio",
-    "body": "moox long bio",
-    "filename": "moox.json",
-    "id": "authors/moox",
-    "name": "moox",
-  },
-  Object {
-    "bio": "bloodyowl short bio",
-    "body": "bloodyowl long bio",
-    "filename": "bloodyowl.json",
-    "id": "authors/bloodyowl",
-    "name": "bloodyowl",
-  },
-  Object {
     "filename": "event.md",
     "id": "showcaseTags/event",
     "name": "Event",
+  },
+  Object {
+    "filename": "open-source.md",
+    "id": "showcaseTags/open-source",
+    "name": "Open Source",
   },
   Object {
     "authors": Array [
@@ -81,14 +81,14 @@ Array [
 exports[`should collect metadata 1`] = `
 Array [
   Object {
-    "filename": "open-source.md",
-    "id": "open-source",
-    "name": "Open Source",
-  },
-  Object {
     "filename": "event.md",
     "id": "event",
     "name": "Event",
+  },
+  Object {
+    "filename": "open-source.md",
+    "id": "open-source",
+    "name": "Open Source",
   },
 ]
 `;
