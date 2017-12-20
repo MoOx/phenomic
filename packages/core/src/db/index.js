@@ -49,7 +49,9 @@ function putToSublevel(
   const sub = database[subname] || [];
   database = {
     ...database,
-    [subname]: [...sub.filter(item => item.id !== value.id), value]
+    [subname]: [...sub.filter(item => item.id !== value.id), value].sort(
+      (a, b) => (b.id > a.id ? -1 : 1)
+    )
   };
 }
 
