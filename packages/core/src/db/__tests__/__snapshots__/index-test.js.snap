@@ -69,12 +69,12 @@ Array [
 exports[`db should be able to get a list with a specific query 1`] = `
 Array [
   Object {
-    "id": "bar",
-    "title": "title-bar",
-  },
-  Object {
     "id": "foo",
     "title": "title-foo",
+  },
+  Object {
+    "id": "bar",
+    "title": "title-bar",
   },
 ]
 `;

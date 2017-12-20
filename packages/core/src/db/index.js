@@ -1,10 +1,9 @@
+import merge from "deep-assign";
+
 const glue = "$$";
 const nullSub = "__null__";
-const emptyDatabase = {
-  subs: {}
-};
-
-let database = emptyDatabase;
+const emptyDatabase: PhenomicDBRegistry = {};
+let database: PhenomicDBRegistry = emptyDatabase;
 
 function sortBy(sort = "date") {
   return (a, b) => {
@@ -27,7 +26,7 @@ function getSublevel(
   if (!Array.isArray(sub)) {
     sub = [sub === null ? nullSub : sub];
   }
-  let db = database.subs[sub.join(glue)] || [];
+  let db = database[sub.join(glue)] || [];
   if (filter && filterValue && filter !== "default") {
     db = db.filter(item => {
       if (Array.isArray(item.data[filter])) {
@@ -39,18 +38,36 @@ function getSublevel(
   return db;
 }
 
-function addToSublevel(sub: null | string | Array<string>, value: Object) {
-  if (!Array.isArray(sub)) {
-    sub = [sub === null ? nullSub : sub];
+function putToSublevel(
+  subName: null | string | Array<string>,
+  value: PhenomicDBEntry
+) {
+  if (!Array.isArray(subName)) {
+    subName = [subName === null ? nullSub : subName];
   }
-  const subname = sub.join(glue);
-  const db = database.subs[subname] || [];
+  const subname = subName.join(glue);
+  const sub = database[subname] || [];
   database = {
     ...database,
-    subs: {
-      ...database.subs,
-      [subname]: [value, ...db].sort((a, b) => (b.id > a.id ? -1 : 1))
-    }
+    [subname]: [...sub.filter(item => item.id !== value.id), value]
+  };
+}
+
+function updateToSublevel(
+  subName: null | string | Array<string>,
+  value: PhenomicDBEntry
+) {
+  if (!Array.isArray(subName)) {
+    subName = [subName === null ? nullSub : subName];
+  }
+  const subname = subName.join(glue);
+  const sub = database[subname] || [];
+  database = {
+    ...database,
+    [subname]: [
+      ...sub.filter(item => item.id !== value.id),
+      merge({}, sub.find(item => item.id === value.id) || {}, value)
+    ].sort((a, b) => (b.id > a.id ? -1 : 1))
   };
 }
 
@@ -87,60 +104,69 @@ class NotFoundError extends Error {
 }
 
 const db = {
-  getDatabase: () => database,
   destroy(): Promise<void> {
     return new Promise(resolve => {
       database = emptyDatabase;
       resolve();
     });
   },
-  put(
+  async put(
     sub: null | string | Array<string>,
     id: string,
-    value: any
+    value: PhenomicDBEntryInput = { data: {}, partial: {} }
+  ): Promise<void> {
+    await putToSublevel(sub, {
+      data: value.data,
+      partial: value.partial,
+      id
+    });
+  },
+  async update(
+    sub: null | string | Array<string>,
+    id: string,
+    value: PhenomicDBEntryInput = { data: {}, partial: {} }
   ): Promise<any> {
-    return new Promise(resolve => {
-      const data = { ...value, id };
-      return resolve(addToSublevel(sub, data));
+    await updateToSublevel(sub, {
+      data: value.data,
+      partial: value.partial,
+      id
     });
   },
-  get(sub: null | string | Array<string>, id: string): Promise<Object> {
-    return new Promise(async (resolve, reject) => {
-      const item = getSublevel(sub).find(item => item.id === id);
-      if (!item) {
-        return reject(new NotFoundError("ID not found in database"));
+  async get(
+    sub: null | string | Array<string>,
+    id: string
+  ): Promise<PhenomicDBEntryDetailed> {
+    const item = getSublevel(sub).find(item => item.id === id);
+    if (typeof item === "undefined") {
+      throw new NotFoundError("ID not found in database");
+    }
+    const { body, ...metadata } = item.data;
+    const relatedData = await getDataRelations(metadata);
+    return {
+      id: id,
+      value: {
+        ...relatedData,
+        ...(body ? { body } : {})
       }
-      const { body, ...metadata } = item.data;
-      const relatedData = await getDataRelations(metadata);
-      resolve({
-        id,
-        value: {
-          ...relatedData,
-          ...(body ? { body } : {})
-        }
-      });
-    });
+    };
   },
-  getPartial(sub: string | Array<string>, id: string): Promise<mixed> {
-    return new Promise(resolve => {
-      const item = getSublevel(sub).find(item => item.id === id);
+  async getPartial(sub: string | Array<string>, id: string): Promise<mixed> {
+    const item = getSublevel(sub).find(item => item.id === id);
+    if (!item) {
+      return id;
+    }
+    const type = typeof item.partial;
+    if (type === "string" || type === "number" || type === "boolean") {
+      return item.partial;
+    }
+    return { id, ...item.partial };
+  },
 
-      if (!item) {
-        return resolve(id);
-      }
-      const type = typeof item.partial;
-      if (type === "string" || type === "number" || type === "boolean") {
-        resolve(item.partial);
-      } else {
-        resolve({ id, ...item.partial });
-      }
-    });
-  },
   getList(
     sub: string | Array<string>,
-    config: LevelStreamConfig,
+    config: LevelStreamConfig = {},
     filter: string = "default",
-    filterValue: string
+    filterValue: string = ""
   ): Promise<Array<any>> {
     return new Promise(resolve => {
       let collection = getSublevel(sub, filter, filterValue);

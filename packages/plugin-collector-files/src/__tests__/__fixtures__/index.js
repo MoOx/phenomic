@@ -1,4 +1,13 @@
 export default {
+  "showcaseTags/open-source.md": {
+    data: {
+      name: "Open Source",
+      body: "like OSS"
+    },
+    partial: {
+      name: "Open Source"
+    }
+  },
   "showcase/entry/acrowithbrian.com.md": {
     data: {
       title: "Brian Cruikshank Acro",
@@ -51,6 +60,7 @@ export default {
     data: {
       date: "2017-06-02T00:00:00.000Z",
       title: "Introducing Phenomic 1.0.0 first alpha",
+      authors: ["bloodyowl"],
       body: {
         t: "div",
         c: ["Hi there. Alpha blah blah."]
@@ -58,7 +68,8 @@ export default {
     },
     partial: {
       date: "2017-06-02T00:00:00.000Z",
-      title: "Introducing Phenomic 1.0.0 first alpha"
+      title: "Introducing Phenomic 1.0.0 first alpha",
+      authors: ["bloodyowl"]
     }
   },
   "showcase/submit.md": {
@@ -70,6 +81,39 @@ export default {
     },
     partial: {
       title: "Submit a website/app made with Phenomic to the Showcase"
+    }
+  },
+  "authors/moox.json": {
+    data: {
+      name: "moox",
+      bio: "moox short bio",
+      body: "moox long bio"
+    },
+    partial: {
+      name: "moox",
+      bio: "moox short bio",
+      body: "moox long bio"
+    }
+  },
+  "authors/bloodyowl.json": {
+    data: {
+      name: "bloodyowl",
+      bio: "bloodyowl short bio",
+      body: "bloodyowl long bio"
+    },
+    partial: {
+      name: "bloodyowl",
+      bio: "bloodyowl short bio",
+      body: "bloodyowl long bio"
+    }
+  },
+  "showcaseTags/event.md": {
+    data: {
+      name: "Event",
+      body: "like wat"
+    },
+    partial: {
+      name: "Event"
     }
   }
 };

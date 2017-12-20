@@ -51,21 +51,21 @@ export function injectData(
   name: string,
   json: PhenomicTransformResult
 ): PhenomicTransformResult {
-  let date;
+  const injectedData: Object = {
+    filename: name
+  };
   try {
-    date = formatDate(name.slice(0, dateLength));
+    injectedData.date = formatDate(name.slice(0, dateLength));
   } catch (e) {
-    // date is not valid
+    // assuming date is not valid
   }
   return {
     data: {
-      date,
-      filename: name,
+      ...injectedData,
       ...json.data
     },
     partial: {
-      date,
-      filename: name,
+      ...injectedData,
       ...json.partial
     }
   };
@@ -89,6 +89,7 @@ export default function() {
       const id = getId(name, json);
       const { filename, allPaths } = parsePath(name);
       const adjustedJSON = injectData(filename, json);
+      debug(`collecting ${filename}`, adjustedJSON);
       // full resource, not sorted
       db.put(null, id, adjustedJSON);
       return Promise.all(
@@ -98,19 +99,16 @@ export default function() {
           debug(`collecting ${relativeKey} for path '${pathName}'`);
           return Promise.all([
             db.put([pathName], relativeKey, adjustedJSON),
-            // sorted list
-            db.put([pathName, "default"], sortedKey, {}),
+            db.put([pathName, "default"], sortedKey),
             ...Object.keys(json.data).map(type => {
-              return getFieldValue(json, type).map(value =>
-                Promise.all([
-                  // sorted list, filtered by tags
-                  db.put([pathName, type, value], sortedKey),
-                  // global tag list
-                  db.put([type], value, { partial: value }),
-                  db.put([type, "default"], value, { partial: value }),
-                  db.put([type, "path", pathName], value, { partial: value })
-                ])
-              );
+              return getFieldValue(json, type).map(value => {
+                return Promise.all([
+                  db.update([pathName, type, value], sortedKey),
+                  // db.update([type], value),
+                  db.update([type, "default"], value),
+                  db.update([type, "path", pathName], value)
+                ]);
+              });
             })
           ]);
         })

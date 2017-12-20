@@ -1,18 +1,47 @@
+export type PhenomicDBEntryInput = {|
+  data: Object,
+  partial: Object
+|};
+export type PhenomicDBEntry = {
+  data: Object,
+  partial: Object,
+  id: string
+};
+
+export type PhenomicDBEntryPartial = {
+  id: string
+};
+export type PhenomicDBEntryDetailed = {
+  id: string,
+  body?: any
+};
+
+export type PhenomicDBSubRegistry = Array<PhenomicDBEntry>;
+export type PhenomicDBRegistry = { [key: string]: PhenomicDBSubRegistry };
+
 export type PhenomicDB = {
   destroy: () => Promise<void>,
   put: (
     sub: null | string | Array<string>,
     id: string,
-    value: any
-  ) => Promise<Object>,
-  get: (sub: null | string | Array<string>, id: string) => Promise<Object>,
-  getPartial: (sub: string | Array<string>, id: string) => Promise<void>,
+    value?: PhenomicDBEntryInput
+  ) => Promise<void>,
+  update: (
+    sub: null | string | Array<string>,
+    id: string,
+    value?: PhenomicDBEntryInput
+  ) => Promise<void>,
+  get: (
+    sub: null | string | Array<string>,
+    id: string
+  ) => Promise<PhenomicDBEntry>,
+  getPartial: (sub: string | Array<string>, id: string) => Promise<mixed>,
   getList: (
     sub: string | Array<string>,
-    config: LevelStreamConfig,
+    config?: LevelStreamConfig,
     filter?: string,
-    filterValue: string
-  ) => Promise<Array<any>>
+    filterValue?: string
+  ) => Promise<Array<PhenomicDBEntryPartial>>
 };
 
 export type PhenomicInputPlugins = {
@@ -36,10 +65,10 @@ export type PhenomicContentFile = {
   // type: string
 };
 
-type PhenomicTransformResult = {
+type PhenomicTransformResult = {|
   data: Object,
   partial: Object
-};
+|};
 
 type ReactCompo = Function;
 
