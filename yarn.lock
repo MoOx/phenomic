@@ -4295,9 +4295,9 @@ image-optim@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/image-optim/-/image-optim-3.0.0.tgz#59067709a8f237d86e077a2f6433eb38b4ce522b"
 
-imageoptim-cli@^1.14.9:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/imageoptim-cli/-/imageoptim-cli-1.15.1.tgz#8a813c4962c3c6bc7046e0df6f68a23a57ad31c8"
+imageoptim-cli@^1.15.4:
+  version "1.15.4"
+  resolved "https://registry.yarnpkg.com/imageoptim-cli/-/imageoptim-cli-1.15.4.tgz#ae68ba0ff984ba9602a55afac9db4108b1489287"
 
 imurmurhash@^0.1.4:
   version "0.1.4"

@@ -29,7 +29,7 @@
     "babel-cli": "^6.24.1",
     "gray-matter": "^2.1.1",
     "image-optim": "^3.0.0",
-    "imageoptim-cli": "^1.14.9",
+    "imageoptim-cli": "^1.15.4",
     "mkdirp": "^0.5.1",
     "nightmare": "^2.10.0",
     "png-jpg": "0.0.2",
