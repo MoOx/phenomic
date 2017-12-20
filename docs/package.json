@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "docs",
-  "version": "1.0.0-alpha.17",
+  "version": "1.0.0-alpha.18",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
@@ -15,9 +15,9 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "@phenomic/cli": "^1.0.0-alpha.17",
-    "@phenomic/core": "^1.0.0-alpha.17",
-    "@phenomic/preset-react-app": "^1.0.0-alpha.17",
+    "@phenomic/cli": "^1.0.0-alpha.18",
+    "@phenomic/core": "^1.0.0-alpha.18",
+    "@phenomic/preset-react-app": "^1.0.0-alpha.18",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-ga": "^2.0.0",
