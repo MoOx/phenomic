@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be able to generate a multiple static url 1`] = `
+Array [
+  "",
+  "test",
+]
+`;
+
+exports[`should be able to generate a single url 1`] = `
+Array [
+  "",
+]
+`;
