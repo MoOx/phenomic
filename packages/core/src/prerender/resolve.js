@@ -47,18 +47,18 @@ const getRouteQueries = route => {
 
 const getMainQuery = route => {
   const routeQueries = getRouteQueries(route);
-  const ids = Object.keys(routeQueries);
-  const firstId = ids[0];
-  const firstIdAsInt = parseInt(ids[0], 10);
+  const keys = Object.keys(routeQueries);
+  const firstKey = keys[0];
+  const firstKeyAsInt = parseInt(keys[0], 10);
   // parseInt("12.") == "12"
   if (
     // $FlowFixMe it's on purpose
-    firstIdAsInt == firstId &&
-    String(firstIdAsInt).length == firstId.length
+    firstKeyAsInt == firstKey &&
+    String(firstKeyAsInt).length == firstKey.length
   ) {
-    console.warn(`The main path used for ${route.path} is ${firstId}`);
+    console.warn(`The main path used for ${route.path} is ${firstKey}`);
   }
-  return { id: firstId, item: routeQueries[firstId] };
+  return { key: firstKey, item: routeQueries[firstKey] };
 };
 
 const resolveURLsForDynamicParams = async function(
@@ -87,7 +87,7 @@ const resolveURLsForDynamicParams = async function(
     return route;
   }
 
-  const pathConfig = { path: mainQuery.item.path };
+  const unlimitedQueryConfig = { path: mainQuery.item.path };
   debug("route", route.path);
 
   // If the path doesn't contain any kind of parameter, no need to
@@ -98,41 +98,43 @@ const resolveURLsForDynamicParams = async function(
   }
   debug(
     `fetching path '${
-      mainQuery.id ? mainQuery.id : Object.keys(pathConfig).join(",")
+      mainQuery.key
+        ? mainQuery.key
+        : Object.keys(unlimitedQueryConfig).join(",")
     }' for route '${route.path}'`
   );
   // @todo memoize for perfs and avoid uncessary call
   const queries = getRouteQueries(route);
   debug(route.path, queries);
-  let id = (queries[mainQuery.id] && queries[mainQuery.id].by) || mainKey;
-  if (id === defaultQueryKey) {
-    id = mainKey;
+  let key = (queries[mainQuery.key] && queries[mainQuery.key].by) || mainKey;
+  if (key === defaultQueryKey) {
+    key = mainKey;
   }
-  const queryParams = query(pathConfig);
+  const queryParams = query(unlimitedQueryConfig);
   const queryResult = await phenomicFetch(queryParams);
   debug(
     route.path,
-    `path fetched. ${queryResult.list.length} items (id: ${id})`
+    `path fetched. ${queryResult.list.length} items (id: ${key})`
   );
   const path = route.path || "*";
   const list = queryResult.list.reduce((acc, item) => {
-    if (!item[id]) {
+    if (!item[key]) {
       return acc;
     }
-    if (Array.isArray(item[id])) {
-      acc = acc.concat(item[id]);
+    if (Array.isArray(item[key])) {
+      acc = acc.concat(item[key]);
     } else {
-      acc.push(item[id]);
+      acc.push(item[key]);
     }
     return acc;
   }, []);
   debug(path, "list (unique)", arrayUnique(list));
   const urlsData = arrayUnique(list).reduce((acc, value) => {
-    let resolvedPath = path.replace(":" + id, value);
-    let params = { [id]: value };
+    let resolvedPath = path.replace(":" + key, value);
+    let params = { [key]: value };
 
     // try *
-    if (id === mainKey && resolvedPath === path) {
+    if (key === mainKey && resolvedPath === path) {
       resolvedPath = resolvedPath.replace("*", value);
       // react-router splat is considered as the id
       params = { splat: value };
@@ -155,8 +157,7 @@ const resolveURLsForDynamicParams = async function(
 
   // if no data found, we still try to render something
   const finalUrlsData = urlsData.length ? urlsData : [{ path }];
-
-  // try :after with id
+  // try :after with key
   const reAfter = /:after\b/;
 
   return finalUrlsData.reduce((acc, routeData) => {
@@ -164,12 +165,12 @@ const resolveURLsForDynamicParams = async function(
       acc.push(routeData);
     } else {
       queryResult.list.map(item => {
-        // $FlowFixMe params[id] act as a truthy value
-        if (routeData.params && routeData.params[id]) {
+        // $FlowFixMe params[key] act as a truthy value
+        if (routeData.params && routeData.params[key]) {
           if (
-            (Array.isArray(item[id]) &&
-              item[id].includes(routeData.params[id])) ||
-            item[id] === routeData.params[id]
+            (Array.isArray(item[key]) &&
+              item[key].includes(routeData.params[key])) ||
+            item[key] === routeData.params[key]
           ) {
             acc.push({
               ...routeData,
