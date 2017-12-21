@@ -12,3 +12,10 @@ Array [
   "",
 ]
 `;
+
+exports[`should be able to resolve dynamic urls 1`] = `
+Array [
+  "test/test-1",
+  "test/test-2",
+]
+`;
