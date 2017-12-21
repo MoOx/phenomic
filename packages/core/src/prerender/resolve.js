@@ -82,7 +82,7 @@ const resolveURLsForDynamicParams = async function(
   }
 
   const mainQuery = getMainQuery(route);
-  if (!mainQuery.item || !mainQuery.item.path) {
+  if (!mainQuery.item) {
     debug("no valid path detected for", route.path);
     return route;
   }
