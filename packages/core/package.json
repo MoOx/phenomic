@@ -37,5 +37,8 @@
     "node": ">=4.2.0",
     "npm": ">=3.0.0",
     "yarn": ">=1.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^3.0.0"
   }
 }

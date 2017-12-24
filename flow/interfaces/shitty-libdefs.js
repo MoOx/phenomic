@@ -53,3 +53,7 @@ declare module "react-dev-utils" {
 declare module "react-dev-utils/getProcessForPort" {
   declare var exports: any;
 }
+
+declare module "supertest" {
+  declare var exports: any;
+}

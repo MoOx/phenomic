@@ -106,6 +106,12 @@ class NotFoundError extends Error {
 }
 
 const db = {
+  _getDatabase(): PhenomicDBRegistry {
+    return database;
+  },
+  _setDatabase(newDb: PhenomicDBRegistry) {
+    database = newDb;
+  },
   destroy(): Promise<void> {
     return new Promise(resolve => {
       database = emptyDatabase;
