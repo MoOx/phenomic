@@ -1,8 +1,9 @@
 let component = ReasonReact.statelessComponent("Home");
 
 type post = {
-  id: string,
-  title: string
+  .
+  "id": string,
+  "title": string
 };
 
 let make = (~posts) => {
@@ -21,9 +22,9 @@ let make = (~posts) => {
               posts
               |> List.map(
                    (item) =>
-                     <li key=item.id>
-                       <PhenomicPresetReactApp.Link href=("blog/" ++ (item.id ++ "/"))>
-                         (ReasonReact.stringToElement(item.title))
+                     <li key=item##id>
+                       <PhenomicPresetReactApp.Link href=("blog/" ++ (item##id ++ "/"))>
+                         (ReasonReact.stringToElement(item##title))
                        </PhenomicPresetReactApp.Link>
                      </li>
                  )
@@ -36,8 +37,6 @@ let make = (~posts) => {
     </div>
 };
 
-let jsPostToReason = (jsProps) => {id: jsProps##id, title: jsProps##title};
-
 let jsComponent =
   ReasonReact.wrapReasonForJs(
     ~component,
@@ -46,7 +45,7 @@ let jsComponent =
         ~posts=
           PhenomicPresetReactApp.jsEdgeToReason(
             jsProps##posts,
-            (posts) => posts##list |> Array.map(jsPostToReason) |> Array.to_list
+            (posts) => posts##list |> Array.to_list
           )
       )
   );
