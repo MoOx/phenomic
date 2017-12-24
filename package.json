@@ -117,10 +117,10 @@
     "notify": true,
     "coverageThreshold": {
       "global": {
-        "statements": 86,
-        "branches": 69,
-        "functions": 87,
-        "lines": 87
+        "statements": 85,
+        "branches": 65,
+        "functions": 85,
+        "lines": 85
       }
     },
     "transformIgnorePatterns": ["node_modules"],
