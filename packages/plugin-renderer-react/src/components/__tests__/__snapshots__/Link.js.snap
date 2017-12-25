@@ -44,6 +44,17 @@ exports[`Link activeStyle? 2`] = `
 </a>"
 `;
 
+exports[`Link className as Object 1`] = `
+"<a
+  className=\\"foo-bar\\"
+  href=\\"/internal\\"
+  onClick={function noRefCheck() {}}
+  onKeyDown={function noRefCheck() {}}
+>
+  c
+</a>"
+`;
+
 exports[`Link works with \`\`href\`\` 1`] = `
 "<a
   href=\\"/b\\"

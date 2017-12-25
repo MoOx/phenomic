@@ -14,7 +14,7 @@ const origin = url =>
 type PropsType = {
   style?: Object,
   activeStyle?: Object,
-  className?: string,
+  className?: string | Object,
   activeClassName?: string,
   to?: string,
   href?: string,
@@ -101,7 +101,12 @@ function Link(props: PropsType, context: Object) {
   const url = to || href || "";
 
   const isUrlActive = isActive(url, context);
-  const computedClassName = cx(className, isUrlActive && activeClassName);
+  const castClassNameToSting =
+    className && className.toString && className.toString();
+  const computedClassName = cx(
+    castClassNameToSting || className,
+    isUrlActive && activeClassName
+  );
   const computedStyle = {
     ...style,
     ...(isUrlActive ? activeStyle : {})

@@ -28,6 +28,19 @@ test("Link works with internal ``href``", () => {
   expect(renderJSX(<Link href="/internal">{"c"}</Link>)).toMatchSnapshot();
 });
 
+test("Link className as Object", () => {
+  const className = {
+    toString: () => "foo-bar"
+  };
+  expect(
+    renderJSX(
+      <Link href="/internal" className={className}>
+        {"c"}
+      </Link>
+    )
+  ).toMatchSnapshot();
+});
+
 test("Link activeClassName?", () => {
   expect(
     renderJSX(
