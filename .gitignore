@@ -28,3 +28,4 @@ logo/*.png
 
 # reason stuff
 .merlin
+.bsb.lock
