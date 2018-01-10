@@ -1,13 +1,10 @@
 import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
+import { createContainer } from "@phenomic/preset-react-app/lib/es6/src/phenomicPresetReactApp.js";
 
-const {
-  createContainer
-} = require("@phenomic/preset-react-app/lib/js/src/phenomicPresetReactApp.js");
-
-const Home = require("./lib/js/components/home");
-const Post = require("./lib/js/components/post");
+import * as Home from "./lib/es6/src/components/Home";
+import * as Post from "./lib/es6/src/components/Post";
 
 const routes = () => (
   <Router history={browserHistory}>

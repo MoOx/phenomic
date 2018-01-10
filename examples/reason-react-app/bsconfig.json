@@ -4,9 +4,13 @@
   "reason": {
     "react-jsx": 2
   },
+  "package-specs": {
+    "module": "es6"
+  },
   "sources": [
     {
-      "dir": "components"
+      "dir": "src",
+      "subdirs": true
     }
   ],
   "bs-dependencies": [

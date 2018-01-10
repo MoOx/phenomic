@@ -1,21 +1,17 @@
-let component = ReasonReact.statelessComponent("Home");
+open Helpers;
 
-type post = {
-  .
-  "id": string,
-  "title": string
-};
+let component = ReasonReact.statelessComponent("Home");
 
 let make = (~posts) => {
   ...component,
   render: _self =>
     <div>
-      <h1> (ReasonReact.stringToElement("Home")) </h1>
+      <h1> ("Home" |> text) </h1>
       (
-        switch (posts: PhenomicPresetReactApp.edge(list(post))) {
+        switch (posts: Types.postsList) {
         | Inactive
-        | Loading => ReasonReact.stringToElement("Loading ...")
-        | Errored => ReasonReact.stringToElement("An error occured")
+        | Loading => "Loading ..." |> text
+        | Errored => "An error occured" |> text
         | Idle(posts) =>
           <ul>
             (
@@ -24,12 +20,11 @@ let make = (~posts) => {
                    <li key=item##id>
                      <PhenomicPresetReactApp.Link
                        href=("blog/" ++ item##id ++ "/")>
-                       (ReasonReact.stringToElement(item##title))
+                       (item##title |> text)
                      </PhenomicPresetReactApp.Link>
                    </li>
                  )
-              |> Array.of_list
-              |> ReasonReact.arrayToElement
+              |> list
             )
           </ul>
         }
@@ -40,10 +35,7 @@ let make = (~posts) => {
 let jsComponent =
   ReasonReact.wrapReasonForJs(~component, jsProps =>
     make(
-      ~posts=
-        PhenomicPresetReactApp.jsEdgeToReason(jsProps##posts, posts =>
-          posts##list |> Array.to_list
-        )
+      ~posts=PhenomicPresetReactApp.mapJsEdgeToReason(jsProps##posts, nodeList)
     )
   );
 
