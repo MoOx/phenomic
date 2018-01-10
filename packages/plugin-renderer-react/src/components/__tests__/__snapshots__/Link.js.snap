@@ -1,105 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link activeClassName? 1`] = `
-"<a
-  className=\\"activeCx\\"
+"<LinkComponent
+  activeClassName=\\"activeCx\\"
   href=\\"/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link activeClassName? 2`] = `
-"<a
+"<LinkComponent
+  activeClassName=\\"activeCx\\"
   href=\\"/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link activeStyle? 1`] = `
-"<a
-  href=\\"/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
-  style={{
+"<LinkComponent
+  activeStyle={{
     color: 'blue'
   }}
+  href=\\"/internal\\"
+  to=\\"/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link activeStyle? 2`] = `
-"<a
+"<LinkComponent
+  activeStyle={{
+    color: 'blue'
+  }}
   href=\\"/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with \`\`href\`\` 1`] = `
-"<a
+"<LinkComponent
   href=\\"/b\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"/b\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with \`\`to\`\` 1`] = `
-"<a
-  href=\\"/b\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
->
+"<LinkComponent to=\\"/b\\">
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with external \`\`href\`\` 1`] = `
-"<a
+"<LinkComponent
   href=\\"http://b.com\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"http://b.com\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with external \`\`href\`\` 2`] = `
-"<a
+"<LinkComponent
   href=\\"http://b.com\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"http://b.com\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with internal \`\`href\`\` 1`] = `
-"<a
+"<LinkComponent
   href=\\"test://url.tld/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"test://url.tld/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
 
 exports[`Link works with internal \`\`href\`\` 2`] = `
-"<a
+"<LinkComponent
   href=\\"/internal\\"
-  onClick={function noRefCheck() {}}
-  onKeyDown={function noRefCheck() {}}
+  to=\\"/internal\\"
 >
   c
-</a>"
+</LinkComponent>"
 `;
