@@ -8,7 +8,7 @@ type post = {
 
 let make = (~post) => {
   ...component,
-  render: (_self) =>
+  render: _self =>
     <div>
       (
         switch (post: PhenomicPresetReactApp.edge(post)) {
@@ -25,15 +25,24 @@ let make = (~post) => {
     </div>
 };
 
-let jsPostToReason = (jsProps) => {id: jsProps##id, title: jsProps##title, body: jsProps##body};
+let jsPostToReason = jsProps => {
+  id: jsProps##id,
+  title: jsProps##title,
+  body: jsProps##body
+};
 
 let jsComponent =
-  ReasonReact.wrapReasonForJs(
-    ~component,
-    (jsProps) => make(~post=PhenomicPresetReactApp.jsEdgeToReason(jsProps##post, jsPostToReason))
+  ReasonReact.wrapReasonForJs(~component, jsProps =>
+    make(
+      ~post=
+        PhenomicPresetReactApp.jsEdgeToReason(jsProps##post, jsPostToReason)
+    )
   );
 
-let queries = (props) => {
-  let post = PhenomicPresetReactApp.query(Item({path: "posts", id: props##params##splat}));
-  {"post": post}
+let queries = props => {
+  let post =
+    PhenomicPresetReactApp.query(
+      Item({path: "posts", id: props##params##splat})
+    );
+  {"post": post};
 };
