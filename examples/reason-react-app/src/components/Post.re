@@ -13,6 +13,7 @@ let make = (~post) => {
         | Errored => "An error occured" |> text
         | Idle(post) =>
           <div>
+            <Head> <title> (post##title |> text) </title> </Head>
             <h1> (post##title |> text) </h1>
             <PhenomicPresetReactApp.BodyRenderer body=post##body />
           </div>

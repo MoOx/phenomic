@@ -2,6 +2,11 @@
 
 exports[`should build example correctly 1`] = `
 Array [
+  "after/c2Vjb25kLXBvc3Q=/index.html",
+  "after/dGhpcmQtcG9zdA==/index.html",
+  "after/Zm91cnRoLXBvc3Q=/index.html",
+  "after/ZmlmdGgtcG9zdA==/index.html",
+  "after/Zmlyc3QtcG9zdA==/index.html",
   "blog/fifth-post/index.html",
   "blog/first-post/index.html",
   "blog/fourth-post/index.html",
@@ -13,7 +18,12 @@ Array [
 
 exports[`should build example correctly 2`] = `
 Array [
-  "phenomic/posts/by-default/1/desc.json",
+  "phenomic/posts/by-default/1/desc/limit-2.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-c2Vjb25kLXBvc3Q=.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-dGhpcmQtcG9zdA==.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-Zm91cnRoLXBvc3Q=.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-ZmlmdGgtcG9zdA==.json",
+  "phenomic/posts/by-default/1/desc/limit-2/after-Zmlyc3QtcG9zdA==.json",
   "phenomic/posts/item/fifth-post.json",
   "phenomic/posts/item/first-post.json",
   "phenomic/posts/item/fourth-post.json",

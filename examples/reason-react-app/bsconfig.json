@@ -5,7 +5,7 @@
     "react-jsx": 2
   },
   "package-specs": {
-    "module": "es6"
+    "module": "es6-global"
   },
   "sources": [
     {
@@ -15,6 +15,7 @@
   ],
   "bs-dependencies": [
     "reason-react",
+    "bs-react-helmet",
     "@phenomic/preset-react-app",
     "@phenomic/plugin-renderer-react",
     "@phenomic/api-client"

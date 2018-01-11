@@ -4,7 +4,8 @@ type partialPost = {
   "title": string
 };
 
-type postsList = PhenomicPresetReactApp.edge(list(partialPost));
+type posts =
+  PhenomicPresetReactApp.edge(PhenomicPresetReactApp.jsNodeList(partialPost));
 
 type post = {
   .
