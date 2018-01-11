@@ -32,7 +32,7 @@
   "scripts": {
     "reason:cleanup": "bsb -clean-world",
     "reason:compile": "bsb -make-world",
-    "prepare": "npm run reason:compile",
-    "dev": "npm run reason:compile -- -w"
+    "prepare": "yarn reason:cleanup && yarn reason:compile",
+    "dev": "yarn reason:compile -- -w"
   }
 }

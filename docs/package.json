@@ -8,10 +8,10 @@
     "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
     "start": "phenomic start",
     "build": "phenomic build",
-    "pretest": "npm run -s showcase-screenshots",
-    "test": "npm run -s build",
+    "pretest": "yarn showcase-screenshots",
+    "test": "yarn build",
     "predeploy":
-      "npm run -s test && (npm run -s optim || echo \"optim skipped because of failure\")",
+      "yarn test && (yarn optim || echo \"optim skipped because of failure\")",
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {

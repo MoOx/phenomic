@@ -15,11 +15,11 @@
   "scripts": {
     "reason:cleanup": "bsb -clean-world",
     "reason:compile": "bsb -make-world",
-    "prepare": "npm run reason:compile",
-    "start": "npm run reason:cleanup && npm-run-all --parallel start:*",
+    "prepare": "yarn reason:cleanup && yarn reason:compile",
+    "start": "yarn reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
-    "start:reason": "npm run reason:compile -- -w",
-    "build": "npm run reason:compile && phenomic build"
+    "start:reason": "yarn reason:compile -- -w",
+    "build": "yarn reason:compile && phenomic build"
   },
   "phenomic": {
     "presets": ["@phenomic/preset-react-app"]
