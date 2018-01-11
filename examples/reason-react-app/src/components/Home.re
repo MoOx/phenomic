@@ -66,7 +66,7 @@ let make = (~posts) => {
 
 let jsComponent =
   ReasonReact.wrapReasonForJs(~component, jsProps =>
-    make(~posts=PhenomicPresetReactApp.jsEdgeToReason(jsProps##posts))
+    make(~posts=PhenomicPresetReactApp.jsEdge(jsProps##posts))
   );
 
 let queries = props => {

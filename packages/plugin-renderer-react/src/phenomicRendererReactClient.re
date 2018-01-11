@@ -30,7 +30,7 @@ type jsEdge('a) = {
   "node": 'a
 };
 
-let jsEdgeToReason = jsEdge =>
+let jsEdge = jsEdge =>
   switch jsEdge##status {
   | "loading" => Loading
   | "errored" => Errored
