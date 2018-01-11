@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/preset-react-app",
-  "version": "1.0.0-alpha.18",
+  "version": "1.0.0-alpha.19",
   "publishConfig": {
     "access": "public"
   },
@@ -25,13 +25,13 @@
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
   "dependencies": {
-    "@phenomic/plugin-api-related-content": "^1.0.0-alpha.18",
-    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.18",
-    "@phenomic/plugin-collector-files": "^1.0.0-alpha.18",
-    "@phenomic/plugin-public-assets": "^1.0.0-alpha.18",
-    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.18",
-    "@phenomic/plugin-transform-json": "^1.0.0-alpha.18",
-    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.18"
+    "@phenomic/plugin-api-related-content": "^1.0.0-alpha.19",
+    "@phenomic/plugin-bundler-webpack": "^1.0.0-alpha.19",
+    "@phenomic/plugin-collector-files": "^1.0.0-alpha.19",
+    "@phenomic/plugin-public-assets": "^1.0.0-alpha.19",
+    "@phenomic/plugin-renderer-react": "^1.0.0-alpha.19",
+    "@phenomic/plugin-transform-json": "^1.0.0-alpha.19",
+    "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.19"
   },
   "devDependencies": {
     "bs-platform": "^2.1.0"
