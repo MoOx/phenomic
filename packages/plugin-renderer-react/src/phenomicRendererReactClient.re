@@ -10,6 +10,14 @@ module Link = Link;
 let createContainer = (comp, queries) =>
   originalCreateContainer(comp, queries);
 
+type jsNodeList('a) = {
+  .
+  "list": array('a),
+  "previousPageIsFirst": Js.boolean,
+  "previous": Js.nullable(string),
+  "next": Js.nullable(string)
+};
+
 type edge('a) =
   | Idle('a)
   | Loading
