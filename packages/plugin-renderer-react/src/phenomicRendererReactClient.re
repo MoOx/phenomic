@@ -30,12 +30,3 @@ let jsEdgeToReason = jsEdge =>
   | "inactive"
   | _ => Inactive
   };
-
-let mapJsEdgeToReason = (jsEdge, convertNode) =>
-  switch jsEdge##status {
-  | "loading" => Loading
-  | "errored" => Errored
-  | "idle" => Idle(convertNode(jsEdge##node))
-  | "inactive"
-  | _ => Inactive
-  };
