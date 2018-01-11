@@ -32,7 +32,7 @@ const Home = ({ isLoading, posts }) => (
     )}
     <div>
       {posts.node &&
-        posts.node.hasPreviousPage && (
+        posts.node.previous && (
           <Link
             to={
               posts.node.previousPageIsFirst
@@ -44,7 +44,7 @@ const Home = ({ isLoading, posts }) => (
           </Link>
         )}{" "}
       {posts.node &&
-        posts.node.hasNextPage && (
+        posts.node.next && (
           <Link to={`/after/${posts.node.next}/`}>Older posts</Link>
         )}
     </div>

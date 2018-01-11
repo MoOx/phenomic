@@ -130,7 +130,7 @@ const ShowcaseList = (props: Object) => (
           <View style={styles.paginationRow}>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasPreviousPage && (
+                props.showcase.node.previous && (
                   <Link
                     style={styles.link}
                     href={
@@ -149,7 +149,7 @@ const ShowcaseList = (props: Object) => (
             </View>
             <View style={styles.paginationColumn}>
               {props.showcase.node &&
-                props.showcase.node.hasNextPage && (
+                props.showcase.node.next && (
                   <Link
                     style={styles.link}
                     href={`/showcase/${

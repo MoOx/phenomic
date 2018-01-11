@@ -17,16 +17,17 @@ const connect = (list, limit, previousList = []) => {
   const previousIndex = previousList.length - 1 - (previousPageIsFirst ? 0 : 1);
   const nextIndex = list.length - 1;
   return {
-    hasPreviousPage,
     previousPageIsFirst,
     previous:
       hasPreviousPage && previousList[previousIndex]
         ? encode(previousList[previousIndex].id)
         : undefined,
-    hasNextPage,
     next:
       hasNextPage && list[nextIndex] ? encode(list[nextIndex].id) : undefined,
-    list: list.slice(0, limit)
+    list: list.slice(0, limit),
+    // deprecated
+    hasNextPage,
+    hasPreviousPage
   };
 };
 
