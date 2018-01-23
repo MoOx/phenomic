@@ -62,10 +62,7 @@ module.exports = (config: PhenomicConfig) => ({
 
   resolve: {
     // react-native(-web) | react-primitives
-    extensions: [".web.js", ".js", ".json"],
-    alias: {
-      "react-native": "react-native-web"
-    }
+    extensions: [".web.js", ".js", ".json"]
   },
 
   // eslint-disable-next-line max-len
