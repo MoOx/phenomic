@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 // import url from "url"
 
 // import pkg from "@phenomic/core/package.json"
@@ -22,8 +23,6 @@ const requireSourceMapSupport = `require('${require
 
 const wrap = JSON.stringify;
 
-const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
-
 const defaultExternals = [
   // we could consider node_modules as externals deps
   // and so use something like
@@ -43,27 +42,21 @@ const defaultExternals = [
 
 const getWebpackConfig = (config: PhenomicConfig) => {
   let webpackConfig;
-  try {
-    webpackConfig = require(path.join(config.path, "webpack.config.js"))(
-      config
-    );
+  const userWebpackConfigPath = path.join(config.path, "webpack.config.js");
+  if (fs.existsSync(userWebpackConfigPath)) {
+    webpackConfig = require(userWebpackConfigPath)(config);
     debug("webpack.config.js used");
-  } catch (e) {
-    if (!isNotFoundError(e)) {
-      throw e;
-    }
-    debug("webpack.config.js is failing", e.toString());
-    try {
-      webpackConfig = require(path.join(
-        config.path,
-        "webpack.config.babel.js"
-      ))(config);
+  } else {
+    debug("webpack.config.js not found");
+    const userWebpackConfigBabelPath = path.join(
+      config.path,
+      "webpack.config.babel.js"
+    );
+    if (fs.existsSync(userWebpackConfigBabelPath)) {
+      webpackConfig = require(userWebpackConfigBabelPath)(config);
       debug("webpack.config.babel.js used");
-    } catch (e) {
-      if (!isNotFoundError(e)) {
-        throw e;
-      }
-      debug("webpack.config.babel.js is failing", e.toString());
+    } else {
+      debug("webpack.config.babel.js not found");
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(
         config
       );
