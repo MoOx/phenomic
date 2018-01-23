@@ -37,8 +37,8 @@ const defaultExternals = [
   /^emotion(\/.*)?/,
   /^glamor(\/.*)?/,
   /^aphrodite(\/.*)?/,
-  "react-native-web",
-  "react-helmet"
+  /^react-native-web(\/.*)?/,
+  /^react-helmet(\/.*)?/
 ];
 
 const getWebpackConfig = (config: PhenomicConfig) => {
