@@ -25,7 +25,7 @@ let make = (~posts) => {
                 |> List.map(item =>
                      <li key=item##id>
                        <PhenomicPresetReactApp.Link
-                         href=("blog/" ++ item##id ++ "/")>
+                         href=("/blog/" ++ item##id ++ "/")>
                          (item##title |> text)
                        </PhenomicPresetReactApp.Link>
                      </li>
