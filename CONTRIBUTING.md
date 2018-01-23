@@ -210,7 +210,7 @@ Blah blah
 
 ## 💥 Breaking changes
 
-* [``@phenomic/PLUGIN_NAMEEEE``: AWESOME_MESSAGE](https://github.com/phenomic/phenomic/commit/HASSSSHHHHHHHHHHH),
+* [`@phenomic/PLUGIN_NAMEEEE`: AWESOME_MESSAGE](https://github.com/phenomic/phenomic/commit/HASSSSHHHHHHHHHHH),
   by @DOERRRRR, reported|requested by @REPORTERRRRR (in [#XXXXXXX](https://github.com/phenomic/phenomic/issues/XXXXXXX))
 
 
