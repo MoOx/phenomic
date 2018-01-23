@@ -114,7 +114,7 @@ folder and run the server to check if your changes are being displayed
 accurately.
 
 You can run a development server to check if the changes you made are being
-displayed accurately by running `yarn run docs:start`.
+displayed accurately by running `yarn docs:start`.
 
 You can modify `docs/*` code and get real times update in your browser.
 
@@ -132,7 +132,7 @@ transpilation. In order to have up to date code for real world usage, you need
 to start a watcher from the root of the project
 
 ```console
-yarn run watch
+yarn watch
 ```
 
 This will update transpilated files as soon as you modify one.
@@ -142,7 +142,7 @@ This will update transpilated files as soon as you modify one.
 From Phenomic git repo
 
 ```console
-yarn run links
+yarn links
 ```
 
 This should create local links for each packages.
