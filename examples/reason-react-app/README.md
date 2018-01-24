@@ -9,7 +9,7 @@ npm install
 npm run start
 ```
 
-Note: `yarn` is preferred. We provide lock file.
+Note: `yarn` is preferred.
 
 To build the static version
 
