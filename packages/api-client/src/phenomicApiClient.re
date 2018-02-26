@@ -28,34 +28,33 @@ type queryConfig =
   | List(listConfig)
   | PaginatedList(paginatedListConfig);
 
-let query = queryConfig =>
+let query = (queryConfig) =>
   switch queryConfig {
-  | Item(queryConfigItem) =>
-    Js.Obj.assign(
-      Js.Obj.empty(),
-      {"path": queryConfigItem.path, "id": queryConfigItem.id}
-    )
-  | List(queryConfigList) =>
-    Js.Obj.assign(
-      Js.Obj.empty(),
-      {
-        "path": queryConfigList.path,
-        "by": Js.Null_undefined.from_opt(queryConfigList.by),
-        "value": Js.Null_undefined.from_opt(queryConfigList.value),
-        "order": Js.Null_undefined.from_opt(queryConfigList.order),
-        "limit": Js.Null_undefined.from_opt(queryConfigList.limit)
-      }
-    )
-  | PaginatedList(queryConfigPaginatedList) =>
-    Js.Obj.assign(
-      Js.Obj.empty(),
-      {
-        "path": queryConfigPaginatedList.path,
-        "by": Js.Null_undefined.from_opt(queryConfigPaginatedList.by),
-        "value": Js.Null_undefined.from_opt(queryConfigPaginatedList.value),
-        "order": Js.Null_undefined.from_opt(queryConfigPaginatedList.order),
-        "limit": Js.Null_undefined.from_opt(queryConfigPaginatedList.limit),
-        "after": Js.Null_undefined.from_opt(queryConfigPaginatedList.after)
-      }
-    )
+  | Item(queryConfigItem) => {
+      "path": queryConfigItem.path,
+      "id": Js.Nullable.return(queryConfigItem.id),
+      "by": Js.Nullable.undefined,
+      "value": Js.Nullable.undefined,
+      "order": Js.Nullable.undefined,
+      "limit": Js.Nullable.undefined,
+      "after": Js.Nullable.undefined
+    }
+  | List(queryConfigList) => {
+      "path": queryConfigList.path,
+      "id": Js.Nullable.undefined,
+      "by": Js.Nullable.from_opt(queryConfigList.by),
+      "value": Js.Nullable.from_opt(queryConfigList.value),
+      "order": Js.Nullable.from_opt(queryConfigList.order),
+      "limit": Js.Nullable.from_opt(queryConfigList.limit),
+      "after": Js.Nullable.undefined
+    }
+  | PaginatedList(queryConfigPaginatedList) => {
+      "path": queryConfigPaginatedList.path,
+      "id": Js.Nullable.undefined,
+      "by": Js.Nullable.from_opt(queryConfigPaginatedList.by),
+      "value": Js.Nullable.from_opt(queryConfigPaginatedList.value),
+      "order": Js.Nullable.from_opt(queryConfigPaginatedList.order),
+      "limit": Js.Nullable.from_opt(queryConfigPaginatedList.limit),
+      "after": Js.Nullable.from_opt(queryConfigPaginatedList.after)
+    }
   };
