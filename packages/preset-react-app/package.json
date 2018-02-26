@@ -34,7 +34,7 @@
     "@phenomic/plugin-transform-markdown": "^1.0.0-alpha.20"
   },
   "devDependencies": {
-    "bs-platform": "^2.1.0"
+    "bs-platform": "^2.2.0"
   },
   "scripts": {
     "reason:cleanup": "bsb -clean-world",

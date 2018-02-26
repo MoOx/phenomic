@@ -5,7 +5,7 @@
     "@phenomic/cli": "^1.0.0-alpha.20",
     "@phenomic/core": "^1.0.0-alpha.20",
     "@phenomic/preset-react-app": "^1.0.0-alpha.20",
-    "bs-platform": "^2.1.0",
+    "bs-platform": "^2.2.0",
     "bs-react-helmet": "^0.2.1",
     "npm-run-all": "^4.0.2",
     "react": "^16.0.0",

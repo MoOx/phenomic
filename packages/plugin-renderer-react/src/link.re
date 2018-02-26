@@ -1,6 +1,5 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/components/Link"]
-external link : ReasonReact.reactClass =
-  "default";
+external link : ReasonReact.reactClass = "default";
 
 let make =
     (
