@@ -33,7 +33,7 @@ type jsEdge('a) = {
 let jsEdge = jsEdge =>
   switch jsEdge##status {
   | "loading" => Loading
-  | "errored" => Errored
+  | "error" => Errored
   | "idle" => Idle(jsEdge##node)
   | "inactive"
   | _ => Inactive
