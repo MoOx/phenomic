@@ -1,5 +1,5 @@
-[@bs.module "@phenomic/api-client/lib/query"] external internalQuery : Js.t({..}) => Js.t({..}) =
-  "query";
+[@bs.module "@phenomic/api-client/lib/query"]
+external internalQuery : Js.t({..}) => Js.t({..}) = "query";
 
 type queryConfigItem = {
   path: string,
@@ -28,10 +28,13 @@ type queryConfig =
   | List(listConfig)
   | PaginatedList(paginatedListConfig);
 
-let query = (queryConfig) =>
+let query = queryConfig =>
   switch queryConfig {
   | Item(queryConfigItem) =>
-    Js.Obj.assign(Js.Obj.empty(), {"path": queryConfigItem.path, "id": queryConfigItem.id})
+    Js.Obj.assign(
+      Js.Obj.empty(),
+      {"path": queryConfigItem.path, "id": queryConfigItem.id}
+    )
   | List(queryConfigList) =>
     Js.Obj.assign(
       Js.Obj.empty(),

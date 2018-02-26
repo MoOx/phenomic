@@ -6,7 +6,12 @@ and reasonChild =
   | Element(string, Js.t({.}), reasonChildren)
   | Empty;
 
-type jsBody = {. "t": string, "p": Js.t({.}), "c": Js.Null_undefined.t(array(jsBody))};
+type jsBody = {
+  .
+  "t": string,
+  "p": Js.t({.}),
+  "c": Js.Null_undefined.t(array(jsBody))
+};
 
 let rec jsTreeToReason = (jsChild: jsBody) =>
   switch [%bs.raw {| Object.prototype.toString.call(jsChild) |}] {
@@ -19,12 +24,12 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
       | Some(c) => List.map(jsTreeToReason, Array.to_list(c))
       | None => []
       };
-    Element(tag, props, children)
+    Element(tag, props, children);
   | _ => Empty
   };
 
 let make = (~body: jsBody, _children) => {
-  let rec renderChild = (child) =>
+  let rec renderChild = child =>
     switch child {
     | String(string) => ReasonReact.stringToElement(string)
     | Element(tag, originalProps, reasonChildren) =>
@@ -36,22 +41,30 @@ let make = (~body: jsBody, _children) => {
           activeStyle=[%bs.raw {| child[1].activeStyle |}]
           className=[%bs.raw {| child[1].className |}]
           activeClassName=[%bs.raw {| child[1].activeClassName |}]>
-          (ReasonReact.arrayToElement(Array.of_list(List.map(renderChild, reasonChildren))))
+          (
+            ReasonReact.arrayToElement(
+              Array.of_list(List.map(renderChild, reasonChildren))
+            )
+          )
         </Link>
       | _ =>
         ReactDOMRe.createElement(
           tag,
           ~props=ReactDOMRe.objToDOMProps(originalProps),
-          [|ReasonReact.arrayToElement(Array.of_list(List.map(renderChild, reasonChildren)))|]
+          [|
+            ReasonReact.arrayToElement(
+              Array.of_list(List.map(renderChild, reasonChildren))
+            )
+          |]
         )
       }
     | Empty => ReasonReact.nullElement
     };
   {
     ...component,
-    render: (_self) => {
+    render: _self => {
       let tree = jsTreeToReason(body);
-      <div> (renderChild(tree)) </div>
+      <div> (renderChild(tree)) </div>;
     }
-  }
+  };
 };
