@@ -2,6 +2,7 @@
 
 exports[`should build example correctly 1`] = `
 Array [
+  "404.html",
   "after/c2Vjb25kLXBvc3Q=/index.html",
   "after/dGhpcmQtcG9zdA==/index.html",
   "after/Zm91cnRoLXBvc3Q=/index.html",
