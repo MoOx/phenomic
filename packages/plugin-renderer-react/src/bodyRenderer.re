@@ -60,11 +60,5 @@ let make = (~body: jsBody, _children) => {
       }
     | Empty => ReasonReact.nullElement
     };
-  {
-    ...component,
-    render: _self => {
-      let tree = jsTreeToReason(body);
-      <div> (renderChild(tree)) </div>;
-    }
-  };
+  {...component, render: _self => body |> jsTreeToReason |> renderChild};
 };
