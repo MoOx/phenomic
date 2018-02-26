@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
-import { createContainer } from "@phenomic/preset-react-app/lib/es6_global/src/phenomicPresetReactApp.js";
+import { createContainer } from "@phenomic/preset-react-app/lib/es6/src/phenomicPresetReactApp.js";
 
-import * as Home from "./lib/es6_global/src/components/Home";
-import * as Post from "./lib/es6_global/src/components/Post";
+import * as Home from "./lib/es6/src/components/Home";
+import * as Post from "./lib/es6/src/components/Post";
+import ErrorPage from "./lib/es6/src/components/ErrorPage";
 
 const routes = () => (
   <Router history={browserHistory}>
@@ -20,6 +21,8 @@ const routes = () => (
       path="blog/*"
       component={createContainer(Post.jsComponent, Post.queries)}
     />
+    <Route path="*" component={ErrorPage} />
+    <Route path="404.html" component={ErrorPage} />
   </Router>
 );
 

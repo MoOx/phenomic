@@ -10,7 +10,7 @@ let make = (~post) => {
         switch (post: Types.postNode) {
         | Inactive
         | Loading => "Loading ..." |> text
-        | Errored => "An error occured" |> text
+        | Errored => <ErrorPage />
         | Idle(post) =>
           <div>
             <Head> <title> (post##title |> text) </title> </Head>
