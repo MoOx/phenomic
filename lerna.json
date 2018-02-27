@@ -6,7 +6,7 @@
   "useWorkspaces": true,
   "commands": {
     "exec": {
-      "ignore": ["docs", "@phenomic/example-*"]
+      "ignore": ["website", "@phenomic/example-*"]
     }
   }
 }

@@ -38,7 +38,7 @@
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
     "cleanup-node_modules":
-      "trash node_modules packages/*/node_modules examples/*/node_modules docs/node_modules",
+      "trash node_modules packages/*/node_modules examples/*/node_modules website/node_modules",
     "clean": "trash packages/*/lib",
     "transpile":
       "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
@@ -48,26 +48,26 @@
     "prepare": "yarn clean && yarn transpile",
     "prerelease": "yarn prepare",
     "release": "lerna publish",
-    "postrelease": "yarn docs:deploy",
+    "postrelease": "yarn website:deploy",
     "format": "yarn format:most && yarn format:re",
     "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
     "format:re":
       "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
     "links": "lerna exec -- yarn link",
     "lint:eslint":
-      "eslint --ignore-path .gitignore --fix packages e2e-tests examples docs",
+      "eslint --ignore-path .gitignore --fix packages e2e-tests examples website",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
     "tests": "jest --runInBand --coverage packages",
     "examples:build": "babel-node scripts/examples.js",
     "examples:tests": "jest --bail examples",
     "examples": "yarn examples:build && yarn examples:tests",
-    "docs:start": "cd docs && yarn start",
-    "docs:test": "cd docs && yarn test && jest docs",
-    "docs:deploy": "cd docs && yarn deploy",
+    "website:start": "cd website && yarn start",
+    "website:test": "cd website && yarn test && jest website",
+    "website:deploy": "cd website && yarn deploy",
     "test": "yarn lint && yarn tests",
     "test-without-lint": "yarn tests",
-    "posttest": "yarn examples && yarn docs:test"
+    "posttest": "yarn examples && yarn website:test"
   },
 
   "lint-staged": {
@@ -126,7 +126,7 @@
     "transformIgnorePatterns": ["node_modules"],
     "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
   },
-  "workspaces": ["docs", "examples/*", "packages/*"],
+  "workspaces": ["website", "examples/*", "packages/*"],
   "dependencies": {
     "trash-cli": "^1.4.0"
   }

@@ -17,8 +17,8 @@ cache:
   yarn: true
   directories:
     - node_modules
-    - docs/.screenshots
-    - docs/public/showcase/entry
+    - website/.screenshots
+    - website/public/showcase/entry
 
 script:
   - yarn run test-without-lint

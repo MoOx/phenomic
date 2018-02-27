@@ -109,18 +109,18 @@ _Before_ submitting a pull request, please make sure the following is done…
 
 #### Additional Workflow for any changes made to website or docs
 
-If you are making changes to the website or documentation, test the `docs`
+If you are making changes to the website or documentation, test the `website`
 folder and run the server to check if your changes are being displayed
 accurately.
 
 You can run a development server to check if the changes you made are being
-displayed accurately by running `yarn docs:start`.
+displayed accurately by running `yarn website:start`.
 
-You can modify `docs/*` code and get real times update in your browser.
+You can modify `website/*` code and get real times update in your browser.
 
 **Keep in mind that whenever you modify Phenomic core/plugins you might need to
-restart the dev server.** If you are doing change to Phenomic using the docs as
-a playground, you may need to transpile sources. See below for more
+restart the dev server.** If you are doing change to Phenomic using the website
+as a playground, you may need to transpile sources. See below for more
 informations.
 
 ## How to try a development build of Phenomic in another project

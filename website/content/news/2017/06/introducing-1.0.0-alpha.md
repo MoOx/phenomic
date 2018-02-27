@@ -35,7 +35,8 @@ docs.
 Be sure to check out ["Getting Started"](/docs/getting-started) page!
 
 You can have a look on
-[this website source](https://github.com/phenomic/phenomic/tree/master/docs) and
+[this website source](https://github.com/phenomic/phenomic/tree/master/website)
+and
 [learn how to get started](https://github.com/phenomic/phenomic/tree/master/packages/preset-react-app/docs/getting-started/README.md).
 
 We hope you'll like this release!

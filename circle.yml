@@ -8,8 +8,8 @@ machine:
 
 dependencies:
   cache_directories:
-    - docs/.screenshots
-    - docs/public/showcase/entry
+    - website/.screenshots
+    - website/public/showcase/entry
     - ~/.cache/yarn
   pre:
     - curl -o- -L https://yarnpkg.com/install.sh | bash

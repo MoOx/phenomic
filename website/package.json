@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "docs",
+  "name": "website",
   "version": "1.0.0-alpha.20",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {

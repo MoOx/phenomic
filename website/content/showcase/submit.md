@@ -3,7 +3,7 @@ title: Submit a website/app made with Phenomic to the Showcase
 ---
 
 To submit your site, you just need to
-[create a text file](https://github.com/phenomic/phenomic/new/master/docs/content/showcase/entry/).
+[create a text file](https://github.com/phenomic/phenomic/new/master/website/content/showcase/entry/).
 🚀 Screenshots will be taken automatically!
 
 You should be able to submit this file as a

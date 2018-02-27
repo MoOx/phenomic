@@ -18,10 +18,10 @@ dist
 # tests results
 **/__tests__/_output*
 
-# docs
-**/docs/**/*.mov
-**/docs/**/*.pxm
-**/docs/public/showcases/entry/*
+# website
+**/website/**/*.mov
+**/website/**/*.pxm
+**/website/public/showcases/entry/*
 
 # logo
 logo/*.png
