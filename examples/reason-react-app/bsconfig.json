@@ -5,7 +5,7 @@
     "react-jsx": 2
   },
   "package-specs": {
-    "module": "es6-global"
+    "module": "es6"
   },
   "sources": [
     {
