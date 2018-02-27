@@ -3,7 +3,7 @@ import fs from "fs";
 
 import mkdirp from "mkdirp";
 import grayMatter from "gray-matter";
-import Nightmare from "nightmare";
+import puppeteer from "puppeteer";
 import pngToJpg from "png-jpg";
 import optimizer from "image-optim";
 
@@ -20,7 +20,9 @@ const screenshotsLocation = resolve(
   "entry"
 );
 
-const showcasesFile = fs.readdirSync(showcaseDir);
+const showcasesFile = fs
+  .readdirSync(showcaseDir)
+  .filter(file => !file.startsWith("."));
 
 const listTmp = [];
 showcasesFile.forEach(file => {
@@ -29,90 +31,108 @@ showcasesFile.forEach(file => {
   });
   const showcase = grayMatter(showcaseFile);
 
-  listTmp.push(showcase.data);
+  listTmp.push({ file, ...showcase.data });
 });
 
-// console.log(listTmp)
-const list = listTmp;
-// .slice(0,2) // for tests
+// console.log(listTmp);
+// process.exit(1);
+const list = listTmp; //.slice(0, 2); // for tests
 
+mkdirp.sync(cacheDir);
 mkdirp.sync(screenshotsLocation);
-const screenshots = list.reduce((screenshots, { url }) => {
+
+const screenshots = list.reduce((screenshots, { file, url }) => {
   const filename = urlToSlug(url);
   return [
     ...screenshots,
     {
+      file,
       url,
-      tmpLocation: join(cacheDir, filename + "-large.png"),
-      location: join(screenshotsLocation, filename + "-large.jpg"),
+      pngLocation: join(cacheDir, filename + "-large.png"),
+      jpgLocation: join(screenshotsLocation, filename + "-large.jpg"),
       ...screenshotsSize.large
     },
     {
+      file,
       url,
-      tmpLocation: join(cacheDir, filename + "-small.png"),
-      location: join(screenshotsLocation, filename + "-small.jpg"),
+      pngLocation: join(cacheDir, filename + "-small.png"),
+      jpgLocation: join(screenshotsLocation, filename + "-small.jpg"),
       ...screenshotsSize.small
     }
   ];
 }, []);
 
-const nightmare = Nightmare({
-  // waitTimeout: 30000,
-  // gotoTimeout: 30000,
-  // loadTimeout: 30000,
-});
-let prevUrl;
-screenshots.forEach(({ url, tmpLocation, width, height }) => {
+const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
+  // skip file if they already exist
   try {
-    fs.readFileSync(tmpLocation);
+    fs.readFileSync(jpgLocation);
+    return Promise.resolve();
   } catch (e) {
-    console.log("☐ Missing screenshots for", url, width, height);
-    if (url !== prevUrl) {
-      nightmare.goto(url).wait(15000); // eg: huge backgrounds are slow to get :)
-    }
-    nightmare
-      .wait(2000) // wait for some logo animations & stuff (eg putaindecode.io)
-      .viewport(width, height)
-      .screenshot(tmpLocation);
+    return new Promise((resolve, reject) => {
+      try {
+        pngToJpg(
+          {
+            input: pngLocation,
+            output: jpgLocation,
+            options: { quality: 90 }
+          },
+          () => {
+            optimizer
+              .optimize(jpgLocation)
+              .then(() => console.log("📦 ", url, "optimized"))
+              .then(resolve)
+              // .catch(err => console.log("Failed to optimize image", err));
+              .catch(reject);
+          }
+        );
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
-});
+};
 
-nightmare
-  .end()
-  .then(() => {
-    console.log("✅ Showcase screenshots cached");
-    console.log("ℹ️ Optimizing screenshots...");
-    return Promise.all(
-      screenshots.map(({ tmpLocation, location }) => {
-        // skip file if they already exist
-        try {
-          fs.readFileSync(location);
-          return Promise.resolve();
-        } catch (e) {
-          return new Promise((resolve, reject) => {
-            try {
-              pngToJpg(
-                {
-                  input: tmpLocation,
-                  output: location,
-                  options: { quality: 90 }
-                },
-                () => {
-                  optimizer
-                    .optimize(location)
-                    // .then(() => console.log(location, "optimized"))
-                    .then(resolve)
-                    // .catch(err => console.log("Failed to optimize image", err));
-                    .catch(reject);
-                }
-              );
-            } catch (e) {
-              reject(e);
-            }
-          });
+(async () => {
+  const browser = await puppeteer.launch();
+  for (const s in screenshots) {
+    const { file, url, pngLocation, jpgLocation, width, height } = screenshots[
+      s
+    ];
+    const page = await browser.newPage();
+    try {
+      fs.readFileSync(pngLocation);
+    } catch (e) {
+      console.log("📷 ", url, "Missing screenshots", width, height);
+      try {
+        await page.goto(url);
+        if (
+          (await page.$("#PhenomicRoot")) === null &&
+          (await page.$("#phenomic")) === null &&
+          (await page.$("#statinamic")) === null // back to the future
+        ) {
+          console.error("⚠️ ", url, "Website seems not to run phenomic");
+          console.error("🚒 git rm " + join(showcaseDir, file));
+        } else {
+          await page.setViewport({ width, height });
+          await page.screenshot({ path: pngLocation });
+          console.log("📸 ", url, width, height);
         }
-      })
-    );
-  })
-  .then(() => console.log("✅ Showcase screenshots ready."))
-  .catch(e => console.error(e));
+      } catch (e) {
+        console.error("🚨 ", url, e);
+      }
+    }
+    // optimize only if available
+    let optimize;
+    try {
+      fs.readFileSync(pngLocation);
+      optimize = true;
+    } catch (e) {
+      optimize = false;
+    }
+    if (optimize) {
+      await optimizeScreenshot({ url, pngLocation, jpgLocation });
+    }
+  }
+
+  await browser.close();
+})();

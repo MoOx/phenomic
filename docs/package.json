@@ -31,8 +31,8 @@
     "image-optim": "^3.0.0",
     "imageoptim-cli": "^1.15.4",
     "mkdirp": "^0.5.1",
-    "nightmare": "^2.10.0",
     "png-jpg": "0.0.2",
+    "puppeteer": "^1.1.1",
     "rimraf": "^2.6.1"
   },
   "phenomic": {
