@@ -6,8 +6,10 @@ test("log should log", () => {
   const log = logger("sender test", false);
 
   // we can't snapshot because of logSymbols & colors...
-  const colorStart = process.platform !== "win32" ? "[90m" : "";
-  const colorEnd = process.platform !== "win32" ? "[39m" : "";
+  const colorStart =
+    process.platform !== "win32" && !process.env.CIRCLECI ? "[90m" : "";
+  const colorEnd =
+    process.platform !== "win32" && !process.env.CIRCLECI ? "[39m" : "";
 
   expect(log("test msg")).toBe(
     `${logSymbols.info} ${colorStart}sender test: ${colorEnd} test msg`
