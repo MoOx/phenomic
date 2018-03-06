@@ -17,7 +17,7 @@ module.exports = (config: PhenomicConfig) => ({
     publicPath: "/", // @todo make this dynamic
     path: path.isAbsolute(config.outdir)
       ? config.outdir
-      : path.join(process.cwd(), config.outdir),
+      : path.join(config.path, config.outdir),
     ...(process.env.PHENOMIC_ENV !== "static"
       ? {
           filename: "phenomic/[name].js",

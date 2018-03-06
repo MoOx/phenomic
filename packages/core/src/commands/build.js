@@ -19,9 +19,8 @@ import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:build");
 
-const contentFolder = "content";
 const getContentPath = (config: PhenomicConfig) =>
-  getPath(path.join(config.path, contentFolder));
+  getPath(path.join(config.path, config.content));
 
 let lastStamp = Date.now();
 async function getContent(db, config: PhenomicConfig) {
@@ -39,31 +38,34 @@ async function getContent(db, config: PhenomicConfig) {
     throw Error("Phenomic expects at least a collector plugin");
   }
 
+  let contentPath;
   try {
-    const contentPath = await getContentPath(config);
-    const files = oneShot({
-      path: contentPath,
-      plugins: config.plugins
-    });
-    await db.destroy();
-    await Promise.all(
-      files.map(file =>
-        processFile({
-          config,
-          db,
-          file,
-          transformers,
-          collectors
-        })
-      )
-    );
+    contentPath = await getContentPath(config);
   } catch (e) {
     log.warn(
       `no '${
-        contentFolder
+        config.content
       }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
+    throw e;
   }
+
+  const files = oneShot({
+    path: contentPath,
+    plugins: config.plugins
+  });
+  await db.destroy();
+  await Promise.all(
+    files.map(file =>
+      processFile({
+        config,
+        db,
+        file,
+        transformers,
+        collectors
+      })
+    )
+  );
 }
 function createFetchFunction(port: number) {
   debug("creating fetch function");

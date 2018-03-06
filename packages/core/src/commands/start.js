@@ -14,9 +14,8 @@ import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:start");
 
-const contentFolder = "content";
 const getContentPath = (config: PhenomicConfig) =>
-  getPath(path.join(config.path, contentFolder));
+  getPath(path.join(config.path, config.content));
 
 function createDevServer(config: PhenomicConfig) {
   debug("creating dev server");
@@ -87,7 +86,7 @@ async function start(config: PhenomicConfig) {
   } catch (e) {
     log.warn(
       `no '${
-        contentFolder
+        config.content
       }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
   }

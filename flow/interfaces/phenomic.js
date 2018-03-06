@@ -51,6 +51,7 @@ export type PhenomicInputPlugins = {
 
 export type PhenomicInputConfig = {
   path?: string,
+  content?: string,
   outdir?: string,
   port?: number,
   bundleName?: string,
@@ -157,6 +158,7 @@ export type PhenomicExtensions = PhenomicPreset;
 
 export type PhenomicConfig = {
   path: string,
+  content: string,
   outdir: string,
   port: number,
   bundleName: string,

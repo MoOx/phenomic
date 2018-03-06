@@ -65,6 +65,7 @@ function flattenConfiguration(
   debug("flattenConfiguration", config);
   return {
     path: config.path || "",
+    content: config.content || "",
     outdir: config.outdir || "",
     port: config.port || 8080,
     bundleName: config.bundleName || "",

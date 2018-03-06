@@ -40,7 +40,7 @@ export default function(
       return new Promise((resolve, reject) => {
         getPath(path.join(config.path, options.path)).then(
           (publicPath: string) => {
-            fse.copy(publicPath, config.outdir, err => {
+            fse.copy(publicPath, path.join(config.path, config.outdir), err => {
               if (err) {
                 reject(err);
               }
