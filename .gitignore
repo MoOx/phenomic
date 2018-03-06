@@ -23,9 +23,6 @@ dist
 **/website/**/*.pxm
 **/website/public/showcases/entry/*
 
-# logo
-logo/*.png
-
 # reason stuff
 .merlin
 .bsb.lock
