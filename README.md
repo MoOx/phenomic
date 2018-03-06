@@ -1,63 +1,40 @@
-<p align="center">
-  <a href="https://phenomic.io">
-    <img alt="babel" src="https://rawgit.com/phenomic/phenomic/master/logo/phenomic.svg" width="600">
-  </a>
-</p>
+[![Phenomic](https://raw.githubusercontent.com/phenomic/phenomic/master/logo/phenomic-cover-white.png)](https://phenomic.io)
 
-<p align="center">
-<a title="Travis CI Build status" href="https://travis-ci.org/phenomic/phenomic">
-  <img src="https://img.shields.io/travis/phenomic/phenomic/master.svg?label=unix%2Ftravis-ci%20build" />
-</a>
-<a title="circle Build status" href="https://circleci.com/gh/phenomic/phenomic">
-  <img src="https://img.shields.io/circleci/project/github/phenomic/phenomic/master.svg?label=unix%2Fcircleci%20build" />
-</a>
-<a title="Windows Build status" href="https://ci.appveyor.com/project/MoOx/phenomic/branch/master">
-  <img src="https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build" />
-</a>
-<a title="Version" href="https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md">
-  <img src="https://img.shields.io/npm/v/@phenomic/core.svg" />
-</a>
-</p>
+> Modular website compiler (React, Webpack, Reason and whatever you want)
 
-<p align="center">
-<a href="https://gitter.im/MoOx/phenomic">
-  💬 Support Chat
-</a>
-|
-<a href="https://twitter.com/Phenomic_app">
-  Twitter
-</a>
-|
-<a href="https://github.com/phenomic/phenomic">
-  GitHub
-</a>
-|
-<a href="https://gitlab.com/MoOx/phenomic">
-  GitLab
-</a>
-|
-<a href="https://bitbucket.org/MoOx/phenomic">
-  BitBucket
-</a>
-</p>
+✅ **Status**
 
-> Modular website compiler
+[![Travis CI Build status](https://img.shields.io/travis/phenomic/phenomic/master.svg?label=unix%2Ftravis-ci%20build)](https://travis-ci.org/phenomic/phenomic)
+[![circle Build status](https://img.shields.io/circleci/project/github/phenomic/phenomic/master.svg?label=unix%2Fcircle-ci%20build)](https://circleci.com/gh/phenomic/phenomic)
+[![Windows Build status](https://img.shields.io/appveyor/ci/MoOx/phenomic/master.svg?label=window%20build)](https://ci.appveyor.com/project/MoOx/phenomic/branch/master)
+[![Version](https://img.shields.io/npm/v/@phenomic/core.svg)](https://github.com/phenomic/phenomic/blob/master/CHANGELOG.md)
 
-## Install
+💬 **Want to discuss or ask a question?**
 
-Check out
-[phenomic.io/docs/getting-started](https://phenomic.io/docs/getting-started) to
-find commands line to install the version that match your needs.
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/phenomic)
+[![Gitter](https://badges.gitter.im/phenomic/phenomic.svg)](https://gitter.im/phenomic/phenomic)
+![Follow Phenomic on Twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&logo=twitter&label=Follow+Phenomic_app)
+
+📦 **Git Mirrors**
+
+[GitHub](https://github.com/phenomic/phenomic) |
+[GitLab](https://gitlab.com/MoOx/phenomic) |
+[BitBucket](https://bitbucket.org/MoOx/phenomic)
+
+---
+
+# Documentation
+
+## Getting Started
+
+Check out [our Getting Started guide](https://phenomic.io/docs/getting-started)
+on our website!
 
 ## Examples
 
 There are plenty of
 [examples](https://github.com/phenomic/phenomic/tree/master/examples) available.
 Just take a look!
-
-## Documentation
-
-The documentation is accessible from **[phenomic.io](https://phenomic.io/)**.
 
 ---
 
