@@ -37,7 +37,7 @@ export type PhenomicDB = {
   ) => Promise<PhenomicDBEntry>,
   getPartial: (sub: string | Array<string>, id: string) => Promise<mixed>,
   getList: (
-    sub: string | Array<string>,
+    sub: null | string | Array<string>,
     config?: LevelStreamConfig,
     filter?: string,
     filterValue?: string

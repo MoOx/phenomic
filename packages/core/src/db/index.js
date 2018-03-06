@@ -158,7 +158,10 @@ const db = {
       }
     };
   },
-  async getPartial(sub: string | Array<string>, id: string): Promise<mixed> {
+  async getPartial(
+    sub: null | string | Array<string>,
+    id: string
+  ): Promise<mixed> {
     const item = getSublevel(sub).find(item => item.id === id);
     if (!item) {
       return id;
@@ -171,7 +174,7 @@ const db = {
   },
 
   getList(
-    sub: string | Array<string>,
+    sub: null | string | Array<string>,
     config: LevelStreamConfig = {},
     filter: string = "default",
     filterValue: string = ""

@@ -143,6 +143,92 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
+  server.get("/by-:filter/:value/:order.json", async function(
+    req: express$Request,
+    res: express$Response
+  ) {
+    debug(req.url, JSON.stringify(req.params));
+    try {
+      const reverse = req.params.order === "desc";
+      const list = await db.getList(
+        null,
+        { reverse },
+        req.params.filter,
+        req.params.value
+      );
+      res.json(connect(list));
+    } catch (error) {
+      console.error(error);
+      res.status(404).end();
+    }
+  });
+
+  server.get("/by-:filter/:value/:order/limit-:limit.json", async function(
+    req: express$Request,
+    res: express$Response
+  ) {
+    debug(req.url, JSON.stringify(req.params));
+    try {
+      const limit = parseInt(req.params.limit);
+      const reverse = req.params.order === "desc";
+      const list = await db.getList(
+        null,
+        {
+          limit: limit + 1,
+          reverse
+        },
+        req.params.filter,
+        req.params.value
+      );
+      res.json(connect(list, limit));
+    } catch (error) {
+      console.error(error);
+      res.status(404).end();
+    }
+  });
+
+  server.get(
+    "/by-:filter/:value/:order/limit-:limit/after-:after.json",
+    async function(req: express$Request, res: express$Response) {
+      debug(req.url, JSON.stringify(req.params));
+      try {
+        const limit = parseInt(req.params.limit);
+        const after = decode(req.params.after);
+        // @todo check lt validity (exist?); otherwise, trigger an error (404?)
+        // cause during dev all "lt" are responding 200, even random values
+        // but in production, it's not the case as only known values are
+        // generated as endpoints
+        const reverse = req.params.order === "desc";
+        const [list, previousList] = await Promise.all([
+          db.getList(
+            null,
+            {
+              limit: limit + 1,
+              gte: after,
+              reverse
+            },
+            req.params.filter,
+            req.params.value
+          ),
+          db.getList(
+            null,
+            {
+              limit: limit + 1,
+              gt: after,
+              reverse: !reverse
+            },
+            req.params.filter,
+            req.params.value
+          )
+        ]);
+        res.json(connect(list, limit, previousList));
+      } catch (error) {
+        console.error(error);
+        res.status(404).end();
+      }
+    }
+  );
+
   server.get("/item/*.json", async function(
     req: express$Request,
     res: express$Response
