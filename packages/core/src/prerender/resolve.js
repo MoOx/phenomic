@@ -111,7 +111,13 @@ const resolveURLsForDynamicParams = async function(
     key = mainKey;
   }
   const queryParams = query(unlimitedQueryConfig);
-  const queryResult = await phenomicFetch(queryParams);
+  let queryResult;
+  try {
+    queryResult = await phenomicFetch(queryParams);
+  } catch (e) {
+    // log simple-json-fetch error if any
+    throw e.error || e;
+  }
   debug(
     route.path,
     `path fetched. ${queryResult.list.length} items (id: ${key})`
