@@ -55,6 +55,12 @@ const HeaderNavBar = () => (
         <Text style={styles.linkText}>{"Twitter"}</Text>
       </Link.TouchableOpacity>
       <Link.TouchableOpacity
+        href="https://spectrum.chat/phenomic"
+        style={styles.link}
+      >
+        <Text style={styles.linkText}>{"Community"}</Text>
+      </Link.TouchableOpacity>
+      <Link.TouchableOpacity
         href="https://gitter.im/MoOx/phenomic"
         style={styles.link}
       >
