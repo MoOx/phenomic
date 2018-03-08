@@ -47,25 +47,26 @@ async function getContent(db, config: PhenomicConfig) {
         config.content
       }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
     );
-    throw e;
   }
 
-  const files = oneShot({
-    path: contentPath,
-    plugins: config.plugins
-  });
-  await db.destroy();
-  await Promise.all(
-    files.map(file =>
-      processFile({
-        config,
-        db,
-        file,
-        transformers,
-        collectors
-      })
-    )
-  );
+  if (contentPath) {
+    const files = oneShot({
+      path: contentPath,
+      plugins: config.plugins
+    });
+    await db.destroy();
+    await Promise.all(
+      files.map(file =>
+        processFile({
+          config,
+          db,
+          file,
+          transformers,
+          collectors
+        })
+      )
+    );
+  }
 }
 function createFetchFunction(port: number) {
   debug("creating fetch function");
