@@ -1,17 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should transform json as... json 1`] = `
+exports[`should transform json as json 1`] = `
 Object {
   "data": Object {
-    "body": "I am supposed to be huge",
-    "path": "file",
+    "somedata": "Normal version",
     "test": "a",
     "test2": "b",
   },
   "partial": Object {
-    "path": "file",
+    "somedata": "Normal version",
     "test": "a",
     "test2": "b",
+  },
+}
+`;
+
+exports[`should transform json as json and support partial 1`] = `
+Object {
+  "data": Object {
+    "partial": Object {
+      "somedata": "Light version",
+    },
+    "somedata": "Normal version",
+    "test": "a",
+    "test2": "b",
+  },
+  "partial": Object {
+    "somedata": "Light version",
   },
 }
 `;

@@ -1,5 +1,3 @@
-import path from "path";
-
 const debug = require("debug")("phenomic:plugin:transform-json");
 
 function transformJSONFile({
@@ -11,20 +9,11 @@ function transformJSONFile({
 }): PhenomicTransformResult {
   debug(`transforming ${file.name}`);
 
-  const data = {
-    ...JSON.parse(contents.toString()),
-    path: path.basename(file.name, ".json")
-  };
-  const {
-    // forget unwanted body
-    body, // eslint-disable-line
-    // partial is what we want
-    ...partial
-  } = data;
+  const json = JSON.parse(contents.toString());
 
   return {
-    data,
-    partial
+    data: json,
+    partial: json.partial || json
   };
 }
 
