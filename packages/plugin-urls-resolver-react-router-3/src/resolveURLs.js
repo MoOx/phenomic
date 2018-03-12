@@ -1,8 +1,7 @@
 import query from "@phenomic/api-client/lib/query";
+import { encode } from "@phenomic/core/lib/api";
 
-import { encode } from "../api";
-
-const debug = require("debug")("phenomic:core:prerender:resolve");
+const debug = require("debug")("phenomic:plugin-urls-resolver-react-router-3");
 
 const defaultQueryKey = "default";
 const mainKey = "id";

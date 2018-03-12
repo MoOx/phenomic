@@ -1,6 +1,6 @@
 import query from "@phenomic/api-client/lib/query";
 
-import resolve from "../resolve.js";
+import resolve from "../resolveURLs.js";
 
 const NoopComponent = {
   fakeComponent: true // to pass test on component being valid

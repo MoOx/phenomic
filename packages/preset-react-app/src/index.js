@@ -1,5 +1,6 @@
 import bundlerWebpack from "@phenomic/plugin-bundler-webpack";
 import rendererReact from "@phenomic/plugin-renderer-react";
+import urlsResolverReactRouter3 from "@phenomic/plugin-urls-resolver-react-router-3";
 import collectorFiles from "@phenomic/plugin-collector-files";
 import transformMarkdown from "@phenomic/plugin-transform-markdown";
 import transformJson from "@phenomic/plugin-transform-json";
@@ -11,6 +12,7 @@ export default function() {
     plugins: [
       bundlerWebpack,
       rendererReact,
+      urlsResolverReactRouter3,
       transformMarkdown,
       transformJson,
       collectorFiles,

@@ -1,0 +1,36 @@
+{
+  "name": "@phenomic/plugin-urls-resolver-react-router-3",
+  "version": "1.0.0-beta.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/phenomic/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "phenomic",
+    "phenomic-plugin",
+    "phenomic-plugin-urls-resolver",
+    "renderer",
+    "react"
+  ],
+  "description":
+    "Phenomic plugin that allow you pre-render your website/app React Router 3 routes",
+  "main": "lib/index.js",
+  "files": ["lib", "src", "!**/__tests__"],
+  "dependencies": {
+    "@phenomic/api-client": "^1.0.0-beta.0",
+    "debug": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@phenomic/core": "^1.0.0-beta.0"
+  },
+  "devDependencies": {
+    "@phenomic/core": "^1.0.0-beta.0"
+  }
+}

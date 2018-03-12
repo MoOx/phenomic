@@ -142,6 +142,7 @@ export type PhenomicPlugin = {
   buildForPrerendering?: Function,
   // renderer
   getRoutes?: Function,
+  resolveURLs?: (routes, fetch: PhenomicFetch) => Array<string>,
   renderStatic?: PhenomicPluginRenderStaticType,
   renderDevServer?: PhenomicPluginRenderDevServerType,
   // common

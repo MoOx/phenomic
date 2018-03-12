@@ -29,6 +29,6 @@ module.file_ext=.js
 module.file_ext=.json
 
 # packages/*
-module.name_mapper='^@phenomic\/\([a-z-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
-module.name_mapper='^@phenomic\/\([a-z-]+\)\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/\2'
-module.name_mapper='^@phenomic\/\([a-z-]+\)$' -> '<PROJECT_ROOT>/packages/\1/src'
+module.name_mapper='^@phenomic\/\([a-z0-9-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
+module.name_mapper='^@phenomic\/\([a-z0-9-]+\)\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/\2'
+module.name_mapper='^@phenomic\/\([a-z0-9-]+\)$' -> '<PROJECT_ROOT>/packages/\1/src'

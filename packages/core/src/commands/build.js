@@ -12,7 +12,6 @@ import { oneShot } from "../watch";
 import processFile from "../injection/processFile";
 import createServer from "../api";
 import writeFile from "../utils/writeFile";
-import resolveURLsToPrerender from "../prerender/resolve";
 import db from "../db";
 import log from "../utils/log";
 import getPath from "../utils/getPath";
@@ -159,10 +158,18 @@ async function build(config) {
     if (!renderer || !renderer.getRoutes) {
       throw new Error("a renderer is required (plugin implementing getRoutes)");
     }
-    const urls = await resolveURLsToPrerender(
-      renderer.getRoutes(app),
-      phenomicFetch
+    const getRoutes = renderer.getRoutes;
+    const urlsResolvers: PhenomicPlugins = config.plugins.filter(
+      p => p.resolveURLs
     );
+    const urlsResolver = urlsResolvers[0];
+    if (!urlsResolver || !urlsResolver.resolveURLs) {
+      throw new Error(
+        "an urls-resolver is required (plugin implementing resolveURLs)"
+      );
+    }
+    const resolveURLs = urlsResolver.resolveURLs;
+    const urls = await resolveURLs(getRoutes(app), phenomicFetch);
     debug("urls have been resolved");
     debug(urls);
     if (urls.length === 0) {
