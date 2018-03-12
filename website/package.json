@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "gray-matter": "^2.1.1",
+    "gray-matter": "^3.0.0",
     "image-optim": "^3.0.0",
     "imageoptim-cli": "^1.15.4",
     "mkdirp": "^0.5.1",

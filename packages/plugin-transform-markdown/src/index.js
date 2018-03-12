@@ -16,8 +16,8 @@ function transformMarkdownFile({
   contents: Buffer
 }) {
   debug(`transforming ${file.fullpath}`);
-
   const front = frontMatterParser(contents.toString());
+  debug(`front matter for ${file.fullpath}`, front.data);
   const partial = {
     ...front.data,
     // @todo should be here or user land ?
