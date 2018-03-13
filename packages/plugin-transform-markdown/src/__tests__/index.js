@@ -8,9 +8,9 @@ it("should transform markdown as html", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json",
-          exists: true,
-          type: "wat"
+          fullpath: "/test/file.json"
+          // exists: true,
+          // type: "wat"
         },
         contents: new Buffer(
           `---

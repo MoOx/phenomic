@@ -8,9 +8,9 @@ it("should transform asciidoc as html", () => {
       plugin.transform({
         file: {
           name: "file.adoc",
-          fullpath: "/test/file.adoc",
-          exists: true,
-          type: "wat"
+          fullpath: "/test/file.adoc"
+          // exists: true,
+          // type: "wat"
         },
         contents: new Buffer(`
 = Hello, AsciiDoc!

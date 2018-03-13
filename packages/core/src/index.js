@@ -1,6 +1,5 @@
 import cosmiconfig from "cosmiconfig";
 
-import defaultConfig from "./defaultConfig.js";
 import flattenConfiguration from "./configuration/flattenConfiguration.js";
 import start from "./commands/start.js";
 import build from "./commands/build.js";
@@ -12,7 +11,7 @@ const shittyCatch = error => {
 };
 
 function normalizeConfiguration(
-  config: PhenomicInputConfig = {}
+  config?: PhenomicInputConfig
 ): Promise<PhenomicConfig> {
   const configExplorer = cosmiconfig("phenomic", { cache: false });
   return configExplorer
@@ -26,21 +25,20 @@ function normalizeConfiguration(
         );
       }
       return flattenConfiguration({
-        ...defaultConfig,
         ...result.config,
-        ...config
+        ...(config || {})
       });
     })
     .catch(shittyCatch);
 }
 
 export default {
-  start(config: PhenomicInputConfig = {}) {
+  start(config?: PhenomicInputConfig) {
     normalizeConfiguration(config)
       .then(start)
       .catch(shittyCatch);
   },
-  build(config: PhenomicInputConfig = {}) {
+  build(config?: PhenomicInputConfig) {
     normalizeConfiguration(config)
       .then(build)
       .catch(shittyCatch);

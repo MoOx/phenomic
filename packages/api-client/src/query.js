@@ -1,5 +1,17 @@
 const debug = require("debug")("phenomic:api-client");
 
+function removeUndefined<T: {}>(obj: T): T {
+  const newObj = {};
+  // $FlowFixMe stfu
+  Object.keys(obj).forEach(key => {
+    if (typeof obj[key] !== undefined) {
+      newObj[key] = obj[key];
+    }
+  });
+  // $FlowFixMe stfu
+  return newObj;
+}
+
 function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
   debug("query", config);
 
@@ -10,14 +22,15 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
       id: config.id
     };
   }
-  return {
+
+  return removeUndefined({
     path: config.path,
     by: config.by || "default",
     value: config.by && config.value ? config.value : "1",
     order: config.order ? config.order : "desc",
     limit: config.limit ? parseInt(config.limit, 10) : undefined,
-    ...(config.after !== undefined ? { after: config.after } : null)
-  };
+    after: config.after
+  });
 }
 
 export default query;

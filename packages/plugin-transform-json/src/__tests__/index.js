@@ -8,9 +8,9 @@ it("should transform json as json", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json",
-          exists: true,
-          type: "wat"
+          fullpath: "/test/file.json"
+          // exists: true,
+          // type: "wat"
         },
         contents: new Buffer(
           `{
@@ -31,9 +31,9 @@ it("should transform json as json and support partial", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json",
-          exists: true,
-          type: "wat"
+          fullpath: "/test/file.json"
+          // exists: true,
+          // type: "wat"
         },
         contents: new Buffer(
           `{

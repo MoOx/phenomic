@@ -116,7 +116,7 @@ async function prerenderFileAndDependencies({
     )
   );
 }
-async function build(config) {
+async function build(config: PhenomicConfig) {
   console.log("⚡️ Hey! Let's get on with it");
   debug("cleaning dist");
   rimraf.sync("dist");
@@ -131,18 +131,26 @@ async function build(config) {
   debug("server ready");
   try {
     const bundlers = config.plugins.filter(p => p.buildForPrerendering);
-    const bundler = bundlers[0]; // Build webpack
+    const bundler = bundlers[0];
     await Promise.all(
-      config.plugins
-        .filter(plugin => plugin.beforeBuild)
-        .map(plugin => plugin.beforeBuild(config))
+      config.plugins.map(
+        plugin => plugin.beforeBuild && plugin.beforeBuild(config)
+      )
     );
+    if (!bundler || !bundler.build) {
+      throw new Error("a bundler is required (plugin implementing `build`)");
+    }
     const assets = await bundler.build(config);
     debug("assets", assets);
     console.log(
       "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms"
     );
     lastStamp = Date.now();
+    if (!bundler || !bundler.buildForPrerendering) {
+      throw new Error(
+        "a bundler is required (plugin implementing `buildForPrerendering`)"
+      );
+    }
     const app = await bundler.buildForPrerendering(config);
     debug("app", app);
     console.log(
@@ -156,7 +164,9 @@ async function build(config) {
     const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes);
     const renderer = renderers[0];
     if (!renderer || !renderer.getRoutes) {
-      throw new Error("a renderer is required (plugin implementing getRoutes)");
+      throw new Error(
+        "a renderer is required (plugin implementing `getRoutes`)"
+      );
     }
     const getRoutes = renderer.getRoutes;
     const urlsResolvers: PhenomicPlugins = config.plugins.filter(

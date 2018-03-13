@@ -1,4 +1,4 @@
-export default {
+const defaultConfig: PhenomicConfig = {
   path: process.cwd(),
   content: "content",
   outdir: "dist",
@@ -6,3 +6,4 @@ export default {
   bundleName: "phenomic.main",
   plugins: []
 };
+export default defaultConfig;

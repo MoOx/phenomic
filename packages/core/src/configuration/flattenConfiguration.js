@@ -1,3 +1,5 @@
+import defaultConfig from "../defaultConfig.js";
+
 const debug = require("debug")("phenomic:core:configuration");
 
 const normalizePlugin = (plugin: PhenomicPlugin) => {
@@ -46,7 +48,7 @@ const normalizeModule = (module: any) => {
   return module;
 };
 
-function flattenPresets(config?: PhenomicInputPlugins = {}): PhenomicPlugins {
+function flattenPresets(config: PhenomicInputPlugins): PhenomicPlugins {
   debug("flattenPresets", config);
   const plugins = [
     ...(config.presets || [])
@@ -58,18 +60,18 @@ function flattenPresets(config?: PhenomicInputPlugins = {}): PhenomicPlugins {
   return plugins;
 }
 
-function flattenConfiguration(
-  config: PhenomicInputConfig = {}
-): PhenomicConfig {
-  // @todo ad validation here?
+function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   debug("flattenConfiguration", config);
   return {
-    path: config.path || "",
-    content: config.content || "",
-    outdir: config.outdir || "",
-    port: config.port || 8080,
-    bundleName: config.bundleName || "",
-    plugins: flattenPresets(config)
+    path: config.path || defaultConfig.path,
+    content: config.content || defaultConfig.content,
+    outdir: config.outdir || defaultConfig.outdir,
+    port: config.port || defaultConfig.port,
+    bundleName: config.bundleName || defaultConfig.bundleName,
+    plugins: flattenPresets({
+      plugins: config.plugins || [],
+      presets: config.presets || []
+    })
   };
 }
 
