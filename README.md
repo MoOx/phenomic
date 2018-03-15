@@ -56,7 +56,7 @@ guide to get started.
 ### Contributors
 
 Thank you to all the people who have already contributed to phenomic!
-<a href="graphs/contributors"><img src="https://opencollective.com/phenomic/contributors.svg?width=890" /></a>
+<a href="https://github.com/phenomic/phenomic/graphs/contributors"><img src="https://opencollective.com/phenomic/contributors.svg?width=890" /></a>
 
 ### Backers
 
