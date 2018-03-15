@@ -5,6 +5,7 @@ import createContainer from "./components/Container";
 import Provider from "./components/Provider";
 import BodyRenderer from "./components/BodyRenderer";
 import textRenderer from "./components/textRenderer";
+import Link from "./components/Link";
 
 export {
   renderApp,
@@ -13,5 +14,6 @@ export {
   Provider,
   query,
   BodyRenderer,
-  textRenderer
+  textRenderer,
+  Link
 };

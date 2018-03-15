@@ -4,7 +4,8 @@ import {
   createContainer,
   query,
   BodyRenderer,
-  textRenderer
+  textRenderer,
+  Link
 } from "@phenomic/plugin-renderer-react/lib/client";
 
 export {
@@ -13,5 +14,6 @@ export {
   createContainer,
   query,
   BodyRenderer,
-  textRenderer
+  textRenderer,
+  Link
 };

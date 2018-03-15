@@ -24,9 +24,12 @@ export const renderApp = (routes: () => React.Element<any>) => {
 
   function createFetchFunction() {
     return (config: PhenomicQueryConfig) =>
-      jsonFetch(createURL({ ...config, root: "/phenomic" })).then(
-        res => res.json
-      );
+      jsonFetch(
+        createURL({
+          ...config,
+          root: process.env.PHENOMIC_APP_BASENAME || "/" + "phenomic"
+        })
+      ).then(res => res.json);
   }
 
   const initialStateNode = document.getElementById("PhenomicHydration");

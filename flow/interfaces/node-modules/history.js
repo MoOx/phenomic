@@ -1,3 +1,6 @@
+declare module "history" {
+  declare var exports: any;
+}
 declare module "history/lib/createBrowserHistory" {
   declare var exports: any;
 }

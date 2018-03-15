@@ -1,5 +1,7 @@
 import defaultConfig from "../defaultConfig.js";
 
+import normalizeBaseUrl from "./normalize-base-url.js";
+
 const debug = require("debug")("phenomic:core:configuration");
 
 const normalizePlugin = (plugin: PhenomicPlugin) => {
@@ -63,6 +65,7 @@ function flattenPresets(config: PhenomicInputPlugins): PhenomicPlugins {
 function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   debug("flattenConfiguration", config);
   return {
+    baseUrl: normalizeBaseUrl(config.baseUrl || defaultConfig.baseUrl),
     path: config.path || defaultConfig.path,
     content: config.content || defaultConfig.content,
     outdir: config.outdir || defaultConfig.outdir,

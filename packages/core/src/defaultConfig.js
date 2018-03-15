@@ -1,4 +1,5 @@
 const defaultConfig: PhenomicConfig = {
+  baseUrl: "http://localhost",
   path: process.cwd(),
   content: "content",
   outdir: "dist",

@@ -91,7 +91,7 @@ async function start(config: PhenomicConfig) {
     );
   }
 
-  bundlerServer.use("/phenomic", phenomicServer);
+  bundlerServer.use(config.baseUrl.pathname + "phenomic", phenomicServer);
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html");
@@ -124,7 +124,9 @@ async function start(config: PhenomicConfig) {
     }
     process.exit(1);
   });
-  console.log(`✨ Open http://localhost:${config.port}`);
+  console.log(
+    `✨ Open http://localhost:${config.port}` + config.baseUrl.pathname
+  );
 }
 
 export default start;

@@ -2,14 +2,14 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import { browserHistory } from "react-router";
+
+const BASENAME = process.env.PHENOMIC_APP_BASENAME || "/";
 
 const origin = url =>
-  typeof url === "object" &&
   // jsdom can return "null" string...
-  ((url.origin !== "null" && url.origin) ||
-    // // IE does not correctly handle origin, maybe Edge does...
-    url.protocol + "//" + url.hostname + (url.port ? ":" + url.port : ""));
+  (url.origin !== "null" && url.origin) ||
+  // // IE does not correctly handle origin, maybe Edge does...
+  url.protocol + "//" + url.hostname + (url.port ? ":" + url.port : "");
 
 type PropsType = {
   style?: Object,
@@ -22,10 +22,8 @@ type PropsType = {
 };
 
 const isSameOrigin = (url: HTMLAnchorElement) =>
-  // ignore url not from the same domain
-  // @todo handle sub-folder, see
-  // https://github.com/phenomic/phenomic/issues/1124
-  origin(url) === origin(window.location);
+  origin(url) === origin(window.location) &&
+  url.pathname.indexOf(BASENAME) > -1;
 
 const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
   // If target prop is set (e.g. to "_blank"), let browser handle link.
@@ -34,17 +32,27 @@ const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
   // modifier pressed
   (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey || false);
 
-const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>) => {
-  if (isSameOrigin(event.currentTarget)) {
+const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
+  if (event.currentTarget && isSameOrigin(event.currentTarget)) {
     event.preventDefault();
     // extract to get only interesting parts
     const { pathname, search, hash } = event.currentTarget;
-    browserHistory.push({ pathname, search, hash });
+    const route = {
+      pathname: pathname.replace(BASENAME, ""),
+      search,
+      hash
+    };
+    // react-router v3
+    router.push
+      ? router.push(route)
+      : // react-router v4
+        route.history && route.history.push && router.history.push(route);
   }
 };
 
 export const handleEvent = (
-  props?: Object,
+  props: Object,
+  router: Object,
   test?: (event: SyntheticEvent<HTMLAnchorElement>, props?: Object) => boolean
 ) => (
   event:
@@ -55,19 +63,21 @@ export const handleEvent = (
   props && props.onClick && props.onClick(event);
   !shouldIgnoreEvent(event) &&
     (test ? test(event, props) : true) &&
-    goToUrl(event);
+    goToUrl(event, router);
 };
 
-export const handleClick = (props?: Object) =>
+export const handleClick = (props: Object, router: Object) =>
   handleEvent(
     props,
+    router,
     // $FlowFixMe left click
     (event: SyntheticMouseEvent<HTMLAnchorElement>) => event.button === 0
   );
 
-export const handleKeyDown = (props?: Object) =>
+export const handleKeyDown = (props: Object, router: Object) =>
   handleEvent(
     props,
+    router,
     // $FlowFixMe  enter key
     (event: SyntheticKeyboardEvent<HTMLAnchorElement>) => event.keyCode === 13
   );
@@ -106,12 +116,13 @@ function Link(props: PropsType, context: Object) {
     ...style,
     ...(isUrlActive ? activeStyle : {})
   };
+
   return (
     <a
       {...otherProps}
-      href={url}
-      onClick={handleClick(props)}
-      onKeyDown={handleKeyDown(props)}
+      href={url.indexOf("://") > -1 ? url : BASENAME + url.slice(1)}
+      onClick={handleClick(props, context.router)}
+      onKeyDown={handleKeyDown(props, context.router)}
       // weird syntax to avoid undefined/empty object/strings
       // for now, it's falling back to normal links
       {...(Object.keys(computedStyle).length ? { style: computedStyle } : {})}

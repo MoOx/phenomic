@@ -52,6 +52,7 @@ export type PhenomicInputPlugins = {|
 |};
 
 export type PhenomicInputConfig = {|
+  baseUrl?: string,
   path?: string,
   content?: string,
   outdir?: string,
@@ -161,6 +162,7 @@ export type PhenomicPresets = Array<PhenomicPreset>;
 export type PhenomicExtensions = PhenomicPreset;
 
 export type PhenomicConfig = {|
+  baseUrl: Url,
   path: string,
   content: string,
   outdir: string,

@@ -1,5 +1,6 @@
 import path from "path";
 
+import getClientEnvironment from "@phenomic/core/lib/configuration/get-client-environment.js";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
@@ -14,7 +15,7 @@ module.exports = (config: PhenomicConfig) => ({
     ].filter(item => item)
   },
   output: {
-    publicPath: "/", // @todo make this dynamic
+    publicPath: config.baseUrl.pathname,
     path: path.isAbsolute(config.outdir)
       ? config.outdir
       : path.join(config.path, config.outdir),
@@ -54,6 +55,15 @@ module.exports = (config: PhenomicConfig) => ({
       filename: "phenomic/[name].[contenthash:8].css",
       disable: process.env.PHENOMIC_ENV !== "static"
     }),
+    (() => {
+      const envVars = getClientEnvironment(config);
+      return new webpack.DefinePlugin({
+        "process.env": Object.keys(envVars).reduce((env, key) => {
+          env[key] = JSON.stringify(envVars[key]);
+          return env;
+        }, {})
+      });
+    })(),
     process.env.PHENOMIC_ENV !== "static" &&
       new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&

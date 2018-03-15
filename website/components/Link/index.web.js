@@ -8,6 +8,8 @@ import {
   handleEvent
 } from "@phenomic/plugin-renderer-react/lib/components/Link.js";
 
+const BASENAME = process.env.PHENOMIC_APP_BASENAME || "/";
+
 type PropsType = {
   style?: any,
   activeStyle?: any,
@@ -17,15 +19,17 @@ type PropsType = {
 const Link = (
   { style, activeStyle, href, ...props }: PropsType,
   context: Object
-) => (
-  <Text
-    {...props}
-    accessibilityRole="link"
-    style={[style, isActive(href, context) && activeStyle]}
-    href={href}
-    onPress={handleEvent(props)}
-  />
-);
+) => {
+  return (
+    <Text
+      {...props}
+      accessibilityRole="link"
+      style={[style, isActive(href, context) && activeStyle]}
+      href={href.indexOf("://") > -1 ? href : BASENAME + href.slice(1)}
+      onPress={handleEvent(props, context.router)}
+    />
+  );
+};
 
 Link.contextTypes = {
   router: PropTypes.object.isRequired

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should normalize base url with a trailing slash 1`] = `
+Object {
+  "auth": null,
+  "hash": null,
+  "host": "t.e",
+  "hostname": "t.e",
+  "href": "http://t.e/st/",
+  "path": "/st/",
+  "pathname": "/st/",
+  "port": null,
+  "protocol": "http:",
+  "query": null,
+  "search": null,
+  "slashes": true,
+}
+`;

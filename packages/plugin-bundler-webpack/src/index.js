@@ -108,6 +108,7 @@ export default function() {
           next();
         },
         webpackDevMiddleware(compiler, {
+          publicPath: config.baseUrl.pathname,
           stats: { chunkModules: false, assets: false }
           // @todo add this and output ourself a nice message for build status
           // noInfo: true,
@@ -134,7 +135,7 @@ export default function() {
         // externals for package/relative name
         externals: [...(webpackConfig.externals || defaultExternals)],
         output: {
-          publicPath: "/", // @todo make this dynamic
+          publicPath: config.baseUrl.pathname,
           path: cacheDir,
           filename: "[name].js",
           library: "app",
