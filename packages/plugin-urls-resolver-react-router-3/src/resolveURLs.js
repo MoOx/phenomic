@@ -25,6 +25,7 @@ const getRouteQueries = route => {
     !route.component ||
     // no export?
     (Object.keys(route.component).length === 0 &&
+      // $FlowFixMe we know, u don't
       route.component.constructor === Object)
   ) {
     throw new Error(

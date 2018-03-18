@@ -109,21 +109,24 @@ async function start(config: PhenomicConfig) {
       );
     }
   });
-  bundlerServer.listen(config.port).on("error", err => {
-    if (err.errno === "EADDRINUSE") {
-      const existingProcess = getProcessForPort(err.port);
-      log(
-        chalk.yellow(
-          `Something is already running on port ${err.port}. ${
-            existingProcess ? `Probably:\n${existingProcess}\n` : ""
-          }`
-        )
-      );
-    } else {
-      log(err);
-    }
-    process.exit(1);
-  });
+  const server = bundlerServer.listen(config.port);
+  if (server) {
+    server.on("error", err => {
+      if (err.errno === "EADDRINUSE") {
+        const existingProcess = getProcessForPort(err.port);
+        log(
+          chalk.yellow(
+            `Something is already running on port ${err.port}. ${
+              existingProcess ? `Probably:\n${existingProcess}\n` : ""
+            }`
+          )
+        );
+      } else {
+        log(err);
+      }
+      process.exit(1);
+    });
+  }
   console.log(
     `✨ Open http://localhost:${config.port}` + config.baseUrl.pathname
   );

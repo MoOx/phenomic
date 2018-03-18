@@ -7,6 +7,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
   const { Main, State, Script, Style } = render(<App />);
   const helmet = Head.renderStatic();
   return (
+    // $FlowFixMe it works on my machine
     <html {...helmet.htmlAttributes.toComponent()}>
       <head>
         {helmet.meta.toComponent()}
@@ -18,6 +19,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
         {helmet.script.toComponent()}
         {helmet.noscript.toComponent()}
       </head>
+      {/* // $FlowFixMe it works on my machine */}
       <body {...helmet.bodyAttributes.toComponent()}>
         <Main />
         <State />

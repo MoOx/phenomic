@@ -5,6 +5,15 @@ const nullSub = "__null__";
 const emptyDatabase: PhenomicDBRegistry = {};
 let database: PhenomicDBRegistry = emptyDatabase;
 
+type LevelStreamConfig = {
+  gt?: string,
+  gte?: string,
+  lt?: string,
+  lte?: string,
+  limit?: number,
+  reverse?: boolean
+};
+
 function sortBy(sort = "date") {
   return (a, b) => {
     a = a.data[sort];

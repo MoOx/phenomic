@@ -65,7 +65,9 @@ function flattenPresets(config: PhenomicInputPlugins): PhenomicPlugins {
 function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
   debug("flattenConfiguration", config);
   return {
-    baseUrl: normalizeBaseUrl(config.baseUrl || defaultConfig.baseUrl),
+    baseUrl: config.baseUrl
+      ? normalizeBaseUrl(config.baseUrl)
+      : defaultConfig.baseUrl,
     path: config.path || defaultConfig.path,
     content: config.content || defaultConfig.content,
     outdir: config.outdir || defaultConfig.outdir,

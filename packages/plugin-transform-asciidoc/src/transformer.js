@@ -103,6 +103,7 @@ export default (config?: PhenomicConfig, contents: Buffer) => {
     processor.use(rehype2react, { createElement });
   }
 
+  // $FlowFixMe mixed lol
   data.contents = processor.processSync(data.contents).contents;
   return data;
 };

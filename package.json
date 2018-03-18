@@ -22,7 +22,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "~7.3.0",
     "eslint-plugin-react-native": "^3.1.0",
-    "flow-bin": "^0.61.0",
+    "flow-bin": "^0.68.0",
     "git-exec-and-restage": "^1.0.1",
     "globby": "^6.1.0",
     "husky": "^0.13.3",
@@ -126,8 +126,5 @@
     "transformIgnorePatterns": ["node_modules"],
     "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
   },
-  "workspaces": ["website", "examples/*", "packages/*"],
-  "dependencies": {
-    "trash-cli": "^1.4.0"
-  }
+  "workspaces": ["website", "examples/*", "packages/*"]
 }

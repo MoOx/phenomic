@@ -18,7 +18,9 @@ const createElement = (component, props, children) => {
   };
 };
 
-export default (config?: PhenomicConfig, body: string) => {
+type transformerResult = { contents: string };
+
+export default (config?: PhenomicConfig, body: string): transformerResult => {
   const processor = unified()
     .use(markdown)
     .use(toc)
@@ -39,5 +41,6 @@ export default (config?: PhenomicConfig, body: string) => {
     processor.use(rehype2react, { createElement });
   }
 
+  // $FlowFixMe mixed lol
   return processor.processSync(body);
 };

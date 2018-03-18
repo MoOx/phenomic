@@ -29,7 +29,7 @@ const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
   // If target prop is set (e.g. to "_blank"), let browser handle link.
   event.currentTarget.target ||
   event.defaultPrevented ||
-  // modifier pressed
+  // $FlowFixMe modifier pressed
   (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey || false);
 
 const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
@@ -46,6 +46,7 @@ const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
     router.push
       ? router.push(route)
       : // react-router v4
+        // $FlowFixMe well it's hard to support 2 APIs ?
         route.history && route.history.push && router.history.push(route);
   }
 };

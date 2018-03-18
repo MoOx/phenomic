@@ -1,5 +1,7 @@
+import normalizeBaseUrl from "./configuration/normalize-base-url.js";
+
 const defaultConfig: PhenomicConfig = {
-  baseUrl: "http://localhost",
+  baseUrl: normalizeBaseUrl("http://localhost"),
   path: process.cwd(),
   content: "content",
   outdir: "dist",
