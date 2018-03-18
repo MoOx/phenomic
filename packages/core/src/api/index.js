@@ -24,10 +24,7 @@ const connect = (list, limit, previousList = []) => {
         : undefined,
     next:
       hasNextPage && list[nextIndex] ? encode(list[nextIndex].id) : undefined,
-    list: list.slice(0, limit),
-    // deprecated
-    hasNextPage,
-    hasPreviousPage
+    list: list.slice(0, limit)
   };
 };
 

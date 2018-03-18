@@ -64,22 +64,6 @@ const resolveURLsForDynamicParams = async function(
   phenomicFetch: PhenomicFetch,
   route: PhenomicRoute
 ) {
-  // deprecate notice
-  // @todo remove for stable v1
-  if (route.paginated) {
-    console.log(
-      "'paginated' parameter is deprecated. Pagination is now infered from the presence of :after param in the route."
-    );
-  }
-  if (route.collection) {
-    console.error(
-      // $FlowFixMe removed from interface but it's for deprecation that we use it
-      `${route.path} have an attached parameter 'collection=${
-        route.collection
-      }'.\n This parameter is now useless and can be safely removed`
-    );
-  }
-
   const mainQuery = getMainQuery(route);
   if (!mainQuery.item) {
     debug("no valid path detected for", route.path);
