@@ -13,6 +13,7 @@ it("should have basic pages", () => {
   expect(files.filter(f => f.startsWith("docs/"))).toMatchSnapshot();
   expect(files.includes("news/index.html")).toBeTruthy();
   expect(files.includes("showcase/index.html")).toBeTruthy();
+  expect(files.includes("feed.xml")).toBeTruthy();
 });
 
 it("should have some generated pages for pagination", () => {
