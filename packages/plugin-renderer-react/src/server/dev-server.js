@@ -45,14 +45,15 @@ const DefaultDevContent = () => (
 );
 /* eslint-enable react-native/no-inline-styles */
 
-const renderDevServer: PhenomicPluginRenderDevServerType = ({
+const _renderDevServer = (
   config,
-  assets
-  // location
-}) =>
-  renderHTML({
-    config,
-    props: {
+  {
+    assets
+    // location
+  }
+) =>
+  renderHTML(
+    {
       WrappedApp: DefaultDevContent,
       renderAsObject: UserWrappedApp => ({
         main:
@@ -62,7 +63,13 @@ const renderDevServer: PhenomicPluginRenderDevServerType = ({
         state: null,
         assets
       })
-    }
-  });
+    },
+    config
+  );
+
+const renderDevServer = (config: PhenomicConfig) => (args: {|
+  assets: PhenomicAssets,
+  location: string
+|}) => _renderDevServer(config, args);
 
 export default renderDevServer;

@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should flatten a list of plugins (array) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a list of plugins (object) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a list of plugins with options (array) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": Object {
+      "option": "-",
+    },
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a list of plugins with options (object) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": Object {
+      "option": "-",
+    },
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a preset (array) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a preset (object) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten a preset and plugins 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "c",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten nested presets 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "c",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "d",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten presets with options (array) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": Object {
+      "option": "-",
+    },
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "c",
+    "options": undefined,
+  },
+]
+`;
+
+exports[`should flatten presets with options (object) 1`] = `
+Array [
+  Object {
+    "module": [Function],
+    "name": "a",
+    "options": Object {
+      "option": "-",
+    },
+  },
+  Object {
+    "module": [Function],
+    "name": "b",
+    "options": undefined,
+  },
+  Object {
+    "module": [Function],
+    "name": "c",
+    "options": undefined,
+  },
+]
+`;

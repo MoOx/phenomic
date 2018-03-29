@@ -9,7 +9,7 @@ const defaultTransformPlugin: PhenomicPlugin = {
   supportedFileTypes: [],
   transform({ contents }) {
     return {
-      partial: null,
+      partial: {},
       data: {
         body: contents
       }
@@ -18,19 +18,17 @@ const defaultTransformPlugin: PhenomicPlugin = {
 };
 
 async function processFile({
-  config,
   db,
   file,
   transformers,
   collectors
-}: {
-  config: PhenomicConfig,
+}: {|
   db: PhenomicDB,
   file: PhenomicContentFile,
   transformers: PhenomicPlugins,
   collectors: PhenomicPlugins,
   isProduction?: boolean
-}) {
+|}) {
   debug(`processing ${file.name}`);
   const contents = await readFile(file.fullpath);
   const transformPlugin = transformers.find(
@@ -43,7 +41,6 @@ async function processFile({
     throw new Error("transform plugin must implement a transform() method");
   }
   const parsed: PhenomicTransformResult = await plugin.transform({
-    config,
     file,
     contents
   });
@@ -55,9 +52,9 @@ async function processFile({
     return;
   }
 
-  return await collectors.forEach((plugin: PhenomicPlugin) => {
-    typeof plugin.collect === "function" &&
-      plugin.collect(db, file.name, parsed);
+  return collectors.forEach((plugin: PhenomicPlugin) => {
+    typeof plugin.collectFile === "function" &&
+      plugin.collectFile({ db, fileName: file.name, parsed });
   });
 }
 

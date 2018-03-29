@@ -17,32 +17,38 @@ const debug = require("debug")("phenomic:core:commands:start");
 const getContentPath = (config: PhenomicConfig) =>
   getPath(path.join(config.path, config.content));
 
-function createDevServer(config: PhenomicConfig) {
+async function createDevServer({ config }: { config: PhenomicConfig }) {
   debug("creating dev server");
-  const server = express();
-  config.plugins.forEach(async plugin => {
-    if (plugin.addDevServerMiddlewares) {
-      const middlewares = plugin.addDevServerMiddlewares(config);
-      middlewares.forEach(async m => {
-        if (m.then && typeof m.then) {
+  const devServer = express();
+  await Promise.all(
+    config.plugins.map(async plugin => {
+      plugin.addDevServerMiddlewares &&
+        debug("adding dev server middlewares for " + plugin.name);
+      if (plugin.addDevServerMiddlewares) {
+        return (await plugin.addDevServerMiddlewares()).map(async m => {
           const resolved = await m;
-          if (resolved) server.use(resolved);
-        } else {
-          server.use(m);
-        }
-      });
-    }
-  });
-  return server;
+          if (resolved) devServer.use(resolved);
+          else
+            debug(
+              "A middleware hasn't returned anything for " + plugin.name,
+              ", skipping",
+              m
+            );
+        });
+      }
+    })
+  );
+  return devServer;
 }
 
 async function start(config: PhenomicConfig) {
   process.env.NODE_ENV = process.env.NODE_ENV || "development";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "development";
   process.env.PHENOMIC_ENV = "development";
+  process.env.PHENOMIC_RESTAPI_PORT = String(config.port);
   debug("starting phenomic server");
-  const phenomicServer = createAPIServer(db, config.plugins);
-  const bundlerServer = createDevServer(config);
+  const phenomicServer = createAPIServer({ db, plugins: config.plugins });
+  const bundlerServer = await createDevServer({ config });
   const renderers = config.plugins.filter(p => p.getRoutes);
   const renderer: PhenomicPlugin = renderers[0];
   const transformers = config.plugins.filter(
@@ -53,7 +59,7 @@ async function start(config: PhenomicConfig) {
     throw new Error("Phenomic expects at least a transform plugin");
   }
   const collectors = config.plugins.filter(
-    item => typeof item.collect === "function"
+    item => typeof item.collectFile === "function"
   );
   if (!collectors.length) {
     throw new Error("Phenomic expects at least a collector plugin");
@@ -72,9 +78,7 @@ async function start(config: PhenomicConfig) {
       try {
         await db.destroy();
         await Promise.all(
-          files.map(file =>
-            processFile({ config, db, file, transformers, collectors })
-          )
+          files.map(file => processFile({ db, file, transformers, collectors }))
         );
       } catch (e) {
         setTimeout(() => {
@@ -102,7 +106,6 @@ async function start(config: PhenomicConfig) {
     } else {
       res.end(
         renderer.renderDevServer({
-          config,
           assets: res.locals.assets,
           location: req.originalUrl
         })

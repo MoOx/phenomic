@@ -1,17 +1,84 @@
 import { flattenPresets } from "../flattenConfiguration";
 
-const a = () => ({ name: "a" });
-const b = () => ({ name: "b" });
-const c = () => ({ name: "c" });
-const d = () => ({ name: "d" });
+function a() {
+  return { name: "a" };
+}
+function b() {
+  return { name: "b" };
+}
+function c() {
+  return { name: "c" };
+}
+function d() {
+  return { name: "d" };
+}
 
-test("should flatten correctly", () => {
+test("should flatten a list of plugins (array)", () => {
   expect(
     flattenPresets({
       plugins: [a, b]
     })
-  ).toEqual([{ name: "a" }, { name: "b" }]);
+  ).toMatchSnapshot();
+});
 
+test("should flatten a list of plugins (object)", () => {
+  expect(
+    flattenPresets({
+      plugins: { a, b }
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten a list of plugins with options (array)", () => {
+  expect(
+    flattenPresets({
+      plugins: [
+        [(a: PhenomicPluginModule<PhenomicInputPluginOption>), { option: "-" }],
+        b
+      ]
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten a list of plugins with options (object)", () => {
+  expect(
+    flattenPresets({
+      plugins: {
+        a: [
+          (a: PhenomicPluginModule<PhenomicInputPluginOption>),
+          { option: "-" }
+        ],
+        b
+      }
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten a preset (array)", () => {
+  expect(
+    flattenPresets({
+      presets: [
+        () => ({
+          plugins: [a, b]
+        })
+      ]
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten a preset (object)", () => {
+  expect(
+    flattenPresets({
+      presets: [
+        () => ({
+          plugins: { a, b }
+        })
+      ]
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten a preset and plugins", () => {
   expect(
     flattenPresets({
       presets: [
@@ -21,15 +88,17 @@ test("should flatten correctly", () => {
       ],
       plugins: [b, c]
     })
-  ).toEqual([{ name: "a" }, { name: "b" }, { name: "c" }]);
+  ).toMatchSnapshot();
+});
 
+test("should flatten nested presets", () => {
   expect(
     flattenPresets({
       presets: [
         () => ({
           presets: [
             () => ({
-              plugins: [a]
+              plugins: { a }
             })
           ],
           plugins: [b]
@@ -37,5 +106,35 @@ test("should flatten correctly", () => {
       ],
       plugins: [c, d]
     })
-  ).toEqual([{ name: "a" }, { name: "b" }, { name: "c" }, { name: "d" }]);
+  ).toMatchSnapshot();
+});
+
+test("should flatten presets with options (array)", () => {
+  expect(
+    flattenPresets({
+      presets: [
+        [
+          () => ({
+            plugins: { a, b, c }
+          }),
+          [["a", { option: "-" }]]
+        ]
+      ]
+    })
+  ).toMatchSnapshot();
+});
+
+test("should flatten presets with options (object)", () => {
+  expect(
+    flattenPresets({
+      presets: [
+        [
+          () => ({
+            plugins: { a, b, c }
+          }),
+          { a: { option: "-" } }
+        ]
+      ]
+    })
+  ).toMatchSnapshot();
 });

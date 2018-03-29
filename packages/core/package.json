@@ -23,7 +23,6 @@
     "express": "^4.14.0",
     "get-port": "^2.1.0",
     "globby": "^6.1.0",
-    "isomorphic-fetch": "^2.2.1",
     "log-symbols": "^1.0.2",
     "mkdirp": "^0.5.1",
     "p-map": "^1.2.0",
@@ -31,7 +30,6 @@
     "react-dev-utils": "^4.2.1",
     "rimraf": "^2.5.4",
     "sane": "^1.7.0",
-    "simple-json-fetch": "^1.0.1",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
     "url": "^0.11.0"

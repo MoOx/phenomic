@@ -1,4 +1,6 @@
-export type Url = {
+// @flow
+
+declare type Url = {
   href: string,
   protocol: string,
   slashes?: boolean,
@@ -13,60 +15,99 @@ export type Url = {
   hash?: string
 };
 
-export type PhenomicDBEntryInput = {|
+declare type PhenomicDBEntryInput = {|
   data: Object,
   partial: Object
 |};
-export type PhenomicDBEntry = {|
+declare type PhenomicDBEntry = {|
   data: Object,
   partial: Object,
   id: string
 |};
 
-export type PhenomicDBEntryPartial = {
+declare type PhenomicDBEntryPartial = {
   id: string
 };
-export type PhenomicDBEntryDetailed = {
+declare type PhenomicDBEntryDetailed = {|
   id: string,
-  body?: any
-};
+  value: {
+    body?: any
+  }
+|};
 
-export type PhenomicDBSubRegistry = Array<PhenomicDBEntry>;
-export type PhenomicDBRegistry = { [key: string]: PhenomicDBSubRegistry };
+declare type PhenomicDBSubRegistry = Array<PhenomicDBEntry>;
+declare type PhenomicDBRegistry = { [key: string]: PhenomicDBSubRegistry };
 
-export type PhenomicDB = {|
+declare type PhenomicDB = {|
   _getDatabase: () => PhenomicDBRegistry,
   _setDatabase: PhenomicDBRegistry => void,
-  destroy: () => Promise<void>,
+  destroy: () => void,
   put: (
     sub: null | string | Array<string>,
     id: string,
     value?: PhenomicDBEntryInput
-  ) => Promise<void>,
+  ) => void,
   update: (
     sub: null | string | Array<string>,
     id: string,
     value?: PhenomicDBEntryInput
-  ) => Promise<void>,
+  ) => void,
   get: (
     sub: null | string | Array<string>,
     id: string
-  ) => Promise<PhenomicDBEntry>,
-  getPartial: (sub: string | Array<string>, id: string) => Promise<mixed>,
+  ) => PhenomicDBEntryDetailed,
+  getPartial: (
+    sub: string | Array<string>,
+    id: string
+  ) => mixed | PhenomicDBEntryPartial,
   getList: (
     sub: null | string | Array<string>,
-    config?: LevelStreamConfig,
+    config?: {
+      gt?: string,
+      gte?: string,
+      lt?: string,
+      lte?: string,
+      limit?: number,
+      reverse?: boolean
+    },
     filter?: string,
     filterValue?: string
-  ) => Promise<Array<PhenomicDBEntryPartial>>
+  ) => Array<PhenomicDBEntryPartial>
 |};
 
-export type PhenomicInputPlugins = {|
-  plugins?: Array<(arg: PhenomicInputConfig) => PhenomicPlugin>,
-  presets?: Array<(arg: PhenomicInputConfig) => PhenomicInputPlugins>
+declare type PhenomicInputPluginOption = { [optionName: string]: mixed };
+
+declare type PhenomicInputPlugin =
+  | string
+  // | {| default: PhenomicPluginModule<PhenomicInputPluginOption> |}
+  | PhenomicPluginModule<PhenomicInputPluginOption>;
+
+declare type PhenomicInputPluginWithOptionalOptions =
+  | PhenomicInputPlugin
+  | Array<PhenomicInputPlugin | PhenomicInputPluginOption>;
+
+declare type PhenomicInputPreset = (any) => PhenomicInputPlugins;
+declare type PhenomicInputMaybePreset = string | PhenomicInputMaybePreset;
+
+declare type PhenomicInputPlugins = {|
+  plugins?:
+    | Array<PhenomicInputPluginWithOptionalOptions>
+    | {
+        [name: string]: PhenomicInputPluginWithOptionalOptions
+      },
+  presets?: Array<
+    | PhenomicInputMaybePreset
+    | Array<
+      | PhenomicInputMaybePreset
+      | Array<Array<string | PhenomicInputPluginOption>>
+      | {
+        [name: string]: PhenomicInputPluginOption
+      }
+    >
+  >
 |};
 
-export type PhenomicInputConfig = {|
+declare type PhenomicInputConfig = {|
   baseUrl?: string,
   path?: string,
   content?: string,
@@ -76,7 +117,7 @@ export type PhenomicInputConfig = {|
   ...PhenomicInputPlugins
 |};
 
-export type PhenomicContentFile = {|
+declare type PhenomicContentFile = {|
   name: string,
   fullpath: string
   // exists: boolean,
@@ -90,25 +131,14 @@ type PhenomicTransformResult = {|
 
 type ReactCompo = Function;
 
-export type PhenomicAppType = {|
-  routes: React$Element<any>
+declare type PhenomicAppType = {|
+  routes: React$Node
 |};
 
-type PhenomicIntermediateHtmlPropsType = {|
-  WrappedApp: ReactCompo,
-  renderAsObject: (
-    app: React$Element<any>
-  ) => {
-    main: string,
-    state?: Object | null,
-    assets: PhenomicAssets
-  }
-|};
-
-export type PhenomicHtmlPropsType = {|
+declare type PhenomicHtmlPropsType = {|
   App: ReactCompo,
   render: (
-    app: React$Element<any>
+    app: React$Node
   ) => {|
     assets: PhenomicAssets,
     html: string,
@@ -119,64 +149,61 @@ export type PhenomicHtmlPropsType = {|
   |}
 |};
 
-export type PhenomicHtmlType = (
-  props: PhenomicHtmlPropsType
-) => React$Element<any>;
+declare type PhenomicHtmlType = (props: PhenomicHtmlPropsType) => React$Node;
 
-export type PhenomicPluginRenderStaticType = ({|
+declare type PhenomicPluginModule<Opt> = (
   config: PhenomicConfig,
-  app: AppType,
-  assets: PhenomicAssets,
-  phenomicFetch: PhenomicFetch,
-  location: string
-|}) => Promise<Array<{| path: string, contents: string |}>>;
+  options: Opt
+) => PhenomicPlugin;
 
-export type PhenomicPluginRenderDevServerType = ({|
-  config: PhenomicConfig,
-  assets: PhenomicAssets,
-  location: string
-|}) => string;
-
-export type PhenomicPluginRenderHTMLType = ({|
-  config: PhenomicConfig,
-  props: PhenomicIntermediateHtmlPropsType
-|}) => string;
-
-export type PhenomicPlugin = {|
+declare type PhenomicPlugin = {|
   name: string,
   // transformer
   supportedFileTypes?: Array<string>,
   transform?: ({|
-    config?: PhenomicConfig,
     file: PhenomicContentFile,
     contents: Buffer
-  |}) => Promise<PhenomicTransformResult> | PhenomicTransformResult,
+  |}) => PhenomicTransformResult | Promise<PhenomicTransformResult>,
   // api
-  define?: (api: express$Application, db: PhenomicDB) => mixed,
+  extendAPI?: ({|
+    apiServer: express$Application,
+    db: PhenomicDB
+  |}) => mixed,
   // collector
-  collect?: (db: PhenomicDB, fileName: string, parsed: Object) => Array<mixed>,
+  collectFile?: ({|
+    db: PhenomicDB,
+    fileName: string,
+    parsed: Object
+  |}) => Array<mixed> | Promise<Array<mixed>>,
   // bunder
-  buildForPrerendering?: PhenomicConfig => PhenomicAppType,
-  build?: PhenomicConfig => PhenomicAssets,
+  buildForPrerendering?: () => Promise<PhenomicAppType>,
+  build?: () => PhenomicAssets,
   // renderer
   getRoutes?: PhenomicAppType => void,
-  resolveURLs?: (routes: any, fetch: PhenomicFetch) => Array<string>,
-  renderStatic?: PhenomicPluginRenderStaticType,
-  renderDevServer?: PhenomicPluginRenderDevServerType,
+  // urls-resolver
+  resolveURLs?: ({|
+    routes: any
+  |}) => Promise<Array<string>>,
+  renderStatic?: ({|
+    app: PhenomicAppType,
+    assets: PhenomicAssets,
+    location: string
+  |}) => Promise<Array<{| path: string, contents: string |}>>,
+  renderDevServer?: ({|
+    assets: PhenomicAssets,
+    location: string
+  |}) => string,
   // common
-  addDevServerMiddlewares?: PhenomicConfig => Array<
-    express$Middleware | Promise<express$Middleware>
-  >,
-  beforeBuild?: PhenomicConfig => void
+  addDevServerMiddlewares?: () =>
+    | Array<express$Middleware>
+    | Promise<Array<express$Middleware>>,
+  beforeBuild?: () => void | Promise<void>,
+  afterBuild?: () => void | Promise<void>
 |};
 
-export type PhenomicPlugins = Array<PhenomicPlugin>;
+declare type PhenomicPlugins = Array<PhenomicPlugin>;
 
-export type PhenomicPresets = Array<PhenomicPreset>;
-
-export type PhenomicExtensions = PhenomicPreset;
-
-export type PhenomicConfig = {|
+declare type PhenomicConfig = {|
   baseUrl: Url,
   path: string,
   content: string,
@@ -186,7 +213,7 @@ export type PhenomicConfig = {|
   plugins: Array<PhenomicPlugin>
 |};
 
-export type PhenomicQueryConfig = {|
+declare type PhenomicQueryConfig = {|
   path?: string,
   id?: string,
   after?: string,
@@ -196,7 +223,7 @@ export type PhenomicQueryConfig = {|
   limit?: number
 |};
 
-export type PhenomicRoute = {|
+declare type PhenomicRoute = {|
   path: string,
   params?: { [key: string]: any },
   component: {
@@ -206,11 +233,7 @@ export type PhenomicRoute = {|
   }
 |};
 
-export type PhenomicAssets = { [key: string]: string };
+declare type PhenomicAssets = { [key: string]: string };
 
-// @todo why this inconsistency?
-export type PhenomicFetch =
-  | IsomorphicFetch
-  | ((config: PhenomicQueryConfig) => Promise<any>);
-export type phenomic$Query = string;
-export type phenomic$Queries = Array<phenomic$Query>;
+declare type phenomic$Query = string;
+declare type phenomic$Queries = Array<phenomic$Query>;

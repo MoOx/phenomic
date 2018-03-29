@@ -1,7 +1,9 @@
+import config from "@phenomic/core/lib/defaultConfig.js";
+
 import transformJSON from "../index.js";
 
 it("should transform json as json", () => {
-  const plugin = transformJSON();
+  const plugin = transformJSON(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
     plugin.transform &&
@@ -24,7 +26,7 @@ it("should transform json as json", () => {
 });
 
 it("should transform json as json and support partial", () => {
-  const plugin = transformJSON();
+  const plugin = transformJSON(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
     plugin.transform &&

@@ -1,7 +1,9 @@
+import config from "@phenomic/core/lib/defaultConfig.js";
+
 import transformMarkdown from "../index.js";
 
 it("should transform markdown as html", () => {
-  const plugin = transformMarkdown();
+  const plugin = transformMarkdown(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
     plugin.transform &&

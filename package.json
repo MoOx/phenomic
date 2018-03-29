@@ -26,7 +26,7 @@
     "git-exec-and-restage": "^1.0.1",
     "globby": "^6.1.0",
     "husky": "^0.13.3",
-    "jest": "^21.0.0",
+    "jest": "^22.4.3",
     "lerna": "^2.5.1",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
@@ -69,7 +69,6 @@
     "test-without-lint": "yarn tests",
     "posttest": "yarn examples && yarn website:test"
   },
-
   "lint-staged": {
     "*.{js,json,css,md}": ["git-exec-and-restage prettier --write"],
     "*.re": ["git-exec-and-restage refmt --in-place"]
@@ -123,7 +122,6 @@
         "lines": 80
       }
     },
-    "transformIgnorePatterns": ["node_modules"],
     "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
   },
   "workspaces": ["website", "examples/*", "packages/*"]

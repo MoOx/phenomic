@@ -21,7 +21,7 @@ function normalizeConfiguration(
         throw new Error(
           "No configuration file found. Please add a 'phenomic' section in package.json or " +
             "create a file named .phenomicrc(.json|.yaml)? or phenomic.config.js." +
-            "\nSee https://phenomic.io/docs/usage/configuration/"
+            "\nSee https://phenomic.io/docs/configuration/"
         );
       }
       return flattenConfiguration({

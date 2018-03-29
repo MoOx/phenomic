@@ -76,10 +76,10 @@ const getWebpackConfig = (config: PhenomicConfig) => {
   };
 };
 
-export default function() {
+const bundlerWebpack: PhenomicPluginModule<{}> = config => {
   return {
     name: "@phenomic/plugin-bundler-webpack",
-    addDevServerMiddlewares(config: PhenomicConfig) {
+    addDevServerMiddlewares() {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
       let assets = {};
@@ -121,7 +121,7 @@ export default function() {
         })
       ];
     },
-    buildForPrerendering(config: PhenomicConfig) {
+    buildForPrerendering() {
       debug("build for prerendering");
       const webpackConfig = getWebpackConfig(config);
       const specialConfig = {
@@ -162,11 +162,13 @@ export default function() {
         () => require(path.join(cacheDir, config.bundleName)).default
       );
     },
-    build(config: PhenomicConfig) {
+    build() {
       debug("build");
       return webpackPromise(getWebpackConfig(config)).then(
         stats => stats.toJson().assetsByChunkName
       );
     }
   };
-}
+};
+
+export default bundlerWebpack;

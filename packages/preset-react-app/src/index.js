@@ -1,23 +1,23 @@
 import bundlerWebpack from "@phenomic/plugin-bundler-webpack";
 import rendererReact from "@phenomic/plugin-renderer-react";
-import urlsResolverReactRouter3 from "@phenomic/plugin-urls-resolver-react-router-3";
 import collectorFiles from "@phenomic/plugin-collector-files";
 import transformMarkdown from "@phenomic/plugin-transform-markdown";
 import transformJson from "@phenomic/plugin-transform-json";
 import apiRelatedContent from "@phenomic/plugin-api-related-content";
 import publicAssets from "@phenomic/plugin-public-assets";
 
-export default function() {
+const presetReactApp = () => {
   return {
-    plugins: [
-      bundlerWebpack,
-      rendererReact,
-      urlsResolverReactRouter3,
-      transformMarkdown,
-      transformJson,
-      collectorFiles,
-      apiRelatedContent,
-      publicAssets
-    ]
+    plugins: {
+      "@phenomic/plugin-bundler-webpack": bundlerWebpack,
+      "@phenomic/plugin-renderer-react": rendererReact,
+      "@phenomic/plugin-transform-markdown": transformMarkdown,
+      "@phenomic/plugin-transform-json": transformJson,
+      "@phenomic/plugin-collector-files": collectorFiles,
+      "@phenomic/plugin-api-related-content": apiRelatedContent,
+      "@phenomic/plugin-public-asset": publicAssets
+    }
   };
-}
+};
+
+export default presetReactApp;

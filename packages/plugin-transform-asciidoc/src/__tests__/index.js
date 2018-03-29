@@ -1,7 +1,9 @@
+import config from "@phenomic/core/lib/defaultConfig.js";
+
 import transformAsciidoc from "../index.js";
 
 it("should transform asciidoc as html", () => {
-  const plugin = transformAsciidoc();
+  const plugin = transformAsciidoc(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
     plugin.transform &&

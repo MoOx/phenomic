@@ -10,11 +10,11 @@ function transformMarkdownFile({
   config,
   file,
   contents
-}: {
+}: {|
   config?: PhenomicConfig,
   file: PhenomicContentFile,
   contents: Buffer
-}) {
+|}) {
   debug(`transforming ${file.fullpath}`);
   const front = frontMatterParser(contents.toString());
   debug(`front matter for ${file.fullpath}`, front.data);
@@ -36,10 +36,20 @@ function transformMarkdownFile({
   };
 }
 
-export default function(): PhenomicPlugin {
+const transformMarkdown: PhenomicPluginModule<{}> = (
+  config: PhenomicConfig
+) => {
   return {
     name: "@phenomic/plugin-transform-markdown",
     supportedFileTypes: ["md", "markdown"],
-    transform: transformMarkdownFile
+    transform: ({
+      file,
+      contents
+    }: {|
+      file: PhenomicContentFile,
+      contents: Buffer
+    |}) => transformMarkdownFile({ config, file, contents })
   };
-}
+};
+
+export default transformMarkdown;

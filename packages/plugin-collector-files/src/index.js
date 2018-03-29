@@ -1,7 +1,7 @@
 const debug = require("debug")("phenomic:plugin:collector-files");
 
 const sep = "/";
-function normalizeWindowsPath(value: string) {
+function normalizeWindowsPath(value: string): string {
   return value.replace(/(\/|\\)+/g, sep);
 }
 
@@ -71,7 +71,9 @@ export function injectData(
   };
 }
 
-export function parsePath(name: string) {
+export function parsePath(
+  name: string
+): {| filename: string, allPaths: Array<string> |} {
   const pathSegments = name.split(sep);
   const allPaths = pathSegments.reduce((acc, v) => {
     acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);
@@ -81,10 +83,10 @@ export function parsePath(name: string) {
   return { filename, allPaths };
 }
 
-export default function() {
+const collectorFiles: PhenomicPluginModule<{}> = () => {
   return {
     name: "@phenomic/plugin-collector-files",
-    collect(db: PhenomicDB, name: string, json: PhenomicTransformResult) {
+    collectFile({ db, fileName: name, parsed: json }) {
       name = normalizeWindowsPath(name);
       const id = getId(name, json);
       const { filename, allPaths } = parsePath(name);
@@ -92,27 +94,23 @@ export default function() {
       debug(`collecting ${filename}`, adjustedJSON);
       // full resource, not sorted
       db.put(null, id, adjustedJSON);
-      return Promise.all(
-        allPaths.map(pathName => {
-          const relativeKey = id.replace(pathName + sep, "");
-          const sortedKey = relativeKey;
-          debug(`collecting ${relativeKey} for path '${pathName}'`);
-          return Promise.all([
-            db.put([pathName], relativeKey, adjustedJSON),
-            db.put([pathName, "default"], sortedKey),
-            ...Object.keys(json.data).map(type => {
-              return getFieldValue(json, type).map(value => {
-                return Promise.all([
-                  db.update([pathName, type, value], sortedKey),
-                  // db.update([type], value),
-                  db.update([type, "default"], value),
-                  db.update([type, "path", pathName], value)
-                ]);
-              });
-            })
-          ]);
-        })
-      );
+      return allPaths.map(pathName => {
+        const relativeKey = id.replace(pathName + sep, "");
+        const sortedKey = relativeKey;
+        debug(`collecting ${relativeKey} for path '${pathName}'`);
+        db.put([pathName], relativeKey, adjustedJSON);
+        db.put([pathName, "default"], sortedKey);
+        Object.keys(json.data).map(type => {
+          return getFieldValue(json, type).map(value => {
+            db.update([pathName, type, value], sortedKey);
+            // db.update([type], value);
+            db.update([type, "default"], value);
+            db.update([type, "path", pathName], value);
+          });
+        });
+      });
     }
   };
-}
+};
+
+export default collectorFiles;

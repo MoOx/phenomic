@@ -24,7 +24,9 @@
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
   "dependencies": {
-    "debug": "^2.6.0"
+    "debug": "^2.6.0",
+    "isomorphic-fetch": "^2.2.1",
+    "simple-json-fetch": "^1.0.1"
   },
   "devDependencies": {
     "bs-platform": "^2.2.0"

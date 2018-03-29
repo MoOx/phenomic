@@ -1,14 +1,16 @@
 import db from "@phenomic/core/lib/db";
+import config from "@phenomic/core/lib/defaultConfig.js";
 
-import plugin from "..";
+import collector from "..";
 
 import fixtures from "./__fixtures__";
 
 db.destroy();
 
-const p = plugin();
+const p = collector(config, {});
 Object.keys(fixtures).map(path => {
-  p.collect(db, path, fixtures[path]);
+  p.collectFile &&
+    p.collectFile({ db, fileName: path, parsed: fixtures[path] });
 });
 
 it("should collect everything", async () => {

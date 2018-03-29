@@ -2,12 +2,12 @@ import flatten from "lodash.flatten";
 
 const debug = require("debug")("phenomic:plugin:api-related-content");
 
-export default function() {
+const apiRelatedContent: PhenomicPluginModule<{}> = () => {
   return {
     name: "@phenomic/plugin-api-related-content",
-    define(serverAPI: express$Application) {
+    extendAPI({ apiServer }) {
       // $FlowFixMe flow is lost with async function for express
-      serverAPI.get("/related/:path/limit-:limit/*.json", async function(
+      apiServer.get("/related/:path/limit-:limit/*.json", async function(
         req,
         res
       ) {
@@ -39,4 +39,6 @@ export default function() {
       });
     }
   };
-}
+};
+
+export default apiRelatedContent;

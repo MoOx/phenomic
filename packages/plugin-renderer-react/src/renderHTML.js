@@ -12,7 +12,18 @@ const debug = require("debug")("phenomic:plugin:react");
 
 const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
 
-const renderHTML: PhenomicPluginRenderHTMLType = ({ config, props }) => {
+type htmlPropsType = {|
+  WrappedApp: ReactCompo,
+  renderAsObject: (
+    app: React$Node
+  ) => {
+    main: string,
+    state?: Object | null,
+    assets: PhenomicAssets
+  }
+|};
+
+const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
   let Html: PhenomicHtmlType;
   try {
     // $FlowFixMe Shushhhh!

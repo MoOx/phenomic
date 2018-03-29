@@ -5,15 +5,6 @@ const nullSub = "__null__";
 const emptyDatabase: PhenomicDBRegistry = {};
 let database: PhenomicDBRegistry = emptyDatabase;
 
-type LevelStreamConfig = {
-  gt?: string,
-  gte?: string,
-  lt?: string,
-  lte?: string,
-  limit?: number,
-  reverse?: boolean
-};
-
 function sortBy(sort = "date") {
   return (a, b) => {
     a = a.data[sort];
@@ -82,25 +73,20 @@ function updateToSublevel(
   };
 }
 
-async function getDataRelation(fieldName, ids) {
-  let partial = null;
+function getDataRelation(fieldName, ids) {
   try {
     if (Array.isArray(ids)) {
-      partial = await Promise.all(ids.map(id => db.getPartial(fieldName, id)));
-    } else {
-      partial = await db.getPartial(fieldName, ids);
+      return ids.map(id => db.getPartial(fieldName, id));
     }
-    return partial;
+    return db.getPartial(fieldName, ids);
   } catch (error) {
     return ids;
   }
 }
 
-async function getDataRelations(fields) {
+function getDataRelations(fields) {
   const ids = Object.keys(fields);
-  const resolvedValues = await Promise.all(
-    ids.map(id => getDataRelation(id, fields[id]))
-  );
+  const resolvedValues = ids.map(id => getDataRelation(id, fields[id]));
   return ids.reduce((resolvedFields, id, index) => {
     resolvedFields[id] = resolvedValues[index];
     return resolvedFields;
@@ -121,44 +107,38 @@ const db = {
   _setDatabase(newDb: PhenomicDBRegistry) {
     database = newDb;
   },
-  destroy(): Promise<void> {
-    return new Promise(resolve => {
-      database = emptyDatabase;
-      resolve();
-    });
+  destroy() {
+    database = emptyDatabase;
   },
-  async put(
+  put(
     sub: null | string | Array<string>,
     id: string,
     value: PhenomicDBEntryInput = { data: {}, partial: {} }
-  ): Promise<void> {
-    await putToSublevel(sub, {
+  ) {
+    putToSublevel(sub, {
       data: value.data,
       partial: value.partial,
       id
     });
   },
-  async update(
+  update(
     sub: null | string | Array<string>,
     id: string,
     value: PhenomicDBEntryInput = { data: {}, partial: {} }
-  ): Promise<any> {
-    await updateToSublevel(sub, {
+  ) {
+    updateToSublevel(sub, {
       data: value.data,
       partial: value.partial,
       id
     });
   },
-  async get(
-    sub: null | string | Array<string>,
-    id: string
-  ): Promise<PhenomicDBEntryDetailed> {
+  get(sub: null | string | Array<string>, id: string): PhenomicDBEntryDetailed {
     const item = getSublevel(sub).find(item => item.id === id);
     if (typeof item === "undefined") {
       throw new NotFoundError("ID not found in database");
     }
     const { body, ...metadata } = item.data;
-    const relatedData = await getDataRelations(metadata);
+    const relatedData = getDataRelations(metadata);
     return {
       id: id,
       value: {
@@ -167,10 +147,10 @@ const db = {
       }
     };
   },
-  async getPartial(
+  getPartial(
     sub: null | string | Array<string>,
     id: string
-  ): Promise<mixed> {
+  ): mixed | PhenomicDBEntryPartial {
     const item = getSublevel(sub).find(item => item.id === id);
     if (!item) {
       return id;
@@ -184,58 +164,60 @@ const db = {
 
   getList(
     sub: null | string | Array<string>,
-    config: LevelStreamConfig = {},
+    config: {
+      gt?: string,
+      gte?: string,
+      lt?: string,
+      lte?: string,
+      limit?: number,
+      reverse?: boolean
+    } = {},
     filter: string = "default",
     filterValue: string = ""
-  ): Promise<Array<any>> {
-    return new Promise(resolve => {
-      let collection = getSublevel(sub, filter, filterValue);
-      collection.sort(sortBy());
-      if (config.reverse) {
-        collection = collection.concat().reverse();
-      }
-      if (config.gte) {
-        const index = collection.findIndex(item => item.id === config.gte);
-        collection = index > -1 ? collection.slice(index) : collection;
-      } else if (config.gt) {
-        const index = collection.findIndex(item => item.id === config.gt);
-        collection = index > -1 ? collection.slice(index + 1) : collection;
-      } else if (config.lte) {
-        const index = collection.findIndex(item => item.id === config.lte);
-        collection = index > -1 ? collection.slice(0, index + 1) : collection;
-      } else if (config.lt) {
-        const index = collection.findIndex(item => item.id === config.lt);
-        collection = index > -1 ? collection.slice(0, index) : collection;
-      }
-      if (typeof config.limit === "number") {
-        collection = collection.slice(
-          0,
-          Math.min(config.limit, collection.length)
-        );
-      }
+  ): Array<any> {
+    let collection = getSublevel(sub, filter, filterValue);
+    collection.sort(sortBy());
+    if (config.reverse) {
+      collection = collection.concat().reverse();
+    }
+    if (config.gte) {
+      const index = collection.findIndex(item => item.id === config.gte);
+      collection = index > -1 ? collection.slice(index) : collection;
+    } else if (config.gt) {
+      const index = collection.findIndex(item => item.id === config.gt);
+      collection = index > -1 ? collection.slice(index + 1) : collection;
+    } else if (config.lte) {
+      const index = collection.findIndex(item => item.id === config.lte);
+      collection = index > -1 ? collection.slice(0, index + 1) : collection;
+    } else if (config.lt) {
+      const index = collection.findIndex(item => item.id === config.lt);
+      collection = index > -1 ? collection.slice(0, index) : collection;
+    }
+    if (typeof config.limit === "number") {
+      collection = collection.slice(
+        0,
+        Math.min(config.limit, collection.length)
+      );
+    }
 
-      Promise.all(
-        collection.map(item =>
-          db.getPartial(sub, item.id).then(value => {
-            const type = typeof value;
-            if (
-              type === "string" ||
-              type === "number" ||
-              type === "boolean" ||
-              Array.isArray(value)
-            ) {
-              return {
-                id: item.id,
-                value
-              };
-            }
-            return {
-              ...value,
-              id: item.id
-            };
-          })
-        )
-      ).then(resolve);
+    return collection.map(item => {
+      const value = db.getPartial(sub, item.id);
+      const type = typeof value;
+      if (
+        type === "string" ||
+        type === "number" ||
+        type === "boolean" ||
+        Array.isArray(value)
+      ) {
+        return {
+          id: item.id,
+          value
+        };
+      }
+      return {
+        ...value,
+        id: item.id
+      };
     });
   }
 };

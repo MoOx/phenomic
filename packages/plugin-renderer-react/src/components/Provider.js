@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 import performQuery from "../shared/performQuery";
 
-type PropsType = {
+type props = {|
   children?: React.Node,
-  fetch: PhenomicFetch,
   store: Object,
   __prerendering?: boolean
-};
-class Provider extends React.Component<PropsType, void> {
-  props: PropsType;
+|};
+
+class Provider extends React.Component<props, void> {
+  props: props;
   static childContextTypes = {
     query: PropTypes.func,
     phenomic: PropTypes.object.isRequired,
@@ -24,7 +24,7 @@ class Provider extends React.Component<PropsType, void> {
     };
   }
   query = (queries: Array<any>) => {
-    performQuery(this.props.store, this.props.fetch, queries);
+    performQuery(this.props.store, queries);
   };
   render() {
     return React.Children.only(this.props.children);

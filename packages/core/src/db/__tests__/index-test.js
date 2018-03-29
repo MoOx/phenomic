@@ -7,11 +7,12 @@ describe("db", () => {
   });
 
   it("should be able to put & get a value", () => {
-    return db
-      .put("collection-1", "bar", {
+    return Promise.all([
+      db.put("collection-1", "bar", {
         data: { title: "bar" },
         partial: { title: "bar" }
       })
+    ])
       .then(() => db.get("collection-1", "bar"))
       .then(value => expect(value).toMatchSnapshot());
   });
@@ -152,9 +153,11 @@ describe("db", () => {
   });
 
   it("should throw when value isn't there", () => {
-    return db
-      .get("error", "baz")
-      .catch(error => expect(error).toMatchSnapshot());
+    try {
+      db.get("error", "baz");
+    } catch (error) {
+      expect(error).toMatchSnapshot();
+    }
   });
 
   it("should be able to get a list with a specific query", () => {

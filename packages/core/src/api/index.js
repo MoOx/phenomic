@@ -2,10 +2,9 @@ import express from "express";
 
 import pkg from "../../package.json";
 
-const debug = require("debug")("phenomic:core:api");
+import { encode, decode } from "./helpers";
 
-export const encode = (text: string) => new Buffer(text).toString("base64");
-export const decode = (text: string) => new Buffer(text, "base64").toString();
+const debug = require("debug")("phenomic:core:api");
 
 const connect = (list, limit, previousList = []) => {
   const hasNextPage = limit === undefined ? false : list.length > limit;
@@ -28,11 +27,20 @@ const connect = (list, limit, previousList = []) => {
   };
 };
 
-function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
+function createServer({
+  db,
+  plugins
+}: {|
+  db: PhenomicDB,
+  plugins: PhenomicPlugins
+|}) {
   debug("creating server");
-  const server = express();
+  const apiServer = express();
 
-  server.get("/", async function(req: express$Request, res: express$Response) {
+  apiServer.get("/", async function(
+    req: express$Request,
+    res: express$Response
+  ) {
     debug("get api version");
     res.json({
       engine: "phenomic",
@@ -40,7 +48,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     });
   });
 
-  server.get("/:path/by-:filter/:value/:order.json", async function(
+  apiServer.get("/:path/by-:filter/:value/:order.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -60,7 +68,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
-  server.get(
+  apiServer.get(
     "/:path/by-:filter/:value/:order/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
@@ -84,7 +92,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   );
 
-  server.get(
+  apiServer.get(
     "/:path/by-:filter/:value/:order/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
@@ -126,7 +134,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   );
 
-  server.get("/:path/item/*.json", async function(
+  apiServer.get("/:path/item/*.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -140,7 +148,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
-  server.get("/by-:filter/:value/:order.json", async function(
+  apiServer.get("/by-:filter/:value/:order.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -160,7 +168,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
-  server.get("/by-:filter/:value/:order/limit-:limit.json", async function(
+  apiServer.get("/by-:filter/:value/:order/limit-:limit.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -184,7 +192,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   });
 
-  server.get(
+  apiServer.get(
     "/by-:filter/:value/:order/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
@@ -226,7 +234,7 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
     }
   );
 
-  server.get("/item/*.json", async function(
+  apiServer.get("/item/*.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -242,16 +250,15 @@ function createServer(db: PhenomicDB, plugins: PhenomicPlugins) {
 
   // Install the plugins
   plugins.forEach(plugin => {
-    if (typeof plugin.define === "function") {
+    if (typeof plugin.extendAPI === "function") {
       debug(`installing plugin '${plugin.name}'`);
-      // $FlowFixMe typeof above is not enough?
-      plugin.define(server, db);
+      plugin.extendAPI && plugin.extendAPI({ apiServer, db });
     } else {
       debug(`plugin '${plugin.name}' have no API definition`);
     }
   });
 
-  return server;
+  return apiServer;
 }
 
 export default createServer;

@@ -5,7 +5,7 @@ import fse from "fs-extra";
 import logger from "@phenomic/core/lib/logger";
 import getPath from "@phenomic/core/lib/utils/getPath";
 
-export type PhenomicPluginPublicAssetsOptionsType = {
+type options = {
   path: string
 };
 
@@ -16,10 +16,11 @@ const defaultOptions = {
   path: "public"
 };
 
-export default function(
-  options: PhenomicPluginPublicAssetsOptionsType = defaultOptions
-) {
-  const warnNoPublic = (): void => {
+const publicAssets: PhenomicPluginModule<options> = (
+  config: PhenomicConfig,
+  options = defaultOptions
+) => {
+  const warnNoPublic = () => {
     log.warn(
       `No '${
         options.path
@@ -28,15 +29,16 @@ export default function(
   };
   return {
     name: pluginName,
-    addDevServerMiddlewares(config: PhenomicConfig) {
-      return [
-        getPath(path.join(config.path, options.path)).then(
-          (publicPath: string) => express.static(publicPath),
-          warnNoPublic
-        )
-      ];
+    addDevServerMiddlewares() {
+      return getPath(path.join(config.path, options.path)).then(
+        (publicPath: string) => [express.static(publicPath)],
+        () => {
+          warnNoPublic();
+          return [];
+        }
+      );
     },
-    beforeBuild(config: PhenomicConfig): Promise<void> {
+    beforeBuild() {
       return new Promise((resolve, reject) => {
         getPath(path.join(config.path, options.path)).then(
           (publicPath: string) => {
@@ -55,4 +57,6 @@ export default function(
       });
     }
   };
-}
+};
+
+export default publicAssets;

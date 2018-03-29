@@ -99,9 +99,7 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   });
   watcher.on("delete", (filepath, root) => {
     debug("watcher: file deleted", filepath, root);
-    const index = files.find(
-      (file: PhenomicContentFile) => file && file.name === filepath
-    );
+    const index = files.find(file => file && file.name === filepath);
     if (index) {
       delete files[files.indexOf(index)];
     }

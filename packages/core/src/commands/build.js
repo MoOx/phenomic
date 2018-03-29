@@ -1,10 +1,7 @@
 import path from "path";
 
 import logSymbols from "log-symbols";
-import "isomorphic-fetch";
-import jsonFetch from "simple-json-fetch";
 import getPort from "get-port";
-import createURL from "@phenomic/api-client/lib/url";
 import rimraf from "rimraf";
 import pMap from "p-map";
 
@@ -31,7 +28,7 @@ async function getContent(db, config: PhenomicConfig) {
     throw Error("Phenomic expects at least a transform plugin");
   }
   const collectors = config.plugins.filter(
-    item => typeof item.collect === "function"
+    item => typeof item.collectFile === "function"
   );
   if (!collectors.length) {
     throw Error("Phenomic expects at least a collector plugin");
@@ -57,7 +54,6 @@ async function getContent(db, config: PhenomicConfig) {
     await Promise.all(
       files.map(file =>
         processFile({
-          config,
           db,
           file,
           transformers,
@@ -67,55 +63,7 @@ async function getContent(db, config: PhenomicConfig) {
     );
   }
 }
-function createFetchFunction(port: number) {
-  debug("creating fetch function");
-  return (config: PhenomicQueryConfig) => {
-    return jsonFetch(
-      createURL({
-        ...config,
-        root: `http://localhost:${port}`
-      })
-    ).then(res => res.json);
-  };
-}
-async function prerenderFileAndDependencies({
-  config,
-  renderer,
-  app,
-  assets,
-  phenomicFetch,
-  location
-}: {
-  config: PhenomicConfig,
-  renderer: PhenomicPlugin,
-  app: PhenomicAppType,
-  assets: PhenomicAssets,
-  phenomicFetch: PhenomicFetch,
-  location: string
-}) {
-  debug(`'${location}': prepend file and deps for `);
-  if (!renderer || !renderer.renderStatic) {
-    throw new Error(
-      "a renderer is required (plugin implementing 'renderStatic')"
-    );
-  }
-  const files = await renderer.renderStatic({
-    config,
-    app,
-    assets,
-    phenomicFetch,
-    location
-  });
-  debug(`'${location}': files & deps collected`, files);
-  return Promise.all(
-    files.map(file =>
-      writeFile(
-        path.join(config.outdir, decodeURIComponent(file.path)),
-        file.contents
-      )
-    )
-  );
-}
+
 async function build(config: PhenomicConfig) {
   console.log("⚡️ Hey! Let's get on with it");
   debug("cleaning dist");
@@ -124,23 +72,27 @@ async function build(config: PhenomicConfig) {
   process.env.NODE_ENV = process.env.NODE_ENV || "production";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "production";
   process.env.PHENOMIC_ENV = "static";
+  process.env.PHENOMIC_RESTAPI_PORT = String(await getPort());
   debug("building");
-  const phenomicServer = createServer(db, config.plugins);
-  const port = await getPort();
-  const runningServer = phenomicServer.listen(port);
+  debug("process.env.NODE_ENV", process.env.NODE_ENV);
+  debug("process.env.BABEL_ENV", process.env.BABEL_ENV);
+  debug("process.env.PHENOMIC_ENV", process.env.PHENOMIC_ENV);
+  debug("process.env.PHENOMIC_RESTAPI_PORT", process.env.PHENOMIC_RESTAPI_PORT);
+  const phenomicAPIServer = createServer({ db, plugins: config.plugins });
+  const runningPhenomicAPIServer = phenomicAPIServer.listen(
+    parseInt(process.env.PHENOMIC_RESTAPI_PORT, 10)
+  );
   debug("server ready");
   try {
     const bundlers = config.plugins.filter(p => p.buildForPrerendering);
     const bundler = bundlers[0];
     await Promise.all(
-      config.plugins.map(
-        plugin => plugin.beforeBuild && plugin.beforeBuild(config)
-      )
+      config.plugins.map(plugin => plugin.beforeBuild && plugin.beforeBuild())
     );
     if (!bundler || !bundler.build) {
       throw new Error("a bundler is required (plugin implementing `build`)");
     }
-    const assets = await bundler.build(config);
+    const assets = await bundler.build();
     debug("assets", assets);
     console.log(
       "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms"
@@ -151,7 +103,7 @@ async function build(config: PhenomicConfig) {
         "a bundler is required (plugin implementing `buildForPrerendering`)"
       );
     }
-    const app = await bundler.buildForPrerendering(config);
+    const app = await bundler.buildForPrerendering();
     debug("app", app);
     console.log(
       "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms"
@@ -160,7 +112,6 @@ async function build(config: PhenomicConfig) {
     await getContent(db, config);
     console.log("📝 Content processed " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
-    const phenomicFetch = createFetchFunction(port);
     const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes);
     const renderer = renderers[0];
     if (!renderer || !renderer.getRoutes) {
@@ -168,46 +119,82 @@ async function build(config: PhenomicConfig) {
         "a renderer is required (plugin implementing `getRoutes`)"
       );
     }
-    const getRoutes = renderer.getRoutes;
-    const urlsResolvers: PhenomicPlugins = config.plugins.filter(
-      p => p.resolveURLs
+    const routes = renderer.getRoutes(app);
+    let nbUrls = 0;
+    await Promise.all(
+      config.plugins.map(async plugin => {
+        if (!plugin.resolveURLs) {
+          debug("nor 'resolveURLs' method for plugin ", plugin.name);
+          return;
+        }
+        if (!plugin.renderStatic) {
+          debug("nor 'renderStatic' method for plugin ", plugin.name);
+          return;
+        }
+        if (typeof plugin.resolveURLs !== "function") {
+          throw new Error(
+            `'resolveURLs' method from ${
+              plugin.name
+            } must be a function, received '${typeof plugin.resolveURLs}'`
+          );
+        }
+        if (typeof plugin.renderStatic !== "function") {
+          throw new Error(
+            `'renderStatic' method from ${
+              plugin.name
+            } must be a function, received '${typeof plugin.renderStatic}'`
+          );
+        }
+        const renderStatic = plugin.renderStatic;
+        const urls = await plugin.resolveURLs({
+          routes
+        });
+        nbUrls += urls.length;
+        debug("urls have been resolved for ", plugin.name, urls);
+        await pMap(
+          urls,
+          async location => {
+            debug(`'${location}': prepend file and deps`);
+            const files = await renderStatic({
+              app,
+              assets,
+              location
+            });
+            debug(`'${location}': files & deps collected`, files);
+            return Promise.all(
+              files.map(file =>
+                writeFile(
+                  path.join(config.outdir, decodeURIComponent(file.path)),
+                  file.contents
+                )
+              )
+            );
+          },
+          { concurrency: 50 }
+        );
+      })
     );
-    const urlsResolver = urlsResolvers[0];
-    if (!urlsResolver || !urlsResolver.resolveURLs) {
-      throw new Error(
-        "an urls-resolver is required (plugin implementing resolveURLs)"
-      );
-    }
-    const resolveURLs = urlsResolver.resolveURLs;
-    const urls = await resolveURLs(getRoutes(app), phenomicFetch);
-    debug("urls have been resolved");
-    debug(urls);
-    if (urls.length === 0) {
+    if (nbUrls === 0) {
       console.log(
         `${
           logSymbols.warning
         } No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
       );
     }
-    await pMap(
-      urls,
-      location =>
-        prerenderFileAndDependencies({
-          config,
-          renderer,
-          app,
-          assets,
-          phenomicFetch,
-          location
-        }),
-      { concurrency: 50 }
-    );
     console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
+
+    await Promise.all(
+      config.plugins.map(plugin => plugin.afterBuild && plugin.afterBuild())
+    );
+    console.log(
+      "📃 After build hook finished " + (Date.now() - lastStamp) + "ms"
+    );
+
     lastStamp = Date.now();
-    runningServer.close();
+    runningPhenomicAPIServer && runningPhenomicAPIServer.close();
     debug("server closed");
   } catch (error) {
-    runningServer.close();
+    runningPhenomicAPIServer && runningPhenomicAPIServer.close();
     debug("server closed due to error");
     throw error;
   }

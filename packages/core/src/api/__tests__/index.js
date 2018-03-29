@@ -7,15 +7,18 @@ import createServer from "..";
 
 db._setDatabase(dbFixtures);
 
-const server = createServer(db, [
-  {
-    name: "test-api",
-    define: () => {}
-  },
-  {
-    name: "test-nothing"
-  }
-]);
+const server = createServer({
+  db,
+  plugins: [
+    {
+      name: "test-api",
+      extendAPI: () => {}
+    },
+    {
+      name: "test-nothing"
+    }
+  ]
+});
 
 it("should return basic response", async () => {
   await request(server)

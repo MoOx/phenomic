@@ -1,7 +1,8 @@
+import fetchRestApi from "@phenomic/api-client/lib/fetch";
 import query from "@phenomic/api-client/lib/query";
-import { encode } from "@phenomic/core/lib/api";
+import { encode } from "@phenomic/core/lib/api/helpers";
 
-const debug = require("debug")("phenomic:plugin-urls-resolver-react-router-3");
+const debug = require("debug")("phenomic:plugin-renderer-react");
 
 const defaultQueryKey = "default";
 const mainKey = "id";
@@ -61,10 +62,7 @@ const getMainQuery = route => {
   return { key: firstKey, item: routeQueries[firstKey] };
 };
 
-const resolveURLsForDynamicParams = async function(
-  phenomicFetch: PhenomicFetch,
-  route: PhenomicRoute
-) {
+const resolveURLsForDynamicParams = async function(route: PhenomicRoute) {
   const mainQuery = getMainQuery(route);
   if (!mainQuery.item) {
     debug("no valid path detected for", route.path);
@@ -97,7 +95,7 @@ const resolveURLsForDynamicParams = async function(
   const queryParams = query(unlimitedQueryConfig);
   let queryResult;
   try {
-    queryResult = await phenomicFetch(queryParams);
+    queryResult = await fetchRestApi(queryParams);
   } catch (e) {
     // log simple-json-fetch error if any
     throw e.error || e;
@@ -182,12 +180,13 @@ const resolveURLsForDynamicParams = async function(
 
 const normalizePath = (path: string) => path.replace(/^\//, "");
 
-const resolveURLsToPrerender = async function(
-  routes: Array<PhenomicRoute>,
-  fetch: PhenomicFetch
-) {
+const resolveURLsToPrerender = async function({
+  routes
+}: {
+  routes: Array<PhenomicRoute>
+}) {
   const dynamicRoutes = await Promise.all(
-    routes.map(route => resolveURLsForDynamicParams(fetch, route))
+    routes.map(route => resolveURLsForDynamicParams(route))
   );
   const flattenedDynamicRoutes = flatten(dynamicRoutes);
   const filtredDynamicRoutes = flattenedDynamicRoutes.filter(url => {

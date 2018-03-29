@@ -1,18 +1,14 @@
+import fetchRestApi from "@phenomic/api-client/lib/fetch";
+
 import { decode } from "./QueryString";
 import type { StoreType } from "./store";
 
-function performQuery(
-  store: StoreType,
-  phenomicFetch: PhenomicFetch,
-  queries: phenomic$Queries
-) {
+function performQuery(store: StoreType, queries: phenomic$Queries) {
   return Promise.all(
     queries.map(key => {
       store.setAsLoading(key);
-      return phenomicFetch(decode(key))
-        .then(value => {
-          store.set(key, value);
-        })
+      return fetchRestApi(decode(key))
+        .then(value => store.set(key, value))
         .catch(error => store.setAsError(key, error));
     })
   );

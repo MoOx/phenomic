@@ -31,14 +31,13 @@ function staticRenderToString(
   config: PhenomicConfig,
   store: StoreType,
   { renderProps }: { renderProps: Object },
-  renderHTML: PhenomicPluginRenderHTMLType,
+  renderHTML: typeof renderHTML,
   assets: PhenomicAssets
 ) {
-  return renderHTML({
-    config,
-    props: {
+  return renderHTML(
+    {
       WrappedApp: () => (
-        <Provider fetch={fetch} store={store}>
+        <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>
       ),
@@ -47,17 +46,23 @@ function staticRenderToString(
         state: store.getState(),
         assets
       })
-    }
-  });
+    },
+    config
+  );
 }
 
-const renderStatic: PhenomicPluginRenderStaticType = async ({
-  config,
-  app,
-  assets,
-  phenomicFetch,
-  location
-}) => {
+const _renderStatic = async (
+  config: PhenomicConfig,
+  {
+    app,
+    assets,
+    location
+  }: {|
+    app: PhenomicAppType,
+    assets: PhenomicAssets,
+    location: string
+  |}
+) => {
   debug("server renderering");
 
   const routes = createRouteFromReactElement(app.routes);
@@ -74,7 +79,6 @@ const renderStatic: PhenomicPluginRenderStaticType = async ({
       const queries = item.getQueries(renderProps);
       return performQuery(
         store,
-        phenomicFetch,
         Object.keys(queries).map(key => encode(queries[key]))
       );
     })
@@ -111,5 +115,11 @@ const renderStatic: PhenomicPluginRenderStaticType = async ({
     }))
   ];
 };
+
+const renderStatic = (config: PhenomicConfig) => (args: {|
+  app: PhenomicAppType,
+  assets: PhenomicAssets,
+  location: string
+|}) => _renderStatic(config, args);
 
 export default renderStatic;
