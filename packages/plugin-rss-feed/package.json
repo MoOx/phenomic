@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@phenomic/plugin-rss-feed",
   "version": "1.0.0-beta.0",
   "publishConfig": {
