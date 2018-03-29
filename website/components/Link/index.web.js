@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, TouchableOpacity } from "react-native-web";
 // eslint-disable-next-line
 import PropTypes from "prop-types";
+
 // eslint-disable-next-line
 import {
   isActive,
@@ -25,7 +26,11 @@ const Link = (
       {...props}
       accessibilityRole="link"
       style={[style, isActive(href, context) && activeStyle]}
-      href={href.indexOf("://") > -1 ? href : BASENAME + href.slice(1)}
+      href={
+        href.indexOf("://") > -1
+          ? href
+          : href.charAt(0) === "/" ? BASENAME + href.slice(1) : href
+      }
       onPress={handleEvent(props, context.router)}
     />
   );

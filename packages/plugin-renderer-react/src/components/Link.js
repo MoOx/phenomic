@@ -38,7 +38,10 @@ const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
     // extract to get only interesting parts
     const { pathname, search, hash } = event.currentTarget;
     const route = {
-      pathname: pathname.replace(BASENAME, ""),
+      // ensure we don't provide the basename (if defined in rr config)
+      // but ensure we provide a / as the first char
+      // ( to avoid rr weird bug where page is ok, but url is drunk)
+      pathname: pathname.replace(BASENAME.slice(0, -1), ""),
       search,
       hash
     };
@@ -102,16 +105,15 @@ export const isActive = (url: string, { router }: Object) => {
 function Link(props: PropsType, context: Object) {
   const {
     to,
-    href,
     style,
     activeStyle,
     className,
     activeClassName,
     ...otherProps
   } = props;
-  const url = to || href || "";
+  const href = to || props.href || "";
 
-  const isUrlActive = isActive(url, context);
+  const isUrlActive = isActive(href, context);
   const computedClassName = cx(className, isUrlActive && activeClassName);
   const computedStyle = {
     ...style,
@@ -121,7 +123,11 @@ function Link(props: PropsType, context: Object) {
   return (
     <a
       {...otherProps}
-      href={url.indexOf("://") > -1 ? url : BASENAME + url.slice(1)}
+      href={
+        href.indexOf("://") > -1
+          ? href
+          : href.charAt(0) === "/" ? BASENAME + href.slice(1) : href
+      }
       onClick={handleClick(props, context.router)}
       onKeyDown={handleKeyDown(props, context.router)}
       // weird syntax to avoid undefined/empty object/strings
