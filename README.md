@@ -1,4 +1,4 @@
-[![Phenomic](https://raw.githubusercontent.com/phenomic/phenomic/master/logo/phenomic-cover-white.png)](https://phenomic.io)
+[![Phenomic](https://raw.githubusercontent.com/phenomic/phenomic/master/logo/phenomic-cover-transparent.png)](https://phenomic.io)
 
 > Modular website compiler (React, Webpack, Reason and whatever you want)
 
