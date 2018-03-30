@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "website",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
@@ -15,9 +15,9 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "@phenomic/cli": "^1.0.0-beta.0",
-    "@phenomic/core": "^1.0.0-beta.0",
-    "@phenomic/preset-react-app": "^1.0.0-beta.0",
+    "@phenomic/cli": "^1.0.0-beta.1",
+    "@phenomic/core": "^1.0.0-beta.1",
+    "@phenomic/preset-react-app": "^1.0.0-beta.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-ga": "^2.0.0",
@@ -48,7 +48,10 @@
                 "title": "Phenomic.io",
                 "description": "Phenomic news"
               },
-              "query": { "path": "news", "limit": 20 }
+              "query": {
+                "path": "news",
+                "limit": 20
+              }
             }
           }
         }
