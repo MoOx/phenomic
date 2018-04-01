@@ -91,13 +91,16 @@ const collectorFiles: PhenomicPluginModule<{}> = () => {
       const id = getId(name, json);
       const { filename, allPaths } = parsePath(name);
       const adjustedJSON = injectData(filename, json);
-      debug(`collecting ${filename}`, adjustedJSON);
+      debug(`collecting '${filename}'`, adjustedJSON);
       // full resource, not sorted
       db.put(null, id, adjustedJSON);
       return allPaths.map(pathName => {
-        const relativeKey = id.replace(pathName + sep, "");
+        let relativeKey = id.replace(pathName + sep, "");
+        if (relativeKey === pathName) {
+          relativeKey = "";
+        }
         const sortedKey = relativeKey;
-        debug(`collecting ${relativeKey} for path '${pathName}'`);
+        debug(`collecting '${relativeKey}' for path '${pathName}'`);
         db.put([pathName], relativeKey, adjustedJSON);
         db.put([pathName, "default"], sortedKey);
         Object.keys(json.data).map(type => {
