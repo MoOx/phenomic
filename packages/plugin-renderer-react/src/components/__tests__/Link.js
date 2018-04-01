@@ -9,6 +9,26 @@ test("Link works with ``to``", () => {
   expect(renderJSX(<Link to="/b">{"c"}</Link>)).toMatchSnapshot();
 });
 
+test("Link onPress/onClick", () => {
+  const onPress = jest.fn();
+  renderJSX(
+    <Link to="/b" onPress={onPress}>
+      {"c"}
+    </Link>,
+    render => render.props.onPress({})
+  );
+  expect(onPress).toHaveBeenCalled();
+
+  const onClick = jest.fn();
+  renderJSX(
+    <Link to="/b" onClick={onClick}>
+      {"c"}
+    </Link>,
+    render => render.props.onClick({})
+  );
+  expect(onClick).toHaveBeenCalled();
+});
+
 test("Link works with ``href``", () => {
   expect(renderJSX(<Link href="/b">{"c"}</Link>)).toMatchSnapshot();
 });

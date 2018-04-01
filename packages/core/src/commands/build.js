@@ -191,10 +191,14 @@ async function build(config: PhenomicConfig) {
     );
 
     lastStamp = Date.now();
-    runningPhenomicAPIServer && runningPhenomicAPIServer.close();
+    if (runningPhenomicAPIServer) {
+      runningPhenomicAPIServer.close();
+    }
     debug("server closed");
   } catch (error) {
-    runningPhenomicAPIServer && runningPhenomicAPIServer.close();
+    if (runningPhenomicAPIServer) {
+      runningPhenomicAPIServer.close();
+    }
     debug("server closed due to error");
     throw error;
   }

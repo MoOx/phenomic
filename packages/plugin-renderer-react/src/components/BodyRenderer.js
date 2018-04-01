@@ -9,6 +9,7 @@ import Link from "./Link.js";
 
 type ComponentType = string | React.ComponentType<*>;
 
+// eslint-disable-next-line flowtype/require-exact-type
 type OptionsType = {
   components?: { [key: string]: ComponentType },
   DefaultComponent?: ComponentType
@@ -22,7 +23,7 @@ type ItemType =
       // props
       p?: Object,
       // children
-      c: ItemType | Array<ItemType>
+      c: ItemType | $ReadOnlyArray<ItemType>
     };
 
 type PropsType = OptionsType & {
@@ -52,6 +53,7 @@ const render = (item: ItemType, options: OptionsType, key: ?any) => {
     defaultProps.DefaultComponent;
 
   return (
+    // $FlowFixMe will fix later
     <Tag {...props} key={key}>
       {Array.isArray(children)
         ? children.map((child: ItemType, key) => render(child, options, key))

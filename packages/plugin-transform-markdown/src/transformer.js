@@ -18,7 +18,7 @@ const createElement = (component, props, children) => {
   };
 };
 
-type transformerResult = { contents: string };
+type transformerResult = {| contents: string |};
 
 export default (config?: PhenomicConfig, body: string): transformerResult => {
   const processor = unified()

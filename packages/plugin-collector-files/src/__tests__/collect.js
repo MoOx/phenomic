@@ -9,7 +9,7 @@ db.destroy();
 
 const p = collector(config, {});
 Object.keys(fixtures).map(path => {
-  p.collectFile &&
+  if (p.collectFile)
     p.collectFile({ db, fileName: path, parsed: fixtures[path] });
 });
 

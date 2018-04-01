@@ -1,10 +1,10 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 
-type PropsType = {
+type PropsType = {|
   small?: boolean,
   large?: boolean
-};
+|};
 const Spacer = (props: PropsType) => (
   <View
     style={[

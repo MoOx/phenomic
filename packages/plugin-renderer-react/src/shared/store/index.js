@@ -7,17 +7,17 @@ const NO_VALUE_EDGE = {
 };
 
 export type unsubscribeType = () => void;
-export type StoreType = {
+export type StoreType = {|
   subscribe: (func: SubscriberType) => unsubscribeType,
   get: (key: string) => any,
   set: (key: string, node: any) => void,
   setAsLoading: (key: string) => any,
   setAsError: (key: string, node: any) => any,
   getState: () => StateType
-};
+|};
 
 function createStore(state: StateType = {}): StoreType {
-  let subscribers: Array<SubscriberType> = [];
+  let subscribers: $ReadOnlyArray<SubscriberType> = [];
 
   function subscribe(func: SubscriberType) {
     subscribers = [...subscribers, func];

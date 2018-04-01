@@ -53,7 +53,7 @@ async function processFile({
   }
 
   return collectors.forEach((plugin: PhenomicPlugin) => {
-    typeof plugin.collectFile === "function" &&
+    if (typeof plugin.collectFile === "function")
       plugin.collectFile({ db, fileName: file.name, parsed });
   });
 }

@@ -11,15 +11,17 @@ const origin = url =>
   // // IE does not correctly handle origin, maybe Edge does...
   url.protocol + "//" + url.hostname + (url.port ? ":" + url.port : "");
 
-type PropsType = {
+type PropsType = {|
   style?: Object,
   activeStyle?: Object,
   className?: string,
   activeClassName?: string,
   to?: string,
   href?: string,
-  children?: React.Node
-};
+  children?: React.Node,
+  onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void,
+  onPress?: (event: SyntheticEvent<HTMLAnchorElement>) => void
+|};
 
 const isSameOrigin = (url: HTMLAnchorElement) =>
   origin(url) === origin(window.location) &&
@@ -27,7 +29,7 @@ const isSameOrigin = (url: HTMLAnchorElement) =>
 
 const shouldIgnoreEvent = (event: SyntheticEvent<HTMLAnchorElement>) =>
   // If target prop is set (e.g. to "_blank"), let browser handle link.
-  event.currentTarget.target ||
+  (event.currentTarget && event.currentTarget.target) ||
   event.defaultPrevented ||
   // $FlowFixMe modifier pressed
   (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey || false);
@@ -46,11 +48,11 @@ const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
       hash
     };
     // react-router v3
-    router.push
-      ? router.push(route)
-      : // react-router v4
-        // $FlowFixMe well it's hard to support 2 APIs ?
-        route.history && route.history.push && router.history.push(route);
+    if (router.push) router.push(route);
+    else if (router.history && router.history.push)
+      // react-router v4
+      // $FlowFixMe well it's hard to support 2 APIs ?
+      router.history.push(route);
   }
 };
 
@@ -63,10 +65,9 @@ export const handleEvent = (
     | SyntheticMouseEvent<HTMLAnchorElement>
     | SyntheticKeyboardEvent<HTMLAnchorElement>
 ) => {
-  props && props.onPress && props.onPress(event);
-  props && props.onClick && props.onClick(event);
-  !shouldIgnoreEvent(event) &&
-    (test ? test(event, props) : true) &&
+  if (props && props.onPress) props.onPress(event);
+  if (props && props.onClick) props.onClick(event);
+  if (!shouldIgnoreEvent(event) && (test ? test(event, props) : true))
     goToUrl(event, router);
 };
 

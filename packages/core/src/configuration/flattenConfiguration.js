@@ -72,9 +72,9 @@ function normalizeModule<T>(module): ModuleWithOption<T> {
 function flattenPresets(
   pluginsConfig: PhenomicInputPlugins,
   presetOptions?: PhenomicInputPluginOption
-): Array<ModuleWithOption<PhenomicInputPluginOption>> {
+): $ReadOnlyArray<ModuleWithOption<PhenomicInputPluginOption>> {
   debug("flattenPresets", pluginsConfig);
-  const presets: Array<ModuleWithOption<PhenomicInputPreset>> = (
+  const presets: $ReadOnlyArray<ModuleWithOption<PhenomicInputPreset>> = (
     pluginsConfig.presets || []
   ).map(normalizeModule);
   const pluginsFromPresets = presets.reduce(
@@ -94,49 +94,50 @@ function flattenPresets(
         )
       : [];
   // inject preset options
-  presetOptions &&
-    (Array.isArray(presetOptions)
-      ? presetOptions.forEach(options => {
-          const pluginName = options[0];
-          const opts = options[1];
-          const plugin = pluginsFromPlugins.find(
-            plugin => plugin.name === pluginName
-          );
-          if (!plugin) {
-            throw new Error(`${pluginName} not found to pass preset options`);
-          }
-          if (opts) {
-            plugin.options = {
-              ...(plugin.options || {}),
-              ...opts
-            };
-          }
-        })
-      : Object.keys(presetOptions).forEach(pluginName => {
-          if (!pluginName) {
-            debug("No plugin name found");
-            return;
-          }
-          const plugin = pluginsFromPlugins.find(
-            plugin => plugin.name === pluginName
-          );
-          if (!plugin) {
-            throw new Error(`${pluginName} not found to pass preset options`);
-          }
-          if (presetOptions && presetOptions[pluginName]) {
-            plugin.options = {
-              ...(plugin.options || {}),
-              ...presetOptions[pluginName]
-            };
-          }
-        }));
+  if (presetOptions)
+    if (Array.isArray(presetOptions))
+      presetOptions.forEach(options => {
+        const pluginName = options[0];
+        const opts = options[1];
+        const plugin = pluginsFromPlugins.find(
+          plugin => plugin.name === pluginName
+        );
+        if (!plugin) {
+          throw new Error(`${pluginName} not found to pass preset options`);
+        }
+        if (opts) {
+          plugin.options = {
+            ...(plugin.options || {}),
+            ...opts
+          };
+        }
+      });
+    else
+      Object.keys(presetOptions).forEach(pluginName => {
+        if (!pluginName) {
+          debug("No plugin name found");
+          return;
+        }
+        const plugin = pluginsFromPlugins.find(
+          plugin => plugin.name === pluginName
+        );
+        if (!plugin) {
+          throw new Error(`${pluginName} not found to pass preset options`);
+        }
+        if (presetOptions && presetOptions[pluginName]) {
+          plugin.options = {
+            ...(plugin.options || {}),
+            ...presetOptions[pluginName]
+          };
+        }
+      });
   const plugins = [...pluginsFromPresets, ...pluginsFromPlugins];
   debug("flattenPresets plugins", plugins);
   return plugins;
 }
 
 function initPlugins(
-  plugins: Array<PhenomicPluginModule<{}>>,
+  plugins: $ReadOnlyArray<PhenomicPluginModule<{}>>,
   partialConfig = {}
 ) {
   return plugins.map(plugin => {

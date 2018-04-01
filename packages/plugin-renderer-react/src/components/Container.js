@@ -15,12 +15,16 @@ function createContainer(
   getQueries: Function = defaultGetQueries
 ) {
   class PhenomicRouteContainer extends React.Component<PropsType, void> {
+    unsubscribe: Function | null;
+    queries: Object;
+
     static getQueries = getQueries;
     static contextTypes = {
       query: PropTypes.func,
       phenomic: PropTypes.object,
       __prerendering: PropTypes.bool
     };
+
     constructor(props: PropsType, context: Object) {
       super(props, context);
       this.computeQueries(props);
@@ -62,7 +66,6 @@ function createContainer(
       }
     }
 
-    unsubscribe: Function | null;
     forceQuery = () => {
       this.query(true);
     };
@@ -76,7 +79,6 @@ function createContainer(
         }
       });
     };
-    queries: Object;
     computeQueries = (props: PropsType) => {
       this.queries = mapValues(getQueries(props), encode);
     };

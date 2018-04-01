@@ -1,13 +1,13 @@
 import * as React from "react";
 import { StyleSheet, createElement } from "react-native-web";
 
-type PropsType = {
+type PropsType = {|
   start: string,
   end: string,
   direction?: string,
   style: any,
   children?: React.Node
-};
+|};
 const Div = props => createElement("div", props);
 // eslint-disable-next-line react/no-multi-comp
 const BackgroundGradient = (props: PropsType) => (

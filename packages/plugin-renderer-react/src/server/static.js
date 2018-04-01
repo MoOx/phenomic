@@ -21,7 +21,8 @@ function getMatch({ routes, location }) {
     match(
       { routes, location: `/${location}` },
       (error, redirectLocation, renderProps) => {
-        error ? reject(error) : resolve({ renderProps, redirectLocation });
+        if (error) reject(error);
+        else resolve({ renderProps, redirectLocation });
       }
     );
   });

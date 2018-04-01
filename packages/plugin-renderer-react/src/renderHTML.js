@@ -44,7 +44,7 @@ const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
         App={props.WrappedApp}
         render={UserWrappedApp => {
           const { main, state, assets } = props.renderAsObject(UserWrappedApp);
-          const sets: Array<string> = Object.keys(assets).reduce(
+          const sets: $ReadOnlyArray<string> = Object.keys(assets).reduce(
             (acc, name) => acc.concat(assets[name]),
             []
           );

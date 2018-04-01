@@ -252,7 +252,9 @@ function createServer({
   plugins.forEach(plugin => {
     if (typeof plugin.extendAPI === "function") {
       debug(`installing plugin '${plugin.name}'`);
-      plugin.extendAPI && plugin.extendAPI({ apiServer, db });
+      if (typeof plugin.extendAPI === "function") {
+        plugin.extendAPI({ apiServer, db });
+      }
     } else {
       debug(`plugin '${plugin.name}' have no API definition`);
     }

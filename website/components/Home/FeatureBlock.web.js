@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from "react-native-web";
 
 import BackgroundGradient from "../BackgroundGradient";
 
-type PropsType = {
+type PropsType = {|
   start: string,
   end: string,
   direction?: string,
   title: string,
   description: string
-};
+|};
 const FeatureBlock = (props: PropsType) => (
   <BackgroundGradient
     start={props.start}

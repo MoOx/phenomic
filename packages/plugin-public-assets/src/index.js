@@ -5,9 +5,9 @@ import fse from "fs-extra";
 import logger from "@phenomic/core/lib/logger";
 import getPath from "@phenomic/core/lib/utils/getPath";
 
-type options = {
+type options = {|
   path: string
-};
+|};
 
 const pluginName = "@phenomic/plugin-public-assets";
 const log = logger(pluginName);

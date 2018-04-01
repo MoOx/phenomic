@@ -12,16 +12,16 @@ const pluginName = "@phenomic/plugin-rss-feed";
 const log = logger(pluginName);
 const debug = require("debug")("phenomic:plugin:rss-feed");
 
-export type options = {
+export type options = {|
   feeds: {
-    [feedUrl: string]: {
+    [feedUrl: string]: {|
       // https://www.npmjs.com/package/rss#feedoptions
       feedOptions: Object,
       query: PhenomicQueryConfig,
       map?: ((phenomicItem: Object) => Object) | { [key: string]: string }
-    }
+    |}
   }
-};
+|};
 
 const makeItemFromObject = (item, map) =>
   // $FlowFixMe waaat?

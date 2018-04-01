@@ -19,7 +19,7 @@ function sortBy(sort = "date") {
 }
 
 function getSublevel(
-  sub: null | string | Array<string>,
+  sub: null | string | $ReadOnlyArray<string>,
   filter: ?string,
   filterValue: ?string
 ) {
@@ -39,7 +39,7 @@ function getSublevel(
 }
 
 function putToSublevel(
-  subName: null | string | Array<string>,
+  subName: null | string | $ReadOnlyArray<string>,
   value: PhenomicDBEntry
 ) {
   if (!Array.isArray(subName)) {
@@ -56,7 +56,7 @@ function putToSublevel(
 }
 
 function updateToSublevel(
-  subName: null | string | Array<string>,
+  subName: null | string | $ReadOnlyArray<string>,
   value: PhenomicDBEntry
 ) {
   if (!Array.isArray(subName)) {
@@ -111,7 +111,7 @@ const db = {
     database = emptyDatabase;
   },
   put(
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string,
     value: PhenomicDBEntryInput = { data: {}, partial: {} }
   ) {
@@ -122,7 +122,7 @@ const db = {
     });
   },
   update(
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string,
     value: PhenomicDBEntryInput = { data: {}, partial: {} }
   ) {
@@ -132,7 +132,10 @@ const db = {
       id
     });
   },
-  get(sub: null | string | Array<string>, id: string): PhenomicDBEntryDetailed {
+  get(
+    sub: null | string | $ReadOnlyArray<string>,
+    id: string
+  ): PhenomicDBEntryDetailed {
     const item = getSublevel(sub).find(item => item.id === id);
     if (typeof item === "undefined") {
       throw new NotFoundError("ID not found in database");
@@ -148,7 +151,7 @@ const db = {
     };
   },
   getPartial(
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string
   ): mixed | PhenomicDBEntryPartial {
     const item = getSublevel(sub).find(item => item.id === id);
@@ -163,7 +166,7 @@ const db = {
   },
 
   getList(
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     config: {
       gt?: string,
       gte?: string,
@@ -174,7 +177,7 @@ const db = {
     } = {},
     filter: string = "default",
     filterValue: string = ""
-  ): Array<any> {
+  ): $ReadOnlyArray<any> {
     let collection = getSublevel(sub, filter, filterValue);
     collection.sort(sortBy());
     if (config.reverse) {

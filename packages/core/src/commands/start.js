@@ -22,7 +22,7 @@ async function createDevServer({ config }: { config: PhenomicConfig }) {
   const devServer = express();
   await Promise.all(
     config.plugins.map(async plugin => {
-      plugin.addDevServerMiddlewares &&
+      if (plugin.addDevServerMiddlewares)
         debug("adding dev server middlewares for " + plugin.name);
       if (plugin.addDevServerMiddlewares) {
         return (await plugin.addDevServerMiddlewares()).map(async m => {

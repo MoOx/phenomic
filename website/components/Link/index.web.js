@@ -11,11 +11,11 @@ import {
 
 const BASENAME = process.env.PHENOMIC_APP_BASENAME || "/";
 
-type PropsType = {
+type PropsType = {|
   style?: any,
   activeStyle?: any,
   href: string
-};
+|};
 
 const Link = (
   { style, activeStyle, href, ...props }: PropsType,

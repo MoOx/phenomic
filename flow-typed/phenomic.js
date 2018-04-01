@@ -43,25 +43,25 @@ declare type PhenomicDB = {|
   _setDatabase: PhenomicDBRegistry => void,
   destroy: () => void,
   put: (
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string,
     value?: PhenomicDBEntryInput
   ) => void,
   update: (
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string,
     value?: PhenomicDBEntryInput
   ) => void,
   get: (
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     id: string
   ) => PhenomicDBEntryDetailed,
   getPartial: (
-    sub: string | Array<string>,
+    sub: string | $ReadOnlyArray<string>,
     id: string
   ) => mixed | PhenomicDBEntryPartial,
   getList: (
-    sub: null | string | Array<string>,
+    sub: null | string | $ReadOnlyArray<string>,
     config?: {
       gt?: string,
       gte?: string,
@@ -72,7 +72,7 @@ declare type PhenomicDB = {|
     },
     filter?: string,
     filterValue?: string
-  ) => Array<PhenomicDBEntryPartial>
+  ) => $ReadOnlyArray<PhenomicDBEntryPartial>
 |};
 
 declare type PhenomicInputPluginOption = { [optionName: string]: mixed };
@@ -84,22 +84,22 @@ declare type PhenomicInputPlugin =
 
 declare type PhenomicInputPluginWithOptionalOptions =
   | PhenomicInputPlugin
-  | Array<PhenomicInputPlugin | PhenomicInputPluginOption>;
+  | $ReadOnlyArray<PhenomicInputPlugin | PhenomicInputPluginOption>;
 
 declare type PhenomicInputPreset = (any) => PhenomicInputPlugins;
 declare type PhenomicInputMaybePreset = string | PhenomicInputMaybePreset;
 
 declare type PhenomicInputPlugins = {|
   plugins?:
-    | Array<PhenomicInputPluginWithOptionalOptions>
+    | $ReadOnlyArray<PhenomicInputPluginWithOptionalOptions>
     | {
         [name: string]: PhenomicInputPluginWithOptionalOptions
       },
-  presets?: Array<
+  presets?: $ReadOnlyArray<
     | PhenomicInputMaybePreset
-    | Array<
+    | $ReadOnlyArray<
       | PhenomicInputMaybePreset
-      | Array<Array<string | PhenomicInputPluginOption>>
+      | $ReadOnlyArray<$ReadOnlyArray<string | PhenomicInputPluginOption>>
       | {
         [name: string]: PhenomicInputPluginOption
       }
@@ -159,7 +159,7 @@ declare type PhenomicPluginModule<Opt> = (
 declare type PhenomicPlugin = {|
   name: string,
   // transformer
-  supportedFileTypes?: Array<string>,
+  supportedFileTypes?: $ReadOnlyArray<string>,
   transform?: ({|
     file: PhenomicContentFile,
     contents: Buffer
@@ -174,7 +174,7 @@ declare type PhenomicPlugin = {|
     db: PhenomicDB,
     fileName: string,
     parsed: Object
-  |}) => Array<mixed> | Promise<Array<mixed>>,
+  |}) => $ReadOnlyArray<mixed> | Promise<$ReadOnlyArray<mixed>>,
   // bunder
   buildForPrerendering?: () => Promise<PhenomicAppType>,
   build?: () => PhenomicAssets,
@@ -183,25 +183,25 @@ declare type PhenomicPlugin = {|
   // urls-resolver
   resolveURLs?: ({|
     routes: any
-  |}) => Promise<Array<string>>,
+  |}) => Promise<$ReadOnlyArray<string>>,
   renderStatic?: ({|
     app: PhenomicAppType,
     assets: PhenomicAssets,
     location: string
-  |}) => Promise<Array<{| path: string, contents: string |}>>,
+  |}) => Promise<$ReadOnlyArray<{| path: string, contents: string |}>>,
   renderDevServer?: ({|
     assets: PhenomicAssets,
     location: string
   |}) => string,
   // common
   addDevServerMiddlewares?: () =>
-    | Array<express$Middleware>
-    | Promise<Array<express$Middleware>>,
+    | $ReadOnlyArray<express$Middleware>
+    | Promise<$ReadOnlyArray<express$Middleware>>,
   beforeBuild?: () => void | Promise<void>,
   afterBuild?: () => void | Promise<void>
 |};
 
-declare type PhenomicPlugins = Array<PhenomicPlugin>;
+declare type PhenomicPlugins = $ReadOnlyArray<PhenomicPlugin>;
 
 declare type PhenomicConfig = {|
   baseUrl: Url,
@@ -210,7 +210,7 @@ declare type PhenomicConfig = {|
   outdir: string,
   port: number,
   bundleName: string,
-  plugins: Array<PhenomicPlugin>
+  plugins: $ReadOnlyArray<PhenomicPlugin>
 |};
 
 declare type PhenomicQueryConfig = {|
@@ -236,4 +236,4 @@ declare type PhenomicRoute = {|
 declare type PhenomicAssets = { [key: string]: string };
 
 declare type phenomic$Query = string;
-declare type phenomic$Queries = Array<phenomic$Query>;
+declare type phenomic$Queries = $ReadOnlyArray<phenomic$Query>;

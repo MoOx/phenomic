@@ -3,7 +3,7 @@ function postfix(url) {
 }
 
 const protect = encodeURIComponent;
-const urlify = (pieces: Array<?string>): string =>
+const urlify = (pieces: $ReadOnlyArray<?string>): string =>
   pieces.filter(piece => typeof piece !== "undefined").join("/");
 
 function url(config: Object): string {

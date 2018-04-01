@@ -13,7 +13,7 @@ type ItemType =
       // props
       p?: Object,
       // children
-      c: ItemType | Array<ItemType>
+      c: ItemType | $ReadOnlyArray<ItemType>
     };
 
 const render = (item: ItemType) => {

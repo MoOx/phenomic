@@ -5,10 +5,10 @@ const devicePixelRatio =
 
 const tupleToColor = (param, alpha) => `rgba(${param.join(",")}, ${alpha})`;
 
-type Props = {
+type Props = {|
   size: number,
-  color: Array<number, number, number>
-};
+  color: $ReadOnlyArray<number, number, number>
+|};
 
 class ActivityIndicator extends React.Component<Props> {
   static defaultProps = {

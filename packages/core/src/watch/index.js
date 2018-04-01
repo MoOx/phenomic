@@ -21,7 +21,7 @@ const toFile = (root, filepath) => ({
   fullpath: path.join(root, filepath)
 });
 
-function reduceExtensions(plugins: PhenomicPlugins): Array<string> {
+function reduceExtensions(plugins: PhenomicPlugins): $ReadOnlyArray<string> {
   const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
     if (plugin.supportedFileTypes) {
       debug(
@@ -43,7 +43,7 @@ function reduceExtensions(plugins: PhenomicPlugins): Array<string> {
   return supportedFileTypes;
 }
 
-function getGlobPattern(plugins: PhenomicPlugins): Array<string> {
+function getGlobPattern(plugins: PhenomicPlugins): $ReadOnlyArray<string> {
   return reduceExtensions(plugins).map(
     (extension: string) => `**/*.${extension}`
   );
@@ -56,7 +56,7 @@ function glob(path, patterns) {
 export function oneShot(config: {
   path: string,
   plugins: PhenomicPlugins
-}): Array<PhenomicContentFile> {
+}): $ReadOnlyArray<PhenomicContentFile> {
   return glob(config.path, getGlobPattern(config.plugins));
 }
 
@@ -71,6 +71,7 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   let subscribers = [];
   let ready = false;
   let closeMe = false;
+  /* eslint-disable flowtype/no-mutable-array */
   const files: Array<PhenomicContentFile> = globby
     .sync(patterns, { cwd: config.path })
     .map(file => toFile(config.path, file));
@@ -107,7 +108,9 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   });
 
   return {
-    onChange(func: (files: Array<PhenomicContentFile>) => Promise<void>) {
+    onChange(
+      func: (files: $ReadOnlyArray<PhenomicContentFile>) => Promise<void>
+    ) {
       debug("watcher#onChange");
       func(files);
       subscribers = [...subscribers, func];

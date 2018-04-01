@@ -23,7 +23,7 @@ class Provider extends React.Component<props, void> {
       __prerendering: !!this.props.__prerendering
     };
   }
-  query = (queries: Array<any>) => {
+  query = (queries: $ReadOnlyArray<any>) => {
     performQuery(this.props.store, queries);
   };
   render() {

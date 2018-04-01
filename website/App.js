@@ -17,7 +17,7 @@ import NewsList from "./components/News/NewsList";
 
 // Google Analytics
 const isProduction = process.env.NODE_ENV === "production";
-isProduction && GA.initialize("UA-76349880-1");
+if (isProduction) GA.initialize("UA-76349880-1");
 const pageView = isProduction
   ? () => {
       const url = window.location.pathname + window.location.search;

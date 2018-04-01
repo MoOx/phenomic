@@ -73,7 +73,7 @@ export function injectData(
 
 export function parsePath(
   name: string
-): {| filename: string, allPaths: Array<string> |} {
+): {| filename: string, allPaths: $ReadOnlyArray<string> |} {
   const pathSegments = name.split(sep);
   const allPaths = pathSegments.reduce((acc, v) => {
     acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);

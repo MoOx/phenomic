@@ -9,12 +9,11 @@ const mainKey = "id";
 
 const arrayUnique = array => [...new Set(array)];
 
-const flatten = (array: Array<any>) => {
+const flatten = (array: $ReadOnlyArray<any>) => {
   const flattenedArray = [];
   array.forEach(item => {
-    Array.isArray(item)
-      ? flattenedArray.push(...flatten(item))
-      : flattenedArray.push(item);
+    if (Array.isArray(item)) flattenedArray.push(...flatten(item));
+    else flattenedArray.push(item);
   });
 
   return flattenedArray;
@@ -183,7 +182,7 @@ const normalizePath = (path: string) => path.replace(/^\//, "");
 const resolveURLsToPrerender = async function({
   routes
 }: {
-  routes: Array<PhenomicRoute>
+  routes: $ReadOnlyArray<PhenomicRoute>
 }) {
   const dynamicRoutes = await Promise.all(
     routes.map(route => resolveURLsForDynamicParams(route))

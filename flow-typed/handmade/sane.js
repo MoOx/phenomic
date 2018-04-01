@@ -6,7 +6,7 @@ declare module "sane" {
   ) => void;
   declare type SaneOptionsType = {
     watchman: boolean,
-    glob: Array<string>
+    glob: $ReadOnlyArray<string>
   };
   declare type Watcher = {
     on: (string, SaneCallbackType) => void,
