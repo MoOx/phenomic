@@ -9,7 +9,8 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-helmet": "^5.0.0",
-    "react-router": "^3.2.0"
+    "react-router": "^3.2.0",
+    "react-topbar-progress-indicator": "^2.0.0"
   },
   "scripts": {
     "start": "phenomic start",
@@ -20,8 +21,5 @@
   },
   "title": "A random blog",
   "twitter": "Phenomic_app",
-  "github": "http://github.com/phenomic/phenomic",
-  "dependencies": {
-    "react-topbar-progress-indicator": "^2.0.0"
-  }
+  "github": "http://github.com/phenomic/phenomic"
 }
