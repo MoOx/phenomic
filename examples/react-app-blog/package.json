@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@phenomic/example-react-app-getting-started",
+  "name": "@phenomic/example-react-app-blog",
   "version": "1.0.0-beta.1",
   "devDependencies": {
     "@phenomic/cli": "^1.0.0-beta.1",
@@ -17,5 +17,11 @@
   },
   "phenomic": {
     "presets": ["@phenomic/preset-react-app"]
+  },
+  "title": "A random blog",
+  "twitter": "Phenomic_app",
+  "github": "http://github.com/phenomic/phenomic",
+  "dependencies": {
+    "react-topbar-progress-indicator": "^2.0.0"
   }
 }
