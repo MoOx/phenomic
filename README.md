@@ -13,7 +13,7 @@
 
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/phenomic)
 [![Gitter](https://badges.gitter.im/phenomic/phenomic.svg)](https://gitter.im/phenomic/phenomic)
-![Follow Phenomic on Twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&logo=twitter&label=Follow+Phenomic_app)
+![Follow Phenomic on Twitter](https://img.shields.io/twitter/follow/Phenomic_app.svg?style=social&logo=twitter&label=Follow+Phenomic_app)
 
 📦 **Git Mirrors**
 
