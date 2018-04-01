@@ -134,14 +134,21 @@ function createServer({
     }
   );
 
-  apiServer.get("/:path/item/*.json", async function(
+  apiServer.get("/:path/item/*?.json", async function(
     req: express$Request,
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
-      const resource = await db.get(req.params.path, req.params["0"]);
-      res.json(resource.value);
+      // thing/item/.json means you want /item/thing.json
+      // (because thing/index.md => thing)
+      if (!req.params["0"]) {
+        const resource = await db.get(null, req.params.path);
+        res.json(resource.value);
+      } else {
+        const resource = await db.get(req.params.path, req.params["0"]);
+        res.json(resource.value);
+      }
     } catch (error) {
       console.error(error);
       res.status(404).end();
@@ -234,13 +241,15 @@ function createServer({
     }
   );
 
-  apiServer.get("/item/*.json", async function(
+  apiServer.get("/item/*?.json", async function(
     req: express$Request,
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
-      const resource = await db.get(null, req.params["0"]);
+      // /item/.json means you want /item/index.json
+      // (because thing/index.md => thing)
+      const resource = await db.get(null, req.params["0"] || "index");
       res.json(resource.value);
     } catch (error) {
       console.error(error);
