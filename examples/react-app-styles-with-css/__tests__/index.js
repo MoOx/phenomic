@@ -8,7 +8,8 @@ it("should build example correctly", () => {
   const testFolder = __dirname + "/../dist";
   const files = globby.sync("**/*", {
     cwd: testFolder,
-    nodir: true
+    nodir: true,
+    dot: true
   });
 
   const assetsBundlerFiles = files.filter(file => file.startsWith("phenomic"));

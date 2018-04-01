@@ -4,7 +4,8 @@ import globby from "globby";
 const testFolder = __dirname + "/../dist";
 const files = globby.sync("**/*", {
   cwd: testFolder,
-  nodir: true
+  nodir: true,
+  dot: true
 });
 
 it("should have basic pages", () => {
