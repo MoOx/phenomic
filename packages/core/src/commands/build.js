@@ -182,15 +182,17 @@ async function build(config: PhenomicConfig) {
       );
     }
     console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
+    lastStamp = Date.now();
 
     await Promise.all(
       config.plugins.map(plugin => plugin.afterBuild && plugin.afterBuild())
     );
+
     console.log(
       "📃 After build hook finished " + (Date.now() - lastStamp) + "ms"
     );
-
     lastStamp = Date.now();
+
     if (runningPhenomicAPIServer) {
       runningPhenomicAPIServer.close();
     }
