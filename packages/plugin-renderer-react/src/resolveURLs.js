@@ -45,11 +45,10 @@ const getRouteQueries = route => {
   });
 };
 
-const getMainQuery = route => {
-  const routeQueries = getRouteQueries(route);
+const getMainQuery = (routeQueries, route) => {
   const keys = Object.keys(routeQueries);
   const firstKey = keys[0];
-  const firstKeyAsInt = parseInt(keys[0], 10);
+  const firstKeyAsInt = parseInt(firstKey, 10);
   // parseInt("12.") == "12"
   if (
     // $FlowFixMe it's on purpose
@@ -62,39 +61,29 @@ const getMainQuery = route => {
 };
 
 const resolveURLsForDynamicParams = async function(route: PhenomicRoute) {
-  const mainQuery = getMainQuery(route);
-  if (!mainQuery.item) {
-    debug("no valid path detected for", route.path);
-    return route;
-  }
-
-  const unlimitedQueryConfig = { path: mainQuery.item.path };
-  debug("route", route.path);
-
   // If the path doesn't contain any kind of parameter, no need to
   // iterate over the path
   if (!route.path.includes("*") && !route.path.includes(":")) {
     debug("not a dynamic route");
     return route;
   }
-  debug(
-    `fetching path '${
-      mainQuery.key
-        ? mainQuery.key
-        : Object.keys(unlimitedQueryConfig).join(",")
-    }' for route '${route.path}'`
-  );
-  // @todo memoize for perfs and avoid uncessary call
-  const queries = getRouteQueries(route);
-  debug(route.path, queries);
-  let key = (queries[mainQuery.key] && queries[mainQuery.key].by) || mainKey;
+
+  const routeQueries = getRouteQueries(route);
+  const mainQuery = getMainQuery(routeQueries, route);
+  if (!mainQuery.item) {
+    debug("no query detected for", route.path);
+    return route;
+  }
+
+  debug(route.path, `fetching path '${mainQuery.key}'`, routeQueries);
+  let key =
+    (routeQueries[mainQuery.key] && routeQueries[mainQuery.key].by) || mainKey;
   if (key === defaultQueryKey) {
     key = mainKey;
   }
-  const queryParams = query(unlimitedQueryConfig);
   let queryResult;
   try {
-    queryResult = await fetchRestApi(queryParams);
+    queryResult = await fetchRestApi(query({ path: mainQuery.item.path }));
   } catch (e) {
     // log simple-json-fetch error if any
     throw e.error || e;
@@ -103,47 +92,35 @@ const resolveURLsForDynamicParams = async function(route: PhenomicRoute) {
     route.path,
     `path fetched. ${queryResult.list.length} items (id: ${key})`
   );
-  const path = route.path || "*";
-  const list = queryResult.list.reduce((acc, item) => {
-    if (!item[key]) {
+  // get all possible values for the query
+  const list = arrayUnique(
+    queryResult.list.reduce((acc, item) => {
+      if (!item[key]) return acc;
+      if (Array.isArray(item[key])) acc = acc.concat(item[key]);
+      else acc.push(item[key]);
       return acc;
-    }
-    if (Array.isArray(item[key])) {
-      acc = acc.concat(item[key]);
-    } else {
-      acc.push(item[key]);
-    }
-    return acc;
-  }, []);
-  debug(path, "list (unique)", arrayUnique(list));
-  const urlsData = arrayUnique(list).reduce((acc, value) => {
-    let resolvedPath = path.replace(":" + key, value);
+    }, [])
+  );
+  debug(route.path, "list (unique)", list);
+  const urlsData = list.reduce((acc, value) => {
+    let resolvedPath = route.path.replace(":" + key, value);
     let params = { [key]: value };
 
-    // try *
-    if (key === mainKey && resolvedPath === path) {
+    // try * if url has not param
+    if (key === mainKey && resolvedPath === route.path) {
       resolvedPath = resolvedPath.replace("*", value);
       // react-router splat is considered as the id
       params = { splat: value };
     }
-
-    debug("half resolved path", resolvedPath, params);
-
-    if (path !== resolvedPath) {
-      acc.push({
-        ...route,
-        path: resolvedPath,
-        params
-      });
-    }
-
+    if (route.path !== resolvedPath)
+      acc.push({ ...route, path: resolvedPath, params });
     return acc;
   }, []);
 
-  debug(path, "urls data", urlsData);
+  debug(route.path, "urls data", urlsData);
 
   // if no data found, we still try to render something
-  const finalUrlsData = urlsData.length ? urlsData : [{ path }];
+  const finalUrlsData = urlsData.length ? urlsData : [{ path: route.path }];
   // try :after with key
   const reAfter = /:after\b/;
 
