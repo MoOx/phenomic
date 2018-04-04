@@ -4,7 +4,7 @@ import { Router, Route, browserHistory, Link } from "react-router";
 import {
   createApp,
   renderApp,
-  createContainer,
+  withPhenomicApi,
   query,
   BodyRenderer,
   textRenderer
@@ -51,7 +51,7 @@ const Home = ({ isLoading, posts }) => (
   </Layout>
 );
 
-const HomeContainer = createContainer(Home, props => ({
+const HomeContainer = withPhenomicApi(Home, props => ({
   posts: query({
     path: "posts",
     limit: 2,
@@ -112,7 +112,7 @@ const BlogPost = ({ hasError, isLoading, page }) => {
   );
 };
 
-const BlogPostContainer = createContainer(BlogPost, props => ({
+const BlogPostContainer = withPhenomicApi(BlogPost, props => ({
   page: query({ path: "posts", id: props.params.splat })
 }));
 

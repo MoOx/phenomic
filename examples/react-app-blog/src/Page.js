@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  createContainer,
+  withPhenomicApi,
   query,
   BodyRenderer
 } from "@phenomic/preset-react-app/lib/client";
@@ -50,7 +50,7 @@ const Page = ({ hasError, isLoading, page, posts }) =>
     </React.Fragment>
   );
 
-export default createContainer(Page, props => ({
+export default withPhenomicApi(Page, props => ({
   page: query({
     path: "pages",
     id: props.params.splat || ""

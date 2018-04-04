@@ -5,7 +5,7 @@ import { createHistory, createMemoryHistory } from "history";
 import {
   createApp,
   Link,
-  createContainer,
+  withPhenomicApi,
   query
 } from "@phenomic/preset-react-app/lib/client";
 
@@ -32,7 +32,7 @@ const GoBack = ({ hasError, isLoading, testList }) => (
   </div>
 );
 
-const GoBackContainer = createContainer(GoBack, () => ({
+const GoBackContainer = withPhenomicApi(GoBack, () => ({
   testList: query({})
 }));
 

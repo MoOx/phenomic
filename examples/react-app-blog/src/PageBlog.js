@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
 import pkg from "../package.json";
 
@@ -36,7 +36,7 @@ const PageBlog = ({ hasError, isLoading, posts }) =>
     </React.Fragment>
   );
 
-export default createContainer(PageBlog, props => ({
+export default withPhenomicApi(PageBlog, props => ({
   posts: query({
     path: "posts",
     limit: 6,

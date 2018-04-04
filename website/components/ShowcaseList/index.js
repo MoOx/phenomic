@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, Image, StyleSheet, createElement } from "react-native-web";
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
 import Flex from "../Flex";
 import Link from "../Link";
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
 
 export { ShowcaseList as Component };
 
-export default createContainer(ShowcaseList, props => ({
+export default withPhenomicApi(ShowcaseList, props => ({
   showcase: query({
     path: "showcase/entry",
     order: "asc",
@@ -288,7 +288,7 @@ export default createContainer(ShowcaseList, props => ({
   })
 }));
 
-export const ShowcaseListByTag = createContainer(ShowcaseList, props => ({
+export const ShowcaseListByTag = withPhenomicApi(ShowcaseList, props => ({
   showcase: query({
     path: "showcase/entry",
     by: "showcaseTags",

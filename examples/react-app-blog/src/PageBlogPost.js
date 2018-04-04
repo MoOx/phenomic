@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
 import PageError from "./PageError";
 import PostLayoutDefault from "./PostLayoutDefault";
@@ -20,6 +20,6 @@ const PageBlogPost = ({ hasError, isLoading, post }) => {
   return <PostLayout isLoading={isLoading} post={post} />;
 };
 
-export default createContainer(PageBlogPost, props => ({
+export default withPhenomicApi(PageBlogPost, props => ({
   post: query({ path: "posts", id: props.params.splat })
 }));

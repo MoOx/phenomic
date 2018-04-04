@@ -4,7 +4,7 @@ import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import {
   createApp,
-  createContainer,
+  withPhenomicApi,
   query,
   BodyRenderer
 } from "@phenomic/preset-react-app/lib/client";
@@ -75,7 +75,7 @@ const Content = ({ hasError, isLoading, page }) => {
   );
 };
 
-const ContentContainer = createContainer(Content, () => ({
+const ContentContainer = withPhenomicApi(Content, () => ({
   page: query({ id: "index" })
 }));
 

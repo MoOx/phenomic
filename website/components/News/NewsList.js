@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
 import Flex from "../Flex";
 import Spacer from "../Spacer";
@@ -31,7 +31,7 @@ const NewsList = (props: Object) => {
   );
 };
 
-export default createContainer(NewsList, props => ({
+export default withPhenomicApi(NewsList, props => ({
   news: query({
     path: "news",
     limit: 10,

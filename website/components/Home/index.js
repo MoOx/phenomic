@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native-web";
-import { createContainer } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
 import Header from "../Header";
 import Footer from "../Footer";
@@ -147,4 +147,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createContainer(Home);
+export default withPhenomicApi(Home);

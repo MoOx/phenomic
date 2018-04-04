@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client";
+import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 import { View, StyleSheet, Text } from "react-native-web";
 
 import Flex from "../Flex";
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createContainer(NewsItem, props => ({
+export default withPhenomicApi(NewsItem, props => ({
   news: query({
     path: "news",
     id: props.params.splat
