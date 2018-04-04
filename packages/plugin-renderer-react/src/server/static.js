@@ -14,7 +14,7 @@ import { encode, decode } from "../shared/QueryString";
 import renderHTML from "../renderHTML";
 import type { StoreType } from "../shared/store";
 
-const debug = require("debug")("phenomic:plugin:react");
+const debug = require("debug")("phenomic:plugin:renderer-react");
 
 function getMatch({ routes, location }) {
   return new Promise((resolve, reject) => {
@@ -64,7 +64,7 @@ const _renderStatic = async (
     location: string
   |}
 ) => {
-  debug("server renderering");
+  debug(location, "server renderering");
 
   const routes = createRouteFromReactElement(app.routes);
   const store = createStore();
@@ -72,11 +72,15 @@ const _renderStatic = async (
     routes,
     location
   });
-  const containers = renderProps.components.filter(
+
+  // debug(location, "renderProps", renderProps);
+
+  // debug(location, "phenomic api store is going to be filled");
+  const phenomicApiContainers = renderProps.components.filter(
     item => item && typeof item.getQueries === "function"
   );
   await Promise.all(
-    containers.map(item => {
+    phenomicApiContainers.map(item => {
       const queries = item.getQueries(renderProps);
       return performQuery(
         store,
@@ -84,6 +88,26 @@ const _renderStatic = async (
       );
     })
   );
+  // debug(location, "phenomic api store has been prepared");
+
+  const containers = renderProps.components.filter(
+    item => item && typeof item.getInitialProps === "function"
+  );
+  // we should only have one
+  if (containers.length > 1) {
+    throw Error(
+      "Only a single async container can be used on a given route (`static async getInitialProps`), found " +
+        containers.length
+    );
+  }
+  await Promise.all(
+    containers.map(async item => {
+      renderProps.params.__initialPropsForSSR = await item.getInitialProps(
+        renderProps
+      );
+    })
+  );
+
   let contents;
   try {
     contents = await staticRenderToString(

@@ -2,10 +2,10 @@ import fetchRestApi from "@phenomic/api-client/lib/fetch";
 import query from "@phenomic/api-client/lib/query";
 import { encode } from "@phenomic/core/lib/api/helpers";
 
-const debug = require("debug")("phenomic:plugin-renderer-react");
 
 const defaultQueryKey = "default";
 const mainKey = "id";
+const debug = require("debug")("phenomic:plugin:renderer-react");
 
 const arrayUnique = array => [...new Set(array)];
 

@@ -1,7 +1,7 @@
 import urlJoin from "url-join";
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils";
 
-const debug = require("debug")("phenomic:plugin:react");
+const debug = require("debug")("phenomic:plugin:renderer-react");
 
 function flattenRoutes(routes, path = "") {
   debug("flattenRoutes");

@@ -5,7 +5,7 @@ import { AppContainer } from "react-hot-loader";
 import Provider from "./components/Provider";
 import createStore from "./shared/store";
 
-const debug = require("debug")("phenomic:plugin:react");
+const debug = require("debug")("phenomic:plugin:renderer-react");
 
 const render =
   typeof document !== "undefined" &&

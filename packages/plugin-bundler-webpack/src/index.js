@@ -12,7 +12,7 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackPromise from "./webpack-promise.js";
 import validate from "./validate.js";
 
-const debug = require("debug")("phenomic:plugin:webpack");
+const debug = require("debug")("phenomic:plugin:bundler-webpack");
 
 const { UglifyJsPlugin } = optimize;
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true });

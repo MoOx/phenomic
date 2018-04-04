@@ -5,7 +5,7 @@ import ReactDOMServer from "react-dom/server";
 
 import DefaultHtml from "./components/HTML";
 
-const debug = require("debug")("phenomic:plugin:react");
+const debug = require("debug")("phenomic:plugin:renderer-react");
 
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable react/jsx-no-bind */
