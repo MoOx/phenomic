@@ -1,14 +1,27 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external originalCreateContainer :
+external createContainer_ :
   (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
   "createContainer";
+
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+external withPhenomicApi_ :
+  (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  "withPhenomicApi";
+
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+external withInitialProps_ :
+  (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  "withInitialProps";
 
 module BodyRenderer = BodyRenderer;
 
 module Link = Link;
 
-let createContainer = (comp, queries) =>
-  originalCreateContainer(comp, queries);
+let createContainer = (comp, queries) => createContainer_(comp, queries);
+
+let withPhenomicApi = (comp, queries) => withPhenomicApi_(comp, queries);
+
+let withInitialProps = comp => withInitialProps_(comp);
 
 type jsNodeList('a) = {
   .

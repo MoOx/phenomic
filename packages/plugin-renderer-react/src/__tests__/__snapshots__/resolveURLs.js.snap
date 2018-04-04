@@ -12,3 +12,12 @@ Array [
   "",
 ]
 `;
+
+exports[`should be able to get urls from the static method 1`] = `
+Array [
+  "",
+  "test/1",
+  "test/2",
+  "test/3",
+]
+`;

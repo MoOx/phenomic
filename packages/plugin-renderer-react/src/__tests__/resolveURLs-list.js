@@ -18,7 +18,7 @@ it("should be able to resolve dynamic urls", async () => {
           component: {
             getQueries: (/*params: PhenomicQueryConfig*/) => ({
               test: query({
-                id: "one"
+                // id: "one"
                 // path?: string,
                 // after?: string,
                 // by?: string,

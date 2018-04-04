@@ -40,3 +40,29 @@ it("should be able to generate a multiple static url", async () => {
     })
   ).toMatchSnapshot();
 });
+
+it("should be able to get urls from the static method", async () => {
+  function getAllPossibleUrls({ path }) {
+    if (!path.includes(":arg")) return [path];
+    return [1, 2, 3].map(i => path.replace(":arg", String(i)));
+  }
+
+  expect(
+    await resolve({
+      routes: [
+        {
+          path: "/",
+          component: {
+            getAllPossibleUrls
+          }
+        },
+        {
+          path: "/test/:arg",
+          component: {
+            getAllPossibleUrls
+          }
+        }
+      ]
+    })
+  ).toMatchSnapshot();
+});

@@ -227,7 +227,9 @@ declare type PhenomicRoute = {|
   path: string,
   params?: { [key: string]: any },
   component: {
-    getQueries?: (props: { params: { [key: string]: any } }) => {
+    getInitialProps?: ({ params: { [key: string]: any } }) => Object,
+    getAllPossibleUrls?: ({ path: string }) => Array<string>,
+    getQueries?: ({ params: { [key: string]: any } }) => {
       [key: string]: PhenomicQueryConfig
     }
   }

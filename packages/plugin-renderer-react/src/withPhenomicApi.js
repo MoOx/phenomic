@@ -1,20 +1,22 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+import hoistStatics from "hoist-non-react-statics";
 
-import mapValues from "../shared/mapValues";
-import { encode } from "../shared/QueryString";
+import { getDisplayName } from "./utils";
+import mapValues from "./shared/mapValues";
+import { encode } from "./shared/QueryString";
 
-const emptyObject = {};
-const defaultGetQueries = () => emptyObject;
 const socketServerURL = "http://localhost:1415";
 
-type PropsType = Object;
+type props = Object;
 
-function createContainer(
-  Component: Function,
-  getQueries: Function = defaultGetQueries
+export default function withPhenomicApi<P>(
+  ComposedComponent: React.ComponentType<P>,
+  getQueries: (props: Object) => Object = () => ({})
 ) {
-  class PhenomicRouteContainer extends React.Component<PropsType, void> {
+  const displayName = getDisplayName(ComposedComponent);
+
+  class PhenomicContainerWithApi extends React.Component<props, void> {
     unsubscribe: Function | null;
     queries: Object;
 
@@ -25,7 +27,9 @@ function createContainer(
       __prerendering: PropTypes.bool
     };
 
-    constructor(props: PropsType, context: Object) {
+    static displayName = `withPhenomicApi(${displayName})`;
+
+    constructor(props: props, context: Object) {
       super(props, context);
       this.computeQueries(props);
       // if we're on the server, let's just run the query
@@ -47,7 +51,7 @@ function createContainer(
       }
     }
 
-    componentWillReceiveProps(props: PropsType) {
+    componentWillReceiveProps(props: props) {
       this.computeQueries(props);
       this.schedule(() => this.query());
     }
@@ -79,7 +83,7 @@ function createContainer(
         }
       });
     };
-    computeQueries = (props: PropsType) => {
+    computeQueries = (props: props) => {
       this.queries = mapValues(getQueries(props), encode);
     };
     query = (force: boolean = false) => {
@@ -108,13 +112,14 @@ function createContainer(
           "An item is in error state",
           values.find(item => store.get(item).status === "error")
         );
-        return <Component {...this.props} hasError {...props} />;
+        return <ComposedComponent {...this.props} hasError {...props} />;
       }
-      return <Component {...this.props} isLoading={isLoading} {...props} />;
+      return (
+        <ComposedComponent {...this.props} isLoading={isLoading} {...props} />
+      );
     }
   }
 
-  return PhenomicRouteContainer;
+  // $FlowFixMe I am lazy and "it works on my computer"
+  return hoistStatics(PhenomicContainerWithApi, ComposedComponent);
 }
-
-export default createContainer;
