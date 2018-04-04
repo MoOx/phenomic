@@ -5,6 +5,7 @@ import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 import Page from "./src/Page";
 import PageBlog from "./src/PageBlog";
 import PageBlogPost from "./src/PageBlogPost";
+import PageRepositories from "./src/PageRepositories";
 import PageError from "./src/PageError";
 
 const routes = () => (
@@ -13,6 +14,8 @@ const routes = () => (
     <Route path="/blog/" component={PageBlog} />
     <Route path="/blog/after/:after" component={PageBlog} />
     <Route path="/blog/*" component={PageBlogPost} />
+    <Route path="/repositories/" component={PageRepositories} />
+    <Route path="/repositories/page/:page" component={PageRepositories} />
     {/* for static hosting, we often need an explicit 404.html */}
     <Route path="404.html" component={PageError} />
     <Route path="*" component={Page} />

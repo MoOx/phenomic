@@ -120,6 +120,9 @@ const Header = (
           <Link className="Header-link" to="/blog/">
             Blog
           </Link>
+          <Link className="Header-link" to="/repositories/">
+            Repositories
+          </Link>
           <Link className="Header-link" to="/about/">
             About
           </Link>

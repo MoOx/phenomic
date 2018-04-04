@@ -2,9 +2,20 @@ import * as React from "react";
 
 import Layout from "./Layout";
 
-const PageError = ({ error } /*: { error: Object } */) => {
+const PageError = ({ error } /*: { error?: Object } */) => {
   const status = (error && error.status) || 404;
   const message = error && status !== 404 ? error.statusText : "Page not found";
+  const more =
+    error && typeof error.json === "object"
+      ? error.json.message
+      : status === 404 && (
+          <React.Fragment>
+            {"It seems you found a broken link. "}
+            {"Sorry about that. "}
+            <br />
+            {"Do not hesitate to report this page."}
+          </React.Fragment>
+        );
 
   return (
     <React.Fragment>
@@ -43,14 +54,7 @@ const PageError = ({ error } /*: { error: Object } */) => {
             <p className="PageError-title">
               <strong>{status}</strong> {message}
             </p>
-            {status === 404 && (
-              <div>
-                {"It seems you found a broken link. "}
-                {"Sorry about that. "}
-                <br />
-                {"Do not hesitate to report this page."}
-              </div>
-            )}
+            <div>{more}</div>
           </div>
         </div>
       </Layout>

@@ -43,6 +43,9 @@ const Footer = () => (
           <Link className="Footer-link" to="/blog/">
             Blog
           </Link>
+          <Link className="Footer-link" to="/repositories/">
+            Repositories
+          </Link>
           <Link className="Footer-link" to="/about/">
             About
           </Link>

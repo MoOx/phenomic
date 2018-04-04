@@ -16,6 +16,10 @@ Array [
   "blog/second-post/index.html",
   "blog/third-post/index.html",
   "index.html",
+  "repositories/index.html",
+  "repositories/page/2/index.html",
+  "repositories/page/3/index.html",
+  "repositories/page/4/index.html",
 ]
 `;
 

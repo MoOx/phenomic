@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import fs from "fs";
+import path from "path";
 
 import globby from "globby";
 
@@ -36,4 +38,28 @@ it("should build example correctly", () => {
         !assetsBundlerFiles.includes(file)
     )
   ).toMatchSnapshot();
+});
+
+it("should make dynamic pages with pagination", () => {
+  const file1 = fs.readFileSync(
+    path.join(__dirname, "..", "dist", "repositories", "index.html"),
+    { encoding: "utf8" }
+  );
+  expect(file1).toContain('<div class="PageRepositories-repo">');
+  expect(file1).not.toContain("ActivityIndicator");
+
+  const file2 = fs.readFileSync(
+    path.join(
+      __dirname,
+      "..",
+      "dist",
+      "repositories",
+      "page",
+      "2",
+      "index.html"
+    ),
+    { encoding: "utf8" }
+  );
+  expect(file2).toContain('<div class="PageRepositories-repo">');
+  expect(file2).not.toContain("ActivityIndicator");
 });
