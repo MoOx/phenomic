@@ -58,7 +58,9 @@
       "eslint --ignore-path .gitignore --fix packages e2e-tests examples website",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
-    "tests": "jest --runInBand --coverage packages",
+    "#tests":
+      " --maxWorkers=2 --no-cache: https://github.com/facebook/jest/issues/3552 on packages/plugin-transform-markdown/src/__tests__",
+    "tests": "jest --maxWorkers=2 --no-cache --coverage packages",
     "examples:build": "babel-node scripts/examples.js",
     "examples:tests": "jest --bail examples",
     "examples": "yarn examples:build && yarn examples:tests",
