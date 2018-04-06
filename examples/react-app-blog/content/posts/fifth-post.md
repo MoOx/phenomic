@@ -13,3 +13,18 @@ An wrong link to [a post that does not exist](../unknown-post/) and another one
 to [a page that does not exist](/unknown-page/).
 
 Here is an [external link](http://phenomic.io).
+
+```md
+# Some markdown...
+
+...in a markdown file. **Markdownception?**.
+```
+
+```js
+import unifiedProcessor from "./unifiedProcessor";
+import type { plugin } from "./unifiedProcessor";
+import defaultOptions from "./default-options";
+
+// eslint-disable-next-line
+const debug = require("debug")("phenomic:plugin:transform-markdown");
+```

@@ -29,7 +29,7 @@ it("should build example correctly", () => {
       !jsonApiFiles.includes(file) &&
       file.startsWith("phenomic")
   );
-  expect(assetsBundlerFiles.length).toBe(1);
+  expect(assetsBundlerFiles.length).toBe(2);
   expect(
     files.filter(
       file =>
