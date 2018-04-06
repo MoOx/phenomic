@@ -11,7 +11,10 @@ const presetReactApp = () => {
     plugins: {
       "@phenomic/plugin-bundler-webpack": bundlerWebpack,
       "@phenomic/plugin-renderer-react": rendererReact,
-      "@phenomic/plugin-transform-markdown": transformMarkdown,
+      "@phenomic/plugin-transform-markdown": [
+        transformMarkdown,
+        { output: "json" }
+      ],
       "@phenomic/plugin-transform-json": transformJson,
       "@phenomic/plugin-collector-files": collectorFiles,
       "@phenomic/plugin-api-related-content": apiRelatedContent,

@@ -5,8 +5,191 @@ Object {
   "data": Object {
     "body": "<h2 id=\\"test\\"><a aria-hidden=\\"true\\" href=\\"#test\\"><span class=\\"icon icon-link\\"></span></a>Test</h2>
 <p><a href=\\"href\\">link</a></p>
-<pre><code class=\\"hljs language-js\\"><span class=\\"hljs-built_in\\">console</span>.log(<span class=\\"hljs-built_in\\">window</span>)
-</code></pre>",
+<pre class=\\"editor editor-colors\\"><div class=\\"line\\"><span class=\\"syntax--source syntax--js\\"><span class=\\"syntax--entity syntax--name syntax--type syntax--object syntax--console syntax--js\\"><span>console</span></span><span class=\\"syntax--meta syntax--method-call syntax--js\\"><span class=\\"syntax--meta syntax--delimiter syntax--method syntax--period syntax--js\\"><span>.</span></span><span class=\\"syntax--support syntax--function syntax--console syntax--js\\"><span>log</span></span><span class=\\"syntax--meta syntax--arguments syntax--js\\"><span class=\\"syntax--punctuation syntax--definition syntax--arguments syntax--begin syntax--bracket syntax--round syntax--js\\"><span>(</span></span><span class=\\"syntax--support syntax--variable syntax--dom syntax--js\\"><span>window</span></span><span class=\\"syntax--punctuation syntax--definition syntax--arguments syntax--end syntax--bracket syntax--round syntax--js\\"><span>)</span></span></span></span></span></div></pre>",
+    "test": "a",
+    "test2": "b",
+  },
+  "partial": Object {
+    "test": "a",
+    "test2": "b",
+  },
+}
+`;
+
+exports[`should transform markdown as json 1`] = `
+Object {
+  "data": Object {
+    "body": Object {
+      "c": Array [
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                Object {
+                  "p": Object {
+                    "className": "icon icon-link",
+                  },
+                  "t": "span",
+                },
+              ],
+              "p": Object {
+                "aria-hidden": true,
+                "href": "#test",
+              },
+              "t": "a",
+            },
+            "Test",
+          ],
+          "p": Object {
+            "id": "test",
+          },
+          "t": "h2",
+        },
+        "
+",
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                "link",
+              ],
+              "p": Object {
+                "href": "href",
+              },
+              "t": "a",
+            },
+          ],
+          "t": "p",
+        },
+        "
+",
+        Object {
+          "c": Array [
+            Object {
+              "c": Array [
+                Object {
+                  "c": Array [
+                    Object {
+                      "c": Array [
+                        Object {
+                          "c": Array [
+                            "console",
+                          ],
+                          "t": "span",
+                        },
+                      ],
+                      "p": Object {
+                        "className": "syntax--entity syntax--name syntax--type syntax--object syntax--console syntax--js",
+                      },
+                      "t": "span",
+                    },
+                    Object {
+                      "c": Array [
+                        Object {
+                          "c": Array [
+                            Object {
+                              "c": Array [
+                                ".",
+                              ],
+                              "t": "span",
+                            },
+                          ],
+                          "p": Object {
+                            "className": "syntax--meta syntax--delimiter syntax--method syntax--period syntax--js",
+                          },
+                          "t": "span",
+                        },
+                        Object {
+                          "c": Array [
+                            Object {
+                              "c": Array [
+                                "log",
+                              ],
+                              "t": "span",
+                            },
+                          ],
+                          "p": Object {
+                            "className": "syntax--support syntax--function syntax--console syntax--js",
+                          },
+                          "t": "span",
+                        },
+                        Object {
+                          "c": Array [
+                            Object {
+                              "c": Array [
+                                Object {
+                                  "c": Array [
+                                    "(",
+                                  ],
+                                  "t": "span",
+                                },
+                              ],
+                              "p": Object {
+                                "className": "syntax--punctuation syntax--definition syntax--arguments syntax--begin syntax--bracket syntax--round syntax--js",
+                              },
+                              "t": "span",
+                            },
+                            Object {
+                              "c": Array [
+                                Object {
+                                  "c": Array [
+                                    "window",
+                                  ],
+                                  "t": "span",
+                                },
+                              ],
+                              "p": Object {
+                                "className": "syntax--support syntax--variable syntax--dom syntax--js",
+                              },
+                              "t": "span",
+                            },
+                            Object {
+                              "c": Array [
+                                Object {
+                                  "c": Array [
+                                    ")",
+                                  ],
+                                  "t": "span",
+                                },
+                              ],
+                              "p": Object {
+                                "className": "syntax--punctuation syntax--definition syntax--arguments syntax--end syntax--bracket syntax--round syntax--js",
+                              },
+                              "t": "span",
+                            },
+                          ],
+                          "p": Object {
+                            "className": "syntax--meta syntax--arguments syntax--js",
+                          },
+                          "t": "span",
+                        },
+                      ],
+                      "p": Object {
+                        "className": "syntax--meta syntax--method-call syntax--js",
+                      },
+                      "t": "span",
+                    },
+                  ],
+                  "p": Object {
+                    "className": "syntax--source syntax--js",
+                  },
+                  "t": "span",
+                },
+              ],
+              "p": Object {
+                "className": "line",
+              },
+              "t": "div",
+            },
+          ],
+          "p": Object {
+            "className": "editor editor-colors",
+          },
+          "t": "pre",
+        },
+      ],
+      "t": "div",
+    },
     "test": "a",
     "test2": "b",
   },

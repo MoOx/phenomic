@@ -1,46 +1,32 @@
 import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";
 import frontMatterParser from "gray-matter";
+import unifiedProcessor from "@phenomic/helpers-transform/lib/unifiedProcessor";
+import type { plugin } from "@phenomic/helpers-transform/lib//unifiedProcessor";
 
-import remarkPlugins from "./transformer.js";
+import defaultOptions from "./default-options";
 
+// eslint-disable-next-line
 const debug = require("debug")("phenomic:plugin:transform-markdown");
 
-function transformMarkdownFile({
-  config,
-  file,
-  contents
-}: {|
-  config?: PhenomicConfig,
-  file: PhenomicContentFile,
-  contents: Buffer
-|}) {
-  debug(`transforming ${file.fullpath}`);
-  const front = frontMatterParser(contents.toString());
-  debug(`front matter for ${file.fullpath}`, front.data);
-  const partial = {
-    ...front.data,
-    // @todo should be here or user land ?
-    ...(Array.isArray(front.data.tags)
-      ? {
-          tags: front.data.tags.map(tag => kebabCase(deburr(tag)))
-        }
-      : {})
-  };
-  return {
-    data: {
-      ...partial,
-      body: remarkPlugins(config, front.content).contents
-    },
-    partial
-  };
-}
+type options = {|
+  output?: "json" | "html",
+  plugins?: $ReadOnlyArray<plugin>
+|} | void; // void? https://github.com/facebook/flow/issues/2977
 
-const transformMarkdown: PhenomicPluginModule<{}> = (
-  config: PhenomicConfig
+const name = "@phenomic/plugin-transform-markdown";
+
+const transformMarkdown: PhenomicPluginModule<options> = (
+  config: PhenomicConfig,
+  options?: options
 ) => {
+  const processor = unifiedProcessor({
+    output: (options && options.output) || defaultOptions.output,
+    plugins: (options && options.plugins) || defaultOptions.plugins
+  });
+
   return {
-    name: "@phenomic/plugin-transform-markdown",
+    name,
     supportedFileTypes: ["md", "markdown"],
     transform: ({
       file,
@@ -48,7 +34,27 @@ const transformMarkdown: PhenomicPluginModule<{}> = (
     }: {|
       file: PhenomicContentFile,
       contents: Buffer
-    |}) => transformMarkdownFile({ config, file, contents })
+    |}) => {
+      debug(`transforming ${file.fullpath}`);
+      const front = frontMatterParser(contents.toString());
+      debug(`front matter for ${file.fullpath}`, front.data);
+      const partial = {
+        ...front.data,
+        // @todo should be here or user land ?
+        ...(Array.isArray(front.data.tags)
+          ? { tags: front.data.tags.map(tag => kebabCase(deburr(tag))) }
+          : {})
+      };
+
+      return {
+        data: {
+          ...partial,
+          // $FlowFixMe it's here, I can feel it Flow
+          body: processor.processSync(front.content).contents
+        },
+        partial
+      };
+    }
   };
 };
 
