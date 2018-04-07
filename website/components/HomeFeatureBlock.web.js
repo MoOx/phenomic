@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native-web";
 
-import BackgroundGradient from "../BackgroundGradient";
+import BackgroundGradient from "./BackgroundGradient";
 
 type PropsType = {|
   start: string,

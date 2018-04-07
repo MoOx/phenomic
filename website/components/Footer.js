@@ -1,10 +1,9 @@
 import * as React from "react";
 import { StyleSheet } from "react-native-web";
 
-import BodyContainer from "../BodyContainer";
-import BackgroundGradient from "../BackgroundGradient";
-
-import FooterNavBar from "./NavBar";
+import BodyContainer from "./BodyContainer";
+import BackgroundGradient from "./BackgroundGradient";
+import FooterNavBar from "./FooterNavBar";
 
 const Footer = (props: Object) => (
   <BackgroundGradient style={props.style} start="#2A2A2A" end="#121212">

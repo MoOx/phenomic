@@ -1,16 +1,23 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
-import Link from "../Link";
-import Spacer from "../Spacer";
+import Link from "./Link";
+import Spacer from "./Spacer";
+import { version } from "../.././lerna.json";
 
 const HeaderNavBar = () => (
   <View style={styles.header}>
-    <View style={styles.row}>
+    <View style={styles.logo}>
       <Link.TouchableOpacity href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link.TouchableOpacity>
       <Spacer small />
+      <Link.TouchableOpacity
+        href="https://github.com/phenomic/phenomic/releases"
+        style={styles.version}
+      >
+        {"v" + version}
+      </Link.TouchableOpacity>
     </View>
     <View style={styles.nav}>
       <Link.TouchableOpacity
@@ -25,7 +32,7 @@ const HeaderNavBar = () => (
         style={styles.link}
         activeStyle={styles.linkActive}
       >
-        <Text style={styles.linkText}>{"News"}</Text>
+        <Text style={[styles.linkText]}>{"News"}</Text>
       </Link.TouchableOpacity>
       <Link.TouchableOpacity
         href="/showcase"
@@ -34,7 +41,7 @@ const HeaderNavBar = () => (
       >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
       </Link.TouchableOpacity>
-      <Text>{" | "}</Text>
+      <Text style={styles.pipe}>{" | "}</Text>
       <Link.TouchableOpacity
         href="https://github.com/phenomic/phenomic"
         style={styles.link}
@@ -69,20 +76,26 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 80,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingHorizontal: 20,
+    paddingVertical: 10
   },
-  row: {
+  logo: {
     flexDirection: "row",
     alignItems: "baseline",
-    maxWidth: "100%"
+    justifyContent: "center",
+    paddingVertical: 10
   },
   text: {
     color: "#fff",
     fontSize: 30,
     fontWeight: "700",
     textDecorationLine: "none"
+  },
+  version: {
+    textDecorationLine: "none",
+    color: "#fff",
+    opacity: 0.2,
+    fontSize: 12
   },
   link: {
     textDecorationLine: "none",
@@ -101,7 +114,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
-    maxWidth: "100%"
+    maxWidth: "100%",
+    paddingVertical: 10
+  },
+  pipe: {
+    color: "rgba(255, 255, 255, 0.5)"
   }
 });
 

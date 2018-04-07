@@ -2,10 +2,9 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 import Head from "react-helmet";
 
-import BodyContainer from "../BodyContainer";
-import BackgroundGradient from "../BackgroundGradient";
-
-import HeaderNavBar from "./NavBar";
+import BodyContainer from "./BodyContainer";
+import BackgroundGradient from "./BackgroundGradient";
+import HeaderNavBar from "./HeaderNavBar";
 
 const Header = (props: Object) => (
   <BackgroundGradient style={props.style} start="#006BF6" end="#10E951">

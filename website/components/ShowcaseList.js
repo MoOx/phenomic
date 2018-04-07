@@ -2,15 +2,15 @@ import * as React from "react";
 import { View, Text, Image, StyleSheet, createElement } from "react-native-web";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
-import Flex from "../Flex";
-import Link from "../Link";
-import Spacer from "../Spacer";
-import ActivityIndicator from "../ActivityIndicator";
-import Header from "../Header";
-import Footer from "../Footer";
-import BodyContainer from "../BodyContainer";
-import urlToSlug from "../../modules/url-to-slug";
-import { screenshotsSize } from "../../package.json";
+import Flex from "./Flex";
+import Link from "./Link";
+import Spacer from "./Spacer";
+import ActivityIndicator from "./ActivityIndicator";
+import Header from "./Header";
+import Footer from "./Footer";
+import BodyContainer from "./BodyContainer";
+import urlToSlug from ".././modules/url-to-slug";
+import { screenshotsSize } from ".././package.json";
 
 const prepareList = list => {
   return list;

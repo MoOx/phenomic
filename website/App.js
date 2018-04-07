@@ -8,12 +8,12 @@ import "./defaults.css";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
 import GettingStarted from "./components/GettingStarted";
-import DocPage from "./components/Page/Doc";
-import ShowcasePage from "./components/Page/Showcase";
+import DocPage from "./components/PageDoc";
+import ShowcasePage from "./components/PageShowcase";
 import ShowcaseList, { ShowcaseListByTag } from "./components/ShowcaseList";
 import PageError from "./components/PageError";
-import NewsItem from "./components/News/NewsItem";
-import NewsList from "./components/News/NewsList";
+import NewsItem from "./components/NewsItem";
+import NewsList from "./components/NewsList";
 
 // Google Analytics
 const isProduction = process.env.NODE_ENV === "production";

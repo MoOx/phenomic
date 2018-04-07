@@ -3,9 +3,9 @@ import { StyleSheet, View, Text } from "react-native-web";
 
 /* eslint-disable react-native/no-inline-styles */
 
-import Flex from "../Flex";
-import Browser from "../Browser";
-import Spacer from "../Spacer";
+import Flex from "./Flex";
+import Browser from "./Browser";
+import Spacer from "./Spacer";
 
 const InputOutput = () => (
   <View style={styles.row}>

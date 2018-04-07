@@ -1,12 +1,12 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
-import Flex from "../Flex";
-import Link from "../Link";
-import Spacer from "../Spacer";
-import Header from "../Header";
-import Footer from "../Footer";
-import BodyContainer from "../BodyContainer";
+import Flex from "./Flex";
+import Link from "./Link";
+import Spacer from "./Spacer";
+import Header from "./Header";
+import Footer from "./Footer";
+import BodyContainer from "./BodyContainer";
 
 const items = [
   {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
-import Link from "../Link";
+import Link from "./Link";
 
 const NewsListItem = props => (
   <Link.TouchableOpacity href={"/news/" + props.news.id} style={styles.link}>

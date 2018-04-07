@@ -2,16 +2,15 @@ import * as React from "react";
 import { StyleSheet, Text, View } from "react-native-web";
 import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
-import Header from "../Header";
-import Footer from "../Footer";
-import Flex from "../Flex";
-import Spacer from "../Spacer";
-import BodyContainer from "../BodyContainer";
-import Link from "../Link";
-
-import FeatureBlock from "./FeatureBlock";
-import InputOutput from "./InputOutput";
-import CodeExample from "./CodeExample";
+import Header from "./Header";
+import Footer from "./Footer";
+import Flex from "./Flex";
+import Spacer from "./Spacer";
+import BodyContainer from "./BodyContainer";
+import Link from "./Link";
+import FeatureBlock from "./HomeFeatureBlock";
+import InputOutput from "./HomeInputOutput";
+import CodeExample from "./HomeCodeExample";
 
 const Home = () => (
   <Flex>

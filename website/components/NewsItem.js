@@ -2,14 +2,14 @@ import * as React from "react";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 import { View, StyleSheet, Text } from "react-native-web";
 
-import Flex from "../Flex";
-import Spacer from "../Spacer";
-import ActivityIndicator from "../ActivityIndicator";
-import MarkdownGenerated from "../MarkdownGenerated";
-import PageError from "../PageError";
-import Header from "../Header";
-import Footer from "../Footer";
-import BodyContainer from "../BodyContainer";
+import Flex from "./Flex";
+import Spacer from "./Spacer";
+import ActivityIndicator from "./ActivityIndicator";
+import MarkdownGenerated from "./MarkdownGenerated";
+import PageError from "./PageError";
+import Header from "./Header";
+import Footer from "./Footer";
+import BodyContainer from "./BodyContainer";
 
 const NewsItem = (props: Object) => {
   if (props.hasError) {

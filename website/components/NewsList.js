@@ -1,14 +1,14 @@
 import * as React from "react";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
-import Flex from "../Flex";
-import Spacer from "../Spacer";
-import ActivityIndicator from "../ActivityIndicator";
-import PageError from "../PageError";
-import Header from "../Header";
-import Footer from "../Footer";
-import BodyContainer from "../BodyContainer";
-import NewsListItem from "../News/NewsListItem";
+import Flex from "./Flex";
+import Spacer from "./Spacer";
+import ActivityIndicator from "./ActivityIndicator";
+import PageError from "./PageError";
+import Header from "./Header";
+import Footer from "./Footer";
+import BodyContainer from "./BodyContainer";
+import NewsListItem from "./NewsListItem";
 
 const NewsList = (props: Object) => {
   if (props.hasError) {

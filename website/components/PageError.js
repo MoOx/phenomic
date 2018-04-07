@@ -1,8 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native-web";
 
-import BodyContainer from "../BodyContainer";
-import Header from "../Header";
+import BodyContainer from "./BodyContainer";
+import Header from "./Header";
 
 const PageError = ({ error }: { error: Object }) => {
   const status = (error && error.status) || 404;
