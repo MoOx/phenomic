@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-markdown-with-custom-components",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-beta.1",
-    "@phenomic/core": "^1.0.0-beta.1",
-    "@phenomic/preset-react-app": "^1.0.0-beta.1",
+    "@phenomic/cli": "^1.0.0-beta.2",
+    "@phenomic/core": "^1.0.0-beta.2",
+    "@phenomic/preset-react-app": "^1.0.0-beta.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-router": "^3.2.0"
