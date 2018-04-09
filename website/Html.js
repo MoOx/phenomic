@@ -1,9 +1,11 @@
 import * as React from "react";
 import Head from "react-helmet";
-import { StyleSheet } from "react-native-web";
+import { AppRegistry } from "react-native-web";
 
 const Html = ({ App, render }: PhenomicHtmlPropsType) => {
-  const { Main, State, Script, Style } = render(<App />);
+  AppRegistry.registerComponent("App", () => App);
+  const app = AppRegistry.getApplication("App");
+  const { Main, State, Script, Style } = render(app.element);
   const helmet = Head.renderStatic();
   return (
     <html {...helmet.htmlAttributes.toComponent()}>
@@ -11,14 +13,8 @@ const Html = ({ App, render }: PhenomicHtmlPropsType) => {
         {helmet.meta.toComponent()}
         {helmet.title.toComponent()}
         {helmet.base.toComponent()}
+        {app.getStyleElement()}
         <Style />
-        {StyleSheet.getStyleSheets().map(({ id, textContent }, i) => (
-          <style
-            key={i}
-            id={id}
-            dangerouslySetInnerHTML={{ __html: textContent }}
-          />
-        ))}
         {helmet.link.toComponent()}
         {helmet.style.toComponent()}
         {helmet.script.toComponent()}
