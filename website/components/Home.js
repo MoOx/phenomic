@@ -15,7 +15,7 @@ import InputOutput from "./HomeInputOutput";
 import CodeExample from "./HomeCodeExample";
 
 const Home = () => (
-  <Flex>
+  <Flex style={{ overflow: "hidden" }}>
     <View style={styles.heroContainer} start="#006BF6" end="#10E951">
       <BackgroundGradient
         style={styles.heroGradient}
