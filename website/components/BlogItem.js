@@ -9,9 +9,9 @@ import MarkdownGenerated from "./MarkdownGenerated";
 import PageError from "./PageError";
 import Header from "./Header";
 import Footer from "./Footer";
-import BodyContainer from "./BodyContainer";
+import BodySmallContainer from "./BodySmallContainer";
 
-const NewsItem = (props: Object) => {
+const BlogItem = (props: Object) => {
   if (props.hasError) {
     return <PageError error={props.news.error} />;
   }
@@ -19,7 +19,7 @@ const NewsItem = (props: Object) => {
   return (
     <Flex>
       <Header title={props.news && props.news.node && props.news.node.title} />
-      <BodyContainer>
+      <BodySmallContainer>
         {props.isLoading && <ActivityIndicator />}
         {!props.isLoading && (
           <View style={styles.body}>
@@ -29,7 +29,7 @@ const NewsItem = (props: Object) => {
             <MarkdownGenerated body={props.news.node.body} />
           </View>
         )}
-      </BodyContainer>
+      </BodySmallContainer>
       <Spacer large />
       <Footer />
     </Flex>
@@ -38,9 +38,7 @@ const NewsItem = (props: Object) => {
 
 const styles = StyleSheet.create({
   body: {
-    maxWidth: 600,
-    paddingVertical: 24,
-    alignSelf: "center"
+    paddingVertical: 24
   },
   date: {
     color: "rgba(0, 0, 0, 0.25)",
@@ -49,9 +47,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withPhenomicApi(NewsItem, props => ({
+export default withPhenomicApi(BlogItem, props => ({
   news: query({
-    path: "news",
+    path: "blog",
     id: props.params.splat
   })
 }));

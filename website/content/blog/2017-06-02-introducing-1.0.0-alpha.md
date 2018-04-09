@@ -1,6 +1,6 @@
 ---
-date: 2017-06-02
 title: Introducing Phenomic 1.0.0 first alpha
+author: bloodyowl
 ---
 
 ## A complete rewrite

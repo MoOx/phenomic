@@ -2,6 +2,9 @@ import * as React from "react";
 import { View, Text, Image, StyleSheet, createElement } from "react-native-web";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
+import urlToSlug from ".././modules/url-to-slug";
+import { screenshotsSize } from ".././package.json";
+
 import Flex from "./Flex";
 import Link from "./Link";
 import Spacer from "./Spacer";
@@ -9,8 +12,6 @@ import ActivityIndicator from "./ActivityIndicator";
 import Header from "./Header";
 import Footer from "./Footer";
 import BodyContainer from "./BodyContainer";
-import urlToSlug from ".././modules/url-to-slug";
-import { screenshotsSize } from ".././package.json";
 
 const prepareList = list => {
   return list;
@@ -172,9 +173,6 @@ const ShowcaseList = (props: Object) => (
 );
 
 const styles = StyleSheet.create({
-  link: {
-    color: "#006df4"
-  },
   row: {
     flexDirection: "row",
     alignItems: "center"
@@ -274,6 +272,11 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     justifyContent: "center"
+  },
+  link: {
+    color: "#006df4",
+    fontSize: 18,
+    padding: 20
   }
 });
 

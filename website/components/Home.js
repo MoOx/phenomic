@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    justifyContent: "center"
   },
   box: {
     width: 272,

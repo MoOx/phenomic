@@ -12,13 +12,13 @@ it("should have basic pages", () => {
   expect(files.includes("404.html")).toBeTruthy();
   expect(files.includes("index.html")).toBeTruthy();
   expect(files.filter(f => f.startsWith("docs/"))).toMatchSnapshot();
-  expect(files.includes("news/index.html")).toBeTruthy();
+  expect(files.includes("blog/index.html")).toBeTruthy();
   expect(files.includes("showcase/index.html")).toBeTruthy();
   expect(files.includes("feed.xml")).toBeTruthy();
 });
 
 it("should have some generated pages for pagination", () => {
-  expect(files.filter(f => f.startsWith("news/after/")).length).toBeGreaterThan(
+  expect(files.filter(f => f.startsWith("blog/after/")).length).toBeGreaterThan(
     0
   );
   expect(
@@ -43,15 +43,15 @@ it("should have api files", () => {
     files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length
   ).toBeGreaterThan(0);
   expect(
-    files.includes("phenomic/news/by-default/1/desc/limit-10.json")
+    files.includes("phenomic/blog/by-default/1/desc/limit-10.json")
   ).toBeTruthy();
   expect(
     files.includes(
-      "phenomic/news/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/blog/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
     )
   ).toBeTruthy();
   expect(
-    files.includes("phenomic/news/item/2017/06/introducing-1.0.0-alpha.json")
+    files.includes("phenomic/blog/item/2017-06-02-introducing-1.0.0-alpha.json")
   ).toBeTruthy();
   expect(
     files.filter(

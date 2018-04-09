@@ -21,11 +21,11 @@ const HeaderNavBar = () => (
         <Text style={styles.linkText}>{"Getting started"}</Text>
       </Link.TouchableOpacity>
       <Link.TouchableOpacity
-        href="/news"
+        href="/blog"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
-        <Text style={styles.linkText}>{"News"}</Text>
+        <Text style={styles.linkText}>{"Blog"}</Text>
       </Link.TouchableOpacity>
       <Link.TouchableOpacity
         href="/showcase"

@@ -102,11 +102,12 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   itemTitle: {
-    fontSize: 18,
+    fontSize: 22,
     color: "#6B6B6B"
   },
   itemSubTitle: {
-    fontSize: 12,
+    fontSize: 14,
+    fontWeight: "200",
     color: "#6B6B6B"
   }
 });

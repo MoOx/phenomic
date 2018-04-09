@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     width: "100%",
-    maxWidth: 1260,
+    maxWidth: 700,
     marginLeft: "auto",
     marginRight: "auto"
   }

@@ -44,7 +44,7 @@ Link.contextTypes = {
 // https://github.com/necolas/react-native-web/issues/643
 
 /* eslint-disable */
-Link.Block = ({ BlockComponent, blockProps, ...props }: PropsType) => (
+Link.Block = ({ BlockComponent, blockProps = {}, ...props }: PropsType) => (
   <BlockComponent
     {...blockProps}
     style={[blockProps.style, { flexGrow: 1 }]}

@@ -13,7 +13,7 @@ const Editor = (props: Object) => (
 );
 
 const radius = 4;
-const padding = 8;
+const padding = 14;
 const styles = StyleSheet.create({
   editor: {
     flexGrow: 1
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#0E1216"
   },
   headerText: {
-    fontSize: 12,
-    color: "rgba(203, 211, 219, 0.75)"
+    fontSize: 14,
+    color: "rgba(203, 211, 219, 0.65)"
   },
   content: {
     flexGrow: 1,
@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
 
 const rawStyles = {
   contentPre: {
+    fontSize: 18,
+    lineHeight: 1.5,
     margin: 0,
     color: "#CDE4FF"
   }

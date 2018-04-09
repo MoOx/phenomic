@@ -22,3 +22,52 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.phenomic-Markdown {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.phenomic-Markdown h1,
+.phenomic-Markdown h2,
+.phenomic-Markdown h3,
+.phenomic-Markdown h4,
+.phenomic-Markdown h5,
+.phenomic-Markdown h6 {
+  position: relative;
+}
+
+.phenomic-Markdown .phenomic-HeadingAnchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -32px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 20px;
+  text-decoration: none;
+  opacity: 0.1;
+  transition: opacity 0.2s;
+}
+
+.phenomic-Markdown h1:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h2:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h3:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h4:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h5:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h6:hover .phenomic-HeadingAnchor {
+  opacity: 1;
+}
+
+.phenomic-Markdown a {
+  color: #006bf6;
+}
+
+.phenomic-Markdown img {
+  max-width: 100%;
+}
+
+.phenomic-Markdown code {
+  font-family: SFMono-Regular;
+}
