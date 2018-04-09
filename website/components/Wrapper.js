@@ -35,7 +35,7 @@ const Wrapper = (props: Object) => (
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: "#F2F5F8"
   }
 });
