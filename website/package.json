@@ -4,9 +4,11 @@
   "version": "1.0.0-beta.2",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
+    "releases-as-markdown": "babel-node scripts/releases-as-markdown.js",
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
     "start": "phenomic start",
+    "build": "yarn releases-as-markdown",
     "build": "phenomic build",
     "pretest": "yarn showcase-screenshots",
     "test": "yarn build",
@@ -30,10 +32,12 @@
     "gray-matter": "^3.0.0",
     "image-optim": "^3.0.0",
     "imageoptim-cli": "^1.15.4",
+    "isomorphic-fetch": "^2.2.1",
     "mkdirp": "^0.5.1",
     "png-jpg": "0.0.2",
     "puppeteer": "^1.1.1",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "simple-json-fetch": "^1.0.1"
   },
   "phenomic": {
     "baseUrl": "http://phenomic.io/",
