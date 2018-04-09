@@ -26,7 +26,6 @@ const Home = () => (
           <img
             src="/assets/phenomic-logo-white.svg"
             height={Math.max(window.innerWidth, window.innerHeight) * 0.75}
-            /* eslint-disable react-native/no-inline-styles */
             style={{
               opacity: 0.06,
               position: "absolute",
@@ -34,7 +33,6 @@ const Home = () => (
               right: window.innerWidth * 0.1,
               transform: "rotate(6deg)"
             }}
-            /* eslint-enable react-native/no-inline-styles */
           />
         )}
       </BackgroundGradient>

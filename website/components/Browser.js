@@ -1,8 +1,6 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 
-/* eslint-disable react-native/no-inline-styles */
-
 const Browser = (props: Object) => (
   <View style={[props.style, styles.editor]}>
     <View style={styles.header}>

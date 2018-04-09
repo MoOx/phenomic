@@ -1,8 +1,6 @@
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native-web";
 
-/* eslint-disable react-native/no-inline-styles */
-
 import Spinner from "./Spinner";
 import Flex from "./Flex";
 import Browser from "./Browser";

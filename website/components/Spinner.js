@@ -34,7 +34,6 @@ class Spinner extends React.PureComponent<props, { visible: boolean }> {
           }}
         />
         <div
-          /* eslint-disable react-native/no-inline-styles */
           style={{
             opacity: this.state.visible ? 1 : 0,
             border: `${this.props.borderWidth || "10px"} solid ${this.props
@@ -46,7 +45,6 @@ class Spinner extends React.PureComponent<props, { visible: boolean }> {
             transition: "opacity 4s",
             ...(this.props.style || {})
           }}
-          /* eslint-enable react-native/no-inline-styles */
         />
       </React.Fragment>
     );
