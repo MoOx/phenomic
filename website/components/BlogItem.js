@@ -24,7 +24,11 @@ const BlogItem = (props: Object) => {
         {!props.isLoading && (
           <View style={styles.body}>
             <Text style={styles.date}>
-              {new Date(props.news.node.date).toLocaleDateString()}
+              {new Date(props.news.node.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}
             </Text>
             <MarkdownGenerated body={props.news.node.body} />
           </View>
