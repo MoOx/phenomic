@@ -13,9 +13,9 @@ const CodeExample = () => (
             <Text style={styles.numberText}>{"1"}</Text>
           </View>
           <View style={styles.itemLabel}>
-            <Text style={styles.itemTitle}>{"Get some content"}</Text>
+            <Text style={styles.itemTitle}>{"Get your content"}</Text>
             <Text style={styles.itemSubTitle}>
-              {"Markdown, JSON... from fs or REST API..."}
+              {"Markdown, JSON... From fs, REST, GraphQL APIs..."}
             </Text>
           </View>
         </View>
@@ -37,7 +37,7 @@ This is an article`}</Editor>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Write your templates"}</Text>
             <Text style={styles.itemSubTitle}>
-              {"Choose your renderer (React, Handlebars...)"}
+              {"Choose your renderer (React, Vue, Handlebars...)"}
             </Text>
           </View>
         </View>
@@ -60,7 +60,7 @@ This is an article`}</Editor>
           <View style={styles.itemLabel}>
             <Text style={styles.itemTitle}>{"Compile your website"}</Text>
             <Text style={styles.itemSubTitle}>
-              {"And enjoy runtime free hosting"}
+              {"Deploy it on any static hosting service"}
             </Text>
           </View>
         </View>
@@ -89,13 +89,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   number: {
-    backgroundColor: "rgba(0,0,0,.3)",
+    backgroundColor: "#7a8ca3",
     borderRadius: "50%",
     width: 40
   },
   numberText: {
     color: "#fff",
+    fontSize: 20,
     lineHeight: 40,
+    fontWeight: "900",
     textAlign: "center"
   },
   itemLabel: {
@@ -103,12 +105,12 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 22,
-    color: "#6B6B6B"
+    color: "#7a8ca3"
   },
   itemSubTitle: {
     fontSize: 14,
     fontWeight: "200",
-    color: "#6B6B6B"
+    color: "#6f84a1"
   }
 });
 

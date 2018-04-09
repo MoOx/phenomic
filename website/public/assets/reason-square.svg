@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="216px" height="216px" viewBox="0 0 216 216" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>reason-square</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="reason-square">
+            <g id="Rectangle-1">
+                <g id="path-1-link" fill="#000000" fill-rule="nonzero">
+                    <rect id="path-1" x="0" y="0" width="216" height="216"></rect>
+                </g>
+                <g id="path-1-link" fill="#DD4B39">
+                    <rect id="path-1" x="0" y="0" width="216" height="216"></rect>
+                </g>
+                <rect id="Rectangle-path" stroke="#D74837" x="0.5" y="0.5" width="215" height="215"></rect>
+            </g>
+            <g id="[RE]ASON" transform="translate(54.000000, 114.000000)">
+                <g id="path-3-link" fill="#FFFFFF">
+                    <path d="M74.128,83 L49.702,83 L37.666,60.108 L21.618,60.108 L21.618,83 L0.024,83 L0.024,0.282 L37.194,0.282 C59.142,0.282 71.65,10.902 71.65,29.31 C71.65,41.818 66.458,51.022 56.9,55.978 L74.128,83 Z M21.618,17.51 L21.618,42.88 L37.312,42.88 C46.044,42.88 51.118,38.396 51.118,30.018 C51.118,21.876 46.044,17.51 37.312,17.51 L21.618,17.51 Z M85.456,0.282 L150.71,0.282 L150.71,17.51 L107.05,17.51 L107.05,32.968 L146.462,32.968 L146.462,50.078 L107.05,50.196 L107.05,65.772 L151.89,65.772 L151.89,83 L85.456,83 L85.456,0.282 Z" id="path-3"></path>
+                </g>
+                <g id="path-3-link"></g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,8 +1,10 @@
 import * as React from "react";
+import Head from "react-helmet";
 import { StyleSheet, Text, View } from "react-native-web";
 import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
-import Header from "./Header";
+import BackgroundGradient from "./BackgroundGradient";
+import HeaderNavBar from "./HeaderNavBar";
 import Footer from "./Footer";
 import Flex from "./Flex";
 import Spacer from "./Spacer";
@@ -14,11 +16,40 @@ import CodeExample from "./HomeCodeExample";
 
 const Home = () => (
   <Flex>
-    <Header
-      headTitle={"Phenomic, a modular website compiler (static site generator)"}
-      title={"Phenomic is a website compiler"}
-      style={styles.top}
-    />
+    <View style={styles.heroContainer} start="#006BF6" end="#10E951">
+      <BackgroundGradient
+        style={styles.heroGradient}
+        start="#006BF6"
+        end="#10E951"
+      >
+        <img
+          src="/assets/phenomic-logo-white.svg"
+          height={Math.max(window.innerWidth, window.innerHeight) * 0.75}
+          /* eslint-disable react-native/no-inline-styles */
+          style={{
+            opacity: 0.06,
+            position: "absolute",
+            top: window.innerHeight * 0.2,
+            right: window.innerWidth * 0.1,
+            transform: "rotate(6deg)"
+          }}
+          /* eslint-enable react-native/no-inline-styles */
+        />
+      </BackgroundGradient>
+      <Head>
+        <title>
+          {"Phenomic, a modular website compiler (static site generator)"}
+        </title>
+      </Head>
+      <HeaderNavBar />
+      <BodyContainer style={styles.hero}>
+        {/* @todo h1 or shit */}
+        <img src="/assets/phenomic-text.svg" height={72} />
+        <Text style={styles.heroSubtitleText}>
+          {"Meet the modular website compiler"}
+        </Text>
+      </BodyContainer>
+    </View>
     <BodyContainer style={styles.gettingStarted}>
       <Link.Block
         href="/docs/getting-started"
@@ -27,42 +58,43 @@ const Home = () => (
         <InputOutput />
       </Link.Block>
       <Spacer />
+      <Spacer />
       <Text style={styles.subtitle}>
         <Link.TouchableOpacity href="/docs/getting-started">
-          {"Phenomic compiles your website to make it as fast as possible"}
+          {"Build your website and make it as fast as possible"}
         </Link.TouchableOpacity>
       </Text>
       <Spacer />
       <View style={styles.row}>
         <View style={styles.box}>
           <FeatureBlock
-            start="#3023AE"
-            end="#C96DD8"
+            start="#4F3CF5"
+            end="#5896F8"
             title={"Write once, read everywhere"}
             description={
-              "No server runtime, no database, your pages are generated before"
+              "No server runtime, no database. Your pages are generated before users access your website."
             }
           />
         </View>
         <Spacer large />
         <View style={styles.box}>
           <FeatureBlock
-            start="#4100FE"
-            end="#3BD9F0"
+            start="#4657F6"
+            end="#5BC1FA"
             title={"Documents built as an app"}
             description={
-              "Once a user has loaded their entry point, they only download the minimal set of data to get to the next page"
+              "Once a user loaded their first page, they only download the minimal data for next pages."
             }
           />
         </View>
         <Spacer large />
         <View style={styles.box}>
           <FeatureBlock
-            start="#AE8023"
-            end="#FFF506"
+            start="#59ADF9"
+            end="#66DAF2"
             title={"Offline capabilities"}
             description={
-              "Phenomic conceptually separates your shell from your data. You can create an offline-first experience"
+              "Phenomic conceptually separates your shell from your data. You can create an offline-first experience."
             }
           />
         </View>
@@ -77,39 +109,45 @@ const Home = () => (
       <Spacer />
       <Text style={styles.subtitle}>
         <Link.TouchableOpacity href="/docs/getting-started">
-          {"Developers experience matters"}
+          {"Get the best developer experience"}
         </Link.TouchableOpacity>
       </Text>
       <Spacer />
       <View style={styles.row}>
         <View style={styles.box}>
           <FeatureBlock
-            start="#B4ED50"
-            end="#429321"
+            start="#3E73DF"
+            end="#4EA4C6"
             title={"Small API surface"}
-            description={"Phenomic has a very simple core."}
+            description={
+              "Phenomic has a very simple core that fit on a screen."
+            }
           />
         </View>
 
         <Spacer large />
         <View style={styles.box}>
           <FeatureBlock
-            start="#03689F"
-            end="#51F5F2"
+            start="#4998CD"
+            end="#78D5B3"
             title={"Extensible"}
-            description={
-              "You can write your own plugins to bring any feature, really!"
-            }
+            description={"You can write plugins to bring any feature you want."}
           />
         </View>
         <Spacer large />
         <View style={styles.box}>
           <FeatureBlock
-            start="#9F031B"
-            end="#F5515F"
+            start="#55B9BC"
+            end="#C2F4AE"
             title={"Hot reload"}
             description={
-              "Your shell and your data can both refresh on the fly. No more ⌘ + R!"
+              <React.Fragment>
+                <Text>
+                  {"Your shell and your data can both refresh on the fly."}
+                </Text>
+                <br />
+                <Text style={styles.strong}>{"No more ⌘ + R!"}</Text>
+              </React.Fragment>
             }
           />
         </View>
@@ -121,11 +159,28 @@ const Home = () => (
 );
 
 const styles = StyleSheet.create({
-  top: {
-    paddingBottom: 200
+  heroContainer: {},
+  heroGradient: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: "hidden",
+    top: -100,
+    zIndex: 0,
+    transform: "rotate(-6deg) scale(1.2)"
+  },
+  hero: {
+    paddingTop: 40,
+    paddingBottom: 400
+  },
+  heroSubtitleText: {
+    fontSize: 22,
+    fontWeight: "300",
+    paddingVertical: 20,
+    color: "#fff",
+    textAlign: "center",
+    opacity: 0.6
   },
   gettingStarted: {
-    marginTop: -160
+    marginTop: -300
   },
   row: {
     flexDirection: "row",
@@ -133,17 +188,21 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   box: {
-    width: 272,
-    flexShrink: 1,
+    width: 300,
     minWidth: 240,
+    flexShrink: 1,
     paddingTop: 10,
     paddingBottom: 10
   },
   subtitle: {
-    color: "#6B6B6B",
-    fontSize: 36,
+    color: "#9DA9B9",
+    fontSize: 48,
+    fontWeight: "300",
     textAlign: "center",
-    padding: 60
+    padding: 80
+  },
+  strong: {
+    fontWeight: "800"
   }
 });
 

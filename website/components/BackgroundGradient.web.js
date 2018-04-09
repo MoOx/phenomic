@@ -24,6 +24,7 @@ const BackgroundGradient = (props: PropsType) => (
 
 const styles = StyleSheet.create({
   container: {
+    position: "relative",
     display: "flex",
     flexDirection: "column"
   }

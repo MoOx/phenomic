@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="578px" height="218px" viewBox="0 0 578 218" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="216" height="216"></rect>
+        <filter x="-0.5%" y="-0.5%" width="100.9%" height="101.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="SourceAlpha" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.02 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <path d="M128.128,197 L103.702,197 L91.666,174.108 L75.618,174.108 L75.618,197 L54.024,197 L54.024,114.282 L91.194,114.282 C113.142,114.282 125.65,124.902 125.65,143.31 C125.65,155.818 120.458,165.022 110.9,169.978 L128.128,197 Z M75.618,131.51 L75.618,156.88 L91.312,156.88 C100.044,156.88 105.118,152.396 105.118,144.018 C105.118,135.876 100.044,131.51 91.312,131.51 L75.618,131.51 Z M139.456,114.282 L204.71,114.282 L204.71,131.51 L161.05,131.51 L161.05,146.968 L200.462,146.968 L200.462,164.078 L161.05,164.196 L161.05,179.772 L205.89,179.772 L205.89,197 L139.456,197 L139.456,114.282 Z" id="path-3"></path>
+        <filter x="-0.7%" y="-1.2%" width="101.3%" height="102.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.02 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Path">
+            <g id="Rectangle-1">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#DD4B39" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <rect stroke="#D74837" stroke-width="1" x="0.5" y="0.5" width="215" height="215"></rect>
+            </g>
+            <path d="M288.086,197 L282.422,182.368 L246.668,182.368 L240.886,197 L218.702,197 L254.22,114.282 L276.404,114.282 L311.096,197 L288.086,197 Z M253.158,165.848 L276.05,165.848 L264.722,136.348 L253.158,165.848 Z M379.17,139.77 C370.438,134.814 359.346,130.92 352.502,130.92 C347.31,130.92 343.888,132.808 343.888,136.584 C343.888,150.272 387.43,142.484 387.43,172.22 C387.43,189.094 372.562,197.708 354.154,197.708 C340.348,197.708 325.952,192.634 316.04,184.492 L324.418,167.618 C332.914,174.934 345.776,180.126 354.39,180.126 C360.762,180.126 364.774,177.766 364.774,173.4 C364.774,159.358 321.232,167.854 321.232,138.59 C321.232,123.132 334.33,113.338 354.272,113.338 C366.426,113.338 378.698,117.114 387.312,122.66 L379.17,139.77 Z M441.816,113.692 C467.422,113.692 486.538,131.628 486.538,155.582 C486.538,179.772 467.422,197.944 441.816,197.944 C416.21,197.944 397.094,179.772 397.094,155.582 C397.094,131.51 416.21,113.692 441.816,113.692 Z M442.052,132.1 C429.662,132.1 419.278,142.248 419.278,155.7 C419.278,169.152 429.78,179.536 442.052,179.536 C454.442,179.536 464.354,169.152 464.354,155.7 C464.354,142.248 454.442,132.1 442.052,132.1 Z M501.276,114.282 L520.274,114.282 L557.798,164.078 L557.798,114.282 L577.858,114.282 L577.858,197 L558.978,197 L521.454,147.44 L521.454,197 L501.276,197 L501.276,114.282 Z" id="[]ASON" fill="#333333"></path>
+            <g id="[RE]ASON">
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>
