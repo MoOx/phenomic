@@ -22,19 +22,21 @@ const Home = () => (
         start="#006BF6"
         end="#10E951"
       >
-        <img
-          src="/assets/phenomic-logo-white.svg"
-          height={Math.max(window.innerWidth, window.innerHeight) * 0.75}
-          /* eslint-disable react-native/no-inline-styles */
-          style={{
-            opacity: 0.06,
-            position: "absolute",
-            top: window.innerHeight * 0.2,
-            right: window.innerWidth * 0.1,
-            transform: "rotate(6deg)"
-          }}
-          /* eslint-enable react-native/no-inline-styles */
-        />
+        {global.window && (
+          <img
+            src="/assets/phenomic-logo-white.svg"
+            height={Math.max(window.innerWidth, window.innerHeight) * 0.75}
+            /* eslint-disable react-native/no-inline-styles */
+            style={{
+              opacity: 0.06,
+              position: "absolute",
+              top: window.innerHeight * 0.2,
+              right: window.innerWidth * 0.1,
+              transform: "rotate(6deg)"
+            }}
+            /* eslint-enable react-native/no-inline-styles */
+          />
+        )}
       </BackgroundGradient>
       <Head>
         <title>
