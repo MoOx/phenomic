@@ -1,4 +1,14 @@
 import * as React from "react";
+import TopBarProgressIndicator from "react-topbar-progress-indicator";
+
+TopBarProgressIndicator.config({
+  barThickness: 4,
+  barColors: {
+    "0": "#fff",
+    "1.0": "#fff"
+  },
+  shadowBlur: 5
+});
 
 const devicePixelRatio =
   typeof window === "undefined" ? 1 : window.devicePixelRatio || 1;
@@ -65,18 +75,21 @@ class ActivityIndicator extends React.Component<Props> {
   render() {
     const actualSize = this.props.size * devicePixelRatio;
     return (
-      <canvas
-        width={actualSize}
-        height={actualSize}
-        /* eslint-disable react-native/no-inline-styles */
-        style={{
-          width: this.props.size,
-          height: this.props.size,
-          alignSelf: "center",
-          margin: "10px 0"
-        }}
-        ref={this.setCanvasRef}
-      />
+      <React.Fragment>
+        <TopBarProgressIndicator />
+        <canvas
+          width={actualSize}
+          height={actualSize}
+          /* eslint-disable react-native/no-inline-styles */
+          style={{
+            width: this.props.size,
+            height: this.props.size,
+            alignSelf: "center",
+            margin: "10px 0"
+          }}
+          ref={this.setCanvasRef}
+        />
+      </React.Fragment>
     );
   }
 }
