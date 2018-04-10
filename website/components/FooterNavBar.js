@@ -7,58 +7,55 @@ import Spacer from "./Spacer";
 const HeaderNavBar = () => (
   <View style={styles.header}>
     <View style={styles.row}>
-      <Link.TouchableOpacity href="/" style={styles.text}>
+      <Link.Touchable href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
-      </Link.TouchableOpacity>
+      </Link.Touchable>
       <Spacer small />
     </View>
     <View style={styles.nav}>
-      <Link.TouchableOpacity
+      <Link.Touchable
         href="/docs/getting-started"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Getting started"}</Text>
-      </Link.TouchableOpacity>
-      <Link.TouchableOpacity
+      </Link.Touchable>
+      <Link.Touchable
         href="/blog"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Blog"}</Text>
-      </Link.TouchableOpacity>
-      <Link.TouchableOpacity
+      </Link.Touchable>
+      <Link.Touchable
         href="/showcase"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
-      </Link.TouchableOpacity>
+      </Link.Touchable>
       <Text>{" | "}</Text>
-      <Link.TouchableOpacity
+      <Link.Touchable
         href="https://github.com/phenomic/phenomic"
         style={styles.link}
       >
         <Text style={styles.linkText}>{"GitHub"}</Text>
-      </Link.TouchableOpacity>
-      <Link.TouchableOpacity
+      </Link.Touchable>
+      <Link.Touchable
         href="https://twitter.com/Phenomic_app"
         style={styles.link}
       >
         <Text style={styles.linkText}>{"Twitter"}</Text>
-      </Link.TouchableOpacity>
-      <Link.TouchableOpacity
-        href="https://spectrum.chat/phenomic"
-        style={styles.link}
-      >
+      </Link.Touchable>
+      <Link.Touchable href="https://spectrum.chat/phenomic" style={styles.link}>
         <Text style={styles.linkText}>{"Community"}</Text>
-      </Link.TouchableOpacity>
-      <Link.TouchableOpacity
+      </Link.Touchable>
+      <Link.Touchable
         href="https://gitter.im/MoOx/phenomic"
         style={styles.link}
       >
         <Text style={styles.linkText}>{"Chat"}</Text>
-      </Link.TouchableOpacity>
+      </Link.Touchable>
     </View>
   </View>
 );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, TouchableOpacity } from "react-native-web";
+import { StyleSheet, Text, TouchableOpacity } from "react-native-web";
 // eslint-disable-next-line
 import PropTypes from "prop-types";
 
@@ -8,6 +8,8 @@ import {
   isActive,
   handleEvent
 } from "@phenomic/plugin-renderer-react/lib/components/Link.js";
+
+import Stylable from "./react-stylable";
 
 const BASENAME = process.env.PHENOMIC_APP_BASENAME || "/";
 
@@ -57,11 +59,29 @@ Link.Block.defaultProps = {
   BlockComponent: TouchableOpacity
 };
 
-Link.TouchableOpacity = (props: PropsType) => (
-  <TouchableOpacity accessible={false}>
+Link.Touchable = (props: PropsType) => (
+  <Stylable
+    accessible={false}
+    style={[styles.touchable, props.style]}
+    hoveredOrFocusedStyle={styles.hoveredOrFocused}
+    touchedStyle={styles.touchabled}
+  >
     <Link {...props} />
-  </TouchableOpacity>
+  </Stylable>
 );
 /* eslint-enable */
 
 export default Link;
+
+const styles = StyleSheet.create({
+  touchable: {
+    transitionDuration: "0.1s",
+    transitionProperty: "opacity"
+  },
+  hoveredOrFocused: {
+    opacity: 0.8
+  },
+  touchabled: {
+    opacity: 0.6
+  }
+});

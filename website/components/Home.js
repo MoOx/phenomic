@@ -60,9 +60,9 @@ const Home = () => (
       <Spacer />
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.TouchableOpacity href="/docs/getting-started">
+        <Link.Touchable href="/docs/getting-started">
           {"Build your website and make it as fast as possible"}
-        </Link.TouchableOpacity>
+        </Link.Touchable>
       </Text>
       <Spacer />
       <View style={styles.row}>
@@ -101,16 +101,16 @@ const Home = () => (
       </View>
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.TouchableOpacity href="/docs/getting-started">
+        <Link.Touchable href="/docs/getting-started">
           {"Get running in seconds"}
-        </Link.TouchableOpacity>
+        </Link.Touchable>
       </Text>
       <CodeExample />
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.TouchableOpacity href="/docs/getting-started">
+        <Link.Touchable href="/docs/getting-started">
           {"Get the best developer experience"}
-        </Link.TouchableOpacity>
+        </Link.Touchable>
       </Text>
       <Spacer />
       <View style={styles.row}>

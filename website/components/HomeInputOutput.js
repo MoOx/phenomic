@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   shadow: {
-    filter: "drop-shadow(0 4px 10px rgba(0,0,0,.4))"
+    // filter: "drop-shadow(0 4px 10px rgba(0,0,0,.4))"
   }
 });
 
