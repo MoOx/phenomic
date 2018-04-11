@@ -25,7 +25,8 @@ body {
 
 .phenomic-Markdown {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.65;
+  color: #525f7f;
 }
 
 .phenomic-Markdown h1,
@@ -35,6 +36,7 @@ body {
 .phenomic-Markdown h5,
 .phenomic-Markdown h6 {
   position: relative;
+  color: #32325d;
 }
 
 .phenomic-Markdown .phenomic-HeadingAnchor {
