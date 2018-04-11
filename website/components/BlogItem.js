@@ -20,19 +20,21 @@ const BlogItem = (props: Object) => {
     <Flex>
       <Header title={props.news && props.news.node && props.news.node.title} />
       <BodySmallContainer>
-        {props.isLoading && <ActivityIndicator />}
-        {!props.isLoading && (
-          <View style={styles.body}>
-            <Text style={styles.date}>
-              {new Date(props.news.node.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })}
-            </Text>
-            <MarkdownGenerated body={props.news.node.body} />
-          </View>
-        )}
+        <Spacer large>
+          {props.isLoading && <ActivityIndicator />}
+          {!props.isLoading && (
+            <View style={styles.body}>
+              <Text style={styles.date}>
+                {new Date(props.news.node.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                })}
+              </Text>
+              <MarkdownGenerated body={props.news.node.body} />
+            </View>
+          )}
+        </Spacer>
       </BodySmallContainer>
       <Spacer large />
       <Footer />
