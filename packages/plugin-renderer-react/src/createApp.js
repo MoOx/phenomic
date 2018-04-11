@@ -16,7 +16,11 @@ const render =
 
 let store;
 
-export const renderApp = (routes: () => React.Element<any>) => {
+export const renderApp = (
+  routes: () => React.Element<any>,
+  render: Function = render,
+  callback?: () => void
+) => {
   debug("client rendering");
 
   const initialStateNode = document.getElementById("PhenomicHydration");
@@ -42,13 +46,18 @@ export const renderApp = (routes: () => React.Element<any>) => {
     <AppContainer>
       <Provider store={store}>{routes()}</Provider>
     </AppContainer>,
-    root
+    root,
+    callback
   );
 };
 
-export default (routes: () => React.Element<any>): PhenomicAppType => {
+export default (
+  routes: () => React.Element<any>,
+  render?: Function,
+  callback?: () => void
+): PhenomicAppType => {
   if (typeof window !== "undefined") {
-    renderApp(routes);
+    renderApp(routes, render, callback);
   }
   return {
     routes: routes()
