@@ -58,7 +58,16 @@ const GettingStarted = () => (
     <Header title={"Getting started with Phenomic"} />
     <BodyContainer style={styles.page}>
       <View style={styles.row}>
-        <Text>{"Start by choosing your ecosystem"}</Text>
+        <Text
+          style={{
+            color: "#9DA9B9",
+            fontSize: 20,
+            fontWeight: "300",
+            textAlign: "center"
+          }}
+        >
+          {"Start by choosing your ecosystem"}
+        </Text>
       </View>
       <View style={styles.logos}>
         {items.map((item, i) => (
@@ -75,13 +84,13 @@ const GettingStarted = () => (
           </Link.Block>
         ))}
       </View>
-      <View style={styles.row}>
+      <Spacer large style={styles.row}>
         <Text style={styles.notice}>
           {
             "⚠️ Lots of plugins are to be done. Want to help us? Click on a blurry logo!"
           }
         </Text>
-      </View>
+      </Spacer>
     </BodyContainer>
     <Spacer large />
     <Footer />
@@ -109,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   logoWrapper: {
-    width: "33%"
+    minWidth: "33%"
   },
   logo: {
     borderBottomWidth: 1,
