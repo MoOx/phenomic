@@ -6,15 +6,19 @@ import Flex from "./Flex";
 import Browser from "./Browser";
 import Spacer from "./Spacer";
 
+const logoWidth = 64;
+
 const InputOutput = () => (
-  <View style={styles.row}>
-    <Flex style={{ width: 250 }}>
+  <Spacer style={styles.row}>
+    <Flex style={{ minWidth: 250, maxWidth: 600 }}>
       <Text
         style={{
           color: "#fff",
           textAlign: "center",
           padding: 20,
-          fontSize: 16
+          fontSize: 16,
+          textShadowColor: "#218aff",
+          textShadowRadius: 2
         }}
       >
         {"Choose your favorite technologies"}
@@ -23,16 +27,16 @@ const InputOutput = () => (
         style={[
           {
             backgroundColor: "#12171C",
-            padding: Spacer.default,
-            borderRadius: 6
+            paddingVertical: Spacer.small,
+            borderRadius: 6,
+            flex: 1
           },
           styles.shadow
         ]}
       >
-        <View style={{ flexDirection: "row" }}>
-          <View
+        <Spacer horizontal style={{ flexDirection: "row" }}>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -40,12 +44,10 @@ const InputOutput = () => (
               backgroundColor: "#f7df1e"
             }}
           >
-            <img src="/assets/javascript.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/javascript.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -53,12 +55,10 @@ const InputOutput = () => (
               backgroundColor: "#fff"
             }}
           >
-            <img src="/assets/babel.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/babel.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -66,14 +66,12 @@ const InputOutput = () => (
               backgroundColor: "#DD4B39"
             }}
           >
-            <img src="/assets/reason-square.svg" width="64" />
-          </View>
-        </View>
-        <Spacer />
-        <View style={{ flexDirection: "row" }}>
-          <View
+            <img src="/assets/reason-square.svg" width={logoWidth} />
+          </Spacer>
+        </Spacer>
+        <Spacer horizontal style={{ flexDirection: "row" }}>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -81,12 +79,10 @@ const InputOutput = () => (
               backgroundColor: "#fff"
             }}
           >
-            <img src="/assets/preact.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/preact.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -94,12 +90,10 @@ const InputOutput = () => (
               backgroundColor: "#292C33"
             }}
           >
-            <img src="/assets/react.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/react.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -107,14 +101,12 @@ const InputOutput = () => (
               backgroundColor: "#fff"
             }}
           >
-            <img src="/assets/vue.svg" width="64" />
-          </View>
-        </View>
-        <Spacer />
-        <View style={{ flexDirection: "row" }}>
-          <View
+            <img src="/assets/vue.svg" width={logoWidth} />
+          </Spacer>
+        </Spacer>
+        <Spacer horizontal style={{ flexDirection: "row" }}>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -122,12 +114,10 @@ const InputOutput = () => (
               backgroundColor: "#3F464E"
             }}
           >
-            <img src="/assets/graphql.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/graphql.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -135,12 +125,10 @@ const InputOutput = () => (
               backgroundColor: "#fff"
             }}
           >
-            <img src="/assets/markdown.svg" width="64" />
-          </View>
-          <Spacer />
-          <View
+            <img src="/assets/markdown.svg" width={logoWidth} />
+          </Spacer>
+          <Spacer
             style={{
-              padding: 15,
               borderRadius: 6,
               justifyContent: "center",
               alignItems: "center",
@@ -148,18 +136,22 @@ const InputOutput = () => (
               backgroundColor: "#1A62B2"
             }}
           >
-            <img src="/assets/webpack.svg" width="64" />
-          </View>
-        </View>
+            <img src="/assets/webpack.svg" width={logoWidth} />
+          </Spacer>
+        </Spacer>
       </View>
     </Flex>
-    <Flex style={{ justifyContent: "center", alignItems: "center" }}>
+    <Flex
+      style={{ justifyContent: "center", alignItems: "center", minWidth: 150 }}
+    >
       <Text
         style={{
           color: "#fff",
           textAlign: "center",
           padding: 20,
-          fontSize: 16
+          fontSize: 16,
+          textShadowColor: "#218aff",
+          textShadowRadius: 2
         }}
       >
         {"Build your app"}
@@ -190,13 +182,21 @@ const InputOutput = () => (
         </svg>
       </View>
     </Flex>
-    <Flex style={{ width: 250 }}>
+    <Flex
+      style={{
+        minWidth: 250,
+        maxWidth: 600,
+        minHeight: 400
+      }}
+    >
       <Text
         style={{
           color: "#fff",
           textAlign: "center",
           padding: 20,
-          fontSize: 16
+          fontSize: 16,
+          textShadowColor: "#218aff",
+          textShadowRadius: 2
         }}
       >
         {"Get a website"}
@@ -213,43 +213,64 @@ const InputOutput = () => (
         >
           {"Fastest website ever"}
         </Text>
-        <View style={{ padding: 20, flexGrow: 1 }}>
-          <View style={{ flexDirection: "row", flexGrow: 1 }}>
-            <View style={{ flexGrow: 1, backgroundColor: "#e8e8e8" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#e8e8e8" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#e8e8e8" }} />
-          </View>
-          <Spacer small />
-          <View style={{ flexDirection: "row", flexGrow: 1 }}>
-            <View style={{ flexGrow: 1, backgroundColor: "#f0f0f0" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#f0f0f0" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#f0f0f0" }} />
-          </View>
-          <Spacer small />
-          <View style={{ flexDirection: "row", flexGrow: 1 }}>
-            <View style={{ flexGrow: 1, backgroundColor: "#f8f8f8" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#f8f8f8" }} />
-            <Spacer />
-            <View style={{ flexGrow: 1, backgroundColor: "#f8f8f8" }} />
-          </View>
-        </View>
+        <Spacer largeVertical>
+          <Spacer horizontal style={{ flexDirection: "row" }}>
+            <Spacer
+              small
+              style={{ backgroundColor: "#e8e8e8", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#e8e8e8", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#e8e8e8", width: logoWidth }}
+            />
+          </Spacer>
+          <Spacer horizontal style={{ flexDirection: "row" }}>
+            <Spacer
+              small
+              style={{ backgroundColor: "#f0f0f0", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#f0f0f0", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#f0f0f0", width: logoWidth }}
+            />
+          </Spacer>
+          <Spacer horizontal style={{ flexDirection: "row" }}>
+            <Spacer
+              small
+              style={{ backgroundColor: "#f8f8f8", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#f8f8f8", width: logoWidth }}
+            />
+            <Spacer
+              small
+              style={{ backgroundColor: "#f8f8f8", width: logoWidth }}
+            />
+          </Spacer>
+        </Spacer>
       </Browser>
     </Flex>
-  </View>
+  </Spacer>
 );
 
 const styles = StyleSheet.create({
   row: {
     flexGrow: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
   shadow: {
-    // filter: "drop-shadow(0 4px 10px rgba(0,0,0,.4))"
+    borderRadius: 6,
+    boxShadow: "0 4px 10px rgba(0,0,0,.25)"
   }
 });
 

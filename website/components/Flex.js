@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 
 const Flex = (props: Object) => (
-  <View style={[props.style, styles.flex]}>{props.children}</View>
+  <View style={[styles.flex, props.style]}>{props.children}</View>
 );
 
 const styles = StyleSheet.create({

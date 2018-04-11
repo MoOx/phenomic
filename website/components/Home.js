@@ -31,7 +31,7 @@ const Home = () => (
               position: "absolute",
               top: window.innerHeight * 0.2,
               right: window.innerWidth * 0.1,
-              transform: "rotate(6deg)"
+              transform: [{ rotate: "6deg" }]
             }}
           />
         )}
@@ -44,7 +44,14 @@ const Home = () => (
       <HeaderNavBar />
       <BodyContainer style={styles.hero}>
         {/* @todo h1 or shit */}
-        <img src="/assets/phenomic-text.svg" height={72} />
+        <View style={styles.row}>
+          <Spacer large>
+            <img
+              src="/assets/phenomic-text.svg"
+              style={{ maxHeight: "72px" }}
+            />
+          </Spacer>
+        </View>
         <Text style={styles.heroSubtitleText}>
           {"Meet the modular website compiler"}
         </Text>
@@ -65,8 +72,8 @@ const Home = () => (
         </Link.Touchable>
       </Text>
       <Spacer />
-      <View style={styles.row}>
-        <View style={styles.box}>
+      <View style={[styles.row, { maxWidth: 900, marginHorizontal: "auto" }]}>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#4F3CF5"
             end="#5896F8"
@@ -75,9 +82,8 @@ const Home = () => (
               "No server runtime, no database. Your pages are generated before users access your website."
             }
           />
-        </View>
-        <Spacer large />
-        <View style={styles.box}>
+        </Spacer>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#4657F6"
             end="#5BC1FA"
@@ -86,9 +92,8 @@ const Home = () => (
               "Once a user loaded their first page, they only download the minimal data for next pages."
             }
           />
-        </View>
-        <Spacer large />
-        <View style={styles.box}>
+        </Spacer>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#59ADF9"
             end="#66DAF2"
@@ -97,7 +102,7 @@ const Home = () => (
               "Phenomic conceptually separates your shell from your data. You can create an offline-first experience."
             }
           />
-        </View>
+        </Spacer>
       </View>
       <Spacer />
       <Text style={styles.subtitle}>
@@ -113,8 +118,8 @@ const Home = () => (
         </Link.Touchable>
       </Text>
       <Spacer />
-      <View style={styles.row}>
-        <View style={styles.box}>
+      <View style={[styles.row, { maxWidth: 900, marginHorizontal: "auto" }]}>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#3E73DF"
             end="#4EA4C6"
@@ -123,19 +128,16 @@ const Home = () => (
               "Phenomic has a very simple core that fit on a screen."
             }
           />
-        </View>
-
-        <Spacer large />
-        <View style={styles.box}>
+        </Spacer>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#4998CD"
             end="#78D5B3"
             title={"Extensible"}
             description={"You can write plugins to bring any feature you want."}
           />
-        </View>
-        <Spacer large />
-        <View style={styles.box}>
+        </Spacer>
+        <Spacer style={styles.box}>
           <FeatureBlock
             start="#55B9BC"
             end="#C2F4AE"
@@ -150,7 +152,7 @@ const Home = () => (
               </React.Fragment>
             }
           />
-        </View>
+        </Spacer>
       </View>
     </BodyContainer>
     <Spacer large />
@@ -165,7 +167,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     top: -100,
     zIndex: 0,
-    transform: "rotate(-6deg) scale(1.2)"
+    minWidth: "120vh",
+    maxWidth: "120%",
+    transform: [{ rotate: "-6deg" }, { scale: 1.2 }]
   },
   hero: {
     paddingTop: 40,
@@ -188,18 +192,17 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   box: {
-    width: 300,
+    maxWidth: 400,
     minWidth: 240,
-    flexShrink: 1,
-    paddingTop: 10,
-    paddingBottom: 10
+    flexShrink: 1
   },
   subtitle: {
     color: "#9DA9B9",
     fontSize: 48,
     fontWeight: "300",
     textAlign: "center",
-    padding: 80
+    paddingHorizontal: Spacer.normal,
+    paddingVertical: Spacer.large * 2
   },
   strong: {
     fontWeight: "800"

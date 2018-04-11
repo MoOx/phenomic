@@ -5,9 +5,9 @@ import Editor from "./Editor";
 import Spacer from "./Spacer";
 
 const CodeExample = () => (
-  <View>
+  <View style={{ flexGrow: 1, flexShrink: 1 }}>
     <View style={styles.row}>
-      <View style={styles.item}>
+      <Spacer style={styles.item}>
         <View style={styles.itemHeader}>
           <View style={styles.number}>
             <Text style={styles.numberText}>{"1"}</Text>
@@ -27,9 +27,8 @@ title: Helloworld!
 ## Welcome!
 
 This is an article`}</Editor>
-      </View>
-      <Spacer />
-      <View style={styles.item}>
+      </Spacer>
+      <Spacer style={styles.item}>
         <View style={styles.itemHeader}>
           <View style={styles.number}>
             <Text style={styles.numberText}>{"2"}</Text>
@@ -50,9 +49,8 @@ This is an article`}</Editor>
     body={props.body}
   />
 </div>`}</Editor>
-      </View>
-      <Spacer />
-      <View style={styles.item}>
+      </Spacer>
+      <Spacer style={styles.item}>
         <View style={styles.itemHeader}>
           <View style={styles.number}>
             <Text style={styles.numberText}>{"3"}</Text>
@@ -71,18 +69,21 @@ This is an article`}</Editor>
 ✔ Building client app
 Done!
 $ # Deploy`}</Editor>
-      </View>
+      </Spacer>
     </View>
   </View>
 );
 
 const styles = StyleSheet.create({
   row: {
-    flexGrow: 1,
-    flexDirection: "row"
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
   item: {
-    flexGrow: 1
+    flexGrow: 1,
+    flexShrink: 1,
+    minWidth: 250
   },
   itemHeader: {
     flexDirection: "row",
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
   number: {
     backgroundColor: "#7a8ca3",
     borderRadius: "50%",
-    width: 40
+    width: 40,
+    height: 40
   },
   numberText: {
     color: "#fff",
@@ -101,6 +103,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   itemLabel: {
+    flexShrink: 1,
     paddingLeft: 10
   },
   itemTitle: {
@@ -108,7 +111,6 @@ const styles = StyleSheet.create({
     color: "#7a8ca3"
   },
   itemSubTitle: {
-    fontSize: 14,
     fontWeight: "200",
     color: "#6f84a1"
   }
