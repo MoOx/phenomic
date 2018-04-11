@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 import Head from "react-helmet";
 
+import Spacer from "./Spacer";
 import BodyContainer from "./BodyContainer";
 import BackgroundGradient from "./BackgroundGradient";
 import HeaderNavBar from "./HeaderNavBar";
@@ -18,7 +19,9 @@ const Header = (props: Object) => (
         <title>{props.headTitle || props.title}</title>
       </Head>
       {/* @todo h1 or shit */}
-      <Text style={styles.heroText}>{props.title}</Text>
+      <Spacer large>
+        <Text style={styles.heroText}>{props.title}</Text>
+      </Spacer>
       {props.children && <View style={styles.children}>{props.children}</View>}
     </BodyContainer>
   </BackgroundGradient>
