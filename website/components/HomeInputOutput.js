@@ -17,6 +17,7 @@ const InputOutput = () => (
           textAlign: "center",
           padding: 20,
           fontSize: 16,
+          fontWeight: "700",
           textShadowColor: "#218aff",
           textShadowRadius: 2
         }}
@@ -150,6 +151,7 @@ const InputOutput = () => (
           textAlign: "center",
           padding: 20,
           fontSize: 16,
+          fontWeight: "200",
           textShadowColor: "#218aff",
           textShadowRadius: 2
         }}
@@ -195,11 +197,12 @@ const InputOutput = () => (
           textAlign: "center",
           padding: 20,
           fontSize: 16,
+          fontWeight: "700",
           textShadowColor: "#218aff",
           textShadowRadius: 2
         }}
       >
-        {"Get a website"}
+        {"Get a super fast, static website"}
       </Text>
       <Browser style={styles.shadow}>
         <Text
