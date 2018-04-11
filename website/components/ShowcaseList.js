@@ -210,6 +210,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap"
   },
   item: {
+    flexGrow: 1,
+    minWidth: 250,
     position: "relative",
     width: "50%",
     padding: 20
