@@ -125,7 +125,7 @@ const Home = () => (
             end="#4EA4C6"
             title={"Small API surface"}
             description={
-              "Phenomic has a very simple core that fit on a screen."
+              "Phenomic has a very simple core that fits on a screen."
             }
           />
         </Spacer>
