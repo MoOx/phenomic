@@ -17,6 +17,12 @@ html {
   min-height: 100%;
 }
 
+/* workaround react-native-web absolute positining
+ which creates lags when scrolling */
+#PhenomicRoot > div {
+  position: relative !important;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
