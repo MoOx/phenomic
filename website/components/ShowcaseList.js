@@ -64,7 +64,7 @@ const ShowcaseList = (props: Object) => (
       {!props.isLoading && (
         <View>
           <Link href={"/showcase/submit/"} style={styles.addYourOwn}>
-            {"Submit your website!"}
+            {"+ Add your website"}
           </Link>
           {props.params &&
             props.params.showcaseTags && (
@@ -186,9 +186,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     top: -40,
-    fontSize: 14,
+    fontSize: 16,
     color: "#fff",
-    opacity: 0.6
+    textDecorationLine: "underline"
   },
   currentFilter: {
     padding: 10,
