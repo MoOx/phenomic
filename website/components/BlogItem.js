@@ -23,7 +23,7 @@ const BlogItem = (props: Object) => {
         <Spacer large>
           {props.isLoading && <ActivityIndicator />}
           {!props.isLoading && (
-            <View style={styles.body}>
+            <React.Fragment>
               <Text style={styles.date}>
                 {new Date(props.news.node.date).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -32,7 +32,7 @@ const BlogItem = (props: Object) => {
                 })}
               </Text>
               <MarkdownGenerated body={props.news.node.body} />
-            </View>
+            </React.Fragment>
           )}
         </Spacer>
       </BodySmallContainer>
@@ -43,10 +43,10 @@ const BlogItem = (props: Object) => {
 };
 
 const styles = StyleSheet.create({
-  body: {
-    paddingVertical: 24
-  },
   date: {
+    position: "absolute",
+    right: 0,
+    top: 0,
     color: "rgba(0, 0, 0, 0.25)",
     fontSize: 14,
     textAlign: "right"

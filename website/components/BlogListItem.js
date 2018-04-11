@@ -10,8 +10,8 @@ const BlogListItem = props => (
     blockProps={{ style: styles.block }}
   >
     <View style={styles.wrapper}>
-      <View style={styles.title}>
-        <Text>{props.news.title}</Text>
+      <View>
+        <Text style={styles.title}>{props.news.title}</Text>
       </View>
       <Text style={styles.date}>
         {new Date(props.news.date).toLocaleDateString("en-US", {
