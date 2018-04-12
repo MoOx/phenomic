@@ -45,11 +45,11 @@ it("should have api files", () => {
     files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length
   ).toBeGreaterThan(0);
   expect(
-    files.includes("phenomic/blog/by-default/1/desc/limit-10.json")
+    files.includes("phenomic/blog/by-default/1/desc/limit-12.json")
   ).toBeTruthy();
   expect(
     files.includes(
-      "phenomic/blog/by-default/1/desc/limit-10/after-MjAxNy8wNi9pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/blog/by-default/1/desc/limit-12/after-MjAxNy0wNi0wMi1pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
     )
   ).toBeTruthy();
   expect(
