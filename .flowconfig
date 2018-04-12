@@ -35,3 +35,6 @@ module.file_ext=.json
 module.name_mapper='^@phenomic\/\([a-z0-9-]+\)\/lib\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
 module.name_mapper='^@phenomic\/\([a-z0-9-]+\)\/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/\2'
 module.name_mapper='^@phenomic\/\([a-z0-9-]+\)$' -> '<PROJECT_ROOT>/packages/\1/src'
+
+# fixup some node_modules to get proper flow types
+module.name_mapper='^react-native-web$' -> 'react-native-web/src'
