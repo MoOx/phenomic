@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "flowtype/require-valid-file-annotation": 0,
+    "flowtype/require-exact-type": 0,
+    "flowtype/no-mutable-array": 0
+  }
+}

@@ -99,7 +99,15 @@
         {
           "max": 20
         }
-      ]
+      ],
+      "flowtype/require-valid-file-annotation": [
+        2,
+        "always",
+        {
+          "annotationStyle": "line"
+        }
+      ],
+      "flowtype/no-dupe-keys": 0
     },
     "settings": {
       "import/resolver": {
