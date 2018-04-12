@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 import { View, StyleSheet, Text } from "react-native-web";

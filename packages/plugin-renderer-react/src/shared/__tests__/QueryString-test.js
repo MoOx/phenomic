@@ -1,3 +1,5 @@
+// @flow
+
 import { encode, decode } from "../QueryString";
 
 it("should encode query string", () => {

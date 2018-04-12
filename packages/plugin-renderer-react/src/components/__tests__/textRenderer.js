@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable react/no-multi-comp */
 
 import textRenderer from "../textRenderer";

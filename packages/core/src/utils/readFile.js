@@ -1,3 +1,5 @@
+// @flow
+
 import fs from "fs";
 
 const readFile = (path: string): Promise<Buffer> =>

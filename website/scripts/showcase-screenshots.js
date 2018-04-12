@@ -1,3 +1,5 @@
+// @flow
+
 import { resolve, join } from "path";
 import fs from "fs";
 

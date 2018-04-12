@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 

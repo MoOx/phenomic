@@ -1,3 +1,5 @@
+// @flow
+
 import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";
 import frontMatterParser from "gray-matter";

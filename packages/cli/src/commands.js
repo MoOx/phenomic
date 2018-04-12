@@ -1,3 +1,5 @@
+// @flow
+
 import yargs from "yargs";
 // @todo remove that and use project config
 import phenomic from "@phenomic/core";

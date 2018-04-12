@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { StyleSheet, createElement } from "react-native-web";
 

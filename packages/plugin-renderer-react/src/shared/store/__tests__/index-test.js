@@ -1,3 +1,5 @@
+// @flow
+
 import createStore from "..";
 
 describe("createStore", () => {

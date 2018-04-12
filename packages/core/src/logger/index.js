@@ -1,3 +1,5 @@
+// @flow
+
 import color from "chalk";
 import logSymbols from "log-symbols";
 

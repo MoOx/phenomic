@@ -1,3 +1,5 @@
+// @flow
+
 import urlJoin from "url-join";
 import { createRouteFromReactElement } from "react-router/lib/RouteUtils";
 

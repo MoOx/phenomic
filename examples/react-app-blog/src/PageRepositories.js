@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import jsonFetch from "simple-json-fetch";
 import { withInitialProps, Link } from "@phenomic/preset-react-app/lib/client";

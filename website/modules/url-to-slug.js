@@ -1,3 +1,5 @@
+// @flow
+
 export default url =>
   url
     .replace(/https?:\/\//, "")

@@ -1,3 +1,5 @@
+// @flow
+
 import query from "@phenomic/api-client/lib/query";
 
 import createApp, { renderApp } from "./createApp.js";

@@ -1,3 +1,5 @@
+// @flow
+
 import merge from "deep-assign";
 
 const glue = "$$";

@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable import/no-extraneous-dependencies */
 import globby from "globby";
 

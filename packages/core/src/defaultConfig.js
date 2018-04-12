@@ -1,3 +1,5 @@
+// @flow
+
 import normalizeBaseUrl from "./configuration/normalize-base-url.js";
 
 const defaultConfig: PhenomicConfig = {

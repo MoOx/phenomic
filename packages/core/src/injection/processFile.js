@@ -1,3 +1,5 @@
+// @flow
+
 import path from "path";
 
 import readFile from "../utils/readFile";

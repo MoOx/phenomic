@@ -1,3 +1,5 @@
+// @flow
+
 import db from "@phenomic/core/lib/db";
 import config from "@phenomic/core/lib/defaultConfig.js";
 

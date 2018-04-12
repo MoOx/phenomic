@@ -1,3 +1,5 @@
+// @flow
+
 import path from "path";
 
 import getClientEnvironment from "@phenomic/core/lib/configuration/get-client-environment.js";

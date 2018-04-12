@@ -1,3 +1,5 @@
+// @flow
+
 const debug = require("debug")("phenomic:plugin:transform-json");
 
 const transformJSON: PhenomicPluginModule<{}> = () => {

@@ -1,3 +1,5 @@
+// @flow
+
 import { flattenPresets } from "../flattenConfiguration";
 
 function a() {

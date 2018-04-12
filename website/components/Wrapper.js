@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 import Head from "react-helmet";

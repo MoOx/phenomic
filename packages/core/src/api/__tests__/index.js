@@ -1,3 +1,5 @@
+// @flow
+
 import request from "supertest";
 
 import db from "../../db";

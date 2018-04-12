@@ -1,3 +1,5 @@
+// @flow
+
 import express from "express";
 
 import pkg from "../../package.json";

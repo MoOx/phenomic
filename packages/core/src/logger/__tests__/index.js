@@ -1,3 +1,5 @@
+// @flow
+
 import logSymbols from "log-symbols";
 
 import logger from "..";

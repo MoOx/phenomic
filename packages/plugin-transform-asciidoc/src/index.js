@@ -1,3 +1,5 @@
+// @flow
+
 import asciidoctor from "asciidoctor.js";
 import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";

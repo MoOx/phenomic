@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { ServerStyleSheet } from "styled-components";
 

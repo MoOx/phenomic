@@ -1,3 +1,5 @@
+// @flow
+
 // @todo sitemap
 // import sm from "sitemap"
 

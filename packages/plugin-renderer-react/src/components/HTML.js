@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 
 const Html: PhenomicHtmlType = ({ App, render }: PhenomicHtmlPropsType) => {

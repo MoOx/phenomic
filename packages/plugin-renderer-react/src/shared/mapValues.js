@@ -1,3 +1,5 @@
+// @flow
+
 const mapValues = (object: Object, func: Function) => {
   return Object.keys(object).reduce(
     (acc, key) =>

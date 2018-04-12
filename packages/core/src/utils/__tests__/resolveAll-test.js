@@ -1,3 +1,5 @@
+// @flow
+
 import resolveAll from "../resolveAll";
 
 describe("resolveAll", () => {

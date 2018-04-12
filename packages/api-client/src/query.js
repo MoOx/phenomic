@@ -1,3 +1,5 @@
+// @flow
+
 const debug = require("debug")("phenomic:api-client");
 
 function removeUndefined<T: {}>(obj: T): T {

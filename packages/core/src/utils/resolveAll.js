@@ -1,3 +1,5 @@
+// @flow
+
 const resolveAll = (objectOfPromises: {
   [key: string]: any
 }): { [key: string]: any } => {

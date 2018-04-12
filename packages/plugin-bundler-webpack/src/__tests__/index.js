@@ -1,3 +1,5 @@
+// @flow
+
 import defaultConfig from "@phenomic/core/lib/defaultConfig.js";
 
 import validate from "../validate.js";

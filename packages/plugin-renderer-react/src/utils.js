@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 
 export function getDisplayName(Component: React.ComponentType<*>) {

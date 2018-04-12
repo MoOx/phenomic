@@ -17,7 +17,6 @@
 <PROJECT_ROOT>/examples/reason-react-app/.*
 
 [options]
-all=true
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
 # for Windows compat with json files

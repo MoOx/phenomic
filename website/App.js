@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { Router, Route, browserHistory } from "react-router";
 import { AppRegistry } from "react-native-web";

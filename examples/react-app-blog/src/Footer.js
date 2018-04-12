@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { Link } from "@phenomic/preset-react-app/lib/client";
 

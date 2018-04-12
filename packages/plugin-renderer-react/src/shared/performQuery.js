@@ -1,3 +1,5 @@
+// @flow
+
 import fetchRestApi from "@phenomic/api-client/lib/fetch";
 
 import { decode } from "./QueryString";

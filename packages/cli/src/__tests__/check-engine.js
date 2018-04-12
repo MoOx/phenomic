@@ -1,3 +1,5 @@
+// @flow
+
 // module.exports is used
 // eslint-disable-next-line import/default
 import checkEngine from "../check-engine";

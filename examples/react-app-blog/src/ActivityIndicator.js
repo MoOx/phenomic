@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import TopBarProgressIndicator from "react-topbar-progress-indicator";
 

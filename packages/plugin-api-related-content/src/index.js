@@ -1,3 +1,5 @@
+// @flow
+
 import flatten from "lodash.flatten";
 
 const debug = require("debug")("phenomic:plugin:api-related-content");

@@ -1,3 +1,5 @@
+// @flow
+
 export default {
   "showcaseTags/open-source.md": {
     data: {

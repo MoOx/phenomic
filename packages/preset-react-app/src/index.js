@@ -1,3 +1,5 @@
+// @flow
+
 import bundlerWebpack from "@phenomic/plugin-bundler-webpack";
 import rendererReact from "@phenomic/plugin-renderer-react";
 import collectorFiles from "@phenomic/plugin-collector-files";

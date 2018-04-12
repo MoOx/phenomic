@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { extractCritical } from "emotion-server";
 

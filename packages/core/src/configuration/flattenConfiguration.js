@@ -1,3 +1,5 @@
+// @flow
+
 import defaultConfig from "../defaultConfig.js";
 
 import normalizeBaseUrl from "./normalize-base-url.js";

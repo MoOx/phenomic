@@ -1,3 +1,5 @@
+// @flow
+
 const defaultOptions = {
   output: "html",
   // Below "html" means "something that looks like html"

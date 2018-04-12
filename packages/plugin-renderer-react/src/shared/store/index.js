@@ -1,3 +1,5 @@
+// @flow
+
 type StateType = Object;
 type SubscriberType = Function;
 

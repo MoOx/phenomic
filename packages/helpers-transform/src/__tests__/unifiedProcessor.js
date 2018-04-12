@@ -1,3 +1,5 @@
+// @flow
+
 import unifiedProcessor from "../unifiedProcessor.js";
 
 // ripped from plugin-transform-markdown

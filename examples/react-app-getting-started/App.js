@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import Head from "react-helmet";
 import { Router, Route, browserHistory, Link } from "react-router";

@@ -1,3 +1,5 @@
+// @flow
+
 import mapValues from "../mapValues";
 
 describe("mapValues", () => {

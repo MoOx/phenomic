@@ -1,3 +1,5 @@
+// @flow
+
 import config from "@phenomic/core/lib/defaultConfig.js";
 
 import transformJSON from "../index.js";

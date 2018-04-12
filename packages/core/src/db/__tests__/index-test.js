@@ -1,3 +1,5 @@
+// @flow
+
 import db from "..";
 
 describe("db", () => {

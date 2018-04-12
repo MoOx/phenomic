@@ -1,3 +1,5 @@
+// @flow
+
 import unified from "unified";
 import html from "rehype-stringify";
 import rehype2react from "rehype-react";

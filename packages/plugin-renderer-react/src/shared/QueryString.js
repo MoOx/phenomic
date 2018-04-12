@@ -1,3 +1,5 @@
+// @flow
+
 export function encode(object: Object) {
   return Object.keys(object)
     .filter(key => object[key] !== null && object[key] !== undefined)

@@ -1,3 +1,5 @@
+// @flow
+
 import normalizeBaseUrl from "../normalize-base-url.js";
 
 it("should normalize base url with a trailing slash", () => {

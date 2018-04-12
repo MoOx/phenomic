@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable import/first */
 jest.mock("@phenomic/api-client/lib/fetch", () => () =>
   Promise.resolve({

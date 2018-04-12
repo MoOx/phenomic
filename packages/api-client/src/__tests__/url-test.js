@@ -1,3 +1,5 @@
+// @flow
+
 import url from "../url";
 
 it("should build url for single item", () => {

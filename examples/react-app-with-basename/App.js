@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import { Router, Route, useRouterHistory } from "react-router";
 // default (browser) history needs a DOM, so memory history is used for static rendering

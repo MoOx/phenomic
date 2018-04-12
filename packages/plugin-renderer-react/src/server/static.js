@@ -1,3 +1,5 @@
+// @flow
+
 import path from "path";
 
 import color from "chalk";

@@ -1,3 +1,5 @@
+// @flow
+
 import "isomorphic-fetch";
 import jsonFetch from "simple-json-fetch";
 

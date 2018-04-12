@@ -1,3 +1,5 @@
+// @flow
+
 import fs from "fs";
 
 export default (path: string): Promise<string> =>

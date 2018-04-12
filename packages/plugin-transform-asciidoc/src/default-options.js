@@ -1,3 +1,5 @@
+// @flow
+
 const defaultOptions = {
   output: "html",
   plugins: [

@@ -1,3 +1,5 @@
+// @flow
+
 // inspired from https://github.com/facebook/create-react-app/blob/779dad55465de81972ec72257c734e4afae17094/packages/react-scripts/config/env.js
 
 import fs from "fs";

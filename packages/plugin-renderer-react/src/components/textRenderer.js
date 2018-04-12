@@ -1,3 +1,5 @@
+// @flow
+
 /* eslint-disable react/no-multi-comp */
 // because it considers render() as a react compo
 /* eslint-disable react/no-unused-prop-types */
