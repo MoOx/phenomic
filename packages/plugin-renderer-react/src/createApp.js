@@ -9,7 +9,7 @@ import createStore from "./shared/store";
 
 const debug = require("debug")("phenomic:plugin:renderer-react");
 
-const render =
+const defaultRender =
   typeof document !== "undefined" &&
   !document.querySelector("#phenomic-DevLoader") &&
   ReactDOM.hydrate
@@ -20,7 +20,7 @@ let store;
 
 export const renderApp = (
   routes: () => React.Element<any>,
-  render: Function = render,
+  render: Function = defaultRender,
   callback?: () => void
 ) => {
   debug("client rendering");
