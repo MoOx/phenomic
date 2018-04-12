@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@phenomic/example-react-native-app",
+  "version": "1.0.0-beta.2",
+  "devDependencies": {
+    "@phenomic/cli": "^1.0.0-beta.2",
+    "@phenomic/core": "^1.0.0-beta.2",
+    "@phenomic/preset-react-app": "^1.0.0-beta.2",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-native-web": "^0.5.0",
+    "react-router": "^3.2.0"
+  },
+  "scripts": {
+    "start": "phenomic start",
+    "build": "phenomic build"
+  },
+  "phenomic": {
+    "presets": ["@phenomic/preset-react-app"]
+  }
+}
