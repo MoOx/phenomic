@@ -44,7 +44,7 @@ function staticRenderToString(
           <RouterContext {...renderProps} />
         </Provider>
       ),
-      renderAsObject: (UserWrappedApp: React.Element<any>) => ({
+      renderAsObject: (UserWrappedApp: React.Node) => ({
         main: ReactDOMServer.renderToString(UserWrappedApp),
         state: store.getState(),
         assets

@@ -1,13 +1,8 @@
-// flow-typed signature: 011286c5f647bbe6a0fe93c2faef19f0
-// flow-typed version: e36161f044/react-helmet_v5.x.x/flow_>=v0.53.x
-
-import type { Node, Element } from "react";
-
 declare module "react-helmet" {
   declare type Props = {
     base?: Object,
     bodyAttributes?: Object,
-    children?: Node,
+    children?: React$Node,
     defaultTitle?: string,
     defer?: boolean,
     encodeSpecialCharacters?: boolean,
@@ -27,15 +22,20 @@ declare module "react-helmet" {
     titleTemplate?: string
   };
 
+  declare interface AttributesMethods {
+    toString(): string;
+    toComponent(): Object;
+  }
+
   declare interface TagMethods {
     toString(): string;
-    toComponent(): [Element<*>] | Element<*> | Array<Object>;
+    toComponent(): [React$Element<*>] | React$Element<*> | Array<Object>;
   }
 
   declare interface StateOnServer {
     base: TagMethods;
-    bodyAttributes: TagMethods;
-    htmlAttributes: TagMethods;
+    bodyAttributes: AttributesMethods;
+    htmlAttributes: AttributesMethods;
     link: TagMethods;
     meta: TagMethods;
     noscript: TagMethods;
