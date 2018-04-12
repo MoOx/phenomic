@@ -1,3 +1,5 @@
+// @flow
+
 const debug = require("debug")("phenomic:plugin:collector-files");
 
 const sep = "/";

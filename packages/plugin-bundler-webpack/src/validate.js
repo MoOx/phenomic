@@ -1,3 +1,5 @@
+// @flow
+
 import multili from "multili";
 
 const typeOf = value => {

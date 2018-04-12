@@ -1,3 +1,5 @@
+// @flow
+
 import cosmiconfig from "cosmiconfig";
 
 import flattenConfiguration from "./configuration/flattenConfiguration.js";

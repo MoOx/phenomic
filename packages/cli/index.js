@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// @flow
+
 // require by babel-preset-react-app
 // This is used like this since babel transformed file don't finish
 // on the client

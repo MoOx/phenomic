@@ -1,3 +1,5 @@
+// @flow
+
 import resolveUrlsFromPhenomicApi from "./resolveUrlsFromPhenomicApi";
 
 const debug = require("debug")("phenomic:plugin:renderer-react");

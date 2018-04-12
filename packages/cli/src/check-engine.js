@@ -1,3 +1,5 @@
+// @flow
+
 import { execSync } from "child_process";
 
 import semver from "semver";

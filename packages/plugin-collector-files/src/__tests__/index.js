@@ -1,3 +1,5 @@
+// @flow
+
 import { getId, getFieldValue, injectData, parsePath } from "..";
 
 it("should be able to generate keys", () => {
