@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
-import { View, StyleSheet, Text } from "react-native-web";
+import { StyleSheet, Text } from "react-native-web";
 
 import Flex from "./Flex";
 import Spacer from "./Spacer";

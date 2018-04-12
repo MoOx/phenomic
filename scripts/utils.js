@@ -5,7 +5,7 @@ const chalk = require("chalk");
 
 export const runCommand = (
   cmd: string,
-  args: Array<string>,
+  args: $ReadOnlyArray<string>,
   options: Object = {}
 ) => {
   console.log(chalk.dim(`$ ${cmd} ${args.join(" ")}`));
