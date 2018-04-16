@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native-web";
+import { StyleSheet, View, Text } from "react-native-web";
 // eslint-disable-next-line
 import PropTypes from "prop-types";
 
@@ -48,18 +48,18 @@ Link.contextTypes = {
 // https://github.com/necolas/react-native-web/issues/643
 
 /* eslint-disable */
-Link.Block = ({ BlockComponent, blockProps = {}, ...props }: PropsType) => (
-  <BlockComponent
-    {...blockProps}
-    style={[blockProps.style, { flexGrow: 1 }]}
-    accessible={false}
-  >
-    <Link {...props} style={[props.style, { display: "flex" }]} />
-  </BlockComponent>
+Link.Block = ({ blockProps = {}, ...props }: PropsType) => (
+  <View style={[blockProps.style, { flexGrow: 1 }]}>
+    <Stylable
+      accessible={false}
+      style={[styles.touchable, props.style, { display: "flex" }]}
+      hoveredOrFocusedStyle={styles.hoveredOrFocused}
+      touchedStyle={styles.touchabled}
+    >
+      <Link {...props} />
+    </Stylable>
+  </View>
 );
-Link.Block.defaultProps = {
-  BlockComponent: TouchableOpacity
-};
 
 Link.Touchable = (props: PropsType) => (
   <Stylable

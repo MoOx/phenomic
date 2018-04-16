@@ -60,10 +60,7 @@ const Home = () => (
       </BodyContainer>
     </View>
     <BodyContainer style={styles.gettingStarted}>
-      <Link.Block
-        href="/docs/getting-started"
-        blockProps={{ activeOpacity: 0.8, focusedOpacity: 0.8 }}
-      >
+      <Link.Block href="/docs/getting-started">
         <InputOutput />
       </Link.Block>
       <Spacer />
