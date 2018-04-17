@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
 export default withPhenomicApi(BlogItem, props => ({
   news: query({
-    path: "blog",
+    path: "content/blog",
     id: props.params.splat
   })
 }));

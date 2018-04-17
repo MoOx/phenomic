@@ -6,7 +6,7 @@ import Page from "./Page";
 
 export default withPhenomicApi(Page, props => ({
   page: query({
-    path: "docs",
+    path: "content/docs",
     id: props.params.splat
   })
 }));

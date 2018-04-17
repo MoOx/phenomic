@@ -76,7 +76,7 @@ const Content = ({ hasError, isLoading, page }) => {
 };
 
 const ContentContainer = withPhenomicApi(Content, () => ({
-  page: query({ id: "index" })
+  page: query({ id: "content" })
 }));
 
 export default createApp(() => (

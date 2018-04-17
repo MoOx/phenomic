@@ -45,27 +45,29 @@ it("should have api files", () => {
     files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length
   ).toBeGreaterThan(0);
   expect(
-    files.includes("phenomic/blog/by-default/1/desc/limit-12.json")
+    files.includes("phenomic/content/blog/by-default/1/desc/limit-12.json")
   ).toBeTruthy();
   expect(
     files.includes(
-      "phenomic/blog/by-default/1/desc/limit-12/after-MjAxNy0wNi0wMi1pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/content/blog/by-default/1/desc/limit-12/after-MjAxNy0wNi0wMi1pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
     )
   ).toBeTruthy();
   expect(
-    files.includes("phenomic/blog/item/2017-06-02-introducing-1.0.0-alpha.json")
+    files.includes(
+      "phenomic/content/blog/item/2017-06-02-introducing-1.0.0-alpha.json"
+    )
   ).toBeTruthy();
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase/entry/by-default") &&
+        f.startsWith("phenomic/content/showcase/entry/by-default") &&
         f.endsWith(".json")
     ).length
   ).toBeGreaterThan(0);
   expect(
     files.filter(
       f =>
-        f.startsWith("phenomic/showcase/entry/by-showcaseTags") &&
+        f.startsWith("phenomic/content/showcase/entry/by-showcaseTags") &&
         f.endsWith(".json")
     ).length
   ).toBeGreaterThan(0);

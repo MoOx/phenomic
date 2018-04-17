@@ -21,18 +21,29 @@ const defaultTransformPlugin: PhenomicPlugin = {
 
 async function processFile({
   db,
+  fileKey,
   file,
   transformers,
   collectors
 }: {|
   db: PhenomicDB,
+  fileKey: string,
   file: PhenomicContentFile,
   transformers: PhenomicPlugins,
   collectors: PhenomicPlugins,
   isProduction?: boolean
 |}) {
   debug(`processing ${file.name}`);
-  const contents = await readFile(file.fullpath);
+
+  let contents;
+  try {
+    contents = await readFile(file.fullpath);
+  } catch (err) {
+    if (err.code !== "EISDIR") {
+      console.error(file.name, err.message);
+    }
+  }
+
   const transformPlugin = transformers.find(
     (plugin: PhenomicPlugin) =>
       Array.isArray(plugin.supportedFileTypes) &&
@@ -42,22 +53,26 @@ async function processFile({
   if (typeof plugin.transform !== "function") {
     throw new Error("transform plugin must implement a transform() method");
   }
-  const parsed: PhenomicTransformResult = await plugin.transform({
-    file,
-    contents
-  });
+  if (contents) {
+    const parsed: PhenomicTransformResult = await plugin.transform({
+      file,
+      contents
+    });
 
-  debug(`${file.name} processed`);
-  // Don't show drafts in production
-  if (process.env.NODE_ENV === "production" && parsed.data.draft) {
-    debug(`${file.name} skipped because it's a draft`);
-    return;
+    debug(`${fileKey}/${file.name} processed`);
+    // Don't show drafts in production
+    if (process.env.NODE_ENV === "production" && parsed.data.draft) {
+      debug(`${fileKey}/${file.name} skipped because it's a draft`);
+      return;
+    }
+
+    return collectors.forEach((plugin: PhenomicPlugin) => {
+      const fileName = path.join(fileKey, file.name);
+      if (typeof plugin.collectFile === "function") {
+        plugin.collectFile({ db, fileName, parsed });
+      }
+    });
   }
-
-  return collectors.forEach((plugin: PhenomicPlugin) => {
-    if (typeof plugin.collectFile === "function")
-      plugin.collectFile({ db, fileName: file.name, parsed });
-  });
 }
 
 export default processFile;

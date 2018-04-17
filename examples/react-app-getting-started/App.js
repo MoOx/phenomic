@@ -55,7 +55,7 @@ const Home = ({ isLoading, posts }) => (
 
 const HomeContainer = withPhenomicApi(Home, props => ({
   posts: query({
-    path: "posts",
+    path: "content/posts",
     limit: 2,
     after: props.params.after
   })
@@ -115,7 +115,7 @@ const BlogPost = ({ hasError, isLoading, page }) => {
 };
 
 const BlogPostContainer = withPhenomicApi(BlogPost, props => ({
-  page: query({ path: "posts", id: props.params.splat })
+  page: query({ path: "content/posts", id: props.params.splat })
 }));
 
 const PageError = ({ error }) => {

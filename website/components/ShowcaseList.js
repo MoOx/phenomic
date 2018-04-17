@@ -288,7 +288,7 @@ export { ShowcaseList as Component };
 
 export default withPhenomicApi(ShowcaseList, props => ({
   showcase: query({
-    path: "showcase/entry",
+    path: "content/showcase/entry",
     order: "asc",
     limit: 10,
     after: props.params.after
@@ -297,7 +297,7 @@ export default withPhenomicApi(ShowcaseList, props => ({
 
 export const ShowcaseListByTag = withPhenomicApi(ShowcaseList, props => ({
   showcase: query({
-    path: "showcase/entry",
+    path: "content/showcase/entry",
     by: "showcaseTags",
     value: props.params.showcaseTags,
     order: "asc",

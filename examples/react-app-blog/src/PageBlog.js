@@ -40,7 +40,7 @@ const PageBlog = ({ hasError, isLoading, posts }) =>
 
 export default withPhenomicApi(PageBlog, props => ({
   posts: query({
-    path: "posts",
+    path: "content/posts",
     limit: 6,
     after: props.params.after
   })

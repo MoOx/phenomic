@@ -54,11 +54,11 @@ const Page = ({ hasError, isLoading, page, posts }) =>
 
 export default withPhenomicApi(Page, props => ({
   page: query({
-    path: "pages",
+    path: "content/pages",
     id: props.params.splat || ""
   }),
   posts: query({
-    path: "posts",
+    path: "content/posts",
     limit: 4,
     after: props.params.after
   })

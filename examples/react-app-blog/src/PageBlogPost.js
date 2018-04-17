@@ -23,5 +23,5 @@ const PageBlogPost = ({ hasError, isLoading, post }) => {
 };
 
 export default withPhenomicApi(PageBlogPost, props => ({
-  post: query({ path: "posts", id: props.params.splat })
+  post: query({ path: "content/posts", id: props.params.splat })
 }));

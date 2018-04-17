@@ -19,17 +19,17 @@ Array [
 
 exports[`should build example correctly 2`] = `
 Array [
-  "phenomic/posts/by-default/1/desc/limit-2.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-c2Vjb25kLXBvc3Q=.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-dGhpcmQtcG9zdA==.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-Zm91cnRoLXBvc3Q=.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-ZmlmdGgtcG9zdA==.json",
-  "phenomic/posts/by-default/1/desc/limit-2/after-Zmlyc3QtcG9zdA==.json",
-  "phenomic/posts/item/fifth-post.json",
-  "phenomic/posts/item/first-post.json",
-  "phenomic/posts/item/fourth-post.json",
-  "phenomic/posts/item/second-post.json",
-  "phenomic/posts/item/third-post.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2/after-c2Vjb25kLXBvc3Q=.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2/after-dGhpcmQtcG9zdA==.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2/after-Zm91cnRoLXBvc3Q=.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2/after-ZmlmdGgtcG9zdA==.json",
+  "phenomic/content/posts/by-default/1/desc/limit-2/after-Zmlyc3QtcG9zdA==.json",
+  "phenomic/content/posts/item/fifth-post.json",
+  "phenomic/content/posts/item/first-post.json",
+  "phenomic/content/posts/item/fourth-post.json",
+  "phenomic/content/posts/item/second-post.json",
+  "phenomic/content/posts/item/third-post.json",
 ]
 `;
 

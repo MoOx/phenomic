@@ -16,9 +16,6 @@ import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:start");
 
-const getContentPath = (config: PhenomicConfig) =>
-  getPath(path.join(config.path, config.content));
-
 async function createDevServer({ config }: { config: PhenomicConfig }) {
   debug("creating dev server");
   const devServer = express();
@@ -68,34 +65,69 @@ async function start(config: PhenomicConfig) {
   }
   const io = socketIO(1415);
 
-  try {
-    const content = await getContentPath(config);
-    const watcher = createWatcher({
-      path: content,
-      plugins: config.plugins
-    });
-
-    watcher.onChange(async function(files) {
-      debug("watcher onChange event");
+  await Promise.all(
+    Object.keys(config.content).map(async contentKey => {
       try {
-        await db.destroy();
-        await Promise.all(
-          files.map(file => processFile({ db, file, transformers, collectors }))
-        );
+        let folder;
+        let globs;
+
+        // "key(and folder)": ["glob/*"]
+        if (Array.isArray(config.content[contentKey])) {
+          folder = path.join(config.path, contentKey);
+          // $FlowFixMe stfu
+          globs = config.content[contentKey];
+        } else if (
+          config.content[contentKey].root &&
+          config.content[contentKey].globs
+        ) {
+          // "key": {root: folder, globs: ["glob/*"] }
+          folder = path.join(config.path, config.content[contentKey].root);
+          // $FlowFixMe stfu
+          globs = config.content[contentKey].globs;
+        } else {
+          throw new Error(
+            "Unexpected config for 'content' option: " +
+              config.content[contentKey].toString()
+          );
+        }
+
+        const watcher = createWatcher({
+          path: await getPath(folder),
+          // $FlowFixMe stfu
+          patterns: globs
+        });
+
+        watcher.onChange(async function(files) {
+          debug("watcher onChange event");
+          try {
+            await db.destroy();
+            await Promise.all(
+              files.map(file => {
+                return processFile({
+                  db,
+                  fileKey: contentKey,
+                  file,
+                  transformers,
+                  collectors
+                });
+              })
+            );
+          } catch (e) {
+            setTimeout(() => {
+              throw e;
+            }, 1);
+          }
+          io.emit("change");
+        });
       } catch (e) {
-        setTimeout(() => {
-          throw e;
-        }, 1);
+        log.warn(
+          `no '${
+            contentKey
+          }' folder found or unable to read files. Please create and put files in this folder (or double check it) if you want the content to be accessible (eg: markdown or JSON files). `
+        );
       }
-      io.emit("change");
-    });
-  } catch (e) {
-    log.warn(
-      `no '${
-        config.content
-      }' folder found. Please create and put files in this folder if you want the content to be accessible (eg: markdown or JSON files). `
-    );
-  }
+    })
+  );
 
   bundlerServer.use(config.baseUrl.pathname + "phenomic", phenomicServer);
   // $FlowFixMe flow is lost with async function for express

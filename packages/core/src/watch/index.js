@@ -23,60 +23,34 @@ const toFile = (root, filepath) => ({
   fullpath: path.join(root, filepath)
 });
 
-function reduceExtensions(plugins: PhenomicPlugins): $ReadOnlyArray<string> {
-  const supportedFileTypes = plugins.reduce((acc, plugin: PhenomicPlugin) => {
-    if (plugin.supportedFileTypes) {
-      debug(
-        `'${plugin.name}' want to support '${String(
-          plugin.supportedFileTypes
-        )}'`
-      );
-    }
-    return [
-      ...acc,
-      ...(plugin &&
-      plugin.supportedFileTypes &&
-      Array.isArray(plugin.supportedFileTypes)
-        ? plugin.supportedFileTypes
-        : [])
-    ];
-  }, []);
-  debug("extensions to watch", supportedFileTypes);
-  return supportedFileTypes;
-}
-
-function getGlobPattern(plugins: PhenomicPlugins): $ReadOnlyArray<string> {
-  return reduceExtensions(plugins).map(
-    (extension: string) => `**/*.${extension}`
-  );
-}
-
 function glob(path, patterns) {
   return globby.sync(patterns, { cwd: path }).map(file => toFile(path, file));
 }
 
-export function oneShot(config: {
+export function oneShot(options: {
   path: string,
-  plugins: PhenomicPlugins
+  patterns: $ReadOnlyArray<string>
 }): $ReadOnlyArray<PhenomicContentFile> {
-  return glob(config.path, getGlobPattern(config.plugins));
+  return glob(options.path, options.patterns);
 }
 
-function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
-  const patterns = getGlobPattern(config.plugins);
-  debug("path:", config.path);
-  debug("extensions:", patterns);
-  const watcher = sane(config.path, {
+function createWatcher(options: {
+  path: string,
+  patterns: $ReadOnlyArray<string>
+}) {
+  debug("path:", options.path);
+  debug("extensions:", options.patterns);
+  const watcher = sane(options.path, {
     watchman: canUseWatchman,
-    glob: patterns
+    glob: options.patterns
   });
   let subscribers = [];
   let ready = false;
   let closeMe = false;
   /* eslint-disable flowtype/no-mutable-array */
   const files: Array<PhenomicContentFile> = globby
-    .sync(patterns, { cwd: config.path })
-    .map(file => toFile(config.path, file));
+    .sync(options.patterns, { cwd: options.path })
+    .map(file => toFile(options.path, file));
   debug("files", files.map(file => file.name));
 
   watcher.on("ready", () => {
@@ -97,7 +71,7 @@ function createWatcher(config: { path: string, plugins: PhenomicPlugins }) {
   });
   watcher.on("add", (filepath, root, stat) => {
     debug("watcher: file added", filepath, root, stat);
-    files.push(toFile(config.path, filepath));
+    files.push(toFile(options.path, filepath));
     subscribers.forEach(func => func(files));
   });
   watcher.on("delete", (filepath, root) => {

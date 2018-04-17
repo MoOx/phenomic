@@ -45,7 +45,7 @@ const defaultOptions = {
   feeds: {
     "feed.xml": {
       feedOptions: {},
-      query: { path: "posts", limit: 20 }
+      query: { path: "content/posts", limit: 20 }
     }
   }
 };

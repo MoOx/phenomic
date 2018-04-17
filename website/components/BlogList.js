@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
 export default withPhenomicApi(BlogList, props => ({
   news: query({
-    path: "blog",
+    path: "content/blog",
     limit: 12,
     after: props.params.after
   })

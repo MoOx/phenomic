@@ -107,10 +107,12 @@ declare type PhenomicInputPlugins = {|
   >
 |};
 
+type globs = $ReadOnlyArray<string>;
+
 declare type PhenomicInputConfig = {|
   baseUrl?: string,
   path?: string,
-  content?: string,
+  content?: { [key: string]: globs | {| root: string, globs: globs |} },
   outdir?: string,
   port?: number,
   bundleName?: string,
@@ -206,7 +208,7 @@ declare type PhenomicPlugins = $ReadOnlyArray<PhenomicPlugin>;
 declare type PhenomicConfig = {|
   baseUrl: Url,
   path: string,
-  content: string,
+  content: { [key: string]: globs | {| root: string, globs: globs |} },
   outdir: string,
   port: number,
   bundleName: string,
@@ -228,7 +230,7 @@ declare type PhenomicRoute = {|
   params?: { [key: string]: any },
   component: {
     getInitialProps?: ({ params: { [key: string]: any } }) => Object,
-    getAllPossibleUrls?: ({ path: string }) => Array<string>,
+    getAllPossibleUrls?: ({ path: string }) => $ReadOnlyArray<string>,
     getQueries?: ({ params: { [key: string]: any } }) => {
       [key: string]: PhenomicQueryConfig
     }

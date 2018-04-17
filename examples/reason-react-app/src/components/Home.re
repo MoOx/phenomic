@@ -73,7 +73,7 @@ let queries = props => {
   let posts =
     PhenomicPresetReactApp.query(
       PaginatedList({
-        path: "posts",
+        path: "content/posts",
         by: Some("default"),
         value: None,
         order: None,
