@@ -45,6 +45,7 @@ async function start(config: PhenomicConfig) {
   process.env.BABEL_ENV = process.env.BABEL_ENV || "development";
   process.env.PHENOMIC_ENV = "development";
   process.env.PHENOMIC_RESTAPI_PORT = String(config.port);
+  process.env.PHENOMIC_SOCKET_PORT = String(config.socketPort);
   debug("starting phenomic server");
   const phenomicServer = createAPIServer({ db, plugins: config.plugins });
   const bundlerServer = await createDevServer({ config });
@@ -63,7 +64,7 @@ async function start(config: PhenomicConfig) {
   if (!collectors.length) {
     throw new Error("Phenomic expects at least a collector plugin");
   }
-  const io = socketIO(1415);
+  const io = socketIO(config.socketPort);
 
   await Promise.all(
     Object.keys(config.content).map(async contentKey => {

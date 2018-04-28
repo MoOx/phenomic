@@ -8,14 +8,14 @@ import { getDisplayName } from "./utils";
 import mapValues from "./shared/mapValues";
 import { encode } from "./shared/QueryString";
 
-const socketServerURL = "http://localhost:1415";
-
 type props = Object;
 
 export default function withPhenomicApi<P>(
   ComposedComponent: React.ComponentType<P>,
   getQueries: (props: Object) => Object = () => ({})
 ) {
+  const socketServerURL =
+    "http://localhost:" + process.env.PHENOMIC_SOCKET_PORT;
   const displayName = getDisplayName(ComposedComponent);
 
   class PhenomicContainerWithApi extends React.Component<props, void> {

@@ -8,6 +8,7 @@ const defaultConfig: PhenomicConfig = {
   content: { content: ["**/*"] },
   outdir: "dist",
   port: 3333,
+  socketPort: 3334,
   bundleName: "phenomic.main",
   plugins: []
 };

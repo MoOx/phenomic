@@ -164,6 +164,7 @@ function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
     content: config.content || defaultConfig.content,
     outdir: config.outdir || defaultConfig.outdir,
     port: config.port || defaultConfig.port,
+    socketPort: config.socketPort || defaultConfig.socketPort,
     bundleName: config.bundleName || defaultConfig.bundleName,
     plugins: []
   };

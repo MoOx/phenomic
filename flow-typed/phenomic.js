@@ -115,6 +115,7 @@ declare type PhenomicInputConfig = {|
   content?: { [key: string]: globs | {| root: string, globs: globs |} },
   outdir?: string,
   port?: number,
+  socketPort?: number,
   bundleName?: string,
   ...PhenomicInputPlugins
 |};
@@ -211,6 +212,7 @@ declare type PhenomicConfig = {|
   content: { [key: string]: globs | {| root: string, globs: globs |} },
   outdir: string,
   port: number,
+  socketPort: number,
   bundleName: string,
   plugins: $ReadOnlyArray<PhenomicPlugin>
 |};
