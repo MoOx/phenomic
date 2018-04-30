@@ -65,6 +65,7 @@
     "examples:tests": "jest --bail examples",
     "examples": "yarn examples:build && yarn examples:tests",
     "website:start": "cd website && yarn start",
+    "website:build": "cd website && yarn build",
     "website:test": "cd website && yarn test && jest website",
     "website:deploy": "cd website && yarn deploy",
     "test": "yarn lint && yarn tests",
