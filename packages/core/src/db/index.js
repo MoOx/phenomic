@@ -140,7 +140,9 @@ const db = {
   ): PhenomicDBEntryDetailed {
     const item = getSublevel(sub).find(item => item.id === id);
     if (typeof item === "undefined") {
-      throw new NotFoundError("ID not found in database");
+      throw new NotFoundError(
+        `ID '${id}' not found in database ('${String(sub)}')`
+      );
     }
     const { body, ...metadata } = item.data;
     const relatedData = getDataRelations(metadata);
