@@ -44,17 +44,18 @@ async function processFile({
     }
   }
 
-  const transformPlugin = transformers.find(
-    (plugin: PhenomicPlugin) =>
-      Array.isArray(plugin.supportedFileTypes) &&
-      plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !== -1
-  );
-  const plugin = transformPlugin || defaultTransformPlugin;
-  if (typeof plugin.transform !== "function") {
+  const transformPlugin =
+    transformers.find(
+      (plugin: PhenomicPlugin) =>
+        Array.isArray(plugin.supportedFileTypes) &&
+        plugin.supportedFileTypes.indexOf(path.extname(file.name).slice(1)) !==
+          -1
+    ) || defaultTransformPlugin;
+  if (typeof transformPlugin.transform !== "function") {
     throw new Error("transform plugin must implement a transform() method");
   }
   if (contents) {
-    const parsed: PhenomicTransformResult = await plugin.transform({
+    const parsed: PhenomicTransformResult = await transformPlugin.transform({
       file,
       contents
     });
@@ -69,7 +70,12 @@ async function processFile({
     return collectors.forEach((plugin: PhenomicPlugin) => {
       const fileName = path.join(fileKey, file.name);
       if (typeof plugin.collectFile === "function") {
-        plugin.collectFile({ db, fileName, parsed });
+        plugin.collectFile({
+          db,
+          fileName,
+          parsed,
+          transformer: transformPlugin
+        });
       }
     });
   }

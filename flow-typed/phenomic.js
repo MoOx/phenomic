@@ -176,7 +176,8 @@ declare type PhenomicPlugin = {|
   collectFile?: ({|
     db: PhenomicDB,
     fileName: string,
-    parsed: Object
+    parsed: Object,
+    transformer: PhenomicPlugin
   |}) => $ReadOnlyArray<mixed> | Promise<$ReadOnlyArray<mixed>>,
   // bunder
   buildForPrerendering?: () => Promise<PhenomicAppType>,

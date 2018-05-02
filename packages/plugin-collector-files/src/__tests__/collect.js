@@ -12,7 +12,26 @@ db.destroy();
 const p = collector(config, {});
 Object.keys(fixtures).map(path => {
   if (p.collectFile)
-    p.collectFile({ db, fileName: path, parsed: fixtures[path] });
+    p.collectFile({
+      db,
+      fileName: path,
+      parsed: fixtures[path],
+      transformer: {
+        name: "@phenomic/plugin-default-transform",
+
+        // for testing, according to db
+        supportedFileTypes: ["md", "json"],
+
+        transform({ contents }) {
+          return {
+            partial: {},
+            data: {
+              body: contents
+            }
+          };
+        }
+      }
+    });
 });
 
 it("should collect everything", async () => {

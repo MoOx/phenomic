@@ -2,23 +2,27 @@
 
 import { getId, getFieldValue, injectData, parsePath } from "..";
 
-it("should be able to generate keys", () => {
-  expect(getId("test", { partial: {}, data: {} })).toEqual("test");
+const exts = ["md"];
 
-  expect(getId("test.md", { partial: {}, data: {} })).toEqual("test");
+it("should be able to generate keys", () => {
+  expect(getId("test", { partial: {}, data: {} }, exts)).toEqual("test");
+
+  expect(getId("test.md", { partial: {}, data: {} }, exts)).toEqual("test");
 
   // @todo handle this case
-  expect(getId("test/index.md", { partial: {}, data: {} })).toEqual("test");
-  expect(getId("test/test/index.md", { partial: {}, data: {} })).toEqual(
+  expect(getId("test/index.md", { partial: {}, data: {} }, exts)).toEqual(
+    "test"
+  );
+  expect(getId("test/test/index.md", { partial: {}, data: {} }, exts)).toEqual(
     "test/test"
   );
-  expect(getId("test\\test\\index.md", { partial: {}, data: {} })).toEqual(
-    "test/test"
-  );
+  expect(
+    getId("test\\test\\index.md", { partial: {}, data: {} }, exts)
+  ).toEqual("test/test");
 
-  expect(getId("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
-    "yep"
-  );
+  expect(
+    getId("test.md", { partial: {}, data: { path: "yep" } }, exts)
+  ).toEqual("yep");
 });
 
 it("should be able to generate fields lists from arrays", () => {

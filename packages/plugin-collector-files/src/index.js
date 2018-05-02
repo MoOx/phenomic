@@ -7,7 +7,11 @@ function normalizeWindowsPath(value: string): string {
   return value.replace(/(\/|\\)+/g, sep);
 }
 
-export function getId(name: string, json: PhenomicTransformResult): string {
+export function getId(
+  name: string,
+  json: PhenomicTransformResult,
+  extensions?: $ReadOnlyArray<string> = []
+): string {
   if (json.data.path) {
     debug(`id for '${name}' is '${json.data.path}' (from json)`);
     return json.data.path;
@@ -16,10 +20,11 @@ export function getId(name: string, json: PhenomicTransformResult): string {
   name = normalizeWindowsPath(name);
   // remove (index).md,json etc, for id
   const id = name
+    // @todo remove from supportedFileTypes!
     // remove extension for prettier keys
-    .replace(/.(md|json)$/, "")
-    // remove index too
-    .replace(/\/index$/, "");
+    .replace(new RegExp(`\\.(${extensions.join("|")})$`), "")
+    // remove index too (and consider README as index)
+    .replace(/\/(index|README)$/, "");
   debug(`id for '${name}' is '${id}' (automatically computed)`);
   return id;
 }
@@ -88,12 +93,13 @@ export function parsePath(
 const collectorFiles: PhenomicPluginModule<{}> = () => {
   return {
     name: "@phenomic/plugin-collector-files",
-    collectFile({ db, fileName: name, parsed: json }) {
+    collectFile({ db, fileName: name, parsed: json, transformer }) {
       name = normalizeWindowsPath(name);
-      const id = getId(name, json);
+      const id = getId(name, json, transformer.supportedFileTypes);
       const { filename, allPaths } = parsePath(name);
       const adjustedJSON = injectData(filename, json);
-      debug(`collecting '${filename}'`, adjustedJSON);
+      // debug(`collecting '${filename}'`, adjustedJSON);
+      debug(`collecting '${filename}'`);
       // full resource, not sorted
       db.put(null, id, adjustedJSON);
       return allPaths.map(pathName => {
@@ -101,16 +107,22 @@ const collectorFiles: PhenomicPluginModule<{}> = () => {
         if (relativeKey === pathName) {
           relativeKey = "";
         }
-        const sortedKey = relativeKey;
         debug(`collecting '${relativeKey}' for path '${pathName}'`);
+        // @todo optimize this and avoid inserting adjustedJSON several times
+        // we should be able to inject a ref to get it back from __null__ when
+        // reading
         db.put([pathName], relativeKey, adjustedJSON);
-        db.put([pathName, "default"], sortedKey);
+        db.put([pathName, "default"], relativeKey);
         Object.keys(json.data).map(type => {
-          return getFieldValue(json, type).map(value => {
-            db.update([pathName, type, value], sortedKey);
-            // db.update([type], value);
-            db.update([type, "default"], value);
-            db.update([type, "path", pathName], value);
+          return getFieldValue(json, type).map(fieldValue => {
+            debug(
+              `collecting '${relativeKey}' for path '${pathName}': ${type}/${
+                fieldValue
+              }`
+            );
+            db.update([pathName, type, fieldValue], relativeKey);
+            db.update([type, "default"], fieldValue);
+            db.update([type, "path", pathName], fieldValue);
           });
         });
       });
