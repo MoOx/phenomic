@@ -6,12 +6,16 @@ Object {
     "body": "<h2 id=\\"test\\"><a aria-hidden=\\"true\\" href=\\"#test\\"><span class=\\"icon icon-link\\"></span></a>Test</h2>
 <p><a href=\\"href\\">link</a></p>
 <pre class=\\"editor editor-colors\\"><div class=\\"line\\"><span class=\\"syntax--source syntax--js\\"><span class=\\"syntax--entity syntax--name syntax--type syntax--object syntax--console syntax--js\\"><span>console</span></span><span class=\\"syntax--meta syntax--method-call syntax--js\\"><span class=\\"syntax--meta syntax--delimiter syntax--method syntax--period syntax--js\\"><span>.</span></span><span class=\\"syntax--support syntax--function syntax--console syntax--js\\"><span>log</span></span><span class=\\"syntax--meta syntax--arguments syntax--js\\"><span class=\\"syntax--punctuation syntax--definition syntax--arguments syntax--begin syntax--bracket syntax--round syntax--js\\"><span>(</span></span><span class=\\"syntax--support syntax--variable syntax--dom syntax--js\\"><span>window</span></span><span class=\\"syntax--punctuation syntax--definition syntax--arguments syntax--end syntax--bracket syntax--round syntax--js\\"><span>)</span></span></span></span></span></div></pre>",
+    "headers": Array [],
     "test": "a",
     "test2": "b",
+    "title": "file.json",
   },
   "partial": Object {
+    "headers": Array [],
     "test": "a",
     "test2": "b",
+    "title": "file.json",
   },
 }
 `;
@@ -190,12 +194,26 @@ Object {
       ],
       "t": "div",
     },
+    "headers": Array [
+      Array [
+        2,
+        "Test",
+      ],
+    ],
     "test": "a",
     "test2": "b",
+    "title": "file.json",
   },
   "partial": Object {
+    "headers": Array [
+      Array [
+        2,
+        "Test",
+      ],
+    ],
     "test": "a",
     "test2": "b",
+    "title": "file.json",
   },
 }
 `;

@@ -17,9 +17,15 @@ const transformJSON: PhenomicPluginModule<{}> = () => {
 
       const json = JSON.parse(contents.toString());
 
+      const partial = {
+        // title fallback
+        title: file.name,
+        ...(json.partial || json)
+      };
+
       return {
         data: json,
-        partial: json.partial || json
+        partial
       };
     }
   };

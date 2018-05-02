@@ -11,6 +11,7 @@ Object {
     "somedata": "Normal version",
     "test": "a",
     "test2": "b",
+    "title": "file.json",
   },
 }
 `;
@@ -27,6 +28,7 @@ Object {
   },
   "partial": Object {
     "somedata": "Light version",
+    "title": "file.json",
   },
 }
 `;

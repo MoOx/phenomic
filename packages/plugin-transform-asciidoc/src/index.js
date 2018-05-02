@@ -5,6 +5,7 @@ import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";
 import unifiedProcessor from "@phenomic/helpers-transform/lib/unifiedProcessor";
 import type { plugin } from "@phenomic/helpers-transform/lib//unifiedProcessor";
+import extractMetaFromBodyNode from "@phenomic/helpers-transform/lib/extractMetaFromBodyNode";
 
 import defaultOptions from "./default-options";
 
@@ -84,24 +85,27 @@ const transformAsciidoc: PhenomicPluginModule<options> = (
       const doc = ad.load(contents, adDefaultOptions);
       const tags = doc.getAttribute("tags");
 
+      const content = ad.convert(contents, adDefaultOptions);
+      // $FlowFixMe it's here, I can feel it Flow
+      const body = processor.processSync(content).contents;
+
       const partial = {
+        ...extractMetaFromBodyNode(body),
         ...doc.attributes.$$smap,
         date:
           doc.getAttribute("date") || doc.getAttribute("revdate") || undefined,
-        title: doc.getAttribute("doctitle"),
+        // title fallback
+        title: doc.getAttribute("doctitle") || file.name,
         layout: doc.getAttribute("layout"),
         showdate: doc.getAttribute("nodate", true),
         tags: tags ? tags.split(",").map(tag => kebabCase(deburr(tag))) : []
       };
       envAttributes.map(key => delete partial[key]);
 
-      const body = ad.convert(contents, adDefaultOptions);
-
       return {
         data: {
           ...partial,
-          // $FlowFixMe it's here, I can feel it Flow
-          body: processor.processSync(body).contents
+          body
         },
         partial
       };

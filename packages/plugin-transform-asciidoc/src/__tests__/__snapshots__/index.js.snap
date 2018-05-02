@@ -425,6 +425,12 @@ Object {
     "filetype-html": "",
     "firstname": "Ezra",
     "header_footer": "false",
+    "headers": Array [
+      Array [
+        2,
+        "Heading",
+      ],
+    ],
     "iconfont-remote": "",
     "iconsdir": "/path/to/icons",
     "important-caption": "Important",
@@ -480,6 +486,12 @@ Object {
     "filetype-html": "",
     "firstname": "Ezra",
     "header_footer": "false",
+    "headers": Array [
+      Array [
+        2,
+        "Heading",
+      ],
+    ],
     "iconfont-remote": "",
     "iconsdir": "/path/to/icons",
     "important-caption": "Important",

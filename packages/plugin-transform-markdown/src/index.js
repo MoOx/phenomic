@@ -4,6 +4,7 @@ import deburr from "lodash.deburr";
 import kebabCase from "lodash.kebabcase";
 import frontMatterParser from "gray-matter";
 import unifiedProcessor from "@phenomic/helpers-transform/lib/unifiedProcessor";
+import extractMetaFromBodyNode from "@phenomic/helpers-transform/lib/extractMetaFromBodyNode";
 import type { plugin } from "@phenomic/helpers-transform/lib//unifiedProcessor";
 
 import defaultOptions from "./default-options";
@@ -40,7 +41,12 @@ const transformMarkdown: PhenomicPluginModule<options> = (
       debug(`transforming ${file.fullpath}`);
       const front = frontMatterParser(contents.toString());
       debug(`front matter for ${file.fullpath}`, front.data);
+      // $FlowFixMe it's here, I can feel it Flow
+      const body = processor.processSync(front.content).contents;
       const partial = {
+        // title fallback
+        title: file.name,
+        ...extractMetaFromBodyNode(body),
         ...front.data,
         // @todo should be here or user land ?
         ...(Array.isArray(front.data.tags)
@@ -51,8 +57,7 @@ const transformMarkdown: PhenomicPluginModule<options> = (
       return {
         data: {
           ...partial,
-          // $FlowFixMe it's here, I can feel it Flow
-          body: processor.processSync(front.content).contents
+          body
         },
         partial
       };
