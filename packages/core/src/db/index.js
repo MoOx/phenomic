@@ -7,6 +7,8 @@ const nullSub = "__null__";
 const emptyDatabase: PhenomicDBRegistry = {};
 let database: PhenomicDBRegistry = emptyDatabase;
 
+const orderById = (a, b) => (b.id > a.id ? -1 : 1);
+
 function sortBy(sort = "date") {
   return (a, b) => {
     a = a.data[sort];
@@ -52,7 +54,7 @@ function putToSublevel(
   database = {
     ...database,
     [subname]: [...sub.filter(item => item.id !== value.id), value].sort(
-      (a, b) => (b.id > a.id ? -1 : 1)
+      orderById
     )
   };
 }
@@ -71,7 +73,7 @@ function updateToSublevel(
     [subname]: [
       ...sub.filter(item => item.id !== value.id),
       merge({}, sub.find(item => item.id === value.id) || {}, value)
-    ].sort((a, b) => (b.id > a.id ? -1 : 1))
+    ].sort(orderById)
   };
 }
 
