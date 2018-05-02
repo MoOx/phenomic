@@ -6,104 +6,50 @@ import { View, Text, StyleSheet } from "react-native-web";
 import Flex from "./Flex";
 import Link from "./Link";
 import Spacer from "./Spacer";
-import Header from "./Header";
-import Footer from "./Footer";
-import BodyContainer from "./BodyContainer";
 
-const items = [
-  {
-    title: "React",
-    href:
-      "https://github.com/phenomic/phenomic/blob/master/packages/preset-react-app/docs/getting-started/README.md",
-    img: "/assets/react.svg"
-  },
-  {
-    title: "ReasonReact",
-    href:
-      "https://github.com/phenomic/phenomic/tree/master/examples/reason-react-app/",
-    img: "/assets/reason-react.svg"
-  },
-  {
-    title: "PREACT",
-    href: "https://github.com/phenomic/phenomic/issues/1148",
-    img: "/assets/preact.svg",
-    todo: true
-  },
-  {
-    title: "Next.js",
-    href: "https://github.com/phenomic/phenomic/issues/1149",
-    img: "/assets/Next.js.svg",
-    todo: true
-  },
-  {
-    title: "Vue",
-    href: "https://github.com/phenomic/phenomic/issues/1145",
-    img: "/assets/vue.svg",
-    todo: true,
-    height: 96
-  },
-  {
-    title: "Angular",
-    href: "https://github.com/phenomic/phenomic/issues/1150",
-    img: "/assets/angular.svg",
-    todo: true
-  }
-];
-
-// const split = (arr, n, res = []) => {
-//   while (arr.length) res.push(arr.splice(0, n));
-//   return res;
-// }
-
-const GettingStarted = () => (
-  <Flex>
-    <Header title={"Getting started with Phenomic"} />
-    <BodyContainer style={styles.page}>
+const GettingStarted = props => {
+  return (
+    <Flex>
       <View style={styles.row}>
-        <Text
-          style={{
-            color: "#9DA9B9",
-            fontSize: 20,
-            fontWeight: "300",
-            textAlign: "center"
-          }}
-        >
-          {"Start by choosing your ecosystem"}
-        </Text>
+        <Spacer>
+          <Text
+            style={{
+              color: "#32325d",
+              fontSize: 24,
+              fontWeight: "800"
+            }}
+          >
+            {"Start by choosing your ecosystem"}
+          </Text>
+        </Spacer>
       </View>
       <View style={styles.logos}>
-        {items.map((item, i) => (
+        {props.node.items.map((item, i) => (
           <Link.Block
             key={i}
             blockProps={{ style: styles.logoWrapper }}
             style={[styles.logo, item.todo && styles.todo]}
-            href={item.href}
+            href={item.link}
           >
             <View style={styles.img}>
-              <img src={item.img} height={item.height || 128} />
+              <img src={item.icon} height={item.height || 128} />
             </View>
             <Text style={styles.logoTitle}>{item.title}</Text>
           </Link.Block>
         ))}
       </View>
+      {/*
       <Spacer large style={styles.row}>
         <Text style={styles.notice}>
-          {
-            "⚠️ Lots of plugins are to be done. Want to help us? Click on a blurry logo!"
-          }
+          {"You don't see what your are looking for? Maybe look here"}
         </Text>
       </Spacer>
-    </BodyContainer>
-    <Spacer large />
-    <Footer />
-  </Flex>
-);
+      */}
+    </Flex>
+  );
+};
 
 const styles = StyleSheet.create({
-  page: {
-    paddingTop: 48,
-    paddingBottom: 48
-  },
   row: {
     flexDirection: "row",
     alignItems: "center",
@@ -149,7 +95,7 @@ const styles = StyleSheet.create({
   },
   notice: {
     opacity: 0.25,
-    fontSize: 24,
+    // fontSize: 24,
     paddingVertical: 48
   }
 });

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Head from "react-helmet";
-import { StyleSheet, Text, View } from "react-native-web";
+import { StyleSheet, Text, View, ImageBackground } from "react-native-web";
 import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
 import BackgroundGradient from "./BackgroundGradient";
@@ -18,12 +18,16 @@ import CodeExample from "./HomeCodeExample";
 
 const Home = () => (
   <Flex style={{ overflow: "hidden" }}>
-    <View style={styles.heroContainer} start="#006BF6" end="#10E951">
+    <View style={styles.heroContainer}>
       <BackgroundGradient
         style={styles.heroGradient}
-        start="#006BF6"
+        start="#0175C6"
         end="#10E951"
       >
+        {/* <ImageBackground
+        style={styles.heroGradient}
+        source={{ uri: "/bg/jack-cain-326608-unsplash-.jpg" }}
+      > */}
         {global.window && (
           <img
             src="/assets/phenomic-logo-white.svg"
@@ -33,11 +37,12 @@ const Home = () => (
               position: "absolute",
               top: window.innerHeight * 0.2,
               right: window.innerWidth * 0.1,
-              transform: [{ rotate: "6deg" }]
+              transform: [{ rotate: "20deg" }]
             }}
           />
         )}
       </BackgroundGradient>
+      {/* </ImageBackground> */}
       <Head>
         <title>
           {"Phenomic, a modular website compiler (static site generator)"}
@@ -60,13 +65,13 @@ const Home = () => (
       </BodyContainer>
     </View>
     <BodyContainer style={styles.gettingStarted}>
-      <Link.Block href="/docs/getting-started">
+      <Link.Block href="/en/docs/getting-started">
         <InputOutput />
       </Link.Block>
       <Spacer />
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.Touchable href="/docs/getting-started">
+        <Link.Touchable href="/en/docs/getting-started">
           {"Build your website and make it as fast as possible"}
         </Link.Touchable>
       </Text>
@@ -105,14 +110,14 @@ const Home = () => (
       </View>
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.Touchable href="/docs/getting-started">
+        <Link.Touchable href="/en/docs/getting-started">
           {"Get running in seconds"}
         </Link.Touchable>
       </Text>
       <CodeExample />
       <Spacer />
       <Text style={styles.subtitle}>
-        <Link.Touchable href="/docs/getting-started">
+        <Link.Touchable href="/en/docs/getting-started">
           {"Get the best developer experience"}
         </Link.Touchable>
       </Text>

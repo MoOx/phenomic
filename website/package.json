@@ -40,7 +40,14 @@
     "simple-json-fetch": "^1.0.1"
   },
   "phenomic": {
-    "baseUrl": "http://phenomic.io/",
+    "baseUrl": "https://phenomic.io/",
+    "content": {
+      "content": ["**/*"],
+      "packages": {
+        "root": "../packages",
+        "globs": ["package.json", "*/docs/**/*.md"]
+      }
+    },
     "presets": ["@phenomic/preset-react-app"],
     "plugins": [
       [
@@ -53,7 +60,7 @@
                 "description": "Phenomic news"
               },
               "query": {
-                "path": "blog",
+                "path": "content/blog",
                 "limit": 20
               }
             }
