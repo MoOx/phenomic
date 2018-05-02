@@ -15,6 +15,7 @@ export default function withPhenomicApi<P>(
   getQueries: (props: Object) => Object = () => ({})
 ) {
   const socketServerURL =
+    // $FlowFixMe yeah yeah
     "http://localhost:" + process.env.PHENOMIC_SOCKET_PORT;
   const displayName = getDisplayName(ComposedComponent);
 
