@@ -66,6 +66,8 @@ async function start(config: PhenomicConfig) {
   }
   const io = socketIO(config.socketPort);
 
+  const filesPerContentKey = {};
+
   await Promise.all(
     Object.keys(config.content).map(async contentKey => {
       try {
@@ -98,26 +100,39 @@ async function start(config: PhenomicConfig) {
           patterns: globs
         });
 
-        watcher.onChange(async function(files) {
+        watcher.onChange(async function(files /* deletedFiles */) {
+          // currently our db is stupid: we don't do removal
+          // so instead we nuke the db each times there is a tiny change
+          // for now it's not creating any problem, but it's clearly something
+          // we need to improve for HUGE website
+          // @todo: don't nuke the db and think about a way to remove deleted
+          // files & related injected data (see collector-files)
+          filesPerContentKey[contentKey] = files;
           debug("watcher onChange event");
           try {
             await db.destroy();
             await Promise.all(
-              files.map(file => {
-                return processFile({
-                  db,
-                  fileKey: contentKey,
-                  file,
-                  transformers,
-                  collectors
-                });
-              })
+              Object.keys(filesPerContentKey).map(
+                async localContentKey =>
+                  await Promise.all(
+                    filesPerContentKey[localContentKey].map(file => {
+                      return processFile({
+                        db,
+                        fileKey: localContentKey,
+                        file,
+                        transformers,
+                        collectors
+                      });
+                    })
+                  )
+              )
             );
           } catch (e) {
             setTimeout(() => {
               throw e;
             }, 1);
           }
+          // note: we could emit faster but does it's worth it?
           io.emit("change");
         });
       } catch (e) {
