@@ -3,6 +3,7 @@
 import express from "express";
 
 import pkg from "../../package.json";
+import log from "../utils/log";
 
 import { encode, decode } from "./helpers";
 
@@ -65,7 +66,8 @@ function createServer({
       );
       res.json(connect(list));
     } catch (error) {
-      console.error(error);
+      log.error(error.message);
+      debug(error);
       res.status(404).end();
     }
   });
@@ -88,7 +90,8 @@ function createServer({
         );
         res.json(connect(list, limit));
       } catch (error) {
-        console.error(error);
+        log.error(error.message);
+        debug(error);
         res.status(404).end();
       }
     }
@@ -130,7 +133,8 @@ function createServer({
         ]);
         res.json(connect(list, limit, previousList));
       } catch (error) {
-        console.error(error);
+        log.error(error.message);
+        debug(error);
         res.status(404).end();
       }
     }
@@ -152,7 +156,8 @@ function createServer({
         res.json(resource.value);
       }
     } catch (error) {
-      console.error(error);
+      log.error(error.message);
+      debug(error);
       res.status(404).end();
     }
   });
@@ -172,7 +177,8 @@ function createServer({
       );
       res.json(connect(list));
     } catch (error) {
-      console.error(error);
+      log.error(error.message);
+      debug(error);
       res.status(404).end();
     }
   });
@@ -196,7 +202,8 @@ function createServer({
       );
       res.json(connect(list, limit));
     } catch (error) {
-      console.error(error);
+      log.error(error.message);
+      debug(error);
       res.status(404).end();
     }
   });
@@ -237,7 +244,8 @@ function createServer({
         ]);
         res.json(connect(list, limit, previousList));
       } catch (error) {
-        console.error(error);
+        log.error(error.message);
+        debug(error);
         res.status(404).end();
       }
     }
@@ -248,13 +256,15 @@ function createServer({
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
+    // /item/.json means you want /item/index.json
+    // (because thing/index.md => thing)
+    const id = req.params["0"] || "index";
     try {
-      // /item/.json means you want /item/index.json
-      // (because thing/index.md => thing)
-      const resource = await db.get(null, req.params["0"] || "index");
+      const resource = await db.get(null, id);
       res.json(resource.value);
     } catch (error) {
-      console.error(error);
+      log.error(error.message);
+      debug(error);
       res.status(404).end();
     }
   });
