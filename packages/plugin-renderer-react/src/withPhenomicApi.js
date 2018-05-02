@@ -114,10 +114,22 @@ export default function withPhenomicApi<P>(
           "An item is in error state",
           values.find(item => store.get(item).status === "error")
         );
-        return <ComposedComponent {...this.props} hasError {...props} />;
+        return (
+          <ComposedComponent
+            {...this.props}
+            queries={getQueries(this.props)}
+            hasError
+            {...props}
+          />
+        );
       }
       return (
-        <ComposedComponent {...this.props} isLoading={isLoading} {...props} />
+        <ComposedComponent
+          {...this.props}
+          queries={getQueries(this.props)}
+          isLoading={isLoading}
+          {...props}
+        />
       );
     }
   }
