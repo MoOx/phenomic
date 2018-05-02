@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should guess partial data from body AST 1`] = `
+Object {
+  "headers": Array [
+    Array [
+      1,
+      "Auto title",
+    ],
+    Array [
+      2,
+      "Sub title",
+    ],
+    Array [
+      2,
+      "Another Level 2",
+    ],
+    Array [
+      3,
+      "A level 3",
+    ],
+  ],
+  "title": "Auto title",
+}
+`;
