@@ -2,10 +2,11 @@
 
 import * as React from "react";
 import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
+import removeExtFromHref from "@phenomic/helpers-transform/lib/removeExtFromHref";
 
 const MarkdownGenerated = (props: Object) => (
   <div className="phenomic-Markdown">
-    <BodyRenderer>{props.body}</BodyRenderer>
+    <BodyRenderer>{removeExtFromHref(props.body)}</BodyRenderer>
   </div>
 );
 

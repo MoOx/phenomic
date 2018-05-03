@@ -9,7 +9,7 @@ import Link from "./Link";
 import Spacer from "./Spacer";
 
 const HeaderNavBar = () => (
-  <Spacer small style={[styles.row, styles.header]}>
+  <View style={[styles.row, styles.header]}>
     <Spacer small style={[styles.row, styles.logo]}>
       <Link.Touchable href="/">
         <Spacer small style={{ flex: 0 }}>
@@ -32,58 +32,67 @@ const HeaderNavBar = () => (
         </Link.Touchable>
       </View>
     </Spacer>
-    <Spacer small style={styles.nav}>
-      <View style={styles.row}>
-        <Link.Touchable
-          href="/docs/getting-started"
-          style={styles.link}
-          activeStyle={styles.linkActive}
-        >
-          <Text style={styles.linkText}>{"Getting started"}</Text>
-        </Link.Touchable>
-        <Link.Touchable
-          href="/blog"
-          style={styles.link}
-          activeStyle={styles.linkActive}
-        >
-          <Text style={[styles.linkText]}>{"Blog"}</Text>
-        </Link.Touchable>
-        <Link.Touchable
-          href="/showcase"
-          style={styles.link}
-          activeStyle={styles.linkActive}
-        >
-          <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
-        </Link.Touchable>
-      </View>
-      <View style={styles.row}>
-        <Link.Touchable
-          href="https://github.com/phenomic/phenomic"
-          style={styles.link}
-        >
-          <Text style={styles.linkText}>{"GitHub"}</Text>
-        </Link.Touchable>
-        <Link.Touchable
-          href="https://twitter.com/Phenomic_app"
-          style={styles.link}
-        >
-          <Text style={styles.linkText}>{"Twitter"}</Text>
-        </Link.Touchable>
-        <Link.Touchable
-          href="https://spectrum.chat/phenomic"
-          style={styles.link}
-        >
-          <Text style={styles.linkText}>{"Community"}</Text>
-        </Link.Touchable>
-        <Link.Touchable
-          href="https://gitter.im/MoOx/phenomic"
-          style={styles.link}
-        >
-          <Text style={styles.linkText}>{"Chat"}</Text>
-        </Link.Touchable>
-      </View>
+    <Spacer small style={[styles.row, styles.center]}>
+      <Link.Touchable
+        href="/en/docs/core/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={styles.linkText}>{"Docs"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/docs/core/getting-started/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={styles.linkText}>{"Tutorials"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/plugins/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={styles.linkText}>{"Plugins"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/blog/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={[styles.linkText]}>{"Blog"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/showcase/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
+      </Link.Touchable>
     </Spacer>
-  </Spacer>
+    <Spacer small style={[styles.row, styles.end]}>
+      <Link.Touchable
+        href="https://github.com/phenomic/phenomic"
+        style={styles.link}
+      >
+        <Text style={styles.linkText}>{"GitHub"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="https://twitter.com/Phenomic_app"
+        style={styles.link}
+      >
+        <Text style={styles.linkText}>{"Twitter"}</Text>
+      </Link.Touchable>
+      <Link.Touchable href="https://spectrum.chat/phenomic" style={styles.link}>
+        <Text style={styles.linkText}>{"Community"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="https://gitter.im/MoOx/phenomic"
+        style={styles.link}
+      >
+        <Text style={styles.linkText}>{"Chat"}</Text>
+      </Link.Touchable>
+    </Spacer>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -97,6 +106,7 @@ const styles = StyleSheet.create({
     // flexWrap: "nowrap",
     justifyContent: "space-between",
     alignItems: "flex-start"
+    // backgroundColor: "#0157A3"
   },
   logo: {
     maxHeight: 42 + Spacer.small,
@@ -112,23 +122,26 @@ const styles = StyleSheet.create({
   },
   link: {
     textDecorationLine: "none",
-    padding: 10
+    paddingVertical: 16,
+    paddingHorizontal: "5%"
   },
   linkActive: {
     backgroundColor: "rgba(0, 0, 0, 0.1)"
   },
   linkText: {
-    color: "#fff"
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "300"
   },
   linkBold: {
     fontWeight: "700"
   },
-  nav: {
-    flexGrow: 4.5,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    flexWrap: "wrap"
+  center: {
+    flex: 2,
+    justifyContent: "center"
+  },
+  end: {
+    justifyContent: "flex-end"
   }
 });
 
