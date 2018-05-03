@@ -58,9 +58,7 @@
       "eslint --ignore-path .gitignore --fix packages e2e-tests examples website",
     "lint:flow": "flow check",
     "lint": "npm-run-all --parallel lint:*",
-    "#tests":
-      " --maxWorkers=2 --no-cache: https://github.com/facebook/jest/issues/3552 on packages/plugin-transform-markdown/src/__tests__",
-    "tests": "jest --maxWorkers=2 --no-cache --coverage packages",
+    "tests": "jest --runInBand --coverage packages",
     "examples:build": "babel-node scripts/examples.js",
     "examples:tests": "jest --bail examples",
     "examples": "yarn examples:build && yarn examples:tests",
@@ -123,6 +121,7 @@
     }
   },
   "jest": {
+    "setupFiles": ["./jest-setup.js"],
     "testURL": "test://url.tld/path",
     "notify": true,
     "coverageThreshold": {
@@ -133,6 +132,7 @@
         "lines": 80
       }
     },
+    "coveragePathIgnorePatterns": ["/node_modules/", "jest-setup.js"],
     "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
   },
   "workspaces": ["website", "examples/*", "packages/*"]
