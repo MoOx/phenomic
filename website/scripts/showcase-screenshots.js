@@ -22,12 +22,12 @@ const screenshotsLocation = resolve(
   "entry"
 );
 
-const showcasesFile = fs
+const showcasesFiles = fs
   .readdirSync(showcaseDir)
   .filter(file => !file.startsWith("."));
 
 const listTmp = [];
-showcasesFile.forEach(file => {
+showcasesFiles.forEach(file => {
   const showcaseFile = fs.readFileSync(join(showcaseDir, file), {
     encoding: "utf-8"
   });
