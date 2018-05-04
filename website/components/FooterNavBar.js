@@ -7,36 +7,51 @@ import Link from "./Link";
 import Spacer from "./Spacer";
 
 const HeaderNavBar = () => (
-  <View style={styles.header}>
-    <View style={styles.row}>
+  <View style={styles.container}>
+    <View style={styles.col}>
       <Link.Touchable href="/" style={styles.text}>
         <img src="/assets/phenomic-logo-baseline.svg" height="48" />
       </Link.Touchable>
       <Spacer small />
     </View>
-    <View style={styles.nav}>
+    <View style={styles.col}>
       <Link.Touchable
-        href="/docs/getting-started"
+        href="/en/docs/core/"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
-        <Text style={styles.linkText}>{"Getting started"}</Text>
+        <Text style={styles.linkText}>{"Docs"}</Text>
       </Link.Touchable>
       <Link.Touchable
-        href="/blog"
+        href="/en/tutorials/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={styles.linkText}>{"Tutorials"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/plugins/"
+        style={styles.link}
+        activeStyle={styles.linkActive}
+      >
+        <Text style={styles.linkText}>{"Plugins"}</Text>
+      </Link.Touchable>
+      <Link.Touchable
+        href="/en/blog/"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={styles.linkText}>{"Blog"}</Text>
       </Link.Touchable>
       <Link.Touchable
-        href="/showcase"
+        href="/en/showcase/"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
         <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
       </Link.Touchable>
-      <Text>{" | "}</Text>
+    </View>
+    <View style={styles.col}>
       <Link.Touchable
         href="https://github.com/phenomic/phenomic"
         style={styles.link}
@@ -63,19 +78,15 @@ const HeaderNavBar = () => (
 );
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     flexDirection: "row",
     flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: 80,
     paddingLeft: 20,
     paddingRight: 20
   },
-  row: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    maxWidth: "100%"
+  col: {
+    flex: 1,
+    alignItems: "flex-start"
   },
   text: {
     color: "#fff",
@@ -88,19 +99,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
   linkActive: {
-    backgroundColor: "rgba(0, 0, 0, 0.1)"
+    backgroundColor: "rgba(255,255,255, 0.1)"
   },
   linkText: {
     color: "#fff"
   },
   linkBold: {
     fontWeight: "700"
-  },
-  nav: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-    maxWidth: "100%"
   }
 });
 

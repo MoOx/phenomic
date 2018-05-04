@@ -65,7 +65,7 @@ const ShowcaseList = (props: Object) => (
       {props.isLoading && <ActivityIndicator />}
       {!props.isLoading && (
         <View>
-          <Link href={"/showcase/submit/"} style={styles.addYourOwn}>
+          <Link href={"/en/showcase/submit/"} style={styles.addYourOwn}>
             {"+ Add your website"}
           </Link>
           {props.params &&
@@ -75,7 +75,7 @@ const ShowcaseList = (props: Object) => (
                   {"You are currently viewing projects that match "}
                   <em>{props.params.showcaseTags}</em>
                   {" tag. "}
-                  <Link href={"/showcase/"} style={styles.filterMessageLink}>
+                  <Link href={"/en/showcase/"} style={styles.filterMessageLink}>
                     {"View all."}
                   </Link>
                 </Text>
@@ -102,7 +102,7 @@ const ShowcaseList = (props: Object) => (
                     item.showcaseTags.map(tag => (
                       <Link
                         key={tag}
-                        href={`/showcase/tag/${tag}/`}
+                        href={`/en/showcase/tag/${tag}/`}
                         style={styles.itemTag}
                       >
                         {tag}
@@ -155,7 +155,7 @@ const ShowcaseList = (props: Object) => (
                 props.showcase.node.next && (
                   <Link
                     style={styles.link}
-                    href={`/showcase/${
+                    href={`/en/showcase/${
                       props.params.showcaseTags
                         ? `tag/${props.params.showcaseTags}/`
                         : ""

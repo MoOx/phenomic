@@ -5,6 +5,7 @@ import { StyleSheet, View, Text } from "react-native-web";
 
 import BodyContainer from "./BodyContainer";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const PageError = ({ error }: { error: Object }) => {
   const status = (error && error.status) || 404;
@@ -32,6 +33,7 @@ const PageError = ({ error }: { error: Object }) => {
           )}
         </View>
       </BodyContainer>
+      <Footer />
     </View>
   );
 };

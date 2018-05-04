@@ -14,6 +14,7 @@ const Header = (props: Object) => (
     style={[styles.container, props.style]}
     start="#006BF6"
     end="#10E951"
+    direction="135deg"
   >
     <HeaderNavBar />
     <BodyContainer style={styles.hero}>
@@ -23,6 +24,7 @@ const Header = (props: Object) => (
       {/* @todo h1 or shit */}
       <Spacer large>
         <Text style={styles.heroText}>{props.title}</Text>
+        <Text style={styles.heroSubText}>{props.subtitle}</Text>
       </Spacer>
       {props.children && <View style={styles.children}>{props.children}</View>}
     </BodyContainer>
@@ -41,6 +43,13 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 48,
     fontWeight: "200",
+    textAlign: "center"
+  },
+  heroSubText: {
+    color: "#fff",
+    opacity: 0.6,
+    fontSize: 20,
+    fontWeight: "300",
     textAlign: "center"
   },
   children: {}

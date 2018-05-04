@@ -9,54 +9,75 @@ import Link from "./Link";
 import Spacer from "./Spacer";
 
 const HeaderNavBar = () => (
-  <Spacer small style={[styles.row, styles.header]}>
-    <Spacer small style={[styles.row, styles.logo]}>
-      <Link.Touchable href="/">
-        <Spacer small style={{ flex: 0 }}>
-          <img src="/assets/phenomic-logo-white.svg" height="42" />
-        </Spacer>
-      </Link.Touchable>
-      <View>
+  <React.Fragment>
+    <View style={[styles.row, styles.wip]}>
+      <Spacer large>
+        <Text style={styles.wipText}>
+          {"This website is a work in progress."}
+        </Text>
+      </Spacer>
+    </View>
+    <View style={[styles.row, styles.header]}>
+      <Spacer small style={[styles.row, styles.logo]}>
         <Link.Touchable href="/">
-          <Spacer small>
-            <img src="/assets/phenomic-text.svg" height="18" />
+          <Spacer small style={{ flex: 0 }}>
+            <img src="/assets/phenomic-logo-white.svg" height="42" />
           </Spacer>
         </Link.Touchable>
+        <View>
+          <Link.Touchable href="/">
+            <Spacer small>
+              <img src="/assets/phenomic-text.svg" height="18" />
+            </Spacer>
+          </Link.Touchable>
+          <Link.Touchable
+            href="https://github.com/phenomic/phenomic/releases"
+            style={styles.version}
+          >
+            <Spacer small>
+              <Text>{"v" + version}</Text>
+            </Spacer>
+          </Link.Touchable>
+        </View>
+      </Spacer>
+      <Spacer small style={[styles.row, styles.center]}>
         <Link.Touchable
-          href="https://github.com/phenomic/phenomic/releases"
-          style={styles.version}
-        >
-          <Spacer small>
-            <Text>{"v" + version}</Text>
-          </Spacer>
-        </Link.Touchable>
-      </View>
-    </Spacer>
-    <Spacer small style={styles.nav}>
-      <View style={styles.row}>
-        <Link.Touchable
-          href="/docs/getting-started"
+          href="/en/docs/core/"
           style={styles.link}
           activeStyle={styles.linkActive}
         >
-          <Text style={styles.linkText}>{"Getting started"}</Text>
+          <Text style={styles.linkText}>{"Docs"}</Text>
         </Link.Touchable>
         <Link.Touchable
-          href="/blog"
+          href="/en/tutorials/"
+          style={styles.link}
+          activeStyle={styles.linkActive}
+        >
+          <Text style={styles.linkText}>{"Tutorials"}</Text>
+        </Link.Touchable>
+        <Link.Touchable
+          href="/en/plugins/"
+          style={styles.link}
+          activeStyle={styles.linkActive}
+        >
+          <Text style={styles.linkText}>{"Plugins"}</Text>
+        </Link.Touchable>
+        <Link.Touchable
+          href="/en/blog/"
           style={styles.link}
           activeStyle={styles.linkActive}
         >
           <Text style={[styles.linkText]}>{"Blog"}</Text>
         </Link.Touchable>
         <Link.Touchable
-          href="/showcase"
+          href="/en/showcase/"
           style={styles.link}
           activeStyle={styles.linkActive}
         >
           <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
         </Link.Touchable>
-      </View>
-      <View style={styles.row}>
+      </Spacer>
+      <Spacer small style={[styles.row, styles.end]}>
         <Link.Touchable
           href="https://github.com/phenomic/phenomic"
           style={styles.link}
@@ -81,9 +102,9 @@ const HeaderNavBar = () => (
         >
           <Text style={styles.linkText}>{"Chat"}</Text>
         </Link.Touchable>
-      </View>
-    </Spacer>
-  </Spacer>
+      </Spacer>
+    </View>
+  </React.Fragment>
 );
 
 const styles = StyleSheet.create({
@@ -93,10 +114,21 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center"
   },
-  header: {
-    // flexWrap: "nowrap",
+  wip: {
     justifyContent: "space-between",
-    alignItems: "flex-start"
+    alignItems: "center",
+    backgroundColor: "#041d0f"
+  },
+  wipText: {
+    alignSelf: "center",
+    color: "#fff",
+    fontWeight: "100"
+  },
+  header: {
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    backgroundColor: "rgba(0,0,0,0.25)"
   },
   logo: {
     maxHeight: 42 + Spacer.small,
@@ -112,23 +144,26 @@ const styles = StyleSheet.create({
   },
   link: {
     textDecorationLine: "none",
-    padding: 10
+    paddingVertical: 16,
+    paddingHorizontal: "5%"
   },
   linkActive: {
     backgroundColor: "rgba(0, 0, 0, 0.1)"
   },
   linkText: {
-    color: "#fff"
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "300"
   },
   linkBold: {
     fontWeight: "700"
   },
-  nav: {
-    flexGrow: 4.5,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    flexWrap: "wrap"
+  center: {
+    flex: 2,
+    justifyContent: "center"
+  },
+  end: {
+    justifyContent: "flex-end"
   }
 });
 

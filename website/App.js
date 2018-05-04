@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import { Router, Route, browserHistory } from "react-router";
+import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { AppRegistry } from "react-native-web";
 import { createApp, renderApp } from "@phenomic/preset-react-app/lib/client";
 import GA from "react-ga";
@@ -11,8 +11,9 @@ import "./highlights-theme.css";
 
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
-import GettingStarted from "./components/GettingStarted";
-import DocPage from "./components/PageDoc";
+import PageDoc from "./components/PageDoc";
+import Tutorials from "./components/Tutorials";
+import Plugins from "./components/Plugins";
 import ShowcasePage from "./components/PageShowcase";
 import ShowcaseList, { ShowcaseListByTag } from "./components/ShowcaseList";
 import PageError from "./components/PageError";
@@ -30,23 +31,32 @@ const pageView = isProduction
     }
   : () => console.info("New pageview", window.location.href);
 
+// @todo handle more languages
 const routes = () => (
   <Router history={browserHistory} onUpdate={pageView}>
     <Route component={Wrapper}>
       <Route path="/" component={Home} />
-      <Route path="/docs/getting-started" component={GettingStarted} />
-      <Route path="/docs/*" component={DocPage} />
-      <Route path="/showcase" component={ShowcaseList} />
-      <Route path="/showcase/after/:after" component={ShowcaseList} />
-      <Route path="/showcase/tag/:showcaseTags" component={ShowcaseListByTag} />
-      <Route
-        path="/showcase/tag/:showcaseTags/after/:after"
-        component={ShowcaseListByTag}
-      />
-      <Route path="/showcase/*" component={ShowcasePage} />
-      <Route path="/blog" component={BlogList} />
-      <Route path="/blog/after/:after" component={BlogList} />
-      <Route path="/blog/*" component={BlogItem} />
+      <Route path="/en/">
+        <IndexRoute component={PageDoc} />
+        <Route path="docs" component={PageDoc} />
+        <Route path="docs/*" component={PageDoc} />
+        <Route path="tutorials" component={Tutorials} />
+        <Route path="plugins" component={Plugins} />
+        <Route path="blog" component={BlogList} />
+        <Route path="blog/after/:after" component={BlogList} />
+        <Route path="blog/*" component={BlogItem} />
+        <Route path="showcase" component={ShowcaseList} />
+        <Route path="showcase/after/:after" component={ShowcaseList} />
+        <Route
+          path="showcase/tag/:showcaseTags"
+          component={ShowcaseListByTag}
+        />
+        <Route
+          path="showcase/tag/:showcaseTags/after/:after"
+          component={ShowcaseListByTag}
+        />
+        <Route path="showcase/*" component={ShowcasePage} />
+      </Route>
       <Route path="404.html" component={PageError} />
       <Route path="*" component={PageError} />
     </Route>

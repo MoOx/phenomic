@@ -5,26 +5,25 @@ import { View, Text, StyleSheet } from "react-native-web";
 
 import Link from "./Link";
 
-const BlogListItem = props => (
+const PackageListItem = (props: {| package: Object |}) => (
   <Link.Block
-    href={"/en/blog/" + props.news.id}
+    href={"/package/" + props.package.id}
     style={styles.link}
     blockProps={{ style: styles.block }}
   >
     <View style={styles.wrapper}>
       <View>
-        <Text style={styles.title}>{props.news.title}</Text>
+        <Text style={styles.name}>{props.package.name}</Text>
       </View>
-      <Text style={styles.date}>
-        {new Date(props.news.date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        })}
-      </Text>
-      {props.news.author && (
-        <Text style={styles.author}>{"By " + props.news.author}</Text>
+      {props.package.author && (
+        <Text style={styles.author}>{"By " + props.package.author}</Text>
       )}
+      {props.package.authors &&
+        props.package.authors.map(author => (
+          <Text key={author} style={styles.author}>
+            {"By " + author}
+          </Text>
+        ))}
     </View>
   </Link.Block>
 );
@@ -50,14 +49,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 10
   },
-  title: {
+  name: {
     fontWeight: "700",
     fontSize: 22,
     paddingBottom: 10
-  },
-  date: {
-    color: "rgba(0, 0, 0, 0.5)",
-    fontSize: 14
   },
   author: {
     fontWeight: "100",
@@ -65,4 +60,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BlogListItem;
+export default PackageListItem;
