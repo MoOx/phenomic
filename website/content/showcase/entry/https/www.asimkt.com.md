@@ -1,12 +1,8 @@
 ---
-title: Portfolio | Asim K T
+title: Asim K T Portfolio
 url: https://www.asimkt.com/
 source: https://github.com/asimkt/portfolio
 showcaseTags:
-  - portfolio
-  - personal
-  - open-source
-  - react
   - blog
 ---
  
