@@ -8,6 +8,7 @@
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
     "start": "phenomic start",
+    "prebuild": "yarn showcase-screenshots",
     "build": "phenomic build",
     "pretest": "yarn showcase-screenshots",
     "test": "yarn build",
