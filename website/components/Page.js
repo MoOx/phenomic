@@ -19,6 +19,23 @@ const layouts = {
   Default: props => <MarkdownGenerated body={props.node.body} />
 };
 
+const sort = (a, b) => {
+  if (a.priority && b.priority) {
+    if (a.priority < b.priority) return -1;
+    if (a.priority > b.priority) return 1;
+  }
+  if (a.priority) return 1;
+  if (b.priority) return -1;
+  if (a.id < b.id) return -1;
+  if (a.id > b.id) return 1;
+  return 0;
+};
+
+export function readPkgFromId(id: string) {
+  const pieces = id ? id.split("/") : [];
+  return pieces.shift();
+}
+
 // eslint-disable-next-line react/no-multi-comp
 const Page = (props: Object) => {
   if (props.hasError) {
@@ -35,6 +52,9 @@ const Page = (props: Object) => {
   ) {
     Layout = layouts[props.page.node.layout];
   }
+
+  const currentPkg = readPkgFromId(props.params.splat);
+
   return (
     <Flex>
       <Header
@@ -47,17 +67,8 @@ const Page = (props: Object) => {
             <Spacer large style={styles.sidebar}>
               {props.pages.node &&
                 props.pages.node.list
-                  .sort((a, b) => {
-                    if (a.priority && b.priority) {
-                      if (a.priority < b.priority) return -1;
-                      if (a.priority > b.priority) return 1;
-                    }
-                    if (a.priority) return 1;
-                    if (b.priority) return -1;
-                    if (a.id < b.id) return -1;
-                    if (a.id > b.id) return 1;
-                    return 0;
-                  })
+                  .filter(p => readPkgFromId(p.id) == currentPkg)
+                  .sort(sort)
                   .map(page => (
                     <Stylable
                       key={page.id}
@@ -65,19 +76,7 @@ const Page = (props: Object) => {
                       activeStyle={styles.sidebarLinkActive}
                       hoveredOrFocusedStyle={styles.sidebarLinkFocused}
                     >
-                      <Link
-                        href={
-                          "/en/docs/" +
-                          props.queries.pages.path
-                            .replace("packages/", "")
-                            .replace("/docs", "")
-                            .replace(/(plugin|preset)-/, "$1/") +
-                          "/" +
-                          page.id
-                            .replace(/^docs$/, "")
-                            .replace(/^docs\/(.*)/, "$1/")
-                        }
-                      >
+                      <Link href={`/en/packages/${page.id}/`}>
                         <Spacer large>
                           <Text>{page.title}</Text>
                         </Spacer>

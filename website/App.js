@@ -38,8 +38,7 @@ const routes = () => (
       <Route path="/" component={Home} />
       <Route path="/en/">
         <IndexRoute component={PageDoc} />
-        <Route path="docs" component={PageDoc} />
-        <Route path="docs/*" component={PageDoc} />
+        <Route path="packages/*" component={PageDoc} />
         <Route path="tutorials" component={Tutorials} />
         <Route path="plugins" component={Plugins} />
         <Route path="blog" component={BlogList} />

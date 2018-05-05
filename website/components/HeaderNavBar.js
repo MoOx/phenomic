@@ -42,7 +42,7 @@ const HeaderNavBar = () => (
       </Spacer>
       <Spacer small style={[styles.row, styles.center]}>
         <Link.Touchable
-          href="/en/docs/core/"
+          href="/en/packages/core/docs/"
           style={styles.link}
           activeStyle={styles.linkActive}
         >

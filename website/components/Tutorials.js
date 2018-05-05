@@ -14,7 +14,7 @@ const items = [
   {
     title: "React App",
     icon: "/assets/react.svg",
-    link: "/en/docs/preset/react-app"
+    link: "/en/packages/preset-react-app/docs/"
   }
 ];
 

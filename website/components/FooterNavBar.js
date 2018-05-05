@@ -16,7 +16,7 @@ const HeaderNavBar = () => (
     </View>
     <View style={styles.col}>
       <Link.Touchable
-        href="/en/docs/core/"
+        href="/en/packages/core/docs/"
         style={styles.link}
         activeStyle={styles.linkActive}
       >
