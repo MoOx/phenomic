@@ -95,7 +95,11 @@ const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
 };
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    // netlify fails to run puppeteer
+    // https://github.com/GoogleChrome/puppeteer/issues/1321#issuecomment-378361236
+    args: ["--disable-dev-shm-usage"]
+  });
   for (const s in screenshots) {
     const { file, url, pngLocation, jpgLocation, width, height } = screenshots[
       s
@@ -120,7 +124,7 @@ const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
           console.log("📸 ", url, width, height);
         }
       } catch (e) {
-        console.error("🚨 ", url, e);
+        console.error("🚨 ", url, e.message);
       }
     }
     // optimize only if available
