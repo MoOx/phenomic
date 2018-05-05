@@ -1,10 +1,12 @@
 // @flow
 
 import cosmiconfig from "cosmiconfig";
+import serve from "serve";
 
 import flattenConfiguration from "./configuration/flattenConfiguration.js";
 import start from "./commands/start.js";
 import build from "./commands/build.js";
+import log from "./utils/log.js";
 
 const shittyCatch = error => {
   setTimeout(() => {
@@ -35,14 +37,29 @@ function normalizeConfiguration(
 }
 
 export default {
-  start(config?: PhenomicInputConfig) {
-    normalizeConfiguration(config)
+  start(inputConfig?: PhenomicInputConfig) {
+    normalizeConfiguration(inputConfig)
       .then(start)
       .catch(shittyCatch);
   },
-  build(config?: PhenomicInputConfig) {
-    normalizeConfiguration(config)
+  build(inputConfig?: PhenomicInputConfig) {
+    normalizeConfiguration(inputConfig)
       .then(build)
       .catch(shittyCatch);
+  },
+  async preview(inputConfig?: PhenomicInputConfig) {
+    try {
+      const config = await normalizeConfiguration(inputConfig);
+      await build(config);
+      log(
+        `⚡️ Serving on http://localhost:${config.port}` +
+          config.baseUrl.pathname
+      );
+      serve(config.outdir, {
+        port: config.port
+      });
+    } catch (e) {
+      shittyCatch(e);
+    }
   }
 };
