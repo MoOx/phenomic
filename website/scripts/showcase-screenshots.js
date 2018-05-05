@@ -6,7 +6,6 @@ import fs from "fs";
 import mkdirp from "mkdirp";
 import grayMatter from "gray-matter";
 import puppeteer from "puppeteer";
-import pngToJpg from "png-jpg";
 import optimizer from "image-optim";
 
 import urlToSlug from "../modules/url-to-slug";
@@ -38,7 +37,7 @@ showcasesFiles.forEach(file => {
 
 // console.log(listTmp);
 // process.exit(1);
-const list = listTmp; //.slice(0, 2); // for tests
+const list = listTmp; // .slice(0, 2); // for tests
 
 mkdirp.sync(cacheDir);
 mkdirp.sync(screenshotsLocation);
@@ -50,48 +49,22 @@ const screenshots = list.reduce((screenshots, { file, url }) => {
     {
       file,
       url,
-      pngLocation: join(cacheDir, filename + "-large.png"),
       jpgLocation: join(screenshotsLocation, filename + "-large.jpg"),
       ...screenshotsSize.large
     },
     {
       file,
       url,
-      pngLocation: join(cacheDir, filename + "-small.png"),
       jpgLocation: join(screenshotsLocation, filename + "-small.jpg"),
       ...screenshotsSize.small
     }
   ];
 }, []);
 
-const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
-  // skip file if they already exist
-  try {
-    fs.readFileSync(jpgLocation);
-    return Promise.resolve();
-  } catch (e) {
-    return new Promise((resolve, reject) => {
-      try {
-        pngToJpg(
-          {
-            input: pngLocation,
-            output: jpgLocation,
-            options: { quality: 90 }
-          },
-          () => {
-            optimizer
-              .optimize(jpgLocation)
-              .then(() => console.log("📦 ", url, "optimized"))
-              .then(resolve)
-              // .catch(err => console.log("Failed to optimize image", err));
-              .catch(reject);
-          }
-        );
-      } catch (e) {
-        reject(e);
-      }
-    });
-  }
+const optimizeScreenshot = async ({ url, jpgLocation }) => {
+  return optimizer
+    .optimize(jpgLocation)
+    .then(() => console.log("📦 ", url, "optimized"));
 };
 
 (async () => {
@@ -101,15 +74,14 @@ const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
     args: ["--disable-dev-shm-usage"]
   });
   for (const s in screenshots) {
-    const { file, url, pngLocation, jpgLocation, width, height } = screenshots[
-      s
-    ];
-    const page = await browser.newPage();
+    const { file, url, jpgLocation, width, height } = screenshots[s];
     try {
-      fs.readFileSync(pngLocation);
+      // skip if jpeg exist
+      fs.readFileSync(jpgLocation);
     } catch (e) {
-      console.log("📷 ", url, "Missing screenshots", width, height);
       try {
+        console.log("👉 Visiting ", url);
+        const page = await browser.newPage();
         await page.goto(url);
         if (
           (await page.$("#PhenomicRoot")) === null &&
@@ -117,26 +89,21 @@ const optimizeScreenshot = async ({ url, pngLocation, jpgLocation }) => {
           (await page.$("#statinamic")) === null // back to the future
         ) {
           console.error("⚠️ ", url, "Website seems not to run phenomic");
-          console.error("🚒 git rm " + join(showcaseDir, file));
+          console.error("🚒 tip: git rm " + join(showcaseDir, file));
         } else {
+          console.log("📷 ", url, "Taking screenshot", width, height);
           await page.setViewport({ width, height });
-          await page.screenshot({ path: pngLocation });
+          await page.screenshot({
+            path: jpgLocation,
+            type: "jpeg",
+            quality: 40
+          });
+          await optimizeScreenshot({ url, jpgLocation });
           console.log("📸 ", url, width, height);
         }
       } catch (e) {
         console.error("🚨 ", url, e.message);
       }
-    }
-    // optimize only if available
-    let optimize;
-    try {
-      fs.readFileSync(pngLocation);
-      optimize = true;
-    } catch (e) {
-      optimize = false;
-    }
-    if (optimize) {
-      await optimizeScreenshot({ url, pngLocation, jpgLocation });
     }
   }
 
