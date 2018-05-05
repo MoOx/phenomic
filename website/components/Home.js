@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Head from "react-helmet";
-import { StyleSheet, Text, View, ImageBackground } from "react-native-web";
+import { StyleSheet, Text, View } from "react-native-web";
 import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
 import BackgroundGradient from "./BackgroundGradient";
@@ -11,8 +11,6 @@ import Footer from "./Footer";
 import Flex from "./Flex";
 import Spacer from "./Spacer";
 import BodyContainer from "./BodyContainer";
-import Link from "./Link";
-import CodeExample from "./HomeCodeExample";
 
 const Home = () => (
   <Flex style={{ overflow: "hidden" }}>
