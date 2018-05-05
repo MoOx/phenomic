@@ -18,6 +18,13 @@ yargs.command(
   () => phenomic.build()
 );
 
+yargs.command(
+  "preview",
+  "build & serve your project (static / production mode)",
+  {},
+  () => phenomic.preview()
+);
+
 export default () => {
   yargs.parse(process.argv);
 };
