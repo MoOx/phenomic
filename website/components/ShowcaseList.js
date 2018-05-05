@@ -138,8 +138,8 @@ const ShowcaseList = (props: Object) => (
                     style={styles.link}
                     href={
                       props.showcase.node.previousPageIsFirst
-                        ? `/showcase`
-                        : `/showcase/${
+                        ? `/en/showcase`
+                        : `/en/showcase/${
                             props.params.showcaseTags
                               ? `tag/${props.params.showcaseTags}/`
                               : ""
