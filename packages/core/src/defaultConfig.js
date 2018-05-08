@@ -10,6 +10,7 @@ const defaultConfig: PhenomicConfig = {
   port: 3333,
   socketPort: 3334,
   bundleName: "phenomic.main",
+  db: {},
   plugins: []
 };
 export default defaultConfig;

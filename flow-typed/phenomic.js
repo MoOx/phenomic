@@ -15,6 +15,12 @@ declare type Url = {
   hash?: string
 };
 
+declare type PhenomicDBConfig = {|
+  sortFunctions?: {
+    [key: string]: (PhenomicDBEntry, PhenomicDBEntry) => number
+  }
+|};
+
 declare type PhenomicDBEntryInput = {|
   data: Object,
   partial: Object
@@ -62,12 +68,13 @@ declare type PhenomicDB = {|
   ) => mixed | PhenomicDBEntryPartial,
   getList: (
     sub: null | string | $ReadOnlyArray<string>,
-    config?: {
+    query?: {
       gt?: string,
       gte?: string,
       lt?: string,
       lte?: string,
       limit?: number,
+      sort?: string,
       reverse?: boolean
     },
     filter?: string,
@@ -117,6 +124,7 @@ declare type PhenomicInputConfig = {|
   port?: number,
   socketPort?: number,
   bundleName?: string,
+  db?: PhenomicDBConfig,
   ...PhenomicInputPlugins
 |};
 
@@ -215,6 +223,7 @@ declare type PhenomicConfig = {|
   port: number,
   socketPort: number,
   bundleName: string,
+  db: PhenomicDBConfig,
   plugins: $ReadOnlyArray<PhenomicPlugin>
 |};
 
@@ -225,6 +234,7 @@ declare type PhenomicQueryConfig = {|
   by?: string,
   value?: string,
   order?: string,
+  sort?: string,
   limit?: number
 |};
 

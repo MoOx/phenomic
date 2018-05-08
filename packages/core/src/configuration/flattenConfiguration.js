@@ -166,6 +166,7 @@ function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
     port: config.port || defaultConfig.port,
     socketPort: config.socketPort || defaultConfig.socketPort,
     bundleName: config.bundleName || defaultConfig.bundleName,
+    db: config.db || defaultConfig.db,
     plugins: []
   };
   const partialPlugins = flattenPresets({

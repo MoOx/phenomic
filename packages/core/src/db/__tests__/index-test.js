@@ -1,6 +1,8 @@
 // @flow
 
-import db from "..";
+import createDB from "..";
+
+const db = createDB({});
 
 describe("db", () => {
   beforeEach(() => {

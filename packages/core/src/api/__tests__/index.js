@@ -2,11 +2,12 @@
 
 import request from "supertest";
 
-import db from "../../db";
+import createDB from "../../db";
 import dbFixtures from "../../db/__tests__/__fixtures__";
 
 import createServer from "..";
 
+const db = createDB({});
 db._setDatabase(dbFixtures);
 
 const server = createServer({
@@ -34,11 +35,11 @@ it("should return basic response", async () => {
 
 it("should return handle simple query for list", async () => {
   await request(server)
-    .get("/news/by-default/1/asc.json")
+    .get("/news/by-default/1/asc/date.json")
     .expect(200);
 
   await request(server)
-    .get("/news/by-default/1/asc/limit-2.json")
+    .get("/news/by-default/1/asc/date/limit-2.json")
     .expect(200);
 
   // await request(server)

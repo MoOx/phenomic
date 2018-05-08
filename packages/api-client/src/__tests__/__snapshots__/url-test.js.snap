@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should build url for items by date 1`] = `"/posts/by-date/1/desc.json"`;
+exports[`should build url for items by date 1`] = `"/posts/by-date/1/desc/date.json"`;
 
 exports[`should build url for single item 1`] = `"/posts/item/test.json"`;
 
-exports[`should build url for specific tag 1`] = `"/posts/by-tag/test/desc.json"`;
+exports[`should build url for specific tag 1`] = `"/posts/by-tag/test/desc/date.json"`;
 
-exports[`should build url for specific tag 2`] = `"/posts/by-tag/test/asc.json"`;
+exports[`should build url for specific tag 2`] = `"/posts/by-tag/test/asc/date.json"`;
 
-exports[`should build url for specific tag 3`] = `"/posts/by-tag/test/asc/limit-10.json"`;
+exports[`should build url for specific tag 3`] = `"/posts/by-tag/test/asc/date/limit-10.json"`;
 
-exports[`should build url for specific tag 4`] = `"/posts/by-tag/test/asc/limit-10/after-BASE64.json"`;
+exports[`should build url for specific tag 4`] = `"/posts/by-tag/test/asc/date/limit-10/after-BASE64.json"`;
 
-exports[`should build url for specific tag 5`] = `"local/posts/by-tag/test/asc/limit-10/after-BASE64.json"`;
+exports[`should build url for specific tag 5`] = `"local/posts/by-tag/test/asc/date/limit-10/after-BASE64.json"`;

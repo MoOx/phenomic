@@ -71,8 +71,7 @@
     "posttest": "yarn examples && yarn website:test"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["git-exec-and-restage prettier --write"],
-    "*.re": ["git-exec-and-restage refmt --in-place"]
+    "*.{js,json,css,md}": ["git-exec-and-restage prettier --write"]
   },
   "babel": {
     "presets": [

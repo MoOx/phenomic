@@ -31,6 +31,7 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
     value: config.by && config.value ? config.value : "1",
     order: config.order ? config.order : "desc",
     limit: config.limit ? parseInt(config.limit, 10) : undefined,
+    sort: config.sort || "date",
     after: config.after
   });
 }

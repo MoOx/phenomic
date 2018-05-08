@@ -77,6 +77,7 @@ let queries = props => {
         by: Some("default"),
         value: None,
         order: None,
+        sort: None,
         limit: Some(2),
         after: Some(props##params##after)
       })

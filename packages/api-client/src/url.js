@@ -30,6 +30,7 @@ function url(config: Object): string {
       `by-${protect(config.by)}`,
       protect(config.value || "1"),
       protect(config.order || "desc"),
+      protect(config.sort || "date"),
       ...(config.limit ? [`limit-${protect(config.limit)}`] : []),
       ...(config.limit && config.after
         ? [`after-${protect(config.after)}`]

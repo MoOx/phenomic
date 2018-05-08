@@ -9,9 +9,9 @@ import pMap from "p-map";
 
 import { oneShot } from "../watch";
 import processFile from "../injection/processFile";
-import createServer from "../api";
+import createAPIServer from "../api";
 import writeFile from "../utils/writeFile";
-import db from "../db";
+import createDB from "../db";
 import log from "../utils/log";
 import getPath from "../utils/getPath";
 
@@ -106,7 +106,8 @@ async function build(config: PhenomicConfig) {
   debug("process.env.BABEL_ENV", process.env.BABEL_ENV);
   debug("process.env.PHENOMIC_ENV", process.env.PHENOMIC_ENV);
   debug("process.env.PHENOMIC_RESTAPI_PORT", process.env.PHENOMIC_RESTAPI_PORT);
-  const phenomicAPIServer = createServer({ db, plugins: config.plugins });
+  const db = createDB(config.db);
+  const phenomicAPIServer = createAPIServer({ db, plugins: config.plugins });
   const runningPhenomicAPIServer = phenomicAPIServer.listen(
     parseInt(process.env.PHENOMIC_RESTAPI_PORT, 10)
   );

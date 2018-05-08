@@ -11,6 +11,7 @@ type listConfig = {
   by: option(string),
   value: option(string),
   order: option(string),
+  sort: option(string),
   limit: option(int)
 };
 
@@ -19,6 +20,7 @@ type paginatedListConfig = {
   by: option(string),
   value: option(string),
   order: option(string),
+  sort: option(string),
   limit: option(int),
   after: option(string)
 };
@@ -36,6 +38,7 @@ let query = (queryConfig) =>
       "by": Js.Nullable.undefined,
       "value": Js.Nullable.undefined,
       "order": Js.Nullable.undefined,
+      "sort": Js.Nullable.undefined,
       "limit": Js.Nullable.undefined,
       "after": Js.Nullable.undefined
     }
@@ -45,6 +48,7 @@ let query = (queryConfig) =>
       "by": Js.Nullable.from_opt(queryConfigList.by),
       "value": Js.Nullable.from_opt(queryConfigList.value),
       "order": Js.Nullable.from_opt(queryConfigList.order),
+      "sort": Js.Nullable.from_opt(queryConfigList.sort),
       "limit": Js.Nullable.from_opt(queryConfigList.limit),
       "after": Js.Nullable.undefined
     }
@@ -54,6 +58,7 @@ let query = (queryConfig) =>
       "by": Js.Nullable.from_opt(queryConfigPaginatedList.by),
       "value": Js.Nullable.from_opt(queryConfigPaginatedList.value),
       "order": Js.Nullable.from_opt(queryConfigPaginatedList.order),
+      "sort": Js.Nullable.from_opt(queryConfigPaginatedList.sort),
       "limit": Js.Nullable.from_opt(queryConfigPaginatedList.limit),
       "after": Js.Nullable.from_opt(queryConfigPaginatedList.after)
     }

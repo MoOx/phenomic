@@ -30,7 +30,7 @@ const connect = (list, limit, previousList = []) => {
   };
 };
 
-function createServer({
+function createAPIServer({
   db,
   plugins
 }: {|
@@ -51,16 +51,20 @@ function createServer({
     });
   });
 
-  apiServer.get("/:path/by-:filter/:value/:order.json", async function(
+  apiServer.get("/:path/by-:filter/:value/:order/:sort.json", async function(
     req: express$Request,
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
+      const sort = req.params.sort;
       const reverse = req.params.order === "desc";
       const list = await db.getList(
         req.params.path,
-        { reverse },
+        {
+          sort,
+          reverse
+        },
         req.params.filter,
         req.params.value
       );
@@ -73,16 +77,18 @@ function createServer({
   });
 
   apiServer.get(
-    "/:path/by-:filter/:value/:order/limit-:limit.json",
+    "/:path/by-:filter/:value/:order/:sort/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
         const limit = parseInt(req.params.limit);
+        const sort = req.params.sort;
         const reverse = req.params.order === "desc";
         const list = await db.getList(
           req.params.path,
           {
             limit: limit + 1,
+            sort,
             reverse
           },
           req.params.filter,
@@ -98,7 +104,7 @@ function createServer({
   );
 
   apiServer.get(
-    "/:path/by-:filter/:value/:order/limit-:limit/after-:after.json",
+    "/:path/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -108,6 +114,7 @@ function createServer({
         // cause during dev all "lt" are responding 200, even random values
         // but in production, it's not the case as only known values are
         // generated as endpoints
+        const sort = req.params.sort;
         const reverse = req.params.order === "desc";
         const [list, previousList] = await Promise.all([
           db.getList(
@@ -115,6 +122,7 @@ function createServer({
             {
               limit: limit + 1,
               gte: after,
+              sort,
               reverse
             },
             req.params.filter,
@@ -125,6 +133,7 @@ function createServer({
             {
               limit: limit + 1,
               gt: after,
+              sort,
               reverse: !reverse
             },
             req.params.filter,
@@ -162,16 +171,20 @@ function createServer({
     }
   });
 
-  apiServer.get("/by-:filter/:value/:order.json", async function(
+  apiServer.get("/by-:filter/:value/:order/:sort.json", async function(
     req: express$Request,
     res: express$Response
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
+      const sort = req.params.sort;
       const reverse = req.params.order === "desc";
       const list = await db.getList(
         null,
-        { reverse },
+        {
+          sort,
+          reverse
+        },
         req.params.filter,
         req.params.value
       );
@@ -183,33 +196,35 @@ function createServer({
     }
   });
 
-  apiServer.get("/by-:filter/:value/:order/limit-:limit.json", async function(
-    req: express$Request,
-    res: express$Response
-  ) {
-    debug(req.url, JSON.stringify(req.params));
-    try {
-      const limit = parseInt(req.params.limit);
-      const reverse = req.params.order === "desc";
-      const list = await db.getList(
-        null,
-        {
-          limit: limit + 1,
-          reverse
-        },
-        req.params.filter,
-        req.params.value
-      );
-      res.json(connect(list, limit));
-    } catch (error) {
-      log.error(error.message);
-      debug(error);
-      res.status(404).end();
+  apiServer.get(
+    "/by-:filter/:value/:order/:sort/limit-:limit.json",
+    async function(req: express$Request, res: express$Response) {
+      debug(req.url, JSON.stringify(req.params));
+      try {
+        const limit = parseInt(req.params.limit);
+        const sort = req.params.sort;
+        const reverse = req.params.order === "desc";
+        const list = await db.getList(
+          null,
+          {
+            limit: limit + 1,
+            sort,
+            reverse
+          },
+          req.params.filter,
+          req.params.value
+        );
+        res.json(connect(list, limit));
+      } catch (error) {
+        log.error(error.message);
+        debug(error);
+        res.status(404).end();
+      }
     }
-  });
+  );
 
   apiServer.get(
-    "/by-:filter/:value/:order/limit-:limit/after-:after.json",
+    "/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -219,6 +234,7 @@ function createServer({
         // cause during dev all "lt" are responding 200, even random values
         // but in production, it's not the case as only known values are
         // generated as endpoints
+        const sort = req.params.sort;
         const reverse = req.params.order === "desc";
         const [list, previousList] = await Promise.all([
           db.getList(
@@ -226,6 +242,7 @@ function createServer({
             {
               limit: limit + 1,
               gte: after,
+              sort,
               reverse
             },
             req.params.filter,
@@ -236,6 +253,7 @@ function createServer({
             {
               limit: limit + 1,
               gt: after,
+              sort,
               reverse: !reverse
             },
             req.params.filter,
@@ -284,4 +302,4 @@ function createServer({
   return apiServer;
 }
 
-export default createServer;
+export default createAPIServer;

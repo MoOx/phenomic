@@ -9,7 +9,7 @@ import chalk from "chalk";
 
 import createWatcher from "../watch";
 import processFile from "../injection/processFile";
-import db from "../db";
+import createDB from "../db";
 import createAPIServer from "../api";
 import log from "../utils/log";
 import getPath from "../utils/getPath";
@@ -47,6 +47,7 @@ async function start(config: PhenomicConfig) {
   process.env.PHENOMIC_RESTAPI_PORT = String(config.port);
   process.env.PHENOMIC_SOCKET_PORT = String(config.socketPort);
   debug("starting phenomic server");
+  const db = createDB(config.db);
   const phenomicServer = createAPIServer({ db, plugins: config.plugins });
   const bundlerServer = await createDevServer({ config });
   const renderers = config.plugins.filter(p => p.getRoutes);

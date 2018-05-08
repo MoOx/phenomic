@@ -9,15 +9,21 @@ let database: PhenomicDBRegistry = emptyDatabase;
 
 const orderById = (a, b) => (b.id > a.id ? -1 : 1);
 
-function sortBy(sort = "date") {
+function defaultSort(sort = "date") {
   return (a, b) => {
-    a = a.data[sort];
-    b = b.data[sort];
-    if (!a && !b) return 0;
-    if (!a) return -1;
-    if (!b) return 1;
-    if (b > a) return -1;
-    if (a > b) return 1;
+    // sort by asked flag
+    const va = a.data[sort];
+    const vb = b.data[sort];
+    if (!va && vb) return -1;
+    if (!vb && va) return 1;
+    if (va && vb && vb > va) return -1;
+    if (va && vb && va > vb) return 1;
+    // if (!va && !vb) return 0;
+    // fallbacks instead of weird order
+    if (b.data.title > a.data.title) return -1;
+    if (a.data.title > b.data.title) return 1;
+    if (b.data.filename > a.data.filename) return -1;
+    if (a.data.filename > b.data.filename) return 1;
     return 0;
   };
 }
@@ -77,26 +83,6 @@ function updateToSublevel(
   };
 }
 
-function getDataRelation(fieldName, ids) {
-  try {
-    if (Array.isArray(ids)) {
-      return ids.map(id => db.getPartial(fieldName, id));
-    }
-    return db.getPartial(fieldName, ids);
-  } catch (error) {
-    return ids;
-  }
-}
-
-function getDataRelations(fields) {
-  const ids = Object.keys(fields);
-  const resolvedValues = ids.map(id => getDataRelation(id, fields[id]));
-  return ids.reduce((resolvedFields, id, index) => {
-    resolvedFields[id] = resolvedValues[index];
-    return resolvedFields;
-  }, {});
-}
-
 class NotFoundError extends Error {
   constructor(...args) {
     super(...args);
@@ -104,131 +90,162 @@ class NotFoundError extends Error {
   }
 }
 
-const db = {
-  _getDatabase(): PhenomicDBRegistry {
-    return database;
-  },
-  _setDatabase(newDb: PhenomicDBRegistry) {
-    database = newDb;
-  },
-  destroy() {
-    database = emptyDatabase;
-  },
-  put(
-    sub: null | string | $ReadOnlyArray<string>,
-    id: string,
-    value: PhenomicDBEntryInput = { data: {}, partial: {} }
-  ) {
-    putToSublevel(sub, {
-      data: value.data,
-      partial: value.partial,
-      id
-    });
-  },
-  update(
-    sub: null | string | $ReadOnlyArray<string>,
-    id: string,
-    value: PhenomicDBEntryInput = { data: {}, partial: {} }
-  ) {
-    updateToSublevel(sub, {
-      data: value.data,
-      partial: value.partial,
-      id
-    });
-  },
-  get(
-    sub: null | string | $ReadOnlyArray<string>,
-    id: string
-  ): PhenomicDBEntryDetailed {
-    const item = getSublevel(sub).find(item => item.id === id);
-    if (typeof item === "undefined") {
-      throw new NotFoundError(
-        `ID '${id}' not found in database ('${String(sub)}')`
-      );
-    }
-    const { body, ...metadata } = item.data;
-    const relatedData = getDataRelations(metadata);
-    return {
-      id: id,
-      value: {
-        ...relatedData,
-        ...(body ? { body } : {})
+const createDB = (dbConfig: PhenomicDBConfig) => {
+  const db = {
+    _getDatabase(): PhenomicDBRegistry {
+      return database;
+    },
+    _setDatabase(newDb: PhenomicDBRegistry) {
+      database = newDb;
+    },
+    destroy() {
+      database = emptyDatabase;
+    },
+    put(
+      sub: null | string | $ReadOnlyArray<string>,
+      id: string,
+      value: PhenomicDBEntryInput = { data: {}, partial: {} }
+    ) {
+      putToSublevel(sub, {
+        data: value.data,
+        partial: value.partial,
+        id
+      });
+    },
+    update(
+      sub: null | string | $ReadOnlyArray<string>,
+      id: string,
+      value: PhenomicDBEntryInput = { data: {}, partial: {} }
+    ) {
+      updateToSublevel(sub, {
+        data: value.data,
+        partial: value.partial,
+        id
+      });
+    },
+    get(
+      sub: null | string | $ReadOnlyArray<string>,
+      id: string
+    ): PhenomicDBEntryDetailed {
+      const item = getSublevel(sub).find(item => item.id === id);
+      if (typeof item === "undefined") {
+        throw new NotFoundError(
+          `ID '${id}' not found in database ('${String(sub)}')`
+        );
       }
-    };
-  },
-  getPartial(
-    sub: null | string | $ReadOnlyArray<string>,
-    id: string
-  ): mixed | PhenomicDBEntryPartial {
-    const item = getSublevel(sub).find(item => item.id === id);
-    if (!item) {
-      return id;
-    }
-    const type = typeof item.partial;
-    if (type === "string" || type === "number" || type === "boolean") {
-      return item.partial;
-    }
-    return { id, ...item.partial };
-  },
-
-  getList(
-    sub: null | string | $ReadOnlyArray<string>,
-    config: {
-      gt?: string,
-      gte?: string,
-      lt?: string,
-      lte?: string,
-      limit?: number,
-      reverse?: boolean
-    } = {},
-    filter: string = "default",
-    filterValue: string = ""
-  ): $ReadOnlyArray<any> {
-    let collection = getSublevel(sub, filter, filterValue);
-    collection.sort(sortBy());
-    if (config.reverse) {
-      collection = collection.concat().reverse();
-    }
-    if (config.gte) {
-      const index = collection.findIndex(item => item.id === config.gte);
-      collection = index > -1 ? collection.slice(index) : collection;
-    } else if (config.gt) {
-      const index = collection.findIndex(item => item.id === config.gt);
-      collection = index > -1 ? collection.slice(index + 1) : collection;
-    } else if (config.lte) {
-      const index = collection.findIndex(item => item.id === config.lte);
-      collection = index > -1 ? collection.slice(0, index + 1) : collection;
-    } else if (config.lt) {
-      const index = collection.findIndex(item => item.id === config.lt);
-      collection = index > -1 ? collection.slice(0, index) : collection;
-    }
-    if (typeof config.limit === "number") {
-      collection = collection.slice(
-        0,
-        Math.min(config.limit, collection.length)
-      );
-    }
-
-    return collection.map(item => {
-      const value = db.getPartial(sub, item.id);
-      const type = typeof value;
-      if (
-        type === "string" ||
-        type === "number" ||
-        type === "boolean" ||
-        Array.isArray(value)
-      ) {
-        return {
-          id: item.id,
-          value
-        };
-      }
+      const { body, ...metadata } = item.data;
+      const relatedData = getDataRelations(metadata);
       return {
-        ...value,
-        id: item.id
+        id: id,
+        value: {
+          ...relatedData,
+          ...(body ? { body } : {})
+        }
       };
-    });
+    },
+    getPartial(
+      sub: null | string | $ReadOnlyArray<string>,
+      id: string
+    ): mixed | PhenomicDBEntryPartial {
+      const item = getSublevel(sub).find(item => item.id === id);
+      if (!item) {
+        return id;
+      }
+      const type = typeof item.partial;
+      if (type === "string" || type === "number" || type === "boolean") {
+        return item.partial;
+      }
+      return { id, ...item.partial };
+    },
+
+    getList(
+      sub: null | string | $ReadOnlyArray<string>,
+      query: {
+        gt?: string,
+        gte?: string,
+        lt?: string,
+        lte?: string,
+        limit?: number,
+        sort?: string,
+        reverse?: boolean
+      } = {},
+      filter: string = "default",
+      filterValue: string = ""
+    ): $ReadOnlyArray<any> {
+      let collection = getSublevel(sub, filter, filterValue);
+      collection.sort(
+        dbConfig.sortFunctions &&
+        query.sort &&
+        dbConfig.sortFunctions[query.sort]
+          ? dbConfig.sortFunctions[query.sort]
+          : defaultSort(query.sort)
+      );
+      if (query.reverse) {
+        collection = collection.concat().reverse();
+      }
+      if (query.gte) {
+        const index = collection.findIndex(item => item.id === query.gte);
+        collection = index > -1 ? collection.slice(index) : collection;
+      } else if (query.gt) {
+        const index = collection.findIndex(item => item.id === query.gt);
+        collection = index > -1 ? collection.slice(index + 1) : collection;
+      } else if (query.lte) {
+        const index = collection.findIndex(item => item.id === query.lte);
+        collection = index > -1 ? collection.slice(0, index + 1) : collection;
+      } else if (query.lt) {
+        const index = collection.findIndex(item => item.id === query.lt);
+        collection = index > -1 ? collection.slice(0, index) : collection;
+      }
+      if (typeof query.limit === "number") {
+        collection = collection.slice(
+          0,
+          Math.min(query.limit, collection.length)
+        );
+      }
+
+      return collection.map(item => {
+        const value = db.getPartial(sub, item.id);
+        const type = typeof value;
+        if (
+          type === "string" ||
+          type === "number" ||
+          type === "boolean" ||
+          Array.isArray(value)
+        ) {
+          return {
+            id: item.id,
+            value
+          };
+        }
+        return {
+          ...value,
+          id: item.id
+        };
+      });
+    }
+  };
+
+  function getDataRelation(fieldName, ids) {
+    try {
+      if (Array.isArray(ids)) {
+        return ids.map(id => db.getPartial(fieldName, id));
+      }
+      return db.getPartial(fieldName, ids);
+    } catch (error) {
+      return ids;
+    }
   }
+
+  function getDataRelations(fields) {
+    const ids = Object.keys(fields);
+    const resolvedValues = ids.map(id => getDataRelation(id, fields[id]));
+    return ids.reduce((resolvedFields, id, index) => {
+      resolvedFields[id] = resolvedValues[index];
+      return resolvedFields;
+    }, {});
+  }
+
+  return db;
 };
 
-export default db;
+export default createDB;

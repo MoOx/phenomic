@@ -3,20 +3,6 @@
 exports[`should collect everything 1`] = `
 Array [
   Object {
-    "bio": "bloodyowl short bio",
-    "body": "bloodyowl long bio",
-    "filename": "bloodyowl.json",
-    "id": "authors/bloodyowl",
-    "name": "bloodyowl",
-  },
-  Object {
-    "bio": "moox short bio",
-    "body": "moox long bio",
-    "filename": "moox.json",
-    "id": "authors/moox",
-    "name": "moox",
-  },
-  Object {
     "filename": "acrowithbrian.com.md",
     "id": "showcase/entry/acrowithbrian.com",
     "showcaseTags": Array [
@@ -41,6 +27,13 @@ Array [
     "url": "http://anthonydugois.com/polynomic/",
   },
   Object {
+    "bio": "bloodyowl short bio",
+    "body": "bloodyowl long bio",
+    "filename": "bloodyowl.json",
+    "id": "authors/bloodyowl",
+    "name": "bloodyowl",
+  },
+  Object {
     "filename": "ced.photo.md",
     "id": "showcase/entry/ced.photo",
     "showcaseTags": Array [
@@ -52,19 +45,26 @@ Array [
     "url": "https://www.ced.photo",
   },
   Object {
-    "filename": "submit.md",
-    "id": "showcase/submit",
-    "title": "Submit a website/app made with Phenomic to the Showcase",
-  },
-  Object {
     "filename": "event.md",
     "id": "showcaseTags/event",
     "name": "Event",
   },
   Object {
+    "bio": "moox short bio",
+    "body": "moox long bio",
+    "filename": "moox.json",
+    "id": "authors/moox",
+    "name": "moox",
+  },
+  Object {
     "filename": "open-source.md",
     "id": "showcaseTags/open-source",
     "name": "Open Source",
+  },
+  Object {
+    "filename": "submit.md",
+    "id": "showcase/submit",
+    "title": "Submit a website/app made with Phenomic to the Showcase",
   },
   Object {
     "authors": Array [
