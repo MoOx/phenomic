@@ -13,30 +13,32 @@ const files = globby.sync("**/*", {
 it("should have basic pages", () => {
   expect(files.includes("404.html")).toBeTruthy();
   expect(files.includes("index.html")).toBeTruthy();
-  expect(files.filter(f => f.startsWith("docs/"))).toMatchSnapshot();
-  expect(files.includes("blog/index.html")).toBeTruthy();
-  expect(files.includes("showcase/index.html")).toBeTruthy();
+  expect(
+    files.filter(f => f.startsWith("en/packages/")).length > 10
+  ).toBeTruthy();
+  expect(files.includes("en/blog/index.html")).toBeTruthy();
+  expect(files.includes("en/showcase/index.html")).toBeTruthy();
   expect(files.includes("feed.xml")).toBeTruthy();
 });
 
 it("should have some generated pages for pagination", () => {
-  expect(files.filter(f => f.startsWith("blog/after/")).length).toBeGreaterThan(
-    0
-  );
   expect(
-    files.filter(f => f.startsWith("showcase/after/")).length
+    files.filter(f => f.startsWith("en/blog/after/")).length
+  ).toBeGreaterThan(0);
+  expect(
+    files.filter(f => f.startsWith("en/showcase/after/")).length
   ).toBeGreaterThan(0);
 });
 
 it("should have some generated pages for metadata and pagination", () => {
   // random tag pages
-  expect(files.includes("showcase/tag/blog/index.html")).toBeTruthy();
+  expect(files.includes("en/showcase/tag/blog/index.html")).toBeTruthy();
   expect(
-    files.filter(f => f.startsWith("showcase/tag/blog/after/")).length
+    files.filter(f => f.startsWith("en/showcase/tag/blog/after/")).length
   ).toBeGreaterThan(0);
-  expect(files.includes("showcase/tag/open-source/index.html")).toBeTruthy();
+  expect(files.includes("en/showcase/tag/open-source/index.html")).toBeTruthy();
   expect(
-    files.filter(f => f.startsWith("showcase/tag/open-source/after/")).length
+    files.filter(f => f.startsWith("en/showcase/tag/open-source/after/")).length
   ).toBeGreaterThan(0);
 });
 
@@ -45,11 +47,11 @@ it("should have api files", () => {
     files.filter(f => f.startsWith("phenomic") && f.endsWith(".json")).length
   ).toBeGreaterThan(0);
   expect(
-    files.includes("phenomic/content/blog/by-default/1/desc/limit-12.json")
+    files.includes("phenomic/content/blog/by-default/1/desc/date/limit-12.json")
   ).toBeTruthy();
   expect(
     files.includes(
-      "phenomic/content/blog/by-default/1/desc/limit-12/after-MjAxNy0wNi0wMi1pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
+      "phenomic/content/blog/by-default/1/desc/date/limit-12/after-MjAxNy0wNi0wMi1pbnRyb2R1Y2luZy0xLjAuMC1hbHBoYQ==.json"
     )
   ).toBeTruthy();
   expect(

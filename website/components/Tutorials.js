@@ -58,7 +58,7 @@ const Tutorials = () => {
         <Spacer large style={styles.row}>
           <Link
             style={styles.notice}
-            href="https://github.com/phenomic/phenomic/issues?q=is%3Aopen+label%3Aplugin"
+            href="https://github.com/phenomic/phenomic/labels/plugin"
           >
             {"You don't see what your are looking for?"}
           </Link>

@@ -8,7 +8,7 @@ The core of Phenomic is pretty light and can be summarized like this:
 * [Configuration]() is read from filesystem
 * One (or two) JavaScript bundles are generated (for [CSR](../faq/#what-is-csr)
   & [SSR](../faq/#what-is-ssr))\*
-* [Phenomic API]() is initialized with transformed\* content files (optional)
+* [Content API]() is initialized with transformed\* content files (optional)
 * The renderer will do his job to serve (for development) or build static files
   (for production).\*
 
