@@ -16,7 +16,9 @@ import BodyContainer from "./BodyContainer";
 import BodySmallContainer from "./BodySmallContainer";
 
 const layouts = {
-  Default: props => <MarkdownGenerated body={props.node.body} />
+  Default: props => (
+    <MarkdownGenerated body={props.node.body} filename={props.node.filename} />
+  )
 };
 
 const sort = (a, b) => {

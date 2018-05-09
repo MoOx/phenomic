@@ -33,7 +33,10 @@ const BlogItem = (props: Object) => {
                   day: "numeric"
                 })}
               </Text>
-              <MarkdownGenerated body={props.news.node.body} />
+              <MarkdownGenerated
+                body={props.news.node.body}
+                filename={props.news.node.filename}
+              />
             </React.Fragment>
           )}
         </Spacer>

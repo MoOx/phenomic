@@ -13,18 +13,24 @@ type Node =
 
 const forEachHref = (node?: Node, callback: string => string) => {
   if (!node) return;
+  if (typeof node !== "object") return node;
+  const newNode = {
+    ...node
+  };
   if (node.p && node.p.href) {
     // $FlowFixMe stfu
-    node.p.href = callback(node.p.href);
+    newNode.p = {
+      ...node.p,
+      href: callback(node.p.href)
+    };
   }
   if (Array.isArray(node.c))
     // $FlowFixMe stfu
-    node.c.map((child: Node) => forEachHref(child, callback));
-  else
+    newNode.c = node.c.map((child: Node) => forEachHref(child, callback));
+  else if (node.c)
     // $FlowFixMe stfu
-    forEachHref(node.c, callback);
-
-  return node;
+    newNode.c = forEachHref(node.c, callback);
+  return newNode;
 };
 
 const removeExtFromHref = (ext: string = "md") => (href: string) =>
@@ -33,17 +39,23 @@ const removeExtFromHref = (ext: string = "md") => (href: string) =>
 const cleanIndexAndReadme = (href: string) =>
   href.replace(/\/(index|README)\/?$/, "/");
 
-const removeDocsInPath = (href: string) =>
-  href.replace(/\/docs\//, "/").replace(/^docs\//, "./");
+const cleanAllHref = (node?: Node, filenameSource: string) => {
+  return forEachHref(node, href => {
+    const prefix =
+      !href.startsWith("#") &&
+      !href.startsWith("http://") &&
+      !href.startsWith("https://") &&
+      !(filenameSource === "index.md" || filenameSource === "README.md")
+        ? "../"
+        : "";
+    const h = cleanIndexAndReadme(removeExtFromHref()(href));
+    return prefix + h;
+  });
+};
 
-const cleanAllHref = (node?: Node) =>
-  forEachHref(node, href =>
-    removeDocsInPath(cleanIndexAndReadme(removeExtFromHref()(href)))
-  );
-
-const MarkdownGenerated = (props: Object) => (
+const MarkdownGenerated = (props: {| body: Node, filename: string |}) => (
   <div className="phenomic-Markdown">
-    <BodyRenderer>{cleanAllHref(props.body)}</BodyRenderer>
+    <BodyRenderer>{cleanAllHref(props.body, props.filename)}</BodyRenderer>
   </div>
 );
 
