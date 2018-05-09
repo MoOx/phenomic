@@ -3,6 +3,8 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
+import PhenomicLogoBaseline from "../svgs/PhenomicLogoBaseline";
+
 import Link from "./Link";
 import Spacer from "./Spacer";
 
@@ -10,7 +12,7 @@ const HeaderNavBar = () => (
   <View style={styles.container}>
     <View style={styles.col}>
       <Link.Touchable href="/" style={styles.text}>
-        <img src="/assets/phenomic-logo-baseline.svg" height="48" />
+        <PhenomicLogoBaseline height="48" />
       </Link.Touchable>
       <Spacer small />
     </View>

@@ -4,6 +4,8 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
 import { version } from "../.././lerna.json";
+import PhenomicLogoWhite from "../svgs/PhenomicLogoWhite";
+import PhenomicText from "../svgs/PhenomicText";
 
 import Link from "./Link";
 import Spacer from "./Spacer";
@@ -21,13 +23,13 @@ const HeaderNavBar = () => (
       <Spacer small style={[styles.row, styles.logo]}>
         <Link.Touchable href="/">
           <Spacer small style={{ flex: 0 }}>
-            <img src="/assets/phenomic-logo-white.svg" height="42" />
+            <PhenomicLogoWhite height="42" />
           </Spacer>
         </Link.Touchable>
         <View>
           <Link.Touchable href="/">
             <Spacer small>
-              <img src="/assets/phenomic-text.svg" height="18" />
+              <PhenomicText height="18" />
             </Spacer>
           </Link.Touchable>
           <Link.Touchable

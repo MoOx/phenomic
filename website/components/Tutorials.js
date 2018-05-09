@@ -13,7 +13,7 @@ import Spacer from "./Spacer";
 const items = [
   {
     title: "React App",
-    icon: "/assets/react.svg",
+    Icon: require("../svgs/ReactLogo").default,
     link: "/en/packages/preset-react-app/docs/"
   }
 ];
@@ -49,7 +49,7 @@ const Tutorials = () => {
               href={item.link}
             >
               <View style={styles.img}>
-                <img src={item.icon} height={item.height || 128} />
+                <item.Icon height={item.height || 128} />
               </View>
               <Text style={styles.logoTitle}>{item.title}</Text>
             </Link.Block>

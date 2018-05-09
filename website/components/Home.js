@@ -5,6 +5,9 @@ import Head from "react-helmet";
 import { StyleSheet, Text, View } from "react-native-web";
 import { withPhenomicApi } from "@phenomic/preset-react-app/lib/client";
 
+import PhenomicLogoWhite from "../svgs/PhenomicLogoWhite";
+import PhenomicText from "../svgs/PhenomicText";
+
 import BackgroundGradient from "./BackgroundGradient";
 import HeaderNavBar from "./HeaderNavBar";
 import Footer from "./Footer";
@@ -26,8 +29,7 @@ const Home = () => (
         source={{ uri: "/bg/jack-cain-326608-unsplash-.jpg" }}
       > */}
         {global.window && (
-          <img
-            src="/assets/phenomic-logo-white.svg"
+          <PhenomicLogoWhite
             height={Math.max(window.innerWidth, window.innerHeight) * 0.75}
             style={{
               opacity: 0.06,
@@ -50,10 +52,7 @@ const Home = () => (
         {/* @todo h1 or shit */}
         <View style={styles.row}>
           <Spacer large>
-            <img
-              src="/assets/phenomic-text.svg"
-              style={{ maxHeight: "72px" }}
-            />
+            <PhenomicText style={{ maxHeight: "72px" }} height="auto" />
           </Spacer>
         </View>
         <Text style={styles.heroSubtitleText}>

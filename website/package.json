@@ -4,6 +4,7 @@
   "version": "1.0.0-beta.2",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
+    "prepare": "svgr --no-dimensions --out-dir svgs svgs",
     "releases-as-markdown": "babel-node scripts/releases-as-markdown.js",
     "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
     "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
@@ -37,7 +38,8 @@
     "mkdirp": "^0.5.1",
     "puppeteer": "^1.1.1",
     "rimraf": "^2.6.1",
-    "simple-json-fetch": "^1.0.1"
+    "simple-json-fetch": "^1.0.1",
+    "svgr": "^1.9.1"
   },
   "phenomic": {
     "baseUrl": "https://phenomic.io/",
