@@ -8,10 +8,10 @@ import start from "./commands/start.js";
 import build from "./commands/build.js";
 import log from "./utils/log.js";
 
-const shittyCatch = error => {
-  setTimeout(() => {
-    throw error;
-  }, 1);
+const handleError = error => {
+  if (error.message) log.error(error.message);
+  if (error.stack) log.error(error.stack);
+  process.exit(1);
 };
 
 function normalizeConfiguration(
@@ -33,19 +33,19 @@ function normalizeConfiguration(
         ...(config || {})
       });
     })
-    .catch(shittyCatch);
+    .catch(handleError);
 }
 
 export default {
   start(inputConfig?: PhenomicInputConfig) {
     normalizeConfiguration(inputConfig)
       .then(start)
-      .catch(shittyCatch);
+      .catch(handleError);
   },
   build(inputConfig?: PhenomicInputConfig) {
     normalizeConfiguration(inputConfig)
       .then(build)
-      .catch(shittyCatch);
+      .catch(handleError);
   },
   async preview(inputConfig?: PhenomicInputConfig) {
     try {
@@ -59,7 +59,7 @@ export default {
         port: config.port
       });
     } catch (e) {
-      shittyCatch(e);
+      handleError(e);
     }
   }
 };
