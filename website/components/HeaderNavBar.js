@@ -6,6 +6,12 @@ import { View, Text, StyleSheet } from "react-native-web";
 import { version } from "../.././lerna.json";
 import PhenomicLogoWhite from "../svgs/PhenomicLogoWhite";
 import PhenomicText from "../svgs/PhenomicText";
+import IconWrench from "../svgs/IconWrench";
+import IconTools from "../svgs/IconTools";
+import Github from "../svgs/Github";
+import Twitter from "../svgs/Twitter";
+import Spectrum from "../svgs/Spectrum";
+import Gitter from "../svgs/Gitter";
 
 import Link from "./Link";
 import Spacer from "./Spacer";
@@ -15,7 +21,9 @@ const HeaderNavBar = () => (
     <View style={[styles.row, styles.wip]}>
       <Spacer large>
         <Text style={styles.wipText}>
-          {"This website is a work in progress."}
+          <IconWrench height="16" fill="#fff" style={{ margin: "0 20px" }} />
+          {" This website is a work in progress. "}
+          <IconTools height="16" fill="#fff" style={{ margin: "0 20px" }} />
         </Text>
       </Spacer>
     </View>
@@ -82,27 +90,35 @@ const HeaderNavBar = () => (
       <Spacer small style={[styles.row, styles.end]}>
         <Link.Touchable
           href="https://github.com/phenomic/phenomic"
-          style={styles.link}
+          style={[styles.link, styles.linkIcon]}
+          title={"GitHub"}
         >
-          <Text style={styles.linkText}>{"GitHub"}</Text>
+          <Github height="24" fill="#fff" />
+          <Text style={styles.linkIconText}>{"GitHub"}</Text>
         </Link.Touchable>
         <Link.Touchable
           href="https://twitter.com/Phenomic_app"
-          style={styles.link}
+          style={[styles.link, styles.linkIcon]}
+          title={"Twitter"}
         >
-          <Text style={styles.linkText}>{"Twitter"}</Text>
+          <Twitter height="24" fill="#fff" />
+          <Text style={styles.linkIconText}>{"Twitter"}</Text>
         </Link.Touchable>
         <Link.Touchable
           href="https://spectrum.chat/phenomic"
-          style={styles.link}
+          style={[styles.link, styles.linkIcon]}
+          title={"Community"}
         >
-          <Text style={styles.linkText}>{"Community"}</Text>
+          <Spectrum height="24" fill="#fff" />
+          <Text style={styles.linkIconText}>{"Community"}</Text>
         </Link.Touchable>
         <Link.Touchable
           href="https://gitter.im/MoOx/phenomic"
-          style={styles.link}
+          style={[styles.link, styles.linkIcon]}
+          title={"Chat"}
         >
-          <Text style={styles.linkText}>{"Chat"}</Text>
+          <Gitter height="24" fill="#fff" />
+          <Text style={styles.linkIconText}>{"Chat"}</Text>
         </Link.Touchable>
       </Spacer>
     </View>
@@ -122,6 +138,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#041d0f"
   },
   wipText: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     alignSelf: "center",
     color: "#fff",
     fontWeight: "100"
@@ -147,7 +166,12 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "none",
     paddingVertical: 16,
-    paddingHorizontal: "5%"
+    paddingHorizontal: 16
+  },
+  linkIcon: {
+    display: "flex",
+    flexDirection: "column",
+    paddingVertical: 8
   },
   linkActive: {
     backgroundColor: "rgba(0, 0, 0, 0.1)"
@@ -156,6 +180,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "300"
+  },
+  linkIconText: {
+    color: "#fff",
+    paddingTop: 2,
+    fontSize: 8,
+    fontWeight: "200"
   },
   linkBold: {
     fontWeight: "700"
