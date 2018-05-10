@@ -5,10 +5,11 @@ priority: 2
 
 The core of Phenomic is pretty light and can be summarized like this:
 
-* [Configuration]() is read from filesystem
-* One (or two) JavaScript bundles are generated (for [CSR](../faq/#what-is-csr)
-  & [SSR](../faq/#what-is-ssr))\*
-* [Content API]() is initialized with transformed\* content files (optional)
+* [Configuration](./configuration.md) is read from filesystem
+* One (or two) JavaScript bundles are generated (for [CSR](./faq.md#what-is-csr)
+  & [SSR](./faq.md#what-is-ssr))\*
+* [Content API](./api.md) is initialized with transformed\* content files
+  (optional)
 * The renderer will do his job to serve (for development) or build static files
   (for production).\*
 
@@ -17,13 +18,13 @@ The core of Phenomic is pretty light and can be summarized like this:
 --- @todo add schema
 
 With this in mind, you can know understand that there is 2 ways to get started
-with Phenomic. One way is to directly rely on [existing plugins]() (or a bundle
-of plugins (presets)). The other way, if you don't find something that fit your
-needs, is to [make your own plugin]().
+with Phenomic. One way is to directly rely on [existing plugins](/en/plugins)
+(or a bundle of plugins (presets)). The other way, if you don't find something
+that fit your needs, is to [make your own plugin](./writing-plugins.md).
 
 ## Plugins
 
-Phenomic took inspiration from [metalsmith]() by choosing to have a very light
+Phenomic took inspiration from _metalsmith_ by choosing to have a very light
 core highly extensible with plugins.
 
 Plugins can interact at all stage of Phenomic process (during both development
@@ -36,22 +37,26 @@ This will handle the generation of the html/dom (static/client side). That's
 probably the most important type of plugins. Depending of the renderer plugin
 you will choose, this might completely change your experience with Phenomic.
 
-_Example: [React (@phenomic/plugin-renderer-react)]()_
+_Example:
+[React (@phenomic/plugin-renderer-react)](/en/packages/plugin-renderer-react/docs/)_
 
 ### Bundler plugins
 
 This will handle the javascript bundles that will be generated for the browser
 (and also used for static generation).
 
-_Example: [Webpack (@phenomic/plugin-bundler-webpack)]()_
+_Example:
+[Webpack (@phenomic/plugin-bundler-webpack)](/en/packages/plugin-bundler-webpack/docs/)_
 
 ### Transformer plugins
 
 This will handle the transformation of files found by phenomic. Optional if you
 directly hit an existing API.
 
-_Example: [Markdown (@phenomic/plugin-transformer-markdown)]() or
-[JSON (@phenomic/plugin-transformer-json)]()_\_.
+_Example:
+[Markdown (@phenomic/plugin-transformer-markdown)](/en/packages/plugin-transform-markdown/docs/)
+or
+[JSON (@phenomic/plugin-transformer-json)](/en/packages/plugin-transform-json/docs/)_\_.
 
 ### Other kind of plugins
 

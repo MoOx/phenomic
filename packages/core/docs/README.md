@@ -9,9 +9,9 @@ the same way you build an app**.
 
 Phenomic is different from other SSG by allowing you to pick the technologies,
 libraries, frameworks of your choice and build your website with it. You can
-decide the renderer you want to use (like [React]()), your bundler (like
-[Webpack]()) and so on. If the solution you are want is not implemented yet,
-**Phenomic accepts plugins** so you can bring your own flavor!
+decide the renderer you want to use (like _React_, your bundler (like _Webpack_)
+and so on. If the solution you are want is not implemented yet, **Phenomic
+accepts plugins** so you can bring your own flavor!
 
 The result of what Phenomic produces for production is pretty simple: **static
 files** that you can deploy on any static hosting (HTML, CSS, JavaScript, images

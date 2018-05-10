@@ -34,14 +34,15 @@ const forEachHref = (node?: Node, callback: string => string) => {
 };
 
 const removeExtFromHref = (ext: string = "md") => (href: string) =>
-  href.replace(new RegExp(`\\.${ext}$`), "/");
+  href.replace(new RegExp(`(\\.${ext})(#.*)?$`), "/$2");
 
 const cleanIndexAndReadme = (href: string) =>
-  href.replace(/\/(index|README)\/?$/, "/");
+  href.replace(/\/(index|README)(#.*)?\/?$/, "/$2");
 
 const cleanAllHref = (node?: Node, filenameSource: string) => {
   return forEachHref(node, href => {
     const prefix =
+      !href.startsWith("/") &&
       !href.startsWith("#") &&
       !href.startsWith("http://") &&
       !href.startsWith("https://") &&
