@@ -15,47 +15,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import BodyContainer from "./BodyContainer";
 
-const prepareList = list => {
-  return list;
-  /*
-  let phenomicDocs;
-  const newList = list
-    .filter(site => site.showcaseTags)
-    .sort((a, b) => {
-      if (a.curated && !b.curated) {
-        return -1;
-      }
-
-      // more tags first
-      if (a.showcaseTags.length < b.showcaseTags.length) {
-        return 1;
-      }
-      if (a.showcaseTags.length > b.showcaseTags.length) {
-        return -1;
-      }
-
-      // blog last
-      if (
-        a.showcaseTags.indexOf("blog") === -1 &&
-        b.showcaseTags.indexOf("blog") > -1
-      ) {
-        return -1;
-      }
-
-      return 0;
-    })
-    .filter(item => {
-      if (item.title !== "Phenomic docs") {
-        return true;
-      }
-      phenomicDocs = item;
-      return false;
-    });
-  if (phenomicDocs) newList.push(phenomicDocs);
-  return newList;
-  */
-};
-
 const Div = props => createElement("div", props);
 // eslint-disable-next-line react/no-multi-comp
 const ShowcaseList = (props: Object) => (
@@ -82,7 +41,7 @@ const ShowcaseList = (props: Object) => (
               </View>
             )}
           <View style={styles.list}>
-            {prepareList(props.showcase.node.list).map(item => (
+            {props.showcase.node.list.map(item => (
               <View style={styles.item} key={item.id}>
                 <View style={styles.row}>
                   <Text style={styles.itemName}>{item.title}</Text>
@@ -290,6 +249,7 @@ export default withPhenomicApi(ShowcaseList, props => ({
   showcase: query({
     path: "content/showcase/entry",
     order: "asc",
+    sort: "showcase",
     limit: 10,
     after: props.params.after
   })
@@ -301,6 +261,7 @@ export const ShowcaseListByTag = withPhenomicApi(ShowcaseList, props => ({
     by: "showcaseTags",
     value: props.params.showcaseTags,
     order: "asc",
+    sort: "showcase",
     limit: 10,
     after: props.params.after
   })
