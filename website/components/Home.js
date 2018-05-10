@@ -52,7 +52,7 @@ const Home = () => (
         {/* @todo h1 or shit */}
         <View style={styles.row}>
           <Spacer large>
-            <PhenomicText style={{ maxHeight: "72px" }} height="auto" />
+            <PhenomicText style={{ maxHeight: "72px" }} />
           </Spacer>
         </View>
         <Text style={styles.heroSubtitleText}>
