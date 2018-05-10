@@ -1,8 +1,11 @@
 .editor {
-  padding: 1em;
+  padding: 10px 16px;
   border: 1px solid #11171c;
-  border-radius: 3px;
+  border-radius: 6px;
   overflow-x: auto;
+  font-size: 14px;
+  line-height: 22px;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
 
 /*
@@ -15,7 +18,7 @@
 
 .editor {
   color: #88b4e7;
-  background-color: #1d262f;
+  background-color: hsl(210, 20%, 20%);
 }
 .editor .line.cursor-line {
   background-color: rgba(52, 68, 85, 0.26);
