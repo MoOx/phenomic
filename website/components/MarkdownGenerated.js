@@ -3,6 +3,8 @@
 import * as React from "react";
 import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 
+import MarkdownHeader from "./MarkdownHeader";
+
 type Node =
   | string
   | {|
@@ -56,7 +58,18 @@ const cleanAllHref = (node?: Node, filenameSource: string) => {
 
 const MarkdownGenerated = (props: {| body: Node, filename: string |}) => (
   <div className="phenomic-Markdown">
-    <BodyRenderer>{cleanAllHref(props.body, props.filename)}</BodyRenderer>
+    <BodyRenderer
+      components={{
+        h1: MarkdownHeader.H1,
+        h2: MarkdownHeader.H2,
+        h3: MarkdownHeader.H3,
+        h4: MarkdownHeader.H4,
+        h5: MarkdownHeader.H5,
+        h6: MarkdownHeader.H6
+      }}
+    >
+      {cleanAllHref(props.body, props.filename)}
+    </BodyRenderer>
   </div>
 );
 
