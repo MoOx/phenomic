@@ -9,6 +9,7 @@ let database: PhenomicDBRegistry = emptyDatabase;
 
 const orderById = (a, b) => (b.id > a.id ? -1 : 1);
 
+// if you update this function, please update docs/configuration.md section
 function defaultSort(sort = "date") {
   return (a, b) => {
     // sort by asked flag
@@ -18,10 +19,13 @@ function defaultSort(sort = "date") {
     if (!vb && va) return 1;
     if (va && vb && vb > va) return -1;
     if (va && vb && va > vb) return 1;
-    // if (!va && !vb) return 0;
+
     // fallbacks instead of weird order
+    // sort by title
     if (b.data.title > a.data.title) return -1;
     if (a.data.title > b.data.title) return 1;
+
+    // or sort by filename
     if (b.data.filename > a.data.filename) return -1;
     if (a.data.filename > b.data.filename) return 1;
     return 0;

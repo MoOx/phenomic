@@ -57,79 +57,254 @@ in some case, you might end up with a `phenomic.config.js`.
 To make this simple, here is a gigantic commented configuration. Everything is
 optional except having at least a few `plugins` or a `preset`
 
+### `baseUrl` (default: none)
+
+Root of your website. This is especially handy if your website is not at a root
+domain In this case, development will reflect the base path. Example:
+
 ```js
-module.exports = {
-  // root of your website
-  // this is especially handy if your website is not at a root domain
-  // In this case, development will reflect the base path.
-  baseUrl: "http//root.of/your/website", // here development will start on http//localhost:3333/your/website
+{
+  // here development will start on http//localhost:3333/your/website
+  baseUrl: "http//root.of/your/website";
+}
+```
 
-  // root of the project
-  path: process.cwd(),
+### `path` (default: `process.cwd()`)
 
-  // content to read from the filesystem that will be injected in content api
+Root of the project. Used as root for other options like `outdir`.
+
+### `content` (default: `{ content: ["**/*"] }`)
+
+Object that define the content to read from the filesystem that will be injected
+in content api. Key is used as the root for future queries.
+
+By default it loads everything from `{path}/content/**/*`.
+
+You can load from any path you want
+
+```js
+{
   content: {
-    // load everything into content/**/*
-    // key is used as the root for future queries
+    posts: ["**/*"],
+    portfolio: ["entries/*.md"]
+  }
+}
+```
+
+_Note: If you provide `key: [array of globs]`, key will be used as the root
+folder when doing your query._
+[More on this in content api documentation](./api.md)
+
+If you need relative path for a root but don't want your queries to includes
+awkward paths with dots, you can send instead an object `key: { root: string,
+globs: [array of globs]}`.
+
+Example:
+
+```js
+{
+  content: {
     content: ["**/*"],
-    // load everything in ../packages/(package.json|*/docs/**/*.md)
-    // note here that the root is enforced. We don't want
-    // to use ../ in our queries later
-    // Queries will have to use packages/*** instead of ../packages
-    packages: {
-      root: "../packages",
-      globs: ["package.json", "*/docs/**/*.md"]
+    someKey: {
+      root: "../somewhere",
+      globs: ["*/docs/**/*.md"]
     }
-    // Note that we could have used a different word and a more complex path
-    // (eg: `pkgs: { root: "../../path/to/packages/"`)
-  },
+  }
+}
+```
 
-  // location of the static website output
-  // note that it will be generated in the `path` folder
-  outdir: "dist", // will be process.cwd()/dist according to our path option
+### `outdir` (default: `"dist"`)
 
-  // development server port
-  port: "3333",
+Location of the static website output. Note that it will be generated in the
+`path` folder: default value will be `{process.cwd()}/dist` according to default
+path option.
 
-  // development socket port (used for hot loading on data )
-  socketPort: "3334",
+### `port` (default: `"3333"`)
 
-  // prefix for javascript/css bundles used by plugin-bundler-*
-  bundleName: "phenomic",
+Development server port.
 
-  // plugins and presets accept various form (array/objects)
-  // we will show you some mix below
+### `socketPort` (default: `"3334"`)
 
-  // array of string means that this are node_modules names
+Development socket port (used for hot loading on data).
+
+### `bundleName` (default: `"phenomic"`)
+
+Prefix for javascript/css bundles used by the
+[bundlers plugins](./how-phenomic-works.md#bundler-plugins)
+
+### `plugins` (default: `[]`)
+
+Plugins accept various form (array/objects). You can send an array of
+
+```js
+{
   plugins: [
-    "@phenomic/plugin-bundler-webpack",
-    "@phenomic/plugin-renderer-react",
-    "@phenomic/plugin-transform-markdown"[
-      // you can also includes array[name, option]
-      ("@phenomic/plugin-rss-feed",
+    // Accepts string (that are assumed as node_modules)
+    "@phenomic/plugin-from-node_modules",
+
+    // Accepts array [name, option]
+    [
+      "@phenomic/plugin-some-other-plugin",
       {
-        feeds: {
-          "feed.xml": {
-            feedOptions: {
-              title: "Phenomic.io",
-              description: "Phenomic news"
-            },
-            query: {
-              path: "content/blog",
-              limit: 20
-            }
-          }
-        }
-      })
-    ]
+        // plugin option
+        someKey: "someValue"
+      }
+    ],
+
+    // Accepts function
+    // See Writing plugins documentation
+    () => {
+      return {
+        name: "plugin-name",
+
+        // fakes names, see plugins documentation
+        methodSupportedByPhenomic: () => {},
+        anotherMethodSupportedByPhenomic: () => {}
+      }
+    }
   ],
+}
+```
 
-  // array of string means that this are node_modules names
+Objects are also supported but keep in mind that keys are not used (it can be
+used as comment).
+
+```js
+{
+  plugins: {
+    // Accepts string (that are assumed as node_modules)
+    someKey: "@phenomic/plugin-from-node_modules",
+
+    // Accepts array [name, option]
+    anotherKey: [
+      "@phenomic/plugin-some-other-plugin",
+      {
+        // plugin option
+        someKey: "someValue"
+      }
+    ],
+  }
+}
+```
+
+### `presets` (default: none)
+
+Presets are a function that returns a an object with plugins (and others presets
+in case you want to extend an existing preset).
+
+Presets accept various form (array/objects).
+
+Array are supported.
+
+```js
+{
   presets: [
-    "@phenomic/preset-react-app"
+    // Accepts string (that are assumed as node_modules)
+    "@phenomic/preset-react-app",
 
-    // here we could also accept options
-    // @todo
-  ]
-};
+    // Accepts array [name, {pluginKey: option}]
+    [
+      "@phenomic/preset-some-other-preset",
+      {
+        // options passed to plugin included in the preset
+        [
+          "pluginKey",
+          {
+            someKey: "someValue"
+          }
+        ]
+      }
+    ],
+
+    // Accepts array/object mix [name, {pluginKey: option}]
+    [
+      "@phenomic/preset-some-other-preset",
+      {
+        // options passed to plugin included in the preset
+        pluginKey: {
+          someKey: "someValue"
+        }
+      }
+    ],
+
+    // Accepts function
+    () => ({
+      plugins: ["some-plugin", "some-other-plugins"]
+      // plugins supports the array/objects like explained above
+    }),
+
+    // and array of functions/options
+    [
+      () => ({
+        plugins: ["some-plugin", "some-other-plugins"]
+        // plugins supports the array/objects like explained above
+      }),
+      { "some-plugins": { option: "value" } }
+    ]
+  ];
+}
+```
+
+Objects are supported, like for plugins.
+
+```js
+{
+  presets: {
+    // Accepts string (that are assumed as node_modules)
+    "@phenomic/preset-react-app": "@phenomic/preset-react-app"
+
+    // see plugins for possibilities
+  }
+}
+```
+
+### `db` (default: `{}`)
+
+Used to send some options to the database used for content api.
+
+#### `db.sortFunctions`
+
+Custom sort functions used for content api.
+
+```js
+{
+  db: {
+    sortFunctions: {
+      // keys are the way you will enable this sort
+      // implementation follow Array.prototype.sort()
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      customName: (a, b) => {
+        // a & b are database entries:
+        // { data: Object, partial: Object }
+        // You can except to have all data in the `data` key
+        // (eg: looking for the title? `a.data.title`)
+
+        // here is an approximation of the default sort function as an example
+        // (not exact implementation as we have a string as a parameter,
+        // which is not accessible here, since you can create as many functions
+        // as you need.
+        // See Content API documentation for usage
+
+        // sort by date first
+        const va = a.data.date;
+        const vb = b.data.date;
+        if (!va && vb) return -1;
+        if (!vb && va) return 1;
+        if (va && vb && vb > va) return -1;
+        if (va && vb && va > vb) return 1;
+
+        // fallbacks instead of weird order
+        // sort by title
+        if (b.data.title > a.data.title) return -1;
+        if (a.data.title > b.data.title) return 1;
+
+        // or sort by filename
+        if (b.data.filename > a.data.filename) return -1;
+        if (a.data.filename > b.data.filename) return 1;
+
+        return 0;
+      };
+    }
+  }
+}
 ```
