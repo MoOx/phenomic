@@ -3,6 +3,8 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 
+import moveToHash from "./Link.hash.js";
+
 const BASENAME = process.env.PHENOMIC_APP_BASENAME || "/";
 
 const origin = url =>
@@ -53,6 +55,11 @@ const goToUrl = (event: SyntheticEvent<HTMLAnchorElement>, router: Object) => {
       // react-router v4
       // $FlowFixMe well it's hard to support 2 APIs ?
       router.history.push(route);
+
+    // react-router doesn't handle the scroll
+    // so we scroll to top or move to the hash
+    if (!hash) window.scrollTo(0, 0);
+    else moveToHash(hash);
   }
 };
 
