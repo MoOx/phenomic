@@ -2,6 +2,10 @@
 
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native-web";
+/* eslint-disable-next-line */
+import PropTypes from "prop-types";
+/* eslint-disable-next-line */
+import { isActive } from "@phenomic/plugin-renderer-react/lib/components/Link.js";
 
 import Stylable from "./react-stylable";
 import Flex from "./Flex";
@@ -39,7 +43,7 @@ export function readPkgFromId(id: string) {
 }
 
 // eslint-disable-next-line react/no-multi-comp
-const Page = (props: Object) => {
+const Page = (props: Object, context: Object) => {
   if (props.hasError) {
     return <PageError error={props.page.error} />;
   }
@@ -71,20 +75,65 @@ const Page = (props: Object) => {
                 props.pages.node.list
                   .filter(p => readPkgFromId(p.id) == currentPkg)
                   .sort(sort)
-                  .map(page => (
-                    <Stylable
-                      key={page.id}
-                      style={styles.sidebarLink}
-                      activeStyle={styles.sidebarLinkActive}
-                      hoveredOrFocusedStyle={styles.sidebarLinkFocused}
-                    >
-                      <Link href={`/en/packages/${page.id}/`}>
-                        <Spacer large>
-                          <Text>{page.title}</Text>
-                        </Spacer>
-                      </Link>
-                    </Stylable>
-                  ))}
+                  .map(page => {
+                    const href = `/en/packages/${page.id}/`;
+                    return (
+                      <React.Fragment key={page.id}>
+                        <Stylable
+                          style={styles.sidebarLink}
+                          activeStyle={styles.sidebarLinkActive}
+                          hoveredOrFocusedStyle={styles.sidebarLinkFocused}
+                        >
+                          <Link href={href}>
+                            <Spacer>
+                              <Text>{page.title}</Text>
+                            </Spacer>
+                          </Link>
+                        </Stylable>
+                        {isActive(href, context) && (
+                          <View>
+                            {Array.isArray(page.headings) &&
+                              page.headings
+                                .map(
+                                  h =>
+                                    h.level === 1 &&
+                                    page.title === h.text ? null : (
+                                      <Stylable
+                                        style={[
+                                          styles.sidebarHeadingLink,
+                                          styles["sidebarHeadingLink" + h.level]
+                                        ]}
+                                        activeStyle={[
+                                          styles.sidebarHeadingLinkActive,
+                                          styles[
+                                            "sidebarHeadingLink" +
+                                              h.level +
+                                              "Active"
+                                          ]
+                                        ]}
+                                        hoveredOrFocusedStyle={[
+                                          styles.sidebarHeadingLinkFocused,
+                                          styles[
+                                            "sidebarHeadingLink" +
+                                              h.level +
+                                              "Focused"
+                                          ]
+                                        ]}
+                                      >
+                                        <Link href={href + "#" + h.id}>
+                                          <Spacer small key={h.text}>
+                                            <Text>{h.text}</Text>
+                                          </Spacer>
+                                        </Link>
+                                      </Stylable>
+                                    )
+                                )
+                                .filter(heading => heading)}
+                          </View>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
             </Spacer>
           )}
           <Spacer large style={styles.content}>
@@ -99,6 +148,10 @@ const Page = (props: Object) => {
   );
 };
 
+Page.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
@@ -111,19 +164,37 @@ const styles = StyleSheet.create({
   },
   sidebarLink: {
     fontSize: 18,
-    fontWeight: "300",
     color: "#006BF6",
     borderLeftWidth: 4,
     borderLeftStyle: "solid",
     borderLeftColor: "transparent"
   },
+  sidebarLinkActive: {
+    borderLeftColor: "#02CA83"
+  },
   sidebarLinkFocused: {
     color: "#fff",
     backgroundColor: "#006BF6"
   },
-  sidebarLinkActive: {
+  sidebarHeadingLink: {
+    fontWeight: "300",
+    color: "#006BF6"
+  },
+  sidebarHeadingLinkActive: {
     borderLeftColor: "#02CA83"
   },
+  sidebarHeadingLinkFocused: {
+    color: "#fff",
+    backgroundColor: "#006BF6"
+  },
+  /* eslint-disable react-native/no-unused-styles */
+  sidebarHeadingLink1: { marginLeft: Spacer.small * 1 },
+  sidebarHeadingLink2: { marginLeft: Spacer.small * 2 },
+  sidebarHeadingLink3: { marginLeft: Spacer.small * 3 },
+  sidebarHeadingLink4: { marginLeft: Spacer.small * 4 },
+  sidebarHeadingLink5: { marginLeft: Spacer.small * 5 },
+  sidebarHeadingLink6: { marginLeft: Spacer.small * 6 },
+  /* eslint-enable react-native/no-unused-styles */
   content: {
     flex: 2,
     flexBasis: 400
