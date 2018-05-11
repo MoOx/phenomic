@@ -2,24 +2,28 @@
 
 exports[`should guess partial data from body AST 1`] = `
 Object {
-  "headers": Array [
-    Array [
-      1,
-      "Auto title",
-    ],
-    Array [
-      2,
-      "Sub title",
-    ],
-    Array [
-      2,
-      "Another Level 2",
-    ],
-    Array [
-      3,
-      "A level 3",
-    ],
+  "headings": Array [
+    Object {
+      "id": "auto-title",
+      "level": 1,
+      "text": "Auto title",
+    },
+    Object {
+      "id": "sub-title",
+      "level": 2,
+      "text": "Sub title",
+    },
+    Object {
+      "id": "another-level-2",
+      "level": 2,
+      "text": "Another Level 2",
+    },
+    Object {
+      "id": "a-level-3",
+      "level": 3,
+      "text": "A level 3",
+    },
   ],
-  "title": "Auto title",
+  "title": undefined,
 }
 `;

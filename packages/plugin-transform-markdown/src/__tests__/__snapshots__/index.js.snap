@@ -192,22 +192,24 @@ Object {
       ],
       "t": "div",
     },
-    "headers": Array [
-      Array [
-        2,
-        "Test",
-      ],
+    "headings": Array [
+      Object {
+        "id": "test",
+        "level": 2,
+        "text": "Test",
+      },
     ],
     "test": "a",
     "test2": "b",
     "title": "file.json",
   },
   "partial": Object {
-    "headers": Array [
-      Array [
-        2,
-        "Test",
-      ],
+    "headings": Array [
+      Object {
+        "id": "test",
+        "level": 2,
+        "text": "Test",
+      },
     ],
     "test": "a",
     "test2": "b",

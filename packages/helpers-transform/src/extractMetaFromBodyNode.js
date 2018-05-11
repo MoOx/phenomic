@@ -8,7 +8,7 @@ type Node =
       c?: Node | $ReadOnlyArray<Node>
     |};
 
-const renderText = (node?: Node) => {
+const renderText = (node?: Node): string => {
   if (!node) return "";
   if (typeof node === "string") return node;
   return Array.isArray(node.c)
@@ -16,28 +16,36 @@ const renderText = (node?: Node) => {
     : renderText(node.c);
 };
 
-const getHeaders = (node?: Node) => {
+const getHeadings = (
+  node?: Node
+): $ReadOnlyArray<{ level: number, text: string, id: string }> => {
   if (!node) return [];
   if (typeof node.t === "string") {
     const tag = node.t;
     const level = parseInt(tag[1], 10);
     if (tag[0] === "h" && !isNaN(level)) {
-      return [[level, renderText(node)]];
+      return [
+        {
+          level,
+          text: renderText(node),
+          id: node.p && node.p.id ? String(node.p.id) : ""
+        }
+      ];
     }
   }
   return (Array.isArray(node.c)
     ? // $FlowFixMe stfu
-      node.c.reduce((acc, child: Node) => acc.concat(getHeaders(child)), [])
+      node.c.reduce((acc, child: Node) => acc.concat(getHeadings(child)), [])
     : // $FlowFixMe stfu
-      getHeaders(node.c)
+      getHeadings(node.c)
   ).filter(h => h);
 };
 
 export default (node: Node) => {
-  const headers = getHeaders(node);
-  const firstH1 = headers.find(h => h[0] === 1);
+  const headings = getHeadings(node);
+  const firstH1 = headings.find(h => h.level === 1);
   return {
     ...(firstH1 ? { title: firstH1[1] } : {}),
-    ...(headers.length > 0 ? { headers } : {})
+    ...(headings.length > 0 ? { headings } : {})
   };
 };
