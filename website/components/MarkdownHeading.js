@@ -13,7 +13,7 @@ import Focusable from "./react-stylable/focusable";
 
 const RNIconLink = p => createElement(IconLink, p);
 
-const MarkdownHeader = (level: number) => {
+const MarkdownHeading = (level: number) => {
   const Header = p => createElement("h" + level, p);
   return Hoverable(
     Focusable(({ hovered, focused, ...props }: Object) => {
@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const headers = {
-  H1: MarkdownHeader(1),
-  H2: MarkdownHeader(2),
-  H3: MarkdownHeader(3),
-  H4: MarkdownHeader(4),
-  H5: MarkdownHeader(5),
-  H6: MarkdownHeader(6)
+const headings = {
+  H1: MarkdownHeading(1),
+  H2: MarkdownHeading(2),
+  H3: MarkdownHeading(3),
+  H4: MarkdownHeading(4),
+  H5: MarkdownHeading(5),
+  H6: MarkdownHeading(6)
 };
 
-export default headers;
+export default headings;

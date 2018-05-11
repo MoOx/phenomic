@@ -3,7 +3,7 @@
 import * as React from "react";
 import { BodyRenderer } from "@phenomic/preset-react-app/lib/client";
 
-import MarkdownHeader from "./MarkdownHeader";
+import MarkdownHeading from "./MarkdownHeading";
 
 type Node =
   | string
@@ -60,12 +60,12 @@ const MarkdownGenerated = (props: {| body: Node, filename: string |}) => (
   <div className="phenomic-Markdown">
     <BodyRenderer
       components={{
-        h1: MarkdownHeader.H1,
-        h2: MarkdownHeader.H2,
-        h3: MarkdownHeader.H3,
-        h4: MarkdownHeader.H4,
-        h5: MarkdownHeader.H5,
-        h6: MarkdownHeader.H6
+        h1: MarkdownHeading.H1,
+        h2: MarkdownHeading.H2,
+        h3: MarkdownHeading.H3,
+        h4: MarkdownHeading.H4,
+        h5: MarkdownHeading.H5,
+        h6: MarkdownHeading.H6
       }}
     >
       {cleanAllHref(props.body, props.filename)}
