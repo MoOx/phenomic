@@ -134,10 +134,11 @@ Prefix for javascript/css bundles used by the
 
 ### `plugins` (default: `[]`)
 
-Plugins accept various form (array/objects). You can send an array of
+Plugins accept various form (array/objects).
 
 ```js
 {
+  // Array are accepted
   plugins: [
     // Accepts string (that are assumed as node_modules)
     "@phenomic/plugin-from-node_modules",
@@ -194,10 +195,9 @@ in case you want to extend an existing preset).
 
 Presets accept various form (array/objects).
 
-Array are supported.
-
 ```js
 {
+  // Array are accepted
   presets: [
     // Accepts string (that are assumed as node_modules)
     "@phenomic/preset-react-app",
@@ -251,9 +251,12 @@ Objects are supported, like for plugins.
 {
   presets: {
     // Accepts string (that are assumed as node_modules)
-    "@phenomic/preset-react-app": "@phenomic/preset-react-app"
+    "@phenomic/preset-react-app": "@phenomic/preset-react-app",
 
     // see plugins for possibilities
+    "phenomic-preset-something": () => ({
+      plugins: ["some-plugin", "some-other-plugins"]
+    })
   }
 }
 ```
