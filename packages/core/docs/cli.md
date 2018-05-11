@@ -30,19 +30,19 @@ locally to your project and use aliases in your `package.json`.
 
 ## CLI commands
 
-### `$ phenomic start`
+### `start`
 
 This command starts the development server. It will show you the address you
 should use to see your website and will show you additional informations like
 bundler status, content api messages etc.
 
-### `$ phenomic build`
+### `build`
 
 This command starts the static build process and will render all possibles urls
 (according to your routes and queries) in your
 [`outdir`](./configuration.md#configuration-source) folder.
 
-### `$ phenomic preview`
+### `preview`
 
 This command starts the static build process (exactly like `build` command) and
 also directly serve the result. Address will be displayed to you. This is handy

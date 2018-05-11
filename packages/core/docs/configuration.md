@@ -57,7 +57,9 @@ in some case, you might end up with a `phenomic.config.js`.
 To make this simple, here is a gigantic commented configuration. Everything is
 optional except having at least a few `plugins` or a `preset`
 
-### `baseUrl` (default: none)
+### `baseUrl`
+
+_(default: none)_
 
 Root of your website. This is especially handy if your website is not at a root
 domain In this case, development will reflect the base path. Example:
@@ -69,11 +71,15 @@ domain In this case, development will reflect the base path. Example:
 }
 ```
 
-### `path` (default: `process.cwd()`)
+### `path`
+
+_(default: `process.cwd()`)_
 
 Root of the project. Used as root for other options like `outdir`.
 
-### `content` (default: `{ content: ["**/*"] }`)
+### `content`
+
+_(default: `{ content: ["**/*"] }`)_
 
 Object that define the content to read from the filesystem that will be injected
 in content api. Key is used as the root for future queries.
@@ -113,26 +119,36 @@ Example:
 }
 ```
 
-### `outdir` (default: `"dist"`)
+### `outdir`
+
+_(default: `"dist"`)_
 
 Location of the static website output. Note that it will be generated in the
 `path` folder: default value will be `{process.cwd()}/dist` according to default
 path option.
 
-### `port` (default: `"3333"`)
+### `port`
+
+_(default: `"3333"`)_
 
 Development server port.
 
-### `socketPort` (default: `"3334"`)
+### `socketPort`
+
+_(default: `"3334"`)_
 
 Development socket port (used for hot loading on data).
 
-### `bundleName` (default: `"phenomic"`)
+### `bundleName`
+
+_(default: `"phenomic"`)_
 
 Prefix for javascript/css bundles used by the
 [bundlers plugins](./how-phenomic-works.md#bundler-plugins)
 
-### `plugins` (default: `[]`)
+### `plugins`
+
+_(default: `[]`)_
 
 Plugins accept various form (array/objects).
 
@@ -188,7 +204,9 @@ used as comment).
 }
 ```
 
-### `presets` (default: none)
+### `presets`
+
+_(default: none)_
 
 Presets are a function that returns a an object with plugins (and others presets
 in case you want to extend an existing preset).
@@ -261,7 +279,9 @@ Objects are supported, like for plugins.
 }
 ```
 
-### `db` (default: `{}`)
+### `db`
+
+_(default: `{}`)_
 
 Used to send some options to the database used for content api.
 

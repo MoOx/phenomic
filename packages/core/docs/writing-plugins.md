@@ -55,15 +55,57 @@ Plugins interesting part are usually located at
 
 ## Plugins methods
 
-### `transform` and `supportedFileTypes`
+### `supportedFileTypes` + `transform`
+
+The method `transform` is useful if you plan to use [Content API](./api.md). It
+allows you to transform files (that match `supportedFileTypes` - array of files
+extensions) as something ready for Phenomic database.
+
+#### `supportedFileTypes`
+
+Array of files extensions.
+
+Example
 
 ```js
-supportedFileTypes?: $ReadOnlyArray<string>,
-transform?: ({
-  file: PhenomicContentFile,
-  contents: Buffer
-}) => PhenomicTransformResult | Promise<PhenomicTransformResult>
+supportedFileTypes: ["md", "markdown"]; // will match *.md and *.markdown
 ```
+
+Used in
+
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
+
+#### `transform`
+
+Function that accepts an object and must return an result ready for Phenomic
+database:
+
+```js
+function transform({
+  // you will only receive file that match `supportedFileTypes`
+  file: { name: string, fullpath: string },
+  contents: Buffer
+}) {
+  // do your thing to parse `contents`
+  // ...
+
+  // then return a database entry
+  return {
+    data: Object,
+    partial: Object
+  };
+}
+```
+
+Learn more about database entries in [Content API documentation](./api.md).
+
+Used in
+
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
 
 ### `extendAPI`
 
