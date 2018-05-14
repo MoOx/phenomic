@@ -8,4 +8,4 @@
 
 ---
 
-Check out our [Getting started](docs/getting-started/README.md)
+Check out our [Getting started](./getting-started/README.md)
