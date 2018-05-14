@@ -45,7 +45,7 @@ export default (node: Node) => {
   const headings = getHeadings(node);
   const firstH1 = headings.find(h => h.level === 1);
   return {
-    ...(firstH1 ? { title: firstH1[1] } : {}),
+    ...(firstH1 ? { title: firstH1.text } : {}),
     ...(headings.length > 0 ? { headings } : {})
   };
 };
