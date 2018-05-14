@@ -16,3 +16,5 @@ The optional Phenomic Content API offers additional steps during the process
 * Those files are transformed as data\*
 * The data resulting from the transformation is injected into Phenomic DB and
   later acessible via Phenomic Content API
+
+**WIP**
