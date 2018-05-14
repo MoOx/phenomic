@@ -24,6 +24,6 @@ Object {
       "text": "A level 3",
     },
   ],
-  "title": undefined,
+  "title": "Auto title",
 }
 `;
