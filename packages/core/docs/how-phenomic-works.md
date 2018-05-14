@@ -3,24 +3,28 @@ title: How Phenomic works
 priority: 2
 ---
 
-The core of Phenomic is pretty light and can be summarized like this:
+## Phenomic Lifecycle
 
-* [Configuration](./configuration.md) is read from filesystem
-* One (or two) JavaScript bundles are generated (for [CSR](./faq.md#what-is-csr)
-  & [SSR](./faq.md#what-is-ssr))\*
-* [Content API](./api.md) is initialized with transformed\* content files
-  (optional)
-* The renderer will do his job to serve (for development) or build static files
-  (for production).\*
+The lifecycle of Phenomic is pretty light and can be summarized like this:
 
-<small>\* This steps are configurable via plugins.</small>
+* Initialisation from [configuration](./configuration.md),
+* Bundling of (or two) JavaScript bundles (for [CSR](./faq.md#what-is-csr) &
+  [SSR](./faq.md#what-is-ssr)),
+* [Content API](./api.md) initialisation from transformed content files
+  (optional),
+* Rendering via a development server or static rendering as files for
+  production.
 
---- @todo add schema
+What's cool about Phenomic is that the entire lifecycle is configurable via
+plugins.
 
-With this in mind, you can know understand that there is 2 ways to get started
-with Phenomic. One way is to directly rely on [existing plugins](/en/plugins)
-(or a bundle of plugins (presets)). The other way, if you don't find something
-that fit your needs, is to [make your own plugin](./writing-plugins.md).
+---
+
+Relying on [existing plugins](https://phenomic.io/en/plugins/) is a good first
+step to get started with Phenomic. Even better, you can directly choose a
+[preset](https://phenomic.io/en/tutorials/) to start using it in seconds. And if
+you don't find something that fit your needs or just miss something, your can
+[make your own plugin](./writing-plugins.md).
 
 ## Plugins
 
@@ -38,7 +42,7 @@ probably the most important type of plugins. Depending of the renderer plugin
 you will choose, this might completely change your experience with Phenomic.
 
 _Example:
-[React (@phenomic/plugin-renderer-react)](/en/packages/plugin-renderer-react/docs/)_
+[React (@phenomic/plugin-renderer-react)](https://phenomic.io/en/packages/plugin-renderer-react/docs/)_
 
 ### Bundler plugins
 
@@ -46,7 +50,7 @@ This will handle the javascript bundles that will be generated for the browser
 (and also used for static generation).
 
 _Example:
-[Webpack (@phenomic/plugin-bundler-webpack)](/en/packages/plugin-bundler-webpack/docs/)_
+[Webpack (@phenomic/plugin-bundler-webpack)](https://phenomic.io/en/packages/plugin-bundler-webpack/docs/)_
 
 ### Transformer plugins
 
@@ -54,9 +58,9 @@ This will handle the transformation of files found by phenomic. Optional if you
 directly hit an existing API.
 
 _Example:
-[Markdown (@phenomic/plugin-transformer-markdown)](/en/packages/plugin-transform-markdown/docs/)
+[Markdown (@phenomic/plugin-transformer-markdown)](https://phenomic.io/en/packages/plugin-transform-markdown/docs/)
 or
-[JSON (@phenomic/plugin-transformer-json)](/en/packages/plugin-transform-json/docs/)_\_.
+[JSON (@phenomic/plugin-transformer-json)](https://phenomic.io/en/packages/plugin-transform-json/docs/)_\_.
 
 ### Other kind of plugins
 
@@ -68,3 +72,6 @@ from a `/public` folder (eg: `robots.txt` and friends).
 
 Presets are a collection of plugins. For now we have only one,
 [but we want more](https://github.com/phenomic/phenomic/issues?q=is%3Aopen+label%3Aplugin).
+
+That's the fastest way to start with Phenomic. You can directly check out
+existing [tutorials](https://phenomic.io/en/tutorials/)

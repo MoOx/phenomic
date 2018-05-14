@@ -191,7 +191,7 @@ declare type PhenomicPlugin = {|
   buildForPrerendering?: () => Promise<PhenomicAppType>,
   build?: () => PhenomicAssets,
   // renderer
-  getRoutes?: PhenomicAppType => void,
+  getRoutes?: PhenomicAppType => any,
   // urls-resolver
   resolveURLs?: ({|
     routes: any

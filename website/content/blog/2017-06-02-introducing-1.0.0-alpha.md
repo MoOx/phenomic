@@ -32,7 +32,8 @@ Today we're officially releasing the first alpha of our 1.0.0 API, and we'd be
 really grateful for your feedback while we finalise the last details and the
 docs.
 
-Be sure to check out ["Getting Started"](/docs/getting-started) page!
+Be sure to check out ["Getting Started"](https://phenomic.io/en/tutorials/)
+page!
 
 You can have a look on
 [this website source](https://github.com/phenomic/phenomic/tree/master/website)

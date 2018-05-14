@@ -23,12 +23,9 @@
 
 ---
 
-# Documentation
+## [Documentation](https://phenomic.io/en/packages/core/docs/)
 
-## Getting Started
-
-Check out [our Getting Started guide](https://phenomic.io/docs/getting-started)
-on our website!
+## [Tutorials](https://phenomic.io/en/tutorials/)
 
 ## Examples
 

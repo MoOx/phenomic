@@ -9,13 +9,12 @@ adjust as you wish pretty easily. Be sure to check out the
 
 Before asking any question about Phenomic, be sure to read the documentation :
 
-* [How to setup a new project with Phenomic](https://phenomic.io/docs/setup/)
-* [Getting Started with Phenomic](https://phenomic.io/docs/getting-started/)
-* [Usage & APIs](https://phenomic.io/docs/usage/)
-* [FAQ](https://phenomic.io/docs/faq/)
+* [Getting Started with Phenomic](https://phenomic.io/en/tutorials//)
+* [Documentation](https://phenomic.io/en/packages/core/docs/)
+* [FAQ](https://phenomic.io/en/packages/core/docs/faq/)
 
 Also take a look at
-[existing websites that use Phenomic](https://phenomic.io/showcase/), some
+[existing websites that use Phenomic](https://phenomic.io/en/showcase/), some
 projects share their source code!
 
 ---

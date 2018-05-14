@@ -9,8 +9,9 @@ subtitle: "Detail about individual commands"
 ⚠️ _We recommend you **not** to install Phenomic CLI as a global package on your
 OS._
 
-As shown in [tutorials](/en/tutorials), we recommend you to install this package
-locally to your project and use aliases in your `package.json`.
+As shown in [tutorials](https://phenomic.io/en/tutorials), we recommend you to
+install this package locally to your project and use aliases in your
+`package.json`.
 
 ```json
 {
