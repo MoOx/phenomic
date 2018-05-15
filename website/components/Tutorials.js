@@ -60,7 +60,7 @@ const Tutorials = () => {
             style={styles.notice}
             href="https://github.com/phenomic/phenomic/labels/plugin"
           >
-            {"You don't see what your are looking for?"}
+            {"Don't see what you're looking for?"}
           </Link>
         </Spacer>
       </BodyContainer>
