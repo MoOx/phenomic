@@ -48,7 +48,6 @@
     "prepare": "yarn clean && yarn transpile",
     "prerelease": "yarn prepare",
     "release": "lerna publish",
-    "postrelease": "yarn website:deploy",
     "format": "yarn format:most && yarn format:re",
     "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
     "format:re":
@@ -65,7 +64,6 @@
     "website:start": "cd website && yarn start",
     "website:build": "cd website && yarn build",
     "website:test": "cd website && yarn test && jest website",
-    "website:deploy": "cd website && yarn deploy",
     "test": "yarn lint && yarn tests",
     "test-without-lint": "yarn tests",
     "posttest": "yarn examples && yarn website:test"
