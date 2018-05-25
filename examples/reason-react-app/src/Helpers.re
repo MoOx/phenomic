@@ -1,8 +1,8 @@
-let nothing = ReasonReact.nullElement;
+let nothing = ReasonReact.null;
 
-let text = ReasonReact.stringToElement;
+let text = ReasonReact.string;
 
-let list = list => list |> Array.of_list |> ReasonReact.arrayToElement;
+let list = list => list |> Array.of_list |> ReasonReact.array;
 
 let nodeList = node => node##list |> Array.to_list;
 

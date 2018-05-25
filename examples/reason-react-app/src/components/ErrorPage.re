@@ -17,5 +17,5 @@ let make = (~message: option(string)=?, _) => {
 
 let default =
   ReasonReact.wrapReasonForJs(~component, jsProps =>
-    make(~message=?Js.Nullable.to_opt(jsProps##message), [||])
+    make(~message=?Js.Nullable.toOption(jsProps##message), [||])
   );

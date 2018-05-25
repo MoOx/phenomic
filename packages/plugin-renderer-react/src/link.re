@@ -13,11 +13,11 @@ let make =
   ReasonReact.wrapJsForReason(
     ~reactClass=link,
     ~props={
-      "href": Js.Nullable.from_opt(href),
-      "style": Js.Nullable.from_opt(style),
-      "activeStyle": Js.Nullable.from_opt(activeStyle),
-      "className": Js.Nullable.from_opt(className),
-      "activeClassName": Js.Nullable.from_opt(activeClassName)
+      "href": Js.Nullable.fromOption(href),
+      "style": Js.Nullable.fromOption(style),
+      "activeStyle": Js.Nullable.fromOption(activeStyle),
+      "className": Js.Nullable.fromOption(className),
+      "activeClassName": Js.Nullable.fromOption(activeClassName)
     },
     children
   );

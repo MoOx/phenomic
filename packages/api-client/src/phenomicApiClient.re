@@ -45,21 +45,21 @@ let query = (queryConfig) =>
   | List(queryConfigList) => {
       "path": queryConfigList.path,
       "id": Js.Nullable.undefined,
-      "by": Js.Nullable.from_opt(queryConfigList.by),
-      "value": Js.Nullable.from_opt(queryConfigList.value),
-      "order": Js.Nullable.from_opt(queryConfigList.order),
-      "sort": Js.Nullable.from_opt(queryConfigList.sort),
-      "limit": Js.Nullable.from_opt(queryConfigList.limit),
+      "by": Js.Nullable.fromOption(queryConfigList.by),
+      "value": Js.Nullable.fromOption(queryConfigList.value),
+      "order": Js.Nullable.fromOption(queryConfigList.order),
+      "sort": Js.Nullable.fromOption(queryConfigList.sort),
+      "limit": Js.Nullable.fromOption(queryConfigList.limit),
       "after": Js.Nullable.undefined
     }
   | PaginatedList(queryConfigPaginatedList) => {
       "path": queryConfigPaginatedList.path,
       "id": Js.Nullable.undefined,
-      "by": Js.Nullable.from_opt(queryConfigPaginatedList.by),
-      "value": Js.Nullable.from_opt(queryConfigPaginatedList.value),
-      "order": Js.Nullable.from_opt(queryConfigPaginatedList.order),
-      "sort": Js.Nullable.from_opt(queryConfigPaginatedList.sort),
-      "limit": Js.Nullable.from_opt(queryConfigPaginatedList.limit),
-      "after": Js.Nullable.from_opt(queryConfigPaginatedList.after)
+      "by": Js.Nullable.fromOption(queryConfigPaginatedList.by),
+      "value": Js.Nullable.fromOption(queryConfigPaginatedList.value),
+      "order": Js.Nullable.fromOption(queryConfigPaginatedList.order),
+      "sort": Js.Nullable.fromOption(queryConfigPaginatedList.sort),
+      "limit": Js.Nullable.fromOption(queryConfigPaginatedList.limit),
+      "after": Js.Nullable.fromOption(queryConfigPaginatedList.after)
     }
   };

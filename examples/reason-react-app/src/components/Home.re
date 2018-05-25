@@ -12,7 +12,7 @@ let make = (~posts) => {
       </Head>
       <h1> ("Home" |> text) </h1>
       (
-        switch (posts: Types.posts) {
+        switch ((posts: Types.posts)) {
         | Inactive
         | Loading => "Loading ..." |> text
         | Errored => "An error occured" |> text
@@ -39,7 +39,7 @@ let make = (~posts) => {
                 | Some(previous) =>
                   <PhenomicPresetReactApp.Link
                     href=(
-                      Js.to_bool(posts##previousPageIsFirst) ?
+                      posts##previousPageIsFirst ?
                         "/" : "/after/" ++ previous ++ "/"
                     )>
                     ("Newer posts" |> text)
@@ -61,7 +61,7 @@ let make = (~posts) => {
           </div>;
         }
       )
-    </div>
+    </div>,
 };
 
 let jsComponent =
@@ -79,8 +79,8 @@ let queries = props => {
         order: None,
         sort: None,
         limit: Some(2),
-        after: Some(props##params##after)
-      })
+        after: Some(props##params##after),
+      }),
     );
   {"posts": posts};
 };

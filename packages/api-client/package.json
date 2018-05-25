@@ -29,7 +29,7 @@
     "simple-json-fetch": "^1.0.1"
   },
   "devDependencies": {
-    "bs-platform": "^2.2.0"
+    "bs-platform": "^3.1.0"
   },
   "scripts": {
     "reason:cleanup": "bsb -clean-world",

@@ -2248,9 +2248,9 @@ browserslist@^3.0.0:
     caniuse-lite "^1.0.30000830"
     electron-to-chromium "^1.3.42"
 
-bs-platform@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.2.1.tgz#e22b82143a43a10630d7b2040aab87648b12190c"
+bs-platform@^3.1.0:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-3.1.4.tgz#fe8495443b35aff73dfb61cba1e6d7b88311910b"
 
 bs-react-helmet@^0.2.1:
   version "0.2.1"
@@ -9457,9 +9457,9 @@ reason-react@^0.2.4:
     react ">=15.0.0"
     react-dom ">=15.0.0"
 
-reason-react@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.3.1.tgz#55d5fcd07825299ce5d04f99e763bf2af1f9e0f2"
+reason-react@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.4.1.tgz#f1c8bf0d116be6bf43109912ee4d95e58dd7c64f"
   dependencies:
     react ">=15.0.0 || >=16.0.0"
     react-dom ">=15.0.0 || >=16.0.0"

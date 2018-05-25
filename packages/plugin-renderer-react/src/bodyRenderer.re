@@ -20,7 +20,7 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
     let tag = Js.String.make(jsChild##t);
     let props = jsChild##p;
     let children =
-      switch (Js.Null_undefined.to_opt(jsChild##c)) {
+      switch (Js.Null_undefined.toOption(jsChild##c)) {
       | Some(c) => List.map(jsTreeToReason, Array.to_list(c))
       | None => []
       };
@@ -31,7 +31,7 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
 let make = (~body: jsBody, _children) => {
   let rec renderChild = child =>
     switch child {
-    | String(string) => ReasonReact.stringToElement(string)
+    | String(string) => ReasonReact.string(string)
     | Element(tag, originalProps, reasonChildren) =>
       switch tag {
       | "a" =>
@@ -42,7 +42,7 @@ let make = (~body: jsBody, _children) => {
           className=[%bs.raw {| child[1].className |}]
           activeClassName=[%bs.raw {| child[1].activeClassName |}]>
           (
-            ReasonReact.arrayToElement(
+            ReasonReact.array(
               Array.of_list(List.map(renderChild, reasonChildren))
             )
           )
@@ -52,13 +52,13 @@ let make = (~body: jsBody, _children) => {
           tag,
           ~props=ReactDOMRe.objToDOMProps(originalProps),
           [|
-            ReasonReact.arrayToElement(
+            ReasonReact.array(
               Array.of_list(List.map(renderChild, reasonChildren))
             )
           |]
         )
       }
-    | Empty => ReasonReact.nullElement
+    | Empty => ReasonReact.null
     };
   {...component, render: _self => body |> jsTreeToReason |> renderChild};
 };

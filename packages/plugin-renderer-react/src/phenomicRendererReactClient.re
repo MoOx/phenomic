@@ -26,9 +26,9 @@ let withInitialProps = comp => withInitialProps_(comp);
 type jsNodeList('a) = {
   .
   "list": array('a),
-  "previousPageIsFirst": Js.boolean,
+  "previousPageIsFirst": bool,
   "previous": Js.nullable(string),
-  "next": Js.nullable(string)
+  "next": Js.nullable(string),
 };
 
 type edge('a) =
@@ -40,11 +40,11 @@ type edge('a) =
 type jsEdge('a) = {
   .
   "status": string,
-  "node": 'a
+  "node": 'a,
 };
 
 let jsEdge = jsEdge =>
-  switch jsEdge##status {
+  switch (jsEdge##status) {
   | "loading" => Loading
   | "error" => Errored
   | "idle" => Idle(jsEdge##node)
