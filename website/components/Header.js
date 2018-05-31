@@ -37,7 +37,7 @@ const Header = (props: Object) => (
 
 const styles = StyleSheet.create({
   container: {
-    overflow: "hidden"
+    zIndex: 1 /* for DocSearch component autocomplete results */
   },
   hero: {
     paddingTop: 40,

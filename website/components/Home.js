@@ -112,6 +112,7 @@ const Home = () => (
 
 const styles = StyleSheet.create({
   heroContainer: {
+    zIndex: 1 /* for DocSearch component autocomplete results */,
     marginBottom: Spacer.large * 3
   },
   heroGradient: {

@@ -3,18 +3,13 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
-import PhenomicLogoBaseline from "../svgs/PhenomicLogoBaseline";
-
 import Link from "./Link";
-import Spacer from "./Spacer";
+import PhenomicLogo from "./PhenomicLogo";
 
-const HeaderNavBar = () => (
+const FooterNavBar = () => (
   <View style={styles.container}>
     <View style={styles.col}>
-      <Link.Touchable href="/" style={styles.text}>
-        <PhenomicLogoBaseline height="48" />
-      </Link.Touchable>
-      <Spacer small />
+      <PhenomicLogo />
     </View>
     <View style={styles.col}>
       <Link.Touchable
@@ -50,7 +45,7 @@ const HeaderNavBar = () => (
         style={styles.link}
         activeStyle={styles.linkActive}
       >
-        <Text style={[styles.linkText, styles.linkBold]}>{"Showcase"}</Text>
+        <Text style={[styles.linkText]}>{"Showcase"}</Text>
       </Link.Touchable>
     </View>
     <View style={styles.col}>
@@ -67,13 +62,13 @@ const HeaderNavBar = () => (
         <Text style={styles.linkText}>{"Twitter"}</Text>
       </Link.Touchable>
       <Link.Touchable href="https://spectrum.chat/phenomic" style={styles.link}>
-        <Text style={styles.linkText}>{"Community"}</Text>
+        <Text style={styles.linkText}>{"Spectrum"}</Text>
       </Link.Touchable>
       <Link.Touchable
         href="https://gitter.im/MoOx/phenomic"
         style={styles.link}
       >
-        <Text style={styles.linkText}>{"Chat"}</Text>
+        <Text style={styles.linkText}>{"Gitter"}</Text>
       </Link.Touchable>
     </View>
   </View>
@@ -90,12 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start"
   },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "700",
-    textDecorationLine: "none"
-  },
   link: {
     textDecorationLine: "none",
     padding: 10
@@ -105,10 +94,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     color: "#fff"
-  },
-  linkBold: {
-    fontWeight: "700"
   }
 });
 
-export default HeaderNavBar;
+export default FooterNavBar;
