@@ -24,8 +24,9 @@ class DocSearch extends Component {
         indexName: "phenomic",
         inputSelector: "#algolia-docsearch",
         openOnFocus: true,
-        handleSelected: function(input, event, suggestion) {
-          this.context.router.history.push(
+        handleSelected: (input, event, suggestion) => {
+          // rr4 || rr3
+          (this.context.router.history || this.context.router).push(
             suggestion.url.replace("https://phenomic.io", "")
           );
         }
