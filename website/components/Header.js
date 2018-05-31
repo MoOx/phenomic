@@ -1,13 +1,17 @@
 // @flow
 
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
+import { View, Text, StyleSheet, createElement } from "react-native-web";
 import Head from "react-helmet";
 
 import Spacer from "./Spacer";
 import BodyContainer from "./BodyContainer";
 import BackgroundGradient from "./BackgroundGradient";
 import HeaderNavBar from "./HeaderNavBar";
+
+/* eslint-disable react/no-multi-comp */
+
+const Heading = p => createElement("h1", p);
 
 const Header = (props: Object) => (
   <BackgroundGradient
@@ -23,7 +27,7 @@ const Header = (props: Object) => (
       </Head>
       {/* @todo h1 or shit */}
       <Spacer large>
-        <Text style={styles.heroText}>{props.title}</Text>
+        <Heading style={styles.heroText}>{props.title}</Heading>
         <Text style={styles.heroSubText}>{props.subtitle}</Text>
       </Spacer>
       {props.children && <View style={styles.children}>{props.children}</View>}
@@ -43,7 +47,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 48,
     fontWeight: "200",
-    textAlign: "center"
+    textAlign: "center",
+    margin: 0,
+    padding: 0
   },
   heroSubText: {
     color: "#fff",
