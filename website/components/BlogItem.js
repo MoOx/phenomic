@@ -15,27 +15,27 @@ import BodySmallContainer from "./BodySmallContainer";
 
 const BlogItem = (props: Object) => {
   if (props.hasError) {
-    return <PageError error={props.news.error} />;
+    return <PageError error={props.item.error} />;
   }
 
   return (
     <Flex>
-      <Header title={props.news && props.news.node && props.news.node.title} />
+      <Header title={props.item && props.item.node && props.item.node.title} />
       <BodySmallContainer>
         <Spacer large>
           {props.isLoading && <ActivityIndicator />}
           {!props.isLoading && (
             <React.Fragment>
               <Text style={styles.date}>
-                {new Date(props.news.node.date).toLocaleDateString("en-US", {
+                {new Date(props.item.node.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric"
                 })}
               </Text>
               <MarkdownGenerated
-                body={props.news.node.body}
-                filename={props.news.node.filename}
+                body={props.item.node.body}
+                filename={props.item.node.filename}
               />
             </React.Fragment>
           )}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 export default withPhenomicApi(BlogItem, props => ({
-  news: query({
+  item: query({
     path: "content/blog",
     id: props.params.splat
   })

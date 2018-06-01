@@ -7,23 +7,23 @@ import Link from "./Link";
 
 const BlogListItem = props => (
   <Link.Block
-    href={"/en/blog/" + props.news.id}
+    href={"/en/blog/" + props.item.id}
     style={styles.link}
     blockProps={{ style: styles.block }}
   >
     <View style={styles.wrapper}>
       <View>
-        <Text style={styles.title}>{props.news.title}</Text>
+        <Text style={styles.title}>{props.item.title}</Text>
       </View>
       <Text style={styles.date}>
-        {new Date(props.news.date).toLocaleDateString("en-US", {
+        {new Date(props.item.date).toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric"
         })}
       </Text>
-      {props.news.author && (
-        <Text style={styles.author}>{"By " + props.news.author}</Text>
+      {props.item.author && (
+        <Text style={styles.author}>{"By " + props.item.author}</Text>
       )}
     </View>
   </Link.Block>

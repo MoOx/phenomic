@@ -16,7 +16,7 @@ import BlogListItem from "./BlogListItem";
 
 const BlogList = (props: Object) => {
   if (props.hasError) {
-    return <PageError error={props.page.error} />;
+    return <PageError error={props.list.error} />;
   }
 
   return (
@@ -27,32 +27,32 @@ const BlogList = (props: Object) => {
         {!props.isLoading && (
           <React.Fragment>
             <View style={styles.list}>
-              {props.news.node.list.map(item => (
-                <BlogListItem key={item.id} news={item} />
+              {props.list.node.list.map(item => (
+                <BlogListItem key={item.id} item={item} />
               ))}
             </View>
             <Spacer />
             <View style={styles.paginationRow}>
               <View style={styles.paginationColumn}>
-                {props.news.node &&
-                  props.news.node.next && (
+                {props.list.node &&
+                  props.list.node.next && (
                     <Link
                       style={styles.link}
-                      href={`/blog/after/${props.news.node.next}`}
+                      href={`/blog/after/${props.list.node.next}`}
                     >
                       {"← Previous entries"}
                     </Link>
                   )}
               </View>
               <View style={styles.paginationColumn}>
-                {props.news.node &&
-                  props.news.node.previous && (
+                {props.list.node &&
+                  props.list.node.previous && (
                     <Link
                       style={styles.link}
                       href={
-                        props.news.node.previousPageIsFirst
+                        props.list.node.previousPageIsFirst
                           ? `/blog`
-                          : `/blog/after/${props.news.node.previous}`
+                          : `/blog/after/${props.list.node.previous}`
                       }
                     >
                       {"Recent entries →"}
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 });
 
 export default withPhenomicApi(BlogList, props => ({
-  news: query({
+  list: query({
     path: "content/blog",
     limit: 12,
     after: props.params.after
