@@ -7,7 +7,7 @@ import Link from "./Link";
 
 const PackageListItem = (props: {| package: Object |}) => (
   <Link.Block
-    href={"/package/" + props.package.id}
+    href={"/en/packages/" + props.package.id.replace(/package$/, "docs") + "/"}
     style={styles.link}
     blockProps={{ style: styles.block }}
   >
@@ -18,12 +18,32 @@ const PackageListItem = (props: {| package: Object |}) => (
       {props.package.author && (
         <Text style={styles.author}>{"By " + props.package.author}</Text>
       )}
-      {props.package.authors &&
-        props.package.authors.map(author => (
-          <Text key={author} style={styles.author}>
-            {"By " + author}
-          </Text>
-        ))}
+      {props.package.authors && (
+        <Text style={styles.author}>
+          {"By "}
+          {props.package.authors
+            .map(author => {
+              let a = author;
+              // remove <email> (avoid spam)
+              a = a.replace(/ <.+@.+>/g, "");
+              // assume "Name (nick)" => "Name @github"
+              a = a.replace(/ \(([a-zA-Z_]+)\)/g, " @$1");
+              // no space at all? assume github handle
+              if (!a.includes(" ")) {
+                a = "@" + a;
+              }
+              // if something looks like a github handle, we only show that
+              if (
+                a.includes("@") &&
+                (a.startsWith("@") || a.includes("(@") || a.includes(" @"))
+              ) {
+                a = a.slice(a.indexOf("@"));
+              }
+              return a;
+            })
+            .join(", ")}
+        </Text>
+      )}
     </View>
   </Link.Block>
 );
@@ -56,7 +76,7 @@ const styles = StyleSheet.create({
   },
   author: {
     fontWeight: "100",
-    paddingVertical: 10
+    color: "#999"
   }
 });
 

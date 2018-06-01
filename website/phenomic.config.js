@@ -6,7 +6,7 @@ module.exports = {
     content: ["**/*"],
     packages: {
       root: "../packages",
-      globs: ["package.json", "*/docs/**/*.md"]
+      globs: ["*/package.json", "*/docs/**/*.md"]
     }
   },
   presets: ["@phenomic/preset-react-app"],

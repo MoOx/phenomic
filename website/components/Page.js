@@ -73,7 +73,12 @@ const Page = (props: Object, context: Object) => {
             <Spacer large style={styles.sidebar}>
               {props.pages.node &&
                 props.pages.node.list
-                  .filter(p => readPkgFromId(p.id) == currentPkg)
+                  .filter(
+                    p =>
+                      readPkgFromId(p.id) == currentPkg &&
+                      // avoid package.json files
+                      !p.title.endsWith("package.json")
+                  )
                   .sort(sort)
                   .map(page => {
                     const href = `/en/packages/${page.id}/`;
@@ -146,10 +151,6 @@ const Page = (props: Object, context: Object) => {
       <Footer />
     </Flex>
   );
-};
-
-Page.contextTypes = {
-  router: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

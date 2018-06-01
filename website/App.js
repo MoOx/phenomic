@@ -19,6 +19,7 @@ import ShowcaseList, { ShowcaseListByTag } from "./components/ShowcaseList";
 import PageError from "./components/PageError";
 import BlogItem from "./components/BlogItem";
 import BlogList from "./components/BlogList";
+import PagePackageList from "./components/PagePackageList";
 
 // Google Analytics
 const isProduction = process.env.NODE_ENV === "production";
@@ -38,6 +39,7 @@ const routes = () => (
       <Route path="/" component={Home} />
       <Route path="/en/">
         <IndexRoute component={PageDoc} />
+        <Route path="packages" component={PagePackageList} />
         <Route path="packages/*" component={PageDoc} />
         <Route path="tutorials" component={Tutorials} />
         <Route path="plugins" component={Plugins} />
