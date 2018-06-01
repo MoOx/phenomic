@@ -8,16 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Ezra Lalonde", "Maxime Thirouin (MoOx)"],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "phenomic-plugin",
-    "asciidoc",
-    "asciidoctor"
-  ],
+  "keywords": ["phenomic", "phenomic-plugin", "asciidoc", "asciidoctor"],
   "description": "Phenomic plugin to transform asciidoc resources",
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__"],

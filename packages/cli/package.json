@@ -8,7 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": ["static", "website", "generator", "compiler", "phenomic", "cli"],
+  "keywords": ["phenomic", "phenomic-package"],
   "description": "Phenomic CLI",
   "bin": {
     "phenomic": "index.js"

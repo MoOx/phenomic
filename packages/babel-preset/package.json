@@ -8,17 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "phenomic-plugin",
-    "babel-preset",
-    "babel",
-    "react"
-  ],
+  "keywords": ["phenomic"],
   "description": "Babel preset, recommended for Phenomic",
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__"],

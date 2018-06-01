@@ -8,17 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "phenomic-plugin",
-    "phenomic-plugin-renderer",
-    "renderer",
-    "react"
-  ],
+  "keywords": ["phenomic", "phenomic-package"],
   "description":
     "Phenomic Content API client that allow you to make queries to retrieve resources",
   "main": "lib/index.js",

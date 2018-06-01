@@ -9,12 +9,7 @@
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
     "phenomic",
-    "phenomic-plugin",
     "phenomic-preset",
     "react",
     "webpack",

@@ -8,17 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "phenomic-plugin",
-    "phenomic-plugin-renderer",
-    "renderer",
-    "react"
-  ],
+  "keywords": ["phenomic", "phenomic-plugin", "webpack"],
   "description":
     "Phenomic plugin that allow you to use webpack to bundle you website/app",
   "main": "lib/index.js",

@@ -8,17 +8,7 @@
   "homepage": "https://phenomic.io",
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
-    "phenomic",
-    "phenomic-plugin",
-    "phenomic-plugin-public-assets",
-    "public",
-    "assets"
-  ],
+  "keywords": ["phenomic", "phenomic-plugin"],
   "description": "Phenomic plugin to copy a public directory to dist",
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__"],

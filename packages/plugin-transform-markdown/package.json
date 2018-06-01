@@ -9,13 +9,12 @@
   "license": "MIT",
   "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
   "keywords": [
-    "static",
-    "website",
-    "generator",
-    "compiler",
     "phenomic",
     "phenomic-plugin",
-    "markdown"
+    "markdown",
+    "remark",
+    "rehype",
+    "react"
   ],
   "description": "Phenomic plugin to transform markdown resources",
   "main": "lib/index.js",
