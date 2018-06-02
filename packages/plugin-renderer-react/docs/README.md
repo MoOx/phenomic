@@ -1,5 +1,5 @@
 ---
-title: "@phenomic/plugin-renderer-react"
+title: "Phenomic React renderer plugin"
 ---
 
 @todo

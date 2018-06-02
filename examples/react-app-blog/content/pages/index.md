@@ -9,9 +9,8 @@ adjust as you wish pretty easily. Be sure to check out the
 
 Before asking any question about Phenomic, be sure to read the documentation :
 
-* [Getting Started with Phenomic](https://phenomic.io/en/tutorials//)
+* [Getting Started with Phenomic](https://phenomic.io/en/tutorials/)
 * [Documentation](https://phenomic.io/en/packages/core/docs/)
-* [FAQ](https://phenomic.io/en/packages/core/docs/faq/)
 
 Also take a look at
 [existing websites that use Phenomic](https://phenomic.io/en/showcase/), some
@@ -24,4 +23,4 @@ You may want to take a look at the [404.html](/404.html) and tweak the render.
 ---
 
 _You feel like the base theme is not enough or you just saw something wrong?_
-[Please help us make Phenomic better!](https://phenomic.io/contributing/)
+[Please help us make Phenomic better!](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
