@@ -4,6 +4,7 @@
 
 import fs from "fs";
 import path from "path";
+import { format } from "url";
 
 // Grab NODE_ENV and PHENOMIC_* environment variables and prepare them to be
 // injected into the application.
@@ -41,6 +42,7 @@ dotenvFiles.forEach(dotenvFile => {
 });
 
 export default function getClientEnvironment(config: PhenomicConfig) {
+  process.env.PHENOMIC_APP_BASEURL = format(config.baseUrl);
   process.env.PHENOMIC_APP_BASENAME = config.baseUrl.pathname;
   return Object.keys(process.env)
     .filter(key => RE_PHENOMIC.test(key))
