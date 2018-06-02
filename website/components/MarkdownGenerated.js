@@ -35,14 +35,24 @@ const forEachHref = (node?: Node, callback: string => string) => {
   return newNode;
 };
 
-const removeExtFromHref = (ext: string = "md") => (href: string) =>
+const removeExtFromHref = (ext: string = "md|json") => (href: string) =>
   href.replace(new RegExp(`(\\.${ext})(#.*)?$`), "/$2");
 
 const cleanIndexAndReadme = (href: string) =>
   href.replace(/\/(index|README)(#.*)?\/?$/, "/$2");
 
+const replaceOriginalHostnameWithLocal = (href: string) =>
+  href.replace(
+    process.env.PHENOMIC_APP_BASEURL, // replace production http://realdomain/
+    process.env.PHENOMIC_APP_BASENAME // by / so hardcoded link works locally
+  );
+
 const cleanAllHref = (node?: Node, filenameSource: string) => {
   return forEachHref(node, href => {
+    // prefix is to adjust local (relative) links that are links from docs
+    // that will work on github, but won't here
+    // eg: a.md links to './b.md'. Since a.md is a/, .b.md needs to become ../b/
+    // (note that the .md cleanup is done)
     const prefix =
       !href.startsWith("/") &&
       !href.startsWith("#") &&
@@ -51,7 +61,9 @@ const cleanAllHref = (node?: Node, filenameSource: string) => {
       !(filenameSource === "index.md" || filenameSource === "README.md")
         ? "../"
         : "";
-    const h = cleanIndexAndReadme(removeExtFromHref()(href));
+    const h = replaceOriginalHostnameWithLocal(
+      cleanIndexAndReadme(removeExtFromHref()(href))
+    );
     return prefix + h;
   });
 };
