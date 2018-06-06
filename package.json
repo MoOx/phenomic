@@ -121,7 +121,8 @@
     "setupFiles": ["./jest-setup.js"],
     "testURL": "test://url.tld/path",
     "coveragePathIgnorePatterns": ["/node_modules/", "jest-setup.js"],
-    "testPathIgnorePatterns": ["/_output/", "/__fixtures__"]
+    "testPathIgnorePatterns": ["/_output/", "/__fixtures__"],
+    "modulePathIgnorePatterns": ["/dist/"]
   },
   "workspaces": ["website", "examples/*", "packages/*"]
 }
