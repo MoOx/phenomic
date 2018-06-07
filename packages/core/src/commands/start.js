@@ -48,7 +48,11 @@ async function start(config: PhenomicConfig) {
   process.env.PHENOMIC_SOCKET_PORT = String(config.socketPort);
   debug("starting phenomic server");
   const db = createDB(config.db);
-  const phenomicServer = createAPIServer({ db, plugins: config.plugins });
+  const phenomicServer = createAPIServer({
+    db,
+    plugins: config.plugins,
+    rootPath: config.baseUrl.pathname + "phenomic"
+  });
   const bundlerServer = await createDevServer({ config });
   const renderers = config.plugins.filter(p => p.getRoutes);
   const renderer: PhenomicPlugin = renderers[0];
@@ -146,7 +150,7 @@ async function start(config: PhenomicConfig) {
     })
   );
 
-  bundlerServer.use(config.baseUrl.pathname + "phenomic", phenomicServer);
+  bundlerServer.use(phenomicServer);
   // $FlowFixMe flow is lost with async function for express
   bundlerServer.get("*", function(req, res) {
     res.type(".html");

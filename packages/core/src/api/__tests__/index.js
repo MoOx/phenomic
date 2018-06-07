@@ -20,7 +20,8 @@ const server = createServer({
     {
       name: "test-nothing"
     }
-  ]
+  ],
+  rootPath: ""
 });
 
 it("should return basic response", async () => {

@@ -107,7 +107,11 @@ async function build(config: PhenomicConfig) {
   debug("process.env.PHENOMIC_ENV", process.env.PHENOMIC_ENV);
   debug("process.env.PHENOMIC_RESTAPI_PORT", process.env.PHENOMIC_RESTAPI_PORT);
   const db = createDB(config.db);
-  const phenomicAPIServer = createAPIServer({ db, plugins: config.plugins });
+  const phenomicAPIServer = createAPIServer({
+    db,
+    plugins: config.plugins,
+    rootPath: config.baseUrl.pathname + "phenomic"
+  });
   const runningPhenomicAPIServer = phenomicAPIServer.listen(
     parseInt(process.env.PHENOMIC_RESTAPI_PORT, 10)
   );

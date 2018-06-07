@@ -11,10 +11,10 @@ export default (config: PhenomicQueryConfig) => {
       ...config,
       // @todo find a way to avoid bundling the line with localhost in production
       root:
-        typeof window === "undefined"
+        (typeof window === "undefined"
           ? // $FlowFixMe yeah yeah
             `http://localhost:${process.env.PHENOMIC_RESTAPI_PORT}`
-          : `${process.env.PHENOMIC_APP_BASENAME || "/"}phenomic`
+          : ``) + `${process.env.PHENOMIC_APP_BASENAME || "/"}phenomic`
     })
   ).then(res => res.json);
 };

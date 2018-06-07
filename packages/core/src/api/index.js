@@ -32,15 +32,17 @@ const connect = (list, limit, previousList = []) => {
 
 function createAPIServer({
   db,
-  plugins
+  plugins,
+  rootPath
 }: {|
   db: PhenomicDB,
-  plugins: PhenomicPlugins
+  plugins: PhenomicPlugins,
+  rootPath: string
 |}) {
   debug("creating server");
   const apiServer = express();
 
-  apiServer.get("/", async function(
+  apiServer.get(rootPath + "/", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -51,33 +53,33 @@ function createAPIServer({
     });
   });
 
-  apiServer.get("/:path/by-:filter/:value/:order/:sort.json", async function(
-    req: express$Request,
-    res: express$Response
-  ) {
-    debug(req.url, JSON.stringify(req.params));
-    try {
-      const sort = req.params.sort;
-      const reverse = req.params.order === "desc";
-      const list = await db.getList(
-        req.params.path,
-        {
-          sort,
-          reverse
-        },
-        req.params.filter,
-        req.params.value
-      );
-      res.json(connect(list));
-    } catch (error) {
-      log.error(error.message);
-      debug(error);
-      res.status(404).end();
+  apiServer.get(
+    rootPath + "/:path/by-:filter/:value/:order/:sort.json",
+    async function(req: express$Request, res: express$Response) {
+      debug(req.url, JSON.stringify(req.params));
+      try {
+        const sort = req.params.sort;
+        const reverse = req.params.order === "desc";
+        const list = await db.getList(
+          req.params.path,
+          {
+            sort,
+            reverse
+          },
+          req.params.filter,
+          req.params.value
+        );
+        res.json(connect(list));
+      } catch (error) {
+        log.error(error.message);
+        debug(error);
+        res.status(404).end();
+      }
     }
-  });
+  );
 
   apiServer.get(
-    "/:path/by-:filter/:value/:order/:sort/limit-:limit.json",
+    rootPath + "/:path/by-:filter/:value/:order/:sort/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -104,7 +106,8 @@ function createAPIServer({
   );
 
   apiServer.get(
-    "/:path/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
+    rootPath +
+      "/:path/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -149,7 +152,7 @@ function createAPIServer({
     }
   );
 
-  apiServer.get("/:path/item/*?.json", async function(
+  apiServer.get(rootPath + "/:path/item/*?.json", async function(
     req: express$Request,
     res: express$Response
   ) {
@@ -171,33 +174,33 @@ function createAPIServer({
     }
   });
 
-  apiServer.get("/by-:filter/:value/:order/:sort.json", async function(
-    req: express$Request,
-    res: express$Response
-  ) {
-    debug(req.url, JSON.stringify(req.params));
-    try {
-      const sort = req.params.sort;
-      const reverse = req.params.order === "desc";
-      const list = await db.getList(
-        null,
-        {
-          sort,
-          reverse
-        },
-        req.params.filter,
-        req.params.value
-      );
-      res.json(connect(list));
-    } catch (error) {
-      log.error(error.message);
-      debug(error);
-      res.status(404).end();
+  apiServer.get(
+    rootPath + "/by-:filter/:value/:order/:sort.json",
+    async function(req: express$Request, res: express$Response) {
+      debug(req.url, JSON.stringify(req.params));
+      try {
+        const sort = req.params.sort;
+        const reverse = req.params.order === "desc";
+        const list = await db.getList(
+          null,
+          {
+            sort,
+            reverse
+          },
+          req.params.filter,
+          req.params.value
+        );
+        res.json(connect(list));
+      } catch (error) {
+        log.error(error.message);
+        debug(error);
+        res.status(404).end();
+      }
     }
-  });
+  );
 
   apiServer.get(
-    "/by-:filter/:value/:order/:sort/limit-:limit.json",
+    rootPath + "/by-:filter/:value/:order/:sort/limit-:limit.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -224,7 +227,7 @@ function createAPIServer({
   );
 
   apiServer.get(
-    "/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
+    rootPath + "/by-:filter/:value/:order/:sort/limit-:limit/after-:after.json",
     async function(req: express$Request, res: express$Response) {
       debug(req.url, JSON.stringify(req.params));
       try {
@@ -269,7 +272,7 @@ function createAPIServer({
     }
   );
 
-  apiServer.get("/item/*?.json", async function(
+  apiServer.get(rootPath + "/item/*?.json", async function(
     req: express$Request,
     res: express$Response
   ) {
