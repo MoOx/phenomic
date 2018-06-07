@@ -106,12 +106,18 @@ const rssFeed: PhenomicPluginModule<options> = (
       getFeedKeys(options).forEach(feedUrl => {
         router.get("/" + feedUrl, async (req, res: express$Response) => {
           debug(req.url);
-          const output = await makeFeed(
-            getRoot(config),
-            feedUrl,
-            options.feeds[feedUrl]
-          );
-          res.type("xml").send(output);
+          try {
+            const output = await makeFeed(
+              getRoot(config),
+              feedUrl,
+              options.feeds[feedUrl]
+            );
+            res.type("xml").send(output);
+          } catch (error) {
+            log.error(error.toString());
+            debug(error);
+            res.status(500).end();
+          }
         });
       });
       return [router];
