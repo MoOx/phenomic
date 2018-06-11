@@ -12,8 +12,10 @@ package-lock.json
 coverage
 
 # build
-lib
-dist
+**/lib/**/*.js
+**/lib/bs/**/*
+**/lib/ocaml/**/*
+**/dist
 
 # tests results
 **/__tests__/_output*

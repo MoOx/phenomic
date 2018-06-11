@@ -6,7 +6,8 @@
   },
   "sources": [
     {
-      "dir": "src"
+      "dir": "src",
+      "subdirs": true
     }
   ],
   "bs-dependencies": ["reason-react"]

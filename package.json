@@ -12,6 +12,7 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "bs-platform": "^3.1.0",
     "chalk": "^1.1.3",
     "cross-env": "^2.0.0",
     "cross-spawn": "^5.1.0",
@@ -27,7 +28,7 @@
     "globby": "^6.1.0",
     "husky": "^0.13.3",
     "jest": "^22.4.3",
-    "lerna": "^2.5.1",
+    "lerna": "^3.0.0-beta.21",
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
     "prettier": "^1.8.0",
@@ -39,12 +40,19 @@
     "#</git hooks>": "handled by husky",
     "cleanup-node_modules":
       "trash node_modules packages/*/node_modules examples/*/node_modules website/node_modules",
-    "clean": "trash packages/*/lib",
-    "transpile":
-      "lerna exec -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "clean":
+      "trash packages/*/lib && lerna exec --parallel -- bsb -clean-world",
+    "transpile": "npm-run-all --parallel transpile:*",
+    "transpile:js":
+      "lerna exec --parallel -- babel src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "transpile:re": "lerna exec --parallel -- bsb -make-world",
     "posttranspile": "lerna run prepare",
-    "watch":
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:js":
       "lerna exec --parallel -- babel -w src --optional runtime --out-dir lib --ignore \"__tests__\"",
+    "##watch:re": "fail I don't get why...",
+    "#watch:re": "lerna exec --parallel -- bsb -make-world -w",
+    "watch:re": "node bsb-make-world-w",
     "prepare": "yarn clean && yarn transpile",
     "prerelease": "yarn prepare",
     "release": "lerna publish",

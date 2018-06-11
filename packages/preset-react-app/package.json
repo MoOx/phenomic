@@ -27,14 +27,5 @@
     "@phenomic/plugin-renderer-react": "^1.0.0-beta.3",
     "@phenomic/plugin-transform-json": "^1.0.0-beta.3",
     "@phenomic/plugin-transform-markdown": "^1.0.0-beta.3"
-  },
-  "devDependencies": {
-    "bs-platform": "^3.1.0"
-  },
-  "scripts": {
-    "reason:cleanup": "bsb -clean-world",
-    "reason:compile": "bsb -make-world",
-    "prepare": "yarn reason:cleanup && yarn reason:compile",
-    "dev": "yarn reason:compile -- -w"
   }
 }

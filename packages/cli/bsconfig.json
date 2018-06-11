@@ -1,5 +1,5 @@
 {
-  "name": "@phenomic/api-client",
+  "name": "@phenomic/cli",
   "refmt": 3,
   "reason": {
     "react-jsx": 2

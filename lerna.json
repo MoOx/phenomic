@@ -4,7 +4,7 @@
   "registry": "https://registry.npmjs.org/",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "commands": {
+  "command": {
     "exec": {
       "ignore": ["website", "@phenomic/example-*"]
     }
