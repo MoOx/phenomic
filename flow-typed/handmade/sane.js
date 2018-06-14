@@ -3,7 +3,7 @@ declare module "sane" {
     filepath: string,
     root: string,
     stat: Object
-  ) => void;
+  ) => void | Promise<void>;
   declare type SaneOptionsType = {
     watchman: boolean,
     glob: $ReadOnlyArray<string>

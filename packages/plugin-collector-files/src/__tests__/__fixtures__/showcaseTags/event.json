@@ -1,0 +1,9 @@
+{
+  "data": {
+    "name": "Event",
+    "body": "like wat"
+  },
+  "partial": {
+    "name": "Event"
+  }
+}

@@ -60,6 +60,22 @@ Plugins interesting part are usually located at
 Here are the list of methods that allows you to interact with Phenomic
 lifecycle.
 
+### `collect`
+
+The method `collect` is useful if you plan to use [Content API](./api.md). It
+allows you to collect your data before rendering and to inject it into the
+database.
+
+```js
+collect: ({ db, transformers }) => Promise;
+```
+
+It receive the database and all transformers plugin as arguments
+
+Used in
+
+* https://github.com/phenomic/phenomic/tree/master/packages/plugin-collector-files/src/index.js
+
 ### `supportedFileTypes` + `transform`
 
 The method `transform` is useful if you plan to use [Content API](./api.md). It

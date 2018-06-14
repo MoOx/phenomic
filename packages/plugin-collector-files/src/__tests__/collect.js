@@ -1,40 +1,37 @@
 // @flow
 
 import createDB from "@phenomic/core/lib/db";
-import config from "@phenomic/core/lib/defaultConfig.js";
+import defaultConfig from "@phenomic/core/lib/defaultConfig.js";
 
 import collector from "..";
 
-import fixtures from "./__fixtures__";
-
 const db = createDB({});
 
+const config = {
+  ...defaultConfig,
+  path: __dirname,
+  content: {
+    "": { root: "__fixtures__", globs: ["**/*"] }
+  }
+};
+
 const p = collector(config, {});
-Object.keys(fixtures).map(path => {
-  if (p.collectFile)
-    p.collectFile({
-      db,
-      fileName: path,
-      parsed: fixtures[path],
-      transformer: {
-        name: "@phenomic/plugin-default-transform",
-
-        // for testing, according to db
-        supportedFileTypes: ["md", "json"],
-
-        transform({ contents }) {
-          return {
-            partial: {},
-            data: {
-              body: contents
-            }
-          };
-        }
-      }
-    });
-});
-
 it("should collect everything", async () => {
+  if (p.collect) {
+    await p.collect({
+      db,
+      transformers: [
+        {
+          name: "@phenomic/plugin-default-transform",
+          supportedFileTypes: ["json"],
+          transform({ contents }) {
+            return JSON.parse(contents.toString());
+          }
+        }
+      ]
+    });
+  }
+
   expect(await db.getList("__null__")).toMatchSnapshot();
 });
 

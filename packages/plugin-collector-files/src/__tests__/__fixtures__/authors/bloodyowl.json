@@ -1,0 +1,12 @@
+{
+  "data": {
+    "name": "bloodyowl",
+    "bio": "bloodyowl short bio",
+    "body": "bloodyowl long bio"
+  },
+  "partial": {
+    "name": "bloodyowl",
+    "bio": "bloodyowl short bio",
+    "body": "bloodyowl long bio"
+  }
+}

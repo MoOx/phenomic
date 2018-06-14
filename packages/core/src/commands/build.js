@@ -7,91 +7,13 @@ import getPort from "get-port";
 import rimraf from "rimraf";
 import pMap from "p-map";
 
-import { oneShot } from "../watch";
-import processFile from "../injection/processFile";
 import createAPIServer from "../api";
 import writeFile from "../utils/writeFile";
 import createDB from "../db";
-import log from "../utils/log";
-import getPath from "../utils/getPath";
 
 const debug = require("debug")("phenomic:core:commands:build");
 
 let lastStamp = Date.now();
-async function getContent(db, config: PhenomicConfig) {
-  debug("getting content");
-  const transformers = config.plugins.filter(
-    item => typeof item.transform === "function"
-  );
-  if (!transformers.length) {
-    throw Error("Phenomic expects at least a transform plugin");
-  }
-  const collectors = config.plugins.filter(
-    item => typeof item.collectFile === "function"
-  );
-  if (!collectors.length) {
-    throw Error("Phenomic expects at least a collector plugin");
-  }
-
-  await Promise.all(
-    Object.keys(config.content).map(async contentKey => {
-      let contentPath;
-      let globs;
-      try {
-        let folder;
-
-        // "key(and folder)": ["glob/*"]
-        if (Array.isArray(config.content[contentKey])) {
-          folder = path.join(config.path, contentKey);
-          // $FlowFixMe stfu
-          globs = config.content[contentKey];
-        } else if (
-          config.content[contentKey].root &&
-          config.content[contentKey].globs
-        ) {
-          // "key": {root: folder, globs: ["glob/*"] }
-          folder = path.join(config.path, config.content[contentKey].root);
-          // $FlowFixMe stfu
-          globs = config.content[contentKey].globs;
-        } else {
-          throw new Error(
-            "Unexpected config for 'content' option: " +
-              config.content[contentKey].toString()
-          );
-        }
-
-        contentPath = await getPath(folder);
-      } catch (e) {
-        log.warn(
-          `no '${
-            contentKey
-          }' folder found or unable to read files. Please create and put files in this folder (or double check it) if you want the content to be accessible (eg: markdown or JSON files). `
-        );
-      }
-
-      if (contentPath) {
-        const files = oneShot({
-          path: contentPath,
-          // $FlowFixMe stfu
-          patterns: globs
-        });
-        await db.destroy();
-        await Promise.all(
-          files.map(file =>
-            processFile({
-              db,
-              fileKey: contentKey,
-              file,
-              transformers,
-              collectors
-            })
-          )
-        );
-      }
-    })
-  );
-}
-
 async function build(config: PhenomicConfig) {
   console.log("⚡️ Hey! Let's get on with it");
   debug("cleaning dist");
@@ -142,7 +64,13 @@ async function build(config: PhenomicConfig) {
       "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms"
     );
     lastStamp = Date.now(); // Retreive content
-    await getContent(db, config);
+
+    const transformers = config.plugins.filter(plugin => plugin.transform);
+    // collectors
+    await Promise.all(
+      config.plugins.map(p => p.collect && p.collect({ db, transformers }))
+    );
+
     console.log("📝 Content processed " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
     const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes);

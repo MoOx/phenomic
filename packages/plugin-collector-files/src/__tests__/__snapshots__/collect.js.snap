@@ -3,7 +3,7 @@
 exports[`should collect everything 1`] = `
 Array [
   Object {
-    "filename": "acrowithbrian.com.md",
+    "filename": "acrowithbrian.com.json",
     "id": "showcase/entry/acrowithbrian.com",
     "showcaseTags": Array [
       "event",
@@ -16,7 +16,7 @@ Array [
     "url": "https://www.acrowithbrian.com/",
   },
   Object {
-    "filename": "anthonydugois.com__polynomic.md",
+    "filename": "anthonydugois.com__polynomic.json",
     "id": "showcase/entry/anthonydugois.com__polynomic",
     "showcaseTags": Array [
       "docs",
@@ -34,7 +34,7 @@ Array [
     "name": "bloodyowl",
   },
   Object {
-    "filename": "ced.photo.md",
+    "filename": "ced.photo.json",
     "id": "showcase/entry/ced.photo",
     "showcaseTags": Array [
       "blog",
@@ -45,7 +45,7 @@ Array [
     "url": "https://www.ced.photo",
   },
   Object {
-    "filename": "event.md",
+    "filename": "event.json",
     "id": "showcaseTags/event",
     "name": "Event",
   },
@@ -57,12 +57,12 @@ Array [
     "name": "moox",
   },
   Object {
-    "filename": "open-source.md",
+    "filename": "open-source.json",
     "id": "showcaseTags/open-source",
     "name": "Open Source",
   },
   Object {
-    "filename": "submit.md",
+    "filename": "submit.json",
     "id": "showcase/submit",
     "title": "Submit a website/app made with Phenomic to the Showcase",
   },
@@ -71,7 +71,7 @@ Array [
       "bloodyowl",
     ],
     "date": "2017-06-02T00:00:00.000Z",
-    "filename": "introducing-1.0.0-alpha.md",
+    "filename": "introducing-1.0.0-alpha.json",
     "id": "news/2017/06/introducing-1.0.0-alpha",
     "title": "Introducing Phenomic 1.0.0 first alpha",
   },
@@ -81,12 +81,12 @@ Array [
 exports[`should collect metadata 1`] = `
 Array [
   Object {
-    "filename": "event.md",
+    "filename": "event.json",
     "id": "event",
     "name": "Event",
   },
   Object {
-    "filename": "open-source.md",
+    "filename": "open-source.json",
     "id": "open-source",
     "name": "Open Source",
   },
@@ -113,7 +113,7 @@ Object {
       "t": "div",
     },
     "date": "2017-06-02T00:00:00.000Z",
-    "filename": "introducing-1.0.0-alpha.md",
+    "filename": "introducing-1.0.0-alpha.json",
     "title": "Introducing Phenomic 1.0.0 first alpha",
   },
 }
@@ -126,7 +126,7 @@ Array [
       "bloodyowl",
     ],
     "date": "2017-06-02T00:00:00.000Z",
-    "filename": "introducing-1.0.0-alpha.md",
+    "filename": "introducing-1.0.0-alpha.json",
     "id": "06/introducing-1.0.0-alpha",
     "title": "Introducing Phenomic 1.0.0 first alpha",
   },

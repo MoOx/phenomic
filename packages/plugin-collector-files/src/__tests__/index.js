@@ -1,28 +1,24 @@
 // @flow
 
-import { getId, getFieldValue, injectData, parsePath } from "..";
-
-const exts = ["md"];
+import { makeId, getFieldValue, injectData, parsePath } from "..";
 
 it("should be able to generate keys", () => {
-  expect(getId("test", { partial: {}, data: {} }, exts)).toEqual("test");
+  expect(makeId("test", { partial: {}, data: {} })).toEqual("test");
 
-  expect(getId("test.md", { partial: {}, data: {} }, exts)).toEqual("test");
+  expect(makeId("test.md", { partial: {}, data: {} })).toEqual("test");
 
   // @todo handle this case
-  expect(getId("test/index.md", { partial: {}, data: {} }, exts)).toEqual(
-    "test"
-  );
-  expect(getId("test/test/index.md", { partial: {}, data: {} }, exts)).toEqual(
+  expect(makeId("test/index.md", { partial: {}, data: {} })).toEqual("test");
+  expect(makeId("test/test/index.md", { partial: {}, data: {} })).toEqual(
     "test/test"
   );
-  expect(
-    getId("test\\test\\index.md", { partial: {}, data: {} }, exts)
-  ).toEqual("test/test");
+  expect(makeId("test\\test\\index.md", { partial: {}, data: {} })).toEqual(
+    "test/test"
+  );
 
-  expect(
-    getId("test.md", { partial: {}, data: { path: "yep" } }, exts)
-  ).toEqual("yep");
+  expect(makeId("test.md", { partial: {}, data: { path: "yep" } })).toEqual(
+    "yep"
+  );
 });
 
 it("should be able to generate fields lists from arrays", () => {
@@ -72,7 +68,7 @@ it("should be able to inject date from filename in data", () => {
 
 it("should be able to parse filepath", () => {
   expect(parsePath("posts/november/2017-11-11-test.md")).toEqual({
-    filename: "2017-11-11-test.md",
+    name: "2017-11-11-test.md",
     allPaths: ["posts", "posts/november", "posts/november/2017-11-11-test.md"]
   });
 });

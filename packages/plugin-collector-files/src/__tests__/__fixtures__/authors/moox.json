@@ -1,0 +1,12 @@
+{
+  "data": {
+    "name": "moox",
+    "bio": "moox short bio",
+    "body": "moox long bio"
+  },
+  "partial": {
+    "name": "moox",
+    "bio": "moox short bio",
+    "body": "moox long bio"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "data": {
+    "title": "CeD photo",
+    "url": "https://www.ced.photo",
+    "source": "https://github.com/xuopled/ced.photo",
+    "showcaseTags": ["blog", "business"],
+    "body": {
+      "t": "p",
+      "c": ["Ced.photo is a ...."]
+    }
+  },
+  "partial": {
+    "title": "CeD photo",
+    "url": "https://www.ced.photo",
+    "source": "https://github.com/xuopled/ced.photo",
+    "showcaseTags": ["blog", "business"]
+  }
+}

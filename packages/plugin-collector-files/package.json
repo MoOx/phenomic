@@ -13,7 +13,10 @@
   "main": "lib/index.js",
   "files": ["lib", "src", "!**/__tests__"],
   "dependencies": {
-    "debug": "^2.6.0"
+    "debug": "^2.6.0",
+    "globby": "^6.1.0",
+    "sane": "^1.7.0",
+    "socket.io": "^1.7.2"
   },
   "peerDependencies": {
     "@phenomic/core": "^1.0.0-beta.3"
