@@ -31,6 +31,11 @@ const catchLinks = (cb: Function) => (ev: any): void => {
 
   const u = url.parse(href)
 
+  // Dont catch any urls with any schemes other than http/https.
+  if (u.protocol && !u.protocol.startsWith("http")) {
+    return
+  }
+
   if (u.host && u.host !== window.location.host) {
     return
   }

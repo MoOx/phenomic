@@ -37,6 +37,12 @@ it("should only catch internal links from the same domain", () => {
       a
     </a>
   </span>
+  <section>
+    <a href='mailto:test@test.com'></a>
+  <section>
+  <pre>
+    <a href='mailto:test@localhost'></a>
+  </pre>
   `
 
   if (!(document.body && document.querySelectorAll && document.querySelector)) {
@@ -57,6 +63,8 @@ it("should only catch internal links from the same domain", () => {
     const external = document.querySelector(".test-catchLinks div a")
     const ok = document.querySelector(".test-catchLinks span a")
     const ok2 = document.querySelector(".test-catchLinks span a small")
+    const nonHTTP = document.querySelector(".test-catchLinks section a")
+    const nonHTTP2 = document.querySelector(".test-catchLinks pre a")
 
     noA && noA.click()
     noHref && noHref.click()
@@ -64,6 +72,8 @@ it("should only catch internal links from the same domain", () => {
     external && external.click()
     ok && ok.click()
     ok2 && ok2.click()
+    nonHTTP && nonHTTP.click()
+    nonHTTP2 && nonHTTP2.click()
 
     expect(cb.mock.calls.length).toBe(2)
 
