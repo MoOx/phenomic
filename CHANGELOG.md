@@ -1,3 +1,8 @@
+# 0.21.3 - 2018-07-29
+
+- Fixed: catching only http/https links
+  ([#1258](https://github.com/phenomic/phenomic/pull/1258) - @Kameshwaran)
+
 # 0.21.2 - 2017-08-25
 
 - Fixed: fix for bad unicode characters in the markdown and `JSON.stringify`

@@ -34,3 +34,6 @@ package-lock.json
 *.log
 docs/public/*
 .merlin
+
+# v1.x workaround to avoid cleanup
+website
