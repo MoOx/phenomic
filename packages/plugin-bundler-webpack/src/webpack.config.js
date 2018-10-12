@@ -13,7 +13,7 @@ module.exports = (config: PhenomicConfig) => ({
         require.resolve("webpack-hot-middleware/client"),
       process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("react-hot-loader/patch"),
-      "./App.js"
+      `${config.root}/App.js`
     ].filter(item => item)
   },
   output: {
