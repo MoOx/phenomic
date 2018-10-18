@@ -38,7 +38,7 @@ const BlogList = (props: Object) => {
                   props.list.node.next && (
                     <Link
                       style={styles.link}
-                      href={`/blog/after/${props.list.node.next}`}
+                      href={`/en/blog/after/${props.list.node.next}`}
                     >
                       {"← Previous entries"}
                     </Link>
@@ -51,8 +51,8 @@ const BlogList = (props: Object) => {
                       style={styles.link}
                       href={
                         props.list.node.previousPageIsFirst
-                          ? `/blog`
-                          : `/blog/after/${props.list.node.previous}`
+                          ? `/en/blog`
+                          : `/en/blog/after/${props.list.node.previous}`
                       }
                     >
                       {"Recent entries →"}
