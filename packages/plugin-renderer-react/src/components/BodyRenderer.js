@@ -54,9 +54,16 @@ const render = (item: ItemType, options: OptionsType, key: ?any) => {
     options.DefaultComponent ||
     defaultProps.DefaultComponent;
 
+  const newProps = { ...props };
+  // special case for html class
+  if (newProps.class) {
+    newProps.className = newProps.class;
+    delete newProps.class;
+  }
+
   return (
     // $FlowFixMe will fix later
-    <Tag {...props} key={key}>
+    <Tag {...newProps} key={key}>
       {Array.isArray(children)
         ? children.map((child: ItemType, key) => render(child, options, key))
         : render(children, options)}
