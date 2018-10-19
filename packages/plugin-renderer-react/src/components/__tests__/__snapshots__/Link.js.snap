@@ -86,7 +86,7 @@ exports[`Link works with external \`\`href\`\` 2`] = `
 
 exports[`Link works with internal \`\`href\`\` 1`] = `
 "<a
-  href=\\"test://url.tld/internal\\"
+  href=\\"http://url.tld/internal\\"
   onClick={function noRefCheck() {}}
   onKeyDown={function noRefCheck() {}}
 >

@@ -45,7 +45,7 @@ test("Link works with external ``href``", () => {
 
 test("Link works with internal ``href``", () => {
   expect(
-    renderJSX(<Link href="test://url.tld/internal">{"c"}</Link>)
+    renderJSX(<Link href="http://url.tld/internal">{"c"}</Link>)
   ).toMatchSnapshot();
   expect(renderJSX(<Link href="/internal">{"c"}</Link>)).toMatchSnapshot();
 });

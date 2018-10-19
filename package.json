@@ -125,7 +125,7 @@
     "setupFiles": [
       "./jest-setup.js"
     ],
-    "testURL": "test://url.tld/path",
+    "testURL": "http://url.tld/path",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "jest-setup.js"
