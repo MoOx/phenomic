@@ -67,7 +67,7 @@
     "examples": "yarn examples:build && yarn examples:tests",
     "website:start": "cd website && yarn start",
     "website:build": "cd website && yarn build",
-    "website:test": "cd website && yarn test && jest website",
+    "website:test": "cd website && yarn test && cd .. && jest website",
     "test": "yarn lint && yarn tests",
     "test-without-lint": "yarn tests",
     "posttest": "yarn examples && yarn website:test"
