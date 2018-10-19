@@ -27,7 +27,7 @@ const Tutorials = () => {
       />
       <BodyContainer>
         <View style={styles.row}>
-          <Spacer large>
+          <Spacer large={true}>
             <Text
               style={{
                 color: "#32325d",
@@ -55,7 +55,7 @@ const Tutorials = () => {
             </Link.Block>
           ))}
         </View>
-        <Spacer large style={styles.row}>
+        <Spacer large={true} style={styles.row}>
           <Link
             style={styles.notice}
             href="https://github.com/phenomic/phenomic/labels/plugin"

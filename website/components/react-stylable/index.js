@@ -7,7 +7,7 @@ import Focusable from "./focusable";
 import Touchable from "./touchable";
 import TouchableMouse from "./touchable-mouse";
 
-type props = {|
+type p = {|
   children?: React$Element<any>,
 
   // hoc
@@ -23,7 +23,7 @@ type props = {|
   hoveredOrFocusedStyle?: any
 |};
 
-const Stylable = (props: props) => {
+const Stylable = (props: p) => {
   const {
     hovered,
     focused,

@@ -51,7 +51,7 @@ const Home = () => (
       <BodyContainer style={styles.hero}>
         {/* @todo h1 or shit */}
         <View style={styles.row}>
-          <Spacer large>
+          <Spacer large={true}>
             <PhenomicText style={{ maxHeight: "72px" }} />
           </Spacer>
         </View>
@@ -62,7 +62,7 @@ const Home = () => (
     </View>
     <BodyContainer style={styles.gettingStarted}>
       <Text />
-      <Spacer large style={styles.block}>
+      <Spacer large={true} style={styles.block}>
         <Text style={styles.blockTitle}>
           {"A static site generator like no other"}
         </Text>
@@ -70,7 +70,7 @@ const Home = () => (
           {`Phenomic is a modular website compiler that helps you to build static websites, with a modern approach: you will make your website the same way you build an app.`}
         </Text>
       </Spacer>
-      <Spacer large style={styles.block}>
+      <Spacer large={true} style={styles.block}>
         <Text style={styles.blockTitle}>
           {"A website built with things you like"}
         </Text>
@@ -79,7 +79,7 @@ const Home = () => (
           {/* <Text style={styles.button>{"Choose your flavor"}</Text> */}
         </Text>
       </Spacer>
-      <Spacer large style={styles.block}>
+      <Spacer large={true} style={styles.block}>
         <Text style={styles.blockTitle}>
           {"A static website, 100% SEO friendly"}
         </Text>
@@ -88,7 +88,7 @@ const Home = () => (
           {/* <Text style={styles.button>{"Tell me more about SEO"}</Text> */}
         </Text>
       </Spacer>
-      <Spacer large style={styles.block}>
+      <Spacer large={true} style={styles.block}>
         <Text style={styles.blockTitle}>
           {"A website with lightning fast UX"}
         </Text>
@@ -97,7 +97,7 @@ const Home = () => (
           {/* <Text style={styles.button>{"Get started"}</Text> */}
         </Text>
       </Spacer>
-      <Spacer large style={styles.block}>
+      <Spacer large={true} style={styles.block}>
         <Text style={styles.blockTitle}>{"Phenomic ♥️ JAMStack"}</Text>
         <Text style={styles.blockText}>
           {`Phenomic completely embraces the JAMStack way of building websites and apps that delivers better performance, higher security, lower cost of scaling, and a better developer experience.`}
@@ -105,7 +105,7 @@ const Home = () => (
         </Text>
       </Spacer>
     </BodyContainer>
-    <Spacer large />
+    <Spacer large={true} />
     <Footer />
   </Flex>
 );

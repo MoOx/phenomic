@@ -29,13 +29,15 @@ const PagePackageList = (props: Object) => {
               {props.packages.node.list
                 // only released pkg
                 .filter(pkg => !pkg.private)
-                .map(item => <PackageListItem key={item.id} package={item} />)}
+                .map(item => (
+                  <PackageListItem key={item.id} package={item} />
+                ))}
             </View>
             <Spacer />
           </React.Fragment>
         )}
       </BodyContainer>
-      <Spacer large />
+      <Spacer large={true} />
       <Footer />
     </Flex>
   );

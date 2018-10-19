@@ -70,7 +70,7 @@ const Page = (props: Object, context: Object) => {
       <Container>
         <View style={styles.row}>
           {props.pages && (
-            <Spacer large style={styles.sidebar}>
+            <Spacer large={true} style={styles.sidebar}>
               {props.pages.node &&
                 props.pages.node.list
                   .filter(
@@ -126,7 +126,7 @@ const Page = (props: Object, context: Object) => {
                                         ]}
                                       >
                                         <Link href={href + "#" + h.id}>
-                                          <Spacer small key={h.text}>
+                                          <Spacer small={true} key={h.text}>
                                             <Text>{h.text}</Text>
                                           </Spacer>
                                         </Link>
@@ -141,13 +141,13 @@ const Page = (props: Object, context: Object) => {
                   })}
             </Spacer>
           )}
-          <Spacer large style={styles.content}>
+          <Spacer large={true} style={styles.content}>
             {props.isLoading && <ActivityIndicator />}
             {!props.isLoading && <Layout node={props.page.node} />}
           </Spacer>
         </View>
       </Container>
-      <Spacer large />
+      <Spacer large={true} />
       <Footer />
     </Flex>
   );

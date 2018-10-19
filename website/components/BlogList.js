@@ -63,7 +63,7 @@ const BlogList = (props: Object) => {
           </React.Fragment>
         )}
       </BodyContainer>
-      <Spacer large />
+      <Spacer large={true} />
       <Footer />
     </Flex>
   );

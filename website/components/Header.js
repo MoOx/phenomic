@@ -26,7 +26,7 @@ const Header = (props: Object) => (
         <title>{props.headTitle || props.title}</title>
       </Head>
       {/* @todo h1 or shit */}
-      <Spacer large>
+      <Spacer large={true}>
         <Heading style={styles.heroText}>{props.title}</Heading>
         <Text style={styles.heroSubText}>{props.subtitle}</Text>
       </Spacer>

@@ -13,7 +13,7 @@ import ActivityIndicator from "./ActivityIndicator";
 const PostLayoutNoHero = (
   { isLoading, post } /*: { isLoading: boolean, post: Object }*/
 ) => (
-  <Layout title={post && post.node && post.node.title} noHero>
+  <Layout title={post && post.node && post.node.title} noHero={true}>
     {isLoading && <ActivityIndicator />}
     {!isLoading &&
       post.node && (

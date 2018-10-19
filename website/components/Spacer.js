@@ -3,7 +3,7 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native-web";
 
-type props = {|
+type p = {|
   horizontal?: boolean,
   vertical?: boolean,
   small?: boolean,
@@ -13,7 +13,7 @@ type props = {|
   largeHorizontal?: boolean,
   largeVertical?: boolean
 |};
-const Spacer = (props: props) => (
+const Spacer = (props: p) => (
   <View
     style={[
       styles.default,

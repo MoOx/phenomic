@@ -22,7 +22,7 @@ const BlogItem = (props: Object) => {
     <Flex>
       <Header title={props.item && props.item.node && props.item.node.title} />
       <BodySmallContainer>
-        <Spacer large>
+        <Spacer large={true}>
           {props.isLoading && <ActivityIndicator />}
           {!props.isLoading && (
             <React.Fragment>
@@ -41,7 +41,7 @@ const BlogItem = (props: Object) => {
           )}
         </Spacer>
       </BodySmallContainer>
-      <Spacer large />
+      <Spacer large={true} />
       <Footer />
     </Flex>
   );

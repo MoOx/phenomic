@@ -18,7 +18,7 @@ const Plugins = () => {
       />
       <BodyContainer>
         <View style={styles.row}>
-          <Spacer large>
+          <Spacer large={true}>
             <Text
               style={{
                 color: "#32325d",

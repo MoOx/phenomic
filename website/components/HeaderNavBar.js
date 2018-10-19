@@ -18,7 +18,7 @@ import Spacer from "./Spacer";
 const HeaderNavBar = () => (
   <React.Fragment>
     <View style={[styles.rowFlex, styles.wip]}>
-      <Spacer large>
+      <Spacer large={true}>
         <Text style={styles.wipText}>
           <IconWrench height="16" fill="#fff" style={{ margin: "0 10px" }} />
           {" This website is a work in progress. "}
@@ -29,7 +29,7 @@ const HeaderNavBar = () => (
     <View style={[styles.rowFlex, styles.header]}>
       <View style={[styles.rowFlex, styles.left]}>
         <PhenomicLogo />
-        <Spacer small style={[styles.rowFlex, styles.menu]}>
+        <Spacer small={true} style={[styles.rowFlex, styles.menu]}>
           <Link.Touchable
             href="/en/packages/core/docs/"
             style={styles.link}
@@ -61,10 +61,10 @@ const HeaderNavBar = () => (
         </Spacer>
       </View>
       <View style={[styles.rowFlex, styles.right]}>
-        <Spacer small style={[styles.row, styles.search]}>
+        <Spacer small={true} style={[styles.row, styles.search]}>
           <DocSearch />
         </Spacer>
-        <Spacer small style={[styles.row, styles.social]}>
+        <Spacer small={true} style={[styles.row, styles.social]}>
           <Link.Touchable
             href="https://github.com/phenomic/phenomic"
             style={[styles.link, styles.linkIcon]}

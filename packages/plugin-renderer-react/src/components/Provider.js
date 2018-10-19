@@ -11,8 +11,7 @@ type props = {|
   __prerendering?: boolean
 |};
 
-class Provider extends React.Component<props, void> {
-  props: props;
+class Provider extends React.Component<props> {
   static childContextTypes = {
     query: PropTypes.func,
     phenomic: PropTypes.object.isRequired,

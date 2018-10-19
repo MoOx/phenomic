@@ -3,7 +3,7 @@
 import * as React from "react";
 import { StyleSheet, Dimensions, View, Text } from "react-native-web";
 
-import { version } from "../.././lerna.json";
+import { version } from "../../lerna.json";
 import PhenomicLogoWhite from "../svgs/PhenomicLogoWhite";
 import PhenomicText from "../svgs/PhenomicText";
 
@@ -33,14 +33,14 @@ class PhenomicLogo extends React.PureComponent<void, void> {
     return (
       <Spacer style={styles.container}>
         <Link.Touchable href="/">
-          <Spacer small style={{ flex: 0 }}>
+          <Spacer small={true} style={{ flex: 0 }}>
             <PhenomicLogoWhite height="42" />
           </Spacer>
         </Link.Touchable>
         {width > 500 && (
           <View style={{ flexShrink: 1 }}>
             <Link.Touchable href="/">
-              <Spacer small>
+              <Spacer small={true}>
                 <PhenomicText height="18" />
               </Spacer>
             </Link.Touchable>
@@ -48,7 +48,7 @@ class PhenomicLogo extends React.PureComponent<void, void> {
               href="https://github.com/phenomic/phenomic/releases"
               style={styles.version}
             >
-              <Spacer small>
+              <Spacer small={true}>
                 <Text>{"v" + version}</Text>
               </Spacer>
             </Link.Touchable>

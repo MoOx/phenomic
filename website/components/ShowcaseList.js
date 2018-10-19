@@ -4,8 +4,8 @@ import * as React from "react";
 import { View, Text, Image, StyleSheet, createElement } from "react-native-web";
 import { withPhenomicApi, query } from "@phenomic/preset-react-app/lib/client";
 
-import urlToSlug from ".././modules/url-to-slug";
-import { screenshotsSize } from ".././package.json";
+import urlToSlug from "../modules/url-to-slug";
+import { screenshotsSize } from "../package.json";
 
 import Flex from "./Flex";
 import Link from "./Link";
@@ -68,7 +68,7 @@ const ShowcaseList = (props: Object) => (
                       </Link>
                     ))}
                 </View>
-                <a href={item.url} target="_blank">
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
                   <Image
                     source={{
                       uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
@@ -128,7 +128,7 @@ const ShowcaseList = (props: Object) => (
         </View>
       )}
     </BodyContainer>
-    <Spacer large />
+    <Spacer large={true} />
     <Footer />
   </Flex>
 );
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   imageLarge: {
     flexGrow: 1,
     paddingBottom:
-      100 * screenshotsSize.large.height / screenshotsSize.large.width + "%",
+      (100 * screenshotsSize.large.height) / screenshotsSize.large.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
     borderRadius: 4
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     width: "100%",
     paddingBottom:
-      100 * screenshotsSize.small.height / screenshotsSize.small.width + "%",
+      (100 * screenshotsSize.small.height) / screenshotsSize.small.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
     borderRadius: 4

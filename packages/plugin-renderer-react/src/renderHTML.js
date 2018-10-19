@@ -76,7 +76,9 @@ const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
                 <link rel="stylesheet" href={config.baseUrl.pathname + css} />
               ) : null,
             Script: () =>
-              js ? <script src={config.baseUrl.pathname + js} async /> : null,
+              js ? (
+                <script src={config.baseUrl.pathname + js} async={true} />
+              ) : null,
             assets
           };
         }}

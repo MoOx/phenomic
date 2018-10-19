@@ -54,6 +54,8 @@ export default function withPhenomicApi<P>(
       }
     }
 
+    // UNSAFE_componentWillReceiveProps(props: props) {
+    // eslint-disable-next-line
     componentWillReceiveProps(props: props) {
       this.computeQueries(props);
       this.schedule(() => this.query());
@@ -115,7 +117,7 @@ export default function withPhenomicApi<P>(
           "An item is in error state",
           values.find(item => store.get(item).status === "error")
         );
-        return <ComposedComponent {...this.props} hasError {...props} />;
+        return <ComposedComponent {...this.props} hasError={true} {...props} />;
       }
       return (
         <ComposedComponent {...this.props} isLoading={isLoading} {...props} />
