@@ -192,7 +192,7 @@ Object {
 ",
                   ],
                   "p": Object {
-                    "className": "paragraph",
+                    "class": "paragraph",
                   },
                   "t": "div",
                 },
@@ -200,7 +200,7 @@ Object {
 ",
               ],
               "p": Object {
-                "className": "sectionbody",
+                "class": "sectionbody",
               },
               "t": "div",
             },
@@ -224,13 +224,13 @@ Object {
                   "c": Array [
                     Object {
                       "p": Object {
-                        "className": "icon icon-link",
+                        "class": "icon icon-link",
                       },
                       "t": "span",
                     },
                   ],
                   "p": Object {
-                    "aria-hidden": true,
+                    "aria-hidden": "true",
                     "href": "#_heading",
                   },
                   "t": "a",
@@ -297,7 +297,7 @@ Object {
 ",
                   ],
                   "p": Object {
-                    "className": "ulist",
+                    "class": "ulist",
                   },
                   "t": "div",
                 },
@@ -320,7 +320,7 @@ Object {
                                     "const",
                                   ],
                                   "p": Object {
-                                    "className": "hljs-keyword",
+                                    "class": "hljs-keyword",
                                   },
                                   "t": "span",
                                 },
@@ -330,7 +330,7 @@ Object {
                                     "\\"Ezra\\"",
                                   ],
                                   "p": Object {
-                                    "className": "hljs-string",
+                                    "class": "hljs-string",
                                   },
                                   "t": "span",
                                 },
@@ -341,7 +341,7 @@ Object {
                                     "console",
                                   ],
                                   "p": Object {
-                                    "className": "hljs-built_in",
+                                    "class": "hljs-built_in",
                                   },
                                   "t": "span",
                                 },
@@ -354,28 +354,28 @@ Object {
                                         "\${name}",
                                       ],
                                       "p": Object {
-                                        "className": "hljs-subst",
+                                        "class": "hljs-subst",
                                       },
                                       "t": "span",
                                     },
                                     "!\`",
                                   ],
                                   "p": Object {
-                                    "className": "hljs-string",
+                                    "class": "hljs-string",
                                   },
                                   "t": "span",
                                 },
                                 ")",
                               ],
                               "p": Object {
-                                "className": "hljs language-javascript",
+                                "class": "hljs language-javascript",
                                 "data-lang": "javascript",
                               },
                               "t": "code",
                             },
                           ],
                           "p": Object {
-                            "className": "highlight",
+                            "class": "highlight",
                           },
                           "t": "pre",
                         },
@@ -383,7 +383,7 @@ Object {
 ",
                       ],
                       "p": Object {
-                        "className": "content",
+                        "class": "content",
                       },
                       "t": "div",
                     },
@@ -391,7 +391,7 @@ Object {
 ",
                   ],
                   "p": Object {
-                    "className": "listingblock",
+                    "class": "listingblock",
                   },
                   "t": "div",
                 },
@@ -399,7 +399,7 @@ Object {
 ",
               ],
               "p": Object {
-                "className": "sectionbody",
+                "class": "sectionbody",
               },
               "t": "div",
             },
@@ -407,7 +407,7 @@ Object {
 ",
           ],
           "p": Object {
-            "className": "sect1",
+            "class": "sect1",
           },
           "t": "div",
         },

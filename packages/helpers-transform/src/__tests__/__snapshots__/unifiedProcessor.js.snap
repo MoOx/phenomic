@@ -38,13 +38,13 @@ Object {
           "c": Array [
             Object {
               "p": Object {
-                "className": "icon icon-link",
+                "class": "icon icon-link",
               },
               "t": "span",
             },
           ],
           "p": Object {
-            "aria-hidden": true,
+            "aria-hidden": "true",
             "href": "#test",
           },
           "t": "a",
@@ -90,7 +90,7 @@ Object {
                     },
                   ],
                   "p": Object {
-                    "className": "syntax--entity syntax--name syntax--type syntax--object syntax--console syntax--js",
+                    "class": "syntax--entity syntax--name syntax--type syntax--object syntax--console syntax--js",
                   },
                   "t": "span",
                 },
@@ -106,7 +106,7 @@ Object {
                         },
                       ],
                       "p": Object {
-                        "className": "syntax--meta syntax--delimiter syntax--method syntax--period syntax--js",
+                        "class": "syntax--meta syntax--delimiter syntax--method syntax--period syntax--js",
                       },
                       "t": "span",
                     },
@@ -120,7 +120,7 @@ Object {
                         },
                       ],
                       "p": Object {
-                        "className": "syntax--support syntax--function syntax--console syntax--js",
+                        "class": "syntax--support syntax--function syntax--console syntax--js",
                       },
                       "t": "span",
                     },
@@ -136,7 +136,7 @@ Object {
                             },
                           ],
                           "p": Object {
-                            "className": "syntax--punctuation syntax--definition syntax--arguments syntax--begin syntax--bracket syntax--round syntax--js",
+                            "class": "syntax--punctuation syntax--definition syntax--arguments syntax--begin syntax--bracket syntax--round syntax--js",
                           },
                           "t": "span",
                         },
@@ -150,7 +150,7 @@ Object {
                             },
                           ],
                           "p": Object {
-                            "className": "syntax--support syntax--variable syntax--dom syntax--js",
+                            "class": "syntax--support syntax--variable syntax--dom syntax--js",
                           },
                           "t": "span",
                         },
@@ -164,37 +164,37 @@ Object {
                             },
                           ],
                           "p": Object {
-                            "className": "syntax--punctuation syntax--definition syntax--arguments syntax--end syntax--bracket syntax--round syntax--js",
+                            "class": "syntax--punctuation syntax--definition syntax--arguments syntax--end syntax--bracket syntax--round syntax--js",
                           },
                           "t": "span",
                         },
                       ],
                       "p": Object {
-                        "className": "syntax--meta syntax--arguments syntax--js",
+                        "class": "syntax--meta syntax--arguments syntax--js",
                       },
                       "t": "span",
                     },
                   ],
                   "p": Object {
-                    "className": "syntax--meta syntax--method-call syntax--js",
+                    "class": "syntax--meta syntax--method-call syntax--js",
                   },
                   "t": "span",
                 },
               ],
               "p": Object {
-                "className": "syntax--source syntax--js",
+                "class": "syntax--source syntax--js",
               },
               "t": "span",
             },
           ],
           "p": Object {
-            "className": "line",
+            "class": "line",
           },
           "t": "div",
         },
       ],
       "p": Object {
-        "className": "editor editor-colors",
+        "class": "editor editor-colors",
       },
       "t": "pre",
     },
