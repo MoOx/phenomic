@@ -72,6 +72,10 @@
     "test-without-lint": "yarn tests",
     "posttest": "yarn examples && yarn website:test"
   },
+  "prettier": {
+    "trailingComma": "all",
+    "proseWrap": "always"
+  },
   "lint-staged": {
     "*.{js,json,css,md}": [
       "git-exec-and-restage prettier --write"
