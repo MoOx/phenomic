@@ -2,11 +2,11 @@
   "private": true,
   "name": "@phenomic/example-reason-react-app",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-beta.3",
-    "@phenomic/core": "^1.0.0-beta.3",
-    "@phenomic/preset-react-app": "^1.0.0-beta.3",
-    "bs-platform": "^4.0.0",
     "@moox/bs-react-helmet": "^1.0.0",
+    "@phenomic/cli": "^1.0.0-beta.4",
+    "@phenomic/core": "^1.0.0-beta.4",
+    "@phenomic/preset-react-app": "^1.0.0-beta.4",
+    "bs-platform": "^4.0.0",
     "npm-run-all": "^4.0.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
@@ -28,5 +28,5 @@
       "@phenomic/preset-react-app"
     ]
   },
-  "version": "1.0.0-beta.3"
+  "version": "1.0.0-beta.4"
 }

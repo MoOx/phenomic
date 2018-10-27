@@ -1,19 +1,31 @@
 {
   "name": "@phenomic/plugin-transform-asciidoc",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": ["Ezra Lalonde", "Maxime Thirouin (MoOx)"],
-  "keywords": ["phenomic", "phenomic-plugin", "asciidoc", "asciidoctor"],
+  "authors": [
+    "Ezra Lalonde",
+    "Maxime Thirouin (MoOx)"
+  ],
+  "keywords": [
+    "phenomic",
+    "phenomic-plugin",
+    "asciidoc",
+    "asciidoctor"
+  ],
   "description": "Phenomic plugin to transform asciidoc resources",
   "main": "lib/index.js",
-  "files": ["lib", "src", "!**/__tests__"],
+  "files": [
+    "lib",
+    "src",
+    "!**/__tests__"
+  ],
   "dependencies": {
-    "@phenomic/helpers-transform": "^1.0.0-beta.3",
+    "@phenomic/helpers-transform": "^1.0.0-beta.4",
     "asciidoctor.js": "^1.5.6-preview.3",
     "debug": "^2.6.0",
     "lodash.deburr": "^4.1.0",
@@ -28,6 +40,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.3"
+    "@phenomic/core": "^1.0.0-beta.4"
   }
 }

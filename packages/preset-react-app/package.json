@@ -1,13 +1,16 @@
 {
   "name": "@phenomic/preset-react-app",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
   "keywords": [
     "phenomic",
     "phenomic-preset",
@@ -18,14 +21,19 @@
   ],
   "description": "Phenomic React app preset",
   "main": "lib/index.js",
-  "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
+  "files": [
+    "lib",
+    "src",
+    "!**/__tests__",
+    "bsconfig.json"
+  ],
   "dependencies": {
-    "@phenomic/plugin-api-related-content": "^1.0.0-beta.3",
-    "@phenomic/plugin-bundler-webpack": "^1.0.0-beta.3",
-    "@phenomic/plugin-collector-files": "^1.0.0-beta.3",
-    "@phenomic/plugin-public-assets": "^1.0.0-beta.3",
-    "@phenomic/plugin-renderer-react": "^1.0.0-beta.3",
-    "@phenomic/plugin-transform-json": "^1.0.0-beta.3",
-    "@phenomic/plugin-transform-markdown": "^1.0.0-beta.3"
+    "@phenomic/plugin-api-related-content": "^1.0.0-beta.4",
+    "@phenomic/plugin-bundler-webpack": "^1.0.0-beta.4",
+    "@phenomic/plugin-collector-files": "^1.0.0-beta.4",
+    "@phenomic/plugin-public-assets": "^1.0.0-beta.4",
+    "@phenomic/plugin-renderer-react": "^1.0.0-beta.4",
+    "@phenomic/plugin-transform-json": "^1.0.0-beta.4",
+    "@phenomic/plugin-transform-markdown": "^1.0.0-beta.4"
   }
 }

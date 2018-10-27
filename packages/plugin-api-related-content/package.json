@@ -1,18 +1,27 @@
 {
   "name": "@phenomic/plugin-api-related-content",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": ["phenomic", "phenomic-plugin"],
-  "description":
-    "Phenomic plugin to generate related content API for resources",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "phenomic",
+    "phenomic-plugin"
+  ],
+  "description": "Phenomic plugin to generate related content API for resources",
   "main": "lib/index.js",
-  "files": ["lib", "src", "!**/__tests__"],
+  "files": [
+    "lib",
+    "src",
+    "!**/__tests__"
+  ],
   "dependencies": {
     "debug": "^2.6.0",
     "lodash.flatten": "^4.4.0"
@@ -21,6 +30,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.3"
+    "@phenomic/core": "^1.0.0-beta.4"
   }
 }

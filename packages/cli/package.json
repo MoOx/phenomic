@@ -1,21 +1,30 @@
 {
   "name": "@phenomic/cli",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": ["phenomic", "phenomic-package"],
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "phenomic",
+    "phenomic-package"
+  ],
   "description": "Phenomic CLI",
   "bin": {
     "phenomic": "index.js"
   },
-  "files": ["index.js", "lib"],
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "dependencies": {
-    "@phenomic/core": "^1.0.0-beta.3",
+    "@phenomic/core": "^1.0.0-beta.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.0",
     "babel-register": "^6.24.0",

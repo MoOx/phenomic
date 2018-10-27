@@ -1,18 +1,28 @@
 {
   "name": "@phenomic/api-client",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
-  "authors": ["Maxime Thirouin (MoOx)", "bloodyowl <bloodyowl@icloud.com>"],
-  "keywords": ["phenomic", "phenomic-package"],
-  "description":
-    "Phenomic Content API client that allow you to make queries to retrieve resources",
+  "authors": [
+    "Maxime Thirouin (MoOx)",
+    "bloodyowl <bloodyowl@icloud.com>"
+  ],
+  "keywords": [
+    "phenomic",
+    "phenomic-package"
+  ],
+  "description": "Phenomic Content API client that allow you to make queries to retrieve resources",
   "main": "lib/index.js",
-  "files": ["lib", "src", "!**/__tests__", "bsconfig.json"],
+  "files": [
+    "lib",
+    "src",
+    "!**/__tests__",
+    "bsconfig.json"
+  ],
   "dependencies": {
     "debug": "^2.6.0",
     "isomorphic-fetch": "^2.2.1",
