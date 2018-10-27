@@ -1,15 +1,15 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external createContainer_ :
+external createContainer_:
   (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
   "createContainer";
 
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external withPhenomicApi_ :
+external withPhenomicApi_:
   (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
   "withPhenomicApi";
 
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external withInitialProps_ :
+external withInitialProps_:
   (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
   "withInitialProps";
 

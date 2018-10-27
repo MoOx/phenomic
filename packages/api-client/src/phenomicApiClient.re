@@ -1,9 +1,9 @@
 [@bs.module "@phenomic/api-client/lib/query"]
-external internalQuery : Js.t({..}) => Js.t({..}) = "query";
+external internalQuery: Js.t({..}) => Js.t({..}) = "query";
 
 type queryConfigItem = {
   path: string,
-  id: string
+  id: string,
 };
 
 type listConfig = {
@@ -12,7 +12,7 @@ type listConfig = {
   value: option(string),
   order: option(string),
   sort: option(string),
-  limit: option(int)
+  limit: option(int),
 };
 
 type paginatedListConfig = {
@@ -22,7 +22,7 @@ type paginatedListConfig = {
   order: option(string),
   sort: option(string),
   limit: option(int),
-  after: option(string)
+  after: option(string),
 };
 
 type queryConfig =
@@ -30,8 +30,8 @@ type queryConfig =
   | List(listConfig)
   | PaginatedList(paginatedListConfig);
 
-let query = (queryConfig) =>
-  switch queryConfig {
+let query = queryConfig =>
+  switch (queryConfig) {
   | Item(queryConfigItem) => {
       "path": queryConfigItem.path,
       "id": Js.Nullable.return(queryConfigItem.id),
@@ -40,7 +40,7 @@ let query = (queryConfig) =>
       "order": Js.Nullable.undefined,
       "sort": Js.Nullable.undefined,
       "limit": Js.Nullable.undefined,
-      "after": Js.Nullable.undefined
+      "after": Js.Nullable.undefined,
     }
   | List(queryConfigList) => {
       "path": queryConfigList.path,
@@ -50,7 +50,7 @@ let query = (queryConfig) =>
       "order": Js.Nullable.fromOption(queryConfigList.order),
       "sort": Js.Nullable.fromOption(queryConfigList.sort),
       "limit": Js.Nullable.fromOption(queryConfigList.limit),
-      "after": Js.Nullable.undefined
+      "after": Js.Nullable.undefined,
     }
   | PaginatedList(queryConfigPaginatedList) => {
       "path": queryConfigPaginatedList.path,
@@ -60,6 +60,6 @@ let query = (queryConfig) =>
       "order": Js.Nullable.fromOption(queryConfigPaginatedList.order),
       "sort": Js.Nullable.fromOption(queryConfigPaginatedList.sort),
       "limit": Js.Nullable.fromOption(queryConfigPaginatedList.limit),
-      "after": Js.Nullable.fromOption(queryConfigPaginatedList.after)
+      "after": Js.Nullable.fromOption(queryConfigPaginatedList.after),
     }
   };

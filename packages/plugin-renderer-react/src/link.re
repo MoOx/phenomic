@@ -1,5 +1,5 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/components/Link"]
-external link : ReasonReact.reactClass = "default";
+external link: ReasonReact.reactClass = "default";
 
 let make =
     (
@@ -8,7 +8,7 @@ let make =
       ~activeStyle: option(ReactDOMRe.Style.t)=?,
       ~className: option(string)=?,
       ~activeClassName: option(string)=?,
-      children
+      children,
     ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass=link,
@@ -17,7 +17,7 @@ let make =
       "style": Js.Nullable.fromOption(style),
       "activeStyle": Js.Nullable.fromOption(activeStyle),
       "className": Js.Nullable.fromOption(className),
-      "activeClassName": Js.Nullable.fromOption(activeClassName)
+      "activeClassName": Js.Nullable.fromOption(activeClassName),
     },
-    children
+    children,
   );

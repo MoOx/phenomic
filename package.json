@@ -56,7 +56,7 @@
     "release": "lerna publish",
     "format": "yarn format:most && yarn format:re",
     "format:most": "prettier --write \"**/*.{js,json,css,md}\"",
-    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs refmt --in-place",
+    "format:re": "find . -name \"*.re\" | grep -v \"node_modules\" | xargs bsrefmt --in-place",
     "links": "lerna exec -- yarn link",
     "lint:eslint": "eslint --ignore-path .gitignore --fix packages examples website",
     "lint:flow": "flow check",

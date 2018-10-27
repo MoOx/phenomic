@@ -10,11 +10,11 @@ type jsBody = {
   .
   "t": string,
   "p": Js.t({.}),
-  "c": Js.Null_undefined.t(array(jsBody))
+  "c": Js.Null_undefined.t(array(jsBody)),
 };
 
 let rec jsTreeToReason = (jsChild: jsBody) =>
-  switch [%bs.raw {| Object.prototype.toString.call(jsChild) |}] {
+  switch ([%bs.raw {| Object.prototype.toString.call(jsChild) |}]) {
   | "[object String]" => String(Js.String.make(jsChild))
   | "[object Object]" =>
     let tag = Js.String.make(jsChild##t);
@@ -30,10 +30,10 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
 
 let make = (~body: jsBody, _children) => {
   let rec renderChild = child =>
-    switch child {
+    switch (child) {
     | String(string) => ReasonReact.string(string)
     | Element(tag, originalProps, reasonChildren) =>
-      switch tag {
+      switch (tag) {
       | "a" =>
         <Link
           href=[%bs.raw {| child[1].href |}]
@@ -41,11 +41,11 @@ let make = (~body: jsBody, _children) => {
           activeStyle=[%bs.raw {| child[1].activeStyle |}]
           className=[%bs.raw {| child[1].className |}]
           activeClassName=[%bs.raw {| child[1].activeClassName |}]>
-          (
+          {
             ReasonReact.array(
-              Array.of_list(List.map(renderChild, reasonChildren))
+              Array.of_list(List.map(renderChild, reasonChildren)),
             )
-          )
+          }
         </Link>
       | _ =>
         ReactDOMRe.createElement(
@@ -53,9 +53,9 @@ let make = (~body: jsBody, _children) => {
           ~props=ReactDOMRe.objToDOMProps(originalProps),
           [|
             ReasonReact.array(
-              Array.of_list(List.map(renderChild, reasonChildren))
-            )
-          |]
+              Array.of_list(List.map(renderChild, reasonChildren)),
+            ),
+          |],
         )
       }
     | Empty => ReasonReact.null
