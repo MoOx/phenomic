@@ -6,10 +6,10 @@ let make = (~posts) => {
   ...component,
   render: _self =>
     <div>
-      <Head>
+      <BsReactHelmet>
         <title> ("Hello world" |> text) </title>
         <meta name="description" content="Everything is awesome!" />
-      </Head>
+      </BsReactHelmet>
       <h1> ("Home" |> text) </h1>
       (
         switch ((posts: Types.posts)) {

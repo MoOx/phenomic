@@ -13,7 +13,7 @@ let make = (~post) => {
         | Errored => <ErrorPage />
         | Idle(post) =>
           <div>
-            <Head> <title> (post##title |> text) </title> </Head>
+            <BsReactHelmet> <title> (post##title |> text) </title> </BsReactHelmet>
             <h1> (post##title |> text) </h1>
             <PhenomicPresetReactApp.BodyRenderer body=post##body />
           </div>

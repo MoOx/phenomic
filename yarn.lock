@@ -1225,6 +1225,11 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
+"@moox/bs-react-helmet@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@moox/bs-react-helmet/-/bs-react-helmet-1.0.0.tgz#554b1ccc03e3ef62f09910ac7294d80b41efa1f3"
+  integrity sha512-lYvu5lI5Pt2LDbYKnLOYH0YHuTGqeLPkeF0rykQdNtd4aEDLQlaE98QCraR7mvdNPxZSGFQJ8UPLNiGKqDgLsw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2970,20 +2975,10 @@ browserslist@^4.1.0:
     electron-to-chromium "^1.3.79"
     node-releases "^1.0.0-alpha.14"
 
-bs-platform@^3.1.0:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-3.1.5.tgz#fb34ee4702bc9163848d5537096c4f31ebaeed40"
-  integrity sha1-+zTuRwK8kWOEjVU3CWxPMeuu7UA=
-
-bs-react-helmet@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/bs-react-helmet/-/bs-react-helmet-0.2.1.tgz#b9c8e47586924ccc42ade26f7e4cf327ba9a8045"
-  integrity sha1-ucjkdYaSTMxCreJvfkzzJ7qagEU=
-  dependencies:
-    react "^16.0.0"
-    react-dom "^16.0.0"
-    react-helmet "^5.2.0"
-    reason-react "^0.2.4"
+bs-platform@^4.0.0:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-4.0.6.tgz#e7f156c77ad3efafb0c0291b41dcf1b06f93c192"
+  integrity sha512-TrNzQFoV6opBYdUgcRdgQQ5f6JnKgotPFZORIjuHPtRlYgv37P6xVBTGfA4NlMCkHXHcPrL6JI63GyAcfq+qpg==
 
 bser@^2.0.0:
   version "2.0.0"
@@ -10672,7 +10667,7 @@ react-dev-utils@^4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@>=15.0.0, "react-dom@>=15.0.0 || >=16.0.0", react-dom@^16.0.0, react-dom@^16.3.0:
+"react-dom@>=15.0.0 || >=16.0.0", react-dom@^16.3.0:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.5.2.tgz#b69ee47aa20bab5327b2b9d7c1fe2a30f2cfa9d7"
   integrity sha512-RC8LDw8feuZOHVgzEf7f+cxBr/DnKdqp56VU0lAs1f4UfKc4cU8wU4fTq/mgnvynLQo8OtlPC19NUFh/zjZPuA==
@@ -10813,7 +10808,7 @@ react-topbar-progress-indicator@^2.0.0:
   dependencies:
     topbar "^0.1.3"
 
-react@>=15.0.0, "react@>=15.0.0 || >=16.0.0", "react@^15.6.2 || ^16.0", react@^16.0.0, react@^16.3.0:
+"react@>=15.0.0 || >=16.0.0", "react@^15.6.2 || ^16.0", react@^16.3.0:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   integrity sha512-FDCSVd3DjVTmbEAjUNX6FgfAmQ+ypJfHUsqUJOYNCBUp1h8lqmtC+0mXJ+JjsWx4KAVTkk1vKd1hLQPvEviSuw==
@@ -10958,18 +10953,10 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
-reason-react@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.2.4.tgz#96d85a533fc93e695818dbb3e6a8ae05fbf0de7d"
-  integrity sha512-u9ETR/OQX4/a2NrTtJweS9wm867f82iQxvEytGfmu06SuwiYYAMSGvUMZZSzIwQMWc9f4pUuPnkyRFpkDFPaKA==
-  dependencies:
-    react ">=15.0.0"
-    react-dom ">=15.0.0"
-
-reason-react@^0.4.1:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.4.2.tgz#690d34e3e91a2585cdc5f58384b6c8ff653c32c1"
-  integrity sha512-30SNLbpW8Ay0fB2nXb0H38ruv8I+WmznmnGze9C96+l3yEWa7/GccwwnenVLnye0t3o0j9Q9pC2E78oCw8tdDg==
+reason-react@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.5.3.tgz#10601809742fd991109ec9d69ad4baf2c3f17540"
+  integrity sha512-dUkoqXrP/gOjkmkW+k/otEUP+yeXH5+QfdxNT5EW60MXM3zbCdFhbNzKBbjYOZ6x96UbxK869CObjX04BdJEDg==
   dependencies:
     react ">=15.0.0 || >=16.0.0"
     react-dom ">=15.0.0 || >=16.0.0"
