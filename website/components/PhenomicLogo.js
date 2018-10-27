@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   version: {
     position: "absolute",
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     textDecorationLine: "none",
     color: "#fff",
     opacity: 0.2,
-    fontSize: 12
-  }
+    fontSize: 12,
+  },
 });
 
 export default PhenomicLogo;

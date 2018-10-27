@@ -15,7 +15,7 @@ type ItemType =
       // props
       p?: Object,
       // children
-      c: ItemType | $ReadOnlyArray<ItemType>
+      c: ItemType | $ReadOnlyArray<ItemType>,
     };
 
 const render = (item: ItemType) => {
@@ -37,7 +37,7 @@ const render = (item: ItemType) => {
 const textRenderer = (tree?: ItemType) => {
   if (typeof tree === "undefined") {
     console.error(
-      "@phenomic/plugin-renderer-react: textRenderer expects at least a child"
+      "@phenomic/plugin-renderer-react: textRenderer expects at least a child",
     );
     return "";
   }

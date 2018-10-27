@@ -18,7 +18,7 @@ const screenshotsLocation = resolve(
   "..",
   "public",
   "showcase",
-  "entry"
+  "entry",
 );
 
 const showcasesFiles = fs
@@ -28,7 +28,7 @@ const showcasesFiles = fs
 const listTmp = [];
 showcasesFiles.forEach(file => {
   const showcaseFile = fs.readFileSync(join(showcaseDir, file), {
-    encoding: "utf-8"
+    encoding: "utf-8",
   });
   const showcase = grayMatter(showcaseFile);
 
@@ -50,14 +50,14 @@ const screenshots = list.reduce((screenshots, { file, url }) => {
       file,
       url,
       jpgLocation: join(screenshotsLocation, filename + "-large.jpg"),
-      ...screenshotsSize.large
+      ...screenshotsSize.large,
     },
     {
       file,
       url,
       jpgLocation: join(screenshotsLocation, filename + "-small.jpg"),
-      ...screenshotsSize.small
-    }
+      ...screenshotsSize.small,
+    },
   ];
 }, []);
 
@@ -71,7 +71,7 @@ const optimizeScreenshot = async ({ url, jpgLocation }) => {
   const browser = await puppeteer.launch({
     // netlify fails to run puppeteer
     // https://github.com/GoogleChrome/puppeteer/issues/1321#issuecomment-378361236
-    args: ["--disable-dev-shm-usage"]
+    args: ["--disable-dev-shm-usage"],
   });
   for (const s in screenshots) {
     const { file, url, jpgLocation, width, height } = screenshots[s];
@@ -96,7 +96,7 @@ const optimizeScreenshot = async ({ url, jpgLocation }) => {
           await page.screenshot({
             path: jpgLocation,
             type: "jpeg",
-            quality: 40
+            quality: 40,
           });
           await optimizeScreenshot({ url, jpgLocation });
           console.log("📸 ", url, width, height);

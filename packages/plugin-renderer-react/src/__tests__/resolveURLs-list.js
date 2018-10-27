@@ -3,8 +3,8 @@
 /* eslint-disable import/first */
 jest.mock("@phenomic/api-client/lib/fetch", () => () =>
   Promise.resolve({
-    list: [{ id: "test-1" }, { id: "test-2" }]
-  })
+    list: [{ id: "test-1" }, { id: "test-2" }],
+  }),
 );
 
 import query from "@phenomic/api-client/lib/query";
@@ -27,11 +27,11 @@ it("should be able to resolve dynamic urls", async () => {
                 // value?: string,
                 // order?: string,
                 // limit?: number
-              })
-            })
-          }
-        }
-      ]
-    })
+              }),
+            }),
+          },
+        },
+      ],
+    }),
   ).toMatchSnapshot();
 });

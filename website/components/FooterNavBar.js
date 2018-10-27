@@ -79,22 +79,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   col: {
     flex: 1,
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   link: {
     textDecorationLine: "none",
-    padding: 10
+    padding: 10,
   },
   linkActive: {
-    backgroundColor: "rgba(255,255,255, 0.1)"
+    backgroundColor: "rgba(255,255,255, 0.1)",
   },
   linkText: {
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 });
 
 export default FooterNavBar;

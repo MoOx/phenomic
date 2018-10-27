@@ -5,7 +5,7 @@ type $npm$propTypes$ReactPropsCheckType = (
   props: any,
   propName: string,
   componentName: string,
-  href?: string
+  href?: string,
 ) => ?Error;
 
 declare module "prop-types" {
@@ -31,6 +31,6 @@ declare module "prop-types" {
     values: V,
     location: string,
     componentName: string,
-    getStack: ?() => ?string
+    getStack: ?() => ?string,
   ): void;
 }

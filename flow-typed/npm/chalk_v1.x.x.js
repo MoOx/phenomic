@@ -3,7 +3,7 @@
 
 type $npm$chalk$StyleElement = {
   open: string,
-  close: string
+  close: string,
 };
 
 type $npm$chalk$Chain = $npm$chalk$Style & ((...text: any[]) => string);
@@ -38,7 +38,7 @@ type $npm$chalk$Style = {
   bgBlue: $npm$chalk$Chain,
   bgMagenta: $npm$chalk$Chain,
   bgCyan: $npm$chalk$Chain,
-  bgWhite: $npm$chalk$Chain
+  bgWhite: $npm$chalk$Chain,
 };
 
 type $npm$chalk$StyleMap = {
@@ -70,7 +70,7 @@ type $npm$chalk$StyleMap = {
   bgBlue: $npm$chalk$StyleElement,
   bgMagenta: $npm$chalk$StyleElement,
   bgCyan: $npm$chalk$StyleElement,
-  bgWhite: $npm$chalk$StyleElement
+  bgWhite: $npm$chalk$StyleElement,
 };
 
 declare module "chalk" {

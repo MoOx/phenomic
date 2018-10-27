@@ -198,12 +198,12 @@ declare module "glamor/lib/css/spec.js" {
 }
 declare module "glamor/lib/CSSPropertyOperations/CSSProperty.js" {
   declare module.exports: $Exports<
-    "glamor/lib/CSSPropertyOperations/CSSProperty"
+    "glamor/lib/CSSPropertyOperations/CSSProperty",
   >;
 }
 declare module "glamor/lib/CSSPropertyOperations/dangerousStyleValue.js" {
   declare module.exports: $Exports<
-    "glamor/lib/CSSPropertyOperations/dangerousStyleValue"
+    "glamor/lib/CSSPropertyOperations/dangerousStyleValue",
   >;
 }
 declare module "glamor/lib/CSSPropertyOperations/index.js" {

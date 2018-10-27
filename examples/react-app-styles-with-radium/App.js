@@ -11,28 +11,32 @@ const styles = {
     textAlign: "center",
     color: "palevioletred",
     ":hover": {
-      color: "red"
+      color: "red",
     },
     "@media (max-width: 1000px)": {
-      color: "orange"
-    }
+      color: "orange",
+    },
   },
   title2: {
     fontSize: "2em",
     textAlign: "right",
-    color: "blue"
-  }
+    color: "blue",
+  },
 };
 
 export default createApp(() => (
   <Router history={browserHistory}>
     <Route
       path="/"
-      component={Radium(() => <h1 style={styles.title}>Hello World!</h1>)}
+      component={Radium(() => (
+        <h1 style={styles.title}>Hello World!</h1>
+      ))}
     />
     <Route
       path="/2"
-      component={Radium(() => <h1 style={styles.title2}>Hello again!</h1>)}
+      component={Radium(() => (
+        <h1 style={styles.title2}>Hello again!</h1>
+      ))}
     />
   </Router>
 ));

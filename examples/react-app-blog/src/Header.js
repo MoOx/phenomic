@@ -9,12 +9,12 @@ const Header = (
   {
     title,
     image,
-    light
+    light,
   } /*: {
     title?: React.Node,
     image?: string,
     light?: boolean
-  } */
+  } */,
 ) => (
   <React.Fragment>
     <style
@@ -110,7 +110,7 @@ const Header = (
           font-weight: 800;
           margin: 40px 0;
         }
-      `
+      `,
       }}
     />
     <header className="Header">

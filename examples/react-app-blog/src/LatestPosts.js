@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link } from "@phenomic/preset-react-app/lib/client";
 
 const LatestPosts = (
-  { node, error } /*: { node?: Object, error?: Object } */
+  { node, error } /*: { node?: Object, error?: Object } */,
 ) => (
   <React.Fragment>
     <style
@@ -47,7 +47,7 @@ const LatestPosts = (
         .LatestPosts-nav a {
           color: #0067b9;
         }
-        `
+        `,
       }}
     />
     <div className="LatestPosts">

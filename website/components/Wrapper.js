@@ -38,8 +38,8 @@ const Wrapper = (props: Object) => (
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "#F2F5F8"
-  }
+    backgroundColor: "#F2F5F8",
+  },
 });
 
 export default Wrapper;

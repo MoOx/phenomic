@@ -53,17 +53,17 @@ declare module "git-exec-and-restage/dist/polyfills" {
 // Filename aliases
 declare module "git-exec-and-restage/dist/__mocks__/TestEnvironment.js" {
   declare module.exports: $Exports<
-    "git-exec-and-restage/dist/__mocks__/TestEnvironment"
+    "git-exec-and-restage/dist/__mocks__/TestEnvironment",
   >;
 }
 declare module "git-exec-and-restage/dist/__tests__/index.test.js" {
   declare module.exports: $Exports<
-    "git-exec-and-restage/dist/__tests__/index.test"
+    "git-exec-and-restage/dist/__tests__/index.test",
   >;
 }
 declare module "git-exec-and-restage/dist/__tests__/parseArgs.test.js" {
   declare module.exports: $Exports<
-    "git-exec-and-restage/dist/__tests__/parseArgs.test"
+    "git-exec-and-restage/dist/__tests__/parseArgs.test",
   >;
 }
 declare module "git-exec-and-restage/dist/CliError.js" {

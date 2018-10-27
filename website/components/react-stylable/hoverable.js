@@ -4,11 +4,11 @@ import * as React from "react";
 
 type props = {|
   onMouseEnter?: () => void,
-  onMouseLeave?: () => void
+  onMouseLeave?: () => void,
 |};
 
 type state = {|
-  hovered: boolean
+  hovered: boolean,
 |};
 
 export default (ComposedComponent: React.ComponentType<*>) => {
@@ -16,7 +16,7 @@ export default (ComposedComponent: React.ComponentType<*>) => {
     props: props;
 
     state: state = {
-      hovered: false
+      hovered: false,
     };
 
     handleMouseEnter = (event: React$SyntheticEvent): void => {

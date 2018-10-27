@@ -25,11 +25,11 @@ async function createDevServer({ config }: { config: PhenomicConfig }) {
             debug(
               "A middleware hasn't returned anything for " + plugin.name,
               ", skipping",
-              m
+              m,
             );
         });
       }
-    })
+    }),
   );
   return devServer;
 }
@@ -47,13 +47,13 @@ async function start(config: PhenomicConfig) {
   const transformers = config.plugins.filter(plugin => plugin.transform);
   // collectors
   await Promise.all(
-    config.plugins.map(p => p.collect && p.collect({ db, transformers }))
+    config.plugins.map(p => p.collect && p.collect({ db, transformers })),
   );
 
   const phenomicServer = createAPIServer({
     db,
     plugins: config.plugins,
-    rootPath: config.baseUrl.pathname + "phenomic"
+    rootPath: config.baseUrl.pathname + "phenomic",
   });
   const bundlerServer = await createDevServer({ config });
   bundlerServer.use(phenomicServer);
@@ -62,14 +62,14 @@ async function start(config: PhenomicConfig) {
     res.type(".html");
     if (typeof renderer.renderDevServer !== "function") {
       res.end(
-        "Phenomic renderer requires a 'renderDevServer' function to be exposed"
+        "Phenomic renderer requires a 'renderDevServer' function to be exposed",
       );
     } else {
       res.end(
         renderer.renderDevServer({
           assets: res.locals.assets,
-          location: req.originalUrl
-        })
+          location: req.originalUrl,
+        }),
       );
     }
   });
@@ -82,8 +82,8 @@ async function start(config: PhenomicConfig) {
           chalk.yellow(
             `Something is already running on port ${err.port}. ${
               existingProcess ? `Probably:\n${existingProcess}\n` : ""
-            }`
-          )
+            }`,
+          ),
         );
       } else {
         log(err);
@@ -92,7 +92,7 @@ async function start(config: PhenomicConfig) {
     });
   }
   console.log(
-    `✨ Open http://localhost:${config.port}` + config.baseUrl.pathname
+    `✨ Open http://localhost:${config.port}` + config.baseUrl.pathname,
   );
 }
 

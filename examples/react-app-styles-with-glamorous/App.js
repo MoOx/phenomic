@@ -13,13 +13,13 @@ if (typeof window !== "undefined" && window._glam) {
 const Title = glamorous.h1({
   fontSize: "1.5em",
   textAlign: "center",
-  color: "palevioletred"
+  color: "palevioletred",
 });
 
 const Title2 = glamorous.h1({
   fontSize: "2em",
   textAlign: "right",
-  color: "blue"
+  color: "blue",
 });
 
 export default createApp(() => (

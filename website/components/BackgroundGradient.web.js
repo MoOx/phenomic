@@ -8,7 +8,7 @@ type PropsType = {|
   end: string,
   direction?: string,
   style: any,
-  children?: React.Node
+  children?: React.Node,
 |};
 const Div = props => createElement("div", props);
 // eslint-disable-next-line react/no-multi-comp
@@ -17,7 +17,7 @@ const BackgroundGradient = (props: PropsType) => (
     style={[
       styles.container,
       makeGradient(props.start, props.end, props.direction),
-      props.style
+      props.style,
     ]}
   >
     {props.children}
@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 });
 
 const makeGradient = (start, end, direction = "to bottom right") => ({
   backgroundColor: start,
-  background: `linear-gradient(${direction}, ${start}, ${end})`
+  background: `linear-gradient(${direction}, ${start}, ${end})`,
 });
 
 export default BackgroundGradient;

@@ -17,11 +17,11 @@ where we wanted to push Phenomic.
 We then started prototyping a new version in consideration of what we want it to
 be capable of:
 
-* Use an HTTP API as content source, which would enable us to build static
+- Use an HTTP API as content source, which would enable us to build static
   versions of multiple CMS
-* Have a powerful querying API
-* Build scalable static web apps
-* Handle pagination
+- Have a powerful querying API
+- Build scalable static web apps
+- Handle pagination
 
 Therefore we decided to make a simple core API and put the specifics in plugins.
 Phenomic for now has a default preset with Webpack and React, but opens the way

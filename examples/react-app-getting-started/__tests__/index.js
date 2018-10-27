@@ -11,7 +11,7 @@ it("should build example correctly", () => {
   const files = globby.sync("**/*", {
     cwd: testFolder,
     nodir: true,
-    dot: true
+    dot: true,
   });
 
   // should have html files
@@ -19,7 +19,7 @@ it("should build example correctly", () => {
   expect(htmlFiles).toMatchSnapshot();
 
   const jsonApiFiles = files.filter(
-    file => file.startsWith("phenomic") && file.endsWith(".json")
+    file => file.startsWith("phenomic") && file.endsWith(".json"),
   );
   // should have matching json files
   expect(jsonApiFiles).toMatchSnapshot();
@@ -29,7 +29,7 @@ it("should build example correctly", () => {
     file =>
       !htmlFiles.includes(file) &&
       !jsonApiFiles.includes(file) &&
-      file.startsWith("phenomic")
+      file.startsWith("phenomic"),
   );
   expect(assetsBundlerFiles.length).toBe(1);
   expect(
@@ -37,13 +37,13 @@ it("should build example correctly", () => {
       file =>
         !htmlFiles.includes(file) &&
         !jsonApiFiles.includes(file) &&
-        !assetsBundlerFiles.includes(file)
-    )
+        !assetsBundlerFiles.includes(file),
+    ),
   ).toMatchSnapshot();
 
   const file1 = fs.readFileSync(
     path.join(__dirname, "..", "dist", "index.html"),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
   expect(file1).toContain("Fifth post");
   expect(file1).toContain('<title data-react-helmet="true">Hello world');
@@ -54,9 +54,9 @@ it("should build example correctly", () => {
       "dist",
       "after",
       "dGhpcmQtcG9zdA==",
-      "index.html"
+      "index.html",
     ),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
   expect(file2).toContain("Third post");
 });

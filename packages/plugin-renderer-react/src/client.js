@@ -21,5 +21,5 @@ export {
   query,
   BodyRenderer,
   textRenderer,
-  Link
+  Link,
 };

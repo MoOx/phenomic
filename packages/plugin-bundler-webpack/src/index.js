@@ -39,7 +39,7 @@ const defaultExternals = [
   /^glamor(\/.*)?/,
   /^aphrodite(\/.*)?/,
   /^react-native-web(\/.*)?/,
-  /^react-helmet(\/.*)?/
+  /^react-helmet(\/.*)?/,
 ];
 
 const getWebpackConfig = (config: PhenomicConfig) => {
@@ -52,7 +52,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     debug("webpack.config.js not found");
     const userWebpackConfigBabelPath = path.join(
       config.path,
-      "webpack.config.babel.js"
+      "webpack.config.babel.js",
     );
     if (fs.existsSync(userWebpackConfigBabelPath)) {
       webpackConfig = require(userWebpackConfigBabelPath)(config);
@@ -60,7 +60,7 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     } else {
       debug("webpack.config.babel.js not found");
       webpackConfig = require(path.join(__dirname, "webpack.config.js"))(
-        config
+        config,
       );
       debug("default webpack config used");
     }
@@ -72,9 +72,9 @@ const getWebpackConfig = (config: PhenomicConfig) => {
     plugins: [
       ...(webpackConfig.plugins || []),
       new webpack.DefinePlugin({
-        "process.env.NODE_ENV": wrap(process.env.NODE_ENV)
-      })
-    ]
+        "process.env.NODE_ENV": wrap(process.env.NODE_ENV),
+      }),
+    ],
   };
 };
 
@@ -90,12 +90,12 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
         const namedChunks = stats.compilation.namedChunks;
         Object.keys(namedChunks).forEach(chunkName => {
           const files = namedChunks[chunkName].files.filter(
-            file => !file.endsWith(".hot-update.js")
+            file => !file.endsWith(".hot-update.js"),
           );
           if (files.length) {
             assets = {
               ...assets,
-              [chunkName]: files.shift()
+              [chunkName]: files.shift(),
             };
           }
         });
@@ -104,23 +104,23 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
         (
           req: express$Request,
           res: express$Response,
-          next: express$NextFunction
+          next: express$NextFunction,
         ) => {
           res.locals.assets = assets;
           next();
         },
         webpackDevMiddleware(compiler, {
           publicPath: config.baseUrl.pathname,
-          stats: { chunkModules: false, assets: false }
+          stats: { chunkModules: false, assets: false },
           // @todo add this and output ourself a nice message for build status
           // noInfo: true,
           // quiet: true,
         }),
         webpackHotMiddleware(compiler, {
-          reload: true
+          reload: true,
           // skip hot middleware logs if !verbose
           // log: config.verbose ? undefined : () => {},
-        })
+        }),
       ];
     },
     buildForPrerendering() {
@@ -130,7 +130,7 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
         ...webpackConfig,
         // only keep the entry we are going to use
         entry: {
-          [config.bundleName]: webpackConfig.entry[config.bundleName]
+          [config.bundleName]: webpackConfig.entry[config.bundleName],
         },
         // adjust some config details to be node focused
         target: "node",
@@ -141,35 +141,35 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
           path: cacheDir,
           filename: "[name].js",
           library: "app",
-          libraryTarget: "commonjs2"
+          libraryTarget: "commonjs2",
         },
         plugins: [
           // Remove UglifyJSPlugin from plugin stack
           ...(webpackConfig.plugins
             ? webpackConfig.plugins.filter(
-                plugin => !(plugin instanceof UglifyJsPlugin)
+                plugin => !(plugin instanceof UglifyJsPlugin),
               )
             : []),
           // sourcemaps
           new BannerPlugin({
             banner: requireSourceMapSupport,
             raw: true,
-            entryOnly: false
-          })
+            entryOnly: false,
+          }),
         ],
         // sourcemaps
-        devtool: "#source-map"
+        devtool: "#source-map",
       };
       return webpackPromise(specialConfig).then(
-        () => require(path.join(cacheDir, config.bundleName)).default
+        () => require(path.join(cacheDir, config.bundleName)).default,
       );
     },
     build() {
       debug("build");
       return webpackPromise(getWebpackConfig(config)).then(
-        stats => stats.toJson().assetsByChunkName
+        stats => stats.toJson().assetsByChunkName,
       );
-    }
+    },
   };
 };
 

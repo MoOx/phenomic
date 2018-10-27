@@ -7,11 +7,11 @@ import fs from "fs";
 it("should build example correctly", () => {
   const file1 = fs.readFileSync(
     path.join(__dirname, "..", "dist", "index.html"),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
   const file2 = fs.readFileSync(
     path.join(__dirname, "..", "dist", "2", "index.html"),
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
 
   expect(file1).toContain("Hello World!");

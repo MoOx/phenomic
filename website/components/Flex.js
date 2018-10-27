@@ -9,8 +9,8 @@ const Flex = (props: Object) => (
 
 const styles = StyleSheet.create({
   flex: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 export default Flex;

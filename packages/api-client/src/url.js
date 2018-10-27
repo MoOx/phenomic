@@ -19,8 +19,8 @@ function url(config: Object): string {
         root,
         config.path ? protect(config.path) : undefined,
         "item",
-        config.id
-      ])
+        config.id,
+      ]),
     );
   }
   return postfix(
@@ -34,8 +34,8 @@ function url(config: Object): string {
       ...(config.limit ? [`limit-${protect(config.limit)}`] : []),
       ...(config.limit && config.after
         ? [`after-${protect(config.after)}`]
-        : [])
-    ])
+        : []),
+    ]),
   );
 }
 

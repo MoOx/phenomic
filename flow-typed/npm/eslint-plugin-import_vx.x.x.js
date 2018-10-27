@@ -225,7 +225,7 @@ declare module "eslint-plugin-import/lib/core/importType.js" {
 }
 declare module "eslint-plugin-import/lib/core/staticRequire.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/core/staticRequire"
+    "eslint-plugin-import/lib/core/staticRequire",
   >;
 }
 declare module "eslint-plugin-import/lib/ExportMap.js" {
@@ -233,7 +233,7 @@ declare module "eslint-plugin-import/lib/ExportMap.js" {
 }
 declare module "eslint-plugin-import/lib/importDeclaration.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/importDeclaration"
+    "eslint-plugin-import/lib/importDeclaration",
   >;
 }
 declare module "eslint-plugin-import/lib/index.js" {
@@ -253,12 +253,12 @@ declare module "eslint-plugin-import/lib/rules/first.js" {
 }
 declare module "eslint-plugin-import/lib/rules/imports-first.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/imports-first"
+    "eslint-plugin-import/lib/rules/imports-first",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/max-dependencies.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/max-dependencies"
+    "eslint-plugin-import/lib/rules/max-dependencies",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/named.js" {
@@ -269,12 +269,12 @@ declare module "eslint-plugin-import/lib/rules/namespace.js" {
 }
 declare module "eslint-plugin-import/lib/rules/newline-after-import.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/newline-after-import"
+    "eslint-plugin-import/lib/rules/newline-after-import",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-absolute-path.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-absolute-path"
+    "eslint-plugin-import/lib/rules/no-absolute-path",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-amd.js" {
@@ -282,87 +282,87 @@ declare module "eslint-plugin-import/lib/rules/no-amd.js" {
 }
 declare module "eslint-plugin-import/lib/rules/no-anonymous-default-export.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-anonymous-default-export"
+    "eslint-plugin-import/lib/rules/no-anonymous-default-export",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-commonjs.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-commonjs"
+    "eslint-plugin-import/lib/rules/no-commonjs",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-deprecated.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-deprecated"
+    "eslint-plugin-import/lib/rules/no-deprecated",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-duplicates.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-duplicates"
+    "eslint-plugin-import/lib/rules/no-duplicates",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-dynamic-require.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-dynamic-require"
+    "eslint-plugin-import/lib/rules/no-dynamic-require",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-extraneous-dependencies.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-extraneous-dependencies"
+    "eslint-plugin-import/lib/rules/no-extraneous-dependencies",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-internal-modules.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-internal-modules"
+    "eslint-plugin-import/lib/rules/no-internal-modules",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-mutable-exports.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-mutable-exports"
+    "eslint-plugin-import/lib/rules/no-mutable-exports",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-named-as-default-member.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-named-as-default-member"
+    "eslint-plugin-import/lib/rules/no-named-as-default-member",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-named-as-default.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-named-as-default"
+    "eslint-plugin-import/lib/rules/no-named-as-default",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-named-default.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-named-default"
+    "eslint-plugin-import/lib/rules/no-named-default",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-namespace.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-namespace"
+    "eslint-plugin-import/lib/rules/no-namespace",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-nodejs-modules.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-nodejs-modules"
+    "eslint-plugin-import/lib/rules/no-nodejs-modules",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-restricted-paths.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-restricted-paths"
+    "eslint-plugin-import/lib/rules/no-restricted-paths",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-unassigned-import.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-unassigned-import"
+    "eslint-plugin-import/lib/rules/no-unassigned-import",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-unresolved.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-unresolved"
+    "eslint-plugin-import/lib/rules/no-unresolved",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/no-webpack-loader-syntax.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/no-webpack-loader-syntax"
+    "eslint-plugin-import/lib/rules/no-webpack-loader-syntax",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/order.js" {
@@ -370,12 +370,12 @@ declare module "eslint-plugin-import/lib/rules/order.js" {
 }
 declare module "eslint-plugin-import/lib/rules/prefer-default-export.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/prefer-default-export"
+    "eslint-plugin-import/lib/rules/prefer-default-export",
   >;
 }
 declare module "eslint-plugin-import/lib/rules/unambiguous.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-import/lib/rules/unambiguous"
+    "eslint-plugin-import/lib/rules/unambiguous",
   >;
 }
 declare module "eslint-plugin-import/memo-parser/index.js" {

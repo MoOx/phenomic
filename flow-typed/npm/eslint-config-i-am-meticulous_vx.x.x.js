@@ -53,7 +53,7 @@ declare module "eslint-config-i-am-meticulous/react" {
 // Filename aliases
 declare module "eslint-config-i-am-meticulous/_flow-globals.js" {
   declare module.exports: $Exports<
-    "eslint-config-i-am-meticulous/_flow-globals"
+    "eslint-config-i-am-meticulous/_flow-globals",
   >;
 }
 declare module "eslint-config-i-am-meticulous/ava.js" {
@@ -76,7 +76,7 @@ declare module "eslint-config-i-am-meticulous/react-flow.js" {
 }
 declare module "eslint-config-i-am-meticulous/react-native.js" {
   declare module.exports: $Exports<
-    "eslint-config-i-am-meticulous/react-native"
+    "eslint-config-i-am-meticulous/react-native",
   >;
 }
 declare module "eslint-config-i-am-meticulous/react.js" {

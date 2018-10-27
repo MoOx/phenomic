@@ -26,30 +26,30 @@ const connect = (list, limit, previousList = []) => {
         : undefined,
     next:
       hasNextPage && list[nextIndex] ? encode(list[nextIndex].id) : undefined,
-    list: list.slice(0, limit)
+    list: list.slice(0, limit),
   };
 };
 
 function createAPIServer({
   db,
   plugins,
-  rootPath
+  rootPath,
 }: {|
   db: PhenomicDB,
   plugins: PhenomicPlugins,
-  rootPath: string
+  rootPath: string,
 |}) {
   debug("creating server");
   const apiServer = express();
 
   apiServer.get(rootPath + "/", async function(
     req: express$Request,
-    res: express$Response
+    res: express$Response,
   ) {
     debug("get api version");
     res.json({
       engine: "phenomic",
-      version: pkg.version
+      version: pkg.version,
     });
   });
 
@@ -64,10 +64,10 @@ function createAPIServer({
           req.params.path,
           {
             sort,
-            reverse
+            reverse,
           },
           req.params.filter,
-          req.params.value
+          req.params.value,
         );
         res.json(connect(list));
       } catch (error) {
@@ -75,7 +75,7 @@ function createAPIServer({
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(
@@ -91,18 +91,23 @@ function createAPIServer({
           {
             limit: limit + 1,
             sort,
-            reverse
+            reverse,
           },
           req.params.filter,
-          req.params.value
+          req.params.value,
         );
-        res.json(connect(list, limit));
+        res.json(
+          connect(
+            list,
+            limit,
+          ),
+        );
       } catch (error) {
         log.error(error.message);
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(
@@ -126,10 +131,10 @@ function createAPIServer({
               limit: limit + 1,
               gte: after,
               sort,
-              reverse
+              reverse,
             },
             req.params.filter,
-            req.params.value
+            req.params.value,
           ),
           db.getList(
             req.params.path,
@@ -137,24 +142,30 @@ function createAPIServer({
               limit: limit + 1,
               gt: after,
               sort,
-              reverse: !reverse
+              reverse: !reverse,
             },
             req.params.filter,
-            req.params.value
-          )
+            req.params.value,
+          ),
         ]);
-        res.json(connect(list, limit, previousList));
+        res.json(
+          connect(
+            list,
+            limit,
+            previousList,
+          ),
+        );
       } catch (error) {
         log.error(error.message);
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(rootPath + "/:path/item/*?.json", async function(
     req: express$Request,
-    res: express$Response
+    res: express$Response,
   ) {
     debug(req.url, JSON.stringify(req.params));
     try {
@@ -185,10 +196,10 @@ function createAPIServer({
           null,
           {
             sort,
-            reverse
+            reverse,
           },
           req.params.filter,
-          req.params.value
+          req.params.value,
         );
         res.json(connect(list));
       } catch (error) {
@@ -196,7 +207,7 @@ function createAPIServer({
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(
@@ -212,18 +223,23 @@ function createAPIServer({
           {
             limit: limit + 1,
             sort,
-            reverse
+            reverse,
           },
           req.params.filter,
-          req.params.value
+          req.params.value,
         );
-        res.json(connect(list, limit));
+        res.json(
+          connect(
+            list,
+            limit,
+          ),
+        );
       } catch (error) {
         log.error(error.message);
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(
@@ -246,10 +262,10 @@ function createAPIServer({
               limit: limit + 1,
               gte: after,
               sort,
-              reverse
+              reverse,
             },
             req.params.filter,
-            req.params.value
+            req.params.value,
           ),
           db.getList(
             null,
@@ -257,24 +273,30 @@ function createAPIServer({
               limit: limit + 1,
               gt: after,
               sort,
-              reverse: !reverse
+              reverse: !reverse,
             },
             req.params.filter,
-            req.params.value
-          )
+            req.params.value,
+          ),
         ]);
-        res.json(connect(list, limit, previousList));
+        res.json(
+          connect(
+            list,
+            limit,
+            previousList,
+          ),
+        );
       } catch (error) {
         log.error(error.message);
         debug(error);
         res.status(404).end();
       }
-    }
+    },
   );
 
   apiServer.get(rootPath + "/item/*?.json", async function(
     req: express$Request,
-    res: express$Response
+    res: express$Response,
   ) {
     debug(req.url, JSON.stringify(req.params));
     // /item/.json means you want /item/index.json

@@ -53,17 +53,17 @@ declare module "babel-eslint/babylon-to-espree/toTokens" {
 // Filename aliases
 declare module "babel-eslint/babylon-to-espree/attachComments.js" {
   declare module.exports: $Exports<
-    "babel-eslint/babylon-to-espree/attachComments"
+    "babel-eslint/babylon-to-espree/attachComments",
   >;
 }
 declare module "babel-eslint/babylon-to-espree/convertComments.js" {
   declare module.exports: $Exports<
-    "babel-eslint/babylon-to-espree/convertComments"
+    "babel-eslint/babylon-to-espree/convertComments",
   >;
 }
 declare module "babel-eslint/babylon-to-espree/convertTemplateType.js" {
   declare module.exports: $Exports<
-    "babel-eslint/babylon-to-espree/convertTemplateType"
+    "babel-eslint/babylon-to-espree/convertTemplateType",
   >;
 }
 declare module "babel-eslint/babylon-to-espree/index.js" {

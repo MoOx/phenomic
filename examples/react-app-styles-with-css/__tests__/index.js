@@ -11,7 +11,7 @@ it("should build example correctly", () => {
   const files = globby.sync("**/*", {
     cwd: testFolder,
     nodir: true,
-    dot: true
+    dot: true,
   });
 
   const assetsBundlerFiles = files.filter(file => file.startsWith("phenomic"));
@@ -22,9 +22,9 @@ it("should build example correctly", () => {
         __dirname,
         "..",
         "dist",
-        assetsBundlerFiles.filter(file => file.endsWith(".css")).shift()
+        assetsBundlerFiles.filter(file => file.endsWith(".css")).shift(),
       ),
-      { encoding: "utf8" }
-    )
+      { encoding: "utf8" },
+    ),
   ).toMatchSnapshot();
 });

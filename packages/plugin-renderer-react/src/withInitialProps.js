@@ -11,32 +11,32 @@ type props = {|
   params: {|
     // SSR trick
     __initialPropsForSSR: Object,
-    __initialErrorForSSR: any
-  |}
+    __initialErrorForSSR: any,
+  |},
 |};
 
 type state = {|
   status: "loading" | "ready" | "error",
   props?: Object,
-  error?: any
+  error?: any,
 |};
 
 export default function withInitialProps<P>(
-  ComposedComponent: React.ComponentType<P>
+  ComposedComponent: React.ComponentType<P>,
 ) {
   const displayName = getDisplayName(ComposedComponent);
 
   class PhenomicContainerWithInitialProps extends React.Component<
     props,
-    state
+    state,
   > {
     state: state = {
-      status: "loading"
+      status: "loading",
     };
 
     _previousInitialPropsArgs = {
       pathname: undefined,
-      params: undefined
+      params: undefined,
     };
 
     static displayName = `withInitialProps(${displayName})`;
@@ -48,13 +48,13 @@ export default function withInitialProps<P>(
       if (props.params.__initialPropsForSSR) {
         this.state = {
           status: "ready",
-          props: props.params.__initialPropsForSSR
+          props: props.params.__initialPropsForSSR,
         };
       }
       if (props.params.__initialErrorForSSR) {
         this.state = {
           status: "error",
-          error: props.params.__initialErrorForSSR
+          error: props.params.__initialErrorForSSR,
         };
       }
     }
@@ -72,7 +72,7 @@ export default function withInitialProps<P>(
     update() {
       const initialPropsArgs = {
         pathname: this.props.location.pathname,
-        params: this.props.params
+        params: this.props.params,
       };
       if (
         this._previousInitialPropsArgs.pathname !== initialPropsArgs.pathname ||
@@ -84,7 +84,7 @@ export default function withInitialProps<P>(
         if (res.then) {
           res.then(
             props => this.setState({ status: "ready", props }),
-            error => this.setState({ status: "error", error })
+            error => this.setState({ status: "error", error }),
           );
         } else {
           // probably an edge case, but just in case people do weird things :)

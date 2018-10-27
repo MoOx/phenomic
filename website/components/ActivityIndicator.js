@@ -7,9 +7,9 @@ TopBarProgressIndicator.config({
   barThickness: 4,
   barColors: {
     "0": "#fff",
-    "1.0": "#fff"
+    "1.0": "#fff",
   },
-  shadowBlur: 5
+  shadowBlur: 5,
 });
 
 const devicePixelRatio =
@@ -19,13 +19,13 @@ const tupleToColor = (param, alpha) => `rgba(${param.join(",")}, ${alpha})`;
 
 type Props = {|
   size: number,
-  color: $ReadOnlyArray<number, number, number>
+  color: $ReadOnlyArray<number, number, number>,
 |};
 
 class ActivityIndicator extends React.Component<Props> {
   static defaultProps = {
     size: 24.0,
-    color: [200, 200, 200]
+    color: [200, 200, 200],
   };
   componentDidMount() {
     this.tick();
@@ -63,7 +63,7 @@ class ActivityIndicator extends React.Component<Props> {
       0.0,
       actualSize * 0.5,
       actualSize * 0.75,
-      actualSize * 0.5
+      actualSize * 0.5,
     );
     gradient.addColorStop(0.5, tupleToColor(this.props.color, 1.0));
     gradient.addColorStop(1.0, tupleToColor(this.props.color, 0.0));
@@ -86,7 +86,7 @@ class ActivityIndicator extends React.Component<Props> {
             width: this.props.size,
             height: this.props.size,
             alignSelf: "center",
-            margin: "10px 0"
+            margin: "10px 0",
           }}
           ref={this.setCanvasRef}
         />

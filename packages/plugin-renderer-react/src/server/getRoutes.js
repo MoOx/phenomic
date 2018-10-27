@@ -13,7 +13,9 @@ function flattenRoutes(routes, path = "") {
       ...route,
       path: (route.path || "").startsWith("/")
         ? route.path
-        : route.path ? urlJoin(path, route.path) : path
+        : route.path
+          ? urlJoin(path, route.path)
+          : path,
     };
     if (route.childRoutes) {
       acc.push(...flattenRoutes(nextRoute.childRoutes, nextRoute.path));

@@ -160,7 +160,7 @@ declare module "npm-run-all/lib/create-header.js" {
 }
 declare module "npm-run-all/lib/create-prefix-transform-stream.js" {
   declare module.exports: $Exports<
-    "npm-run-all/lib/create-prefix-transform-stream"
+    "npm-run-all/lib/create-prefix-transform-stream",
   >;
 }
 declare module "npm-run-all/lib/index.js" {

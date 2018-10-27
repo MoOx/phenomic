@@ -14,7 +14,7 @@ type ComponentType = string | React.ComponentType<*>;
 // eslint-disable-next-line flowtype/require-exact-type
 type OptionsType = {
   components?: { [key: string]: ComponentType },
-  DefaultComponent?: ComponentType
+  DefaultComponent?: ComponentType,
 };
 
 type ItemType =
@@ -25,19 +25,19 @@ type ItemType =
       // props
       p?: Object,
       // children
-      c: ItemType | $ReadOnlyArray<ItemType>
+      c: ItemType | $ReadOnlyArray<ItemType>,
     };
 
 type PropsType = OptionsType & {
-  children?: ItemType
+  children?: ItemType,
 };
 
 const defaultProps = { DefaultComponent: "div" };
 
 const defaultOptions: OptionsType = {
   components: {
-    a: Link
-  }
+    a: Link,
+  },
 };
 
 const render = (item: ItemType, options: OptionsType, key: ?any) => {
@@ -74,7 +74,7 @@ const render = (item: ItemType, options: OptionsType, key: ?any) => {
 const BodyRenderer = ({ children, ...props }: PropsType) => {
   if (typeof children === "undefined") {
     console.error(
-      "@phenomic/plugin-renderer-react: BodyRenderer expects at least a child"
+      "@phenomic/plugin-renderer-react: BodyRenderer expects at least a child",
     );
     return null;
   }
@@ -87,8 +87,8 @@ const BodyRenderer = ({ children, ...props }: PropsType) => {
     // force to mix components, as default one (Link) is crucial
     components: {
       ...defaultOptions.components,
-      ...(props.components || {})
-    }
+      ...(props.components || {}),
+    },
   });
   const { DefaultComponent = defaultProps.DefaultComponent } = props;
   return typeof r === "string" ? <DefaultComponent>{r}</DefaultComponent> : r;

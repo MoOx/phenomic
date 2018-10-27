@@ -26,8 +26,8 @@ const defaultOptions = {
     require("rehype-raw"),
     // then some traditional plugins
     require("rehype-slug"),
-    require("rehype-autolink-headings")
-  ]
+    require("rehype-autolink-headings"),
+  ],
 };
 
 export default defaultOptions;

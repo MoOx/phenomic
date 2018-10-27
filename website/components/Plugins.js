@@ -24,7 +24,7 @@ const Plugins = () => {
                 color: "#32325d",
                 fontSize: 24,
                 fontWeight: "800",
-                textAlign: "center"
+                textAlign: "center",
               }}
             >
               {"WIP"}
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
 
 export default Plugins;

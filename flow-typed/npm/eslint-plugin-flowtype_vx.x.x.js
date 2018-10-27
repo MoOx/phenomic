@@ -201,7 +201,7 @@ declare module "eslint-plugin-flowtype/dist/utilities/spacingFixers" {
 // Filename aliases
 declare module "eslint-plugin-flowtype/bin/readmeAssertions.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/bin/readmeAssertions"
+    "eslint-plugin-flowtype/bin/readmeAssertions",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/index.js" {
@@ -209,72 +209,72 @@ declare module "eslint-plugin-flowtype/dist/index.js" {
 }
 declare module "eslint-plugin-flowtype/dist/rules/booleanStyle.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/booleanStyle"
+    "eslint-plugin-flowtype/dist/rules/booleanStyle",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/defineFlowType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/defineFlowType"
+    "eslint-plugin-flowtype/dist/rules/defineFlowType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/delimiterDangle.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/delimiterDangle"
+    "eslint-plugin-flowtype/dist/rules/delimiterDangle",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/genericSpacing.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/genericSpacing"
+    "eslint-plugin-flowtype/dist/rules/genericSpacing",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/noDupeKeys.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/noDupeKeys"
+    "eslint-plugin-flowtype/dist/rules/noDupeKeys",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/noPrimitiveConstructorTypes.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/noPrimitiveConstructorTypes"
+    "eslint-plugin-flowtype/dist/rules/noPrimitiveConstructorTypes",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/noTypesMissingFileAnnotation.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/noTypesMissingFileAnnotation"
+    "eslint-plugin-flowtype/dist/rules/noTypesMissingFileAnnotation",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/noUnusedExpressions.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/noUnusedExpressions"
+    "eslint-plugin-flowtype/dist/rules/noUnusedExpressions",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/noWeakTypes.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/noWeakTypes"
+    "eslint-plugin-flowtype/dist/rules/noWeakTypes",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/objectTypeDelimiter.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/objectTypeDelimiter"
+    "eslint-plugin-flowtype/dist/rules/objectTypeDelimiter",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/requireParameterType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/requireParameterType"
+    "eslint-plugin-flowtype/dist/rules/requireParameterType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/requireReturnType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/requireReturnType"
+    "eslint-plugin-flowtype/dist/rules/requireReturnType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/requireValidFileAnnotation.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/requireValidFileAnnotation"
+    "eslint-plugin-flowtype/dist/rules/requireValidFileAnnotation",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/requireVariableType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/requireVariableType"
+    "eslint-plugin-flowtype/dist/rules/requireVariableType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/semi.js" {
@@ -282,136 +282,136 @@ declare module "eslint-plugin-flowtype/dist/rules/semi.js" {
 }
 declare module "eslint-plugin-flowtype/dist/rules/sortKeys.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/sortKeys"
+    "eslint-plugin-flowtype/dist/rules/sortKeys",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/spaceAfterTypeColon.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/spaceAfterTypeColon"
+    "eslint-plugin-flowtype/dist/rules/spaceAfterTypeColon",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/spaceBeforeGenericBracket.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/spaceBeforeGenericBracket"
+    "eslint-plugin-flowtype/dist/rules/spaceBeforeGenericBracket",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/spaceBeforeTypeColon.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/spaceBeforeTypeColon"
+    "eslint-plugin-flowtype/dist/rules/spaceBeforeTypeColon",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateFunctions.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateFunctions"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateFunctions",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeIndexer.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeIndexer"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeIndexer",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeProperty.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeProperty"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateObjectTypeProperty",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateReturnType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateReturnType"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateReturnType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypeCastExpression.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypeCastExpression"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypeCastExpression",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypical.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypical"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/evaluateTypical",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/index.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/index"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/index",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeColonSpacing/reporter.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/reporter"
+    "eslint-plugin-flowtype/dist/rules/typeColonSpacing/reporter",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/typeIdMatch.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/typeIdMatch"
+    "eslint-plugin-flowtype/dist/rules/typeIdMatch",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing"
+    "eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/useFlowType.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/useFlowType"
+    "eslint-plugin-flowtype/dist/rules/useFlowType",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/rules/validSyntax.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/rules/validSyntax"
+    "eslint-plugin-flowtype/dist/rules/validSyntax",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/checkFlowFileAnnotation.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/checkFlowFileAnnotation"
+    "eslint-plugin-flowtype/dist/utilities/checkFlowFileAnnotation",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/fuzzyStringMatch.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/fuzzyStringMatch"
+    "eslint-plugin-flowtype/dist/utilities/fuzzyStringMatch",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/getParameterName.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/getParameterName"
+    "eslint-plugin-flowtype/dist/utilities/getParameterName",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/getTokenAfterParens.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/getTokenAfterParens"
+    "eslint-plugin-flowtype/dist/utilities/getTokenAfterParens",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/getTokenBeforeParens.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/getTokenBeforeParens"
+    "eslint-plugin-flowtype/dist/utilities/getTokenBeforeParens",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/index.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/index"
+    "eslint-plugin-flowtype/dist/utilities/index",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/isFlowFile.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/isFlowFile"
+    "eslint-plugin-flowtype/dist/utilities/isFlowFile",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/isFlowFileAnnotation.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/isFlowFileAnnotation"
+    "eslint-plugin-flowtype/dist/utilities/isFlowFileAnnotation",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/iterateFunctionNodes.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/iterateFunctionNodes"
+    "eslint-plugin-flowtype/dist/utilities/iterateFunctionNodes",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/quoteName.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/quoteName"
+    "eslint-plugin-flowtype/dist/utilities/quoteName",
   >;
 }
 declare module "eslint-plugin-flowtype/dist/utilities/spacingFixers.js" {
   declare module.exports: $Exports<
-    "eslint-plugin-flowtype/dist/utilities/spacingFixers"
+    "eslint-plugin-flowtype/dist/utilities/spacingFixers",
   >;
 }

@@ -5,7 +5,7 @@ type SubscriberType = Function;
 
 const NO_VALUE_EDGE = {
   status: "inactive",
-  node: null
+  node: null,
 };
 
 export type unsubscribeType = () => void;
@@ -15,7 +15,7 @@ export type StoreType = {|
   set: (key: string, node: any) => void,
   setAsLoading: (key: string) => any,
   setAsError: (key: string, node: any) => any,
-  getState: () => StateType
+  getState: () => StateType,
 |};
 
 function createStore(state: StateType = {}): StoreType {
@@ -39,8 +39,8 @@ function createStore(state: StateType = {}): StoreType {
     update({
       [key]: {
         status: "idle",
-        node
-      }
+        node,
+      },
     });
   }
 
@@ -48,8 +48,8 @@ function createStore(state: StateType = {}): StoreType {
     update({
       [key]: {
         status: "loading",
-        node: get(key).node
-      }
+        node: get(key).node,
+      },
     });
   }
 
@@ -58,8 +58,8 @@ function createStore(state: StateType = {}): StoreType {
       [key]: {
         status: "error",
         node: null,
-        error
-      }
+        error,
+      },
     });
   }
 
@@ -78,7 +78,7 @@ function createStore(state: StateType = {}): StoreType {
     set,
     setAsLoading,
     setAsError,
-    getState
+    getState,
   };
 }
 

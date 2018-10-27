@@ -29,7 +29,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
                 .reduce((acc, name) => acc.concat(assets[name]), [])
                 .filter(asset => asset.endsWith(".css"))
                 .map(css => readCssFile(css))
-                .join("")
+                .join(""),
             }}
           />
         )}

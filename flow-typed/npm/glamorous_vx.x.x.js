@@ -131,7 +131,7 @@ declare module "glamorous/preact/dist/glamorous.umd.min.js" {
 }
 declare module "glamorous/preact/dist/glamorous.umd.min.tiny.js" {
   declare module.exports: $Exports<
-    "glamorous/preact/dist/glamorous.umd.min.tiny"
+    "glamorous/preact/dist/glamorous.umd.min.tiny",
   >;
 }
 declare module "glamorous/preact/dist/glamorous.umd.tiny.js" {

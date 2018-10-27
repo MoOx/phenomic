@@ -18,9 +18,9 @@ require("babel-register")({
     require.resolve("babel-preset-env"),
     // used to allow react/flow in Html.js for plugin react
     // @todo: consider moving babel-register in this plugin for this file only?
-    require.resolve("babel-preset-react")
+    require.resolve("babel-preset-react"),
   ],
-  sourceMap: "inline"
+  sourceMap: "inline",
 });
 
 // $FlowFixMe lib/* are ignored

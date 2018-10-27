@@ -22,22 +22,22 @@ function normalizeWindowsPath(value: string): string {
 
 const toFile = (root, filepath) => ({
   name: filepath,
-  fullpath: path.join(root, filepath)
+  fullpath: path.join(root, filepath),
 });
 
 function glob({
   path,
-  patterns
+  patterns,
 }: {|
   path: string,
-  patterns: $ReadOnlyArray<string>
+  patterns: $ReadOnlyArray<string>,
 |}): $ReadOnlyArray<PhenomicContentFile> {
   return globby.sync(patterns, { cwd: path }).map(file => toFile(path, file));
 }
 
 const readFile = (path: string): Promise<Buffer> =>
   new Promise((resolve, reject) =>
-    fs.readFile(path, (error, file) => (error ? reject(error) : resolve(file)))
+    fs.readFile(path, (error, file) => (error ? reject(error) : resolve(file))),
   );
 
 export function makeId(name: string, json: PhenomicTransformResult): string {
@@ -84,10 +84,10 @@ export function getFieldValue(json: PhenomicTransformResult, id: string) {
 const dateLength = "YYYY-MM-DD".length;
 export function injectData(
   name: string,
-  json: PhenomicTransformResult
+  json: PhenomicTransformResult,
 ): PhenomicTransformResult {
   const injectedData: Object = {
-    filename: name
+    filename: name,
   };
   try {
     injectedData.date = formatDate(name.slice(0, dateLength));
@@ -97,17 +97,17 @@ export function injectData(
   return {
     data: {
       ...injectedData,
-      ...json.data
+      ...json.data,
     },
     partial: {
       ...injectedData,
-      ...json.partial
-    }
+      ...json.partial,
+    },
   };
 }
 
 export function parsePath(
-  name: string
+  name: string,
 ): {| name: string, allPaths: $ReadOnlyArray<string> |} {
   const pathSegments = name.split(sep);
   return {
@@ -115,7 +115,7 @@ export function parsePath(
     allPaths: pathSegments.reduce((acc, v) => {
       acc.push(acc.length > 0 ? acc[acc.length - 1] + sep + v : v);
       return acc;
-    }, [])
+    }, []),
   };
 }
 
@@ -160,7 +160,7 @@ const collectData = async ({ db, filename, data }) => {
 const processFile = async ({ file, contents, transform }) => {
   const transformed: PhenomicTransformResult = await transform({
     file,
-    contents
+    contents,
   });
 
   debug(`${file.name} processed`);
@@ -179,15 +179,15 @@ type options = {|
 
 const collectorFiles: PhenomicPluginModule<options> = (
   config: PhenomicConfig,
-  options?: options
+  options?: options,
 ) => {
   let transformedMap: {
     [key: string]: {|
       contentKey: string,
       file: PhenomicContentFile,
       contents: Buffer,
-      transformed: any
-    |}
+      transformed: any,
+    |},
   } = {};
 
   return {
@@ -198,13 +198,13 @@ const collectorFiles: PhenomicPluginModule<options> = (
         plugin =>
           plugin.supportedFileTypes &&
           plugin.supportedFileTypes.forEach(
-            fileType => (transformByFileTypes[fileType] = plugin.transform)
-          )
+            fileType => (transformByFileTypes[fileType] = plugin.transform),
+          ),
       );
 
       const readAndTransform = async (
         contentKey: string,
-        file: PhenomicContentFile
+        file: PhenomicContentFile,
       ) => {
         const transform =
           transformByFileTypes[path.extname(file.name).slice(1)];
@@ -231,8 +231,8 @@ const collectorFiles: PhenomicPluginModule<options> = (
           transformed: processFile({
             file,
             contents: contents,
-            transform
-          })
+            transform,
+          }),
         };
       };
       const forget = fullpath => {
@@ -247,11 +247,11 @@ const collectorFiles: PhenomicPluginModule<options> = (
               db,
               filename: path.join(
                 transformedMap[fullpath].contentKey,
-                transformedMap[fullpath].file.name
+                transformedMap[fullpath].file.name,
               ),
-              data: transformedMap[fullpath].transformed
-            })
-          )
+              data: transformedMap[fullpath].transformed,
+            }),
+          ),
         );
       };
 
@@ -276,7 +276,7 @@ const collectorFiles: PhenomicPluginModule<options> = (
             } else {
               throw new Error(
                 "Unexpected config for 'content' option: " +
-                  config.content[contentKey].toString()
+                  config.content[contentKey].toString(),
               );
             }
 
@@ -284,17 +284,15 @@ const collectorFiles: PhenomicPluginModule<options> = (
             return { contentKey, contentPath, globs };
           } catch (e) {
             log.warn(
-              `no '${
-                contentKey
-              }' folder found or unable to read files. Please create and put files in this folder (or double check it) if you want the content to be accessible (eg: markdown or JSON files). `
+              `no '${contentKey}' folder found or unable to read files. Please create and put files in this folder (or double check it) if you want the content to be accessible (eg: markdown or JSON files). `,
             );
             return {};
           }
-        })
+        }),
       );
 
       const folders = maybeFolders.filter(
-        folder => folder.contentKey !== undefined
+        folder => folder.contentKey !== undefined,
       );
 
       if (folders.length <= 0) {
@@ -305,12 +303,12 @@ const collectorFiles: PhenomicPluginModule<options> = (
         folders.map(async ({ contentKey, contentPath, globs }) => {
           const files = glob({
             path: contentPath,
-            patterns: globs
+            patterns: globs,
           });
           await Promise.all(
-            files.map(file => readAndTransform(contentKey, file))
+            files.map(file => readAndTransform(contentKey, file)),
           );
-        })
+        }),
       );
       await collectAll();
 
@@ -327,7 +325,7 @@ const collectorFiles: PhenomicPluginModule<options> = (
           const watcher = createWatcher({
             path: await getPath(contentPath),
             // $FlowFixMe stfu
-            patterns: globs
+            patterns: globs,
           });
 
           watcher.on("ready", () => {
@@ -339,7 +337,7 @@ const collectorFiles: PhenomicPluginModule<options> = (
             log.info(`${name} has been updated`);
             await readAndTransform(contentKey, {
               name,
-              fullpath: path.join(root, name)
+              fullpath: path.join(root, name),
             });
             await collectAll();
             io.emit("change");
@@ -350,7 +348,7 @@ const collectorFiles: PhenomicPluginModule<options> = (
             log.info(`${name} has been added`);
             await readAndTransform(contentKey, {
               name,
-              fullpath: path.join(root, name)
+              fullpath: path.join(root, name),
             });
             await collectAll();
             io.emit("change");
@@ -364,9 +362,9 @@ const collectorFiles: PhenomicPluginModule<options> = (
             debug(`Data updated`);
           });
           return watcher;
-        })
+        }),
       );
-    }
+    },
   };
 };
 

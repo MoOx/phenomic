@@ -25,9 +25,9 @@ test("validate string", () => {
   try {
     validate(
       {
-        entry: "App.js"
+        entry: "App.js",
       },
-      defaultConfig
+      defaultConfig,
     );
     throw new Error("pass but should not");
   } catch (e) {
@@ -39,9 +39,9 @@ test("validate array", () => {
   try {
     validate(
       {
-        entry: ["something.js", "App.js"]
+        entry: ["something.js", "App.js"],
       },
-      defaultConfig
+      defaultConfig,
     );
     throw new Error("pass but should not");
   } catch (e) {
@@ -55,10 +55,10 @@ test("validate object without key", () => {
       {
         entry: {
           stuff: ["something.js", "App.js"],
-          thing: ["something.js", "App.js"]
-        }
+          thing: ["something.js", "App.js"],
+        },
       },
-      defaultConfig
+      defaultConfig,
     );
     throw new Error("pass but should not");
   } catch (e) {

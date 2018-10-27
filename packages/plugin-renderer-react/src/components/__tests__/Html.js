@@ -14,7 +14,7 @@ const render = App => {
     State: () => <script type="text/json">{'{st:"ate"}'}</script>,
     Script: () => <script src="sc/ript" />,
     Style: () => <link src="sc/ript" />,
-    assets: {}
+    assets: {},
   };
 };
 

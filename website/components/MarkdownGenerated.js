@@ -10,20 +10,20 @@ type Node =
   | {|
       t?: string,
       p?: Object,
-      c?: Node | $ReadOnlyArray<Node>
+      c?: Node | $ReadOnlyArray<Node>,
     |};
 
 const forEachHref = (node?: Node, callback: string => string) => {
   if (!node) return;
   if (typeof node !== "object") return node;
   const newNode = {
-    ...node
+    ...node,
   };
   if (node.p && node.p.href) {
     // $FlowFixMe stfu
     newNode.p = {
       ...node.p,
-      href: callback(node.p.href)
+      href: callback(node.p.href),
     };
   }
   if (Array.isArray(node.c))
@@ -44,7 +44,7 @@ const cleanIndexAndReadme = (href: string) =>
 const replaceOriginalHostnameWithLocal = (href: string) =>
   href.replace(
     process.env.PHENOMIC_APP_BASEURL, // replace production http://realdomain/
-    process.env.PHENOMIC_APP_BASENAME // by / so hardcoded link works locally
+    process.env.PHENOMIC_APP_BASENAME, // by / so hardcoded link works locally
   );
 
 const cleanAllHref = (node?: Node, filenameSource: string) => {
@@ -62,7 +62,7 @@ const cleanAllHref = (node?: Node, filenameSource: string) => {
         ? "../"
         : "";
     const h = replaceOriginalHostnameWithLocal(
-      cleanIndexAndReadme(removeExtFromHref()(href))
+      cleanIndexAndReadme(removeExtFromHref()(href)),
     );
     return prefix + h;
   });
@@ -77,7 +77,7 @@ const MarkdownGenerated = (props: {| body: Node, filename: string |}) => (
         h3: MarkdownHeading.H3,
         h4: MarkdownHeading.H4,
         h5: MarkdownHeading.H5,
-        h6: MarkdownHeading.H6
+        h6: MarkdownHeading.H6,
       }}
     >
       {cleanAllHref(props.body, props.filename)}

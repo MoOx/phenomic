@@ -12,7 +12,7 @@ type props = Object;
 
 export default function withPhenomicApi<P>(
   ComposedComponent: React.ComponentType<P>,
-  getQueries: (props: Object) => Object = () => ({})
+  getQueries: (props: Object) => Object = () => ({}),
 ) {
   const socketServerURL =
     // $FlowFixMe yeah yeah
@@ -27,7 +27,7 @@ export default function withPhenomicApi<P>(
     static contextTypes = {
       query: PropTypes.func,
       phenomic: PropTypes.object,
-      __prerendering: PropTypes.bool
+      __prerendering: PropTypes.bool,
     };
 
     static displayName = `withPhenomicApi(${displayName})`;
@@ -49,7 +49,7 @@ export default function withPhenomicApi<P>(
       if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")(socketServerURL).on(
           "change",
-          this.forceQuery
+          this.forceQuery,
         );
       }
     }
@@ -70,7 +70,7 @@ export default function withPhenomicApi<P>(
       if (process.env.NODE_ENV !== "production") {
         require("socket.io-client")(socketServerURL).removeListener(
           "change",
-          this.forceQuery
+          this.forceQuery,
         );
       }
     }
@@ -98,7 +98,7 @@ export default function withPhenomicApi<P>(
         this.context.query(values);
       } else {
         this.context.query(
-          values.filter(item => store.get(item).status !== "idle")
+          values.filter(item => store.get(item).status !== "idle"),
         );
       }
     };
@@ -107,15 +107,15 @@ export default function withPhenomicApi<P>(
       const values = Object.keys(this.queries).map(key => this.queries[key]);
       const isLoading = values.some(item => !store.get(item).node);
       const hasErrored = values.some(
-        item => store.get(item).status === "error"
+        item => store.get(item).status === "error",
       );
       const props = mapValues(this.queries, (value, key) =>
-        store.get(this.queries[key])
+        store.get(this.queries[key]),
       );
       if (hasErrored) {
         console.error(
           "An item is in error state",
-          values.find(item => store.get(item).status === "error")
+          values.find(item => store.get(item).status === "error"),
         );
         return <ComposedComponent {...this.props} hasError={true} {...props} />;
       }

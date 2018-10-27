@@ -6,7 +6,7 @@ import { StyleSheetServer } from "aphrodite/no-important";
 export default ({ App, render }: PhenomicHtmlPropsType) => {
   const {
     html: { Main, State, Script },
-    css
+    css,
   } = StyleSheetServer.renderStatic(() => render(<App />));
 
   return (
@@ -20,8 +20,8 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
         <script
           dangerouslySetInnerHTML={{
             __html: `window._aphrodite = ${JSON.stringify(
-              css.renderedClassNames
-            )}`
+              css.renderedClassNames,
+            )}`,
           }}
         />
         <Script />

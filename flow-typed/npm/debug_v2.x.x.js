@@ -8,7 +8,7 @@ declare module "debug" {
     (err: Error, ...args: Array<mixed>): void,
     enabled: boolean,
     log: () => {},
-    namespace: string
+    namespace: string,
   };
 
   declare module.exports: (namespace: string) => Debugger;
@@ -25,6 +25,6 @@ declare module "debug" {
   declare function log(): void;
 
   declare var formatters: {
-    [formatter: string]: () => {}
+    [formatter: string]: () => {},
   };
 }

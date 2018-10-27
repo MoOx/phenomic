@@ -41,13 +41,13 @@ Just take a look!
 [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
 guide to get started.
 
-* ⇄ Pull/Merge requests and ★ Stars are always welcome.
-* For bugs and feature requests, please
+- ⇄ Pull/Merge requests and ★ Stars are always welcome.
+- For bugs and feature requests, please
   [create an issue](https://github.com/phenomic/phenomic/issues/new).
-* Pull requests must be accompanied by passing automated tests. See
+- Pull requests must be accompanied by passing automated tests. See
   [CONTRIBUTING](https://github.com/phenomic/phenomic/blob/master/CONTRIBUTING.md)
   for more information.
-* Donation is a way to contribute.
+- Donation is a way to contribute.
   [You can help us via our OpenCollective page](https://opencollective.com/phenomic).
 
 ### Contributors

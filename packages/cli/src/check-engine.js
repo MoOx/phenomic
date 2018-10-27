@@ -13,7 +13,7 @@ const yarn = "yarn" + platformSuffix;
 export default function checkVersion(
   nodeVersion?: string,
   npmVersion?: string,
-  yarnVersion?: string | boolean
+  yarnVersion?: string | boolean,
 ) {
   const requirements = pkg.engines;
   nodeVersion = nodeVersion || process.version;
@@ -65,7 +65,7 @@ export default function checkVersion(
         "\n\n" +
         colors.yellow("See 'Setup' instruction in documentation.") +
         " " +
-        "https://phenomic.io/docs/setup/"
+        "https://phenomic.io/docs/setup/",
     );
     if (process.env.NODE_ENV === "test") {
       throw new Error(errorMessage);

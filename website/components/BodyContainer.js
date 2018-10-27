@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 1260,
     marginLeft: "auto",
-    marginRight: "auto"
-  }
+    marginRight: "auto",
+  },
 });
 
 export default BodyContainer;

@@ -8,11 +8,11 @@ type props = {|
   delay: number,
   duration: string,
   color: string,
-  color2: string
+  color2: string,
 |};
 class Spinner extends React.PureComponent<props, { visible: boolean }> {
   state = {
-    visible: false
+    visible: false,
   };
 
   _timeout: TimeoutID;
@@ -20,7 +20,7 @@ class Spinner extends React.PureComponent<props, { visible: boolean }> {
   componentDidMount() {
     this._timeout = setTimeout(
       () => this.setState({ visible: true }),
-      this.props.delay || 250
+      this.props.delay || 250,
     );
   }
   componentWillUnmount() {
@@ -32,7 +32,7 @@ class Spinner extends React.PureComponent<props, { visible: boolean }> {
       <React.Fragment>
         <style
           dangerouslySetInnerHTML={{
-            __html: `@keyframes Spinner-rotation { from { transform: rotate(0); } to { transform: rotate(359deg); } }`
+            __html: `@keyframes Spinner-rotation { from { transform: rotate(0); } to { transform: rotate(359deg); } }`,
           }}
         />
         <div
@@ -45,7 +45,7 @@ class Spinner extends React.PureComponent<props, { visible: boolean }> {
               "0.8s"} infinite linear`,
             borderRadius: "100%",
             transition: "opacity 4s",
-            ...(this.props.style || {})
+            ...(this.props.style || {}),
           }}
         />
       </React.Fragment>

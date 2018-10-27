@@ -7,7 +7,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
   const { Main, State, Script } = render(
     <StyleRoot>
       <App />
-    </StyleRoot>
+    </StyleRoot>,
   );
 
   return (

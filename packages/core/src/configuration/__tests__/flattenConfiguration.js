@@ -18,16 +18,16 @@ function d() {
 test("should flatten a list of plugins (array)", () => {
   expect(
     flattenPresets({
-      plugins: [a, b]
-    })
+      plugins: [a, b],
+    }),
   ).toMatchSnapshot();
 });
 
 test("should flatten a list of plugins (object)", () => {
   expect(
     flattenPresets({
-      plugins: { a, b }
-    })
+      plugins: { a, b },
+    }),
   ).toMatchSnapshot();
 });
 
@@ -36,9 +36,9 @@ test("should flatten a list of plugins with options (array)", () => {
     flattenPresets({
       plugins: [
         [(a: PhenomicPluginModule<PhenomicInputPluginOption>), { option: "-" }],
-        b
-      ]
-    })
+        b,
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -48,11 +48,11 @@ test("should flatten a list of plugins with options (object)", () => {
       plugins: {
         a: [
           (a: PhenomicPluginModule<PhenomicInputPluginOption>),
-          { option: "-" }
+          { option: "-" },
         ],
-        b
-      }
-    })
+        b,
+      },
+    }),
   ).toMatchSnapshot();
 });
 
@@ -61,10 +61,10 @@ test("should flatten a preset (array)", () => {
     flattenPresets({
       presets: [
         () => ({
-          plugins: [a, b]
-        })
-      ]
-    })
+          plugins: [a, b],
+        }),
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -73,10 +73,10 @@ test("should flatten a preset (object)", () => {
     flattenPresets({
       presets: [
         () => ({
-          plugins: { a, b }
-        })
-      ]
-    })
+          plugins: { a, b },
+        }),
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -85,11 +85,11 @@ test("should flatten a preset and plugins", () => {
     flattenPresets({
       presets: [
         () => ({
-          plugins: [a]
-        })
+          plugins: [a],
+        }),
       ],
-      plugins: [b, c]
-    })
+      plugins: [b, c],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -100,14 +100,14 @@ test("should flatten nested presets", () => {
         () => ({
           presets: [
             () => ({
-              plugins: { a }
-            })
+              plugins: { a },
+            }),
           ],
-          plugins: [b]
-        })
+          plugins: [b],
+        }),
       ],
-      plugins: [c, d]
-    })
+      plugins: [c, d],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -117,12 +117,12 @@ test("should flatten presets with options (array)", () => {
       presets: [
         [
           () => ({
-            plugins: { a, b, c }
+            plugins: { a, b, c },
           }),
-          [["a", { option: "-" }]]
-        ]
-      ]
-    })
+          [["a", { option: "-" }]],
+        ],
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -132,11 +132,11 @@ test("should flatten presets with options (object)", () => {
       presets: [
         [
           () => ({
-            plugins: { a, b, c }
+            plugins: { a, b, c },
           }),
-          { a: { option: "-" } }
-        ]
-      ]
-    })
+          { a: { option: "-" } },
+        ],
+      ],
+    }),
   ).toMatchSnapshot();
 });

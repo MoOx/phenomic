@@ -20,7 +20,7 @@ type p = {|
   hoveredStyle?: any,
   focusedStyle?: any,
   touchedStyle?: any,
-  hoveredOrFocusedStyle?: any
+  hoveredOrFocusedStyle?: any,
 |};
 
 const Stylable = (props: p) => {
@@ -44,8 +44,8 @@ const Stylable = (props: p) => {
       hovered && hoveredStyle,
       focused && focusedStyle,
       (hovered || focused) && hoveredOrFocusedStyle,
-      touched && touchedStyle
-    ]
+      touched && touchedStyle,
+    ],
   });
 };
 

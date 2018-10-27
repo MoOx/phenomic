@@ -27,9 +27,9 @@ class DocSearch extends Component {
         handleSelected: (input, event, suggestion) => {
           // rr4 || rr3
           (this.context.router.history || this.context.router).push(
-            suggestion.url.replace("https://phenomic.io", "")
+            suggestion.url.replace("https://phenomic.io", ""),
           );
-        }
+        },
       });
     };
     document.getElementsByTagName("body")[0].appendChild(d);
@@ -47,8 +47,8 @@ class DocSearch extends Component {
             {
               rel: "stylesheet",
               href:
-                "https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
-            }
+                "https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css",
+            },
           ]}
         />
         <IconMagnifier width="20" height="20" fill="#fff" />
@@ -67,7 +67,7 @@ class DocSearch extends Component {
 }
 
 DocSearch.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -80,15 +80,15 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.1)",
     borderRadius: 3,
     paddingHorizontal: Spacer.small,
-    paddingVertical: Spacer.small / 2
+    paddingVertical: Spacer.small / 2,
   },
   textInput: {
     width: "100%",
     color: "#fff",
     paddingVertical: Spacer.small / 2,
     paddingHorizontal: Spacer.small / 2,
-    marginHorizontal: Spacer.small / 2
-  }
+    marginHorizontal: Spacer.small / 2,
+  },
 });
 
 export default DocSearch;

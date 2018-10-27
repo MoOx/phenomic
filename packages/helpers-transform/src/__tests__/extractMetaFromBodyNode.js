@@ -12,23 +12,23 @@ it("should guess partial data from body AST", () => {
               c: [
                 {
                   p: {
-                    className: "icon icon-link"
+                    className: "icon icon-link",
                   },
-                  t: "span"
-                }
+                  t: "span",
+                },
               ],
               p: {
                 "aria-hidden": true,
-                href: "#auto-title"
+                href: "#auto-title",
               },
-              t: "a"
+              t: "a",
             },
-            "Auto title"
+            "Auto title",
           ],
           p: {
-            id: "auto-title"
+            id: "auto-title",
           },
-          t: "h1"
+          t: "h1",
         },
         "\n",
         {
@@ -37,28 +37,28 @@ it("should guess partial data from body AST", () => {
               c: [
                 {
                   p: {
-                    className: "icon icon-link"
+                    className: "icon icon-link",
                   },
-                  t: "span"
-                }
+                  t: "span",
+                },
               ],
               p: {
                 "aria-hidden": true,
-                href: "#sub-title"
+                href: "#sub-title",
               },
-              t: "a"
+              t: "a",
             },
-            "Sub title"
+            "Sub title",
           ],
           p: {
-            id: "sub-title"
+            id: "sub-title",
           },
-          t: "h2"
+          t: "h2",
         },
         "\n",
         {
           c: ["Content"],
-          t: "p"
+          t: "p",
         },
         "\n",
         {
@@ -67,23 +67,23 @@ it("should guess partial data from body AST", () => {
               c: [
                 {
                   p: {
-                    className: "icon icon-link"
+                    className: "icon icon-link",
                   },
-                  t: "span"
-                }
+                  t: "span",
+                },
               ],
               p: {
                 "aria-hidden": true,
-                href: "#another-level-2"
+                href: "#another-level-2",
               },
-              t: "a"
+              t: "a",
             },
-            "Another Level 2"
+            "Another Level 2",
           ],
           p: {
-            id: "another-level-2"
+            id: "another-level-2",
           },
-          t: "h2"
+          t: "h2",
         },
         "\n",
         {
@@ -92,26 +92,26 @@ it("should guess partial data from body AST", () => {
               c: [
                 {
                   p: {
-                    className: "icon icon-link"
+                    className: "icon icon-link",
                   },
-                  t: "span"
-                }
+                  t: "span",
+                },
               ],
               p: {
                 "aria-hidden": true,
-                href: "#a-level-3"
+                href: "#a-level-3",
               },
-              t: "a"
+              t: "a",
             },
-            "A level 3"
+            "A level 3",
           ],
           p: {
-            id: "a-level-3"
+            id: "a-level-3",
           },
-          t: "h3"
-        }
+          t: "h3",
+        },
       ],
-      t: "div"
-    })
+      t: "div",
+    }),
   ).toMatchSnapshot();
 });

@@ -28,8 +28,8 @@ export default (url: string): Url => {
         pathname: baseUrl.pathname,
         search: baseUrl.search,
         query: baseUrl.query,
-        hash: baseUrl.hash
-      })
-    )
+        hash: baseUrl.hash,
+      }),
+    ),
   };
 };

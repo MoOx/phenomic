@@ -14,7 +14,7 @@ const DefaultDevContent = () => (
       font: "caption",
       fontSize: "2rem",
       padding: "40vh 10vw",
-      textAlign: "center"
+      textAlign: "center",
     }}
   >
     <script
@@ -25,7 +25,7 @@ const DefaultDevContent = () => (
       if (devLoader) { devLoader.innerHTML = e.toString() }
       // only need to use this code once
       window.onerror = null
-    }`
+    }`,
       }}
     />
     <noscript>
@@ -50,9 +50,9 @@ const DefaultDevContent = () => (
 const _renderDevServer = (
   config,
   {
-    assets
+    assets,
     // location
-  }
+  },
 ) =>
   renderHTML(
     {
@@ -63,15 +63,15 @@ const _renderDevServer = (
             ? ReactDOMServer.renderToString(UserWrappedApp)
             : ReactDOMServer.renderToStaticMarkup(UserWrappedApp),
         state: null,
-        assets
-      })
+        assets,
+      }),
     },
-    config
+    config,
   );
 
 const renderDevServer = (config: PhenomicConfig) => (args: {|
   assets: PhenomicAssets,
-  location: string
+  location: string,
 |}) => _renderDevServer(config, args);
 
 export default renderDevServer;

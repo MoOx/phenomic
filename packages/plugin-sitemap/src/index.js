@@ -5,7 +5,7 @@
 
 const sitemap: PhenomicPluginModule<{}> = () => {
   return {
-    name: "@phenomic/plugin-sitemap"
+    name: "@phenomic/plugin-sitemap",
     /*
     getFile() {
       sm.createSitemap({

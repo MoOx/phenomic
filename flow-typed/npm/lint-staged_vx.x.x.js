@@ -131,7 +131,7 @@ declare module "lint-staged/test/readConfigOption.spec.js" {
 }
 declare module "lint-staged/test/runScript-mock-findBin.spec.js" {
   declare module.exports: $Exports<
-    "lint-staged/test/runScript-mock-findBin.spec"
+    "lint-staged/test/runScript-mock-findBin.spec",
   >;
 }
 declare module "lint-staged/test/runScript-mock-pMap.spec.js" {

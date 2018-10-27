@@ -11,7 +11,7 @@ const apiRelatedContent: PhenomicPluginModule<{}> = () => {
       // $FlowFixMe flow is lost with async function for express
       apiServer.get("/related/:path/limit-:limit/*.json", async function(
         req,
-        res
+        res,
       ) {
         debug(req.url, JSON.stringify(req.params));
         try {
@@ -22,24 +22,24 @@ const apiRelatedContent: PhenomicPluginModule<{}> = () => {
               req.db.getList(
                 req.params.path,
                 {
-                  limit: limit + 1
+                  limit: limit + 1,
                 },
                 "tags",
-                tag
-              )
+                tag,
+              ),
             ),
-            req.db.getList(req.params.path, { limit: limit + 1 })
+            req.db.getList(req.params.path, { limit: limit + 1 }),
           ]);
           const flattenedList = flatten(lists);
           const listWithoutCurrentPost = flattenedList.filter(
-            item => item.id !== post.value.id
+            item => item.id !== post.value.id,
           );
           res.json(listWithoutCurrentPost);
         } catch (error) {
           res.status(404).end();
         }
       });
-    }
+    },
   };
 };
 

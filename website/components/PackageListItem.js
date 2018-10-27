@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
   block: {
     // flexBasis: 400,
     minWidth: 250,
-    width: "33%"
+    width: "33%",
   },
   wrapper: {
     flexGrow: 1,
     marginHorizontal: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(0, 0, 0, 0.1)"
+    borderBottomColor: "rgba(0, 0, 0, 0.1)",
   },
   link: {
     flex: 1,
@@ -67,17 +67,17 @@ const styles = StyleSheet.create({
     textDecorationLine: "none",
     color: "inherit",
     paddingVertical: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   name: {
     fontWeight: "700",
     fontSize: 22,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   author: {
     fontWeight: "100",
-    color: "#999"
-  }
+    color: "#999",
+  },
 });
 
 export default PackageListItem;

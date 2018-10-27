@@ -10,7 +10,7 @@ type WebpackInstance = {
   options: Object,
   emitError: Function,
   emitFile: Function,
-  resourcePath: string
+  resourcePath: string,
 };
 
 declare module "webpack" {
@@ -20,6 +20,6 @@ declare module "webpack" {
 
 declare var module: {
   hot: {
-    accept(arg1: string | (() => void), arg2?: () => void): void
-  }
+    accept(arg1: string | (() => void), arg2?: () => void): void,
+  },
 };

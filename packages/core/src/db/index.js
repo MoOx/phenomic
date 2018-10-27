@@ -35,7 +35,7 @@ function defaultSort(sort = "date") {
 function getSublevel(
   sub: null | string | $ReadOnlyArray<string>,
   filter: ?string,
-  filterValue: ?string
+  filterValue: ?string,
 ) {
   if (!Array.isArray(sub)) {
     sub = [sub === null ? nullSub : sub];
@@ -54,7 +54,7 @@ function getSublevel(
 
 function putToSublevel(
   subName: null | string | $ReadOnlyArray<string>,
-  value: PhenomicDBEntry
+  value: PhenomicDBEntry,
 ) {
   if (!Array.isArray(subName)) {
     subName = [subName === null ? nullSub : subName];
@@ -64,14 +64,14 @@ function putToSublevel(
   database = {
     ...database,
     [subname]: [...sub.filter(item => item.id !== value.id), value].sort(
-      orderById
-    )
+      orderById,
+    ),
   };
 }
 
 function updateToSublevel(
   subName: null | string | $ReadOnlyArray<string>,
-  value: PhenomicDBEntry
+  value: PhenomicDBEntry,
 ) {
   if (!Array.isArray(subName)) {
     subName = [subName === null ? nullSub : subName];
@@ -82,8 +82,8 @@ function updateToSublevel(
     ...database,
     [subname]: [
       ...sub.filter(item => item.id !== value.id),
-      merge({}, sub.find(item => item.id === value.id) || {}, value)
-    ].sort(orderById)
+      merge({}, sub.find(item => item.id === value.id) || {}, value),
+    ].sort(orderById),
   };
 }
 
@@ -108,33 +108,33 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
     put(
       sub: null | string | $ReadOnlyArray<string>,
       id: string,
-      value: PhenomicDBEntryInput = { data: {}, partial: {} }
+      value: PhenomicDBEntryInput = { data: {}, partial: {} },
     ) {
       putToSublevel(sub, {
         data: value.data,
         partial: value.partial,
-        id
+        id,
       });
     },
     update(
       sub: null | string | $ReadOnlyArray<string>,
       id: string,
-      value: PhenomicDBEntryInput = { data: {}, partial: {} }
+      value: PhenomicDBEntryInput = { data: {}, partial: {} },
     ) {
       updateToSublevel(sub, {
         data: value.data,
         partial: value.partial,
-        id
+        id,
       });
     },
     get(
       sub: null | string | $ReadOnlyArray<string>,
-      id: string
+      id: string,
     ): PhenomicDBEntryDetailed {
       const item = getSublevel(sub).find(item => item.id === id);
       if (typeof item === "undefined") {
         throw new NotFoundError(
-          `ID '${id}' not found in database ('${String(sub)}')`
+          `ID '${id}' not found in database ('${String(sub)}')`,
         );
       }
       const { body, ...metadata } = item.data;
@@ -143,13 +143,13 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
         id: id,
         value: {
           ...relatedData,
-          ...(body ? { body } : {})
-        }
+          ...(body ? { body } : {}),
+        },
       };
     },
     getPartial(
       sub: null | string | $ReadOnlyArray<string>,
-      id: string
+      id: string,
     ): mixed | PhenomicDBEntryPartial {
       const item = getSublevel(sub).find(item => item.id === id);
       if (!item) {
@@ -171,10 +171,10 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
         lte?: string,
         limit?: number,
         sort?: string,
-        reverse?: boolean
+        reverse?: boolean,
       } = {},
       filter: string = "default",
-      filterValue: string = ""
+      filterValue: string = "",
     ): $ReadOnlyArray<any> {
       let collection = getSublevel(sub, filter, filterValue);
       collection.sort(
@@ -182,7 +182,7 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
         query.sort &&
         dbConfig.sortFunctions[query.sort]
           ? dbConfig.sortFunctions[query.sort]
-          : defaultSort(query.sort)
+          : defaultSort(query.sort),
       );
       if (query.reverse) {
         collection = collection.concat().reverse();
@@ -203,7 +203,7 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
       if (typeof query.limit === "number") {
         collection = collection.slice(
           0,
-          Math.min(query.limit, collection.length)
+          Math.min(query.limit, collection.length),
         );
       }
 
@@ -218,15 +218,15 @@ const createDB = (dbConfig: PhenomicDBConfig) => {
         ) {
           return {
             id: item.id,
-            value
+            value,
           };
         }
         return {
           ...value,
-          id: item.id
+          id: item.id,
         };
       });
-    }
+    },
   };
 
   function getDataRelation(fieldName, ids) {

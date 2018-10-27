@@ -71,7 +71,7 @@ const ShowcaseList = (props: Object) => (
                 <a href={item.url} target="_blank" rel="noopener noreferrer">
                   <Image
                     source={{
-                      uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`
+                      uri: `/showcase/entry/${urlToSlug(item.url)}-large.jpg`,
                     }}
                     style={styles.imageLarge}
                     resizeMode="cover"
@@ -79,7 +79,7 @@ const ShowcaseList = (props: Object) => (
                   <Div style={styles.imageContainerSmall}>
                     <Image
                       source={{
-                        uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`
+                        uri: `/showcase/entry/${urlToSlug(item.url)}-small.jpg`,
                       }}
                       style={styles.imageSmall}
                       resizeMode="cover"
@@ -136,11 +136,11 @@ const ShowcaseList = (props: Object) => (
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   page: {
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   addYourOwn: {
     justifyContent: "flex-end",
@@ -149,33 +149,33 @@ const styles = StyleSheet.create({
     top: -40,
     fontSize: 16,
     color: "#fff",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
   currentFilter: {
     padding: 10,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   filterMessage: {
     padding: 10,
     color: "#4078c0",
     backgroundColor: "#e6f1f6",
-    borderRadius: 3
+    borderRadius: 3,
   },
   filterMessageLink: {
     color: "#4078c0",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   list: {
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   item: {
     flexGrow: 1,
     minWidth: 250,
     position: "relative",
     width: "50%",
-    padding: 20
+    padding: 20,
   },
   imageLarge: {
     flexGrow: 1,
@@ -183,13 +183,13 @@ const styles = StyleSheet.create({
       (100 * screenshotsSize.large.height) / screenshotsSize.large.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
-    borderRadius: 4
+    borderRadius: 4,
   },
   imageContainerSmall: {
     position: "absolute",
     right: -10,
     bottom: -10,
-    width: "20%"
+    width: "20%",
   },
   imageSmall: {
     flexGrow: 1,
@@ -198,24 +198,24 @@ const styles = StyleSheet.create({
       (100 * screenshotsSize.small.height) / screenshotsSize.small.width + "%",
     borderWidth: 1,
     borderColor: "rgba(0,0,0,.1)",
-    borderRadius: 4
+    borderRadius: 4,
   },
   itemName: {
     fontWeight: "700",
     fontSize: 18,
     lineHeight: 18 * 2,
-    color: "#424345"
+    color: "#424345",
   },
   itemLinkSource: {
     fontSize: 12,
     textDecorationLine: "none",
     color: "#006df4",
-    opacity: 0.4
+    opacity: 0.4,
   },
   tags: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginRight: -10
+    marginRight: -10,
   },
   itemTag: {
     fontSize: 12,
@@ -225,22 +225,22 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     color: "#08b09b",
     backgroundColor: "#fff",
-    borderRadius: 3
+    borderRadius: 3,
   },
   paginationRow: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   paginationColumn: {
     width: "50%",
     padding: 10,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   link: {
     color: "#006df4",
     fontSize: 18,
-    padding: 20
-  }
+    padding: 20,
+  },
 });
 
 export { ShowcaseList as Component };
@@ -251,8 +251,8 @@ export default withPhenomicApi(ShowcaseList, props => ({
     order: "asc",
     sort: "showcase",
     limit: 10,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));
 
 export const ShowcaseListByTag = withPhenomicApi(ShowcaseList, props => ({
@@ -263,6 +263,6 @@ export const ShowcaseListByTag = withPhenomicApi(ShowcaseList, props => ({
     order: "asc",
     sort: "showcase",
     limit: 10,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));

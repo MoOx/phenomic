@@ -28,7 +28,7 @@ const MarkdownHeading = (level: number) => {
           {props.children.slice(1)}
         </Header>
       );
-    })
+    }),
   );
 };
 
@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: -anchorSize - anchorPadding,
     transitionDuration: "0.2s",
-    opacity: 0
+    opacity: 0,
   },
   linkVisible: {
-    opacity: 0.8
+    opacity: 0.8,
   },
   icon: {
     height: anchorSize + anchorPadding,
-    padding: anchorPadding
-  }
+    padding: anchorPadding,
+  },
 });
 
 const headings = {
@@ -60,7 +60,7 @@ const headings = {
   H3: MarkdownHeading(3),
   H4: MarkdownHeading(4),
   H5: MarkdownHeading(5),
-  H6: MarkdownHeading(6)
+  H6: MarkdownHeading(6),
 };
 
 export default headings;

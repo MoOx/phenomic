@@ -64,7 +64,7 @@ declare module "remark-highlights/src/index.js" {
 }
 declare module "remark-highlights/src/utils/constructConfig.js" {
   declare module.exports: $Exports<
-    "remark-highlights/src/utils/constructConfig"
+    "remark-highlights/src/utils/constructConfig",
   >;
 }
 declare module "remark-highlights/src/utils/getIcon.js" {
@@ -72,7 +72,7 @@ declare module "remark-highlights/src/utils/getIcon.js" {
 }
 declare module "remark-highlights/src/utils/highlightLines.js" {
   declare module.exports: $Exports<
-    "remark-highlights/src/utils/highlightLines"
+    "remark-highlights/src/utils/highlightLines",
   >;
 }
 declare module "remark-highlights/src/utils/highlightNode.js" {
@@ -86,7 +86,7 @@ declare module "remark-highlights/src/utils/loadGrammars.js" {
 }
 declare module "remark-highlights/src/utils/scopeNameFromLang.js" {
   declare module.exports: $Exports<
-    "remark-highlights/src/utils/scopeNameFromLang"
+    "remark-highlights/src/utils/scopeNameFromLang",
   >;
 }
 declare module "remark-highlights/src/utils/wrapNode.js" {

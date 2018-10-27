@@ -9,7 +9,7 @@ import {
   withPhenomicApi,
   query,
   BodyRenderer,
-  textRenderer
+  textRenderer,
 } from "@phenomic/preset-react-app/lib/client";
 
 const Home = ({ isLoading, posts }) => (
@@ -57,8 +57,8 @@ const HomeContainer = withPhenomicApi(Home, props => ({
   posts: query({
     path: "content/posts",
     limit: 2,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));
 
 const DefaultPostLayout = ({ title, body }) => (
@@ -93,7 +93,7 @@ const HeroPostLayout = ({ title, body }) => (
 
 const PostLayouts = {
   default: DefaultPostLayout,
-  hero: HeroPostLayout
+  hero: HeroPostLayout,
 };
 
 const BlogPost = ({ hasError, isLoading, page }) => {
@@ -115,7 +115,7 @@ const BlogPost = ({ hasError, isLoading, page }) => {
 };
 
 const BlogPostContainer = withPhenomicApi(BlogPost, props => ({
-  page: query({ path: "content/posts", id: props.params.splat })
+  page: query({ path: "content/posts", id: props.params.splat }),
 }));
 
 const PageError = ({ error }) => {

@@ -4,11 +4,11 @@ import * as React from "react";
 
 type props = {|
   onFocus?: () => void,
-  onBlur?: () => void
+  onBlur?: () => void,
 |};
 
 type state = {|
-  focused: boolean
+  focused: boolean,
 |};
 
 export default (ComposedComponent: React.ComponentType<*>) => {
@@ -16,7 +16,7 @@ export default (ComposedComponent: React.ComponentType<*>) => {
     props: props;
 
     state: state = {
-      focused: false
+      focused: false,
     };
 
     handleFocus = (event: React$SyntheticEvent): void => {

@@ -11,13 +11,13 @@ const Layout = (
     title,
     image,
     noHero,
-    children
+    children,
   } /*: {
     title?: React.Node,
     image?: string,
     noHero?: boolean,
     children: React.Node
-  } */
+  } */,
 ) => (
   <div className="Layout">
     <style
@@ -75,7 +75,7 @@ const Layout = (
           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
           margin: 40px;
         }
-      `
+      `,
       }}
     />
     <Head>

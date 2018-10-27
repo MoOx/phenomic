@@ -22,7 +22,7 @@ import BodySmallContainer from "./BodySmallContainer";
 const layouts = {
   Default: props => (
     <MarkdownGenerated body={props.node.body} filename={props.node.filename} />
-  )
+  ),
 };
 
 const sort = (a, b) => {
@@ -77,7 +77,7 @@ const Page = (props: Object, context: Object) => {
                     p =>
                       readPkgFromId(p.id) == currentPkg &&
                       // avoid package.json files
-                      !p.title.endsWith("package.json")
+                      !p.title.endsWith("package.json"),
                   )
                   .sort(sort)
                   .map(page => {
@@ -106,7 +106,9 @@ const Page = (props: Object, context: Object) => {
                                       <Stylable
                                         style={[
                                           styles.sidebarHeadingLink,
-                                          styles["sidebarHeadingLink" + h.level]
+                                          styles[
+                                            "sidebarHeadingLink" + h.level
+                                          ],
                                         ]}
                                         activeStyle={[
                                           styles.sidebarHeadingLinkActive,
@@ -114,7 +116,7 @@ const Page = (props: Object, context: Object) => {
                                             "sidebarHeadingLink" +
                                               h.level +
                                               "Active"
-                                          ]
+                                          ],
                                         ]}
                                         hoveredOrFocusedStyle={[
                                           styles.sidebarHeadingLinkFocused,
@@ -122,7 +124,7 @@ const Page = (props: Object, context: Object) => {
                                             "sidebarHeadingLink" +
                                               h.level +
                                               "Focused"
-                                          ]
+                                          ],
                                         ]}
                                       >
                                         <Link href={href + "#" + h.id}>
@@ -131,7 +133,7 @@ const Page = (props: Object, context: Object) => {
                                           </Spacer>
                                         </Link>
                                       </Stylable>
-                                    )
+                                    ),
                                 )
                                 .filter(heading => heading)}
                           </View>
@@ -156,37 +158,37 @@ const Page = (props: Object, context: Object) => {
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   sidebar: {
     flex: 0,
     flexBasis: 250,
-    marginTop: 30
+    marginTop: 30,
   },
   sidebarLink: {
     fontSize: 18,
     color: "#006BF6",
     borderLeftWidth: 4,
     borderLeftStyle: "solid",
-    borderLeftColor: "transparent"
+    borderLeftColor: "transparent",
   },
   sidebarLinkActive: {
-    borderLeftColor: "#02CA83"
+    borderLeftColor: "#02CA83",
   },
   sidebarLinkFocused: {
     color: "#fff",
-    backgroundColor: "#006BF6"
+    backgroundColor: "#006BF6",
   },
   sidebarHeadingLink: {
     fontWeight: "300",
-    color: "#006BF6"
+    color: "#006BF6",
   },
   sidebarHeadingLinkActive: {
-    borderLeftColor: "#02CA83"
+    borderLeftColor: "#02CA83",
   },
   sidebarHeadingLinkFocused: {
     color: "#fff",
-    backgroundColor: "#006BF6"
+    backgroundColor: "#006BF6",
   },
   /* eslint-disable react-native/no-unused-styles */
   sidebarHeadingLink1: { marginLeft: Spacer.small * 1 },
@@ -198,8 +200,8 @@ const styles = StyleSheet.create({
   /* eslint-enable react-native/no-unused-styles */
   content: {
     flex: 2,
-    flexBasis: 400
-  }
+    flexBasis: 400,
+  },
 });
 
 export default Page;

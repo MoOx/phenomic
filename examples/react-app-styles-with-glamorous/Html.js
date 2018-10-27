@@ -17,7 +17,7 @@ export default ({ App, render }: PhenomicHtmlPropsType) => {
         <State />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window._glam = ${JSON.stringify(ids)}`
+            __html: `window._glam = ${JSON.stringify(ids)}`,
           }}
         />
         <Script />

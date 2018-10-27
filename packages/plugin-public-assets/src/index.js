@@ -8,25 +8,25 @@ import logger from "@phenomic/core/lib/logger";
 import getPath from "@phenomic/core/lib/utils/getPath";
 
 type options = {|
-  path: string
+  path: string,
 |};
 
 const pluginName = "@phenomic/plugin-public-assets";
 const log = logger(pluginName);
 
 const defaultOptions = {
-  path: "public"
+  path: "public",
 };
 
 const publicAssets: PhenomicPluginModule<options> = (
   config: PhenomicConfig,
-  options = defaultOptions
+  options = defaultOptions,
 ) => {
   const warnNoPublic = () => {
     log.warn(
       `No '${
         options.path
-      }' folder found. Please create this folder if you want static files to be served from the root (eg: favicon.ico).`
+      }' folder found. Please create this folder if you want static files to be served from the root (eg: favicon.ico).`,
     );
   };
   return {
@@ -37,7 +37,7 @@ const publicAssets: PhenomicPluginModule<options> = (
         () => {
           warnNoPublic();
           return [];
-        }
+        },
       );
     },
     beforeBuild() {
@@ -54,10 +54,10 @@ const publicAssets: PhenomicPluginModule<options> = (
           () => {
             warnNoPublic();
             resolve();
-          }
+          },
         );
       });
-    }
+    },
   };
 };
 

@@ -12,8 +12,8 @@ const defaultMdOptions = {
     [require("remark-rehype"), { allowDangerousHTML: true }],
     require("rehype-raw"),
     require("rehype-slug"),
-    require("rehype-autolink-headings")
-  ]
+    require("rehype-autolink-headings"),
+  ],
 };
 
 const input = `## Test
@@ -34,7 +34,7 @@ console.log(window)
 it("should render markdown as json (react component)", () => {
   const processor = unifiedProcessor({
     output: "json",
-    plugins: defaultMdOptions.plugins
+    plugins: defaultMdOptions.plugins,
   });
   // $FlowFixMe mixed insn't ok?
   const md = processor.processSync(input).contents;

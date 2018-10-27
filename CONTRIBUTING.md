@@ -239,17 +239,17 @@ Blah blah
 
 ## How to Get in Touch
 
-* Chat - [#phenomic](https://gitter.im/phenomic/phenomic) on Gitter.
-* Email - contact (at) phenomic (dot) io
+- Chat - [#phenomic](https://gitter.im/phenomic/phenomic) on Gitter.
+- Email - contact (at) phenomic (dot) io
 
 ## Code Conventions
 
-* [Prettier](https://prettier.io) is used to avoid bikeshedding on quotes or
+- [Prettier](https://prettier.io) is used to avoid bikeshedding on quotes or
   semicolons.
-* [Eslint](http://eslint.org) is used to help to keep the codebase clean, with a
+- [Eslint](http://eslint.org) is used to help to keep the codebase clean, with a
   [strong config](https://github.com/MoOx/eslint-config-i-am-meticulous).
-* Prefer ES6 syntax when possible.
-* Use [Flow types](http://flowtype.org/).
+- Prefer ES6 syntax when possible.
+- Use [Flow types](http://flowtype.org/).
 
 ## License
 

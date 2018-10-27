@@ -8,11 +8,11 @@ import {
   createApp,
   Link,
   withPhenomicApi,
-  query
+  query,
 } from "@phenomic/preset-react-app/lib/client";
 
 const history = useRouterHistory(
-  typeof window !== "undefined" ? createHistory : createMemoryHistory
+  typeof window !== "undefined" ? createHistory : createMemoryHistory,
 )({ basename: process.env.PHENOMIC_APP_BASENAME });
 
 const Hello = () => (
@@ -35,7 +35,7 @@ const GoBack = ({ hasError, isLoading, testList }) => (
 );
 
 const GoBackContainer = withPhenomicApi(GoBack, () => ({
-  testList: query({})
+  testList: query({}),
 }));
 
 export default createApp(() => (

@@ -18,7 +18,7 @@ const radius = 4;
 const padding = 14;
 const styles = StyleSheet.create({
   editor: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   header: {
     borderTopLeftRadius: radius,
@@ -26,19 +26,19 @@ const styles = StyleSheet.create({
     padding: padding,
     backgroundColor: "#12171C",
     borderBottomWidth: 1,
-    borderBottomColor: "#0E1216"
+    borderBottomColor: "#0E1216",
   },
   headerText: {
     fontSize: 14,
-    color: "rgba(203, 211, 219, 0.65)"
+    color: "rgba(203, 211, 219, 0.65)",
   },
   content: {
     flexGrow: 1,
     borderBottomLeftRadius: radius,
     borderBottomRightRadius: radius,
     padding,
-    backgroundColor: "#171D23"
-  }
+    backgroundColor: "#171D23",
+  },
 });
 
 const rawStyles = {
@@ -46,8 +46,8 @@ const rawStyles = {
     fontSize: 18,
     lineHeight: 1.5,
     margin: 0,
-    color: "#CDE4FF"
-  }
+    color: "#CDE4FF",
+  },
 };
 
 export default Editor;

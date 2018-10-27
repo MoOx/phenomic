@@ -12,13 +12,13 @@ if (typeof window !== "undefined" && window._glam) {
 const title = css({
   fontSize: "1.5em",
   textAlign: "center",
-  color: "palevioletred"
+  color: "palevioletred",
 });
 
 const title2 = css({
   fontSize: "2em",
   textAlign: "right",
-  color: "blue"
+  color: "blue",
 });
 
 export default createApp(() => (

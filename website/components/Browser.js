@@ -21,7 +21,7 @@ const padding = 8;
 const bulletSize = 8;
 const styles = StyleSheet.create({
   editor: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   header: {
     flexDirection: "row",
@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: radius,
     borderTopRightRadius: radius,
     padding: padding,
-    backgroundColor: "#12171C"
+    backgroundColor: "#12171C",
   },
   bullet: {
     width: bulletSize,
     height: bulletSize,
     borderRadius: bulletSize,
-    marginRight: bulletSize / 2
+    marginRight: bulletSize / 2,
   },
   content: {
     flexGrow: 1,
@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: radius,
     padding: 6,
     paddingTop: 0,
-    backgroundColor: "#171D23"
+    backgroundColor: "#171D23",
   },
   contentContainer: {
     flexGrow: 1,
-    backgroundColor: "#fff"
-  }
+    backgroundColor: "#fff",
+  },
 });
 
 export default Browser;

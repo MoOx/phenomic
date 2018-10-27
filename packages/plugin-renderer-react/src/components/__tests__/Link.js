@@ -17,7 +17,7 @@ test("Link onPress/onClick", () => {
     <Link to="/b" onPress={onPress}>
       {"c"}
     </Link>,
-    render => render.props.onPress({})
+    render => render.props.onPress({}),
   );
   expect(onPress).toHaveBeenCalled();
 
@@ -26,7 +26,7 @@ test("Link onPress/onClick", () => {
     <Link to="/b" onClick={onClick}>
       {"c"}
     </Link>,
-    render => render.props.onClick({})
+    render => render.props.onClick({}),
   );
   expect(onClick).toHaveBeenCalled();
 });
@@ -45,7 +45,7 @@ test("Link works with external ``href``", () => {
 
 test("Link works with internal ``href``", () => {
   expect(
-    renderJSX(<Link href="http://url.tld/internal">{"c"}</Link>)
+    renderJSX(<Link href="http://url.tld/internal">{"c"}</Link>),
   ).toMatchSnapshot();
   expect(renderJSX(<Link href="/internal">{"c"}</Link>)).toMatchSnapshot();
 });
@@ -57,9 +57,9 @@ test("Link activeClassName?", () => {
         {"c"}
       </Link>,
       {
-        router: { isActive: () => true }
-      }
-    )
+        router: { isActive: () => true },
+      },
+    ),
   ).toMatchSnapshot();
   expect(
     renderJSX(
@@ -67,9 +67,9 @@ test("Link activeClassName?", () => {
         {"c"}
       </Link>,
       {
-        router: { isActive: () => false }
-      }
-    )
+        router: { isActive: () => false },
+      },
+    ),
   ).toMatchSnapshot();
 });
 
@@ -81,9 +81,9 @@ test("Link activeStyle?", () => {
         {"c"}
       </Link>,
       {
-        router: { isActive: () => true }
-      }
-    )
+        router: { isActive: () => true },
+      },
+    ),
   ).toMatchSnapshot();
   expect(
     renderJSX(
@@ -91,9 +91,9 @@ test("Link activeStyle?", () => {
         {"c"}
       </Link>,
       {
-        router: { isActive: () => false }
-      }
-    )
+        router: { isActive: () => false },
+      },
+    ),
   ).toMatchSnapshot();
 });
 /* eslint-enable react-native/no-inline-styles */

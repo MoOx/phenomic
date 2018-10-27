@@ -11,10 +11,10 @@ navigation instead of HTML files after the first page viewed.
 
 The optional content API offers additional steps during the process:
 
-* Content files are read from the filesystem (+ watched for change during
+- Content files are read from the filesystem (+ watched for change during
   development)
-* Those files are transformed as data\*
-* The data resulting from the transformation is injected into Phenomic database
+- Those files are transformed as data\*
+- The data resulting from the transformation is injected into Phenomic database
   and later accessible via the content API
 
 To access those data, you will use the

@@ -29,7 +29,7 @@ const resolveUrlsForDynamicParams = async function(route: PhenomicRoute) {
       `Route with path '${
         route.path
       }' have no component (or an undefined value).\n` +
-        "Check the component reference and its origin. Are the import/export correct?"
+        "Check the component reference and its origin. Are the import/export correct?",
     );
   }
   const maybeResolvedRoute = await resolveUrlsFromPhenomicApi(route);
@@ -47,18 +47,18 @@ const resolveUrlsForDynamicParams = async function(route: PhenomicRoute) {
 const normalizePath = (path: string) => path.replace(/^\//, "");
 
 const resolveUrls = async function({
-  routes
+  routes,
 }: {
-  routes: $ReadOnlyArray<PhenomicRoute>
+  routes: $ReadOnlyArray<PhenomicRoute>,
 }) {
   const dynamicRoutes = await Promise.all(
-    routes.map(route => resolveUrlsForDynamicParams(route))
+    routes.map(route => resolveUrlsForDynamicParams(route)),
   );
   const flattenedDynamicRoutes = flatten(dynamicRoutes);
   const filtredDynamicRoutes = flattenedDynamicRoutes.filter(url => {
     if (url.includes("*")) {
       debug(
-        `${url} is including a '*' but it has not been resolved: url is skipped`
+        `${url} is including a '*' but it has not been resolved: url is skipped`,
       );
       return false;
     }

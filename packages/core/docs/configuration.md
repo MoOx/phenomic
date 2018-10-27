@@ -44,7 +44,7 @@ Note that yaml is also supported in .rc files.
 
 ```js
 module.exports = {
-  presets: ["@phenomic/preset-react-app"]
+  presets: ["@phenomic/preset-react-app"],
 };
 ```
 
@@ -102,8 +102,8 @@ folder when doing your query._
 [More on this in content api documentation](./api.md)
 
 If you need relative path for a root but don't want your queries to includes
-awkward paths with dots, you can send instead an object `key: { root: string,
-globs: [array of globs]}`.
+awkward paths with dots, you can send instead an object
+`key: { root: string, globs: [array of globs]}`.
 
 Example:
 

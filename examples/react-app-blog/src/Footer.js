@@ -33,7 +33,7 @@ const Footer = () => (
         .Footer-link:focus {
           color: inherit;
         }
-        `
+        `,
       }}
     />
     <footer className="Footer">

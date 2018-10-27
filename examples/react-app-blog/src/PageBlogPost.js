@@ -9,7 +9,7 @@ import PostLayoutNoHero from "./PostLayoutNoHero";
 
 const layouts = {
   default: PostLayoutDefault,
-  light: PostLayoutNoHero
+  light: PostLayoutNoHero,
 };
 
 const PageBlogPost = ({ hasError, isLoading, post }) => {
@@ -23,5 +23,5 @@ const PageBlogPost = ({ hasError, isLoading, post }) => {
 };
 
 export default withPhenomicApi(PageBlogPost, props => ({
-  post: query({ path: "content/posts", id: props.params.splat })
+  post: query({ path: "content/posts", id: props.params.splat }),
 }));

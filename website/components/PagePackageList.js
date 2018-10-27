@@ -45,14 +45,14 @@ const PagePackageList = (props: Object) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   list: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    alignItems: "flex-start"
-  }
+    alignItems: "flex-start",
+  },
 });
 
 export default withPhenomicApi(PagePackageList, () => ({
@@ -61,6 +61,6 @@ export default withPhenomicApi(PagePackageList, () => ({
     by: "keywords",
     value: "phenomic-package",
     sort: "name",
-    order: "asc"
-  })
+    order: "asc",
+  }),
 }));

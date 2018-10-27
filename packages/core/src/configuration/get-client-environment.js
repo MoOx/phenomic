@@ -22,7 +22,7 @@ const dotenvFiles =
         `${root}.${NODE_ENV}.local`,
         `${root}.${NODE_ENV}`,
         `${root}.local`,
-        root
+        root,
       ]
     : [`${root}.${NODE_ENV}`, root];
 
@@ -35,8 +35,8 @@ dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require("dotenv-expand")(
       require("dotenv").config({
-        path: dotenvFile
-      })
+        path: dotenvFile,
+      }),
     );
   }
 });
@@ -52,7 +52,7 @@ export default function getClientEnvironment(config: PhenomicConfig) {
         return env;
       },
       {
-        NODE_ENV
-      }
+        NODE_ENV,
+      },
     );
 }

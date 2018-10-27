@@ -37,11 +37,11 @@ const Header = (props: Object) => (
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 1 /* for DocSearch component autocomplete results */
+    zIndex: 1 /* for DocSearch component autocomplete results */,
   },
   hero: {
     paddingTop: 40,
-    paddingBottom: 60
+    paddingBottom: 60,
   },
   heroText: {
     color: "#fff",
@@ -49,16 +49,16 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     textAlign: "center",
     margin: 0,
-    padding: 0
+    padding: 0,
   },
   heroSubText: {
     color: "#fff",
     opacity: 0.6,
     fontSize: 20,
     fontWeight: "300",
-    textAlign: "center"
+    textAlign: "center",
   },
-  children: {}
+  children: {},
 });
 
 export default Header;

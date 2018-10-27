@@ -25,7 +25,7 @@ module.exports = (/* options */) => {
 
     // fake method name
     method1: () => {},
-    method2: () => {}
+    method2: () => {},
   };
 };
 ```
@@ -74,7 +74,7 @@ It receive the database and all transformers plugin as arguments
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-collector-files/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-collector-files/src/index.js
 
 ### `supportedFileTypes` + `transform`
 
@@ -94,9 +94,9 @@ supportedFileTypes: ["md", "markdown"]; // will match *.md and *.markdown
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
 
 #### `transform`
 
@@ -124,9 +124,9 @@ Learn more about database entries in [Content API documentation](./api.md).
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-markdown/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-asciidoc/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-transform-json/src/index.js
 
 ### `build`
 
@@ -139,7 +139,7 @@ build: () => assets,
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
 
 ### `buildForPrerendering`
 
@@ -154,7 +154,7 @@ buildForPrerendering: () => Promise<result that will be passed to `getRoutes`>,
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
 
 ### `getRoutes`
 
@@ -164,7 +164,7 @@ getRoutes: (resultOf_buildForPrerendering) => routes,
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
 
 ### `resolveURLs`
 
@@ -179,7 +179,7 @@ resolveURLs: ({
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
 
 ### `renderStatic`
 
@@ -197,7 +197,7 @@ renderStatic: ({|
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
 
 ### `renderDevServer`
 
@@ -215,7 +215,7 @@ renderDevServer: ({
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-renderer-react/src/index.js
 
 ### `addDevServerMiddlewares`
 
@@ -230,9 +230,9 @@ addDevServerMiddlewares: () =>
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-public-assets/src/index.js
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-rss-feed/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-bundler-webpack/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-public-assets/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-rss-feed/src/index.js
 
 ### `beforeBuild`
 
@@ -244,7 +244,7 @@ beforeBuild: () => void | Promise<void>,
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-public-assets/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-public-assets/src/index.js
 
 ### `afterBuild`
 
@@ -290,4 +290,4 @@ Learn more about database [Content API documentation](./api.md).
 
 Used in
 
-* https://github.com/phenomic/phenomic/tree/master/packages/plugin-api-related-content/src/index.js
+- https://github.com/phenomic/phenomic/tree/master/packages/plugin-api-related-content/src/index.js

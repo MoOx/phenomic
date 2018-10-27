@@ -15,7 +15,7 @@ const handleError = error => {
 };
 
 function normalizeConfiguration(
-  config?: PhenomicInputConfig
+  config?: PhenomicInputConfig,
 ): Promise<PhenomicConfig> {
   const configExplorer = cosmiconfig("phenomic", { cache: false });
   return configExplorer
@@ -25,12 +25,12 @@ function normalizeConfiguration(
         throw new Error(
           "No configuration file found. Please add a 'phenomic' section in package.json or " +
             "create a file named .phenomicrc(.json|.yaml)? or phenomic.config.js." +
-            "\nSee https://phenomic.io/en/packages/core/docs/configuration/"
+            "\nSee https://phenomic.io/en/packages/core/docs/configuration/",
         );
       }
       return flattenConfiguration({
         ...result.config,
-        ...(config || {})
+        ...(config || {}),
       });
     })
     .catch(handleError);
@@ -53,13 +53,13 @@ export default {
       await build(config);
       log(
         `⚡️ Serving on http://localhost:${config.port}` +
-          config.baseUrl.pathname
+          config.baseUrl.pathname,
       );
       serve(config.outdir, {
-        port: config.port
+        port: config.port,
       });
     } catch (e) {
       handleError(e);
     }
-  }
+  },
 };

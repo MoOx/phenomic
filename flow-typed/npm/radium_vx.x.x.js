@@ -384,7 +384,7 @@ declare module "radium/lib/plugins/keyframes-plugin.js" {
 }
 declare module "radium/lib/plugins/merge-style-array-plugin.js" {
   declare module.exports: $Exports<
-    "radium/lib/plugins/merge-style-array-plugin"
+    "radium/lib/plugins/merge-style-array-plugin",
   >;
 }
 declare module "radium/lib/plugins/mouse-up-listener.js" {
@@ -395,17 +395,17 @@ declare module "radium/lib/plugins/prefix-plugin.js" {
 }
 declare module "radium/lib/plugins/remove-nested-styles-plugin.js" {
   declare module.exports: $Exports<
-    "radium/lib/plugins/remove-nested-styles-plugin"
+    "radium/lib/plugins/remove-nested-styles-plugin",
   >;
 }
 declare module "radium/lib/plugins/resolve-interaction-styles-plugin.js" {
   declare module.exports: $Exports<
-    "radium/lib/plugins/resolve-interaction-styles-plugin"
+    "radium/lib/plugins/resolve-interaction-styles-plugin",
   >;
 }
 declare module "radium/lib/plugins/resolve-media-queries-plugin.js" {
   declare module.exports: $Exports<
-    "radium/lib/plugins/resolve-media-queries-plugin"
+    "radium/lib/plugins/resolve-media-queries-plugin",
   >;
 }
 declare module "radium/lib/plugins/visited-plugin.js" {
@@ -431,7 +431,7 @@ declare module "radium/src/__mocks__/prefixer.js" {
 }
 declare module "radium/src/__tests__/camel-case-props-to-dash-case-test.js" {
   declare module.exports: $Exports<
-    "radium/src/__tests__/camel-case-props-to-dash-case-test"
+    "radium/src/__tests__/camel-case-props-to-dash-case-test",
   >;
 }
 declare module "radium/src/__tests__/enhancer-test.js" {
@@ -451,7 +451,7 @@ declare module "radium/src/__tests__/radium-test.js" {
 }
 declare module "radium/src/__tests__/remove-nested-styles-test.js" {
   declare module.exports: $Exports<
-    "radium/src/__tests__/remove-nested-styles-test"
+    "radium/src/__tests__/remove-nested-styles-test",
   >;
 }
 declare module "radium/src/__tests__/resolve-styles-test.js" {
@@ -522,7 +522,7 @@ declare module "radium/src/plugins/keyframes-plugin.js" {
 }
 declare module "radium/src/plugins/merge-style-array-plugin.js" {
   declare module.exports: $Exports<
-    "radium/src/plugins/merge-style-array-plugin"
+    "radium/src/plugins/merge-style-array-plugin",
   >;
 }
 declare module "radium/src/plugins/mouse-up-listener.js" {
@@ -533,17 +533,17 @@ declare module "radium/src/plugins/prefix-plugin.js" {
 }
 declare module "radium/src/plugins/remove-nested-styles-plugin.js" {
   declare module.exports: $Exports<
-    "radium/src/plugins/remove-nested-styles-plugin"
+    "radium/src/plugins/remove-nested-styles-plugin",
   >;
 }
 declare module "radium/src/plugins/resolve-interaction-styles-plugin.js" {
   declare module.exports: $Exports<
-    "radium/src/plugins/resolve-interaction-styles-plugin"
+    "radium/src/plugins/resolve-interaction-styles-plugin",
   >;
 }
 declare module "radium/src/plugins/resolve-media-queries-plugin.js" {
   declare module.exports: $Exports<
-    "radium/src/plugins/resolve-media-queries-plugin"
+    "radium/src/plugins/resolve-media-queries-plugin",
   >;
 }
 declare module "radium/src/plugins/visited-plugin.js" {

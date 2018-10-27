@@ -8,21 +8,21 @@ yargs.command(
   "start",
   "start your project (server / development mode)",
   {},
-  () => phenomic.start()
+  () => phenomic.start(),
 );
 
 yargs.command(
   "build",
   "build your project (static / production mode)",
   {},
-  () => phenomic.build()
+  () => phenomic.build(),
 );
 
 yargs.command(
   "preview",
   "build & serve your project (static / production mode)",
   {},
-  () => phenomic.preview()
+  () => phenomic.preview(),
 );
 
 export default () => {

@@ -28,7 +28,7 @@ import { query } from "@phenomic/api-client";
 const id = "some-id"; // might be assumed from url
 const pageQuery = query({
   path: "content/pages", // allow to query a folder
-  id
+  id,
 });
 ```
 
@@ -39,17 +39,17 @@ query.
 
 Queries accept multiple options:
 
-* `path` (optional): folder you want to look in,
-* `by` (optional): allow you to filter by a given key. Can be a metadata from
+- `path` (optional): folder you want to look in,
+- `by` (optional): allow you to filter by a given key. Can be a metadata from
   your content (eg: `tags` from front-matter markdown files, `license` of some
   package.json etc).
-* `value` (optional): make sense if you use `by` option. Allows you to filter a
+- `value` (optional): make sense if you use `by` option. Allows you to filter a
   given value (eg: `{ by: 'tags', value: 'javascript' }`).
-* `order` (optional): `"asc"` or `"desc"` (default to desc),
-* `limit` (optional): allows to limit number of results for a query,
-* `sort` (optional): allows to sort results on a metadata key, or via a
+- `order` (optional): `"asc"` or `"desc"` (default to desc),
+- `limit` (optional): allows to limit number of results for a query,
+- `sort` (optional): allows to sort results on a metadata key, or via a
   [custom function name](https://phenomic.io/en/packages/core/docs/configuration/#dbsortfunctions),
-* `after` (optional): allows to paginate result. This parameter is a hash that
+- `after` (optional): allows to paginate result. This parameter is a hash that
   is pointing to specific place in the list for the given path. By not being a
   simple page number, this allows you to make immutable pagination. Renderer
   plugins should handle this argument perfectly and will generate all possible
@@ -63,7 +63,7 @@ const after = "/* read from the url, it's a base64 hash */";
 const postsQuery = query({
   path: "content/posts",
   limit: 6,
-  after // if undefined, will read return the 6 first posts
+  after, // if undefined, will read return the 6 first posts
 });
 ```
 
@@ -77,7 +77,7 @@ const postsQuery = query({
   limit: 6,
   by: "tags",
   value: "javascript",
-  after // if undefined, will read return the 6 first posts
+  after, // if undefined, will read return the 6 first posts
 });
 ```
 

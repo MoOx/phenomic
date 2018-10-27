@@ -5,7 +5,7 @@ declare module "yargs" {
   declare type Argv = {
     _: Array<string>,
     $0: string,
-    [key: string]: mixed
+    [key: string]: mixed,
   };
 
   declare type Options = $Shape<{
@@ -33,29 +33,29 @@ declare module "yargs" {
     requiresArg: boolean,
     skipValidation: boolean,
     string: boolean,
-    type: "array" | "boolean" | "count" | "number" | "string"
+    type: "array" | "boolean" | "count" | "number" | "string",
   }>;
 
   declare type CommonModuleObject = {|
     command?: string | Array<string>,
     aliases?: Array<string> | string,
     builder?: { [key: string]: Options } | ((yargsInstance: Yargs) => mixed),
-    handler?: (argv: Argv) => void
+    handler?: (argv: Argv) => void,
   |};
 
   declare type ModuleObjectDesc = {|
     ...CommonModuleObject,
-    desc?: string | false
+    desc?: string | false,
   |};
 
   declare type ModuleObjectDescribe = {|
     ...CommonModuleObject,
-    describe?: string | false
+    describe?: string | false,
   |};
 
   declare type ModuleObjectDescription = {|
     ...CommonModuleObject,
-    description?: string | false
+    description?: string | false,
   |};
 
   declare type ModuleObject =
@@ -82,13 +82,13 @@ declare module "yargs" {
       cmd: string | Array<string>,
       desc: string | false,
       builder?: { [key: string]: Options } | ((yargsInstance: Yargs) => mixed),
-      handler?: Function
+      handler?: Function,
     ): this;
 
     command(
       cmd: string | Array<string>,
       desc: string | false,
-      module: ModuleObject
+      module: ModuleObject,
     ): this;
 
     command(module: ModuleObject): this;
@@ -99,18 +99,18 @@ declare module "yargs" {
       fn?: (
         current: string,
         argv: Argv,
-        done: (competion: Array<string>) => void
-      ) => ?(Array<string> | Promise<Array<string>>)
+        done: (competion: Array<string>) => void,
+      ) => ?(Array<string> | Promise<Array<string>>),
     ): this;
 
     config(
       key?: string,
       description?: string,
-      parseFn?: (configPath: string) => { [key: string]: mixed }
+      parseFn?: (configPath: string) => { [key: string]: mixed },
     ): this;
     config(
       key: string,
-      parseFn?: (configPath: string) => { [key: string]: mixed }
+      parseFn?: (configPath: string) => { [key: string]: mixed },
     ): this;
     config(config: { [key: string]: mixed }): this;
 
@@ -133,7 +133,7 @@ declare module "yargs" {
       min: number,
       max: number,
       minMsg?: string,
-      maxMsg?: string
+      maxMsg?: string,
     ): this;
 
     describe(key: string, description: string): this;
@@ -183,7 +183,7 @@ declare module "yargs" {
         | "ru"
         | "th"
         | "tr"
-        | "zh_CN"
+        | "zh_CN",
     ): this;
     locale(): string;
 
@@ -202,11 +202,11 @@ declare module "yargs" {
     parse(
       args: string | Array<string>,
       context?: { [key: string]: mixed },
-      parseCallback?: (err: Error, argv: Argv, output?: string) => void
+      parseCallback?: (err: Error, argv: Argv, output?: string) => void,
     ): Argv;
     parse(
       args: string | Array<string>,
-      parseCallback?: (err: Error, argv: Argv, output?: string) => void
+      parseCallback?: (err: Error, argv: Argv, output?: string) => void,
     ): Argv;
 
     pkgConf(key: string, cwd?: string): this;
@@ -246,7 +246,7 @@ declare module "yargs" {
     version(
       option: string | (() => string),
       description: string | (() => string),
-      version: string
+      version: string,
     ): this;
 
     wrap(columns: number | null): this;

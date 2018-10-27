@@ -11,8 +11,8 @@ const config = {
   ...defaultConfig,
   path: __dirname,
   content: {
-    "": { root: "__fixtures__", globs: ["**/*"] }
-  }
+    "": { root: "__fixtures__", globs: ["**/*"] },
+  },
 };
 
 const p = collector(config, {});
@@ -26,9 +26,9 @@ it("should collect everything", async () => {
           supportedFileTypes: ["json"],
           transform({ contents }) {
             return JSON.parse(contents.toString());
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
   }
 
@@ -45,6 +45,6 @@ it("should collect metadata", async () => {
 
 it("should collect specific item", async () => {
   expect(
-    await db.get("__null__", "news/2017/06/introducing-1.0.0-alpha")
+    await db.get("__null__", "news/2017/06/introducing-1.0.0-alpha"),
   ).toMatchSnapshot();
 });

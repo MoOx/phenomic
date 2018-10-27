@@ -41,14 +41,14 @@ declare interface SocketIOStatic {
 
 declare interface SocketIO$Server {
   engine: {
-    ws: any
+    ws: any,
   };
 
   /**
    * A dictionary of all the namespaces currently on this Server
    */
   nsps: {
-    [namespace: string]: SocketIO$Namespace
+    [namespace: string]: SocketIO$Namespace,
   };
 
   /**
@@ -214,7 +214,7 @@ declare interface SocketIO$Server {
      * @return  The default '/' Namespace
     */
   use(
-    fn: (socket: SocketIO$Socket, fn: (err?: any) => void) => void
+    fn: (socket: SocketIO$Socket, fn: (err?: any) => void) => void,
   ): SocketIO$Namespace;
 
   /**
@@ -310,7 +310,7 @@ declare interface SocketIO$ServerOptions {
     */
   allowRequest?: (
     request: any,
-    callback: (err: number, success: boolean) => void
+    callback: (err: number, success: boolean) => void,
   ) => void;
 
   /**
@@ -368,7 +368,7 @@ declare type SocketIO$Namespace = {
    * the Socket ID is the key
    */
   sockets: {
-    [id: string]: SocketIO$Socket
+    [id: string]: SocketIO$Socket,
   },
 
   /**
@@ -376,7 +376,7 @@ declare type SocketIO$Namespace = {
    * the Socket ID is the key
    */
   connected: {
-    [id: string]: SocketIO$Socket
+    [id: string]: SocketIO$Socket,
   },
 
   /**
@@ -400,7 +400,7 @@ declare type SocketIO$Namespace = {
      * @return  This Namespace
     */
   use(
-    fn: (socket: SocketIO$Socket, fn: (err?: any) => void) => void
+    fn: (socket: SocketIO$Socket, fn: (err?: any) => void) => void,
   ): SocketIO$Namespace,
 
   /**
@@ -437,7 +437,7 @@ declare type SocketIO$Namespace = {
    */
   on(
     event: "connection",
-    listener: (socket: SocketIO$Socket) => void
+    listener: (socket: SocketIO$Socket) => void,
   ): SocketIO$Namespace,
 
   /**
@@ -446,7 +446,7 @@ declare type SocketIO$Namespace = {
    */
   on(
     event: "connect",
-    listener: (socket: SocketIO$Socket) => void
+    listener: (socket: SocketIO$Socket) => void,
   ): SocketIO$Namespace,
 
   /**
@@ -468,7 +468,7 @@ declare type SocketIO$Namespace = {
    * @param compress If `true`, compresses the sending data
    * @return  This Namespace
    */
-  compress(compress: boolean): SocketIO$Namespace
+  compress(compress: boolean): SocketIO$Namespace,
 };
 
 /**
@@ -520,7 +520,7 @@ declare type SocketIO$Socket = {
    * the ID the the room ID
    */
   rooms: {
-    [id: string]: string
+    [id: string]: string,
   },
 
   /**
@@ -576,7 +576,7 @@ declare type SocketIO$Socket = {
     /**
      * Any query string parameters in the request url
      */
-    query: any
+    query: any,
   },
 
   /**
@@ -665,7 +665,7 @@ declare type SocketIO$Socket = {
    * @param compress If `true`, compresses the sending data
    * @return  This Socket
    */
-  compress(compress: boolean): SocketIO$Socket
+  compress(compress: boolean): SocketIO$Socket,
 };
 
 /**
@@ -684,10 +684,10 @@ declare type SocketIO$Adapter = {
   rooms: {
     [room: string]: {
       sockets: {
-        [id: string]: boolean
+        [id: string]: boolean,
       },
-      length: number
-    }
+      length: number,
+    },
   },
 
   /**
@@ -696,8 +696,8 @@ declare type SocketIO$Adapter = {
    */
   sids: {
     [id: string]: {
-      [room: string]: boolean
-    }
+      [room: string]: boolean,
+    },
   },
 
   /**
@@ -739,10 +739,10 @@ declare type SocketIO$Adapter = {
       rooms?: string[],
       except?: string[],
       flags?: {
-        [flag: string]: boolean
-      }
-    }
-  ): void
+        [flag: string]: boolean,
+      },
+    },
+  ): void,
 };
 
 /**
@@ -775,7 +775,7 @@ declare interface SocketIO$Client {
    * namespaces) where the Socket ID is the key
    */
   sockets: {
-    [id: string]: SocketIO$Socket
+    [id: string]: SocketIO$Socket,
   };
 
   /**
@@ -783,7 +783,7 @@ declare interface SocketIO$Client {
    * deals with that namespace
    */
   nsps: {
-    [nsp: string]: SocketIO$Socket
+    [nsp: string]: SocketIO$Socket,
   };
 }
 
@@ -824,5 +824,5 @@ declare type SocketIO$EngineSocket = {
   /**
    * (Transport): transport reference
    */
-  transport: any
+  transport: any,
 };

@@ -9,7 +9,7 @@ import jsonFetch from "simple-json-fetch";
 (async function() {
   try {
     const releases = (await jsonFetch(
-      "https://api.github.com/repos/phenomic/phenomic/releases"
+      "https://api.github.com/repos/phenomic/phenomic/releases",
     )).json;
     releases.forEach(release => {
       // skip pre 1.x
@@ -35,7 +35,7 @@ ${release.body}
         "..",
         "content",
         "blog",
-        date + "-" + release.tag_name + ".md"
+        date + "-" + release.tag_name + ".md",
       );
       fs.writeFileSync(filename, md);
     });

@@ -15,13 +15,13 @@ const server = createServer({
   plugins: [
     {
       name: "test-api",
-      extendAPI: () => {}
+      extendAPI: () => {},
     },
     {
-      name: "test-nothing"
-    }
+      name: "test-nothing",
+    },
   ],
-  rootPath: ""
+  rootPath: "",
 });
 
 it("should return basic response", async () => {

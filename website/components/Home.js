@@ -36,7 +36,7 @@ const Home = () => (
               position: "absolute",
               top: window.innerHeight * 0.2,
               right: window.innerWidth * 0.1,
-              transform: [{ rotate: "20deg" }]
+              transform: [{ rotate: "20deg" }],
             }}
           />
         )}
@@ -113,7 +113,7 @@ const Home = () => (
 const styles = StyleSheet.create({
   heroContainer: {
     zIndex: 1 /* for DocSearch component autocomplete results */,
-    marginBottom: Spacer.large * 3
+    marginBottom: Spacer.large * 3,
   },
   heroGradient: {
     ...StyleSheet.absoluteFillObject,
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     zIndex: 0,
     minWidth: "120vh",
     maxWidth: "120%",
-    transform: [{ rotate: "-5deg" }, { scale: 1.2 }]
+    transform: [{ rotate: "-5deg" }, { scale: 1.2 }],
   },
   hero: {
-    paddingTop: Spacer.large
+    paddingTop: Spacer.large,
   },
   heroSubtitleText: {
     fontSize: 22,
@@ -133,25 +133,25 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     color: "#fff",
     textAlign: "center",
-    opacity: 0.6
+    opacity: 0.6,
   },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   block: {},
   blockTitle: {
     fontSize: 48,
     color: "#4A90E2",
-    fontWeight: "200"
+    fontWeight: "200",
   },
   blockText: {
     paddingVertical: Spacer.large,
     fontSize: 22,
     lineHeight: 33,
-    fontWeight: "300"
-  }
+    fontWeight: "300",
+  },
 });
 
 export default withPhenomicApi(Home);

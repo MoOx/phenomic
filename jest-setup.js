@@ -57,7 +57,7 @@ jest.doMock("oniguruma", function mockOniguruma() {
             ? callback(error, _this.captureIndicesForMatch(string, match))
             : void 0;
         };
-      })(this)
+      })(this),
     );
   };
 
@@ -76,7 +76,7 @@ jest.doMock("oniguruma", function mockOniguruma() {
   OnigScanner.prototype.findNextMatch = function(
     string,
     startPosition,
-    callback
+    callback,
   ) {
     if (startPosition == null) startPosition = 0;
     if (typeof startPosition === "function") {
@@ -134,7 +134,7 @@ jest.doMock("oniguruma", function mockOniguruma() {
       return this.content.length;
     },
     // https://github.com/facebook/jest/issues/3552
-    configurable: true
+    configurable: true,
   });
 
   // exports.OnigScanner = OnigScanner

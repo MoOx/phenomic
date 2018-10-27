@@ -12,7 +12,7 @@ it("should transform markdown as html", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json"
+          fullpath: "/test/file.json",
           // exists: true,
           // type: "wat"
         },
@@ -21,9 +21,9 @@ it("should transform markdown as html", () => {
 test: a
 test2: b
 ---
-` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```"
-        )
-      })
+` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```",
+        ),
+      }),
   ).toMatchSnapshot();
 });
 
@@ -35,7 +35,7 @@ it("should transform markdown as json", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json"
+          fullpath: "/test/file.json",
           // exists: true,
           // type: "wat"
         },
@@ -44,8 +44,8 @@ it("should transform markdown as json", () => {
 test: a
 test2: b
 ---
-` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```"
-        )
-      })
+` + "## Test\n[link](href)\n```js\nconsole.log(window)\n```",
+        ),
+      }),
   ).toMatchSnapshot();
 });

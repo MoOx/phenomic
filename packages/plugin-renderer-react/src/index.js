@@ -11,7 +11,7 @@ const rendererReact: PhenomicPluginModule<{}> = (config: PhenomicConfig) => {
     getRoutes,
     resolveURLs,
     renderDevServer: renderDevServer(config),
-    renderStatic: renderStatic(config)
+    renderStatic: renderStatic(config),
   };
 };
 

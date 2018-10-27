@@ -8,10 +8,10 @@ const transformJSON: PhenomicPluginModule<{}> = () => {
     supportedFileTypes: ["json"],
     transform({
       file,
-      contents
+      contents,
     }: {|
       file: PhenomicContentFile,
-      contents: Buffer
+      contents: Buffer,
     |}): PhenomicTransformResult {
       debug(`transforming ${file.name}`);
 
@@ -20,14 +20,14 @@ const transformJSON: PhenomicPluginModule<{}> = () => {
       const partial = {
         // title fallback
         title: file.name,
-        ...(json.partial || json)
+        ...(json.partial || json),
       };
 
       return {
         data: json,
-        partial
+        partial,
       };
-    }
+    },
   };
 };
 

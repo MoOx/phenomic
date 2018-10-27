@@ -18,9 +18,9 @@ export type options = {|
       // https://www.npmjs.com/package/rss#feedoptions
       feedOptions: Object,
       query: PhenomicQueryConfig,
-      map?: ((phenomicItem: Object) => Object) | { [key: string]: string }
-    |}
-  }
+      map?: ((phenomicItem: Object) => Object) | { [key: string]: string },
+    |},
+  },
 |};
 
 const makeItemFromObject = (item, map) =>
@@ -38,16 +38,16 @@ const defaultMap = {
   // description: "excerpt",
   // optional, we assume this are good defaults
   author: "author",
-  categories: "tags"
+  categories: "tags",
 };
 
 const defaultOptions = {
   feeds: {
     "feed.xml": {
       feedOptions: {},
-      query: { path: "content/posts", limit: 20 }
-    }
-  }
+      query: { path: "content/posts", limit: 20 },
+    },
+  },
 };
 
 const makeFeed = async (ROOT, feedUrl, feedConfig): Promise<string> => {
@@ -55,7 +55,7 @@ const makeFeed = async (ROOT, feedUrl, feedConfig): Promise<string> => {
     feed_url: ROOT + feedUrl,
     site_url: ROOT,
     generator: "Phenomic",
-    ...feedConfig.feedOptions
+    ...feedConfig.feedOptions,
   });
   const items = await fetchRestApi(query(feedConfig.query));
   items.list.forEach(item => {
@@ -73,7 +73,7 @@ const makeFeed = async (ROOT, feedUrl, feedConfig): Promise<string> => {
     rss.item(mappedItem);
   });
   return rss.xml(
-    process.env.PHENOMIC_ENV === "development" ? { indent: true } : {}
+    process.env.PHENOMIC_ENV === "development" ? { indent: true } : {},
   );
 };
 
@@ -84,8 +84,8 @@ const getFeedKeys = options => {
       `No 'feeds' founds in options. Please add entries.\n Current options:\n ${JSON.stringify(
         options,
         null,
-        2
-      )}).`
+        2,
+      )}).`,
     );
   }
   return keys;
@@ -97,7 +97,7 @@ const getRoot = (config: PhenomicConfig) =>
 
 const rssFeed: PhenomicPluginModule<options> = (
   config: PhenomicConfig,
-  options: options = defaultOptions
+  options: options = defaultOptions,
 ) => {
   return {
     name: pluginName,
@@ -110,7 +110,7 @@ const rssFeed: PhenomicPluginModule<options> = (
             const output = await makeFeed(
               getRoot(config),
               feedUrl,
-              options.feeds[feedUrl]
+              options.feeds[feedUrl],
             );
             res.type("xml").send(output);
           } catch (error) {
@@ -132,11 +132,11 @@ const rssFeed: PhenomicPluginModule<options> = (
           contents: await makeFeed(
             getRoot(config),
             location,
-            options.feeds[location]
-          )
-        }
+            options.feeds[location],
+          ),
+        },
       ];
-    }
+    },
   };
 };
 

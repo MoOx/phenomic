@@ -12,7 +12,7 @@ it("should transform asciidoc as html", () => {
       plugin.transform({
         file: {
           name: "file.adoc",
-          fullpath: "/test/file.adoc"
+          fullpath: "/test/file.adoc",
           // exists: true,
           // type: "wat"
         },
@@ -33,8 +33,8 @@ Test of Asciidoc.js transformer for Phenomic.
 [source,javascript]
 const name = "Ezra"
 console.log(\`Hello, \${name}!\`)
-`)
-      })
+`),
+      }),
   ).toMatchSnapshot();
 });
 
@@ -46,7 +46,7 @@ it("should transform asciidoc as json", () => {
       plugin.transform({
         file: {
           name: "file.adoc",
-          fullpath: "/test/file.adoc"
+          fullpath: "/test/file.adoc",
           // exists: true,
           // type: "wat"
         },
@@ -65,7 +65,7 @@ Test of Asciidoc.js transformer for Phenomic.
 [source,javascript]
 const name = "Ezra"
 console.log(\`Hello, \${name}!\`)
-`)
-      })
+`),
+      }),
   ).toMatchSnapshot();
 });

@@ -4,11 +4,11 @@ import * as React from "react";
 
 type props = {|
   onTouchStart?: () => void,
-  onTouchEnd?: () => void
+  onTouchEnd?: () => void,
 |};
 
 type state = {|
-  touched: boolean
+  touched: boolean,
 |};
 
 export default (ComposedComponent: React.ComponentType<*>) => {
@@ -16,7 +16,7 @@ export default (ComposedComponent: React.ComponentType<*>) => {
     props: props;
 
     state: state = {
-      touched: false
+      touched: false,
     };
 
     handleTouchStart = (event: React$SyntheticEvent): void => {

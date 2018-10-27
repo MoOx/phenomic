@@ -3,14 +3,14 @@
 /* eslint-disable import/first */
 jest.mock("@phenomic/api-client/lib/fetch", () => () =>
   Promise.resolve({
-    list: []
-  })
+    list: [],
+  }),
 );
 
 import resolve from "../resolveURLs.js";
 
 const NoopComponent = {
-  fakeComponent: true // to pass test on component being valid
+  fakeComponent: true, // to pass test on component being valid
 };
 
 it("should be able to generate a single url", async () => {
@@ -19,10 +19,10 @@ it("should be able to generate a single url", async () => {
       routes: [
         {
           path: "/",
-          component: NoopComponent
-        }
-      ]
-    })
+          component: NoopComponent,
+        },
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -32,14 +32,14 @@ it("should be able to generate a multiple static url", async () => {
       routes: [
         {
           path: "/",
-          component: NoopComponent
+          component: NoopComponent,
         },
         {
           path: "/test",
-          component: NoopComponent
-        }
-      ]
-    })
+          component: NoopComponent,
+        },
+      ],
+    }),
   ).toMatchSnapshot();
 });
 
@@ -55,16 +55,16 @@ it("should be able to get urls from the static method", async () => {
         {
           path: "/",
           component: {
-            getAllPossibleUrls
-          }
+            getAllPossibleUrls,
+          },
         },
         {
           path: "/test/:arg",
           component: {
-            getAllPossibleUrls
-          }
-        }
-      ]
-    })
+            getAllPossibleUrls,
+          },
+        },
+      ],
+    }),
   ).toMatchSnapshot();
 });

@@ -12,7 +12,7 @@ function performQuery(store: StoreType, queries: phenomic$Queries) {
       return fetchRestApi(decode(key))
         .then(value => store.set(key, value))
         .catch(error => store.setAsError(key, error));
-    })
+    }),
   );
 }
 

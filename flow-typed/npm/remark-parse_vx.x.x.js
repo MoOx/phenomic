@@ -287,7 +287,7 @@ declare module "remark-parse/lib/tokenize/escape.js" {
 }
 declare module "remark-parse/lib/tokenize/footnote-definition.js" {
   declare module.exports: $Exports<
-    "remark-parse/lib/tokenize/footnote-definition"
+    "remark-parse/lib/tokenize/footnote-definition",
   >;
 }
 declare module "remark-parse/lib/tokenize/heading-atx.js" {

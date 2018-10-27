@@ -17,8 +17,8 @@ const adDefaultOptions = {
   attributes: {
     header_footer: "false",
     "linkcss!": "",
-    "copycss!": ""
-  }
+    "copycss!": "",
+  },
 };
 
 const envAttributes = [
@@ -51,23 +51,23 @@ const envAttributes = [
   "safe-mode-safe",
   "safe-mode-server",
   "safe-mode-secure",
-  "user-home"
+  "user-home",
 ];
 
 type options = {|
   output?: "json" | "html",
-  plugins?: $ReadOnlyArray<plugin>
+  plugins?: $ReadOnlyArray<plugin>,
 |} | void; // void? https://github.com/facebook/flow/issues/2977
 
 const name = "@phenomic/plugin-transform-asciidoc";
 
 const transformAsciidoc: PhenomicPluginModule<options> = (
   config: PhenomicConfig,
-  options?: options
+  options?: options,
 ) => {
   const processor = unifiedProcessor({
     output: (options && options.output) || defaultOptions.output,
-    plugins: (options && options.plugins) || defaultOptions.plugins
+    plugins: (options && options.plugins) || defaultOptions.plugins,
   });
 
   return {
@@ -75,10 +75,10 @@ const transformAsciidoc: PhenomicPluginModule<options> = (
     supportedFileTypes: ["asciidoc", "adoc", "ad"],
     transform: ({
       file,
-      contents
+      contents,
     }: {|
       file: PhenomicContentFile,
-      contents: Buffer
+      contents: Buffer,
     |}) => {
       debug(`transforming ${file.fullpath}`);
       const ad = asciidoctor();
@@ -98,18 +98,18 @@ const transformAsciidoc: PhenomicPluginModule<options> = (
         title: doc.getAttribute("doctitle") || file.name,
         layout: doc.getAttribute("layout"),
         showdate: doc.getAttribute("nodate", true),
-        tags: tags ? tags.split(",").map(tag => kebabCase(deburr(tag))) : []
+        tags: tags ? tags.split(",").map(tag => kebabCase(deburr(tag))) : [],
       };
       envAttributes.map(key => delete partial[key]);
 
       return {
         data: {
           ...partial,
-          body
+          body,
         },
-        partial
+        partial,
       };
-    }
+    },
   };
 };
 

@@ -12,7 +12,7 @@ it("should transform json as json", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json"
+          fullpath: "/test/file.json",
           // exists: true,
           // type: "wat"
         },
@@ -21,9 +21,9 @@ it("should transform json as json", () => {
       "test": "a",
       "test2": "b",
       "somedata": "Normal version"
-    }`
-        )
-      })
+    }`,
+        ),
+      }),
   ).toMatchSnapshot();
 });
 
@@ -35,7 +35,7 @@ it("should transform json as json and support partial", () => {
       plugin.transform({
         file: {
           name: "file.json",
-          fullpath: "/test/file.json"
+          fullpath: "/test/file.json",
           // exists: true,
           // type: "wat"
         },
@@ -47,8 +47,8 @@ it("should transform json as json and support partial", () => {
       "partial": {
         "somedata": "Light version"
       }
-    }`
-        )
-      })
+    }`,
+        ),
+      }),
   ).toMatchSnapshot();
 });

@@ -25,7 +25,7 @@ const PageBlog = ({ hasError, isLoading, posts }) =>
         .PageBlog-content {
           margin-bottom: 40px;
         }
-        `
+        `,
         }}
       />
       <Layout
@@ -42,6 +42,6 @@ export default withPhenomicApi(PageBlog, props => ({
   posts: query({
     path: "content/posts",
     limit: 6,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));

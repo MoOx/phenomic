@@ -14,18 +14,18 @@ const debug = require("debug")("phenomic:plugin:transform-markdown");
 
 type options = {|
   output?: "json" | "html",
-  plugins?: $ReadOnlyArray<plugin>
+  plugins?: $ReadOnlyArray<plugin>,
 |} | void; // void? https://github.com/facebook/flow/issues/2977
 
 const name = "@phenomic/plugin-transform-markdown";
 
 const transformMarkdown: PhenomicPluginModule<options> = (
   config: PhenomicConfig,
-  options?: options
+  options?: options,
 ) => {
   const processor = unifiedProcessor({
     output: (options && options.output) || defaultOptions.output,
-    plugins: (options && options.plugins) || defaultOptions.plugins
+    plugins: (options && options.plugins) || defaultOptions.plugins,
   });
 
   return {
@@ -33,10 +33,10 @@ const transformMarkdown: PhenomicPluginModule<options> = (
     supportedFileTypes: ["md", "markdown"],
     transform: ({
       file,
-      contents
+      contents,
     }: {|
       file: PhenomicContentFile,
-      contents: Buffer
+      contents: Buffer,
     |}) => {
       debug(`transforming ${file.fullpath}`);
       const front = frontMatterParser(contents.toString());
@@ -51,17 +51,17 @@ const transformMarkdown: PhenomicPluginModule<options> = (
         // @todo should be here or user land ?
         ...(Array.isArray(front.data.tags)
           ? { tags: front.data.tags.map(tag => kebabCase(deburr(tag))) }
-          : {})
+          : {}),
       };
 
       return {
         data: {
           ...partial,
-          body
+          body,
         },
-        partial
+        partial,
       };
-    }
+    },
   };
 };
 

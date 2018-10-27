@@ -8,20 +8,20 @@ import performQuery from "../shared/performQuery";
 type props = {|
   children?: React.Node,
   store: Object,
-  __prerendering?: boolean
+  __prerendering?: boolean,
 |};
 
 class Provider extends React.Component<props> {
   static childContextTypes = {
     query: PropTypes.func,
     phenomic: PropTypes.object.isRequired,
-    __prerendering: PropTypes.bool
+    __prerendering: PropTypes.bool,
   };
   getChildContext() {
     return {
       phenomic: this.props.store,
       query: this.query,
-      __prerendering: !!this.props.__prerendering
+      __prerendering: !!this.props.__prerendering,
     };
   }
   query = (queries: $ReadOnlyArray<any>) => {

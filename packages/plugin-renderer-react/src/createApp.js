@@ -21,7 +21,7 @@ let store;
 export const renderApp = (
   routes: () => React.Element<any>,
   render: Function = defaultRender,
-  callback?: () => void
+  callback?: () => void,
 ) => {
   debug("client rendering");
 
@@ -31,7 +31,7 @@ export const renderApp = (
     createStore(
       initialStateNode && initialStateNode.textContent
         ? JSON.parse(initialStateNode.textContent)
-        : undefined
+        : undefined,
     );
 
   let root = document.getElementById("PhenomicRoot");
@@ -49,19 +49,19 @@ export const renderApp = (
       <Provider store={store}>{routes()}</Provider>
     </AppContainer>,
     root,
-    callback
+    callback,
   );
 };
 
 export default (
   routes: () => React.Element<any>,
   render?: Function,
-  callback?: () => void
+  callback?: () => void,
 ): PhenomicAppType => {
   if (typeof window !== "undefined") {
     renderApp(routes, render, callback);
   }
   return {
-    routes: routes()
+    routes: routes(),
   };
 };

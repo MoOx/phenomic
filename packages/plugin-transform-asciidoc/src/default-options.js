@@ -6,8 +6,8 @@ const defaultOptions = {
     [require("rehype-parse"), { fragment: true }],
     require("rehype-slug"),
     require("rehype-autolink-headings"),
-    require("rehype-highlight")
-  ]
+    require("rehype-highlight"),
+  ],
 };
 
 export default defaultOptions;

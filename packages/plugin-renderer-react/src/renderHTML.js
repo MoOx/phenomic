@@ -17,12 +17,12 @@ const isNotFoundError = e => e.code === "MODULE_NOT_FOUND";
 type htmlPropsType = {|
   WrappedApp: ReactCompo,
   renderAsObject: (
-    app: React$Node
+    app: React$Node,
   ) => {
     main: string,
     state?: Object | null,
-    assets: PhenomicAssets
-  }
+    assets: PhenomicAssets,
+  },
 |};
 
 const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
@@ -48,7 +48,7 @@ const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
           const { main, state, assets } = props.renderAsObject(UserWrappedApp);
           const sets: $ReadOnlyArray<string> = Object.keys(assets).reduce(
             (acc, name) => acc.concat(assets[name]),
-            []
+            [],
           );
           const css = sets.filter(asset => asset.endsWith(".css")).shift();
           const js = sets.filter(asset => asset.endsWith(".js")).shift();
@@ -66,7 +66,7 @@ const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
                   id="PhenomicHydration"
                   type="text/json"
                   dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(state)
+                    __html: JSON.stringify(state),
                   }}
                 />
               ),
@@ -79,10 +79,10 @@ const renderHTML = (props: htmlPropsType, config: PhenomicConfig): string => {
               js ? (
                 <script src={config.baseUrl.pathname + js} async={true} />
               ) : null,
-            assets
+            assets,
           };
         }}
-      />
+      />,
     )
   );
 };

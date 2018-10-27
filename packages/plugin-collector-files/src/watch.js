@@ -17,12 +17,12 @@ const debug = require("debug")("phenomic:plugin:collector-files");
 
 export default (options: {
   path: string,
-  patterns: $ReadOnlyArray<string>
+  patterns: $ReadOnlyArray<string>,
 }) => {
   debug("path:", options.path);
   debug("extensions:", options.patterns);
   return sane(options.path, {
     watchman: canUseWatchman,
-    glob: options.patterns
+    glob: options.patterns,
   });
 };

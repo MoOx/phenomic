@@ -18,8 +18,8 @@ const Footer = (props: Object) => (
 const styles = StyleSheet.create({
   hero: {
     paddingTop: 40,
-    paddingBottom: 60
-  }
+    paddingBottom: 60,
+  },
 });
 
 export default Footer;

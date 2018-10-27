@@ -21,7 +21,7 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
   if (config.id !== undefined) {
     return {
       path: config.path,
-      id: config.id
+      id: config.id,
     };
   }
 
@@ -32,7 +32,7 @@ function query(config: PhenomicQueryConfig): PhenomicQueryConfig {
     order: config.order ? config.order : "desc",
     limit: config.limit ? parseInt(config.limit, 10) : undefined,
     sort: config.sort || "date",
-    after: config.after
+    after: config.after,
   });
 }
 

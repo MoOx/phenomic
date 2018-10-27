@@ -4,14 +4,14 @@ import * as React from "react";
 import Head from "react-helmet";
 import {
   BodyRenderer,
-  textRenderer
+  textRenderer,
 } from "@phenomic/preset-react-app/lib/client";
 
 import Layout from "./Layout";
 import ActivityIndicator from "./ActivityIndicator";
 
 const PostLayoutNoHero = (
-  { isLoading, post } /*: { isLoading: boolean, post: Object }*/
+  { isLoading, post } /*: { isLoading: boolean, post: Object }*/,
 ) => (
   <Layout title={post && post.node && post.node.title} noHero={true}>
     {isLoading && <ActivityIndicator />}

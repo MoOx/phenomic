@@ -7,12 +7,12 @@ priority: 2
 
 The lifecycle of Phenomic is pretty light and can be summarized like this:
 
-* Initialisation from [configuration](./configuration.md),
-* Bundling of (or two) JavaScript bundles (for [CSR](./faq.md#what-is-csr) &
+- Initialisation from [configuration](./configuration.md),
+- Bundling of (or two) JavaScript bundles (for [CSR](./faq.md#what-is-csr) &
   [SSR](./faq.md#what-is-ssr)),
-* [Content API](./api.md) initialisation from transformed content files
+- [Content API](./api.md) initialisation from transformed content files
   (optional),
-* Rendering via a development server or static rendering as files for
+- Rendering via a development server or static rendering as files for
   production.
 
 What's cool about Phenomic is that the entire lifecycle is configurable via

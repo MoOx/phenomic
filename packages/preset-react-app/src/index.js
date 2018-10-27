@@ -15,13 +15,13 @@ const presetReactApp = () => {
       "@phenomic/plugin-renderer-react": rendererReact,
       "@phenomic/plugin-transform-markdown": [
         transformMarkdown,
-        { output: "json" }
+        { output: "json" },
       ],
       "@phenomic/plugin-transform-json": transformJson,
       "@phenomic/plugin-collector-files": collectorFiles,
       "@phenomic/plugin-api-related-content": apiRelatedContent,
-      "@phenomic/plugin-public-asset": publicAssets
-    }
+      "@phenomic/plugin-public-asset": publicAssets,
+    },
   };
 };
 

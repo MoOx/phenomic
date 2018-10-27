@@ -14,7 +14,7 @@ type props = {|
   repos?: $ReadOnlyArray<Object>,
   prev?: number,
   next?: number,
-  first?: number
+  first?: number,
   // last?: number,
 |};
 
@@ -27,7 +27,7 @@ class PageRepositories extends React.PureComponent<props, void> {
     const res = await jsonFetch(endpoint + "&page=" + (params.page || "1"));
     return {
       repos: res.json,
-      ...getPagesProps(res)
+      ...getPagesProps(res),
     };
   }
 
@@ -82,7 +82,7 @@ class PageRepositories extends React.PureComponent<props, void> {
           flex-direction: row;
           justify-content: space-between;
         }
-        `
+        `,
           }}
         />
         <Layout
@@ -161,12 +161,12 @@ export default withInitialProps(PageRepositories);
   }
 */
 function getPagesProps(
-  res: Response
+  res: Response,
 ): {|
   prev?: number,
   next?: number,
   first?: number,
-  last: number
+  last: number,
 |} {
   const link = res.headers.get("Link") || res.headers.get("link");
   const almostParams = link.split(/(page=\d+>; rel="[a-z]+)"/);

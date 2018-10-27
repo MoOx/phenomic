@@ -109,15 +109,15 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    alignItems: "center"
+    alignItems: "center",
   },
   row: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   wip: {
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#041d0f"
+    backgroundColor: "#041d0f",
   },
   wipText: {
     display: "flex",
@@ -125,59 +125,59 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     color: "#fff",
-    fontWeight: "100"
+    fontWeight: "100",
   },
   header: {
     zIndex: 1 /* for DocSearch component autocomplete results */,
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    backgroundColor: "rgba(0,0,0,0.25)"
+    backgroundColor: "rgba(0,0,0,0.25)",
   },
   left: {
     flex: 1,
-    flexBasis: 500
+    flexBasis: 500,
   },
   right: {
     flex: 1,
     flexBasis: 350,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   menu: {
     flexGrow: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   search: {
-    flex: 1
+    flex: 1,
   },
   social: {
-    flex: 0
+    flex: 0,
     // flexGrow: 1.5
   },
   link: {
     textDecorationLine: "none",
     paddingVertical: Spacer.small,
-    paddingHorizontal: Spacer.small
+    paddingHorizontal: Spacer.small,
   },
   linkIcon: {
     display: "flex",
     flexDirection: "column",
-    paddingVertical: 8
+    paddingVertical: 8,
   },
   linkActive: {
-    backgroundColor: "rgba(0, 0, 0, 0.1)"
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
   linkText: {
     color: "#fff",
     fontSize: 18,
-    fontWeight: "300"
+    fontWeight: "300",
   },
   linkIconText: {
     color: "#fff",
     paddingTop: 2,
     fontSize: 8,
-    fontWeight: "200"
-  }
+    fontWeight: "200",
+  },
 });
 
 export default HeaderNavBar;

@@ -24,7 +24,7 @@ it("should resolve URLs based on routes", async () => {
             <Route path="*" component={PageError} />
           </Route>
         </Router>
-      )
-    })
+      ),
+    }),
   ).toMatchSnapshot();
 });

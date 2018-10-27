@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   withPhenomicApi,
   query,
-  BodyRenderer
+  BodyRenderer,
 } from "@phenomic/preset-react-app/lib/client";
 
 import pkg from "../package.json";
@@ -29,7 +29,7 @@ const Page = ({ hasError, isLoading, page, posts }) =>
         .Page-content {
           margin-bottom: 40px;
         }
-        `
+        `,
         }}
       />
       <Layout
@@ -55,11 +55,11 @@ const Page = ({ hasError, isLoading, page, posts }) =>
 export default withPhenomicApi(Page, props => ({
   page: query({
     path: "content/pages",
-    id: props.params.splat || ""
+    id: props.params.splat || "",
   }),
   posts: query({
     path: "content/posts",
     limit: 4,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));

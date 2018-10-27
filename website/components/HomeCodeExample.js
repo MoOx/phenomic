@@ -80,42 +80,42 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   item: {
     flexGrow: 1,
     flexShrink: 1,
-    minWidth: 250
+    minWidth: 250,
   },
   itemHeader: {
     flexDirection: "row",
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   number: {
     backgroundColor: "#7a8ca3",
     borderRadius: "50%",
     width: 40,
-    height: 40
+    height: 40,
   },
   numberText: {
     color: "#fff",
     fontSize: 20,
     lineHeight: 40,
     fontWeight: "900",
-    textAlign: "center"
+    textAlign: "center",
   },
   itemLabel: {
     flexShrink: 1,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   itemTitle: {
     fontSize: 22,
-    color: "#7a8ca3"
+    color: "#7a8ca3",
   },
   itemSubTitle: {
     fontWeight: "200",
-    color: "#6f84a1"
-  }
+    color: "#6f84a1",
+  },
 });
 
 export default CodeExample;

@@ -33,7 +33,7 @@ declare module "babel-plugin-transform-runtime/lib/index" {
 // Filename aliases
 declare module "babel-plugin-transform-runtime/lib/definitions.js" {
   declare module.exports: $Exports<
-    "babel-plugin-transform-runtime/lib/definitions"
+    "babel-plugin-transform-runtime/lib/definitions",
   >;
 }
 declare module "babel-plugin-transform-runtime/lib/index.js" {

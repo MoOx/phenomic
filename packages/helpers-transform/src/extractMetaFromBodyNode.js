@@ -5,7 +5,7 @@ type Node =
   | {|
       t?: string,
       p?: Object,
-      c?: Node | $ReadOnlyArray<Node>
+      c?: Node | $ReadOnlyArray<Node>,
     |};
 
 const renderText = (node?: Node): string => {
@@ -17,7 +17,7 @@ const renderText = (node?: Node): string => {
 };
 
 const getHeadings = (
-  node?: Node
+  node?: Node,
 ): $ReadOnlyArray<{ level: number, text: string, id: string }> => {
   if (!node) return [];
   if (typeof node.t === "string") {
@@ -28,8 +28,8 @@ const getHeadings = (
         {
           level,
           text: renderText(node),
-          id: node.p && node.p.id ? String(node.p.id) : ""
-        }
+          id: node.p && node.p.id ? String(node.p.id) : "",
+        },
       ];
     }
   }
@@ -46,6 +46,6 @@ export default (node: Node) => {
   const firstH1 = headings.find(h => h.level === 1);
   return {
     ...(firstH1 ? { title: firstH1.text } : {}),
-    ...(headings.length > 0 ? { headings } : {})
+    ...(headings.length > 0 ? { headings } : {}),
   };
 };

@@ -23,19 +23,19 @@ test("textRenderer works with phenomic json body", () => {
         {
           t: "a",
           p: { href: "http://test" },
-          c: "Link"
+          c: "Link",
         },
         " ",
         {
           t: "span",
-          c: "text"
+          c: "text",
         },
         " ",
         {
           t: "strong",
-          c: "fat"
-        }
-      ]
-    })
+          c: "fat",
+        },
+      ],
+    }),
   ).toMatchSnapshot();
 });

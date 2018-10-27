@@ -18,7 +18,7 @@ type Options = {
   wrap_line_length: number,
   wrap_attributes: string,
   wrap_attributes_indent_size: number,
-  end_with_newline: boolean
+  end_with_newline: boolean,
 };
 
 declare module "js-beautify" {

@@ -11,7 +11,7 @@ const Title = props => (
     style={{
       fontSize: "1.5em",
       textAlign: "center",
-      color: "palevioletred"
+      color: "palevioletred",
     }}
   />
 );
@@ -22,7 +22,7 @@ const Title2 = props => (
     style={{
       fontSize: "2em",
       textAlign: "right",
-      color: "blue"
+      color: "blue",
     }}
   />
 );

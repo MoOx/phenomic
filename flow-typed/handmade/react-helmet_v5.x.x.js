@@ -13,13 +13,13 @@ declare module "react-helmet" {
     onChangeClientState?: (
       newState?: Object,
       addedTags?: Object,
-      removeTags?: Object
+      removeTags?: Object,
     ) => any,
     script?: Array<Object>,
     style?: Array<Object>,
     title?: string,
     titleAttributes?: Object,
-    titleTemplate?: string
+    titleTemplate?: string,
   };
 
   declare interface AttributesMethods {
@@ -50,6 +50,6 @@ declare module "react-helmet" {
     static canUseDom(canUseDOM: boolean): void;
   }
 
-  declare export default typeof Helmet
+  declare export default typeof Helmet;
   declare export var Helmet: typeof Helmet;
 }

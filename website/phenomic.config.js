@@ -6,8 +6,8 @@ module.exports = {
     content: ["**/*"],
     packages: {
       root: "../packages",
-      globs: ["*/package.json", "*/docs/**/*.md"]
-    }
+      globs: ["*/package.json", "*/docs/**/*.md"],
+    },
   },
   presets: ["@phenomic/preset-react-app"],
   plugins: [
@@ -18,16 +18,16 @@ module.exports = {
           "feed.xml": {
             feedOptions: {
               title: "Phenomic.io",
-              description: "Phenomic news"
+              description: "Phenomic news",
             },
             query: {
               path: "content/blog",
-              limit: 20
-            }
-          }
-        }
-      }
-    ]
+              limit: 20,
+            },
+          },
+        },
+      },
+    ],
   ],
   db: {
     sortFunctions: {
@@ -48,7 +48,7 @@ module.exports = {
         }
 
         return 0;
-      }
-    }
-  }
+      },
+    },
+  },
 };

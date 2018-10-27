@@ -8,7 +8,7 @@ it("should build example correctly", () => {
   const files = globby.sync("**/*", {
     cwd: testFolder,
     nodir: true,
-    dot: true
+    dot: true,
   });
 
   // should have html files
@@ -16,7 +16,7 @@ it("should build example correctly", () => {
   expect(htmlFiles).toMatchSnapshot();
 
   const jsonApiFiles = files.filter(
-    file => file.startsWith("phenomic") && file.endsWith(".json")
+    file => file.startsWith("phenomic") && file.endsWith(".json"),
   );
   // should have matching json files
   expect(jsonApiFiles).toMatchSnapshot();
@@ -26,7 +26,7 @@ it("should build example correctly", () => {
     file =>
       !htmlFiles.includes(file) &&
       !jsonApiFiles.includes(file) &&
-      file.startsWith("phenomic")
+      file.startsWith("phenomic"),
   );
   expect(assetsBundlerFiles.length).toBe(1);
   expect(
@@ -34,7 +34,7 @@ it("should build example correctly", () => {
       file =>
         !htmlFiles.includes(file) &&
         !jsonApiFiles.includes(file) &&
-        !assetsBundlerFiles.includes(file)
-    )
+        !assetsBundlerFiles.includes(file),
+    ),
   ).toMatchSnapshot();
 });

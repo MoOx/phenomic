@@ -4,11 +4,11 @@ import * as React from "react";
 
 type props = {|
   onMouseDown?: () => void,
-  onMouseUp?: () => void
+  onMouseUp?: () => void,
 |};
 
 type state = {|
-  touched: boolean
+  touched: boolean,
 |};
 
 export default (ComposedComponent: React.ComponentType<*>) => {
@@ -16,7 +16,7 @@ export default (ComposedComponent: React.ComponentType<*>) => {
     props: props;
 
     state: state = {
-      touched: false
+      touched: false,
     };
 
     handleMouseDown = (event: React$SyntheticEvent): void => {

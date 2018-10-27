@@ -12,14 +12,14 @@ export default function(webpackConfig: Object): Promise<any> {
 
       if (stats.hasErrors()) {
         stats.compilation.errors.forEach(item =>
-          console.log(color.red(item.stack || item))
+          console.log(color.red(item.stack || item)),
         );
         reject("webpack build failed with errors");
       }
 
       if (stats.hasWarnings()) {
         stats.compilation.warnings.forEach(item =>
-          console.log(color.yellow("Warning: %s", item.message))
+          console.log(color.yellow("Warning: %s", item.message)),
         );
       }
 

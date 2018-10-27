@@ -15,9 +15,9 @@ folder, replace `/` by 2 underscores (`__`).
 
 Eg:
 
-* `http://some.where/` => `some.where.md`
-* `https://www.somewhere.else/` => `www.somewhere.else.md`
-* `https://www.somewhere.else/right/here` =>
+- `http://some.where/` => `some.where.md`
+- `https://www.somewhere.else/` => `www.somewhere.else.md`
+- `https://www.somewhere.else/right/here` =>
   `www.somewhere.else__right__here.md`
 
 For the content of the file, you must use the following format:
@@ -36,7 +36,7 @@ showcaseTags:
   - learning
   - business
   - multi-languages
-  - # Choose what you need in that list only! Ask on our chat if you are not sure :)
+  -  # Choose what you need in that list only! Ask on our chat if you are not sure :)
 ---
 
 A description and technical detail here (optional)

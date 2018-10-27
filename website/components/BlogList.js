@@ -71,29 +71,29 @@ const BlogList = (props: Object) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   list: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   paginationRow: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   paginationColumn: {
     width: "50%",
     padding: 10,
     // alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
 
 export default withPhenomicApi(BlogList, props => ({
   list: query({
     path: "content/blog",
     limit: 12,
-    after: props.params.after
-  })
+    after: props.params.after,
+  }),
 }));

@@ -33,7 +33,7 @@ export default async function(route: PhenomicRoute) {
   }
   const routeQueries = route.component.getQueries({
     // why are we doing this?
-    params: route.params || {}
+    params: route.params || {},
   });
   const mainQuery = getMainQuery(routeQueries, route);
   if (!mainQuery.item) {
@@ -56,7 +56,7 @@ export default async function(route: PhenomicRoute) {
   }
   debug(
     route.path,
-    `path fetched. ${queryResult.list.length} items (id: ${key})`
+    `path fetched. ${queryResult.list.length} items (id: ${key})`,
   );
   // get all possible values for the query
   const list = arrayUnique(
@@ -65,7 +65,7 @@ export default async function(route: PhenomicRoute) {
       if (Array.isArray(item[key])) acc = acc.concat(item[key]);
       else acc.push(item[key]);
       return acc;
-    }, [])
+    }, []),
   );
   debug(route.path, "list (unique)", list);
   const urlsData = list.reduce((acc, value) => {

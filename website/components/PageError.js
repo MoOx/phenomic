@@ -45,18 +45,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "50vh",
-    padding: "1rem 0"
+    padding: "1rem 0",
   },
   oops: {
     fontSize: "4rem",
     lineHeight: "4rem",
-    color: "#ddd"
+    color: "#ddd",
   },
   title: {
     margin: 60,
     fontSize: 24,
     lineHeight: 48,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });
 export default PageError;

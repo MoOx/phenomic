@@ -15,7 +15,7 @@ test("BodyRenderer tells you when pass undefined", () => {
 
 test("BodyRenderer works with raw html", () => {
   expect(
-    renderJSX(<BodyRenderer>{"<h1>Test</h1"}</BodyRenderer>)
+    renderJSX(<BodyRenderer>{"<h1>Test</h1"}</BodyRenderer>),
   ).toMatchSnapshot();
 });
 
@@ -30,12 +30,12 @@ test("BodyRenderer works with phenomic json body", () => {
             {
               t: "a",
               p: { href: "http://test" },
-              c: "Link"
-            }
-          ]
+              c: "Link",
+            },
+          ],
         }}
-      </BodyRenderer>
-    )
+      </BodyRenderer>,
+    ),
   ).toMatchSnapshot();
 });
 
@@ -50,7 +50,7 @@ test("BodyRenderer accepts a map for components", () => {
           {props.children}
         </a>
       );
-    }
+    },
   };
   expect(
     renderJSX(
@@ -62,11 +62,11 @@ test("BodyRenderer accepts a map for components", () => {
             {
               t: "a",
               p: { href: "http://test" },
-              c: "Link"
-            }
-          ]
+              c: "Link",
+            },
+          ],
         }}
-      </BodyRenderer>
-    )
+      </BodyRenderer>,
+    ),
   ).toMatchSnapshot();
 });

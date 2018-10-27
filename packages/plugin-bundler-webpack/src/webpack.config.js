@@ -13,8 +13,8 @@ module.exports = (config: PhenomicConfig) => ({
         require.resolve("webpack-hot-middleware/client"),
       process.env.PHENOMIC_ENV !== "static" &&
         require.resolve("react-hot-loader/patch"),
-      path.join(config.path, "App.js")
-    ].filter(item => item)
+      path.join(config.path, "App.js"),
+    ].filter(item => item),
   },
   output: {
     publicPath: config.baseUrl.pathname,
@@ -24,12 +24,12 @@ module.exports = (config: PhenomicConfig) => ({
     ...(process.env.PHENOMIC_ENV !== "static"
       ? {
           filename: "phenomic/[name].js",
-          chunkFilename: "phenomic/[name].chunk.js"
+          chunkFilename: "phenomic/[name].chunk.js",
         }
       : {
           filename: "phenomic/[name].[chunkhash:8].js",
-          chunkFilename: "phenomic/[name].[chunkhash:8].chunk.js"
-        })
+          chunkFilename: "phenomic/[name].[chunkhash:8].chunk.js",
+        }),
   },
   module: {
     rules: [
@@ -40,22 +40,22 @@ module.exports = (config: PhenomicConfig) => ({
         options: {
           babelrc: false,
           presets: [require.resolve("@phenomic/babel-preset")],
-          plugins: [require.resolve("react-hot-loader/babel")]
-        }
+          plugins: [require.resolve("react-hot-loader/babel")],
+        },
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: require.resolve("style-loader"),
-          use: require.resolve("css-loader")
-        })
-      }
-    ]
+          use: require.resolve("css-loader"),
+        }),
+      },
+    ],
   },
   plugins: [
     new ExtractTextPlugin({
       filename: "phenomic/[name].[contenthash:8].css",
-      disable: process.env.PHENOMIC_ENV !== "static"
+      disable: process.env.PHENOMIC_ENV !== "static",
     }),
     (() => {
       const envVars = getClientEnvironment(config);
@@ -63,18 +63,18 @@ module.exports = (config: PhenomicConfig) => ({
         "process.env": Object.keys(envVars).reduce((env, key) => {
           env[key] = JSON.stringify(envVars[key]);
           return env;
-        }, {})
+        }, {}),
       });
     })(),
     process.env.PHENOMIC_ENV !== "static" &&
       new webpack.HotModuleReplacementPlugin(),
     process.env.NODE_ENV === "production" &&
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin(),
   ].filter(item => item),
 
   resolve: {
     // react-native(-web) | react-primitives
-    extensions: [".web.js", ".js", ".json"]
+    extensions: [".web.js", ".js", ".json"],
   },
 
   // eslint-disable-next-line max-len
@@ -82,6 +82,6 @@ module.exports = (config: PhenomicConfig) => ({
   node: {
     fs: "empty",
     net: "empty",
-    tls: "empty"
-  }
+    tls: "empty",
+  },
 });

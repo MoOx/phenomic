@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: "1.5em",
     textAlign: "center",
-    color: "palevioletred"
+    color: "palevioletred",
   },
   title2: {
     fontSize: "2em",
     textAlign: "right",
-    color: "blue"
-  }
+    color: "blue",
+  },
 });
 
 export default createApp(() => (

@@ -6,7 +6,7 @@ const chalk = require("chalk");
 export const runCommand = (
   cmd: string,
   args: $ReadOnlyArray<string>,
-  options: Object = {}
+  options: Object = {},
 ) => {
   console.log(chalk.dim(`$ ${cmd} ${args.join(" ")}`));
   const result = spawnSync(cmd, args, { stdio: "inherit", ...options });

@@ -7,14 +7,14 @@ TopBarProgressIndicator.config({
   barThickness: 4,
   barColors: {
     "0": "#fff",
-    "1.0": "#fff"
+    "1.0": "#fff",
   },
-  shadowBlur: 5
+  shadowBlur: 5,
 });
 
 class ActivityIndicator extends React.PureComponent<{}, { visible: boolean }> {
   state = {
-    visible: false
+    visible: false,
   };
 
   _timeout: TimeoutID;
@@ -56,7 +56,7 @@ class ActivityIndicator extends React.PureComponent<{}, { visible: boolean }> {
             from { transform: rotate(0); }
             to { transform: rotate(359deg); }
           }
-        `
+        `,
           }}
         />
         <div className="ActivityIndicator-loader">

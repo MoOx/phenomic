@@ -17,7 +17,7 @@ type oraOptions =
       color: oraColors,
       interval: number,
       stream: Object,
-      enabled: boolean
+      enabled: boolean,
     };
 
 type oraInstance = {
@@ -33,8 +33,8 @@ type oraInstance = {
   color: string,
   stream: {
     // @todo add more about WritableStream
-    write: Function
-  }
+    write: Function,
+  },
 };
 declare module "ora" {
   declare module.exports: (options?: oraOptions) => oraInstance;

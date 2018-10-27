@@ -1,7 +1,7 @@
 type GrayMatterResult = {
   orig: string,
   data: Object,
-  content: string
+  content: string,
 };
 
 declare module "gray-matter" {

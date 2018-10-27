@@ -16,10 +16,10 @@ const log = (
   sender: string,
   symbol: TypeType,
   message: string,
-  writer: WriterType
+  writer: WriterType,
 ): string => {
   const msg = `${symbol ? logSymbols[symbol] : " "} ${color.gray(
-    sender + ": "
+    sender + ": ",
   )} ${message}`;
   if (writer) {
     writer(msg);

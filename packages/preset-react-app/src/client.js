@@ -9,7 +9,7 @@ import {
   query,
   BodyRenderer,
   textRenderer,
-  Link
+  Link,
 } from "@phenomic/plugin-renderer-react/lib/client";
 
 export {
@@ -21,5 +21,5 @@ export {
   query,
   BodyRenderer,
   textRenderer,
-  Link
+  Link,
 };

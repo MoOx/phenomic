@@ -46,7 +46,7 @@ const PageError = ({ error } /*: { error?: Object } */) => {
           line-height: 3rem;
           text-align: center;
         }
-      `
+      `,
         }}
       />
       <Layout title={message}>

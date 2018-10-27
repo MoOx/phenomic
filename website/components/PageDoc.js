@@ -8,10 +8,10 @@ export default withPhenomicApi(Page, props => {
   return {
     page: query({
       path: `packages`,
-      id: props.params.splat
+      id: props.params.splat,
     }),
     pages: query({
-      path: `packages`
-    })
+      path: `packages`,
+    }),
   };
 });

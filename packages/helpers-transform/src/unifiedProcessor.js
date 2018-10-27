@@ -14,19 +14,17 @@ const createElement = (component, props, children) => {
   return {
     t: component,
     ...(props && Object.keys(props).length ? { p: props } : {}),
-    ...(children ? { c: children } : {})
+    ...(children ? { c: children } : {}),
   };
 };
 
-export default (
-  {
-    output,
-    plugins
-  }: {|
-    output?: "json" | "html",
-    plugins?: $ReadOnlyArray<plugin>
-  |} = {}
-) => {
+export default ({
+  output,
+  plugins,
+}: {|
+  output?: "json" | "html",
+  plugins?: $ReadOnlyArray<plugin>,
+|} = {}) => {
   const processor = unified();
   if (plugins)
     plugins.forEach(plugin => {
@@ -52,7 +50,7 @@ export default (
       }
       throw new Error(
         "A plugin for 'unified' can be a string (module name), a function, or an array of [string|function, {options}]. You gave " +
-          plugin.toString()
+          plugin.toString(),
       );
     });
 

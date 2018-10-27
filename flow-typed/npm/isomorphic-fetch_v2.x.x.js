@@ -4,6 +4,6 @@
 declare module "isomorphic-fetch" {
   declare module.exports: (
     input: string | Request | URL,
-    init?: RequestOptions
+    init?: RequestOptions,
   ) => Promise<Response>;
 }

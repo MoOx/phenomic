@@ -6,24 +6,26 @@ import {
   createApp,
   withPhenomicApi,
   query,
-  BodyRenderer
+  BodyRenderer,
 } from "@phenomic/preset-react-app/lib/client";
 
 const componentsMap = {
   uppercase: props => props.children.map(child => child.toUpperCase()),
   expand: class Expand extends React.Component<
     { children: React.Node },
-    { isExpanded: boolean }
+    { isExpanded: boolean },
   > {
     state = {
-      isExpanded: false
+      isExpanded: false,
     };
     filterChild = child =>
       typeof child !== "string" || child.replace(/\s/g, "") !== "";
     filterChildren = (children: React.Node) =>
       Array.isArray(children)
         ? children.filter(this.filterChild)
-        : this.filterChild(children) ? [children] : [];
+        : this.filterChild(children)
+          ? [children]
+          : [];
 
     handleClick = () => {
       this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
@@ -51,7 +53,7 @@ const componentsMap = {
   draft: props =>
     process.env.NODE_ENV !== "production" && (
       <div style={{ opacity: 0.5 }}>{props.children}</div>
-    )
+    ),
 };
 
 const Content = ({ hasError, isLoading, page }) => {
@@ -76,7 +78,7 @@ const Content = ({ hasError, isLoading, page }) => {
 };
 
 const ContentContainer = withPhenomicApi(Content, () => ({
-  page: query({ id: "content" })
+  page: query({ id: "content" }),
 }));
 
 export default createApp(() => (

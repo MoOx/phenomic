@@ -25,7 +25,7 @@ function getMatch({ routes, location }) {
       (error, redirectLocation, renderProps) => {
         if (error) reject(error);
         else resolve({ renderProps, redirectLocation });
-      }
+      },
     );
   });
 }
@@ -35,7 +35,7 @@ function staticRenderToString(
   store: StoreType,
   { renderProps }: { renderProps: Object },
   renderHTML: typeof renderHTML,
-  assets: PhenomicAssets
+  assets: PhenomicAssets,
 ) {
   return renderHTML(
     {
@@ -47,10 +47,10 @@ function staticRenderToString(
       renderAsObject: (UserWrappedApp: React.Node) => ({
         main: ReactDOMServer.renderToString(UserWrappedApp),
         state: store.getState(),
-        assets
-      })
+        assets,
+      }),
     },
-    config
+    config,
   );
 }
 
@@ -59,12 +59,12 @@ const _renderStatic = async (
   {
     app,
     assets,
-    location
+    location,
   }: {|
     app: PhenomicAppType,
     assets: PhenomicAssets,
-    location: string
-  |}
+    location: string,
+  |},
 ) => {
   debug(location, "server renderering");
 
@@ -72,42 +72,42 @@ const _renderStatic = async (
   const store = createStore();
   const { renderProps, redirectLocation } = await getMatch({
     routes,
-    location
+    location,
   });
 
   // debug(location, "renderProps", renderProps);
 
   // debug(location, "phenomic api store is going to be filled");
   const phenomicApiContainers = renderProps.components.filter(
-    item => item && typeof item.getQueries === "function"
+    item => item && typeof item.getQueries === "function",
   );
   await Promise.all(
     phenomicApiContainers.map(item => {
       const queries = item.getQueries(renderProps);
       return performQuery(
         store,
-        Object.keys(queries).map(key => encode(queries[key]))
+        Object.keys(queries).map(key => encode(queries[key])),
       );
-    })
+    }),
   );
   // debug(location, "phenomic api store has been prepared");
 
   const containers = renderProps.components.filter(
-    item => item && typeof item.getInitialProps === "function"
+    item => item && typeof item.getInitialProps === "function",
   );
   // we should only have one
   if (containers.length > 1) {
     throw Error(
       "Only a single async container can be used on a given route (`static async getInitialProps`), found " +
-        containers.length
+        containers.length,
     );
   }
   await Promise.all(
     containers.map(async item => {
       renderProps.params.__initialPropsForSSR = await item.getInitialProps(
-        renderProps
+        renderProps,
       );
-    })
+    }),
   );
 
   let contents;
@@ -117,14 +117,14 @@ const _renderStatic = async (
       store,
       { renderProps, redirectLocation },
       renderHTML,
-      assets
+      assets,
     );
   } catch (err) {
     console.error();
     console.error(
       `${color.red(
-        "An error occured when Phenomic tried to render"
-      )} ${color.yellow(location)}`
+        "An error occured when Phenomic tried to render",
+      )} ${color.yellow(location)}`,
     );
     console.error();
     throw err;
@@ -138,15 +138,15 @@ const _renderStatic = async (
     { path: filepath, contents },
     ...Object.keys(state).map(key => ({
       path: createURL({ root: "phenomic", ...decode(key) }),
-      contents: JSON.stringify(state[key].node)
-    }))
+      contents: JSON.stringify(state[key].node),
+    })),
   ];
 };
 
 const renderStatic = (config: PhenomicConfig) => (args: {|
   app: PhenomicAppType,
   assets: PhenomicAssets,
-  location: string
+  location: string,
 |}) => _renderStatic(config, args);
 
 export default renderStatic;

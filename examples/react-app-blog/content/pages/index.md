@@ -9,8 +9,8 @@ adjust as you wish pretty easily. Be sure to check out the
 
 Before asking any question about Phenomic, be sure to read the documentation :
 
-* [Getting Started with Phenomic](https://phenomic.io/en/tutorials/)
-* [Documentation](https://phenomic.io/en/packages/core/docs/)
+- [Getting Started with Phenomic](https://phenomic.io/en/tutorials/)
+- [Documentation](https://phenomic.io/en/packages/core/docs/)
 
 Also take a look at
 [existing websites that use Phenomic](https://phenomic.io/en/showcase/), some

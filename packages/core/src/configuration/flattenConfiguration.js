@@ -9,7 +9,7 @@ const debug = require("debug")("phenomic:core:configuration");
 type ModuleWithOption<T> = {|
   module: T,
   options?: PhenomicInputPluginOption,
-  name: string
+  name: string,
 |};
 
 function normalizeModule<T>(module): ModuleWithOption<T> {
@@ -20,19 +20,19 @@ function normalizeModule<T>(module): ModuleWithOption<T> {
       throw new Error(
         "When using array to register a phenomic module, please an array with 2 items only" +
           "Given " +
-          module.length
+          module.length,
       );
     }
     flatModule = module[0];
     if (typeof module[0] !== "string" && typeof module[0] !== "function") {
       throw new Error(
         "module should be a string or a function but received " +
-          typeof module[0]
+          typeof module[0],
       );
     }
     if (!module[1] || typeof module[1] !== "object") {
       throw new Error(
-        "options should be an object but received " + typeof module[1]
+        "options should be an object but received " + typeof module[1],
       );
     }
     // $FlowFixMe we can't cover everything
@@ -56,7 +56,7 @@ function normalizeModule<T>(module): ModuleWithOption<T> {
     return {
       module: normalizedModule,
       options,
-      name: typeof flatModule === "string" ? flatModule : normalizedModule.name
+      name: typeof flatModule === "string" ? flatModule : normalizedModule.name,
     };
   }
   if (typeof preNormalizedModule === "function") {
@@ -65,7 +65,7 @@ function normalizeModule<T>(module): ModuleWithOption<T> {
     return {
       module: normalizedModule,
       options,
-      name: typeof flatModule === "string" ? flatModule : normalizedModule.name
+      name: typeof flatModule === "string" ? flatModule : normalizedModule.name,
     };
   }
   throw new Error("unknow module type " + typeof module);
@@ -73,7 +73,7 @@ function normalizeModule<T>(module): ModuleWithOption<T> {
 
 function flattenPresets(
   pluginsConfig: PhenomicInputPlugins,
-  presetOptions?: PhenomicInputPluginOption
+  presetOptions?: PhenomicInputPluginOption,
 ): $ReadOnlyArray<ModuleWithOption<PhenomicInputPluginOption>> {
   debug("flattenPresets", pluginsConfig);
   const presets: $ReadOnlyArray<ModuleWithOption<PhenomicInputPreset>> = (
@@ -85,14 +85,14 @@ function flattenPresets(
       const flattenPreset = flattenPresets(presetResult, preset.options);
       return acc.concat(flattenPreset);
     },
-    []
+    [],
   );
   const pluginsFromPlugins = Array.isArray(pluginsConfig.plugins)
     ? pluginsConfig.plugins.map(normalizeModule)
     : pluginsConfig.plugins
       ? Object.keys(pluginsConfig.plugins).map(k =>
           // $FlowFixMe ?
-          normalizeModule(pluginsConfig.plugins[k])
+          normalizeModule(pluginsConfig.plugins[k]),
         )
       : [];
   // inject preset options
@@ -102,7 +102,7 @@ function flattenPresets(
         const pluginName = options[0];
         const opts = options[1];
         const plugin = pluginsFromPlugins.find(
-          plugin => plugin.name === pluginName
+          plugin => plugin.name === pluginName,
         );
         if (!plugin) {
           throw new Error(`${pluginName} not found to pass preset options`);
@@ -110,7 +110,7 @@ function flattenPresets(
         if (opts) {
           plugin.options = {
             ...(plugin.options || {}),
-            ...opts
+            ...opts,
           };
         }
       });
@@ -121,7 +121,7 @@ function flattenPresets(
           return;
         }
         const plugin = pluginsFromPlugins.find(
-          plugin => plugin.name === pluginName
+          plugin => plugin.name === pluginName,
         );
         if (!plugin) {
           throw new Error(`${pluginName} not found to pass preset options`);
@@ -129,7 +129,7 @@ function flattenPresets(
         if (presetOptions && presetOptions[pluginName]) {
           plugin.options = {
             ...(plugin.options || {}),
-            ...presetOptions[pluginName]
+            ...presetOptions[pluginName],
           };
         }
       });
@@ -140,14 +140,14 @@ function flattenPresets(
 
 function initPlugins(
   plugins: $ReadOnlyArray<PhenomicPluginModule<{}>>,
-  partialConfig = {}
+  partialConfig = {},
 ) {
   return plugins.map(plugin => {
     const pluginInstance = plugin.module(partialConfig, plugin.options);
     debug("plugin", pluginInstance.name);
     if (Array.isArray(pluginInstance)) {
       throw new Error(
-        "Array of plugins should be specified in 'presets' section of your configuration"
+        "Array of plugins should be specified in 'presets' section of your configuration",
       );
     }
     return pluginInstance;
@@ -167,11 +167,11 @@ function flattenConfiguration(config: PhenomicInputConfig): PhenomicConfig {
     socketPort: config.socketPort || defaultConfig.socketPort,
     bundleName: config.bundleName || defaultConfig.bundleName,
     db: config.db || defaultConfig.db,
-    plugins: []
+    plugins: [],
   };
   const partialPlugins = flattenPresets({
     plugins: config.plugins || [],
-    presets: config.presets || []
+    presets: config.presets || [],
   });
 
   // instanciate plugins with config

@@ -30,7 +30,7 @@ const BlogItem = (props: Object) => {
                 {new Date(props.item.node.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
-                  day: "numeric"
+                  day: "numeric",
                 })}
               </Text>
               <MarkdownGenerated
@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
     top: 0,
     color: "rgba(0, 0, 0, 0.25)",
     fontSize: 14,
-    textAlign: "right"
-  }
+    textAlign: "right",
+  },
 });
 
 export default withPhenomicApi(BlogItem, props => ({
   item: query({
     path: "content/blog",
-    id: props.params.splat
-  })
+    id: props.params.splat,
+  }),
 }));

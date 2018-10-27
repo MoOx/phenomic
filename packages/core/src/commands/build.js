@@ -32,17 +32,17 @@ async function build(config: PhenomicConfig) {
   const phenomicAPIServer = createAPIServer({
     db,
     plugins: config.plugins,
-    rootPath: config.baseUrl.pathname + "phenomic"
+    rootPath: config.baseUrl.pathname + "phenomic",
   });
   const runningPhenomicAPIServer = phenomicAPIServer.listen(
-    parseInt(process.env.PHENOMIC_RESTAPI_PORT, 10)
+    parseInt(process.env.PHENOMIC_RESTAPI_PORT, 10),
   );
   debug("server ready");
   try {
     const bundlers = config.plugins.filter(p => p.buildForPrerendering);
     const bundler = bundlers[0];
     await Promise.all(
-      config.plugins.map(plugin => plugin.beforeBuild && plugin.beforeBuild())
+      config.plugins.map(plugin => plugin.beforeBuild && plugin.beforeBuild()),
     );
     if (!bundler || !bundler.build) {
       throw new Error("a bundler is required (plugin implementing `build`)");
@@ -50,25 +50,25 @@ async function build(config: PhenomicConfig) {
     const assets = await bundler.build();
     debug("assets", assets);
     console.log(
-      "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms"
+      "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms",
     );
     lastStamp = Date.now();
     if (!bundler || !bundler.buildForPrerendering) {
       throw new Error(
-        "a bundler is required (plugin implementing `buildForPrerendering`)"
+        "a bundler is required (plugin implementing `buildForPrerendering`)",
       );
     }
     const app = await bundler.buildForPrerendering();
     debug("app", app);
     console.log(
-      "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms"
+      "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms",
     );
     lastStamp = Date.now(); // Retreive content
 
     const transformers = config.plugins.filter(plugin => plugin.transform);
     // collectors
     await Promise.all(
-      config.plugins.map(p => p.collect && p.collect({ db, transformers }))
+      config.plugins.map(p => p.collect && p.collect({ db, transformers })),
     );
 
     console.log("📝 Content processed " + (Date.now() - lastStamp) + "ms");
@@ -77,7 +77,7 @@ async function build(config: PhenomicConfig) {
     const renderer = renderers[0];
     if (!renderer || !renderer.getRoutes) {
       throw new Error(
-        "a renderer is required (plugin implementing `getRoutes`)"
+        "a renderer is required (plugin implementing `getRoutes`)",
       );
     }
     const routes = renderer.getRoutes(app);
@@ -96,19 +96,19 @@ async function build(config: PhenomicConfig) {
           throw new Error(
             `'resolveURLs' method from ${
               plugin.name
-            } must be a function, received '${typeof plugin.resolveURLs}'`
+            } must be a function, received '${typeof plugin.resolveURLs}'`,
           );
         }
         if (typeof plugin.renderStatic !== "function") {
           throw new Error(
             `'renderStatic' method from ${
               plugin.name
-            } must be a function, received '${typeof plugin.renderStatic}'`
+            } must be a function, received '${typeof plugin.renderStatic}'`,
           );
         }
         const renderStatic = plugin.renderStatic;
         const urls = await plugin.resolveURLs({
-          routes
+          routes,
         });
         nbUrls += urls.length;
         debug("urls have been resolved for ", plugin.name, urls);
@@ -119,38 +119,38 @@ async function build(config: PhenomicConfig) {
             const files = await renderStatic({
               app,
               assets,
-              location
+              location,
             });
             debug(`'${location}': files & deps collected`, files);
             return Promise.all(
               files.map(file =>
                 writeFile(
                   path.join(config.outdir, decodeURIComponent(file.path)),
-                  file.contents
-                )
-              )
+                  file.contents,
+                ),
+              ),
             );
           },
-          { concurrency: 50 }
+          { concurrency: 50 },
         );
-      })
+      }),
     );
     if (nbUrls === 0) {
       console.log(
         `${
           logSymbols.warning
-        } No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`
+        } No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`,
       );
     }
     console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
     lastStamp = Date.now();
 
     await Promise.all(
-      config.plugins.map(plugin => plugin.afterBuild && plugin.afterBuild())
+      config.plugins.map(plugin => plugin.afterBuild && plugin.afterBuild()),
     );
 
     console.log(
-      "📃 After build hook finished " + (Date.now() - lastStamp) + "ms"
+      "📃 After build hook finished " + (Date.now() - lastStamp) + "ms",
     );
     lastStamp = Date.now();
 
