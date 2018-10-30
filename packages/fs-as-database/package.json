@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "name": "@phenomic/fs-as-database",
+  "version": "1.0.0-beta.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/phenomic/phenomic.git",
+  "homepage": "https://phenomic.io",
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin (MoOx)"
+  ],
+  "keywords": [
+    "static",
+    "website",
+    "generator",
+    "compiler",
+    "fs",
+    "files",
+    "database",
+    "sql",
+    "graphql"
+  ],
+  "description": "Access files content via queries on a database (SQL/GraphQL)",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "src",
+    "!**/__tests__"
+  ],
+  "dependencies": {
+    "better-sqlite3": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=4.2.0",
+    "npm": ">=3.0.0",
+    "yarn": ">=1.0.0"
+  }
+}

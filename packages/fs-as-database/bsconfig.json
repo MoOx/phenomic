@@ -1,0 +1,18 @@
+{
+  "name": "@phenomic/fs-as-database",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"]
+}
