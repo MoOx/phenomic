@@ -4,9 +4,11 @@ import path from "path";
 
 import getClientEnvironment from "@phenomic/core/lib/configuration/get-client-environment.js";
 import webpack from "webpack";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
+// $FlowFixMe lazy me
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 module.exports = (config: PhenomicConfig) => ({
+  mode: process.env.NODE_ENV,
   entry: {
     [config.bundleName]: [
       process.env.PHENOMIC_ENV !== "static" &&
@@ -34,26 +36,33 @@ module.exports = (config: PhenomicConfig) => ({
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: require.resolve("babel-loader"),
-        options: {
-          babelrc: false,
-          presets: [require.resolve("@phenomic/babel-preset")],
-        },
+        use: [
+          {
+            loader: require.resolve("babel-loader"),
+            options: {
+              babelrc: false,
+              presets: [require.resolve("@phenomic/babel-preset")],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: require.resolve("style-loader"),
-          use: require.resolve("css-loader"),
-        }),
+        use: [
+          process.env.PHENOMIC_ENV !== "static"
+            ? "style-loader"
+            : MiniCssExtractPlugin.loader,
+          require.resolve("css-loader"),
+        ],
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: "phenomic/[name].[contenthash:8].css",
-      disable: process.env.PHENOMIC_ENV !== "static",
-    }),
+    process.env.PHENOMIC_ENV === "static" &&
+      new MiniCssExtractPlugin({
+        filename: "phenomic/[name].[chunkhash:8].css",
+        chunkFilename: "phenomic/[name].[chunkhash:8].chunk.css",
+      }),
     (() => {
       const envVars = getClientEnvironment(config);
       return new webpack.DefinePlugin({
@@ -65,8 +74,6 @@ module.exports = (config: PhenomicConfig) => ({
     })(),
     process.env.PHENOMIC_ENV !== "static" &&
       new webpack.HotModuleReplacementPlugin(),
-    process.env.NODE_ENV === "production" &&
-      new webpack.optimize.UglifyJsPlugin(),
   ].filter(item => item),
 
   resolve: {

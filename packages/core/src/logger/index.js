@@ -29,6 +29,7 @@ const log = (
 
 export default (sender: string, writer: WriterType = console.log) => {
   const logger = (msg: string) => log(sender, INFO, msg, writer);
+  logger.trace = (msg: string) => log(sender, null, msg, writer);
   logger.debug = (msg: string) => log(sender, null, msg, writer);
   logger.info = (msg: string) => log(sender, INFO, msg, writer);
   logger.success = (msg: string) => log(sender, SUCCESS, msg, writer);

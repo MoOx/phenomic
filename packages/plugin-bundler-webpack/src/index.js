@@ -2,21 +2,21 @@
 
 import path from "path";
 import fs from "fs";
-// import url from "url"
 
-// import pkg from "@phenomic/core/package.json"
 import findCacheDir from "find-cache-dir";
-// import webpack, { BannerPlugin, optimize, DefinePlugin } from "webpack"
-import webpack, { BannerPlugin, optimize } from "webpack";
+import webpack, { BannerPlugin } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import logger from "@phenomic/core/lib/logger";
 
 import webpackPromise from "./webpack-promise.js";
 import validate from "./validate.js";
 
 const debug = require("debug")("phenomic:plugin:bundler-webpack");
 
-const { UglifyJsPlugin } = optimize;
+const pluginName = "@phenomic/plugin-bundler-webpack";
+const log = logger(pluginName);
+
 const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true });
 const requireSourceMapSupport = `require('${require
   .resolve("source-map-support/register")
@@ -80,16 +80,16 @@ const getWebpackConfig = (config: PhenomicConfig) => {
 
 const bundlerWebpack: PhenomicPluginModule<{}> = config => {
   return {
-    name: "@phenomic/plugin-bundler-webpack",
+    name: pluginName,
     addDevServerMiddlewares() {
       debug("get middlewares");
       const compiler = webpack(getWebpackConfig(config));
       let assets = {};
-      compiler.plugin("done", stats => {
+      compiler.hooks.done.tap(pluginName + "/dev-server-middleware", stats => {
         assets = {};
         const namedChunks = stats.compilation.namedChunks;
-        Object.keys(namedChunks).forEach(chunkName => {
-          const files = namedChunks[chunkName].files.filter(
+        namedChunks.forEach((chunk, chunkName) => {
+          const files = chunk.files.filter(
             file => !file.endsWith(".hot-update.js"),
           );
           if (files.length) {
@@ -110,16 +110,14 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
           next();
         },
         webpackDevMiddleware(compiler, {
+          logLevel: "warn",
           publicPath: config.baseUrl.pathname,
           stats: { chunkModules: false, assets: false },
-          // @todo add this and output ourself a nice message for build status
-          // noInfo: true,
-          // quiet: true,
+          // logger: log, // output info even if logLevel: "warn"
         }),
         webpackHotMiddleware(compiler, {
           reload: true,
-          // skip hot middleware logs if !verbose
-          // log: config.verbose ? undefined : () => {},
+          log,
         }),
       ];
     },
@@ -144,12 +142,7 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
           libraryTarget: "commonjs2",
         },
         plugins: [
-          // Remove UglifyJSPlugin from plugin stack
-          ...(webpackConfig.plugins
-            ? webpackConfig.plugins.filter(
-                plugin => !(plugin instanceof UglifyJsPlugin),
-              )
-            : []),
+          ...webpackConfig.plugins,
           // sourcemaps
           new BannerPlugin({
             banner: requireSourceMapSupport,
