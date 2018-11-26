@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-app-styles-with-emotion",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-beta.4",
-    "@phenomic/core": "^1.0.0-beta.4",
-    "@phenomic/preset-react-app": "^1.0.0-beta.4",
+    "@phenomic/cli": "^1.0.0-beta.5",
+    "@phenomic/core": "^1.0.0-beta.5",
+    "@phenomic/preset-react-app": "^1.0.0-beta.5",
     "emotion": "^8.0.0",
     "emotion-server": "^8.0.0",
     "react": "^16.3.0",
