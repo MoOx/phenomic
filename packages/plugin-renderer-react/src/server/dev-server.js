@@ -17,6 +17,7 @@ const DefaultDevContent = () => (
       textAlign: "center",
     }}
   >
+    ...
     <script
       dangerouslySetInnerHTML={{
         __html: `
