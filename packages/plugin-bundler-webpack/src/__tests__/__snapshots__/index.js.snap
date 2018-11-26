@@ -22,7 +22,6 @@ Please use an object like this:
   entry: {
     "phenomic.main": [
       process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),
-      process.env.PHENOMIC_ENV !== "static" && require.resolve("react-hot-loader/patch"),
       "./App.js"
     ].filter(item => item),
   }
@@ -39,7 +38,6 @@ Please use an object like this:
   entry: {
     "phenomic.main": [
       process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),
-      process.env.PHENOMIC_ENV !== "static" && require.resolve("react-hot-loader/patch"),
       "./App.js"
     ].filter(item => item),
   }

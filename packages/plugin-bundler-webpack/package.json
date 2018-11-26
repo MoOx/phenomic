@@ -32,7 +32,6 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "find-cache-dir": "^0.1.1",
     "multili": "^1.1.0",
-    "react-hot-loader": "^3.0.0-beta.7",
     "source-map-support": "^0.4.0",
     "style-loader": "^0.16.1",
     "webpack": "^3.0.0",

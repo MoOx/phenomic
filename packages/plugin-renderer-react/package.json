@@ -31,7 +31,6 @@
     "debug": "^2.6.0",
     "hoist-non-react-statics": "^2.5.0",
     "prop-types": "^15.5.8",
-    "react-hot-loader": "^3.0.0-beta.7",
     "socket.io-client": "^1.7.2",
     "striptags": "^2.0.0",
     "url-join": "^2.0.2"

@@ -21,7 +21,6 @@ export default (webpackConfig: Object, config: PhenomicConfig) => {
     // be careful about the indentation here
     let adviceCode = `[
             process.env.PHENOMIC_ENV !== "static" && require.resolve("webpack-hot-middleware/client"),
-            process.env.PHENOMIC_ENV !== "static" && require.resolve("react-hot-loader/patch"),
             "./App.js"
           ].filter(item => item)`;
     const type = typeOf(webpackConfig.entry);

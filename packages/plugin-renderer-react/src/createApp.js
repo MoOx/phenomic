@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { AppContainer } from "react-hot-loader";
 
 import Provider from "./components/Provider";
 import createStore from "./shared/store";
@@ -44,13 +43,7 @@ export const renderApp = (
     document.body.appendChild(root);
   }
 
-  render(
-    <AppContainer>
-      <Provider store={store}>{routes()}</Provider>
-    </AppContainer>,
-    root,
-    callback,
-  );
+  render(<Provider store={store}>{routes()}</Provider>, root, callback);
 };
 
 export default (
