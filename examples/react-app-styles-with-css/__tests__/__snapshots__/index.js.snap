@@ -4,5 +4,6 @@ exports[`should build example correctly 1`] = `
 ".helloWorld {
   font-size: 40rem;
 }
+
 "
 `;
