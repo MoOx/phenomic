@@ -16,7 +16,7 @@ it("should transform asciidoc as html", () => {
           // exists: true,
           // type: "wat"
         },
-        contents: new Buffer(`
+        contents: Buffer.from(`
 = Hello, AsciiDoc!
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First draft
@@ -50,7 +50,7 @@ it("should transform asciidoc as json", () => {
           // exists: true,
           // type: "wat"
         },
-        contents: new Buffer(`
+        contents: Buffer.from(`
 = Hello, AsciiDoc!
 Ezra Lalonde <ezra@usefuliftrue.com>
 v1.0, 2017-10-05: First draft

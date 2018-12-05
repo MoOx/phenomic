@@ -16,7 +16,7 @@ it("should transform json as json", () => {
           // exists: true,
           // type: "wat"
         },
-        contents: new Buffer(
+        contents: Buffer.from(
           `{
       "test": "a",
       "test2": "b",
@@ -39,7 +39,7 @@ it("should transform json as json and support partial", () => {
           // exists: true,
           // type: "wat"
         },
-        contents: new Buffer(
+        contents: Buffer.from(
           `{
       "test": "a",
       "test2": "b",
