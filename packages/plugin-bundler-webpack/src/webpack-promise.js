@@ -5,6 +5,7 @@ import color from "chalk";
 
 export default function(webpackConfig: Object): Promise<any> {
   return new Promise((resolve, reject) => {
+    // $FlowFixMe interface sucks
     webpack(webpackConfig).run((err, stats) => {
       if (err) {
         reject(err);

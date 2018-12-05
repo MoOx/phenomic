@@ -57,6 +57,7 @@ module.exports = (config: PhenomicConfig) => ({
       },
     ],
   },
+  // $FlowFixMe lazy me
   plugins: [
     process.env.PHENOMIC_ENV === "static" &&
       new MiniCssExtractPlugin({

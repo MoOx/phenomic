@@ -8,7 +8,7 @@ type NodeObjectHashConfig = {
 declare function hash(obj: Object): string;
 
 type NodeObjectHashInstance = {
-  hash: hash,
+  hash: typeof hash,
 };
 
 declare module "node-object-hash" {

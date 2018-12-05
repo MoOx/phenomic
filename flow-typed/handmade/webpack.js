@@ -1,22 +1,4 @@
 /* eslint-disable */
-// @todo improve this
-
-export type WebpackConfig = Object;
-
-export type WebpackAssetsFiles = { [key: string]: Array<string> };
-
-type WebpackInstance = {
-  query: Object,
-  options: Object,
-  emitError: Function,
-  emitFile: Function,
-  resourcePath: string,
-};
-
-declare module "webpack" {
-  declare function webpack(options: Object, callback: Function): void;
-  declare module.exports: webpack;
-}
 
 declare var module: {
   hot: {

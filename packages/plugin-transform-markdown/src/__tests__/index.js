@@ -8,7 +8,8 @@ it("should transform markdown as html", () => {
   const plugin = transformMarkdown(config);
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.json",
@@ -31,7 +32,8 @@ it("should transform markdown as json", () => {
   const plugin = transformMarkdown(config, { output: "json" });
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.json",

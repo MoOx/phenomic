@@ -1,7 +1,4 @@
-// flow-typed signature: 143ae888d2dc4622e3924917e4603f82
-// flow-typed version: 9f7cf2ab0c/express_v4.x.x/flow_>=v0.32.x
-
-import type { Server } from "http";
+import * as http from "http";
 import type { Socket } from "net";
 
 declare type express$RouterOptions = {
@@ -19,7 +16,8 @@ declare type express$RequestParams = {
   [param: string]: string,
 };
 
-declare class express$Request extends http$IncomingMessage {
+declare class express$Request extends http$IncomingMessage
+  mixins express$RequestResponseBase {
   baseUrl: string;
   body: mixed;
   cookies: { [cookie: string]: string };
@@ -76,7 +74,8 @@ declare type express$SendFileOptions = {
   dotfiles?: "allow" | "deny" | "ignore",
 };
 
-declare class express$Response extends http$ServerResponse {
+declare class express$Response extends http$ServerResponse
+  mixins express$RequestResponseBase {
   headersSent: boolean;
   locals: { [name: string]: mixed };
   append(field: string, value?: string): this;
@@ -195,16 +194,23 @@ declare class express$Router extends express$Route {
       id: string,
     ) => mixed,
   ): void;
-
-  // Can't use regular callable signature syntax due to https://github.com/facebook/flow/issues/3084
-  $call: (
+  (
     req: http$IncomingMessage,
     res: http$ServerResponse,
     next?: ?express$NextFunction,
-  ) => void;
+  ): void;
 }
 
-declare class express$Application extends express$Router {
+/*
+With flow-bin ^0.59, express app.listen() is deemed to return any and fails flow type coverage.
+Which is ironic because https://github.com/facebook/flow/blob/master/Changelog.md#misc-2 (release notes for 0.59)
+says "Improves typings for Node.js HTTP server listen() function."  See that?  IMPROVES!
+To work around this issue, we changed Server to ?Server here, so that our invocations of express.listen() will
+not be deemed to lack type coverage.
+*/
+
+declare class express$Application extends express$Router
+  mixins events$EventEmitter {
   constructor(): void;
   locals: { [name: string]: mixed };
   mountpath: string;
@@ -213,15 +219,15 @@ declare class express$Application extends express$Router {
     hostname?: string,
     backlog?: number,
     callback?: (err?: ?Error) => mixed,
-  ): ?Server;
+  ): ?http.Server;
   listen(
     port: number,
     hostname?: string,
     callback?: (err?: ?Error) => mixed,
-  ): ?Server;
-  listen(port: number, callback?: (err?: ?Error) => mixed): ?Server;
-  listen(path: string, callback?: (err?: ?Error) => mixed): ?Server;
-  listen(handle: Object, callback?: (err?: ?Error) => mixed): ?Server;
+  ): ?http.Server;
+  listen(port: number, callback?: (err?: ?Error) => mixed): ?http.Server;
+  listen(path: string, callback?: (err?: ?Error) => mixed): ?http.Server;
+  listen(handle: Object, callback?: (err?: ?Error) => mixed): ?http.Server;
   disable(name: string): void;
   disabled(name: string): boolean;
   enable(name: string): express$Application;
@@ -242,7 +248,41 @@ declare class express$Application extends express$Router {
     res: http$ServerResponse,
     next?: ?express$NextFunction,
   ): void;
+  // callable signature is not inherited
+  (
+    req: http$IncomingMessage,
+    res: http$ServerResponse,
+    next?: ?express$NextFunction,
+  ): void;
 }
+
+declare type JsonOptions = {
+  inflate?: boolean,
+  limit?: string | number,
+  reviver?: (key: string, value: mixed) => mixed,
+  strict?: boolean,
+  type?: string | Array<string> | ((req: express$Request) => boolean),
+  verify?: (
+    req: express$Request,
+    res: express$Response,
+    buf: Buffer,
+    encoding: string,
+  ) => mixed,
+};
+
+declare type express$UrlEncodedOptions = {
+  extended?: boolean,
+  inflate?: boolean,
+  limit?: string | number,
+  parameterLimit?: number,
+  type?: string | Array<string> | ((req: express$Request) => boolean),
+  verify?: (
+    req: express$Request,
+    res: express$Response,
+    buf: Buffer,
+    encoding: string,
+  ) => mixed,
+};
 
 declare module "express" {
   declare export type RouterOptions = express$RouterOptions;
@@ -256,7 +296,9 @@ declare module "express" {
 
   declare module.exports: {
     (): express$Application, // If you try to call like a function, it will use this signature
+    json: (opts: ?JsonOptions) => express$Middleware,
     static: (root: string, options?: Object) => express$Middleware, // `static` property on the function
     Router: typeof express$Router, // `Router` property on the function
+    urlencoded: (opts: ?express$UrlEncodedOptions) => express$Middleware,
   };
 }

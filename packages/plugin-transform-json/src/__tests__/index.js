@@ -8,7 +8,8 @@ it("should transform json as json", () => {
   const plugin = transformJSON(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.json",
@@ -31,7 +32,8 @@ it("should transform json as json and support partial", () => {
   const plugin = transformJSON(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.json",

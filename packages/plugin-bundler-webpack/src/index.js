@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 
 import findCacheDir from "find-cache-dir";
-import webpack, { BannerPlugin } from "webpack";
+import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import logger from "@phenomic/core/lib/logger";
@@ -84,8 +84,10 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
     name: pluginName,
     addDevServerMiddlewares() {
       debug("get middlewares");
+      // $FlowFixMe interface sucks
       const compiler = webpack(getWebpackConfig(config));
       let assets = {};
+      // $FlowFixMe interface sucks
       compiler.hooks.done.tap(pluginName + "/dev-server-middleware", stats => {
         assets = {};
         const namedChunks = stats.compilation.namedChunks;
@@ -113,7 +115,10 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
         webpackDevMiddleware(compiler, {
           logLevel: "warn",
           publicPath: config.baseUrl.pathname,
-          stats: { chunkModules: false, assets: false },
+          stats: {
+            chunkModules: false,
+            assets: false,
+          },
           // logger: log, // output info even if logLevel: "warn"
         }),
         webpackHotMiddleware(compiler, {
@@ -145,7 +150,7 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
         plugins: [
           ...webpackConfig.plugins,
           // sourcemaps
-          new BannerPlugin({
+          new webpack.BannerPlugin({
             banner: requireSourceMapSupport,
             raw: true,
             entryOnly: false,

@@ -168,7 +168,7 @@ function getPagesProps(
   first?: number,
   last: number,
 |} {
-  const link = res.headers.get("Link") || res.headers.get("link");
+  const link = res.headers.get("Link") || res.headers.get("link") || "";
   const almostParams = link.split(/(page=\d+>; rel="[a-z]+)"/);
   const pages = {};
   for (let i = 1; i < almostParams.length; i = i + 2) {

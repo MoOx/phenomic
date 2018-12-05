@@ -8,7 +8,8 @@ it("should transform asciidoc as html", () => {
   const plugin = transformAsciidoc(config, {});
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.adoc",
@@ -42,7 +43,8 @@ it("should transform asciidoc as json", () => {
   const plugin = transformAsciidoc(config, { output: "json" });
   expect(typeof plugin.transform === "function").toBe(true);
   expect(
-    plugin.transform &&
+    typeof plugin.transform === "function" &&
+      // $FlowFixMe you are so funny sometime flow
       plugin.transform({
         file: {
           name: "file.adoc",

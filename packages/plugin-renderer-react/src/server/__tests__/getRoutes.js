@@ -4,15 +4,18 @@ import * as React from "react";
 
 import getRoutes from "../getRoutes";
 
+const Noop = () => {
+  return null;
+};
 const noop = () => {};
 it("should resolve URLs based on routes", async () => {
-  const Router = noop;
-  const Route = noop;
+  const Router = Noop;
+  const Route = Noop;
   const browserHistory = noop;
-  const Wrapper = noop;
-  const Home = noop;
-  const DocPage = noop;
-  const PageError = noop;
+  const Wrapper = Noop;
+  const Home = Noop;
+  const DocPage = Noop;
+  const PageError = Noop;
 
   expect(
     await getRoutes({

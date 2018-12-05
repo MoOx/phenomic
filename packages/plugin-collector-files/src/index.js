@@ -303,6 +303,7 @@ const collectorFiles: PhenomicPluginModule<options> = (
         folders.map(async ({ contentKey, contentPath, globs }) => {
           const files = glob({
             path: contentPath,
+            // $FlowFixMe lazy me
             patterns: globs,
           });
           await Promise.all(
