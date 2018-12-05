@@ -20,7 +20,7 @@
     "prepare": "yarn reason:cleanup && yarn reason:compile",
     "start": "yarn reason:cleanup && npm-run-all --parallel start:*",
     "start:js": "phenomic start",
-    "start:reason": "yarn reason:compile -- -w",
+    "start:reason": "yarn reason:compile -w",
     "build": "yarn reason:compile && phenomic build"
   },
   "phenomic": {
