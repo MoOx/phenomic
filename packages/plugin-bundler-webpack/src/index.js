@@ -35,9 +35,10 @@ const defaultExternals = [
   //
   // @todo find a better way than a whitelist
 
+  /^apollo(\/.*)?/,
+  /^aphrodite(\/.*)?/,
   /^emotion(\/.*)?/,
   /^glamor(\/.*)?/,
-  /^aphrodite(\/.*)?/,
   /^react-native-web(\/.*)?/,
   /^react-helmet(\/.*)?/,
 ];
