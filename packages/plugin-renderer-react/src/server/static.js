@@ -104,9 +104,10 @@ const _renderStatic = async (
   }
   await Promise.all(
     containers.map(async item => {
-      renderProps.params.__initialPropsForSSR = await item.getInitialProps(
-        renderProps,
-      );
+      renderProps.params.__initialPropsForSSR = await item.getInitialProps({
+        pathname: renderProps.location.pathname,
+        params: renderProps.params,
+      });
     }),
   );
 
