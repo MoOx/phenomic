@@ -70,18 +70,20 @@ const cleanAllHref = (node?: Node, filenameSource: string) => {
 
 const MarkdownGenerated = (props: {| body: Node, filename: string |}) => (
   <div className="phenomic-Markdown">
-    <BodyRenderer
-      components={{
-        h1: MarkdownHeading.H1,
-        h2: MarkdownHeading.H2,
-        h3: MarkdownHeading.H3,
-        h4: MarkdownHeading.H4,
-        h5: MarkdownHeading.H5,
-        h6: MarkdownHeading.H6,
-      }}
-    >
-      {cleanAllHref(props.body, props.filename)}
-    </BodyRenderer>
+    {props.body && (
+      <BodyRenderer
+        components={{
+          h1: MarkdownHeading.H1,
+          h2: MarkdownHeading.H2,
+          h3: MarkdownHeading.H3,
+          h4: MarkdownHeading.H4,
+          h5: MarkdownHeading.H5,
+          h6: MarkdownHeading.H6,
+        }}
+      >
+        {cleanAllHref(props.body, props.filename)}
+      </BodyRenderer>
+    )}
   </div>
 );
 
