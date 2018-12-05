@@ -17,7 +17,7 @@ const PageError = ({ error }: { error: Object }) => {
       <Header title={errorText} />
       <BodyContainer style={styles.container}>
         <Text style={styles.oops}>{"Oooops!"}</Text>
-        <View style={styles.text}>
+        <View>
           <Text style={styles.title}>
             <strong>{status}</strong> {errorText}
           </Text>
