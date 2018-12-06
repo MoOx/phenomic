@@ -29,3 +29,4 @@ coverage
 # reason stuff
 .merlin
 .bsb.lock
+*.bs.js

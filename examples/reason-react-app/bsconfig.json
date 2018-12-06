@@ -4,6 +4,7 @@
   "reason": {
     "react-jsx": 2
   },
+  "suffix": ".bs.js",
   "package-specs": {
     "module": "es6"
   },

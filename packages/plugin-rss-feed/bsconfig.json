@@ -9,5 +9,10 @@
       "dir": "src",
       "subdirs": true
     }
-  ]
+  ],
+  "suffix": ".bs.js",
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  }
 }

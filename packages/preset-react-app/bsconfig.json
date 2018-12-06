@@ -10,6 +10,11 @@
       "subdirs": true
     }
   ],
+  "suffix": ".bs.js",
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
   "bs-dependencies": [
     "reason-react",
     "@phenomic/api-client",
