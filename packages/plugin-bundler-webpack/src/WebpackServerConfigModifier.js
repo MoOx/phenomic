@@ -53,6 +53,9 @@ export default (config, cacheDir) => {
         raw: true,
         entryOnly: false,
       }),
+      // Ignore annoying isomorphic-fetch / cross-fetch encoding/iconv-loader warning
+      // "Critical dependency: the request of a dependency is an expression"
+      new webpack.IgnorePlugin(/\/iconv-loader$/),
     ],
     // sourcemaps
     devtool: "#source-map",
