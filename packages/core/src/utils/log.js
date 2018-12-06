@@ -2,6 +2,6 @@
 
 import logger from "../logger";
 
-const logSource = "@phenomic/core";
+const logSource = "@phenomic";
 
 export default logger(logSource);

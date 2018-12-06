@@ -2,7 +2,6 @@
 
 import path from "path";
 
-import logSymbols from "log-symbols";
 import getPort from "get-port";
 import rimraf from "rimraf";
 import pMap from "p-map";
@@ -10,12 +9,16 @@ import pMap from "p-map";
 import createAPIServer from "../api";
 import writeFile from "../utils/writeFile";
 import createDB from "../db";
+import log from "../utils/log";
+import Utils from "../Utils.bs.js";
 
 const debug = require("debug")("phenomic:core:commands:build");
 
 let lastStamp = Date.now();
+const startStamp = lastStamp;
+
 async function build(config: PhenomicConfig) {
-  console.log("⚡️ Hey! Let's get on with it");
+  log("⚡️ Starting engine...");
   debug("cleaning dist");
   rimraf.sync("dist");
 
@@ -39,6 +42,7 @@ async function build(config: PhenomicConfig) {
   );
   debug("server ready");
   try {
+    log("Building client bundle...");
     const bundlers = config.plugins.filter(p => p.buildForPrerendering);
     const bundler = bundlers[0];
     await Promise.all(
@@ -49,10 +53,9 @@ async function build(config: PhenomicConfig) {
     }
     const assets = await bundler.build();
     debug("assets", assets);
-    console.log(
-      "📦 Webpack client build done " + (Date.now() - lastStamp) + "ms",
-    );
+    log.success("📦 Client bundle done " + Utils.durationSince(lastStamp));
     lastStamp = Date.now();
+    log("Bulding static bundle...");
     if (!bundler || !bundler.buildForPrerendering) {
       throw new Error(
         "a bundler is required (plugin implementing `buildForPrerendering`)",
@@ -60,10 +63,9 @@ async function build(config: PhenomicConfig) {
     }
     const app = await bundler.buildForPrerendering();
     debug("app", app);
-    console.log(
-      "📦 Webpack static build done " + (Date.now() - lastStamp) + "ms",
-    );
-    lastStamp = Date.now(); // Retreive content
+    log.success("📦 Static bundle done " + Utils.durationSince(lastStamp));
+    log("Processing content...");
+    lastStamp = Date.now();
 
     const transformers = config.plugins.filter(plugin => plugin.transform);
     // collectors
@@ -71,7 +73,8 @@ async function build(config: PhenomicConfig) {
       config.plugins.map(p => p.collect && p.collect({ db, transformers })),
     );
 
-    console.log("📝 Content processed " + (Date.now() - lastStamp) + "ms");
+    log.success("📝 Content processed " + Utils.durationSince(lastStamp));
+    log("Starting static pre-rendering...");
     lastStamp = Date.now();
     const renderers: PhenomicPlugins = config.plugins.filter(p => p.getRoutes);
     const renderer = renderers[0];
@@ -136,33 +139,46 @@ async function build(config: PhenomicConfig) {
       }),
     );
     if (nbUrls === 0) {
-      console.log(
-        `${
-          logSymbols.warning
-        } No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`,
+      log.warn(
+        `No URLs resolved. You should probably double-check your routes. If you are using a single '*' route, you need to add an '/' to get a least a static entry point.`,
       );
     }
-    console.log("📃 Pre-rendering finished " + (Date.now() - lastStamp) + "ms");
-    lastStamp = Date.now();
-
-    await Promise.all(
-      config.plugins.map(plugin => plugin.afterBuild && plugin.afterBuild()),
-    );
-
-    console.log(
-      "📃 After build hook finished " + (Date.now() - lastStamp) + "ms",
+    const now = Date.now();
+    log.success(
+      "📦 Static pre-rendering done " +
+        Utils.durationSince(lastStamp, now) +
+        ` (${nbUrls} file${nbUrls > 1 ? "s" : ""} ≈ ${Math.ceil(
+          (now - lastStamp) / nbUrls,
+        )}ms/file)`,
     );
     lastStamp = Date.now();
+
+    const pluginsWithAfterBuildHooks = config.plugins.filter(
+      plugin => typeof plugin.afterBuild === "function",
+    );
+    if (pluginsWithAfterBuildHooks.length > 0) {
+      await Promise.all(
+        pluginsWithAfterBuildHooks.map(
+          plugin => plugin.afterBuild && plugin.afterBuild(),
+        ),
+      );
+      log.success(
+        "After build hook finished " + Utils.durationSince(lastStamp),
+      );
+      lastStamp = Date.now();
+    }
 
     if (runningPhenomicAPIServer) {
       runningPhenomicAPIServer.close();
     }
     debug("server closed");
+      log.success("Build done " + Utils.durationSince(startStamp));
   } catch (error) {
     if (runningPhenomicAPIServer) {
       runningPhenomicAPIServer.close();
     }
     debug("server closed due to error");
+    log.error("Build failed " + Utils.durationSince(startStamp));
     throw error;
   }
 }

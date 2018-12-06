@@ -35,6 +35,7 @@ async function createDevServer({ config }: { config: PhenomicConfig }) {
 }
 
 async function start(config: PhenomicConfig) {
+  log("️⚡️ Starting development server...");
   process.env.NODE_ENV = process.env.NODE_ENV || "development";
   process.env.BABEL_ENV = process.env.BABEL_ENV || "development";
   process.env.PHENOMIC_ENV = "development";
@@ -91,8 +92,9 @@ async function start(config: PhenomicConfig) {
       process.exit(1);
     });
   }
-  console.log(
-    `✨ Open http://localhost:${config.port}` + config.baseUrl.pathname,
+  log.success(
+    `🔗 Development server ready on http://localhost:${config.port}` +
+      config.baseUrl.pathname,
   );
 }
 
