@@ -5,8 +5,8 @@
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "prepare": "svgr --no-dimensions --out-dir svgs svgs",
-    "releases-as-markdown": "babel-node scripts/releases-as-markdown.js",
-    "showcase-screenshots": "babel-node scripts/showcase-screenshots.js",
+    "releases-as-markdown": "babel-node --config-file ../babel.config.js upward scripts/releases-as-markdown.js",
+    "showcase-screenshots": "babel-node --config-file ../babel.config.js upward scripts/showcase-screenshots.js",
     "optim": "imageoptim --jpeg-mini --image-alpha --quit --directory dist",
     "start": "phenomic start",
     "prebuild": "yarn showcase-screenshots",

@@ -11,14 +11,26 @@ process.env.BABEL_ENV = "development";
 
 // this babel register is mainly so you can have a webpack config file in es6
 // without a .babel extension
-require("babel-register")({
+require("@babel/register")({
   presets: [
-    // used to allow import/export
-    // see https://github.com/phenomic/phenomic/issues/1170
-    require.resolve("babel-preset-env"),
     // used to allow react/flow in Html.js for plugin react
     // @todo: consider moving babel-register in this plugin for this file only?
-    require.resolve("babel-preset-react"),
+    require.resolve("@babel/preset-flow"),
+    require.resolve("@babel/preset-react"),
+    // used to allow import/export
+    // see https://github.com/phenomic/phenomic/issues/1170
+    [
+      require.resolve("@babel/preset-env"),
+      {
+        targets: {
+          node: "current",
+        },
+      },
+    ],
+  ],
+  plugins: [
+    require.resolve("@babel/plugin-proposal-export-default-from"),
+    require.resolve("@babel/plugin-syntax-object-rest-spread"),
   ],
   sourceMap: "inline",
 });

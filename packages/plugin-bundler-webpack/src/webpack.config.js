@@ -41,7 +41,7 @@ module.exports = (config: PhenomicConfig) => ({
             loader: require.resolve("babel-loader"),
             options: {
               babelrc: false,
-              presets: [require.resolve("@phenomic/babel-preset")],
+              presets: [require("@phenomic/babel-preset")],
             },
           },
         ],
