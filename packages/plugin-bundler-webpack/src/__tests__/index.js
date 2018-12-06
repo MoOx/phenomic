@@ -2,7 +2,7 @@
 
 import defaultConfig from "@phenomic/core/lib/defaultConfig.js";
 
-import validate from "../validate.js";
+import validate from "../WebpackConfigValidator.js";
 
 const defaultWebpackConfig = require("../webpack.config.js");
 
