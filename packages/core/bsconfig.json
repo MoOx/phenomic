@@ -14,5 +14,8 @@
   "package-specs": {
     "module": "commonjs",
     "in-source": true
+  },
+  "js-post-build": {
+    "cmd": "./../bs-platform/tweak"
   }
 }

@@ -27,6 +27,7 @@
     "!**/__tests__"
   ],
   "dependencies": {
+    "@phenomic/bs-platform": "^1.0.0-beta.5",
     "@phenomic/api-client": "^1.0.0-beta.5",
     "bs-platform": "^4.0.0",
     "chalk": "^1.1.3",
