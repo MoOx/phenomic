@@ -2,11 +2,11 @@
 
 import path from "path";
 
-import findCacheDir from "find-cache-dir";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import logger from "@phenomic/core/lib/logger";
+import { findCacheDirectory } from "@phenomic/core/lib/Utils.bs.js";
 
 import webpackPromise from "./webpack-promise.js";
 import getWebpackConfig from "./WebpackGetConfig.js";
@@ -17,7 +17,7 @@ const debug = require("debug")("phenomic:plugin:bundler-webpack");
 const pluginName = "@phenomic/plugin-bundler-webpack";
 const log = logger(pluginName);
 
-const cacheDir = findCacheDir({ name: "phenomic/webpack", create: true });
+const cacheDir = findCacheDirectory("webpack");
 
 const bundlerWebpack: PhenomicPluginModule<{}> = config => {
   return {
