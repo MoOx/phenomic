@@ -85,6 +85,7 @@ async function build(config: PhenomicConfig) {
     }
     const routes = renderer.getRoutes(app);
     let nbUrls = 0;
+    let nbUrlsFailed = 0;
     await Promise.all(
       config.plugins.map(async plugin => {
         if (!plugin.resolveURLs) {
@@ -119,20 +120,33 @@ async function build(config: PhenomicConfig) {
           urls,
           async location => {
             debug(`'${location}': prepend file and deps`);
-            const files = await renderStatic({
-              app,
-              assets,
-              location,
-            });
-            debug(`'${location}': files & deps collected`, files);
-            return Promise.all(
-              files.map(file =>
-                writeFile(
-                  path.join(config.outdir, decodeURIComponent(file.path)),
-                  file.contents,
+            try {
+              const files = await renderStatic({
+                app,
+                assets,
+                location,
+              });
+              debug(`'${location}': files & deps collected`, files);
+              return Promise.all(
+                files.map(file =>
+                  writeFile(
+                    path.join(config.outdir, decodeURIComponent(file.path)),
+                    file.contents,
+                  ),
                 ),
-              ),
-            );
+              );
+            } catch (e) {
+              // do not crash entire build, just log and continue
+              nbUrlsFailed++;
+              const betterError = errorFormatter(e);
+              log.warn(
+                "An url failed to pre-render /" +
+                  location +
+                  ":\n" +
+                  betterError.toString(),
+              );
+              return Promise.resolve([]);
+            }
           },
           { concurrency: 50 },
         );
@@ -172,7 +186,17 @@ async function build(config: PhenomicConfig) {
       runningPhenomicAPIServer.close();
     }
     debug("server closed");
+    if (nbUrlsFailed === 0) {
       log.success("Build done " + Utils.durationSince(startStamp));
+    } else {
+      log.error(
+        `${nbUrlsFailed} file${
+          nbUrlsFailed > 1 ? "s" : ""
+        } have not been pre-rendered. See errors above for more details`,
+      );
+      log.warn("Build done with errors " + Utils.durationSince(startStamp));
+      process.exit(2);
+    }
   } catch (error) {
     if (runningPhenomicAPIServer) {
       runningPhenomicAPIServer.close();
