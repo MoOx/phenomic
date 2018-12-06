@@ -2,7 +2,6 @@
 
 import path from "path";
 
-import color from "chalk";
 import * as React from "react";
 import ReactDOMServer from "react-dom/server";
 import { match, RouterContext } from "react-router";
@@ -111,25 +110,13 @@ const _renderStatic = async (
     }),
   );
 
-  let contents;
-  try {
-    contents = await staticRenderToString(
-      config,
-      store,
-      { renderProps, redirectLocation },
-      renderHTML,
-      assets,
-    );
-  } catch (err) {
-    console.error();
-    console.error(
-      `${color.red(
-        "An error occured when Phenomic tried to render",
-      )} ${color.yellow(location)}`,
-    );
-    console.error();
-    throw err;
-  }
+  const contents = await staticRenderToString(
+    config,
+    store,
+    { renderProps, redirectLocation },
+    renderHTML,
+    assets,
+  );
   const state = store.getState();
   // don't prepend index.html if location already have .html
   const filepath = location.match(/\.html$/)
