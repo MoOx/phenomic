@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sed -i '' -e 's/require("bs-platform\/lib/require("@phenomic\/bs-platform\/lib/g' $1

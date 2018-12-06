@@ -1,0 +1,13 @@
+{
+  "name": "@phenomic/bs-platform",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [],
+  "suffix": ".bs.js",
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  }
+}
