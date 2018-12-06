@@ -16,7 +16,8 @@
   ],
   "devDependencies": {
     "bs-platform": "^4.0.0",
-    "cpy-cli": "^2.0.0"
+    "cpy-cli": "^2.0.0",
+    "replace": "^1.0.0"
   },
   "scripts": {
     "prepare": "cpy \"../../node_modules/bs-platform/lib/js/*.js\" lib/js && cpy \"../../node_modules/bs-platform/lib/es6/*.js\" lib/es6"

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-sed -i '' -e 's/require("bs-platform\/lib/require("@phenomic\/bs-platform\/lib/g' $1
+# sed is not cross platform...
+#sed -i '' -e 's/require("bs-platform\/lib/require("@phenomic\/bs-platform\/lib/g' $1
+../../../bs-platform/node_modules/.bin/replace 'require\("bs-platform\/lib' 'require("@phenomic/bs-platform/lib' "$1"
