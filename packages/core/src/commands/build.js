@@ -10,6 +10,7 @@ import createAPIServer from "../api";
 import writeFile from "../utils/writeFile";
 import createDB from "../db";
 import log from "../utils/log";
+import errorFormatter from "../utils/error-formatter";
 import Utils from "../Utils.bs.js";
 
 const debug = require("debug")("phenomic:core:commands:build");
@@ -143,7 +144,9 @@ async function build(config: PhenomicConfig) {
                 "An url failed to pre-render /" +
                   location +
                   ":\n" +
-                  betterError.toString(),
+                  (betterError.stack
+                    ? betterError.stack
+                    : betterError.toString()),
               );
               return Promise.resolve([]);
             }
