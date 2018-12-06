@@ -24,8 +24,9 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
     name: pluginName,
     addDevServerMiddlewares() {
       debug("get middlewares");
+      const webpackConfig = getWebpackConfig(config);
       // $FlowFixMe interface sucks
-      const compiler = webpack(getWebpackConfig(config));
+      const compiler = webpack(webpackConfig);
       let assets = {};
       // $FlowFixMe interface sucks
       compiler.hooks.done.tap(pluginName + "/dev-server-middleware", stats => {
@@ -53,18 +54,12 @@ const bundlerWebpack: PhenomicPluginModule<{}> = config => {
           next();
         },
         webpackDevMiddleware(compiler, {
-          logLevel: "warn",
           publicPath: config.baseUrl.pathname,
-          stats: {
-            chunkModules: false,
-            assets: false,
-          },
+          logLevel: "warn",
+          stats: webpackConfig.stats,
           // logger: log, // output info even if logLevel: "warn"
         }),
-        webpackHotMiddleware(compiler, {
-          reload: true,
-          log,
-        }),
+        webpackHotMiddleware(compiler, { reload: true, log }),
       ];
     },
     buildForPrerendering() {
