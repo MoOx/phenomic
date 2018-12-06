@@ -43,6 +43,7 @@ export default (config, cacheDir) => {
       filename: "[name].js",
       library: "app",
       libraryTarget: "commonjs2",
+      devtoolModuleFilenameTemplate: "[absolute-resource-path]",
     },
     plugins: [
       ...webpackConfig.plugins,
