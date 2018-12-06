@@ -33,7 +33,7 @@
     "gray-matter": "^3.0.0",
     "image-optim": "^3.0.0",
     "imageoptim-cli": "^1.15.4",
-    "isomorphic-fetch": "^2.2.1",
+    "cross-fetch": "^2.2.3",
     "mkdirp": "^0.5.1",
     "puppeteer": "^1.1.1",
     "rimraf": "^2.6.1",

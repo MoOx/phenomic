@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 
-import "isomorphic-fetch";
+import "cross-fetch/polyfill";
 import jsonFetch from "simple-json-fetch";
 
 (async function() {

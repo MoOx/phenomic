@@ -1,6 +1,6 @@
 // @flow
 
-import "isomorphic-fetch";
+import "cross-fetch/polyfill";
 import jsonFetch from "simple-json-fetch";
 
 import createURL from "./url";
