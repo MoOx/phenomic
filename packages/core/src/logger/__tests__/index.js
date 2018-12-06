@@ -14,21 +14,21 @@ test("log should log", () => {
     process.platform !== "win32" && !process.env.CIRCLECI ? "[39m" : "";
 
   expect(log("test msg")).toBe(
-    `${logSymbols.info} ${colorStart}sender test: ${colorEnd} test msg`,
+    `${logSymbols.info} ${colorStart}sender test:${colorEnd} test msg`,
   );
   expect(log.debug("test debug")).toBe(
-    `  ${colorStart}sender test: ${colorEnd} test debug`,
+    `  ${colorStart}sender test:${colorEnd} test debug`,
   );
   expect(log.info("test info")).toBe(
-    `${logSymbols.info} ${colorStart}sender test: ${colorEnd} test info`,
+    `${logSymbols.info} ${colorStart}sender test:${colorEnd} test info`,
   );
   expect(log.success("test success")).toBe(
-    `${logSymbols.success} ${colorStart}sender test: ${colorEnd} test success`,
+    `${logSymbols.success} ${colorStart}sender test:${colorEnd} test success`,
   );
   expect(log.warn("test warning")).toBe(
-    `${logSymbols.warning} ${colorStart}sender test: ${colorEnd} test warning`,
+    `${logSymbols.warning} ${colorStart}sender test:${colorEnd} test warning`,
   );
   expect(log.error("test error")).toBe(
-    `${logSymbols.error} ${colorStart}sender test: ${colorEnd} test error`,
+    `${logSymbols.error} ${colorStart}sender test:${colorEnd} test error`,
   );
 });
