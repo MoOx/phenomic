@@ -1,7 +1,9 @@
 // @flow
-
 import webpack from "webpack";
-import color from "chalk";
+import logger from "@phenomic/core/lib/logger";
+
+const pluginName = "@phenomic/plugin-bundler-webpack";
+const log = logger(pluginName);
 
 export default function(webpackConfig: Object): Promise<any> {
   return new Promise((resolve, reject) => {
@@ -11,17 +13,13 @@ export default function(webpackConfig: Object): Promise<any> {
         reject(err);
       }
 
-      if (stats.hasErrors()) {
-        stats.compilation.errors.forEach(item =>
-          console.log(color.red(item.stack || item)),
-        );
-        reject("webpack build failed with errors");
+      if (stats.hasWarnings()) {
+        log.warn(stats.toString(webpackConfig.stats).trim());
       }
 
-      if (stats.hasWarnings()) {
-        stats.compilation.warnings.forEach(item =>
-          console.log(color.yellow("Warning: %s", item.message)),
-        );
+      if (stats.hasErrors()) {
+        log.error(stats.toString(webpackConfig.stats).trim());
+        reject("webpack build failed with errors");
       }
 
       resolve(stats);

@@ -8,6 +8,8 @@ import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 module.exports = (config: PhenomicConfig) => ({
+  // https://webpack.js.org/configuration/stats/#stats
+  stats: "minimal",
   mode: process.env.NODE_ENV,
   entry: {
     [config.bundleName]: [
