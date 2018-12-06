@@ -43,6 +43,7 @@
     "lint-staged": "^3.4.0",
     "npm-run-all": "^3.0.0",
     "prettier": "^1.8.0",
+    "replace": "^1.0.0",
     "trash-cli": "^1.4.0"
   },
   "scripts": {
@@ -58,7 +59,7 @@
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "lerna exec --parallel -- babel --root-mode upward -w src --optional runtime --out-dir lib --ignore \\\"src/**/__tests__\\\"",
     "#watch:re-workaround": "https://github.com/lerna/lerna/issues/1745",
-    "watch:re-workaround": "sed -i '' -e 's/\\[\"ignore\",/\\[\"inherit\",/g' ./node_modules/@lerna/child-process/index.js",
+    "watch:re-workaround": "replace '\\[\"ignore\",' '\\[\"inherit\",' ./node_modules/@lerna/child-process/index.js",
     "watch:re": "lerna exec --parallel -- bsb -make-world -w",
     "prepare": "yarn clean && yarn transpile && yarn watch:re-workaround",
     "prerelease": "yarn prepare",
