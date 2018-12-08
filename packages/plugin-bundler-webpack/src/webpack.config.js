@@ -6,6 +6,9 @@ import getClientEnvironment from "@phenomic/core/lib/configuration/get-client-en
 import webpack from "webpack";
 // $FlowFixMe lazy me
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { findCacheDirectory } from "@phenomic/core/lib/Utils.bs.js";
+
+const cacheDir = findCacheDirectory("webpack-babel");
 
 module.exports = (config: PhenomicConfig) => ({
   // https://webpack.js.org/configuration/stats/#stats
@@ -42,6 +45,7 @@ module.exports = (config: PhenomicConfig) => ({
           {
             loader: require.resolve("babel-loader"),
             options: {
+              cacheDirectory: cacheDir,
               presets: [require("@phenomic/babel-preset")],
             },
           },
