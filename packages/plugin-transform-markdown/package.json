@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-markdown",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "!**/__tests__"
   ],
   "dependencies": {
-    "@phenomic/helpers-transform": "^1.0.0-beta.5",
+    "@phenomic/helpers-transform": "^1.0.0-beta.6",
     "debug": "^2.6.0",
     "gray-matter": "^3.0.0",
     "lodash.deburr": "^4.1.0",
@@ -45,6 +45,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.5"
+    "@phenomic/core": "^1.0.0-beta.6"
   }
 }

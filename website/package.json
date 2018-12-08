@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "website",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "repository": "https://github.com/phenomic/phenomic.git",
   "scripts": {
     "prepare": "svgr --no-dimensions --out-dir svgs svgs",
@@ -17,9 +17,9 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "@phenomic/cli": "^1.0.0-beta.5",
-    "@phenomic/core": "^1.0.0-beta.5",
-    "@phenomic/preset-react-app": "^1.0.0-beta.5",
+    "@phenomic/cli": "^1.0.0-beta.6",
+    "@phenomic/core": "^1.0.0-beta.6",
+    "@phenomic/preset-react-app": "^1.0.0-beta.6",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-ga": "^2.0.0",
@@ -30,10 +30,10 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "cross-fetch": "^2.2.3",
     "gray-matter": "^3.0.0",
     "image-optim": "^3.0.0",
     "imageoptim-cli": "^1.15.4",
-    "cross-fetch": "^2.2.3",
     "mkdirp": "^0.5.1",
     "puppeteer": "^1.1.1",
     "rimraf": "^2.6.1",
