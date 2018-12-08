@@ -48,7 +48,7 @@
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
     "cleanup-node_modules": "trash node_modules packages/*/node_modules examples/*/node_modules website/node_modules",
-    "clean": "trash \"packages/*/lib\" \"{examples,packages,website}/**/*.bs.js\" && lerna exec --parallel -- bsb -clean-world",
+    "clean": "trash \"packages/*/lib\" \"{examples,packages,website}/*/src/*.bs.js\" && lerna exec --parallel -- bsb -clean-world",
     "transpile": "yarn transpile:re && yarn transpile:js",
     "transpile:js": "lerna exec --parallel -- babel --root-mode upward src --optional runtime --out-dir lib --ignore \\\"src/**/__tests__\\\"",
     "transpile:re": "lerna exec --parallel -- bsb -make-world",
