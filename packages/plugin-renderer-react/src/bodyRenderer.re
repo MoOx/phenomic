@@ -18,7 +18,16 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
   | "[object String]" => String(Js.String.make(jsChild))
   | "[object Object]" =>
     let tag = Js.String.make(jsChild##t);
-    let props = jsChild##p;
+    let props = [%bs.raw
+      "(function() {
+        var p = Object.assign({}, jsChild.p);
+        if (p.class) {
+          p.className = p.class;
+          delete p.class;
+        }
+        return p;
+      })()"
+    ];
     let children =
       switch (Js.Null_undefined.toOption(jsChild##c)) {
       | Some(c) => List.map(jsTreeToReason, Array.to_list(c))
