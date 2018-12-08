@@ -1,8 +1,5 @@
 module.exports = {
-  //   babelrcRoots: [".", "packages/*"],
   presets: [
-    "@babel/preset-flow",
-    "@babel/preset-react",
     [
       "@babel/preset-env",
       {
@@ -11,15 +8,14 @@ module.exports = {
         },
       },
     ],
+    "@babel/preset-react",
+    "@babel/preset-flow",
   ],
   plugins: [
     "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-syntax-object-rest-spread",
+    "@babel/plugin-proposal-object-rest-spread",
     [
-      `@babel/plugin-transform-runtime`,
+      "@babel/plugin-transform-runtime",
       {
         helpers: true,
         regenerator: true,

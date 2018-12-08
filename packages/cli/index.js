@@ -29,8 +29,8 @@ require("@babel/register")({
     ],
   ],
   plugins: [
-    require.resolve("@babel/plugin-proposal-export-default-from"),
-    require.resolve("@babel/plugin-syntax-object-rest-spread"),
+    require.resolve("@babel/plugin-proposal-class-properties"),
+    require.resolve("@babel/plugin-proposal-object-rest-spread"),
   ],
   sourceMap: "inline",
 });
