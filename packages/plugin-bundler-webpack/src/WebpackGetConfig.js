@@ -14,7 +14,10 @@ export default (config: PhenomicConfig) => {
   const userWebpackConfigPath = path.join(config.path, "webpack.config.js");
   if (fs.existsSync(userWebpackConfigPath)) {
     // $FlowFixMe no I can't
-    webpackConfig = require(userWebpackConfigPath)(config);
+    webpackConfig = require(userWebpackConfigPath);
+    webpackConfig = (webpackConfig.default
+      ? webpackConfig.default
+      : webpackConfig)(config);
     debug("webpack.config.js used");
   } else {
     debug("webpack.config.js not found");
@@ -24,7 +27,10 @@ export default (config: PhenomicConfig) => {
     );
     if (fs.existsSync(userWebpackConfigBabelPath)) {
       // $FlowFixMe no I can't
-      webpackConfig = require(userWebpackConfigBabelPath)(config);
+      webpackConfig = require(userWebpackConfigBabelPath);
+      webpackConfig = (webpackConfig.default
+        ? webpackConfig.default
+        : webpackConfig)(config);
       debug("webpack.config.babel.js used");
     } else {
       debug("webpack.config.babel.js not found");
