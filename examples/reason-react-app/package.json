@@ -3,9 +3,9 @@
   "name": "@phenomic/example-reason-react-app",
   "devDependencies": {
     "@moox/bs-react-helmet": "^1.0.0",
-    "@phenomic/cli": "^1.0.0-beta.6",
-    "@phenomic/core": "^1.0.0-beta.6",
-    "@phenomic/preset-react-app": "^1.0.0-beta.6",
+    "@phenomic/cli": "^1.0.0-beta.7",
+    "@phenomic/core": "^1.0.0-beta.7",
+    "@phenomic/preset-react-app": "^1.0.0-beta.7",
     "bs-platform": "^4.0.0",
     "npm-run-all": "^4.0.2",
     "react": "^16.3.0",
@@ -28,5 +28,5 @@
       "@phenomic/preset-react-app"
     ]
   },
-  "version": "1.0.0-beta.6"
+  "version": "1.0.0-beta.7"
 }

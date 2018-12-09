@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/helpers-transform",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.6",
+    "@phenomic/core": "^1.0.0-beta.7",
     "rehype-autolink-headings": "^2.0.0",
     "rehype-raw": "^2.0.0",
     "rehype-react": "^3.0.0",

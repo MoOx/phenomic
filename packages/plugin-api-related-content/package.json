@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-api-related-content",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "publishConfig": {
     "access": "public"
   },
@@ -30,6 +30,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.6"
+    "@phenomic/core": "^1.0.0-beta.7"
   }
 }
