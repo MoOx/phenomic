@@ -24,6 +24,7 @@
     "!**/__tests__"
   ],
   "dependencies": {
+    "@babel/core": "^7.0.0",
     "@phenomic/babel-preset": "^1.0.0-beta.6",
     "babel-loader": "^8.0.0",
     "chalk": "^1.1.3",
