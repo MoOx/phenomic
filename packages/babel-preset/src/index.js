@@ -59,7 +59,7 @@ module.exports = () => ({
     // Polyfills the runtime needed for async/await, generators, and friends
     // https://babeljs.io/docs/en/babel-plugin-transform-runtime
     [
-      require("@babel/plugin-transform-runtime").default,
+      require("@babel/plugin-transform-runtime"),
       {
         corejs: false,
         helpers: false,
@@ -67,17 +67,22 @@ module.exports = () => ({
         useESModules: process.env.PHENOMIC_ENV === "static",
       },
     ],
-    process.env.NODE_ENV === "production" && [
-      // Remove PropTypes from production build
-      require("babel-plugin-transform-react-remove-prop-types").default,
-      {
-        removeImport: true,
-      },
-    ],
+    ...(process.env.NODE_ENV === "production"
+      ? [
+          [
+            // Remove PropTypes from production build
+            require("babel-plugin-transform-react-remove-prop-types"),
+            {
+              removeImport: true,
+            },
+          ],
+        ]
+      : []),
     // Adds syntax support for import()
     require("@babel/plugin-syntax-dynamic-import"),
     // Transform dynamic import to require
-    process.env.PHENOMIC_ENV === "static" &&
-      require("babel-plugin-dynamic-import-node"),
+    ...(process.env.PHENOMIC_ENV === "static"
+      ? [require("babel-plugin-dynamic-import-node")]
+      : []),
   ],
 });
