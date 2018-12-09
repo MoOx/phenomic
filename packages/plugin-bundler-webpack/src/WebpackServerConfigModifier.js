@@ -21,7 +21,7 @@ const defaultExternals = [
   /^aphrodite(\/.*)?/,
   /^emotion(\/.*)?/,
   /^glamor(\/.*)?/,
-  /^react-native-web(\/.*)?/,
+  /^react-native(-web)?(\/.*)?/, // "react-native-web" can be used as an alias or "react-native"
   /^react-helmet(\/.*)?/,
 ];
 
