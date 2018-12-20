@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-json",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "publishConfig": {
     "access": "public"
   },
@@ -30,6 +30,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.7"
+    "@phenomic/core": "^1.0.0-beta.8"
   }
 }

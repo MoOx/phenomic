@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-asciidoc",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +25,7 @@
     "!**/__tests__"
   ],
   "dependencies": {
-    "@phenomic/helpers-transform": "^1.0.0-beta.7",
+    "@phenomic/helpers-transform": "^1.0.0-beta.8",
     "asciidoctor.js": "^1.5.6-preview.3",
     "debug": "^2.6.0",
     "lodash.deburr": "^4.1.0",
@@ -40,6 +40,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.7"
+    "@phenomic/core": "^1.0.0-beta.8"
   }
 }
