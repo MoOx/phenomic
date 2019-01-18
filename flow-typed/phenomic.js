@@ -167,14 +167,16 @@ declare type PhenomicPluginModule<Opt> = (
   options: Opt,
 ) => PhenomicPlugin;
 
+declare type PhenomicTransformer = ({|
+  file: PhenomicContentFile,
+  contents: Buffer,
+|}) => PhenomicTransformResult | Promise<PhenomicTransformResult>;
+
 declare type PhenomicPlugin = {|
   name: string,
   // transformer
   supportedFileTypes?: $ReadOnlyArray<string>,
-  transform?: ({|
-    file: PhenomicContentFile,
-    contents: Buffer,
-  |}) => PhenomicTransformResult | Promise<PhenomicTransformResult>,
+  transform?: PhenomicTransformer,
   // api
   extendAPI?: ({|
     apiServer: express$Application,

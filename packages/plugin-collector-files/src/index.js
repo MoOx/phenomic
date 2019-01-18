@@ -121,7 +121,7 @@ export function parsePath(
 
 const collectData = async ({ db, filename, data }) => {
   // console.log(filename, data);
-  const json = await data;
+  const json = data;
   filename = normalizeWindowsPath(filename);
   const id = makeId(filename, json);
   const { name, allPaths } = parsePath(filename);
@@ -157,7 +157,15 @@ const collectData = async ({ db, filename, data }) => {
   });
 };
 
-const processFile = async ({ file, contents, transform }) => {
+const processFile = async ({
+  file,
+  contents,
+  transform,
+}: {
+  file: PhenomicContentFile,
+  contents: Buffer,
+  transform: PhenomicTransformer,
+}) => {
   const transformed: PhenomicTransformResult = await transform({
     file,
     contents,
@@ -186,30 +194,31 @@ const collectorFiles: PhenomicPluginModule<options> = (
       contentKey: string,
       file: PhenomicContentFile,
       contents: Buffer,
-      transformed: any,
+      transformed: PhenomicTransformResult,
     |},
   } = {};
 
   return {
     name: pluginName,
     async collect({ db, transformers }) {
-      const transformByFileTypes = {};
+      const transformByFileTypes: { [key: string]: PhenomicTransformer } = {};
       transformers.forEach(
         plugin =>
           plugin.supportedFileTypes &&
-          plugin.supportedFileTypes.forEach(
-            fileType => (transformByFileTypes[fileType] = plugin.transform),
-          ),
+          plugin.supportedFileTypes.forEach(fileType => {
+            if (plugin.transform)
+              transformByFileTypes[fileType] = plugin.transform;
+          }),
       );
 
       const readAndTransform = async (
         contentKey: string,
         file: PhenomicContentFile,
       ) => {
-        const transform =
+        const transformer =
           transformByFileTypes[path.extname(file.name).slice(1)];
         // nothing to do with the file, ignoring
-        if (!transform) {
+        if (!transformer) {
           debug(`No transformers found for ${file.name}, skipping`);
           return;
         }
@@ -223,16 +232,23 @@ const collectorFiles: PhenomicPluginModule<options> = (
           return;
         }
 
+        const transformed = await processFile({
+          file,
+          contents: contents,
+          transform: transformer,
+        });
+
+        // for any reason, a transformer can decide to not return anything
+        if (!transformed) {
+          debug(`Transformation empty for ${file.name}, skipping`);
+          return;
+        }
         // keep in memory for dev
         transformedMap[file.fullpath] = {
           contentKey,
           file,
           contents: contents,
-          transformed: processFile({
-            file,
-            contents: contents,
-            transform,
-          }),
+          transformed,
         };
       };
       const forget = fullpath => {
