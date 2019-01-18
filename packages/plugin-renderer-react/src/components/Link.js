@@ -25,7 +25,7 @@ type PropsType = {|
   onPress?: (event: SyntheticEvent<HTMLAnchorElement>) => void,
 |};
 
-const isSameOrigin = (url: HTMLAnchorElement) =>
+export const isSameOrigin = (url: HTMLAnchorElement) =>
   origin(url) === origin(window.location) &&
   url.pathname.indexOf(BASENAME) > -1;
 
