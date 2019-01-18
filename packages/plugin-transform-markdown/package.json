@@ -30,8 +30,6 @@
     "@phenomic/helpers-transform": "^1.0.0-beta.8",
     "debug": "^2.6.0",
     "gray-matter": "^3.0.0",
-    "lodash.deburr": "^4.1.0",
-    "lodash.kebabcase": "^4.1.1",
     "rehype-autolink-headings": "^2.0.0",
     "rehype-raw": "^2.0.0",
     "rehype-slug": "^2.0.0",

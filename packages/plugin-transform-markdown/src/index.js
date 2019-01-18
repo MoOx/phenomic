@@ -1,7 +1,5 @@
 // @flow
 
-import deburr from "lodash.deburr";
-import kebabCase from "lodash.kebabcase";
 import frontMatterParser from "gray-matter";
 import unifiedProcessor from "@phenomic/helpers-transform/lib/unifiedProcessor";
 import extractMetaFromBodyNode from "@phenomic/helpers-transform/lib/extractMetaFromBodyNode";
@@ -48,10 +46,6 @@ const transformMarkdown: PhenomicPluginModule<options> = (
         title: file.name,
         ...extractMetaFromBodyNode(body),
         ...front.data,
-        // @todo should be here or user land ?
-        ...(Array.isArray(front.data.tags)
-          ? { tags: front.data.tags.map(tag => kebabCase(deburr(tag))) }
-          : {}),
       };
 
       return {
