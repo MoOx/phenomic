@@ -1,8 +1,6 @@
 // @flow
 
 import asciidoctor from "asciidoctor.js";
-import deburr from "lodash.deburr";
-import kebabCase from "lodash.kebabcase";
 import unifiedProcessor from "@phenomic/helpers-transform/lib/unifiedProcessor";
 import type { plugin } from "@phenomic/helpers-transform/lib//unifiedProcessor";
 import extractMetaFromBodyNode from "@phenomic/helpers-transform/lib/extractMetaFromBodyNode";
