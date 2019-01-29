@@ -96,7 +96,7 @@ const transformAsciidoc: PhenomicPluginModule<options> = (
         title: doc.getAttribute("doctitle") || file.name,
         layout: doc.getAttribute("layout"),
         showdate: doc.getAttribute("nodate", true),
-        tags: tags ? tags.split(",") : [],
+        tags: tags ? tags.split(",").map(t => t.trim()) : [],
       };
       envAttributes.map(key => delete partial[key]);
 
