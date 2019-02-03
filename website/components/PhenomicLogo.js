@@ -24,7 +24,12 @@ class PhenomicLogo extends React.PureComponent<void, void> {
   }
 
   handleLayout = () => {
-    setTimeout(() => this.forceUpdate(), 100);
+    if (!this.timeout) {
+      this.timeout = setTimeout(() => {
+        this.timeout = null;
+        this.forceUpdate();
+      }, 500);
+    }
   };
 
   render() {
@@ -49,7 +54,7 @@ class PhenomicLogo extends React.PureComponent<void, void> {
               style={styles.version}
             >
               <Spacer small={true}>
-                <Text>{"v" + version}</Text>
+                <Text style={styles.versionText}>{"v" + version}</Text>
               </Spacer>
             </Link.Touchable>
           </View>
@@ -61,7 +66,9 @@ class PhenomicLogo extends React.PureComponent<void, void> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0,
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: 64,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -72,6 +79,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     opacity: 0.2,
     fontSize: 12,
+  },
+  versionText: {
+    wordBreak: "keep-all",
   },
 });
 

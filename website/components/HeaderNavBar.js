@@ -18,11 +18,11 @@ import Spacer from "./Spacer";
 const HeaderNavBar = () => (
   <React.Fragment>
     <View style={[styles.rowFlex, styles.wip]}>
-      <Spacer large={true}>
+      <Spacer small={true}>
         <Text style={styles.wipText}>
-          <IconWrench height="16" fill="#fff" style={{ margin: "0 10px" }} />
+          <IconWrench height="16" fill="#041d0f" style={{ margin: "0 10px" }} />
           {" This website is a work in progress. "}
-          <IconTools height="16" fill="#fff" style={{ margin: "0 10px" }} />
+          <IconTools height="16" fill="#041d0f" style={{ margin: "0 10px" }} />
         </Text>
       </Spacer>
     </View>
@@ -64,7 +64,7 @@ const HeaderNavBar = () => (
         <Spacer small={true} style={[styles.row, styles.search]}>
           <DocSearch />
         </Spacer>
-        <Spacer small={true} style={[styles.row, styles.social]}>
+        <Spacer small={true} style={[styles.rowFlex, styles.social]}>
           <Link.Touchable
             href="https://github.com/phenomic/phenomic"
             style={[styles.link, styles.linkIcon]}
@@ -106,7 +106,7 @@ const HeaderNavBar = () => (
 const iconSize = 24;
 const styles = StyleSheet.create({
   rowFlex: {
-    flexShrink: 1,
+    // flexShrink: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
@@ -117,14 +117,14 @@ const styles = StyleSheet.create({
   wip: {
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#041d0f",
+    backgroundColor: "#fff",
   },
   wipText: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "center",
-    color: "#fff",
+    color: "#041d0f",
     fontWeight: "100",
   },
   header: {
@@ -136,23 +136,27 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 1,
+    // minWidth: 500,
     flexBasis: 500,
   },
   right: {
     flex: 1,
+    // minWidth: 350,
     flexBasis: 350,
     justifyContent: "flex-end",
   },
   menu: {
     flexGrow: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   search: {
     flex: 1,
   },
   social: {
-    flex: 0,
-    // flexGrow: 1.5
+    flexGrow: 1,
+    // flex: 1,
+    flexShrink: 0,
+    justifyContent: "flex-end",
   },
   link: {
     textDecorationLine: "none",
