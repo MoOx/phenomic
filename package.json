@@ -9,8 +9,8 @@
     "bloodyowl <bloodyowl@icloud.com>"
   ],
   "devDependencies": {
-    "@babel/core": "^7.0.0",
     "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
@@ -22,7 +22,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
     "babel-jest": "^23.6.0",
-    "bs-platform": "^4.0.8",
+    "bs-platform": "^4.0.18",
     "chalk": "^1.1.3",
     "cross-env": "^2.0.0",
     "cross-spawn": "^5.1.0",
