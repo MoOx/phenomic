@@ -15,9 +15,9 @@ plugins or presets you need. A minimal example configuration could be like this
 
 ## Configuration source
 
-We use [comsmiconfig](https://github.com/davidtheclark/cosmiconfig) to load the
+We use [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to load the
 configuration, so it's up to you to use the format and file you want. Here are
-some example with the previous configure
+some example with the previous configuration
 
 ### `package.json`
 
@@ -66,8 +66,8 @@ domain In this case, development will reflect the base path. Example:
 
 ```js
 {
-  // here development will start on http//localhost:3333/your/website
-  baseUrl: "http//root.of/your/website";
+  // here development will start on http://localhost:3333/your/website
+  baseUrl: "http://root.of/your/website";
 }
 ```
 
