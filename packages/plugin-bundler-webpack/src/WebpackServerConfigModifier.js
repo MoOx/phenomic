@@ -17,6 +17,12 @@ const defaultExternals = [
   //
   // @todo find a better way than a whitelist
 
+  // to support react hooks, we need to be sure that static rendering
+  // use only one react
+  // https://github.com/facebook/react/issues/13991
+  "react",
+  "react-dom",
+
   /^apollo(\/.*)?/,
   /^aphrodite(\/.*)?/,
   /^emotion(\/.*)?/,
