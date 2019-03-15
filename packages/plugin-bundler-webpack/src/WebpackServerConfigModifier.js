@@ -23,6 +23,10 @@ const defaultExternals = [
   "react",
   "react-dom",
 
+  // https://github.com/websockets/ws/issues/1220
+  "bufferutil",
+  "utf-8-validate",
+
   /^apollo(\/.*)?/,
   /^aphrodite(\/.*)?/,
   /^emotion(\/.*)?/,
