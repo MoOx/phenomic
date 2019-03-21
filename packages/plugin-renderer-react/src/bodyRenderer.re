@@ -50,11 +50,9 @@ let make = (~body: jsBody, _children) => {
           activeStyle=[%bs.raw {| child[1].activeStyle |}]
           className=[%bs.raw {| child[1].className |}]
           activeClassName=[%bs.raw {| child[1].activeClassName |}]>
-          {
-            ReasonReact.array(
-              Array.of_list(List.map(renderChild, reasonChildren)),
-            )
-          }
+          {ReasonReact.array(
+             Array.of_list(List.map(renderChild, reasonChildren)),
+           )}
         </Link>
       | _ =>
         ReactDOMRe.createElement(
