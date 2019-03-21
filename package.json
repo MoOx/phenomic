@@ -22,7 +22,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
     "babel-jest": "^23.6.0",
-    "bs-platform": "^4.0.18",
+    "bs-platform": "^5.0.0",
     "chalk": "^1.1.3",
     "cross-env": "^2.0.0",
     "cross-spawn": "^5.1.0",

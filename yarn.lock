@@ -2950,10 +2950,10 @@ browserslist@^4.3.4:
     electron-to-chromium "^1.3.86"
     node-releases "^1.0.5"
 
-bs-platform@^4.0.18:
-  version "4.0.18"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-4.0.18.tgz#d17b8693ba1f714d9b27e0ddb365f2069ba4b8a0"
-  integrity sha512-BwzW0iYHvREqUZIgQxJmdJrxexppLvJxYQ4LLexbhCp7uZU5DIZ5ub4ZHpkCkc8fn8bsXWc+Rrejb3csi+BoAQ==
+bs-platform@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.0.0.tgz#f9fded818bafc3891aeb85eb4e0d95b8d8f8b4d7"
+  integrity sha512-zxLobdIaf/r7go47hOgxcd6C0ANh7MYMEtZNb9Al7JdoekzFZI50F4GpZpP8kMh9Z+M5PoPE1WuryT4S8mT8Kg==
 
 bser@^2.0.0:
   version "2.0.0"
@@ -10556,10 +10556,10 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
-reason-react@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.5.3.tgz#10601809742fd991109ec9d69ad4baf2c3f17540"
-  integrity sha512-dUkoqXrP/gOjkmkW+k/otEUP+yeXH5+QfdxNT5EW60MXM3zbCdFhbNzKBbjYOZ6x96UbxK869CObjX04BdJEDg==
+reason-react@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.6.0.tgz#e9a7d6a10958161c3a12ef7fec1b6662edaae94a"
+  integrity sha512-FKzBDXE96KPyUbeRo2ToqUe9rl4IKgwegtjCXvyx0bzJXCKLqwiiN3OiOTH/siJS+/IZRZhBAHnd/R3VkRMsMQ==
   dependencies:
     react ">=15.0.0 || >=16.0.0"
     react-dom ">=15.0.0 || >=16.0.0"
