@@ -33,6 +33,7 @@ const defaultExternals = [
   /^glamor(\/.*)?/,
   /^react-native(-web)?(\/.*)?/, // "react-native-web" can be used as an alias or "react-native"
   /^react-helmet(\/.*)?/,
+  /^styled-components(\/.*)?/,
 ];
 
 export default (config, cacheDir) => {
