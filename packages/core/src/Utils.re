@@ -1,9 +1,9 @@
 let durationSince = (~lastTime, ~now=Js.Date.now(), ()): string => {
   let duration = now -. lastTime;
   if (duration > 1000.) {
-    string_of_float(duration /. 1000.) ++ "s";
+    Js.Float.toString(duration /. 1000.) ++ "s";
   } else {
-    string_of_float(duration) ++ "ms";
+    Js.Float.toString(duration) ++ "ms";
   };
 };
 
