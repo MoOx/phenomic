@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "@phenomic/example-react-native-app",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "devDependencies": {
-    "@phenomic/cli": "^1.0.0-beta.10",
-    "@phenomic/core": "^1.0.0-beta.10",
-    "@phenomic/preset-react-app": "^1.0.0-beta.10",
+    "@phenomic/cli": "^1.0.0-beta.11",
+    "@phenomic/core": "^1.0.0-beta.11",
+    "@phenomic/preset-react-app": "^1.0.0-beta.11",
     "react": "^16.8.0",
     "react-art": "^16.5.2",
     "react-dom": "^16.8.0",
