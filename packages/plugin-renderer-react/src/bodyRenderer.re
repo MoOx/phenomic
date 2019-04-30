@@ -1,5 +1,3 @@
-let component = ReasonReact.statelessComponent("BodyRenderer");
-
 type reasonChildren = list(reasonChild)
 and reasonChild =
   | String(string)
@@ -37,7 +35,8 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
   | _ => Empty
   };
 
-let make = (~body: jsBody, _children) => {
+[@react.component]
+let make = (~body: jsBody) => {
   let rec renderChild = child =>
     switch (child) {
     | String(string) => ReasonReact.string(string)
@@ -67,5 +66,5 @@ let make = (~body: jsBody, _children) => {
       }
     | Empty => ReasonReact.null
     };
-  {...component, render: _self => body |> jsTreeToReason |> renderChild};
+  body |> jsTreeToReason |> renderChild;
 };

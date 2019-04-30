@@ -1,16 +1,16 @@
-[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"] [@react.component]
 external createContainer_:
-  (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  (ReasonReact.reactClass, Js.t({..})) => React.element =
   "createContainer";
 
-[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"] [@react.component]
 external withPhenomicApi_:
-  (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  (ReasonReact.reactClass, Js.t({..})) => React.element =
   "withPhenomicApi";
 
-[@bs.module "@phenomic/plugin-renderer-react/lib/client"]
+[@bs.module "@phenomic/plugin-renderer-react/lib/client"] [@react.component]
 external withInitialProps_:
-  (ReasonReact.reactClass, Js.t({..})) => ReasonReact.reactClass =
+  (ReasonReact.reactClass, Js.t({..})) => React.element =
   "withInitialProps";
 
 module BodyRenderer = BodyRenderer;
