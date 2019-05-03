@@ -1,13 +1,13 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/components/Link"]
 [@react.component]
-external link:
+external make:
   (
     ~href: option(string)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~activeStyle: option(ReactDOMRe.Style.t)=?,
     ~className: option(string)=?,
     ~activeClassName: option(string)=?,
-    ~children: array(React.element)
+    ~children,
   ) =>
   React.element =
   "default";
