@@ -1744,10 +1744,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@moox/bs-react-helmet@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@moox/bs-react-helmet/-/bs-react-helmet-1.0.0.tgz#554b1ccc03e3ef62f09910ac7294d80b41efa1f3"
-  integrity sha512-lYvu5lI5Pt2LDbYKnLOYH0YHuTGqeLPkeF0rykQdNtd4aEDLQlaE98QCraR7mvdNPxZSGFQJ8UPLNiGKqDgLsw==
+"@moox/bs-react-helmet@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@moox/bs-react-helmet/-/bs-react-helmet-2.0.0.tgz#d1bca09ff1d2c31d0a76a93a0660ef81cb74353d"
+  integrity sha512-2Pjd46s8VR8E9xWztCw7t2JoM9A7y7wm4kwybU7SYHDJY1INQtyvpQUbpBcbBe5Vpq0UOM4UnQFkuAzkWNb+WQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
