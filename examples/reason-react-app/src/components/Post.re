@@ -2,8 +2,9 @@ open Helpers;
 
 [@react.component]
 let make = (~post) => {
+  let post' = PhenomicPresetReactApp.jsEdge(post);
   <div>
-    {switch ((post: Types.postNode)) {
+    {switch ((post': Types.postNode)) {
      | Inactive
      | Loading => "Loading ..." |> text
      | Errored => <ErrorPage />

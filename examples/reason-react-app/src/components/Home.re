@@ -2,13 +2,14 @@ open Helpers;
 
 [@react.component]
 let make = (~posts) => {
+  let posts' = PhenomicPresetReactApp.jsEdge(posts);
   <div>
     <BsReactHelmet>
       <title> {"Hello world" |> text} </title>
       <meta name="description" content="Everything is awesome!" />
     </BsReactHelmet>
     <h1> {"Home" |> text} </h1>
-    {switch ((posts: Types.posts)) {
+    {switch ((posts': Types.posts)) {
      | Inactive
      | Loading => "Loading ..." |> text
      | Errored => "An error occured" |> text
