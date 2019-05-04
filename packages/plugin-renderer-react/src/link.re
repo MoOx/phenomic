@@ -2,12 +2,12 @@
 [@react.component]
 external make:
   (
-    ~href: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~activeStyle: option(ReactDOMRe.Style.t)=?,
-    ~className: option(string)=?,
-    ~activeClassName: option(string)=?,
-    ~children,
+    ~href: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~activeStyle: ReactDOMRe.Style.t=?,
+    ~className: string=?,
+    ~activeClassName: string=?,
+    ~children: React.element
   ) =>
   React.element =
   "default";
