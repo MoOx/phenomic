@@ -9,3 +9,5 @@ let make = (~message: option(string)=?, _) => {
      }}
   </div>;
 };
+
+let default = make;
