@@ -1,14 +1,14 @@
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external createContainer_: (React.component('a), Js.t({..})) => React.element =
+external createContainer_: (React.component('a), Js.t({..})) => React.component('b) =
   "createContainer";
 
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
-external withPhenomicApi_: (React.component('a), Js.t({..})) => React.element =
+external withPhenomicApi_: (React.component('a), Js.t({..})) => React.component('b) =
   "withPhenomicApi";
 
 [@bs.module "@phenomic/plugin-renderer-react/lib/client"]
 external withInitialProps_:
-  (React.component('a), Js.t({..})) => React.element =
+  (React.component('a), Js.t({..})) => React.component('b) =
   "withInitialProps";
 
 module BodyRenderer = BodyRenderer;
