@@ -28,6 +28,5 @@
       "@phenomic/preset-react-app"
     ]
   },
-  "version": "1.0.0-beta.11",
-  "dependencies": {}
+  "version": "1.0.0-beta.11"
 }
