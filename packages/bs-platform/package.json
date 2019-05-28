@@ -15,7 +15,7 @@
     "lib/**/*.js"
   ],
   "devDependencies": {
-    "bs-platform": "^5.0.0",
+    "bs-platform": "^5.0.4",
     "cpy-cli": "^2.0.0",
     "replace": "^1.0.0"
   },

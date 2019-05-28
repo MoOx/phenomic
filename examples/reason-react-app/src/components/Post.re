@@ -1,31 +1,24 @@
 open Helpers;
 
-let component = ReasonReact.statelessComponent("Post");
-
+[@react.component]
 let make = (~post) => {
-  ...component,
-  render: _self =>
-    <div>
-      {switch ((post: Types.postNode)) {
-       | Inactive
-       | Loading => "Loading ..." |> text
-       | Errored => <ErrorPage />
-       | Idle(post) =>
-         <div>
-           <BsReactHelmet>
-             <title> {post##title |> text} </title>
-           </BsReactHelmet>
-           <h1> {post##title |> text} </h1>
-           <PhenomicPresetReactApp.BodyRenderer body=post##body />
-         </div>
-       }}
-    </div>,
+  let post' = PhenomicPresetReactApp.jsEdge(post);
+  <div>
+    {switch ((post': Types.postNode)) {
+     | Inactive
+     | Loading => "Loading ..." |> text
+     | Errored => <ErrorPage />
+     | Idle(post) =>
+       <div>
+         <BsReactHelmet>
+           <title> {post##title |> text} </title>
+         </BsReactHelmet>
+         <h1> {post##title |> text} </h1>
+         <PhenomicPresetReactApp.BodyRenderer body=post##body />
+       </div>
+     }}
+  </div>;
 };
-
-let jsComponent =
-  ReasonReact.wrapReasonForJs(~component, jsProps =>
-    make(~post=PhenomicPresetReactApp.jsEdge(jsProps##post))
-  );
 
 let queries = props => {
   let post =

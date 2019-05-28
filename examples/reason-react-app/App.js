@@ -11,18 +11,12 @@ import ErrorPage from "./lib/es6/src/components/ErrorPage.bs.js";
 
 const routes = () => (
   <Router history={browserHistory}>
-    <Route
-      path="/"
-      component={withPhenomicApi(Home.jsComponent, Home.queries)}
-    />
+    <Route path="/" component={withPhenomicApi(Home.make, Home.queries)} />
     <Route
       path="/after/:after"
-      component={withPhenomicApi(Home.jsComponent, Home.queries)}
+      component={withPhenomicApi(Home.make, Home.queries)}
     />
-    <Route
-      path="blog/*"
-      component={withPhenomicApi(Post.jsComponent, Post.queries)}
-    />
+    <Route path="blog/*" component={withPhenomicApi(Post.make, Post.queries)} />
     <Route path="*" component={ErrorPage} />
     <Route path="404.html" component={ErrorPage} />
   </Router>

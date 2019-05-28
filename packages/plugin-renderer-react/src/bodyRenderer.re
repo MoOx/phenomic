@@ -1,5 +1,3 @@
-let component = ReasonReact.statelessComponent("BodyRenderer");
-
 type reasonChildren = list(reasonChild)
 and reasonChild =
   | String(string)
@@ -37,10 +35,11 @@ let rec jsTreeToReason = (jsChild: jsBody) =>
   | _ => Empty
   };
 
-let make = (~body: jsBody, _children) => {
+[@react.component]
+let make = (~body: jsBody) => {
   let rec renderChild = child =>
     switch (child) {
-    | String(string) => ReasonReact.string(string)
+    | String(string) => React.string(string)
     | Element(tag, originalProps, reasonChildren) =>
       switch (tag) {
       | "a" =>
@@ -50,22 +49,20 @@ let make = (~body: jsBody, _children) => {
           activeStyle=[%bs.raw {| child[1].activeStyle |}]
           className=[%bs.raw {| child[1].className |}]
           activeClassName=[%bs.raw {| child[1].activeClassName |}]>
-          {ReasonReact.array(
-             Array.of_list(List.map(renderChild, reasonChildren)),
-           )}
+          {React.array(Array.of_list(List.map(renderChild, reasonChildren)))}
         </Link>
       | _ =>
         ReactDOMRe.createElement(
           tag,
           ~props=ReactDOMRe.objToDOMProps(originalProps),
           [|
-            ReasonReact.array(
+            React.array(
               Array.of_list(List.map(renderChild, reasonChildren)),
             ),
           |],
         )
       }
-    | Empty => ReasonReact.null
+    | Empty => React.null
     };
-  {...component, render: _self => body |> jsTreeToReason |> renderChild};
+  body |> jsTreeToReason |> renderChild;
 };
