@@ -1,6 +1,6 @@
 {
   "name": "@phenomic/plugin-transform-markdown",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "!**/__tests__"
   ],
   "dependencies": {
-    "@phenomic/helpers-transform": "^1.0.0-beta.11",
+    "@phenomic/helpers-transform": "^1.0.0",
     "debug": "^2.6.0",
     "gray-matter": "^3.0.0",
     "rehype-autolink-headings": "^2.0.0",
@@ -43,6 +43,6 @@
     "@phenomic/core": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@phenomic/core": "^1.0.0-beta.11"
+    "@phenomic/core": "^1.0.0"
   }
 }
