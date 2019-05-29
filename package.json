@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "phenomic",
+  "name": "@phenomic/core",
   "repository": "https://github.com/phenomic/phenomic.git",
   "homepage": "https://phenomic.io",
   "license": "MIT",
