@@ -1,0 +1,14 @@
+---
+title: 1.0.0
+tag_name: v1.0.0
+link: https://github.com/phenomic/phenomic/releases/tag/v1.0.0
+author: MoOx
+prerelease: true
+---
+
+Without noize, 1.0.0 is out.
+
+## 💥 Reason User Change
+
+- [`@phenomic/plugin-renderer-react`: Update ReasonReact JSX to version 3](https://github.com/phenomic/phenomic/commit/b3f49c4)
+  by @arecvlohe
