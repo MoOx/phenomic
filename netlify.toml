@@ -3,5 +3,5 @@
   command = "yarn website:build"
 [build.environment]
   NODE_VERSION = "10"
-  YARN_VERSION = "1.12.3"
+  YARN_VERSION = "1.16.0"
   YARN_FLAGS = "--pure-lockfile"
