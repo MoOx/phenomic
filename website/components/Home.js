@@ -93,7 +93,7 @@ const Home = () => (
           {"A website with lightning fast UX"}
         </Text>
         <Text style={styles.blockText}>
-          {`This way you offer the best user experience by immediately serving pre-generated HTML for first visits (or all pages, for search engine bots and browsers that don't interpret JavaScript) and then using the power of JavaScript you avoid full page reload by only downloading small chunks of data for each pages & interactions.`}
+          {`This way you offer the best user experience by immediately serving pre-generated HTML for first visits (or all pages, for search engine bots and browsers that don't interpret JavaScript) and then using the power of JavaScript to avoid full page reloads by only downloading small chunks of data for each page & interaction.`}
           {/* <Text style={styles.button>{"Get started"}</Text> */}
         </Text>
       </Spacer>
