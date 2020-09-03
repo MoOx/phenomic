@@ -44,7 +44,7 @@
     "p-map": "^1.2.0",
     "react-dev-utils": "^4.2.1",
     "rimraf": "^2.5.4",
-    "serve": "^6.5.6",
+    "serve": "^10.1.2",
     "url": "^0.11.0"
   },
   "engines": {
