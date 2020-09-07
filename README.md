@@ -1,3 +1,5 @@
+# DEPRECATED. Please use [Next.js](https://nextjs.org) instead
+
 [![Phenomic](https://raw.githubusercontent.com/phenomic/phenomic/master/logo/phenomic-cover-transparent.png)](https://phenomic.io)
 
 > Modular website compiler (React, Webpack, Reason and whatever you want)
